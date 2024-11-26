@@ -1,0 +1,18 @@
+component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "153"]
+  MoveSpeed Float [compression "None"]
+  Grounded Bool [bits "1"]
+  CarryingBig Bool [bits "1"]
+  CarryingSmall Bool [bits "1"]
+
+component _5358ed04715b0f148a60e93c83f08be0_2130127191657380802 [id "154"]
+  m_BodyTextureIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+command _3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82 [id "7", routing "All"]
+
+command _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7 [id "8", routing "All"]
+  oldIndex Int 
+  Newindex Int 
+
+command _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff [id "9", routing "All"]
+  name String 
+

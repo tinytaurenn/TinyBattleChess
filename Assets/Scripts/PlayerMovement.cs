@@ -1,0 +1,332 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Coherence;
+using Coherence.Toolkit;
+using System;
+
+namespace PlayerControls
+{
+    public class PlayerMovement : MonoBehaviour
+    {
+
+        Rigidbody m_rigidBody;
+        CoherenceSync m_sync;
+        [SerializeField] Animator m_Animator;
+
+        public Vector3 MoveInput { get; set; }
+        public bool IsSprinting { get; set; }
+
+        [Header("Horizontal parameters")]
+        [SerializeField] float m_MovementSpeed = 8f;
+        [SerializeField] float m_SprintMultiplier = 1.5f;
+        [SerializeField] float m_RotationSpeed = 10f;
+        [SerializeField] float m_Acceleration = 2f;
+        [SerializeField] float m_Deceleration = 2f;
+        [SerializeField] float m_AirAcceleration = 5f;
+        [SerializeField] float m_AirDecceleration = 1f;
+
+        Vector3 m_HorizontalVelocity;
+        Vector3 m_PreviousMoveInput;
+        float m_PreviousMagnitude;
+        float m_CurrentSpeed;
+
+
+        [Header("Jump Parameters")]
+        [SerializeField] float m_Weight = 2f;
+        [SerializeField] float m_JumpLength = 0.5f;
+        [SerializeField] float m_JumpForce = 10f;
+        [SerializeField] float m_JumpCut = 0.25f;
+        [SerializeField] float m_AirTime = 1.125f;
+        [SerializeField] float m_MaxFallSpeed = 1f;
+
+        float m_JumpTimer = 0f;
+        float m_TimeSincegrounded = 0f;
+        bool m_IsFalling = false;
+        bool m_Isgrounded = true;
+        Vector3 m_VerticalVelocity;
+
+        [Header("Spring")]
+        [SerializeField] LayerMask m_WalkableLayer;
+        [SerializeField] float m_SpringHeight = 0.5f;
+        [SerializeField] float m_SpringForce = 200f;
+        [SerializeField] float m_RayCastHeight = 0.8f;
+        [SerializeField] float m_Damping = 20f;
+
+        Vector3 m_SpringVector;
+
+        Transform m_Platform;
+        bool m_IsOnPlatform = false;
+        Vector3 m_PushBackVelocity;
+
+        Vector3 m_BumpVelocity;
+
+
+        private void Awake()
+        {
+            m_rigidBody = GetComponent<Rigidbody>();
+            m_sync = GetComponent<CoherenceSync>();
+        }
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            JumpTick();
+            m_rigidBody.linearVelocity += Vector3.up * 10;
+        }
+
+
+        private void FixedUpdate()
+        {
+
+
+            MovementUpdate();
+
+            //print("vertical velocity is : "+ m_VerticalVelocity);
+        }
+
+        void MovementUpdate()
+        {
+            Vector3 rigidBodyVelocity = m_rigidBody.linearVelocity;
+            VerticalMovement(rigidBodyVelocity);
+
+            float magnitude = MoveInput.magnitude;
+
+            float acceleration = 0f;
+            if (magnitude > m_PreviousMagnitude)
+            {
+                if (m_Isgrounded)
+                {
+                    acceleration = m_Acceleration;
+                }
+                else
+                {
+                    acceleration = m_AirAcceleration;
+                }
+            }
+            else
+            {
+                if (m_Isgrounded)
+                {
+                    acceleration = m_Deceleration;
+                }
+                else
+                {
+                    acceleration = m_AirDecceleration;
+                }
+            }
+
+            Vector3 vectorDelta = Vector3.Lerp(m_PreviousMoveInput, MoveInput, Time.deltaTime * acceleration);
+            float magnitudeDelta = vectorDelta.magnitude;
+
+            m_PushBackVelocity *= .8f;
+
+            m_CurrentSpeed = IsSprinting ? m_MovementSpeed * m_SprintMultiplier : m_MovementSpeed;
+
+            m_HorizontalVelocity = (vectorDelta) * m_CurrentSpeed;
+
+            //next frame
+            m_PreviousMoveInput = vectorDelta;
+            m_PreviousMagnitude = magnitudeDelta;
+
+            //Capping
+            if (m_IsFalling && m_VerticalVelocity.magnitude > m_MaxFallSpeed)
+                m_VerticalVelocity = m_VerticalVelocity.normalized * m_MaxFallSpeed;
+
+
+            m_rigidBody.linearVelocity = m_HorizontalVelocity + m_VerticalVelocity;
+
+            if (!m_Isgrounded) m_VerticalVelocity = Vector3.Project(m_rigidBody.linearVelocity, Vector3.up);
+
+
+
+            if (magnitude > 0f)
+            {
+                Quaternion newRotation = Quaternion.LookRotation(MoveInput);
+                transform.rotation = Quaternion.Lerp(m_rigidBody.rotation, newRotation, Time.deltaTime * m_RotationSpeed);
+            }
+
+            UpdateAnimator();
+
+        }
+
+
+
+        void VerticalMovement(Vector3 velocity)
+        {
+            float rayDistance = m_Isgrounded ? m_RayCastHeight : m_SpringHeight;
+
+            if (m_JumpTimer > 0)
+            {
+                ApplyGravity();
+            }
+            else
+            {
+
+                //ground check
+                bool wasGrounded = m_Isgrounded;
+                Ray groundRay = new Ray(transform.position, Vector3.down);
+                //QueryTriggerInteraction.Ignore is for triggers 
+                m_Isgrounded = Physics.Raycast(groundRay, out RaycastHit raycast, rayDistance, m_WalkableLayer, QueryTriggerInteraction.Ignore);
+
+                if (m_JumpTimer > 0)
+                {
+                    m_Isgrounded = false;
+                }
+                if (m_Isgrounded)
+                {
+                    if (!wasGrounded || m_Platform == null)
+                    {
+                        if (raycast.rigidbody != null)
+                        {
+                            m_IsOnPlatform = raycast.rigidbody.TryGetComponent(out Transform platform);
+                            m_Platform = m_IsOnPlatform ? platform : null;
+                        }
+                        if (m_IsOnPlatform) GetOnPlatform();
+                    }
+                    //spring
+                    float delta = raycast.distance - m_SpringHeight;
+                    float spring = delta * m_SpringForce - -velocity.y * m_Damping;
+
+                    m_SpringVector = spring * groundRay.direction;
+                    m_VerticalVelocity = Vector3.Lerp(m_VerticalVelocity, m_SpringVector, Time.deltaTime * 20f);
+
+                    m_TimeSincegrounded = 0;
+
+
+                }
+                else
+                {
+                    //fall
+                    if (wasGrounded) Leaveground();
+                    ApplyGravity();
+
+                }
+            }
+
+        }
+
+        private void Leaveground()
+        {
+            m_Isgrounded = false;
+            if (m_IsOnPlatform)
+            {
+                transform.SetParent(null, true);
+                m_Platform = null;
+                m_IsOnPlatform = false;
+            }
+        }
+
+        private void ApplyGravity()
+        {
+            m_VerticalVelocity += Vector3.up * (-m_Weight * Time.deltaTime);
+            m_TimeSincegrounded += Time.deltaTime;
+        }
+
+        internal void TryJump()
+        {
+            bool canJump = m_Isgrounded || m_TimeSincegrounded < m_AirTime;
+            if (canJump) Jump();
+
+        }
+
+        private void Jump()
+        {
+
+            if (m_Isgrounded)
+            {
+                if (m_Animator == null) return;
+                m_Animator.SetTrigger("Jump");
+                m_sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Jump");
+            }
+            m_JumpTimer = m_JumpLength;
+
+            Leaveground();
+
+            m_VerticalVelocity = Vector3.up * m_JumpForce;
+            Vector3 velocity = m_rigidBody.linearVelocity;
+            velocity -= Vector3.Project(velocity, Vector3.up);
+            velocity += m_VerticalVelocity;
+            m_rigidBody.linearVelocity = velocity;
+        }
+        private void JumpTick()
+        {
+
+            if (m_JumpTimer > 0)
+            {
+                m_JumpTimer -= Time.deltaTime;
+                if (m_JumpTimer < 0f) InterrupJump();
+
+
+            }
+            m_IsFalling = !m_Isgrounded && Vector3.Dot(m_rigidBody.linearVelocity, Vector3.up) < 0;
+
+        }
+
+
+        internal void InterrupJump()
+        {
+            m_JumpTimer = -1;
+            m_VerticalVelocity *= m_JumpCut;
+
+        }
+
+        public void Bump(Vector3 normalizedDirection, float force)
+        {
+
+
+            Leaveground();
+            m_BumpVelocity = new(normalizedDirection.x, 0, normalizedDirection.z);
+            m_BumpVelocity *= force;
+
+            if (m_Isgrounded)
+            {
+                m_VerticalVelocity = Vector3.up * force;
+
+            }
+            else
+            {
+                m_VerticalVelocity = Vector3.up * force / 3f;
+            }
+
+            Vector3 velocity = m_rigidBody.linearVelocity;
+            velocity -= Vector3.Project(velocity, Vector3.up);
+            velocity += m_VerticalVelocity;
+            m_rigidBody.linearVelocity = velocity;
+
+
+
+        }
+
+        void GetOnPlatform()
+        {
+            transform.SetParent(m_Platform, true);
+        }
+        public float ThrowSpeed()
+        {
+            float throwSpeed = Vector3.Dot(transform.forward, m_HorizontalVelocity);
+            throwSpeed = Mathf.Clamp(throwSpeed, 0f, Mathf.Infinity);
+            return throwSpeed;
+        }
+
+        public void ThrowPushBack(float speed)
+        {
+            m_PushBackVelocity += -transform.forward * speed * 0.6f;
+        }
+
+        private void UpdateAnimator()
+        {
+
+            float animSpeed = m_HorizontalVelocity.magnitude / m_CurrentSpeed;
+            if (IsSprinting) animSpeed *= m_SprintMultiplier;
+
+            m_Animator.SetFloat("MoveSpeed", animSpeed);
+            m_Animator.SetBool("Grounded", m_Isgrounded);
+
+        }
+    } 
+}

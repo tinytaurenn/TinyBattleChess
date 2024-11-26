@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579f4a509fd2f994fa391c0c78ea3f11, type: 3}
+  m_Name: PlayerPrefab_1
+  m_EditorClassIdentifier: 
+  id: 5358ed04715b0f148a60e93c83f08be0
+  selfId: 161155a21363404418e80696eb70586f
+  editorTarget: {fileID: 6004959108954425623, guid: 5358ed04715b0f148a60e93c83f08be0, type: 3}
+  includeInSchema: 1
+  objectProvider:
+    rid: 5431316462921056982
+  objectInstantiator:
+    rid: 5431316462921056983
+  references:
+    version: 2
+    RefIds:
+    - rid: 5431316462921056982
+      type: {class: DirectReferenceProvider, ns: Coherence.Toolkit, asm: Coherence.Toolkit}
+      data:
+        prefab: {fileID: 6004959108954425623, guid: 5358ed04715b0f148a60e93c83f08be0, type: 3}
+    - rid: 5431316462921056983
+      type: {class: DefaultInstantiator, ns: Coherence.Toolkit, asm: Coherence.Toolkit}
+      data: 
