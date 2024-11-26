@@ -1,7 +1,9 @@
 using Coherence.Connection;
 using Coherence.Toolkit;
+using PlayerControls;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -11,22 +13,13 @@ public class MainSimulator : MonoBehaviour
 
     CoherenceBridge m_CoherenceBridge;
     public Dictionary<ClientID, CoherenceSync> m_Players = new();
-    [SerializeField] private List<FPlayerStruct> m_FPlayers = new List<FPlayerStruct>();
+    [SerializeField] private List<GameObject> m_FPlayers = new List<GameObject>();
 
-    [Serializable]
-    public struct FPlayerStruct
-    {
-        public CoherenceSync Sync;
-        public GameObject Player;
-        public ClientID ClientID; 
+    [SerializeField] TextMeshProUGUI m_PlayerNumberText;
 
-        public FPlayerStruct(CoherenceSync sync, ClientID clientID)
-        {
-            Sync = sync;
-            Player = null;
-            ClientID = clientID;
-        }
-    }
+    float timer = 0;
+    float mytimer = 3f; 
+
 
 
 #if COHERENCE_SIMULATOR || UNITY_EDITOR
@@ -38,14 +31,14 @@ public class MainSimulator : MonoBehaviour
 
     private void OnEnable()
     {
-        m_CoherenceBridge.ClientConnections.OnSynced += OnSynced; 
+        m_CoherenceBridge.ClientConnections.OnSynced += OnSynced;
         m_CoherenceBridge.ClientConnections.OnCreated += OnCreated;
         m_CoherenceBridge.ClientConnections.OnDestroyed += OnDestroyed;
 
-        
+
     }
 
-    
+
 
     private void OnDisable()
     {
@@ -56,54 +49,58 @@ public class MainSimulator : MonoBehaviour
 
     private void OnDestroyed(CoherenceClientConnection connection)
     {
-        if (m_Players.TryGetValue(connection.ClientId, out var sync))
-        {
-            m_Players.Remove(connection.ClientId);
-        }
+        //RefreshPlayerList();
     }
 
     private void OnCreated(CoherenceClientConnection connection)
     {
-        if(m_Players.ContainsKey(connection.ClientId))
-        {
-            return;
-        }
+        //RefreshPlayerList();
 
-        m_Players.Add(connection.ClientId, connection.Sync);
-        Debug.Log("added in dictionary on created ");
-        m_FPlayers.Add(new FPlayerStruct(connection.Sync, connection.ClientId)); 
     }
 
     private void OnSynced(CoherenceClientConnectionManager manager)
     {
-        foreach (var client in manager.GetAllClients())
-        {
-            if (m_Players.ContainsKey(client.ClientId))
-            {
-                continue;
-            }
-            m_Players.Add(client.ClientId, client.Sync);
-            Debug.Log("added in dictionary"); 
-            m_FPlayers.Add(new FPlayerStruct(client.Sync, client.ClientId));
-            Debug.Log("added " + client.ClientId + " to the dictionary");
-        }
+        
+        //RefreshPlayerList();
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        m_PlayerNumberText.text = "number of players : " + m_FPlayers.Count;
+
+        if(Time.time > timer + mytimer)
+        {
+            timer = Time.time;
+            RefreshPlayerList();
+        }
+    }
+
+
+    public void RefreshPlayerList()
+    {
+        m_FPlayers.Clear();
+        foreach (var player in FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None))
+        {
+            m_FPlayers.Add(player.gameObject);
+
+
+        }
+
+        foreach (var player in m_FPlayers)
+        {
+            Debug.Log(player.name);
+        }
     }
 
 #endif
 
 
-    public void SimpleMessage()
-    {
-        Debug.Log("Simple Message");
-    }
 }
+
+
+

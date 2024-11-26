@@ -177,8 +177,9 @@ namespace Coherence.Generated
                 case 150: return GenericFieldULong3.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 151: return GenericFieldColor0.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 152: return GenericFieldColor1.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 153: return _5358ed04715b0f148a60e93c83f08be0_1947441686218104907.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 154: return _5358ed04715b0f148a60e93c83f08be0_2130127191657380802.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 153: return _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 154: return _5358ed04715b0f148a60e93c83f08be0_1947441686218104907.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 155: return _5358ed04715b0f148a60e93c83f08be0_2130127191657380802.FromInterop(data, dataSize, simFrames, simFramesCount);
             }
 
             throw new ArgumentException($"Unkown component type {type}", nameof(type));
@@ -1878,6 +1879,17 @@ namespace Coherence.Generated
                 }
                 case 153:
                 {
+                    var orig = (_3941f9337bf07904f8ebd80981d7e64f_1338625383742743499)component;
+                    var val = new _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499.Interop();
+
+                    var pinnedtext = orig.text != null ? Encoding.UTF8.GetBytes(orig.text) : null; fixed (void* pinnedPtrtext = pinnedtext) { val.text = new ByteArray { Data = pinnedPtrtext, Length =  pinnedtext?.Length ?? 0 };
+
+                    updater.UpdateComponent(entity, componentType, val, 16, component.FieldsMask, component.StoppedMask, frames);
+
+}                    return;
+                }
+                case 154:
+                {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_1947441686218104907)component;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_1947441686218104907.Interop();
 
@@ -1890,7 +1902,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 154:
+                case 155:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_2130127191657380802)component;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_2130127191657380802.Interop();
@@ -1917,9 +1929,8 @@ namespace Coherence.Generated
                   case 4: return PersistenceReady.FromInterop(data, dataSize);
                   case 5: return SceneIndexChanged.FromInterop(data, dataSize);
                   case 6: return GenericCommand.FromInterop(data, dataSize);
-                  case 7: return _3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82.FromInterop(data, dataSize);
-                  case 8: return _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7.FromInterop(data, dataSize);
-                  case 9: return _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff.FromInterop(data, dataSize);
+                  case 7: return _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7.FromInterop(data, dataSize);
+                  case 8: return _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff.FromInterop(data, dataSize);
             }
 
             throw new ArgumentException($"Unkown command type {type}", nameof(type));
@@ -2021,16 +2032,6 @@ namespace Coherence.Generated
 
                 case 7:
                 {
-                    var orig = (_3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82)command;
-                    var val = new _3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82.Interop();
-
-
-                    return sender.SendCommand(entity, target, type, val, 0);
-
-                }
-
-                case 8:
-                {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7.Interop();
 
@@ -2041,7 +2042,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 9:
+                case 8:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff.Interop();

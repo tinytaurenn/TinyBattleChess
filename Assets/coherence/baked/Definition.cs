@@ -20,7 +20,7 @@ namespace Coherence.Generated
 
     public class Definition : IDefinition
     {
-        public const string schemaId = "b2c655e400d6b6d9e9459188b5fdf05d53c2352c";
+        public const string schemaId = "97e1ac652253e99fc34b4451e1a04da24719be03";
         public const uint InternalWorldPosition = 0;
         public const uint InternalWorldOrientation = 1;
         public const uint InternalLocalUserComponent = 2;
@@ -174,8 +174,9 @@ namespace Coherence.Generated
         public const uint InternalGenericFieldULong3 = 150;
         public const uint InternalGenericFieldColor0 = 151;
         public const uint InternalGenericFieldColor1 = 152;
-        public const uint Internal_5358ed04715b0f148a60e93c83f08be0_1947441686218104907 = 153;
-        public const uint Internal_5358ed04715b0f148a60e93c83f08be0_2130127191657380802 = 154;
+        public const uint Internal_3941f9337bf07904f8ebd80981d7e64f_1338625383742743499 = 153;
+        public const uint Internal_5358ed04715b0f148a60e93c83f08be0_1947441686218104907 = 154;
+        public const uint Internal_5358ed04715b0f148a60e93c83f08be0_2130127191657380802 = 155;
         public const uint InternalAuthorityRequest = 0;
         public const uint InternalAuthorityTransfer = 1;
         public const uint InternalQuerySynced = 2;
@@ -183,9 +184,8 @@ namespace Coherence.Generated
         public const uint InternalPersistenceReady = 4;
         public const uint InternalSceneIndexChanged = 5;
         public const uint InternalGenericCommand = 6;
-        public const uint Internal_3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82 = 7;
-        public const uint Internal_5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7 = 8;
-        public const uint Internal_5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff = 9;
+        public const uint Internal_5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7 = 7;
+        public const uint Internal_5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff = 8;
 
         private static readonly Dictionary<uint, string> componentNamesForTypeIds = new Dictionary<uint, string>()
         {
@@ -342,8 +342,9 @@ namespace Coherence.Generated
             { 150, "GenericFieldULong3" },
             { 151, "GenericFieldColor0" },
             { 152, "GenericFieldColor1" },
-            { 153, "_5358ed04715b0f148a60e93c83f08be0_1947441686218104907" },
-            { 154, "_5358ed04715b0f148a60e93c83f08be0_2130127191657380802" },
+            { 153, "_3941f9337bf07904f8ebd80981d7e64f_1338625383742743499" },
+            { 154, "_5358ed04715b0f148a60e93c83f08be0_1947441686218104907" },
+            { 155, "_5358ed04715b0f148a60e93c83f08be0_2130127191657380802" },
         };
 
         public static string ComponentNameForTypeId(uint typeId)
@@ -367,7 +368,6 @@ namespace Coherence.Generated
             { Definition.InternalPersistenceReady , MessageTarget.All },
             { Definition.InternalSceneIndexChanged , MessageTarget.All },
             { Definition.InternalGenericCommand , MessageTarget.All },
-            { Definition.Internal_3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82 , MessageTarget.All },
             { Definition.Internal_5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7 , MessageTarget.All },
             { Definition.Internal_5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff , MessageTarget.All },
         };
@@ -685,6 +685,8 @@ namespace Coherence.Generated
                     return GenericFieldColor0.Deserialize(referenceSimulationFrame, inProtocolStream);
                 case InternalGenericFieldColor1:
                     return GenericFieldColor1.Deserialize(referenceSimulationFrame, inProtocolStream);
+                case Internal_3941f9337bf07904f8ebd80981d7e64f_1338625383742743499:
+                    return _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499.Deserialize(referenceSimulationFrame, inProtocolStream);
                 case Internal_5358ed04715b0f148a60e93c83f08be0_1947441686218104907:
                     return _5358ed04715b0f148a60e93c83f08be0_1947441686218104907.Deserialize(referenceSimulationFrame, inProtocolStream);
                 case Internal_5358ed04715b0f148a60e93c83f08be0_2130127191657380802:
@@ -1006,6 +1008,8 @@ namespace Coherence.Generated
                     return GenericFieldColor0.Serialize((GenericFieldColor0)data, isRefSimFrameValid, referenceSimulationFrame, protocolStream, logger);
                 case InternalGenericFieldColor1:
                     return GenericFieldColor1.Serialize((GenericFieldColor1)data, isRefSimFrameValid, referenceSimulationFrame, protocolStream, logger);
+                case Internal_3941f9337bf07904f8ebd80981d7e64f_1338625383742743499:
+                    return _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499.Serialize((_3941f9337bf07904f8ebd80981d7e64f_1338625383742743499)data, isRefSimFrameValid, referenceSimulationFrame, protocolStream, logger);
                 case Internal_5358ed04715b0f148a60e93c83f08be0_1947441686218104907:
                     return _5358ed04715b0f148a60e93c83f08be0_1947441686218104907.Serialize((_5358ed04715b0f148a60e93c83f08be0_1947441686218104907)data, isRefSimFrameValid, referenceSimulationFrame, protocolStream, logger);
                 case Internal_5358ed04715b0f148a60e93c83f08be0_2130127191657380802:
@@ -1034,8 +1038,6 @@ namespace Coherence.Generated
                     return SceneIndexChanged.Deserialize(bitStream, entity, target);
                 case Definition.InternalGenericCommand:
                     return GenericCommand.Deserialize(bitStream, entity, target);
-                case Definition.Internal_3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82:
-                    return _3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82.Deserialize(bitStream, entity, target);
                 case Definition.Internal_5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7:
                     return _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7.Deserialize(bitStream, entity, target);
                 case Definition.Internal_5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff:
@@ -1129,9 +1131,6 @@ namespace Coherence.Generated
                     break;
                 case Definition.InternalGenericCommand:
                     GenericCommand.Serialize((GenericCommand)data, bitStream);
-                    break;
-                case Definition.Internal_3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82:
-                    _3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82.Serialize((_3941f9337bf07904f8ebd80981d7e64f_430a238398ce4ec0aa48ee6e0aaf4a82)data, bitStream);
                     break;
                 case Definition.Internal_5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7:
                     _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7.Serialize((_5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7)data, bitStream);
