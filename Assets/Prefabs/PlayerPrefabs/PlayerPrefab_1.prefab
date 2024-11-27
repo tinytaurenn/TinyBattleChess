@@ -405,7 +405,6 @@ MonoBehaviour:
   componentActions:
   - rid: 5431316396223759101
   - rid: 5431316396223759102
-  - rid: 5431316413982704434
   - rid: 5431316419483009417
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
@@ -738,10 +737,6 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 5431316413982704434
-      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
-      data:
-        component: {fileID: 2130127191657380802}
     - rid: 5431316413982704619
       type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:

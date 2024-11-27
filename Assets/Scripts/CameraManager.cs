@@ -1,10 +1,13 @@
+using PlayerControls;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraManager : MonoBehaviour
 {
     public Transform m_PlayerTransform;
+    [SerializeField] InputActionReference m_MouseCamInputRef;
 
     public static CameraManager Instance;
     [SerializeField] float m_FollowSpeed = 10f;
@@ -14,8 +17,10 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] float m_CameraDistance = 10f;
     [SerializeField] float m_CameraUpOffset = 3f;
-    [SerializeField] float m_CameraRotateSpeed = 7f; 
-    
+    [SerializeField] float m_CameraRotateSpeed = 7f;
+    [SerializeField] float m_FallingDownOffSet = 3f; 
+
+
 
     private void Awake()
     {
@@ -27,6 +32,17 @@ public class CameraManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+    }
+
+    private void OnEnable()
+    {
+        m_MouseCamInputRef.action.Enable();
+
+    }
+    private void OnDisable()
+    {
+        m_MouseCamInputRef.action.Disable();
 
     }
     void Start()
@@ -47,8 +63,8 @@ public class CameraManager : MonoBehaviour
 
         if (m_PlayerTransform == null) return;
         //SimpleFollowCamera(); 
-        ThirdPersoMouseControlCamera(); 
-        
+        ThirdPersoMouseControlCamera();
+
     }
 
     #region CameraFunctions
@@ -61,36 +77,47 @@ public class CameraManager : MonoBehaviour
 
     void MouseControlCamera()
     {
-        // Check if the right mouse button is pressed
-        if (Input.GetMouseButton(1))
+        if (m_MouseCamInputRef.action.IsPressed())
         {
-            // Get the mouse movement delta
-            float mouseX = Input.GetAxis("Mouse X");
-            float mouseY = Input.GetAxis("Mouse Y");
 
-            Vector3 targetPostion = m_PlayerTransform.position; 
-
-            // Rotate the camera around the target based on mouse movement
-            
-            
-            transform.RotateAround(targetPostion, Vector3.up, mouseX * m_CameraRotateSpeed);
+            float mouseDeltaX = m_MouseCamInputRef.action.ReadValue<Vector2>().x;
+            //float mouseDeltaY = m_MouseCamInputRef.action.ReadValue<Vector2>().y; 
 
 
 
-          
+            Vector3 targetPostion = m_PlayerTransform.position;
+
+
+            transform.RotateAround(targetPostion, Vector3.up, mouseDeltaX * m_CameraRotateSpeed);
+            //transform.RotateAround(targetPostion, transform.right, -mouseDeltaY * m_CameraRotateSpeed);
+
 
         }
 
         Vector3 localTargetOffset = m_PlayerTransform.forward * m_TargetOffset.z + m_PlayerTransform.right * m_TargetOffset.x + m_PlayerTransform.up * m_TargetOffset.y;
+        Vector3 targetLookAtPosition;
+        PlayerMovement playerMove = m_PlayerTransform.GetComponent<PlayerMovement>();
+        if (!playerMove.m_Isgrounded || playerMove.m_IsFalling)
+        {
+            targetLookAtPosition = m_PlayerTransform.position + localTargetOffset + Vector3.down * m_FallingDownOffSet;
+        }
+        else
+        {
 
-        Vector3 targetLookAtPosition = m_PlayerTransform.position + localTargetOffset;
+
+            targetLookAtPosition = m_PlayerTransform.position + localTargetOffset;
+            
+        }
+
+
+
         Quaternion targetRotation = Quaternion.LookRotation(targetLookAtPosition - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, m_RotationSpeed * Time.fixedDeltaTime);
     }
 
     void LerpCameraDistance()
     {
-       
+
         Vector3 targetPostion = m_PlayerTransform.position;
         Vector3 cameraPos = transform.position;
         Vector3 direction = new Vector3(targetPostion.x, cameraPos.y, targetPostion.z) - cameraPos;

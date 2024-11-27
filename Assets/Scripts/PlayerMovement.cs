@@ -42,8 +42,8 @@ namespace PlayerControls
 
         float m_JumpTimer = 0f;
         float m_TimeSincegrounded = 0f;
-        bool m_IsFalling = false;
-        bool m_Isgrounded = true;
+        internal bool m_IsFalling = false;
+        internal bool m_Isgrounded = true;
         Vector3 m_VerticalVelocity;
 
         [Header("Spring")]

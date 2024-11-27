@@ -76,6 +76,7 @@ public class ConnectionsHandler : MonoBehaviour
         if(Coherence.SimulatorUtility.IsSimulator) return;
 
         PlayerSpawn();
+        //SyncAll(); 
        
     }
 
@@ -84,5 +85,13 @@ public class ConnectionsHandler : MonoBehaviour
         MyPlayer = Instantiate(m_PlayerPrefab, Vector3.zero, Quaternion.identity);
         MyPlayer.name = "[local] PLAYER";
         CameraManager.Instance.m_PlayerTransform = MyPlayer.transform; 
+    }
+
+    void SyncAll()
+    {
+        foreach (var item in FindObjectsByType<PlayerSync>(FindObjectsSortMode.None))
+        {
+            item.Sync(); 
+        }
     }
 }
