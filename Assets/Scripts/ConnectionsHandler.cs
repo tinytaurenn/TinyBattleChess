@@ -83,5 +83,6 @@ public class ConnectionsHandler : MonoBehaviour
     {
         MyPlayer = Instantiate(m_PlayerPrefab, Vector3.zero, Quaternion.identity);
         MyPlayer.name = "[local] PLAYER";
+        CameraManager.Instance.m_PlayerTransform = MyPlayer.transform; 
     }
 }

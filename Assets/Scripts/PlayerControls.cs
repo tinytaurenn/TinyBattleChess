@@ -15,7 +15,8 @@ namespace PlayerControls
         PlayerMovement m_PlayerMovement;
         PlayerUse m_PlayerUse;
         Vector2 m_MoveValue;
-        Transform m_CameraTransform; 
+        Transform m_CameraTransform;
+        CameraManager m_CameraManager; 
 
         private void OnEnable()
         {
@@ -65,7 +66,11 @@ namespace PlayerControls
 
         void SetMovementValue(Vector2 moveInput)
         {
-            if(m_CameraTransform == null) m_CameraTransform = Camera.main.transform;
+            if (m_CameraTransform == null)
+            {
+                m_CameraManager = CameraManager.Instance; 
+                m_CameraTransform = m_CameraManager.transform;
+            }
             m_MoveValue = moveInput;
             Vector3 forward = new Vector3(m_CameraTransform.forward.x, 0, m_CameraTransform.forward.z).normalized;
             Vector3 right = new Vector3(m_CameraTransform.right.x, 0, m_CameraTransform.right.z).normalized;
