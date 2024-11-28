@@ -2,6 +2,7 @@ using Coherence;
 using Coherence.Cloud;
 using Coherence.Connection;
 using Coherence.Toolkit;
+using PlayerControls;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -75,6 +76,7 @@ public class ConnectionsHandler : MonoBehaviour
 
         if(Coherence.SimulatorUtility.IsSimulator) return;
 
+ 
         PlayerSpawn();
         //SyncAll(); 
        

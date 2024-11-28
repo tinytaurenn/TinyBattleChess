@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: World Connection Dialog
       objectReference: {fileID: 0}
+    - target: {fileID: 7410436684582398122, guid: 7857ccb49ecb3864787412f46a05c3b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7644627420475203035, guid: 7857ccb49ecb3864787412f46a05c3b2, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -1679,7 +1683,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7942107839450039191, guid: 9e558580774fe6f47a64686c5829e786, type: 3}
       propertyPath: scenePrefabInstanceUUID
-      value: -3472
+      value: 72720
       objectReference: {fileID: 0}
     - target: {fileID: 1330552884769063296, guid: 9e558580774fe6f47a64686c5829e786, type: 3}
       propertyPath: m_LocalPosition.x
