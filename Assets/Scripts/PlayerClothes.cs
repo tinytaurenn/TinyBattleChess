@@ -36,6 +36,7 @@ public class PlayerClothes : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if(Coherence.SimulatorUtility.IsSimulator) return;
         if(m_BodyMPB.GetTexture("_BaseMap") != m_BodyTextures[m_BodyTextureIndex])
         {
             ChangeBody(0,m_BodyTextureIndex);

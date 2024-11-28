@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Coherence;
 using Coherence.Toolkit;
-using System;
+
 
 namespace PlayerControls
 {
@@ -42,8 +42,8 @@ namespace PlayerControls
 
         float m_JumpTimer = 0f;
         float m_TimeSincegrounded = 0f;
-        internal bool m_IsFalling = false;
-        internal bool m_Isgrounded = true;
+        [SerializeField] internal bool m_IsFalling = false;
+        [SerializeField] internal bool m_Isgrounded = true;
         Vector3 m_VerticalVelocity;
 
         [Header("Spring")]
@@ -61,7 +61,20 @@ namespace PlayerControls
 
         Vector3 m_BumpVelocity;
 
+        [Header("Slip")]
 
+        [SerializeField] float m_SlipCheckDistance = 0.3f;
+
+        
+
+        private void OnEnable()
+        {
+            
+        }
+        private void OnDisable()
+        {
+           
+        }
         private void Awake()
         {
             m_rigidBody = GetComponent<Rigidbody>();
@@ -77,16 +90,19 @@ namespace PlayerControls
         {
             JumpTick();
             m_rigidBody.linearVelocity += Vector3.up * 10;
+
+            AvoidBorderStuck();
+
+
+
         }
 
 
         private void FixedUpdate()
         {
 
-
             MovementUpdate();
-
-            //print("vertical velocity is : "+ m_VerticalVelocity);
+         
         }
 
         void MovementUpdate()
@@ -172,6 +188,7 @@ namespace PlayerControls
                 Ray groundRay = new Ray(transform.position, Vector3.down);
                 //QueryTriggerInteraction.Ignore is for triggers 
                 m_Isgrounded = Physics.Raycast(groundRay, out RaycastHit raycast, rayDistance, m_WalkableLayer, QueryTriggerInteraction.Ignore);
+
 
                 if (m_JumpTimer > 0)
                 {
@@ -264,6 +281,7 @@ namespace PlayerControls
 
             }
             m_IsFalling = !m_Isgrounded && Vector3.Dot(m_rigidBody.linearVelocity, Vector3.up) < 0;
+            
 
         }
 
@@ -328,5 +346,146 @@ namespace PlayerControls
             m_Animator.SetBool("Grounded", m_Isgrounded);
 
         }
+
+        
+
+        void AvoidBorderStuck()
+        {
+            if (m_Isgrounded) return; 
+            if(SlipCheck(out Vector3 direction))
+            {
+                Bump(direction, 20f); 
+            }
+            
+        }
+
+        
+
+        bool SlipCheck(out Vector3 direction)
+        {
+            direction = Vector3.up;
+
+            Vector3 raySpawnPos = transform.position + Vector3.down * m_SpringHeight;
+
+            Vector3 forward = transform.forward * m_SlipCheckDistance;
+            Vector3 back = -transform.forward * m_SlipCheckDistance;
+            Vector3 right = transform.right * m_SlipCheckDistance;
+            Vector3 left = -transform.right * m_SlipCheckDistance;
+
+            Ray frontRay = new Ray(raySpawnPos, forward);
+            Ray backRay = new Ray(raySpawnPos, back);
+            Ray rightRay = new Ray(raySpawnPos, right);
+            Ray leftRay = new Ray(raySpawnPos, left);
+
+            Ray frontDownRay = new Ray(raySpawnPos + forward, Vector3.down);
+            Ray backDownRay = new Ray(raySpawnPos + back, Vector3.down);
+            Ray rightDownRay = new Ray(raySpawnPos + right, Vector3.down);
+            Ray leftDownRay = new Ray(raySpawnPos + left, Vector3.down);
+
+
+            if(Physics.Raycast(frontRay, m_SlipCheckDistance, m_WalkableLayer))
+            {
+                direction = back;
+                Debug.Log("slipping backward");
+                return true; 
+            }
+            if(Physics.Raycast(backRay, m_SlipCheckDistance, m_WalkableLayer)) { 
+                direction = forward;
+                Debug.Log("slipping forward");
+                return true; 
+            }
+            if(Physics.Raycast(rightRay, m_SlipCheckDistance, m_WalkableLayer)) { 
+                direction = left;
+                Debug.Log("slipping left");
+                return true; 
+            }
+            if(Physics.Raycast(leftRay, m_SlipCheckDistance, m_WalkableLayer)) { 
+                direction = right;
+                Debug.Log("slipping right");
+                return true; 
+            }
+
+            if(Physics.Raycast(frontDownRay, m_SlipCheckDistance, m_WalkableLayer))
+            {
+                m_Isgrounded = true;
+                return false;
+            }
+            if(Physics.Raycast(backDownRay, m_SlipCheckDistance, m_WalkableLayer))
+            {
+                m_Isgrounded = true;
+                return false;
+            }
+            if(Physics.Raycast(rightDownRay, m_SlipCheckDistance, m_WalkableLayer))
+            {
+                m_Isgrounded = true;
+                return false;
+            }
+            if(Physics.Raycast(leftDownRay, m_SlipCheckDistance, m_WalkableLayer))
+            {
+                m_Isgrounded = true;
+                return false;
+            }
+
+
+
+            return false; 
+        }
+
+        private void OnDrawGizmos()
+        {
+
+            BorderDetectionGizmos(); 
+
+
+
+
+        }
+
+        void BorderDetectionGizmos()
+        {
+            Vector3 raySpawnPos = transform.position + Vector3.down * m_SpringHeight;
+
+            Vector3 forward = transform.forward * m_SlipCheckDistance;
+            Vector3 back = -transform.forward * m_SlipCheckDistance;
+            Vector3 right = transform.right * m_SlipCheckDistance;
+            Vector3 left = -transform.right * m_SlipCheckDistance;
+
+            Ray frontRay = new Ray(raySpawnPos, forward);
+            Ray backRay = new Ray(raySpawnPos, back);
+            Ray rightRay = new Ray(raySpawnPos, right);
+            Ray leftRay = new Ray(raySpawnPos, left);
+
+            Ray frontDownRay = new Ray(raySpawnPos + forward, Vector3.down);
+            Ray backDownRay = new Ray(raySpawnPos + back, Vector3.down);
+            Ray rightDownRay = new Ray(raySpawnPos + right, Vector3.down);
+            Ray leftDownRay = new Ray(raySpawnPos + left, Vector3.down);
+
+
+
+
+            Gizmos.color = Color.yellow;
+
+            Gizmos.color = (Physics.Raycast(frontRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+            Gizmos.DrawRay(raySpawnPos, forward);
+            Gizmos.color = (Physics.Raycast(backRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+            Gizmos.DrawRay(raySpawnPos, back);
+            Gizmos.color = (Physics.Raycast(rightRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+            Gizmos.DrawRay(raySpawnPos, right);
+            Gizmos.color = (Physics.Raycast(leftRay,  m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+            Gizmos.DrawRay(raySpawnPos, left);
+
+            //downs 
+
+            Gizmos.color = (Physics.Raycast(frontDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+            Gizmos.DrawRay(raySpawnPos + forward, Vector3.down);
+            Gizmos.color = (Physics.Raycast(backDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+            Gizmos.DrawRay(raySpawnPos + back, Vector3.down);
+            Gizmos.color = (Physics.Raycast(rightDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+            Gizmos.DrawRay(raySpawnPos + right, Vector3.down);
+            Gizmos.color = (Physics.Raycast(leftDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+            Gizmos.DrawRay(raySpawnPos + left, Vector3.down);
+        }
+
+
     } 
 }

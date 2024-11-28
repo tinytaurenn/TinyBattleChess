@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Eyes
-  m_Shader: {fileID: -6465566751694194690, guid: a47c5e4932e6c6245848ba4fde2e2977, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 86e403bb8528e4c41b57dc62ed472c25, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -94,6 +94,7 @@ Material:
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _IrisColor: {r: 0.5471698, g: 0.29131308, b: 0.10065857, a: 0}
     - _Iris_Colour: {r: 0.2775454, g: 0.52518547, b: 0.764151, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
