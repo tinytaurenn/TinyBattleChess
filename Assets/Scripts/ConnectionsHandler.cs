@@ -10,6 +10,15 @@ using UnityEngine.SceneManagement;
 
 public class ConnectionsHandler : MonoBehaviour
 {
+
+    internal enum EPlayerState
+    {
+        Player,
+        Spectator
+    }
+
+    internal EPlayerState m_PlayerState = EPlayerState.Player;
+
     [SerializeField] CoherenceBridge m_CoherenceBridge;
     [SerializeField] GameObject m_PlayerPrefab;
     [SerializeField] CoherenceSync m_SimulatorSync; 

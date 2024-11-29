@@ -20,9 +20,26 @@ public class MainSimulator : MonoBehaviour
     float timer = 0;
     float mytimer = 3f; 
 
+    internal enum EPlayState
+    {
+        Lobby,
+        Shop, 
+        Fighting,
+        End
+    }
+
+    internal enum EGameState
+    {
+        Lobby,
+        InGame
+    }
+
+    internal EPlayState m_PlayState = EPlayState.Lobby;
+    internal EGameState m_GameState = EGameState.Lobby;
 
 
-#if COHERENCE_SIMULATOR || UNITY_EDITOR
+
+#if COHERENCE_SIMULATOR || UNITY_EDITOR // DONT FORGET ONLY WORKS IN EDITOR 
 
     private void Awake()
     {
@@ -71,18 +88,19 @@ public class MainSimulator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_PlayerNumberText.text = "number of players : " + m_FPlayers.Count;
+        //m_PlayerNumberText.text = "number of players : " + m_FPlayers.Count;
 
-        if(Time.time > timer + mytimer)
-        {
-            timer = Time.time;
-            RefreshPlayerList();
-        }
+        //if (Time.time > timer + mytimer)
+        //{
+        //    timer = Time.time;
+        //    RefreshPlayerList();
+        //}
     }
 
 
     public void RefreshPlayerList()
     {
+        Debug.Log("Refreshing player list");
         m_FPlayers.Clear();
         foreach (var player in FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None))
         {

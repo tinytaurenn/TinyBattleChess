@@ -127,8 +127,8 @@ MonoBehaviour:
     Assembly-CSharp
   approveAuthorityTransferRequests: 1
   simulationType: 2
-  authorityTransferType: 0
-  orphanedBehavior: 0
+  authorityTransferType: 2
+  orphanedBehavior: 1
   lifetimeType: 0
   uniquenessType: 0
   replacementStrategy: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   bindings:
   - rid: 5431316452668605049
   - rid: 5431316467066078079
+  - rid: 5431316530383553521
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -247,6 +248,47 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.StringBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 5431316530383553521
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5431316530383553522
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 3756c016734647408fcfc48fb25ada65
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 3742310084580637886}
+        coherenceSync: {fileID: 5605270632006895831}
+        interpolationSettings: {fileID: 0}
+    - rid: 5431316530383553522
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: RefreshPlayerList
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: MainSimulator, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
 --- !u!1 &4385315940812925499
