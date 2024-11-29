@@ -100,6 +100,10 @@ namespace PlayerControls
 
         private void FixedUpdate()
         {
+            //Debug.Log("vertical velocity is : " + m_VerticalVelocity.magnitude);
+
+
+
 
             MovementUpdate();
          
@@ -247,12 +251,13 @@ namespace PlayerControls
         internal void TryJump()
         {
             bool canJump = m_Isgrounded || m_TimeSincegrounded < m_AirTime;
-            if (canJump) Jump();
+            if (canJump && m_JumpTimer <=0 ) Jump();
 
         }
 
         private void Jump()
         {
+            
 
             if (m_Isgrounded)
             {

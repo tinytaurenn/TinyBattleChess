@@ -13,7 +13,7 @@ public class LobbyHUD : MonoBehaviour
     private void Awake()
     {
         m_Sync = GetComponent<CoherenceSync>();
-        m_Sync.CoherenceBridge.onLiveQuerySynced.AddListener(ChangeButton);
+        m_Sync.CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
 
 
         m_Sync.OnStateAuthority.AddListener(OnStateAuth);
@@ -24,7 +24,7 @@ public class LobbyHUD : MonoBehaviour
         
         
     }
-
+    //give authority to the first player that joins the lobby
     private bool OnAuthRequested(ClientID requesterID, AuthorityType authorityType, CoherenceSync sync)
     {
        if(Coherence.SimulatorUtility.IsSimulator) return true;
@@ -60,7 +60,7 @@ public class LobbyHUD : MonoBehaviour
         
     }
 
-    void ChangeButton(CoherenceBridge arg0)
+    void OnLiveQuerySynced(CoherenceBridge arg0)
     {
         if (Coherence.SimulatorUtility.IsSimulator) return;
 
@@ -80,6 +80,6 @@ public class LobbyHUD : MonoBehaviour
 
 
 
-        m_Sync.CoherenceBridge.onLiveQuerySynced.RemoveListener(ChangeButton);
+        m_Sync.CoherenceBridge.onLiveQuerySynced.RemoveListener(OnLiveQuerySynced);
     }
 }
