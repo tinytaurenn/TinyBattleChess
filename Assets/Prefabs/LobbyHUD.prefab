@@ -352,6 +352,7 @@ MonoBehaviour:
   preserveChildren: 0
   bindings:
   - rid: 5431316504224464896
+  - rid: 5431316532501676170
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -419,6 +420,51 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 5431316532501676170
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5431316532501676171
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: b1601658a5794d639424931d16dae645
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 4118834038646693485}
+        coherenceSync: {fileID: -7942107839450039191}
+        interpolationSettings: {fileID: 0}
+    - rid: 5431316532501676171
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: enabled
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Canvas, UnityEngine.UIModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!114 &674810647954034870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LobbyText: {fileID: 2374787011375040935}
   m_StartButton: {fileID: 8445583423493280499}
+  m_MainCanvas: {fileID: 4118834038646693485}
 --- !u!1 &7376974586977582303
 GameObject:
   m_ObjectHideFlags: 0

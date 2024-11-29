@@ -13,12 +13,12 @@ public class MainSimulator : MonoBehaviour
 
     CoherenceBridge m_CoherenceBridge;
     public Dictionary<ClientID, CoherenceSync> m_Players = new();
-    [SerializeField] private List<GameObject> m_FPlayers = new List<GameObject>();
+    [SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
 
     [SerializeField] TextMeshProUGUI m_PlayerNumberText;
 
-    float timer = 0;
-    float mytimer = 3f; 
+    [SerializeField] Transform m_ShopSpawnPositions;
+    
 
     internal enum EPlayState
     {
@@ -101,21 +101,47 @@ public class MainSimulator : MonoBehaviour
     public void RefreshPlayerList()
     {
         Debug.Log("Refreshing player list");
-        m_FPlayers.Clear();
-        foreach (var player in FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None))
+        m_PlayerObjects.Clear();
+        foreach (var player in FindObjectsByType<TinyPlayer>(FindObjectsSortMode.None))
         {
-            m_FPlayers.Add(player.gameObject);
+            m_PlayerObjects.Add(player.gameObject);
 
 
         }
 
-        foreach (var player in m_FPlayers)
+        foreach (var player in m_PlayerObjects)
         {
             Debug.Log(player.name);
         }
     }
 
+    void TeleportAllPlayersToShop()
+    {
+        if(m_ShopSpawnPositions.childCount == 0 || m_ShopSpawnPositions == null)
+        {
+            Debug.Log("No spawn positions for shop");
+            return;
+        }
+
+        Debug.Log("Sending players to shop");
+
+        for (int i = 0; i < m_PlayerObjects.Count; i++)
+        {
+            CoherenceSync playerSync = m_PlayerObjects[i].GetComponent<CoherenceSync>();
+            playerSync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_ShopSpawnPositions.GetChild(i).position);
+        }
+
+    }
+
+    public void StartGame()
+    {
+        RefreshPlayerList();
+        TeleportAllPlayersToShop(); 
+    }
+
 #endif
+
+
 
 
 }

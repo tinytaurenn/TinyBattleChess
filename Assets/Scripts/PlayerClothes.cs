@@ -50,6 +50,8 @@ public class PlayerClothes : MonoBehaviour
         Debug.Log("Body Changed, old index was : " + oldIndex + " and new is : " + Newindex);
     }
 
+
+    //not used
     public void SyncClothes()
     {
         m_Sync.SendCommand<PlayerClothes>(nameof(PlayerClothes.ChangeBody), MessageTarget.All, 0, m_BodyTextureIndex);

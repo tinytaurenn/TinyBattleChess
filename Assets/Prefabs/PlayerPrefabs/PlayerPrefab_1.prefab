@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 712017614822695059}
   - component: {fileID: 5556178541105725617}
   - component: {fileID: 58566053745997887}
+  - component: {fileID: 2358625368182078286}
   m_Layer: 0
   m_Name: PlayerPrefab_1
   m_TagString: Player
@@ -354,6 +355,8 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 58566053745997887}
       lodStepsActive: 1
+    - component: {fileID: 2358625368182078286}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
   RigidbodyUpdateMode: 0
@@ -391,6 +394,7 @@ MonoBehaviour:
   - rid: 5431316413982704619
   - rid: 5431316413982704623
   - rid: 5431316420959142586
+  - rid: 5431316531586794271
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -409,6 +413,7 @@ MonoBehaviour:
   - rid: 5431316396223759101
   - rid: 5431316396223759102
   - rid: 5431316419483009417
+  - rid: 5431316531586794270
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -877,6 +882,52 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 5431316531586794270
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 2358625368182078286}
+    - rid: 5431316531586794271
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5431316531586794272
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: dc362dd6cca24e2995ad9011ec93c5e3
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 5431316531586794272
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: TeleportPlayer
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - UnityEngine.Vector3, UnityEngine
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!54 &5556178541105725617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -917,6 +968,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseCooldown: 0.3
+--- !u!114 &2358625368182078286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004959108954425623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f2acaad503ea140a05fb221da0ce4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7487909241987856632
 GameObject:
   m_ObjectHideFlags: 0

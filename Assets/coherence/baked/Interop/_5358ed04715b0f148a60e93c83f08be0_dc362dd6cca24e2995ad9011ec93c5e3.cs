@@ -16,30 +16,34 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _3941f9337bf07904f8ebd80981d7e64f_3756c016734647408fcfc48fb25ada65 : IEntityCommand
+    public struct _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
+            [FieldOffset(0)]
+            public Vector3 worldPos;
         }
 
-        public static unsafe _3941f9337bf07904f8ebd80981d7e64f_3756c016734647408fcfc48fb25ada65 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 0) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 0) " +
-                    "for command with ID 7");
+            if (dataSize != 12) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 12) " +
+                    "for command with ID 10");
             }
 
-            var orig = new _3941f9337bf07904f8ebd80981d7e64f_3756c016734647408fcfc48fb25ada65();
+            var orig = new _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3();
             var comp = (Interop*)data;
+            orig.worldPos = comp->worldPos;
             return orig;
         }
 
+        public Vector3 worldPos;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 7;
+        public uint GetComponentType() => 10;
         
         public IEntityMessage Clone()
         {
@@ -77,18 +81,34 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        
-        public static void Serialize(_3941f9337bf07904f8ebd80981d7e64f_3756c016734647408fcfc48fb25ada65 commandData, IOutProtocolBitStream bitStream)
+        public _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3(
+        Entity entity,
+        Vector3 worldPos
+)
         {
+            Entity = entity;
+            Routing = MessageTarget.All;
+            Sender = 0;
+            
+            this.worldPos = worldPos; 
         }
         
-        public static _3941f9337bf07904f8ebd80981d7e64f_3756c016734647408fcfc48fb25ada65 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 commandData, IOutProtocolBitStream bitStream)
         {
+            var converted_worldPos = commandData.worldPos.ToCoreVector3();
+            bitStream.WriteVector3(converted_worldPos, FloatMeta.NoCompression());
+        }
+        
+        public static _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        {
+            var converted_worldPos = bitStream.ReadVector3(FloatMeta.NoCompression());
+            var dataworldPos = converted_worldPos.ToUnityVector3();
     
-            return new _3941f9337bf07904f8ebd80981d7e64f_3756c016734647408fcfc48fb25ada65()
+            return new _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3()
             {
                 Entity = entity,
                 Routing = target,
+                worldPos = dataworldPos
             };   
         }
     }

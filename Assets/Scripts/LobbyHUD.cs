@@ -3,6 +3,7 @@ using Coherence.Connection;
 using Coherence.Toolkit;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,6 +14,7 @@ public class LobbyHUD : MonoBehaviour
     CoherenceSync m_Sync;
     [SerializeField] TextMeshProUGUI m_LobbyText;
     [SerializeField] Button m_StartButton;
+    [SerializeField] Canvas m_MainCanvas; 
 
 
 
@@ -32,12 +34,25 @@ public class LobbyHUD : MonoBehaviour
 
     private void OnStartButtonClicked()
     {
+        if(!m_Sync.HasStateAuthority) return;
         MainSimulator mainSimulator = FindFirstObjectByType<MainSimulator>(); 
         if (mainSimulator != null)
         {
-            mainSimulator.GetComponent<CoherenceSync>().SendCommand<MainSimulator>(nameof(MainSimulator.RefreshPlayerList), MessageTarget.AuthorityOnly);
+            mainSimulator.GetComponent<CoherenceSync>().SendCommand<MainSimulator>(nameof(MainSimulator.StartGame), MessageTarget.AuthorityOnly);
         }
+
+        HideLobbyHUD();
     }
+
+    public void HideLobbyHUD()
+    {
+        m_MainCanvas.enabled = false;
+    }
+    public void ShowLobbyHUD()
+    {
+        m_MainCanvas.enabled = true;
+    }
+    
 
     private void OnAuthRequestRejected(AuthorityType arg0)
     {
