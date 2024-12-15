@@ -2966,6 +2966,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4055558226076958478, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_WeaponParameters.Speed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4055558226076958478, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_WeaponParameters.Damage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7388437890493938184, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
       propertyPath: orphanedBehavior
       value: 1

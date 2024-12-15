@@ -15,7 +15,13 @@ public class TinyPlayer : MonoBehaviour
     CoherenceSync m_Sync;
     PlayerMovement m_PlayerMovement;
     PlayerControls.PlayerControls m_PlayerControls;
-    PlayerUse m_PlayerUse; 
+    PlayerUse m_PlayerUse;
+
+    [Space(10)]
+    [Header("Player sockets")]
+    [SerializeField] internal  Transform m_PlayerLeftHandSocket; 
+    [SerializeField] internal Transform m_PlayerRightHandSocket;
+
 
     private void Awake()
     {

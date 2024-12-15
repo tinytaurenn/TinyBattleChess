@@ -2,8 +2,18 @@ using UnityEngine;
 
 public class PlayerWeapons : MonoBehaviour
 {
-    [SerializeField] Grabbable m_GrabbedItem; 
+    TinyPlayer m_TinyPlayer; 
 
+    [SerializeField] Grabbable m_GrabbedItem;
+
+    [SerializeField] BasicWeapon m_MainWeapon; 
+    [SerializeField] BasicWeapon m_SecondaryWeapon;
+
+
+    private void Awake()
+    {
+        m_TinyPlayer = GetComponent<TinyPlayer>();
+    }
     void Start()
     {
         
@@ -14,14 +24,33 @@ public class PlayerWeapons : MonoBehaviour
     {
         
     }
+
+    private void OnDisable()
+    {
+        if (m_GrabbedItem != null)
+        {
+            Drop();
+        }
+    }
+
+    #region EquipAndDrop
     public void EquipWeapon(Grabbable weapon)
     {
+        
         m_GrabbedItem = weapon;
         m_GrabbedItem.m_Rigidbody.isKinematic = true;
         m_GrabbedItem.m_Collider.enabled = false;
-        m_GrabbedItem.transform.SetParent(transform, false);
+        m_GrabbedItem.transform.SetParent(m_TinyPlayer.m_PlayerRightHandSocket, false);
 
         m_GrabbedItem.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        if(m_GrabbedItem.TryGetComponent<BasicWeapon>(out BasicWeapon basicWeapon))
+        {
+            m_MainWeapon = basicWeapon;
+            
+        }
+
+        
 
     }
 
@@ -41,15 +70,10 @@ public class PlayerWeapons : MonoBehaviour
 
         m_GrabbedItem.m_Collider.enabled = true; 
         m_GrabbedItem = null;
+        m_MainWeapon = null;
 
 
     }
+    #endregion
 
-    private void OnDisable()
-    {
-        if(m_GrabbedItem != null)
-        {
-            Drop(); 
-        }
-    }
 }

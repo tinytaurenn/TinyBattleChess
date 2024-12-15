@@ -130,6 +130,58 @@ namespace Coherence.Generated
     }
     
     [UnityEngine.Scripting.Preserve]
+    public class Binding_0f16d1bc84b720e41945040d44446e92_77d4e83346c24cc5b4469ee50e1f7aff : ScaleBinding
+    {   
+        private global::UnityEngine.Transform CastedUnityComponent;
+
+        protected override void OnBindingCloned()
+        {
+    	    CastedUnityComponent = (global::UnityEngine.Transform)UnityComponent;
+        }
+
+        public override global::System.Type CoherenceComponentType => typeof(GenericScale);
+        public override string CoherenceComponentName => "GenericScale";
+        public override uint FieldMask => 0b00000000000000000000000000000001;
+
+        public override UnityEngine.Vector3 Value
+        {
+            get { return (UnityEngine.Vector3)(coherenceSync.coherenceLocalScale); }
+            set { coherenceSync.coherenceLocalScale = (UnityEngine.Vector3)(value); }
+        }
+
+        protected override (UnityEngine.Vector3 value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
+        {
+            var value = ((GenericScale)coherenceComponent).value;
+
+            var simFrame = ((GenericScale)coherenceComponent).valueSimulationFrame;
+            
+            return (value, simFrame);
+        }
+
+        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
+        {
+            var update = (GenericScale)coherenceComponent;
+            if (Interpolator.IsInterpolationNone)
+            {
+                update.value = Value;
+            }
+            else
+            {
+                update.value = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
+            }
+
+            update.valueSimulationFrame = simFrame;
+            
+            return update;
+        }
+
+        public override ICoherenceComponentData CreateComponentData()
+        {
+            return new GenericScale();
+        }    
+    }
+    
+    [UnityEngine.Scripting.Preserve]
     public class Binding_0f16d1bc84b720e41945040d44446e92_13a57f40537b46e3ac73d20a7cf7b78c : BoolBinding
     {   
         private global::BasicWeapon CastedUnityComponent;
@@ -352,6 +404,7 @@ namespace Coherence.Generated
         {
             ["0e075063fb18424282823e79e81dd576"] = new Binding_0f16d1bc84b720e41945040d44446e92_0e075063fb18424282823e79e81dd576(),
             ["58c2a149a2914fb8a73bfb1ef0160c5e"] = new Binding_0f16d1bc84b720e41945040d44446e92_58c2a149a2914fb8a73bfb1ef0160c5e(),
+            ["77d4e83346c24cc5b4469ee50e1f7aff"] = new Binding_0f16d1bc84b720e41945040d44446e92_77d4e83346c24cc5b4469ee50e1f7aff(),
             ["13a57f40537b46e3ac73d20a7cf7b78c"] = new Binding_0f16d1bc84b720e41945040d44446e92_13a57f40537b46e3ac73d20a7cf7b78c(),
             ["c0c8579c969640d991b0f90e6df02026"] = new Binding_0f16d1bc84b720e41945040d44446e92_c0c8579c969640d991b0f90e6df02026(),
             ["d8d34e5ca56e47ec8b7976a942b9256d"] = new Binding_0f16d1bc84b720e41945040d44446e92_d8d34e5ca56e47ec8b7976a942b9256d(),

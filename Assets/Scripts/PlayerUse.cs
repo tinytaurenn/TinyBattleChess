@@ -10,11 +10,13 @@ namespace PlayerControls
     {
 
         PlayerWeapons m_PlayerWeapons; 
+        TinyPlayer m_TinyPlayer;
 
         [SerializeField] public Grabbable m_Usable;
         [SerializeField] GameObject m_UsableObject; 
         [SerializeField] float m_UseDistance = 2f;
         [SerializeField] [Sync] public bool m_ItemInUse = false;
+        bool m_IsReplacing = false;
 
         float m_LastUseTime = 0;
         [SerializeField] float m_UseCooldown = 0.3f;
@@ -22,6 +24,8 @@ namespace PlayerControls
         private void Awake()
         {
             m_PlayerWeapons = GetComponent<PlayerWeapons>();
+            m_TinyPlayer = GetComponent<TinyPlayer>();
+
         }
         void Start()
         {
@@ -60,8 +64,9 @@ namespace PlayerControls
             }
             if (m_ItemInUse)
             {
+
                 Debug.Log("item in  use in player use");
-                return; 
+                m_IsReplacing = true;
             }
 
 
@@ -84,6 +89,12 @@ namespace PlayerControls
 
             if (validated)
             {
+                if(m_IsReplacing)
+                {
+                    m_PlayerWeapons.Drop();
+                    m_IsReplacing = false; 
+                }
+
                 if (m_Usable.TryGetComponent<IWeapon>(out IWeapon weapon))
                 {
                     Debug.Log("validate Equipping weapon");

@@ -364,6 +364,10 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 3310887222814179707}
       lodStepsActive: 1
+    - component: {fileID: 3293726256454769268}
+      lodStepsActive: 1
+    - component: {fileID: 1010069479959953380}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
   RigidbodyUpdateMode: 0
@@ -1037,6 +1041,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f2acaad503ea140a05fb221da0ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerLeftHandSocket: {fileID: 3293726256454769268}
+  m_PlayerRightHandSocket: {fileID: 1010069479959953380}
 --- !u!114 &3310887222814179707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1050,6 +1056,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GrabbedItem: {fileID: 0}
+  m_CurrentWeapon: {fileID: 0}
+--- !u!1 &6288665063852073665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3293726256454769268}
+  m_Layer: 6
+  m_Name: LeftHandSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3293726256454769268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6288665063852073665}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2309697098720279918}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &7487909241987856632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1196,37 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8268680390319884729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1010069479959953380}
+  m_Layer: 6
+  m_Name: RightHandSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1010069479959953380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268680390319884729}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3398144528058990430}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &8687519258483377387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1689,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -4965325442729560347, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3065798214419003281}
+    - targetCorrespondingSourceObject: {fileID: 1908247216031747145, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3293726256454769268}
+    - targetCorrespondingSourceObject: {fileID: 1539781974115159673, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1010069479959953380}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
       insertIndex: -1

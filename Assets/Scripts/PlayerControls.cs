@@ -18,6 +18,7 @@ namespace PlayerControls
 
         //
         PlayerMovement m_PlayerMovement;
+        PlayerWeapons m_PlayerWeapons; 
         PlayerUse m_PlayerUse;
         Vector2 m_MoveValue;
         Transform m_CameraTransform;
@@ -68,6 +69,7 @@ namespace PlayerControls
         {
             m_PlayerMovement = GetComponent<PlayerMovement>();
             m_PlayerUse = GetComponent<PlayerUse>();
+            m_PlayerWeapons = GetComponent<PlayerWeapons>();
 
         }
 
