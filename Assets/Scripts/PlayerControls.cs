@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,10 @@ namespace PlayerControls
         [SerializeField] InputActionReference m_JumpAction;
         [SerializeField] InputActionReference m_SprintAction;
         [SerializeField] InputActionReference m_UseAction;
+        [SerializeField] InputActionReference m_MouseLeftClick;
+        [SerializeField] InputActionReference m_MouseRightClick;
+        [SerializeField] InputActionReference m_DropAction;
+       
 
         //
         PlayerMovement m_PlayerMovement;
@@ -24,12 +29,18 @@ namespace PlayerControls
             m_JumpAction.asset.Enable();
             m_SprintAction.asset.Enable();
             m_UseAction.asset.Enable();
+            m_MouseLeftClick.asset.Enable();
+            m_MouseRightClick.asset.Enable();
+            m_DropAction.asset.Enable();
+
+
 
 
             m_JumpAction.action.performed += Jump;
             m_JumpAction.action.canceled += CancelJump;
 
-            m_UseAction.action.performed += Use; 
+            m_UseAction.action.performed += Use;
+            m_DropAction.action.performed += Drop;
         }
 
         private void OnDisable()
@@ -38,12 +49,20 @@ namespace PlayerControls
             m_JumpAction.asset.Disable();
             m_SprintAction.asset.Disable();
             m_UseAction.asset.Disable();
+            m_MouseLeftClick.asset.Disable();
+            m_MouseRightClick.asset.Disable();
+            m_DropAction.asset.Disable();
+
+
 
             m_JumpAction.action.performed -= Jump;
             m_JumpAction.action.canceled -= CancelJump;
 
             m_UseAction.action.performed -= Use;
+            m_DropAction.action.performed -= Drop;
         }
+
+        
 
         private void Awake()
         {
@@ -95,8 +114,12 @@ namespace PlayerControls
 
         private void Use(InputAction.CallbackContext context)
         {
-           
+            
             m_PlayerUse.UsePerformed();
+        }
+        private void Drop(InputAction.CallbackContext context)
+        {
+            m_PlayerUse.DropPerformed(); 
         }
     } 
 }

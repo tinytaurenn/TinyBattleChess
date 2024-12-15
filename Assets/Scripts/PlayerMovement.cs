@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Coherence;
 using Coherence.Toolkit;
+using NUnit.Framework.Internal.Filters;
 
 
 namespace PlayerControls
@@ -13,6 +14,7 @@ namespace PlayerControls
         Rigidbody m_rigidBody;
         CoherenceSync m_sync;
         [SerializeField] Animator m_Animator;
+        [SerializeField] CameraManager m_CameraManager; 
 
         public Vector3 MoveInput { get; set; }
         public bool IsSprinting { get; set; }
@@ -79,6 +81,7 @@ namespace PlayerControls
         {
             m_rigidBody = GetComponent<Rigidbody>();
             m_sync = GetComponent<CoherenceSync>();
+            m_CameraManager = CameraManager.Instance;
         }
         void Start()
         {
@@ -163,11 +166,19 @@ namespace PlayerControls
             if (!m_Isgrounded) m_VerticalVelocity = Vector3.Project(m_rigidBody.linearVelocity, Vector3.up);
 
 
+            //deprecated
+            //if (magnitude > 0f)
+            //{
+            //    Quaternion newRotation = Quaternion.LookRotation(MoveInput);
+            //    transform.rotation = Quaternion.Lerp(m_rigidBody.rotation, newRotation, Time.deltaTime * m_RotationSpeed);
+            //}
 
-            if (magnitude > 0f)
+            if(m_CameraManager != null)
             {
-                Quaternion newRotation = Quaternion.LookRotation(MoveInput);
+                Vector3 cameraForward = new Vector3(m_CameraManager.transform.forward.x, 0, m_CameraManager.transform.forward.z).normalized;
+                Quaternion newRotation = Quaternion.LookRotation(cameraForward * 100f);
                 transform.rotation = Quaternion.Lerp(m_rigidBody.rotation, newRotation, Time.deltaTime * m_RotationSpeed);
+
             }
 
             UpdateAnimator();

@@ -12,12 +12,19 @@ public class MainSimulator : MonoBehaviour
     [SerializeField] GameObject m_PlayerGameObject;
 
     CoherenceBridge m_CoherenceBridge;
+    CoherenceSync m_Sync; 
     public Dictionary<ClientID, CoherenceSync> m_Players = new();
     [SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
 
     [SerializeField] TextMeshProUGUI m_PlayerNumberText;
 
     [SerializeField] Transform m_ShopSpawnPositions;
+
+    //test 
+
+    [SerializeField] GameObject SwordGameObject; 
+    GameObject MySword = null;
+
     
 
     internal enum EPlayState
@@ -44,7 +51,12 @@ public class MainSimulator : MonoBehaviour
     private void Awake()
     {
         CoherenceBridgeStore.TryGetBridge(gameObject.scene, out m_CoherenceBridge);
+        m_Sync = GetComponent<CoherenceSync>();
+        m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
+        m_CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
     }
+
+    
 
     private void OnEnable()
     {
@@ -62,6 +74,21 @@ public class MainSimulator : MonoBehaviour
         m_CoherenceBridge.ClientConnections.OnSynced -= OnSynced;
         m_CoherenceBridge.ClientConnections.OnCreated -= OnCreated;
         m_CoherenceBridge.ClientConnections.OnDestroyed -= OnDestroyed;
+    }
+
+    private void OnLiveQuerySynced(CoherenceBridge arg0)
+    {
+        
+        
+    }
+
+    private void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
+    {
+        if(MySword != null)
+        {
+            Debug.Log("destroying sword"); 
+            Destroy(MySword);
+        }
     }
 
     private void OnDestroyed(CoherenceClientConnection connection)
@@ -82,7 +109,10 @@ public class MainSimulator : MonoBehaviour
     }
     void Start()
     {
-
+        if (m_Sync.HasStateAuthority && Coherence.SimulatorUtility.IsSimulator && MySword == null)
+        {
+            MySword =  Instantiate(SwordGameObject, transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame

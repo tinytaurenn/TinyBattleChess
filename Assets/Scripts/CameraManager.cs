@@ -6,10 +6,19 @@ using UnityEngine.InputSystem;
 
 public class CameraManager : MonoBehaviour
 {
-    public Transform m_PlayerTransform;
-    [SerializeField] InputActionReference m_MouseCamInputRef;
 
     public static CameraManager Instance;
+
+
+    public Transform m_PlayerTransform;
+    [SerializeField] InputActionReference m_MouseCamInputRef;
+    
+
+
+    [Space(10)]
+    [Header("Free Cam params")]
+    //free cam params
+
     [SerializeField] float m_FollowSpeed = 10f;
     [SerializeField] float m_UpFollowSpeed = 10f;
     [SerializeField] float m_RotationSpeed = 10f;
@@ -18,7 +27,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] float m_CameraDistance = 10f;
     [SerializeField] float m_CameraUpOffset = 3f;
     [SerializeField] float m_CameraRotateSpeed = 7f;
-    [SerializeField] float m_FallingDownOffSet = 3f; 
+    [SerializeField] float m_FallingDownOffSet = 3f;
+
+   
 
 
 
@@ -73,6 +84,8 @@ public class CameraManager : MonoBehaviour
     {
         MouseControlCamera();
         LerpCameraDistance();
+
+
     }
 
     void MouseControlCamera()
@@ -136,4 +149,5 @@ public class CameraManager : MonoBehaviour
     }
 
     #endregion
+
 }

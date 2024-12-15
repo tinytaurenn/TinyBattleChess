@@ -50,6 +50,7 @@ MonoBehaviour:
   m_PlayerObjects: []
   m_PlayerNumberText: {fileID: 1338625383742743499}
   m_ShopSpawnPositions: {fileID: 0}
+  SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
 --- !u!114 &5605270632006895831
 MonoBehaviour:
   m_ObjectHideFlags: 0

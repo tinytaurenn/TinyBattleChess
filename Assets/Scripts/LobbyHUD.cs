@@ -96,6 +96,7 @@ public class LobbyHUD : MonoBehaviour
         if (m_Sync.HasStateAuthority)
         {
             Debug.Log("auth, set to start game");
+            ShowLobbyHUD();
             m_LobbyText.text = "Start Game";
         }
         else
