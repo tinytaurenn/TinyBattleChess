@@ -20,6 +20,7 @@ component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "158"]
   CarryingBig Bool [bits "1"]
   CarryingSmall Bool [bits "1"]
   Parry Bool [bits "1"]
+  Attacking Bool [bits "1"]
   WeaponDirectionNESO Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
 component _5358ed04715b0f148a60e93c83f08be0_2130127191657380802 [id "159"]

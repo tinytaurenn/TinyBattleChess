@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,15 +21,19 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] BasicWeapon m_MainWeapon; 
     [SerializeField] BasicWeapon m_SecondaryWeapon;
 
-    [Header("Weapon Actions")]
+    [Header("Weapon Infos")]
     [SerializeField] internal Vector2 m_LookDirection = Vector2.zero;
     [SerializeField] EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
     [SerializeField] internal bool m_Parrying = false;
     [SerializeField] bool m_InParry = false; 
-    [SerializeField] bool m_Attacking = false;
+    [SerializeField] internal  bool m_Attacking = false;
     [SerializeField] bool m_InAttack = false;
     [SerializeField] bool m_InAttackRelease = false;
-    
+
+
+    [Header("Weapon Parameters")]
+
+    [SerializeField] float m_BaseReleaseDelay = 0.15f;
 
 
 
@@ -51,6 +56,7 @@ public class PlayerWeapons : MonoBehaviour
             return; 
         }
         ParryUpdate();
+        AttackUpdate(); 
         
     }
 
@@ -102,6 +108,11 @@ public class PlayerWeapons : MonoBehaviour
 
     void ParryUpdate()
     {
+        if (m_InAttackRelease)
+        {
+            return;
+        }
+
         if (m_Parrying)
         {
             if (m_InParry)
@@ -144,12 +155,21 @@ public class PlayerWeapons : MonoBehaviour
 
     void AttackUpdate()
     {
-        if(m_Attacking)
+        if (m_Parrying)
+        {
+               return;
+        }
+        if (m_InAttackRelease)
+        {
+            return; 
+        }
+        if (m_Attacking)
         {
             if(m_InAttack)
             {
                 return; 
             }
+
             m_InAttack = true;
             GetWeaponDirection(); 
             Attack();
@@ -175,7 +195,32 @@ public class PlayerWeapons : MonoBehaviour
     void ReleaseAttack()
     {
         m_Animator.SetBool("Attacking", false);
+        m_InAttack = false;
     }
+
+    public void LockAttackRelease(bool isLocked)=> m_InAttackRelease = isLocked;
+
+    public void LockAttack()
+    {
+        Debug.Log("locking attack");
+        m_InAttackRelease = true;
+        float normalizedTime = m_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime;
+        float animLenght = m_Animator.GetCurrentAnimatorStateInfo(1).length;
+
+        // 0.3 normal => length = 2.4 ___________ time = 0.3 * 2.4 = 0.72 so 1.68 is the right time
+        // 1 - normalizedTime * animLenght = time remaining 
+
+        StartCoroutine(LockAttackRoutine((1 - normalizedTime) * animLenght));
+    }
+
+    IEnumerator LockAttackRoutine(float time)
+    {
+        float timeToWait = time + m_BaseReleaseDelay;
+        yield return new WaitForSeconds(timeToWait);
+        Debug.Log("Unlocking attack");
+        m_InAttackRelease = false;
+    }
+    
 
     
     #endregion

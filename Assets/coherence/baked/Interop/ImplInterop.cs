@@ -1949,9 +1949,10 @@ namespace Coherence.Generated
                     val.CarryingBig = orig.CarryingBig ? (System.Byte)1 : (System.Byte)0;
                     val.CarryingSmall = orig.CarryingSmall ? (System.Byte)1 : (System.Byte)0;
                     val.Parry = orig.Parry ? (System.Byte)1 : (System.Byte)0;
+                    val.Attacking = orig.Attacking ? (System.Byte)1 : (System.Byte)0;
                     val.WeaponDirectionNESO = orig.WeaponDirectionNESO;
 
-                    updater.UpdateComponent(entity, componentType, val, 12, component.FieldsMask, component.StoppedMask, frames);
+                    updater.UpdateComponent(entity, componentType, val, 13, component.FieldsMask, component.StoppedMask, frames);
 
                     return;
                 }

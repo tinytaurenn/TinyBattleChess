@@ -94,6 +94,7 @@ namespace PlayerControls
             SetIsSprinting(m_SprintAction.action.IsPressed());
             m_PlayerWeapons.m_LookDirection = m_MouseLookAction.action.ReadValue<Vector2>();
             m_PlayerWeapons.m_Parrying = m_MouseRightClick.action.IsPressed();
+            m_PlayerWeapons.m_Attacking = m_MouseLeftClick.action.IsPressed();
         }
 
         void SetMovementValue(Vector2 moveInput)

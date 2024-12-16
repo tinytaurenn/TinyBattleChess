@@ -369,6 +369,8 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 1010069479959953380}
       lodStepsActive: 1
+    - component: {fileID: 6618523849353031968}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
   RigidbodyUpdateMode: 0
@@ -409,7 +411,8 @@ MonoBehaviour:
   - rid: 5431316531586794271
   - rid: 9113002313521562088
   - rid: 9113002336977420426
-  - rid: 9113002336977420430
+  - rid: 9113002337526088362
+  - rid: 9113002338989113455
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -430,6 +433,7 @@ MonoBehaviour:
   - rid: 5431316419483009417
   - rid: 5431316531586794270
   - rid: 9113002336977420718
+  - rid: 9113002338989113430
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -1035,16 +1039,70 @@ MonoBehaviour:
         oldName: 
         oldParameterAssemblyTypes: []
         parameterHash: 504284770
-    - rid: 9113002336977420430
-      type: {class: IntAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+    - rid: 9113002336977420718
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 3310887222814179707}
+    - rid: 9113002337526088362
+      type: {class: BoolAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         descriptor:
-          rid: 9113002336977420431
+          rid: 9113002337526088363
         routing: 0
         syncMode: 0
         isPredicted: 0
         predictionMode: 0
-        guid: 6fef4de0395e407eaa261815c78c625c
+        guid: 5ac8e93990a34150a3ff27c940e4ece2
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 1947441686218104907}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002337526088363
+      type: {class: AnimatorDescriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: Attacking
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 64
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.BoolAnimatorParameterBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+        parameterHash: -2123461723
+    - rid: 9113002338989113430
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 6618523849353031968}
+    - rid: 9113002338989113455
+      type: {class: IntAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002338989113456
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: b2cd3dd085734649b8e0becc3b32d4c1
         archetypeData:
           type: 1
           minRange: -2147483648
@@ -1059,7 +1117,7 @@ MonoBehaviour:
         unityComponent: {fileID: 1947441686218104907}
         coherenceSync: {fileID: 712017614822695059}
         interpolationSettings: {fileID: 0}
-    - rid: 9113002336977420431
+    - rid: 9113002338989113456
       type: {class: AnimatorDescriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         name: WeaponDirectionNESO
@@ -1081,10 +1139,6 @@ MonoBehaviour:
         oldName: 
         oldParameterAssemblyTypes: []
         parameterHash: 415411133
-    - rid: 9113002336977420718
-      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
-      data:
-        component: {fileID: 3310887222814179707}
 --- !u!54 &5556178541105725617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1164,6 +1218,9 @@ MonoBehaviour:
   m_Parrying: 0
   m_InParry: 0
   m_Attacking: 0
+  m_InAttack: 0
+  m_InAttackRelease: 0
+  m_BaseReleaseDelay: 0.15
 --- !u!1 &6288665063852073665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,6 +1869,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2130127191657380802}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6618523849353031968}
   m_SourcePrefab: {fileID: 100100000, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
 --- !u!4 &99460913919068098 stripped
 Transform:
@@ -1934,6 +1994,19 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1ade4e28841d0ec459884d93dcf6c018, type: 3}
   - {fileID: 2800000, guid: cb401acb64c2717489298c8719684195, type: 3}
   m_BodyTextureIndex: 0
+--- !u!114 &6618523849353031968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3942809304985668726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d47ecd039b4abb449e322b42df923f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerWeapons: {fileID: 3310887222814179707}
 --- !u!4 &4140575837400982852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 216315946209530979, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}

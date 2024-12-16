@@ -442,7 +442,7 @@ namespace Coherence.Generated
     }
     
     [UnityEngine.Scripting.Preserve]
-    public class Binding_5358ed04715b0f148a60e93c83f08be0_6fef4de0395e407eaa261815c78c625c : IntAnimatorParameterBinding
+    public class Binding_5358ed04715b0f148a60e93c83f08be0_5ac8e93990a34150a3ff27c940e4ece2 : BoolAnimatorParameterBinding
     {   
         private global::UnityEngine.Animator CastedUnityComponent;
 
@@ -454,6 +454,58 @@ namespace Coherence.Generated
         public override global::System.Type CoherenceComponentType => typeof(_5358ed04715b0f148a60e93c83f08be0_1947441686218104907);
         public override string CoherenceComponentName => "_5358ed04715b0f148a60e93c83f08be0_1947441686218104907";
         public override uint FieldMask => 0b00000000000000000000000000100000;
+
+        public override System.Boolean Value
+        {
+            get { return (System.Boolean)(CastedUnityComponent.GetBool(CastedDescriptor.ParameterHash)); }
+            set { CastedUnityComponent.SetBool(CastedDescriptor.ParameterHash, value); }
+        }
+
+        protected override (System.Boolean value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
+        {
+            var value = ((_5358ed04715b0f148a60e93c83f08be0_1947441686218104907)coherenceComponent).Attacking;
+
+            var simFrame = ((_5358ed04715b0f148a60e93c83f08be0_1947441686218104907)coherenceComponent).AttackingSimulationFrame;
+            
+            return (value, simFrame);
+        }
+
+        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
+        {
+            var update = (_5358ed04715b0f148a60e93c83f08be0_1947441686218104907)coherenceComponent;
+            if (Interpolator.IsInterpolationNone)
+            {
+                update.Attacking = Value;
+            }
+            else
+            {
+                update.Attacking = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
+            }
+
+            update.AttackingSimulationFrame = simFrame;
+            
+            return update;
+        }
+
+        public override ICoherenceComponentData CreateComponentData()
+        {
+            return new _5358ed04715b0f148a60e93c83f08be0_1947441686218104907();
+        }    
+    }
+    
+    [UnityEngine.Scripting.Preserve]
+    public class Binding_5358ed04715b0f148a60e93c83f08be0_b2cd3dd085734649b8e0becc3b32d4c1 : IntAnimatorParameterBinding
+    {   
+        private global::UnityEngine.Animator CastedUnityComponent;
+
+        protected override void OnBindingCloned()
+        {
+    	    CastedUnityComponent = (global::UnityEngine.Animator)UnityComponent;
+        }
+
+        public override global::System.Type CoherenceComponentType => typeof(_5358ed04715b0f148a60e93c83f08be0_1947441686218104907);
+        public override string CoherenceComponentName => "_5358ed04715b0f148a60e93c83f08be0_1947441686218104907";
+        public override uint FieldMask => 0b00000000000000000000000001000000;
 
         public override System.Int32 Value
         {
@@ -621,7 +673,8 @@ namespace Coherence.Generated
             ["f43fa8897d654f8889da0d0d40f68806"] = new Binding_5358ed04715b0f148a60e93c83f08be0_f43fa8897d654f8889da0d0d40f68806(),
             ["bd69af8816a54e838a43a60c98980ee4"] = new Binding_5358ed04715b0f148a60e93c83f08be0_bd69af8816a54e838a43a60c98980ee4(),
             ["2b84bacefa6340c982eb295a30912033"] = new Binding_5358ed04715b0f148a60e93c83f08be0_2b84bacefa6340c982eb295a30912033(),
-            ["6fef4de0395e407eaa261815c78c625c"] = new Binding_5358ed04715b0f148a60e93c83f08be0_6fef4de0395e407eaa261815c78c625c(),
+            ["5ac8e93990a34150a3ff27c940e4ece2"] = new Binding_5358ed04715b0f148a60e93c83f08be0_5ac8e93990a34150a3ff27c940e4ece2(),
+            ["b2cd3dd085734649b8e0becc3b32d4c1"] = new Binding_5358ed04715b0f148a60e93c83f08be0_b2cd3dd085734649b8e0becc3b32d4c1(),
             ["2dc7519395064fc2b87f5129f87c7d85"] = new Binding_5358ed04715b0f148a60e93c83f08be0_2dc7519395064fc2b87f5129f87c7d85(),
             ["9e1dd35424a747bd8cb23b82e4083c6c"] = new Binding_5358ed04715b0f148a60e93c83f08be0_9e1dd35424a747bd8cb23b82e4083c6c(),
         };
