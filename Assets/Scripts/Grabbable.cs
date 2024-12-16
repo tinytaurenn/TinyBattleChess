@@ -23,9 +23,21 @@ public class Grabbable : Usable
         
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Collider = GetComponent<Collider>();
+
+        m_Sync.CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
+        
         
 
     }
+
+    private void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
+    {
+        Debug.Log("disconnected");
+        if(m_Sync.CoherenceBridge != null) m_Sync.CoherenceBridge.onDisconnected.RemoveListener(OnDisconnected);
+        if(this.gameObject != null) Destroy(gameObject);
+
+    }
+
     void Start()
     {
         
@@ -48,6 +60,8 @@ public class Grabbable : Usable
         m_Sync.OnStateAuthority.RemoveListener(OnStateAuthority);
         m_Sync.OnStateRemote.RemoveListener(OnStateRemote);
         m_Sync.OnAuthorityRequestRejected.RemoveListener(OnAuthorityRequestRejected);
+
+
         
     }
     private void OnAuthorityRequestRejected(AuthorityType arg0)

@@ -150,6 +150,7 @@ MonoBehaviour:
   m_MouseLeftClick: {fileID: 4953943394375631746, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_MouseRightClick: {fileID: -414088526721206839, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_DropAction: {fileID: 2683022503882043607, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_MouseLookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &7780604424261956756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +408,8 @@ MonoBehaviour:
   - rid: 5431316420959142586
   - rid: 5431316531586794271
   - rid: 9113002313521562088
+  - rid: 9113002336977420426
+  - rid: 9113002336977420430
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -426,6 +429,7 @@ MonoBehaviour:
   - rid: 5431316396223759102
   - rid: 5431316419483009417
   - rid: 5431316531586794270
+  - rid: 9113002336977420718
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -985,6 +989,102 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 9113002336977420426
+      type: {class: BoolAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002336977420427
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 2b84bacefa6340c982eb295a30912033
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 1947441686218104907}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002336977420427
+      type: {class: AnimatorDescriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: Parry
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 64
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.BoolAnimatorParameterBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+        parameterHash: 504284770
+    - rid: 9113002336977420430
+      type: {class: IntAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002336977420431
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 6fef4de0395e407eaa261815c78c625c
+        archetypeData:
+          type: 1
+          minRange: -2147483648
+          maxRange: 2147483647
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 1
+            bits: 32
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 1947441686218104907}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002336977420431
+      type: {class: AnimatorDescriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: WeaponDirectionNESO
+        monoAssemblyType: System.Int32, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 64
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.IntAnimatorParameterBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+        parameterHash: 415411133
+    - rid: 9113002336977420718
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 3310887222814179707}
 --- !u!54 &5556178541105725617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1055,8 +1155,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574ff9dda29ecb649b69c9f936398933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Animator: {fileID: 1947441686218104907}
   m_GrabbedItem: {fileID: 0}
-  m_CurrentWeapon: {fileID: 0}
+  m_MainWeapon: {fileID: 0}
+  m_SecondaryWeapon: {fileID: 0}
+  m_LookDirection: {x: 0, y: 0}
+  m_WeaponDirection: 0
+  m_Parrying: 0
+  m_InParry: 0
+  m_Attacking: 0
 --- !u!1 &6288665063852073665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,13 +1188,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6288665063852073665}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.70650405, y: -0.02918955, z: 0.029189639, w: 0.70650405}
+  m_LocalPosition: {x: 0.16, y: -0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2309697098720279918}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 4.732}
 --- !u!1 &7487909241987856632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,13 +1327,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8268680390319884729}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7070117, y: -0.011597902, z: -0.011597899, w: 0.70701164}
+  m_LocalPosition: {x: -0.134, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3398144528058990430}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -1.88}
 --- !u!1 &8687519258483377387
 GameObject:
   m_ObjectHideFlags: 0

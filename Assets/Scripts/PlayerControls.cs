@@ -14,6 +14,7 @@ namespace PlayerControls
         [SerializeField] InputActionReference m_MouseLeftClick;
         [SerializeField] InputActionReference m_MouseRightClick;
         [SerializeField] InputActionReference m_DropAction;
+        [SerializeField] InputActionReference m_MouseLookAction;
        
 
         //
@@ -33,6 +34,8 @@ namespace PlayerControls
             m_MouseLeftClick.asset.Enable();
             m_MouseRightClick.asset.Enable();
             m_DropAction.asset.Enable();
+            m_MouseLookAction.asset.Enable();
+
 
 
 
@@ -42,6 +45,8 @@ namespace PlayerControls
 
             m_UseAction.action.performed += Use;
             m_DropAction.action.performed += Drop;
+
+            //m_MouseRightClick.action.performed += m_PlayerWeapons.Parry;
         }
 
         private void OnDisable()
@@ -53,6 +58,8 @@ namespace PlayerControls
             m_MouseLeftClick.asset.Disable();
             m_MouseRightClick.asset.Disable();
             m_DropAction.asset.Disable();
+            m_MouseLookAction.asset.Disable();
+
 
 
 
@@ -61,6 +68,8 @@ namespace PlayerControls
 
             m_UseAction.action.performed -= Use;
             m_DropAction.action.performed -= Drop;
+
+            //m_MouseRightClick.action.performed -= m_PlayerWeapons.Parry;
         }
 
         
@@ -83,6 +92,8 @@ namespace PlayerControls
         {
             SetMovementValue(m_MovementInputAction.action.ReadValue<Vector2>());
             SetIsSprinting(m_SprintAction.action.IsPressed());
+            m_PlayerWeapons.m_LookDirection = m_MouseLookAction.action.ReadValue<Vector2>();
+            m_PlayerWeapons.m_Parrying = m_MouseRightClick.action.IsPressed();
         }
 
         void SetMovementValue(Vector2 moveInput)

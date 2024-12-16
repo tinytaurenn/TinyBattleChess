@@ -183,6 +183,7 @@ MonoBehaviour:
   - rid: 9113002313521562415
   - rid: 9113002313945448853
   - rid: 9113002315945345093
+  - rid: 9113002337526088037
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -193,7 +194,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scenePrefabInstanceUUID: 
-  coherenceUUID: 
+  coherenceUUID: Basic_Sword
   assetVersion: 
   usingReflection: 0
   coherenceTag: 
@@ -517,6 +518,51 @@ MonoBehaviour:
           rid: -2
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.TransformBindings.ScaleBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 9113002337526088037
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002337526088038
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 556dd49c13a7499493ad88b9cd522da6
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 1733633089735608209}
+        coherenceSync: {fileID: 7388437890493938184}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002337526088038
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: enabled
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.BoxCollider, UnityEngine.PhysicsModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []

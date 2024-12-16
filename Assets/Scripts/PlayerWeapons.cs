@@ -1,18 +1,42 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerWeapons : MonoBehaviour
 {
-    TinyPlayer m_TinyPlayer; 
+    enum EWeaponDirection
+    {
+        Right,
+        Left,
+        Up,
+        Down,
+    }
+
+    TinyPlayer m_TinyPlayer;
+    [SerializeField] Animator m_Animator; 
 
     [SerializeField] Grabbable m_GrabbedItem;
 
     [SerializeField] BasicWeapon m_MainWeapon; 
     [SerializeField] BasicWeapon m_SecondaryWeapon;
 
+    [Header("Weapon Actions")]
+    [SerializeField] internal Vector2 m_LookDirection = Vector2.zero;
+    [SerializeField] EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
+    [SerializeField] internal bool m_Parrying = false;
+    [SerializeField] bool m_InParry = false; 
+    [SerializeField] bool m_Attacking = false;
+    [SerializeField] bool m_InAttack = false;
+    [SerializeField] bool m_InAttackRelease = false;
+    
+
+
 
     private void Awake()
     {
         m_TinyPlayer = GetComponent<TinyPlayer>();
+        
+
     }
     void Start()
     {
@@ -22,6 +46,11 @@ public class PlayerWeapons : MonoBehaviour
     
     void Update()
     {
+        if(m_MainWeapon == null)
+        {
+            return; 
+        }
+        ParryUpdate();
         
     }
 
@@ -32,6 +61,124 @@ public class PlayerWeapons : MonoBehaviour
             Drop();
         }
     }
+
+    #region WeaponActions
+
+
+    void SetAnimatorWeaponDirection()
+    {
+        switch (m_WeaponDirection)
+        {
+            case EWeaponDirection.Right:
+                m_Animator.SetInteger("WeaponDirectionNESO", 1);
+                break;
+            case EWeaponDirection.Left:
+                m_Animator.SetInteger("WeaponDirectionNESO", 3);
+                break;
+            case EWeaponDirection.Up:
+                m_Animator.SetInteger("WeaponDirectionNESO", 0);
+                break;
+            case EWeaponDirection.Down:
+                m_Animator.SetInteger("WeaponDirectionNESO", 2);
+                break;
+            default:
+                break;
+        }
+    }
+
+    void GetWeaponDirection()
+    {
+        if (MathF.Abs(m_LookDirection.x) > MathF.Abs(m_LookDirection.y))
+        {
+            m_WeaponDirection = m_LookDirection.x > 0 ? EWeaponDirection.Right : EWeaponDirection.Left;
+        }
+        else
+        {
+            m_WeaponDirection = m_LookDirection.y > 0 ? EWeaponDirection.Up : EWeaponDirection.Down;
+        }
+
+
+    }
+
+    void ParryUpdate()
+    {
+        if (m_Parrying)
+        {
+            if (m_InParry)
+            {
+                return;
+            }
+
+            m_InParry = true;
+
+            GetWeaponDirection(); 
+
+            Parry();
+        }
+        else
+        {
+            ReleaseParry();
+        }
+
+    }
+
+    internal void Parry()
+    {
+        Debug.Log("Parry");
+        Debug.Log("Parry on " + m_WeaponDirection);
+
+        m_Parrying = true;
+
+        SetAnimatorWeaponDirection(); 
+
+        m_Animator.SetBool("Parry", true);
+
+    }
+
+    void ReleaseParry()
+    {
+        m_Animator.SetBool("Parry", false);
+        m_InParry = false;
+
+    }
+
+    void AttackUpdate()
+    {
+        if(m_Attacking)
+        {
+            if(m_InAttack)
+            {
+                return; 
+            }
+            m_InAttack = true;
+            GetWeaponDirection(); 
+            Attack();
+        }
+        else
+        {
+            ReleaseAttack();
+        }
+    }
+
+    internal void Attack()
+    {
+        Debug.Log("Attack");
+        Debug.Log("Attack on " + m_WeaponDirection);
+
+        m_Attacking = true;
+
+        SetAnimatorWeaponDirection();
+
+        m_Animator.SetBool("Attacking", true);
+    }
+
+    void ReleaseAttack()
+    {
+        m_Animator.SetBool("Attacking", false);
+    }
+
+    
+    #endregion
 
     #region EquipAndDrop
     public void EquipWeapon(Grabbable weapon)
@@ -74,6 +221,8 @@ public class PlayerWeapons : MonoBehaviour
 
 
     }
+
+   
     #endregion
 
 }

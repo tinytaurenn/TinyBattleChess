@@ -1,29 +1,34 @@
-component _0f16d1bc84b720e41945040d44446e92_4055558226076958478 [id "153"]
+component _0f16d1bc84b720e41945040d44446e92_1733633089735608209 [id "153"]
+  enabled Bool [bits "1"]
+
+component _0f16d1bc84b720e41945040d44446e92_4055558226076958478 [id "154"]
   m_IsHeld Bool [bits "1"]
 
-component _0f16d1bc84b720e41945040d44446e92_5885151061618887952 [id "154"]
+component _0f16d1bc84b720e41945040d44446e92_5885151061618887952 [id "155"]
   isKinematic Bool [bits "1"]
 
-component _0f16d1bc84b720e41945040d44446e92_8466982124699937639 [id "155"]
+component _0f16d1bc84b720e41945040d44446e92_8466982124699937639 [id "156"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499 [id "156"]
+component _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499 [id "157"]
   text String [bits "6"]
 
-component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "157"]
+component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "158"]
   MoveSpeed Float [compression "None"]
   Grounded Bool [bits "1"]
   CarryingBig Bool [bits "1"]
   CarryingSmall Bool [bits "1"]
+  Parry Bool [bits "1"]
+  WeaponDirectionNESO Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _5358ed04715b0f148a60e93c83f08be0_2130127191657380802 [id "158"]
+component _5358ed04715b0f148a60e93c83f08be0_2130127191657380802 [id "159"]
   m_BodyTextureIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _5358ed04715b0f148a60e93c83f08be0_58566053745997887 [id "159"]
+component _5358ed04715b0f148a60e93c83f08be0_58566053745997887 [id "160"]
   m_ItemInUse Bool [bits "1"]
 
-component _9e558580774fe6f47a64686c5829e786_4118834038646693485 [id "160"]
+component _9e558580774fe6f47a64686c5829e786_4118834038646693485 [id "161"]
   enabled Bool [bits "1"]
 
 command _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752 [id "7", routing "All"]
