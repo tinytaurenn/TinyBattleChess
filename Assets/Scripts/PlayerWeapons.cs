@@ -139,6 +139,7 @@ public class PlayerWeapons : MonoBehaviour
         Debug.Log("Parry on " + m_WeaponDirection);
 
         m_Parrying = true;
+        m_InAttack = false;
 
         SetAnimatorWeaponDirection(); 
 
@@ -195,7 +196,7 @@ public class PlayerWeapons : MonoBehaviour
     void ReleaseAttack()
     {
         m_Animator.SetBool("Attacking", false);
-        m_InAttack = false;
+        
     }
 
     public void LockAttackRelease(bool isLocked)=> m_InAttackRelease = isLocked;
@@ -219,6 +220,7 @@ public class PlayerWeapons : MonoBehaviour
         yield return new WaitForSeconds(timeToWait);
         Debug.Log("Unlocking attack");
         m_InAttackRelease = false;
+        m_InAttack = false;
     }
     
 
