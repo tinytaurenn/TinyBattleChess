@@ -4,7 +4,7 @@ using Coherence.Toolkit;
 using System;
 using UnityEngine;
 
-public class Grabbable : Usable
+public abstract class Grabbable : Usable
 {
     [Sync] public bool m_IsHeld;
 
@@ -131,7 +131,7 @@ public class Grabbable : Usable
         
     }
 
-    public void Release()
+    public virtual void Release()
     {
         m_IsHeld = false; 
     }

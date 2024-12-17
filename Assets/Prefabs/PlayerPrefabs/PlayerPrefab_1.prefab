@@ -321,15 +321,11 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 268280899311157531}
       lodStepsActive: 1
-    - component: {fileID: 134250641459769857}
-      lodStepsActive: 1
     - component: {fileID: 9188722206417601848}
       lodStepsActive: 1
     - component: {fileID: 1851878287160168843}
       lodStepsActive: 1
     - component: {fileID: 5268604783841033788}
-      lodStepsActive: 1
-    - component: {fileID: 8862029364113910429}
       lodStepsActive: 1
     - component: {fileID: 1947441686218104907}
       lodStepsActive: 1
@@ -413,6 +409,7 @@ MonoBehaviour:
   - rid: 9113002336977420426
   - rid: 9113002337526088362
   - rid: 9113002338989113455
+  - rid: 9113002358946136553
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -1139,6 +1136,48 @@ MonoBehaviour:
         oldName: 
         oldParameterAssemblyTypes: []
         parameterHash: 415411133
+    - rid: 9113002358946136553
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002358946136554
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 7556cd7d7e774997864e997434cec5d1
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 1947441686218104907}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002358946136554
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: ResetTrigger
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.String, mscorlib
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!54 &5556178541105725617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1263,7 +1302,6 @@ GameObject:
   - component: {fileID: 9188722206417601848}
   - component: {fileID: 1851878287160168843}
   - component: {fileID: 5268604783841033788}
-  - component: {fileID: 8862029364113910429}
   m_Layer: 6
   m_Name: Eye_R
   m_TagString: Untagged
@@ -1339,27 +1377,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8862029364113910429
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7487909241987856632}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8268680390319884729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1419,6 @@ GameObject:
   - component: {fileID: 5368454368853662264}
   - component: {fileID: 6531784261451774862}
   - component: {fileID: 268280899311157531}
-  - component: {fileID: 134250641459769857}
   m_Layer: 6
   m_Name: Eye_L
   m_TagString: Untagged
@@ -1478,27 +1494,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &134250641459769857
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8687519258483377387}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1458002775762575432
 PrefabInstance:
   m_ObjectHideFlags: 0

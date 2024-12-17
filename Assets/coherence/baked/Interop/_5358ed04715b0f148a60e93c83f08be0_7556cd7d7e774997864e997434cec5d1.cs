@@ -16,34 +16,34 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 : IEntityCommand
+    public struct _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public Vector3 worldPos;
+            public ByteArray name;
         }
 
-        public static unsafe _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 12) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 12) " +
-                    "for command with ID 11");
+            if (dataSize != 16) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
+                    "for command with ID 10");
             }
 
-            var orig = new _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3();
+            var orig = new _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1();
             var comp = (Interop*)data;
-            orig.worldPos = comp->worldPos;
+            orig.name = comp->name.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->name.Data, (int)comp->name.Length) : null;
             return orig;
         }
 
-        public Vector3 worldPos;
+        public System.String name;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 11;
+        public uint GetComponentType() => 10;
         
         public IEntityMessage Clone()
         {
@@ -81,34 +81,32 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3(
+        public _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1(
         Entity entity,
-        Vector3 worldPos
+        System.String name
 )
         {
             Entity = entity;
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.worldPos = worldPos; 
+            this.name = name; 
         }
         
-        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 commandData, IOutProtocolBitStream bitStream)
         {
-            var converted_worldPos = commandData.worldPos.ToCoreVector3();
-            bitStream.WriteVector3(converted_worldPos, FloatMeta.NoCompression());
+            bitStream.WriteShortString(commandData.name);
         }
         
-        public static _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var converted_worldPos = bitStream.ReadVector3(FloatMeta.NoCompression());
-            var dataworldPos = converted_worldPos.ToUnityVector3();
+            var dataname = bitStream.ReadShortString();
     
-            return new _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3()
+            return new _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1()
             {
                 Entity = entity,
                 Routing = target,
-                worldPos = dataworldPos
+                name = dataname
             };   
         }
     }

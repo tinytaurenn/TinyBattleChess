@@ -1,29 +1,34 @@
+using Coherence;
+using Coherence.Toolkit;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+public enum EWeaponDirection
+{
+    Right,
+    Left,
+    Up,
+    Down,
+}
 public class PlayerWeapons : MonoBehaviour
 {
-    enum EWeaponDirection
-    {
-        Right,
-        Left,
-        Up,
-        Down,
-    }
+    
 
     TinyPlayer m_TinyPlayer;
     [SerializeField] Animator m_Animator; 
+    CoherenceSync m_Sync;
 
     [SerializeField] Grabbable m_GrabbedItem;
 
-    [SerializeField] BasicWeapon m_MainWeapon; 
-    [SerializeField] BasicWeapon m_SecondaryWeapon;
+    [SerializeField]internal  BasicWeapon m_MainWeapon; 
+    [SerializeField] internal BasicWeapon m_SecondaryWeapon;
 
     [Header("Weapon Infos")]
     [SerializeField] internal Vector2 m_LookDirection = Vector2.zero;
-    [SerializeField] EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
+    [SerializeField] internal EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
     [SerializeField] internal bool m_Parrying = false;
     [SerializeField] bool m_InParry = false; 
     [SerializeField] internal  bool m_Attacking = false;
@@ -40,6 +45,7 @@ public class PlayerWeapons : MonoBehaviour
     private void Awake()
     {
         m_TinyPlayer = GetComponent<TinyPlayer>();
+        m_Sync = GetComponent<CoherenceSync>();
         
 
     }
@@ -67,6 +73,8 @@ public class PlayerWeapons : MonoBehaviour
             Drop();
         }
     }
+
+    
 
     #region WeaponActions
 
@@ -135,8 +143,8 @@ public class PlayerWeapons : MonoBehaviour
 
     internal void Parry()
     {
-        Debug.Log("Parry");
-        Debug.Log("Parry on " + m_WeaponDirection);
+        //Debug.Log("Parry");
+        //Debug.Log("Parry on " + m_WeaponDirection);
 
         m_Parrying = true;
         m_InAttack = false;
@@ -183,8 +191,8 @@ public class PlayerWeapons : MonoBehaviour
 
     internal void Attack()
     {
-        Debug.Log("Attack");
-        Debug.Log("Attack on " + m_WeaponDirection);
+        //Debug.Log("Attack");
+        //Debug.Log("Attack on " + m_WeaponDirection);
 
         m_Attacking = true;
 
@@ -203,8 +211,12 @@ public class PlayerWeapons : MonoBehaviour
 
     public void LockAttack()
     {
-        Debug.Log("locking attack");
+        //Debug.Log("locking attack");
         m_InAttackRelease = true;
+        if(m_MainWeapon !=null) m_MainWeapon.m_HolderPlayerWeapons = this;
+        if(m_SecondaryWeapon !=null) m_SecondaryWeapon.m_HolderPlayerWeapons = this;
+
+
         float normalizedTime = m_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime;
         float animLenght = m_Animator.GetCurrentAnimatorStateInfo(1).length;
 
@@ -218,13 +230,28 @@ public class PlayerWeapons : MonoBehaviour
     {
         float timeToWait = time + m_BaseReleaseDelay;
         yield return new WaitForSeconds(timeToWait);
-        Debug.Log("Unlocking attack");
+        //Debug.Log("Unlocking attack");
         m_InAttackRelease = false;
         m_InAttack = false;
     }
-    
 
-    
+    internal void OnParryEvent(bool isParry,IDamageable damageable)
+    {
+        damageable.OnParryEvent -= OnParryEvent;
+        if (isParry)
+        {
+            m_Animator.SetTrigger("Blocked");
+            m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
+            Debug.Log("i get blocked ");
+        }
+        else
+        {
+            Debug.Log("i did not get blocked ");
+        }
+    }
+
+
+
     #endregion
 
     #region EquipAndDrop
@@ -241,6 +268,7 @@ public class PlayerWeapons : MonoBehaviour
         if(m_GrabbedItem.TryGetComponent<BasicWeapon>(out BasicWeapon basicWeapon))
         {
             m_MainWeapon = basicWeapon;
+           
             
         }
 
