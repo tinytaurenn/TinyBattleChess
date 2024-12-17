@@ -122,17 +122,25 @@ private void OnTriggerEnter(Collider other)
             {
                 return;
             }
+
+            if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
+            {
+                Debug.Log("Weapon hit " + other.name);
+
+                //check defense 
+
+                //sync.SendCommand<IDamageable>(nameof(IDamageable.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly,m_Sync,(int)m_HolderPlayerWeapons.m_WeaponDirection);
+                if(other.TryGetComponent<Dummy>(out Dummy dummy))
+                {
+                    Debug.Log("sending commannd to dummy");
+                    sync.SendCommand<Dummy>(nameof(Dummy.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage);
+                }
+
+
+            }
         }
 
-        if(other.TryGetComponent<IDamageable>(out IDamageable damageable))
-        {
-            Debug.Log("Weapon hit " + other.name);
-
-            //check defense 
-            
-            damageable.TakeMelee(m_HolderPlayerWeapons,m_WeaponParameters.Damage);
-            damageable.OnParryEvent += m_HolderPlayerWeapons.OnParryEvent;
-        }
+       
         
 
         

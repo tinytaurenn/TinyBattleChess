@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 
 public enum EWeaponDirection
 {
-    Right,
-    Left,
-    Up,
-    Down,
+    Up = 0,
+    Right = 1 ,
+    Down = 2,
+    Left = 3,
 }
 public class PlayerWeapons : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class PlayerWeapons : MonoBehaviour
 
     TinyPlayer m_TinyPlayer;
     [SerializeField] Animator m_Animator; 
-    CoherenceSync m_Sync;
+    internal CoherenceSync m_Sync;
 
     [SerializeField] Grabbable m_GrabbedItem;
 
@@ -235,19 +235,13 @@ public class PlayerWeapons : MonoBehaviour
         m_InAttack = false;
     }
 
-    internal void OnParryEvent(bool isParry,IDamageable damageable)
+   
+
+    public void SyncBlocked()
     {
-        damageable.OnParryEvent -= OnParryEvent;
-        if (isParry)
-        {
-            m_Animator.SetTrigger("Blocked");
-            m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
-            Debug.Log("i get blocked ");
-        }
-        else
-        {
-            Debug.Log("i did not get blocked ");
-        }
+        Debug.Log("i get sync blocked ");
+        m_Animator.SetTrigger("Blocked");
+        m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
     }
 
 

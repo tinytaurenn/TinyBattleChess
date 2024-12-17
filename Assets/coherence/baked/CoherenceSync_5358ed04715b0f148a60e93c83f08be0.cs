@@ -659,6 +659,7 @@ namespace Coherence.Generated
         private global::UnityEngine.Animator _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1_CommandTarget;
         private global::PlayerClothes _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7_CommandTarget;
         private global::TinyPlayer _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3_CommandTarget;
+        private global::PlayerWeapons _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e_CommandTarget;
         
         
         private IClient client;
@@ -688,6 +689,7 @@ namespace Coherence.Generated
             bakedCommandBindings.Add("7556cd7d7e774997864e997434cec5d1", BakeCommandBinding__5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1);
             bakedCommandBindings.Add("0ffc5a7e1fd04f489472cf9e12415bf7", BakeCommandBinding__5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7);
             bakedCommandBindings.Add("dc362dd6cca24e2995ad9011ec93c5e3", BakeCommandBinding__5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3);
+            bakedCommandBindings.Add("ca4b907df43c44708307a1b7f77fbc3e", BakeCommandBinding__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e);
         }
         
         public override Binding BakeValueBinding(Binding valueBinding)
@@ -842,6 +844,35 @@ namespace Coherence.Generated
             
             target.TeleportPlayer((UnityEngine.Vector3)(command.worldPos));
         }
+    
+        private void BakeCommandBinding__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(CommandBinding commandBinding, CommandsHandler commandsHandler)
+        {
+            _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e_CommandTarget = (global::PlayerWeapons)commandBinding.UnityComponent;
+            commandsHandler.AddBakedCommand("PlayerWeapons.SyncBlocked", "()", SendCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e_CommandTarget, false);
+        }
+        
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(MessageTarget target, object[] args)
+        {
+            var command = new _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e();
+            
+        
+            client.SendCommand(command, target, entityId);
+        }
+        
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(MessageTarget target, object[] args)
+        {
+            var command = new _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e();
+            
+            
+            ReceiveCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(command);
+        }
+
+        private void ReceiveCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(_5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e command)
+        {
+            var target = _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e_CommandTarget;
+            
+            target.SyncBlocked();
+        }
         
         public override void ReceiveCommand(IEntityCommand command)
         {
@@ -858,6 +889,9 @@ namespace Coherence.Generated
                     break;
                 case _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 castedCommand:
                     ReceiveCommand__5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3(castedCommand);
+                    break;
+                case _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e castedCommand:
+                    ReceiveCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(castedCommand);
                     break;
                 default:
                     logger.Warning($"CoherenceSync_5358ed04715b0f148a60e93c83f08be0 Unhandled command: {command.GetType()}.");

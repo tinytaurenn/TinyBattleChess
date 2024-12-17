@@ -1,15 +1,17 @@
+using Coherence.Toolkit;
 using System;
 using UnityEngine;
 
 public interface IDamageable
 {
 
-    public event Action<bool,IDamageable> OnParryEvent;
-    public void TakeDamage(int damage);
 
-    public void TakeMelee(PlayerWeapons playerWeapons,  int damage); 
+    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage);
 
-    public void Parry(EWeaponDirection direction);
+    public void TakeDamageSync(int damage, CoherenceSync Damagersync);
+
+
+    public void ParrySync(int damage, CoherenceSync DamagerSync);
 
 
 
