@@ -2,7 +2,7 @@ using Coherence.Toolkit;
 using PlayerControls;
 using UnityEngine;
 
-public class TinyPlayer : MonoBehaviour
+public class TinyPlayer : MonoBehaviour, IDamageable
 {
     public enum EPlayerState
     {
@@ -16,6 +16,7 @@ public class TinyPlayer : MonoBehaviour
     PlayerMovement m_PlayerMovement;
     PlayerControls.PlayerControls m_PlayerControls;
     PlayerUse m_PlayerUse;
+    PlayerWeapons m_PlayerWeapons;
 
     [Space(10)]
     [Header("Player sockets")]
@@ -29,6 +30,8 @@ public class TinyPlayer : MonoBehaviour
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_PlayerControls = GetComponent<PlayerControls.PlayerControls>();
         m_PlayerUse = GetComponent<PlayerUse>();
+        m_PlayerWeapons = GetComponent<PlayerWeapons>();
+
 
 
         
@@ -89,4 +92,56 @@ public class TinyPlayer : MonoBehaviour
                 break;
         }
     }
+
+    #region Hits
+    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage)
+    {
+        EWeaponDirection direction = (EWeaponDirection)DirectionNESO;
+        EWeaponDirection weaponDirection = m_PlayerWeapons.m_WeaponDirection;
+        Debug.Log(" player take melee sync");
+        Debug.Log(" strike " + direction.ToString() + " direction!");
+
+        bool parry = false;
+
+        switch (direction)
+        {
+            case EWeaponDirection.Right:
+                parry = weaponDirection == EWeaponDirection.Left;
+                break;
+            case EWeaponDirection.Left:
+                parry = weaponDirection == EWeaponDirection.Right;
+                break;
+            case EWeaponDirection.Up:
+                parry = weaponDirection == EWeaponDirection.Up;
+                break;
+            case EWeaponDirection.Down:
+                parry = weaponDirection == EWeaponDirection.Down;
+                break;
+        }
+
+        if (m_PlayerWeapons.m_Parrying && parry)
+        {
+            ParrySync(damage, sync);
+
+        }
+        else
+        {
+            TakeDamageSync(damage, sync);
+
+
+        }
+    }
+
+    public void TakeDamageSync(int damage, CoherenceSync Damagersync)
+    {
+        Debug.Log("sync Player took " + damage + " damage!");
+    }
+
+    public void ParrySync(int damage, CoherenceSync DamagerSync)
+    {
+        Debug.Log("sync Player parried ");
+        Debug.Log(DamagerSync.transform.name + " parried!");
+        DamagerSync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncBlocked), Coherence.MessageTarget.AuthorityOnly);
+    }
+    #endregion
 }

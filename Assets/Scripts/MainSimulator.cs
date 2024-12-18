@@ -10,6 +10,7 @@ using UnityEngine;
 public class MainSimulator : MonoBehaviour
 {
     [SerializeField] GameObject m_PlayerGameObject;
+    [SerializeField] GameObject m_DummyGameObject;
 
     CoherenceBridge m_CoherenceBridge;
     CoherenceSync m_Sync; 
@@ -19,6 +20,7 @@ public class MainSimulator : MonoBehaviour
     [SerializeField] TextMeshProUGUI m_PlayerNumberText;
 
     [SerializeField] Transform m_ShopSpawnPositions;
+    [SerializeField] Transform m_DummiesSpawnPositions;
 
     //test 
 
@@ -109,10 +111,26 @@ public class MainSimulator : MonoBehaviour
     }
     void Start()
     {
-        if (m_Sync.HasStateAuthority && Coherence.SimulatorUtility.IsSimulator && MySword == null)
+        if (!m_Sync.HasStateAuthority) return;
+        if (!Coherence.SimulatorUtility.IsSimulator) return; 
+
+
+        if (MySword == null)
         {
             MySword =  Instantiate(SwordGameObject, transform.position, Quaternion.identity);
         }
+
+        if(m_DummiesSpawnPositions.childCount >0)
+        {
+            for (int i = 0; i < m_DummiesSpawnPositions.childCount; i++)
+            {
+                GameObject dummy = Instantiate(m_DummyGameObject, m_DummiesSpawnPositions.GetChild(i).position, Quaternion.identity);
+                
+               
+            }
+        }
+
+
     }
 
     // Update is called once per frame

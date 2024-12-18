@@ -16,42 +16,38 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 : IEntityCommand
+    public struct _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Int32 DirectionNESO;
-            [FieldOffset(4)]
-            public Entity sync;
-            [FieldOffset(8)]
             public System.Int32 damage;
+            [FieldOffset(4)]
+            public Entity Damagersync;
         }
 
-        public static unsafe _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 12) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 12) " +
-                    "for command with ID 18");
+            if (dataSize != 8) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 8) " +
+                    "for command with ID 13");
             }
 
-            var orig = new _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5();
+            var orig = new _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6();
             var comp = (Interop*)data;
-            orig.DirectionNESO = comp->DirectionNESO;
-            orig.sync = comp->sync;
             orig.damage = comp->damage;
+            orig.Damagersync = comp->Damagersync;
             return orig;
         }
 
-        public System.Int32 DirectionNESO;
-        public Entity sync;
         public System.Int32 damage;
+        public Entity Damagersync;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 18;
+        public uint GetComponentType() => 13;
         
         public IEntityMessage Clone()
         {
@@ -68,12 +64,12 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = absoluteEntity;
-            err = mapper.MapToAbsoluteEntity(sync, false, out absoluteEntity);
+            err = mapper.MapToAbsoluteEntity(Damagersync, false, out absoluteEntity);
             if (err != IEntityMapper.Error.None)
             {
                 return err;
             }
-            this.sync = absoluteEntity;
+            this.Damagersync = absoluteEntity;
             
             return IEntityMapper.Error.None;
         }
@@ -86,64 +82,59 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = relativeEntity;
-            err = mapper.MapToRelativeEntity(sync, false, out relativeEntity);
+            err = mapper.MapToRelativeEntity(Damagersync, false, out relativeEntity);
             if (err != IEntityMapper.Error.None)
             {
                 return err;
             }
-            this.sync = relativeEntity;
+            this.Damagersync = relativeEntity;
             
             return IEntityMapper.Error.None;
         }
 
         public HashSet<Entity> GetEntityRefs() {
             return new HashSet<Entity> {
-                this.sync,
+                this.Damagersync,
             };
         }
 
         public void NullEntityRefs(Entity entity) {
-            if (this.sync == entity) {
-                this.sync = Entity.InvalidRelative;
+            if (this.Damagersync == entity) {
+                this.Damagersync = Entity.InvalidRelative;
             }
         }
         
-        public _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5(
+        public _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6(
         Entity entity,
-        System.Int32 DirectionNESO,
-        Entity sync,
-        System.Int32 damage
+        System.Int32 damage,
+        Entity Damagersync
 )
         {
             Entity = entity;
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.DirectionNESO = DirectionNESO; 
-            this.sync = sync; 
             this.damage = damage; 
+            this.Damagersync = Damagersync; 
         }
         
-        public static void Serialize(_c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteIntegerRange(commandData.DirectionNESO, 32, -2147483648);
-            bitStream.WriteEntity(commandData.sync);
             bitStream.WriteIntegerRange(commandData.damage, 32, -2147483648);
+            bitStream.WriteEntity(commandData.Damagersync);
         }
         
-        public static _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var dataDirectionNESO = bitStream.ReadIntegerRange(32, -2147483648);
-            var datasync = bitStream.ReadEntity();
             var datadamage = bitStream.ReadIntegerRange(32, -2147483648);
+            var dataDamagersync = bitStream.ReadEntity();
     
-            return new _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5()
+            return new _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6()
             {
                 Entity = entity,
                 Routing = target,
-                DirectionNESO = dataDirectionNESO,
-                sync = datasync,
-                damage = datadamage
+                damage = datadamage,
+                Damagersync = dataDamagersync
             };   
         }
     }

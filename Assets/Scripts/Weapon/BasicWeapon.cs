@@ -136,6 +136,12 @@ private void OnTriggerEnter(Collider other)
                     sync.SendCommand<Dummy>(nameof(Dummy.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage);
                 }
 
+                if(other.TryGetComponent<TinyPlayer>(out TinyPlayer tinyPlayer))
+                {
+                    Debug.Log("sending commannd to player");
+                    sync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage);
+                }
+
 
             }
         }

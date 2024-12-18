@@ -16,7 +16,7 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 : IEntityCommand
+    public struct _5358ed04715b0f148a60e93c83f08be0_7bf0423214514ef0a576866a9d2ab9e9 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
@@ -29,14 +29,14 @@ namespace Coherence.Generated
             public System.Int32 damage;
         }
 
-        public static unsafe _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5358ed04715b0f148a60e93c83f08be0_7bf0423214514ef0a576866a9d2ab9e9 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
             if (dataSize != 12) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 12) " +
-                    "for command with ID 18");
+                    "for command with ID 12");
             }
 
-            var orig = new _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5();
+            var orig = new _5358ed04715b0f148a60e93c83f08be0_7bf0423214514ef0a576866a9d2ab9e9();
             var comp = (Interop*)data;
             orig.DirectionNESO = comp->DirectionNESO;
             orig.sync = comp->sync;
@@ -51,7 +51,7 @@ namespace Coherence.Generated
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 18;
+        public uint GetComponentType() => 12;
         
         public IEntityMessage Clone()
         {
@@ -108,7 +108,7 @@ namespace Coherence.Generated
             }
         }
         
-        public _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5(
+        public _5358ed04715b0f148a60e93c83f08be0_7bf0423214514ef0a576866a9d2ab9e9(
         Entity entity,
         System.Int32 DirectionNESO,
         Entity sync,
@@ -124,20 +124,20 @@ namespace Coherence.Generated
             this.damage = damage; 
         }
         
-        public static void Serialize(_c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_7bf0423214514ef0a576866a9d2ab9e9 commandData, IOutProtocolBitStream bitStream)
         {
             bitStream.WriteIntegerRange(commandData.DirectionNESO, 32, -2147483648);
             bitStream.WriteEntity(commandData.sync);
             bitStream.WriteIntegerRange(commandData.damage, 32, -2147483648);
         }
         
-        public static _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _5358ed04715b0f148a60e93c83f08be0_7bf0423214514ef0a576866a9d2ab9e9 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
             var dataDirectionNESO = bitStream.ReadIntegerRange(32, -2147483648);
             var datasync = bitStream.ReadEntity();
             var datadamage = bitStream.ReadIntegerRange(32, -2147483648);
     
-            return new _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5()
+            return new _5358ed04715b0f148a60e93c83f08be0_7bf0423214514ef0a576866a9d2ab9e9()
             {
                 Entity = entity,
                 Routing = target,
