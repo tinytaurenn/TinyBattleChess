@@ -101,6 +101,7 @@ public class Dummy : MonoBehaviour, IDamageable
         Debug.Log("sync Dummy parried "); 
         //Debug.Log(DamagerSync.transform.name + " parried!"); // cant get a transform from serv side
         DamagerSync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncBlocked), Coherence.MessageTarget.AuthorityOnly);
+        m_Sync.SendCommand<DummyFX>(nameof(DummyFX.PlayParryFX), Coherence.MessageTarget.All); 
     }
 
     

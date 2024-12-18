@@ -1,6 +1,6 @@
 using Coherence.Toolkit;
 using System;
-using Unity.Multiplayer.Center.Common;
+using System.Collections.Generic;
 using UnityEngine;
 using static SO_BasicWeapon;
 
@@ -50,7 +50,9 @@ public class BasicWeapon : Grabbable, IWeapon
 
     internal PlayerWeapons m_HolderPlayerWeapons = null; 
 
-    [SerializeField] Collider m_DamageCollider; 
+    [SerializeField] Collider m_DamageCollider;
+   
+    List<Collider> HitList = new List<Collider>(); 
 
     protected override void Awake()
     {
@@ -97,6 +99,10 @@ public class BasicWeapon : Grabbable, IWeapon
     public void ActivateDamage(bool activate)
     {
         m_DamageCollider.enabled = activate;
+        if(activate)
+        {
+            HitList.Clear();
+        }
         
     }
 
@@ -105,6 +111,9 @@ public class BasicWeapon : Grabbable, IWeapon
 
 private void OnTriggerEnter(Collider other)
     {
+        if (HitList.Contains(other)) return; 
+
+        HitList.Add(other);
         
        
         if (m_DamageCollider.enabled == false || !m_DamageCollider.isTrigger || other.CompareTag("DamageCollider"))

@@ -69,12 +69,16 @@ command _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6 [id "
   damage Int 
   DamagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f [id "17", routing "All"]
+command _c473af9c10567024caf206bf6752a656_be88d45451834c0bb0ef69beaf2c9c7b [id "17", routing "All"]
+
+command _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f [id "18", routing "All"]
   damage Int 
   Damagersync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 [id "18", routing "All"]
+command _c473af9c10567024caf206bf6752a656_e33d948cb4b64ce2816cba73ee1638b5 [id "19", routing "All"]
   DirectionNESO Int 
   sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
   damage Int 
+
+command _c473af9c10567024caf206bf6752a656_fa6044b74ad94734b894161c1e4b0e16 [id "20", routing "All"]
 
