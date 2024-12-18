@@ -1,16 +1,13 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
-public class DummyFX : EntityFX
+public class PlayerFX : EntityFX
 {
-   
-    
-    
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void PlayHurtFX(int choiceIndex)
     {
-        base.PlayHurtFX( choiceIndex);
+        base.PlayHurtFX(choiceIndex);
 
-        
+
     }
 
     public override void PlayParryFX(int choiceIndex)
@@ -18,6 +15,6 @@ public class DummyFX : EntityFX
         base.PlayParryFX(choiceIndex);
         m_AudioSource.resource = m_ParryAudios[choiceIndex];
         m_AudioSource.Play();
-        
+
     }
 }

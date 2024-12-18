@@ -53,7 +53,7 @@ public class Dummy : MonoBehaviour, IDamageable
     
 
   
-    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync,int damage)
+    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync,int damage, Vector3 attackerPos)
     {
 
         EWeaponDirection direction = (EWeaponDirection)DirectionNESO; 
@@ -101,7 +101,8 @@ public class Dummy : MonoBehaviour, IDamageable
         Debug.Log("sync Dummy parried "); 
         //Debug.Log(DamagerSync.transform.name + " parried!"); // cant get a transform from serv side
         DamagerSync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncBlocked), Coherence.MessageTarget.AuthorityOnly);
-        m_Sync.SendCommand<DummyFX>(nameof(DummyFX.PlayParryFX), Coherence.MessageTarget.All); 
+        int soundVariationIndex = UnityEngine.Random.Range(0, 3); 
+        m_Sync.SendCommand<DummyFX>(nameof(DummyFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
     }
 
     

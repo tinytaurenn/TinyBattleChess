@@ -201,12 +201,12 @@ MonoBehaviour:
   preserveChildren: 1
   bindings:
   - rid: 9113002358946136937
-  - rid: 9113002362049397001
   - rid: 9113002362049397006
   - rid: 9113002362049397008
   - rid: 9113002364617097644
-  - rid: 9113002380181897437
-  - rid: 9113002380181897439
+  - rid: 9113002380181898011
+  - rid: 9113002380181898013
+  - rid: 9113002382096859878
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -274,50 +274,6 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.TransformBindings.PositionBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 9113002362049397001
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 9113002362049397002
-        routing: 1
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: e33d948cb4b64ce2816cba73ee1638b5
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-        unityComponent: {fileID: 2607659342849482176}
-        coherenceSync: {fileID: 6164657841644225223}
-        interpolationSettings: {fileID: 0}
-    - rid: 9113002362049397002
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: TakeMeleeSync
-        monoAssemblyType: 
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 0
-        valueSyncCallbackName: 
-        memberType: 8
-        parameterAssemblyTypes:
-        - System.Int32, mscorlib
-        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
-        - System.Int32, mscorlib
-        ownerType:
-          assemblyQualifiedName: Dummy, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
     - rid: 9113002362049397006
@@ -460,16 +416,16 @@ MonoBehaviour:
       type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
       data:
         component: {fileID: 5764415103635968241}
-    - rid: 9113002380181897437
+    - rid: 9113002380181898011
       type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         descriptor:
-          rid: 9113002380181897438
+          rid: 9113002380181898012
         routing: 1
         syncMode: 0
         isPredicted: 0
         predictionMode: 0
-        guid: fa6044b74ad94734b894161c1e4b0e16
+        guid: 31234557a30c47cda70d1bc9658bee3e
         archetypeData:
           type: 0
           minRange: 0
@@ -480,7 +436,7 @@ MonoBehaviour:
         unityComponent: {fileID: 5764415103635968241}
         coherenceSync: {fileID: 6164657841644225223}
         interpolationSettings: {fileID: 0}
-    - rid: 9113002380181897438
+    - rid: 9113002380181898012
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         name: PlayParryFX
@@ -489,7 +445,8 @@ MonoBehaviour:
         enforcesLODingWhenFieldsOverriden: 0
         valueSyncCallbackName: 
         memberType: 8
-        parameterAssemblyTypes: []
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
         ownerType:
           assemblyQualifiedName: DummyFX, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
             PublicKeyToken=null
@@ -501,16 +458,16 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 9113002380181897439
+    - rid: 9113002380181898013
       type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         descriptor:
-          rid: 9113002380181897440
+          rid: 9113002380181898014
         routing: 1
         syncMode: 0
         isPredicted: 0
         predictionMode: 0
-        guid: be88d45451834c0bb0ef69beaf2c9c7b
+        guid: 22b55500f2764c84a79f0e5d5fa461d1
         archetypeData:
           type: 0
           minRange: 0
@@ -521,7 +478,7 @@ MonoBehaviour:
         unityComponent: {fileID: 5764415103635968241}
         coherenceSync: {fileID: 6164657841644225223}
         interpolationSettings: {fileID: 0}
-    - rid: 9113002380181897440
+    - rid: 9113002380181898014
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         name: PlayHurtFX
@@ -530,9 +487,55 @@ MonoBehaviour:
         enforcesLODingWhenFieldsOverriden: 0
         valueSyncCallbackName: 
         memberType: 8
-        parameterAssemblyTypes: []
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
         ownerType:
           assemblyQualifiedName: DummyFX, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 9113002382096859878
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002382096859879
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 8993144edbc84f508e93768efb6c7b81
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 2607659342849482176}
+        coherenceSync: {fileID: 6164657841644225223}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002382096859879
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: TakeMeleeSync
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
+        - System.Int32, mscorlib
+        - UnityEngine.Vector3, UnityEngine
+        ownerType:
+          assemblyQualifiedName: Dummy, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
             PublicKeyToken=null
         defaultSyncMode: 0
         CustomData:
@@ -576,7 +579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb6ca372003fd74b911fcd75fad88b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ParryAudio: {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
+  m_ParryAudios:
+  - {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
+  - {fileID: 8300000, guid: a7736c1763bd76c4eb0d52aaad581deb, type: 3}
+  - {fileID: 8300000, guid: 2b8c207613cd58b4889b0cc6bf739f2c, type: 3}
 --- !u!82 &2712710779735924217
 AudioSource:
   m_ObjectHideFlags: 0

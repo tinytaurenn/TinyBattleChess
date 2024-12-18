@@ -40,7 +40,10 @@ public class PlayerWeapons : MonoBehaviour
 
     [SerializeField] float m_BaseReleaseDelay = 0.15f;
 
-
+    [Space(10)]
+    [Header("Parry Parameters")]
+    [SerializeField] float m_ParryAngle = 20f;
+    
 
     private void Awake()
     {
@@ -244,6 +247,22 @@ public class PlayerWeapons : MonoBehaviour
         m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
     }
 
+    public bool IsInParryAngle(Vector3 enemyPosition)
+    {
+
+        float parryAngleRadians = Mathf.Deg2Rad * m_ParryAngle;
+        if (Vector3.Dot(transform.forward, enemyPosition) > parryAngleRadians)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+         
+    }
+
 
 
     #endregion
@@ -290,8 +309,26 @@ public class PlayerWeapons : MonoBehaviour
 
 
     }
-
-   
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        float parryAngleRadians = Mathf.Deg2Rad * m_ParryAngle;
+        Vector3 forward = transform.forward;
+        Vector3 right = transform.right;
+
+        // Draw lines for positive and negative parry angles
+        Vector3 leftParryDirection = Quaternion.AngleAxis(-m_ParryAngle, Vector3.up) * forward;
+        Vector3 rightParryDirection = Quaternion.AngleAxis(m_ParryAngle, Vector3.up) * forward;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position + leftParryDirection * 2f);
+        Gizmos.DrawLine(transform.position, transform.position + rightParryDirection * 2f);
+
+        
+
+
+        
+    }
 
 }

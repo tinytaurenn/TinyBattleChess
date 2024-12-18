@@ -94,7 +94,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     }
 
     #region Hits
-    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage)
+    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,Vector3 attackerPos)
     {
         EWeaponDirection direction = (EWeaponDirection)DirectionNESO;
         EWeaponDirection weaponDirection = m_PlayerWeapons.m_WeaponDirection;
@@ -119,14 +119,14 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 break;
         }
 
-        if (m_PlayerWeapons.m_Parrying && parry)
+        if (m_PlayerWeapons.m_Parrying && parry && m_PlayerWeapons.IsInParryAngle(attackerPos))
         {
             ParrySync(damage, sync);
 
         }
         else
         {
-            TakeDamageSync(damage, sync);
+            TakeDamageSync(damage, sync); 
 
 
         }
@@ -142,6 +142,9 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         Debug.Log("sync Player parried ");
         Debug.Log(DamagerSync.transform.name + " parried!");
         DamagerSync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncBlocked), Coherence.MessageTarget.AuthorityOnly);
-    }
+
+        int soundVariationIndex = UnityEngine.Random.Range(0, 3);
+        m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
+    } 
     #endregion
 }

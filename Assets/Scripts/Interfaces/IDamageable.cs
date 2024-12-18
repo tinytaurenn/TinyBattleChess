@@ -6,7 +6,7 @@ public interface IDamageable
 {
 
 
-    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage);
+    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,Vector3 attackerPos);
 
     public void TakeDamageSync(int damage, CoherenceSync Damagersync);
 
