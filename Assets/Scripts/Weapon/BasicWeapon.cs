@@ -51,7 +51,7 @@ public class BasicWeapon : Grabbable, IWeapon
     internal PlayerWeapons m_HolderPlayerWeapons = null; 
 
     [SerializeField] Collider m_DamageCollider;
-    [SerializeField] Transform m_HitPos; 
+    [SerializeField] public Transform m_HitPos; 
    
     List<Collider> HitList = new List<Collider>(); 
 
@@ -143,7 +143,7 @@ private void OnTriggerEnter(Collider other)
                 if(other.TryGetComponent<Dummy>(out Dummy dummy))
                 {
                     Debug.Log("sending commannd to dummy");
-                    sync.SendCommand<Dummy>(nameof(Dummy.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage, m_HitPos.position);
+                    sync.SendCommand<Dummy>(nameof(Dummy.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage, m_HolderPlayerWeapons.transform.position);
                 }
 
                 if(other.TryGetComponent<TinyPlayer>(out TinyPlayer tinyPlayer)) 

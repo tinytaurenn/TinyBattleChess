@@ -8,6 +8,7 @@ public class Dummy : MonoBehaviour, IDamageable
 
     [SerializeField] bool m_InParry = false;
     [SerializeField] EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
+    [SerializeField] float m_ParryAngle = 90f; 
     CoherenceSync m_Sync; 
 
     [SerializeField] [Sync] int Health = 100;
@@ -78,7 +79,7 @@ public class Dummy : MonoBehaviour, IDamageable
                 break;
         }
 
-        if (m_InParry && parry)
+        if (m_InParry && parry && IsInParryAngle(attackerPos))
         {
             ParrySync(damage, sync);
             
@@ -89,6 +90,30 @@ public class Dummy : MonoBehaviour, IDamageable
             
 
         }
+
+    }
+
+    public bool IsInParryAngle(Vector3 enemyPosition) 
+    {
+
+
+        float dot = Vector3.Dot(transform.forward.normalized, (enemyPosition - transform.position).normalized);
+
+
+        float dotInDeg = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+        if (dotInDeg <= m_ParryAngle)
+        {
+            Debug.Log(" parried! " + "angle is : " + dotInDeg); 
+            return true; 
+
+        }
+        else
+        {
+            Debug.Log(" not parried! " + "angle is : " + dotInDeg);
+            return false; 
+        }
+
 
     }
 

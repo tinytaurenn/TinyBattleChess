@@ -3,6 +3,7 @@ using Coherence.Toolkit;
 using PlayerControls;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -109,6 +110,8 @@ public class MainSimulator : MonoBehaviour
         
         //RefreshPlayerList();
     }
+
+    
     void Start()
     {
         if (!m_Sync.HasStateAuthority) return;
@@ -124,7 +127,8 @@ public class MainSimulator : MonoBehaviour
         {
             for (int i = 0; i < m_DummiesSpawnPositions.childCount; i++)
             {
-                GameObject dummy = Instantiate(m_DummyGameObject, m_DummiesSpawnPositions.GetChild(i).position, Quaternion.identity);
+                Quaternion angle = Quaternion.Euler(0, 180, 0); 
+                GameObject dummy = Instantiate(m_DummyGameObject, m_DummiesSpawnPositions.GetChild(i).position, angle);
                 
                
             }
@@ -165,7 +169,7 @@ public class MainSimulator : MonoBehaviour
 
     void TeleportAllPlayersToShop()
     {
-        if(m_ShopSpawnPositions.childCount == 0 || m_ShopSpawnPositions == null)
+        if(m_ShopSpawnPositions.childCount == 0 || m_ShopSpawnPositions == null) 
         {
             Debug.Log("No spawn positions for shop");
             return;
@@ -183,7 +187,8 @@ public class MainSimulator : MonoBehaviour
 
     public void StartGame()
     {
-        RefreshPlayerList();
+        RefreshPlayerList(); 
+        
         TeleportAllPlayersToShop(); 
     }
 

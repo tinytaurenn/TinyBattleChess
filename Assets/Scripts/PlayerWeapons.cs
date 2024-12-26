@@ -2,8 +2,10 @@ using Coherence;
 using Coherence.Toolkit;
 using System;
 using System.Collections;
+using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 
 public enum EWeaponDirection
@@ -250,17 +252,23 @@ public class PlayerWeapons : MonoBehaviour
     public bool IsInParryAngle(Vector3 enemyPosition)
     {
 
-        float parryAngleRadians = Mathf.Deg2Rad * m_ParryAngle;
-        if (Vector3.Dot(transform.forward, enemyPosition) > parryAngleRadians)
+        float dot = Vector3.Dot(transform.forward.normalized, (enemyPosition - transform.position).normalized);
+
+
+        float dotInDeg = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+        if (dotInDeg <= m_ParryAngle)
         {
             return true;
+
         }
         else
         {
             return false;
         }
 
-         
+
+
     }
 
 
@@ -325,6 +333,41 @@ public class PlayerWeapons : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + leftParryDirection * 2f);
         Gizmos.DrawLine(transform.position, transform.position + rightParryDirection * 2f);
 
+
+        if (Physics.OverlapSphere(transform.position, 15f).Length>0)
+        {
+            foreach (var item in Physics.OverlapSphere(transform.position, 15f))
+            {
+                if(item.TryGetComponent<Dummy>(out Dummy dummy) && m_MainWeapon != null)
+                {
+
+                    float dot = Vector3.Dot(dummy.transform.forward.normalized, (dummy.transform.position - transform.position).normalized);
+
+
+                    float dotInDeg = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+                    if (dotInDeg <= m_ParryAngle)
+                    {
+                        Gizmos.color = Color.green;
+                        Gizmos.DrawLine(dummy.transform.position, m_MainWeapon.m_HitPos.position);
+
+                    }
+                    else
+                    {
+                        Gizmos.color = Color.red;
+                        Gizmos.DrawLine(dummy.transform.position, m_MainWeapon.m_HitPos.position);
+                    }
+
+                    
+
+                    
+                }
+                
+
+                
+
+            }
+        }
         
 
 

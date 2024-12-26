@@ -37,6 +37,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         
     }
     //commands
+   
+
     public void TeleportPlayer(Vector3 worldPos)
     {
         Debug.Log("teleporting to : " + worldPos);
