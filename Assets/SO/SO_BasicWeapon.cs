@@ -1,21 +1,22 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SO_BasicWeapon", menuName = "Scriptable Objects/SO_BasicWeapon")]
-public class SO_BasicWeapon : ScriptableObject
+[CreateAssetMenu(fileName = "SO_BasicWeapon", menuName = "Scriptable Objects/Items/Weapons/SO_BasicWeapon")]
+public class SO_BasicWeapon : SO_Item
 {
-
+    
     public enum EWeaponType
     {
-        Sword,
-        Axe,
-        Mace,
-        Spear,
-        Bow,
-        Crossbow,
-        LongBow,
-        Staff,
-        Shield,
-        Dagger
+        Sword = 1,
+        Axe = 2,
+        Mace = 4,
+        Spear = 8,
+        Bow = 16,
+        Crossbow = 32,
+        LongBow = 64,
+        Staff = 128,
+        Shield = 256,
+        Dagger = 512
     }
     public enum EWeaponSize
     {
@@ -24,14 +25,17 @@ public class SO_BasicWeapon : ScriptableObject
        LeftOnly
        
     }
+     
     public EWeaponType WeaponType;
     public EWeaponSize WeaponSize;
+
+     
 
 
     public int Damage = 10; 
     public float Speed = 1.5f;
 
-    public int Cost = 10;
+    
 
     Vector3 PositionOffset = Vector3.zero;
     Vector3 RotationOffset = Vector3.zero;
