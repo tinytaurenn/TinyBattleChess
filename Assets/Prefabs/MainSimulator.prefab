@@ -50,7 +50,9 @@ MonoBehaviour:
   m_DummyGameObject: {fileID: 5699538527182793423, guid: c473af9c10567024caf206bf6752a656, type: 3}
   m_PlayerObjects: []
   m_RoundTime: {fileID: 1338625383742743499}
+  m_ShopRoundTime: 90
   m_ShopSpawnPositions: {fileID: 0}
+  m_BattleSpawnPositions: {fileID: 0}
   m_DummiesSpawnPositions: {fileID: 0}
   SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
 --- !u!114 &5605270632006895831

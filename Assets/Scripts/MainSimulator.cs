@@ -15,7 +15,7 @@ public class MainSimulator : MonoBehaviour
 
     CoherenceBridge m_CoherenceBridge;
     CoherenceSync m_Sync; 
-    public Dictionary<ClientID, CoherenceSync> m_Players = new();
+    //public Dictionary<ClientID, CoherenceSync> m_Players = new();
     [SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
 
     [SerializeField] TextMeshProUGUI m_RoundTime;
@@ -23,6 +23,7 @@ public class MainSimulator : MonoBehaviour
     float m_RoundTimer = 0f;
 
     [SerializeField] Transform m_ShopSpawnPositions;
+    [SerializeField] Transform m_BattleSpawnPositions;
     [SerializeField] Transform m_DummiesSpawnPositions;
 
     //test 
@@ -76,7 +77,7 @@ public class MainSimulator : MonoBehaviour
 
     private void OnDisable()
     {
-        m_CoherenceBridge.ClientConnections.OnSynced -= OnSynced;
+        m_CoherenceBridge.ClientConnections.OnSynced -= OnSynced; 
         m_CoherenceBridge.ClientConnections.OnCreated -= OnCreated;
         m_CoherenceBridge.ClientConnections.OnDestroyed -= OnDestroyed;
     }
@@ -188,6 +189,23 @@ public class MainSimulator : MonoBehaviour
 
     }
 
+    void TeleportPlayersToBattle()
+    {
+        if (m_ShopSpawnPositions.childCount == 0 || m_ShopSpawnPositions == null)
+        {
+            Debug.Log("No spawn positions for Battle");
+            return;
+        }
+
+        Debug.Log("Sending players to Battle");
+
+        for (int i = 0; i < m_PlayerObjects.Count; i++)
+        {
+            CoherenceSync playerSync = m_PlayerObjects[i].GetComponent<CoherenceSync>();
+            playerSync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BattleSpawnPositions.GetChild(i).position);
+        }
+    }
+
     public void StartGame()
     {
         
@@ -196,7 +214,7 @@ public class MainSimulator : MonoBehaviour
         
     }
 
-    void RoundTimeUpdate()
+    void ShopRoundTimeUpdate()
     {
         if (m_RoundTimer > 0)
         {
@@ -205,8 +223,9 @@ public class MainSimulator : MonoBehaviour
         else
         {
             m_RoundTimer = 0;
+            SwitchPlayState(EPlayState.Fighting);
         }
-        m_RoundTime.text = "Time left : " + (int)m_RoundTimer;
+        m_RoundTime.text = m_PlayState.ToString() + " : " + (int)m_RoundTimer;
 
     }
 
@@ -286,6 +305,8 @@ public class MainSimulator : MonoBehaviour
                 m_RoundTimer = m_ShopRoundTime;
                 break;
             case EPlayState.Fighting:
+                TeleportPlayersToBattle(); 
+                
                 break;
             case EPlayState.End:
                 break;
@@ -298,11 +319,14 @@ public class MainSimulator : MonoBehaviour
     {
         switch (m_PlayState)
         {
-            case EPlayState.Lobby:
+            case EPlayState.Lobby: 
                 break;
             case EPlayState.Shop:
+                m_RoundTime.enabled = false;
                 break;
             case EPlayState.Fighting:
+                
+
                 break;
             case EPlayState.End:
                 break;
@@ -313,13 +337,14 @@ public class MainSimulator : MonoBehaviour
 
     void UpdatePlayState()
     {
-        RoundTimeUpdate();
+        
 
         switch (m_PlayState)
         {
             case EPlayState.Lobby:
                 break;
             case EPlayState.Shop:
+                ShopRoundTimeUpdate();
                 break;
             case EPlayState.Fighting:
                 break;

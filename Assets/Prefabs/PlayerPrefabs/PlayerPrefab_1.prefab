@@ -444,7 +444,7 @@ MonoBehaviour:
   - rid: 9113002336977420718
   - rid: 9113002338989113430
   - rid: 9113002381995147348
-  floatingOriginMode: 0
+  floatingOriginMode: 1
   floatingOriginParentedMode: 1
   references:
     version: 2
