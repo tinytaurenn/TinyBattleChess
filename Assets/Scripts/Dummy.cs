@@ -79,7 +79,7 @@ public class Dummy : MonoBehaviour, IDamageable
                 break;
         }
 
-        if (m_InParry && parry && IsInParryAngle(attackerPos))
+        if (m_InParry && parry && transform.IsInAngle(m_ParryAngle, attackerPos))
         {
             ParrySync(damage, sync);
             
@@ -95,7 +95,7 @@ public class Dummy : MonoBehaviour, IDamageable
 
     public bool IsInParryAngle(Vector3 enemyPosition) 
     {
-
+        
 
         float dot = Vector3.Dot(transform.forward.normalized, (enemyPosition - transform.position).normalized);
 

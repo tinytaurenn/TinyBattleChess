@@ -252,22 +252,7 @@ public class PlayerWeapons : MonoBehaviour
     public bool IsInParryAngle(Vector3 enemyPosition)
     {
 
-        float dot = Vector3.Dot(transform.forward.normalized, (enemyPosition - transform.position).normalized);
-
-
-        float dotInDeg = Mathf.Acos(dot) * Mathf.Rad2Deg;
-
-        if (dotInDeg <= m_ParryAngle)
-        {
-            return true;
-
-        }
-        else
-        {
-            return false;
-        }
-
-
+        return transform.IsInAngle(m_ParryAngle, enemyPosition);
 
     }
 

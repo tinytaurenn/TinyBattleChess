@@ -15,7 +15,7 @@ public class SO_Chest : ScriptableObject
 
     
 
-    public List<SO_Item> DoSomethingBasedOnItemType()
+    public List<SO_Item> GetItemList()
     {
         List<SO_Item> itemList = new List<SO_Item>();   
         Debug.Log("doing something chest");
@@ -32,11 +32,38 @@ public class SO_Chest : ScriptableObject
 
 
         }
+        
+        //Utils.Shuffle(itemList);
 
         return itemList;
 
+    }
+
+    public List<SO_Item> GetItemList(int size)
+    {
+        List<SO_Item> itemList = new List<SO_Item>();
+        Debug.Log("doing something chest");
+        foreach (var item in Items.Items)
+        {
+
+            if ((item.GetType() == typeof(SO_BasicWeapon)) && ((ItemType & EItemType.Weapon) != 0))
+            {
+                Debug.Log("adding weapon in chest list ");
+                itemList.Add(item);
+
+            }
+            //next 
 
 
+        }
+
+        //Utils.Shuffle(itemList);
+
+        itemList.Shuffle();
+
+        return itemList;
 
     }
+
+
 }

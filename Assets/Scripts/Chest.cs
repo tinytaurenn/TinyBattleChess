@@ -11,7 +11,7 @@ public class Chest : MonoBehaviour
     void Start()
     {
         Debug.Log("chest testing");
-        m_ChosenItems = m_ChestSO.DoSomethingBasedOnItemType();
+        m_ChosenItems = m_ChestSO.GetItemList();
     }
 
     

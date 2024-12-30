@@ -13,14 +13,14 @@ public class WeaponEvents : MonoBehaviour
     {
         if(transform.parent.GetComponent<CoherenceSync>().HasStateAuthority == false)
         {
-            Debug.Log("No authority to activate weapon");
+            //Debug.Log("No authority to activate weapon");
             return;
         }
         
         if (m_PlayerWeapons.m_MainWeapon == null)
         {
             
-            Debug.Log("No weapon to activate");
+            //Debug.Log("No weapon to activate");
             return;
         }
 
@@ -30,12 +30,12 @@ public class WeaponEvents : MonoBehaviour
     {
         if (transform.parent.GetComponent<CoherenceSync>().HasStateAuthority == false)
         {
-            Debug.Log("No authority to Deactivate weapon");
+            //Debug.Log("No authority to Deactivate weapon");
             return;
         }
         if (m_PlayerWeapons.m_MainWeapon == null)
         {
-            Debug.Log("No weapon to Deactivate");
+            //Debug.Log("No weapon to Deactivate");
             return;
         }
 

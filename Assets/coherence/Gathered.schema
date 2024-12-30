@@ -26,6 +26,7 @@ component _28fbed09d7fea464681134cd159332ad_5939546729887440551 [id "160"]
 
 component _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499 [id "161"]
   text String [bits "6"]
+  enabled Bool [bits "1"]
 
 component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "162"]
   MoveSpeed Float [compression "None"]

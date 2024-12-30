@@ -5400,6 +5400,10 @@ PrefabInstance:
       propertyPath: m_DummiesSpawnPositions
       value: 
       objectReference: {fileID: 1533538825}
+    - target: {fileID: 4385315940812925499, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7886858918336485256, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.2083158

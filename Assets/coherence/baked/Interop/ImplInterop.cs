@@ -1993,8 +1993,9 @@ namespace Coherence.Generated
                     var val = new _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499.Interop();
 
                     var pinnedtext = orig.text != null ? Encoding.UTF8.GetBytes(orig.text) : null; fixed (void* pinnedPtrtext = pinnedtext) { val.text = new ByteArray { Data = pinnedPtrtext, Length =  pinnedtext?.Length ?? 0 };
+                    val.enabled = orig.enabled ? (System.Byte)1 : (System.Byte)0;
 
-                    updater.UpdateComponent(entity, componentType, val, 16, component.FieldsMask, component.StoppedMask, frames);
+                    updater.UpdateComponent(entity, componentType, val, 17, component.FieldsMask, component.StoppedMask, frames);
 
 }                    return;
                 }

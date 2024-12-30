@@ -18,7 +18,9 @@ public class MainSimulator : MonoBehaviour
     public Dictionary<ClientID, CoherenceSync> m_Players = new();
     [SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
 
-    [SerializeField] TextMeshProUGUI m_PlayerNumberText;
+    [SerializeField] TextMeshProUGUI m_RoundTime;
+    [SerializeField] float m_ShopRoundTime = 90f; 
+    float m_RoundTimer = 0f;
 
     [SerializeField] Transform m_ShopSpawnPositions;
     [SerializeField] Transform m_DummiesSpawnPositions;
@@ -30,7 +32,7 @@ public class MainSimulator : MonoBehaviour
 
     
 
-    internal enum EPlayState
+    public enum EPlayState
     {
         Lobby,
         Shop, 
@@ -38,7 +40,7 @@ public class MainSimulator : MonoBehaviour
         End
     }
 
-    internal enum EGameState
+    public enum EGameState
     {
         Lobby,
         InGame
@@ -117,6 +119,8 @@ public class MainSimulator : MonoBehaviour
         if (!m_Sync.HasStateAuthority) return;
         if (!Coherence.SimulatorUtility.IsSimulator) return; 
 
+        
+
 
         if (MySword == null)
         {
@@ -140,13 +144,12 @@ public class MainSimulator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //m_PlayerNumberText.text = "number of players : " + m_FPlayers.Count;
 
-        //if (Time.time > timer + mytimer)
-        //{
-        //    timer = Time.time;
-        //    RefreshPlayerList();
-        //}
+        if (!m_Sync.HasStateAuthority) return;
+        if (!Coherence.SimulatorUtility.IsSimulator) return;
+
+        UpdateGameState(); 
+        
     }
 
 
@@ -187,10 +190,149 @@ public class MainSimulator : MonoBehaviour
 
     public void StartGame()
     {
-        RefreshPlayerList(); 
         
-        TeleportAllPlayersToShop(); 
+        SwitchGameState(EGameState.InGame);
+
+        
     }
+
+    void RoundTimeUpdate()
+    {
+        if (m_RoundTimer > 0)
+        {
+            m_RoundTimer -= Time.deltaTime;
+        }
+        else
+        {
+            m_RoundTimer = 0;
+        }
+        m_RoundTime.text = "Time left : " + (int)m_RoundTimer;
+
+    }
+
+
+    #region StateMachine
+    #region GameState StateMachine
+    public void SwitchGameState(EGameState gameState)
+    {
+        OnExitGameState(); 
+        m_GameState = gameState;
+        OnEnterGameState(); 
+    }
+    void OnEnterGameState()
+    {
+        Debug.Log("Entering game state" + m_GameState.ToString());
+        switch (m_GameState)
+        {
+            case EGameState.Lobby:
+                break;
+            case EGameState.InGame:
+                RefreshPlayerList();
+
+                TeleportAllPlayersToShop();
+
+                SwitchPlayState(EPlayState.Shop);
+                break;
+            default:
+                break;
+        }
+    }
+    public void OnExitGameState()
+    {
+        switch (m_GameState)
+        {
+            case EGameState.Lobby:
+                break;
+            case EGameState.InGame:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void UpdateGameState()
+    {
+        switch (m_GameState)
+        {
+            case EGameState.Lobby:
+                break;
+            case EGameState.InGame:
+                UpdatePlayState();
+                break;
+            default:
+                break;
+        }
+    }
+    #endregion
+
+    #region PlayState StateMachine
+
+    public void SwitchPlayState(EPlayState playState)
+    {
+        OnExitPlayState();
+        m_PlayState = playState;
+        OnEnterPlayState();
+    }
+
+    void OnEnterPlayState()
+    {
+        Debug.Log("Entering play state" + m_PlayState.ToString());
+        switch (m_PlayState)
+        {
+            case EPlayState.Lobby:
+                break;
+            case EPlayState.Shop:
+                m_RoundTime.enabled = true;
+                m_RoundTimer = m_ShopRoundTime;
+                break;
+            case EPlayState.Fighting:
+                break;
+            case EPlayState.End:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void OnExitPlayState()
+    {
+        switch (m_PlayState)
+        {
+            case EPlayState.Lobby:
+                break;
+            case EPlayState.Shop:
+                break;
+            case EPlayState.Fighting:
+                break;
+            case EPlayState.End:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void UpdatePlayState()
+    {
+        RoundTimeUpdate();
+
+        switch (m_PlayState)
+        {
+            case EPlayState.Lobby:
+                break;
+            case EPlayState.Shop:
+                break;
+            case EPlayState.Fighting:
+                break;
+            case EPlayState.End:
+                break;
+            default:
+                break;
+
+        }
+    }
+    #endregion
+
+    #endregion
 
 #endif
 
