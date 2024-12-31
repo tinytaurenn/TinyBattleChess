@@ -2,21 +2,28 @@ using Coherence.Toolkit;
 using PlayerControls;
 using UnityEngine;
 
+
 public class TinyPlayer : MonoBehaviour, IDamageable
 {
     public enum EPlayerState
     {
-        Player,
-        Spectator
+        Player = 0 ,
+        Spectator = 1
     }
 
     internal EPlayerState m_PlayerState = EPlayerState.Player;
+    [OnValueSynced(nameof(SyncOnChangePlayerState))] public int m_IntPlayerState = 0;
 
     CoherenceSync m_Sync;
     PlayerMovement m_PlayerMovement;
+    Collider m_Collider; 
     PlayerControls.PlayerControls m_PlayerControls;
     PlayerUse m_PlayerUse;
     PlayerWeapons m_PlayerWeapons;
+    Ragdoll m_RagDoll;
+
+    [SerializeField] GameObject m_PlayerModel;
+    [SerializeField] PlayerAnimEvents m_PlayerAnimEvents; 
 
     [Space(10)]
     [Header("Player Stats")]
@@ -33,11 +40,14 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
     private void Awake()
     {
+
         m_Sync = GetComponent<CoherenceSync>();
         m_PlayerMovement = GetComponent<PlayerMovement>();
+        m_Collider = GetComponent<Collider>();
         m_PlayerControls = GetComponent<PlayerControls.PlayerControls>();
         m_PlayerUse = GetComponent<PlayerUse>();
         m_PlayerWeapons = GetComponent<PlayerWeapons>();
+        m_RagDoll = GetComponent<Ragdoll>();
 
 
 
@@ -57,6 +67,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         if(m_PlayerState == playerState) return;
         OnExitPlayerState();
         m_PlayerState = playerState;
+        m_IntPlayerState = (int)playerState;
         OnEnterPlayerState();
 
     }
@@ -79,6 +90,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
+                
+
                 break;
             case EPlayerState.Spectator:
                 break;
@@ -150,6 +163,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             m_Player_Health = 0;
             Debug.Log("must die now");
             Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
+            PlayerDeath(); 
         }
         else
         {
@@ -169,5 +183,81 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         int soundVariationIndex = UnityEngine.Random.Range(0, 3);
         m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
     } 
+
+    void EnablePlayer(bool Enabled)
+    {
+        if (Enabled)
+        {
+
+        }
+        else
+        {
+            m_PlayerMovement.StopMovement();
+            m_PlayerAnimEvents.StopRunParticles();
+        }
+        m_PlayerModel.SetActive(Enabled);
+        m_Collider.enabled = Enabled;
+        m_PlayerWeapons.enabled = Enabled;
+        m_PlayerControls.enabled = Enabled;
+        m_PlayerMovement.enabled = Enabled;
+        m_PlayerUse.enabled = Enabled;
+
+        m_Sync.SendCommand<TinyPlayer>(nameof(TinyPlayer.EnableSyncElements), Coherence.MessageTarget.Other, Enabled);
+    }
+
+    public void EnableSyncElements(bool Enabled)
+    {
+        if (Enabled)
+        {
+
+        }
+        else
+        {
+            m_PlayerMovement.StopMovement();
+            m_PlayerAnimEvents.StopRunParticles();
+        }
+        m_Collider.enabled = Enabled;
+        m_PlayerModel.SetActive(Enabled);
+    }
+
+    public void SyncElements()
+    {
+        if(m_IntPlayerState == 0)
+        {
+            EnableSyncElements(true);
+        }
+        else
+        {
+            EnableSyncElements(false);
+        }
+
+    }
+
+    public void SyncOnChangePlayerState(int oldState, int NewState) 
+    {
+
+        if (NewState == 0)
+        {
+            EnableSyncElements(true);
+        }
+        else
+        {
+            EnableSyncElements(false);
+        }
+
+    }
+    public void PlayerDeath()
+    {
+        if (!m_Sync.HasStateAuthority) return; 
+        Debug.Log("player death");
+
+        EnablePlayer(false);
+
+        m_RagDoll.SpawnRagDoll(); 
+
+        SwitchPlayerState(EPlayerState.Spectator);
+        
+
+    }
     #endregion
 }

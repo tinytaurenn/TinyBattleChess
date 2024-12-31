@@ -20,7 +20,7 @@ public class WeaponEvents : MonoBehaviour
         if (m_PlayerWeapons.m_MainWeapon == null)
         {
             
-            //Debug.Log("No weapon to activate");
+            //Debug.Log("No weapon to activate"); 
             return;
         }
 

@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 3310887222814179707}
   - component: {fileID: 7936197508017733057}
   - component: {fileID: 7777286392842217631}
+  - component: {fileID: -2306784185468642703}
   m_Layer: 6
   m_Name: PlayerPrefab_1
   m_TagString: Player
@@ -373,6 +374,8 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 7777286392842217631}
       lodStepsActive: 1
+    - component: {fileID: -2306784185468642703}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
   RigidbodyUpdateMode: 0
@@ -423,6 +426,9 @@ MonoBehaviour:
   - rid: 9113002381995147351
   - rid: 9113002382096859876
   - rid: 9113002672771039315
+  - rid: 9113002675271892992
+  - rid: 9113002675271893271
+  - rid: 9113002675271893318
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -445,6 +451,7 @@ MonoBehaviour:
   - rid: 9113002336977420718
   - rid: 9113002338989113430
   - rid: 9113002381995147348
+  - rid: 9113002675031507161
   floatingOriginMode: 1
   floatingOriginParentedMode: 1
   references:
@@ -1493,6 +1500,138 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 9113002675031507161
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: -2306784185468642703}
+    - rid: 9113002675271892992
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002675271892993
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: eea03180c9524795ae2b5bb889afe6fc
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002675271892993
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: EnableSyncElements
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Boolean, mscorlib
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 9113002675271893271
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002675271893272
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 1bf0d010dc224b1faa2b8d174a9df334
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002675271893272
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: SyncElements
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 9113002675271893318
+      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002675271893319
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 9da134aad4d542c68a2321d94e8b8ff4
+        archetypeData:
+          type: 1
+          minRange: -2147483648
+          maxRange: 2147483647
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 1
+            bits: 32
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002675271893319
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: m_IntPlayerState
+        monoAssemblyType: System.Int32, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: SyncOnChangePlayerState
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!54 &5556178541105725617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1549,8 +1688,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f2acaad503ea140a05fb221da0ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_IntPlayerState: 0
+  m_PlayerModel: {fileID: 3942809304985668726}
+  m_PlayerAnimEvents: {fileID: 4490843030010982481}
   m_Global_Health: 100
   m_Player_Health: 100
+  m_IsBeaten: 0
   m_PlayerLeftHandSocket: {fileID: 3293726256454769268}
   m_PlayerRightHandSocket: {fileID: 1010069479959953380}
 --- !u!114 &3310887222814179707
@@ -1691,6 +1834,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2306784185468642703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004959108954425623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6291cc2094e271340acb5043c5954c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerModel: {fileID: 3942809304985668726}
+  m_RagDollObject: {fileID: 4325313647291654235, guid: 5bdd7302d83b75e4ea45b36178bc0730, type: 3}
 --- !u!1 &6288665063852073665
 GameObject:
   m_ObjectHideFlags: 0

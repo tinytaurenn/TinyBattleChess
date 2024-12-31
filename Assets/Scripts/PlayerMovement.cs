@@ -242,6 +242,13 @@ namespace PlayerControls
 
         }
 
+        public void StopMovement()
+        {
+            m_HorizontalVelocity = Vector3.zero;
+            m_VerticalVelocity = Vector3.zero;
+            m_rigidBody.linearVelocity = Vector3.zero;
+        }
+
         private void Leaveground()
         {
             m_Isgrounded = false;

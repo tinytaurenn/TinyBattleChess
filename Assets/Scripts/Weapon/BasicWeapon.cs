@@ -125,6 +125,7 @@ public class BasicWeapon : Grabbable, IWeapon
 
     }
     public void SyncHitSound(int index)
+
     {
         m_AudioSource.resource = HitSounds[index];
         m_AudioSource.Play();
