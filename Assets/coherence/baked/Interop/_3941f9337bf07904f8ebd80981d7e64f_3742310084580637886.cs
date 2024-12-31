@@ -20,50 +20,50 @@ namespace Coherence.Generated
     using UnityEngine;
     using Coherence.Toolkit;
 
-    public struct _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386 : ICoherenceComponentData
+    public struct _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 : ICoherenceComponentData
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Byte m_IsHeld;
+            public System.Int32 m_TurnNumber;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
         {
-            FieldsMask |= _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386.m_IsHeldMask;
-            m_IsHeldSimulationFrame = frame;
+            FieldsMask |= _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_TurnNumberMask;
+            m_TurnNumberSimulationFrame = frame;
         }
 
-        public static unsafe _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
+        public static unsafe _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 1) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 1) " +
-                    "for component with ID 173");
+            if (dataSize != 4) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
+                    "for component with ID 162");
             }
 
             if (simFramesCount != 0) {
                 throw new Exception($"Given simFrames size is not equal to the expected length. ({simFramesCount} != 0) " +
-                    "for component with ID 173");
+                    "for component with ID 162");
             }
 
-            var orig = new _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386();
+            var orig = new _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886();
 
             var comp = (Interop*)data;
 
-            orig.m_IsHeld = comp->m_IsHeld != 0;
+            orig.m_TurnNumber = comp->m_TurnNumber;
 
             return orig;
         }
 
 
-        public static uint m_IsHeldMask => 0b00000000000000000000000000000001;
-        public AbsoluteSimulationFrame m_IsHeldSimulationFrame;
-        public System.Boolean m_IsHeld;
+        public static uint m_TurnNumberMask => 0b00000000000000000000000000000001;
+        public AbsoluteSimulationFrame m_TurnNumberSimulationFrame;
+        public System.Int32 m_TurnNumber;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
-        public uint GetComponentType() => 173;
+        public uint GetComponentType() => 162;
         public int PriorityLevel() => 100;
         public const int order = 0;
         public uint InitialFieldsMask() => 0b00000000000000000000000000000001;
@@ -103,6 +103,8 @@ namespace Coherence.Generated
         public int GetComponentOrder() => order;
         public bool IsSendOrdered() => false;
 
+        private static readonly System.Int32 _m_TurnNumber_Min = -2147483648;
+        private static readonly System.Int32 _m_TurnNumber_Max = 2147483647;
 
         public AbsoluteSimulationFrame? GetMinSimulationFrame()
         {
@@ -114,7 +116,7 @@ namespace Coherence.Generated
 
         public ICoherenceComponentData MergeWith(ICoherenceComponentData data)
         {
-            var other = (_e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386)data;
+            var other = (_3941f9337bf07904f8ebd80981d7e64f_3742310084580637886)data;
             var otherMask = other.FieldsMask;
 
             FieldsMask |= otherMask;
@@ -122,8 +124,8 @@ namespace Coherence.Generated
 
             if ((otherMask & 0x01) != 0)
             {
-                this.m_IsHeldSimulationFrame = other.m_IsHeldSimulationFrame;
-                this.m_IsHeld = other.m_IsHeld;
+                this.m_TurnNumberSimulationFrame = other.m_TurnNumberSimulationFrame;
+                this.m_TurnNumber = other.m_TurnNumber;
             }
 
             otherMask >>= 1;
@@ -137,7 +139,7 @@ namespace Coherence.Generated
             throw new System.NotSupportedException($"{nameof(DiffWith)} is not supported in Unity");
         }
 
-        public static uint Serialize(_e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386 data, bool isRefSimFrameValid, AbsoluteSimulationFrame referenceSimulationFrame, IOutProtocolBitStream bitStream, Logger logger)
+        public static uint Serialize(_3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 data, bool isRefSimFrameValid, AbsoluteSimulationFrame referenceSimulationFrame, IOutProtocolBitStream bitStream, Logger logger)
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
@@ -149,12 +151,15 @@ namespace Coherence.Generated
             if (bitStream.WriteMask((mask & 0x01) != 0))
             {
 
+                Coherence.Utils.Bounds.Check(data.m_TurnNumber, _m_TurnNumber_Min, _m_TurnNumber_Max, "_3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_TurnNumber", logger);
 
-                var fieldValue = data.m_IsHeld;
+                data.m_TurnNumber = Coherence.Utils.Bounds.Clamp(data.m_TurnNumber, _m_TurnNumber_Min, _m_TurnNumber_Max);
+
+                var fieldValue = data.m_TurnNumber;
 
 
 
-                bitStream.WriteBool(fieldValue);
+                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
             }
 
             mask >>= 1;
@@ -162,7 +167,7 @@ namespace Coherence.Generated
             return mask;
         }
 
-        public static _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386 Deserialize(AbsoluteSimulationFrame referenceSimulationFrame, InProtocolBitStream bitStream)
+        public static _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 Deserialize(AbsoluteSimulationFrame referenceSimulationFrame, InProtocolBitStream bitStream)
         {
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
@@ -170,12 +175,12 @@ namespace Coherence.Generated
                 stoppedMask = bitStream.ReadMaskBits(1);
             }
 
-            var val = new _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386();
+            var val = new _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886();
             if (bitStream.ReadMask())
             {
 
-                val.m_IsHeld = bitStream.ReadBool();
-                val.FieldsMask |= _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386.m_IsHeldMask;
+                val.m_TurnNumber = bitStream.ReadIntegerRange(32, -2147483648);
+                val.FieldsMask |= _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_TurnNumberMask;
             }
 
             val.StoppedMask = stoppedMask;
@@ -186,8 +191,8 @@ namespace Coherence.Generated
 
         public override string ToString()
         {
-            return $"_e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386(" +
-                $" m_IsHeld: { this.m_IsHeld }" +
+            return $"_3941f9337bf07904f8ebd80981d7e64f_3742310084580637886(" +
+                $" m_TurnNumber: { this.m_TurnNumber }" +
                 $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(1, '0') }, " +
                 $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(1, '0') })";
         }

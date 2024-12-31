@@ -249,6 +249,13 @@ public class PlayerWeapons : MonoBehaviour
         m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
     }
 
+    public void SyncHit()
+    {
+        Debug.Log("i get sync Hit ");
+        
+        m_MainWeapon.PlayHitSound();
+    }
+
     public bool IsInParryAngle(Vector3 enemyPosition)
     {
 

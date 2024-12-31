@@ -422,6 +422,7 @@ MonoBehaviour:
   - rid: 9113002381995147349
   - rid: 9113002381995147351
   - rid: 9113002382096859876
+  - rid: 9113002672771039315
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -1451,6 +1452,47 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 9113002672771039315
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002672771039316
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: fe7687c6ebbe498593fa8efc77cda63f
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 3310887222814179707}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002672771039316
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: SyncHit
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: PlayerWeapons, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!54 &5556178541105725617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1507,6 +1549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f2acaad503ea140a05fb221da0ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Global_Health: 100
+  m_Player_Health: 100
   m_PlayerLeftHandSocket: {fileID: 3293726256454769268}
   m_PlayerRightHandSocket: {fileID: 1010069479959953380}
 --- !u!114 &3310887222814179707

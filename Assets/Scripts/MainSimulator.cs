@@ -18,6 +18,8 @@ public class MainSimulator : MonoBehaviour
     //public Dictionary<ClientID, CoherenceSync> m_Players = new();
     [SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
 
+    [Sync]public int m_TurnNumber = 1; 
+
     [SerializeField] TextMeshProUGUI m_RoundTime;
     [SerializeField] float m_ShopRoundTime = 90f; 
     float m_RoundTimer = 0f;

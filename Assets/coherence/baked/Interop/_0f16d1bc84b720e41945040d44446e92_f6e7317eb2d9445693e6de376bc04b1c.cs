@@ -16,34 +16,34 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e : IEntityCommand
+    public struct _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Int32 choiceIndex;
+            public System.Int32 index;
         }
 
-        public static unsafe _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
             if (dataSize != 4) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
-                    "for command with ID 22");
+                    "for command with ID 7");
             }
 
-            var orig = new _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e();
+            var orig = new _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c();
             var comp = (Interop*)data;
-            orig.choiceIndex = comp->choiceIndex;
+            orig.index = comp->index;
             return orig;
         }
 
-        public System.Int32 choiceIndex;
+        public System.Int32 index;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 22;
+        public uint GetComponentType() => 7;
         
         public IEntityMessage Clone()
         {
@@ -81,32 +81,32 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e(
+        public _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c(
         Entity entity,
-        System.Int32 choiceIndex
+        System.Int32 index
 )
         {
             Entity = entity;
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.choiceIndex = choiceIndex; 
+            this.index = index; 
         }
         
-        public static void Serialize(_c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteIntegerRange(commandData.choiceIndex, 32, -2147483648);
+            bitStream.WriteIntegerRange(commandData.index, 32, -2147483648);
         }
         
-        public static _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var datachoiceIndex = bitStream.ReadIntegerRange(32, -2147483648);
+            var dataindex = bitStream.ReadIntegerRange(32, -2147483648);
     
-            return new _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e()
+            return new _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c()
             {
                 Entity = entity,
                 Routing = target,
-                choiceIndex = datachoiceIndex
+                index = dataindex
             };   
         }
     }

@@ -19,6 +19,13 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     PlayerWeapons m_PlayerWeapons;
 
     [Space(10)]
+    [Header("Player Stats")]
+    [SerializeField] int m_Global_Health = 100;
+    [SerializeField] int m_Player_Health = 100;
+    public bool m_IsBeaten = false;
+    
+
+    [Space(10)]
     [Header("Player sockets")]
     [SerializeField] internal  Transform m_PlayerLeftHandSocket; 
     [SerializeField] internal Transform m_PlayerRightHandSocket;
@@ -137,6 +144,20 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     public void TakeDamageSync(int damage, CoherenceSync Damagersync)
     {
         Debug.Log("sync Player took " + damage + " damage!");
+        m_Player_Health -= damage;
+        if (m_Player_Health <= 0)
+        {
+            m_Player_Health = 0;
+            Debug.Log("must die now");
+            Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
+        }
+        else
+        {
+            Debug.Log("sending synchit comand ");
+            Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
+        }
+
+
     }
 
     public void ParrySync(int damage, CoherenceSync DamagerSync)

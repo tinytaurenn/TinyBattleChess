@@ -447,6 +447,7 @@ namespace Coherence.Generated
         private Entity entityId;
         private Logger logger = Coherence.Log.Log.GetLogger<CoherenceSync_0f16d1bc84b720e41945040d44446e92>();
         
+        private global::BasicWeapon _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c_CommandTarget;
         
         
         private IClient client;
@@ -468,6 +469,7 @@ namespace Coherence.Generated
         
         public CoherenceSync_0f16d1bc84b720e41945040d44446e92()
         {
+            bakedCommandBindings.Add("f6e7317eb2d9445693e6de376bc04b1c", BakeCommandBinding__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c);
         }
         
         public override Binding BakeValueBinding(Binding valueBinding)
@@ -488,11 +490,47 @@ namespace Coherence.Generated
                 commandBindingBaker.Invoke(commandBinding, commandsHandler);
             }
         }
+    
+        private void BakeCommandBinding__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c(CommandBinding commandBinding, CommandsHandler commandsHandler)
+        {
+            _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c_CommandTarget = (global::BasicWeapon)commandBinding.UnityComponent;
+            commandsHandler.AddBakedCommand("BasicWeapon.SyncHitSound", "(System.Int32)", SendCommand__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c, ReceiveLocalCommand__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c, MessageTarget.All, _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c_CommandTarget, false);
+        }
+        
+        private void SendCommand__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c(MessageTarget target, object[] args)
+        {
+            var command = new _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c();
+            
+            int i = 0;
+            command.index = (System.Int32)args[i++];
+        
+            client.SendCommand(command, target, entityId);
+        }
+        
+        private void ReceiveLocalCommand__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c(MessageTarget target, object[] args)
+        {
+            var command = new _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c();
+            
+            int i = 0;
+            command.index = (System.Int32)args[i++];
+            
+            ReceiveCommand__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c(command);
+        }
+
+        private void ReceiveCommand__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c(_0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c command)
+        {
+            var target = _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c_CommandTarget;
+            
+            target.SyncHitSound((System.Int32)(command.index));
+        }
         
         public override void ReceiveCommand(IEntityCommand command)
         {
             switch (command)
             {
+                case _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c castedCommand:
+                    ReceiveCommand__0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c(castedCommand);
+                    break;
                 default:
                     logger.Warning($"CoherenceSync_0f16d1bc84b720e41945040d44446e92 Unhandled command: {command.GetType()}.");
                     break;

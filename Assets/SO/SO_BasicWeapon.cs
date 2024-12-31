@@ -1,5 +1,8 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(fileName = "SO_BasicWeapon", menuName = "Scriptable Objects/Items/Weapons/SO_BasicWeapon")]
 public class SO_BasicWeapon : SO_Item
@@ -39,4 +42,6 @@ public class SO_BasicWeapon : SO_Item
 
     Vector3 PositionOffset = Vector3.zero;
     Vector3 RotationOffset = Vector3.zero;
+
+    public List<AudioResource> HitSounds;
 }

@@ -120,6 +120,9 @@ public class Dummy : MonoBehaviour, IDamageable
     public void TakeDamageSync(int damage, CoherenceSync Damagersync)
     {
         Debug.Log("sync Dummy took " + damage + " damage!");
+
+        Debug.Log("dummy sending synchit comand ");
+        Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
     }
     public void ParrySync(int damage,CoherenceSync DamagerSync)
     {

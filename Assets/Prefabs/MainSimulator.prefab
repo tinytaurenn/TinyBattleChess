@@ -49,6 +49,7 @@ MonoBehaviour:
   m_PlayerGameObject: {fileID: 0}
   m_DummyGameObject: {fileID: 5699538527182793423, guid: c473af9c10567024caf206bf6752a656, type: 3}
   m_PlayerObjects: []
+  m_TurnNumber: 1
   m_RoundTime: {fileID: 1338625383742743499}
   m_ShopRoundTime: 90
   m_ShopSpawnPositions: {fileID: 0}
@@ -145,6 +146,7 @@ MonoBehaviour:
   - rid: 5431316467066078079
   - rid: 5431316531586793740
   - rid: 9113002650001998079
+  - rid: 9113002672771039309
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -345,6 +347,51 @@ MonoBehaviour:
           rid: -2
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 9113002672771039309
+      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 9113002672771039310
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 0e622accbfb94cae96cc23b4ee612fd3
+        archetypeData:
+          type: 1
+          minRange: -2147483648
+          maxRange: 2147483647
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 1
+            bits: 32
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 3742310084580637886}
+        coherenceSync: {fileID: 5605270632006895831}
+        interpolationSettings: {fileID: 0}
+    - rid: 9113002672771039310
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: m_TurnNumber
+        monoAssemblyType: System.Int32, mscorlib
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: MainSimulator, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []

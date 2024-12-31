@@ -20,3 +20,8 @@ MonoBehaviour:
   WeaponSize: 1
   Damage: 20
   Speed: 1.3
+  HitSounds:
+  - {fileID: 8300000, guid: 2b901ac228ea622448cc3198f2358fc0, type: 3}
+  - {fileID: 8300000, guid: f81c7afdd6b84634a8db483151a6141c, type: 3}
+  - {fileID: 8300000, guid: 746f6a1adc41b4f4fb6b481d2298d1d6, type: 3}
+  - {fileID: 8300000, guid: 38d39d27c253d4249b981d48cafdde07, type: 3}

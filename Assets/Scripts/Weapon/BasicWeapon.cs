@@ -2,6 +2,7 @@ using Coherence.Toolkit;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using static SO_BasicWeapon;
 
 public class BasicWeapon : Grabbable, IWeapon
@@ -48,6 +49,9 @@ public class BasicWeapon : Grabbable, IWeapon
     [SerializeField]
     FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EWeaponType.Sword, EWeaponSize.One_Handed);
 
+    AudioSource m_AudioSource; 
+    [SerializeField] List<AudioResource> HitSounds;
+
     internal PlayerWeapons m_HolderPlayerWeapons = null; 
 
     [SerializeField] Collider m_DamageCollider;
@@ -58,6 +62,7 @@ public class BasicWeapon : Grabbable, IWeapon
     protected override void Awake()
     {
         base.Awake();
+        m_AudioSource = GetComponent<AudioSource>();    
     }
     void Start()
     {
@@ -105,6 +110,26 @@ public class BasicWeapon : Grabbable, IWeapon
             HitList.Clear();
         }
         
+    }
+
+    public void PlayHitSound()
+    {
+        if (!m_Sync.HasStateAuthority) return; 
+        if(HitSounds.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, HitSounds.Count);
+            m_AudioSource.resource = HitSounds[randomIndex];
+            m_AudioSource.Play(); 
+            m_Sync.SendCommand<BasicWeapon>(nameof(SyncHitSound), Coherence.MessageTarget.Other, randomIndex);
+        }
+
+    }
+    public void SyncHitSound(int index)
+    {
+        m_AudioSource.resource = HitSounds[index];
+        m_AudioSource.Play();
+
+
     }
 
     
