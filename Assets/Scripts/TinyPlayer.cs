@@ -27,8 +27,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
     [Space(10)]
     [Header("Player Stats")]
-    [SerializeField] int m_Global_Health = 100;
-    [SerializeField] int m_Player_Health = 100;
+    [Sync] public  int m_Global_Health = 100;
+    [Sync] public int m_Player_Health = 100; 
     public bool m_IsBeaten = false;
     
 
@@ -202,7 +202,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_PlayerMovement.enabled = Enabled;
         m_PlayerUse.enabled = Enabled;
 
-        m_Sync.SendCommand<TinyPlayer>(nameof(TinyPlayer.EnableSyncElements), Coherence.MessageTarget.Other, Enabled);
+        
     }
 
     public void EnableSyncElements(bool Enabled)
@@ -220,18 +220,6 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_PlayerModel.SetActive(Enabled);
     }
 
-    public void SyncElements()
-    {
-        if(m_IntPlayerState == 0)
-        {
-            EnableSyncElements(true);
-        }
-        else
-        {
-            EnableSyncElements(false);
-        }
-
-    }
 
     public void SyncOnChangePlayerState(int oldState, int NewState) 
     {
@@ -250,6 +238,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     {
         if (!m_Sync.HasStateAuthority) return; 
         Debug.Log("player death");
+        m_PlayerWeapons.Drop(); 
 
         EnablePlayer(false);
 
