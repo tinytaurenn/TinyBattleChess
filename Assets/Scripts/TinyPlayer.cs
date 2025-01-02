@@ -8,7 +8,9 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     public enum EPlayerState
     {
         Player = 0 ,
-        Spectator = 1
+        Spectator = 1,
+        Disqualified = 2
+
     }
 
     internal EPlayerState m_PlayerState = EPlayerState.Player;
@@ -53,9 +55,25 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
         
     }
-    //commands
-   
 
+    private void Update()
+    {
+        
+        UpdatePlayerState();
+    }
+    //commands
+
+    MainSimulator GetSimulator()
+    {
+        MainSimulator simulator = FindFirstObjectByType<MainSimulator>(FindObjectsInactive.Exclude);
+        if (simulator == null)
+        {
+            Debug.Log("simulator not found");
+            return null; 
+        }
+
+        return simulator; 
+    }
     public void TeleportPlayer(Vector3 worldPos)
     {
         Debug.Log("teleporting to : " + worldPos);
@@ -224,13 +242,19 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     public void SyncOnChangePlayerState(int oldState, int NewState) 
     {
 
-        if (NewState == 0)
+        switch (NewState)
         {
-            EnableSyncElements(true);
-        }
-        else
-        {
-            EnableSyncElements(false);
+            case 0:
+                EnableSyncElements(true);
+                break;
+            case 1:
+                EnableSyncElements(false);
+                break;
+            case 2:
+                EnableSyncElements(false);
+                break;
+            default:
+                break;
         }
 
     }
@@ -247,6 +271,41 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         SwitchPlayerState(EPlayerState.Spectator);
         
 
+    }
+    public void OnChangePlayState(int oldIntPlayState,int NewIntPlayState)
+    {
+        switch (NewIntPlayState)
+        {
+            case 0: // Lobby
+                Debug.Log("lobby, stopping PVP ");
+                break;
+            case 1: //shop 
+                Debug.Log("Shop, stopping PVP ");
+
+                break;
+            case 2: //fighting
+                
+                break;
+            case 3: //end 
+                
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void OnChangeGameState(int OldIntGamestate,int NewIntGameState)
+    {
+        switch (NewIntGameState)
+        {
+            case 0: //lobby
+                break;
+            case 1: //InGame
+                break;
+
+            default:
+                break;
+        }
     }
     #endregion
 }

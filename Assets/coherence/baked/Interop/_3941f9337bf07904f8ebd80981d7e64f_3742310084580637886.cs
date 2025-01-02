@@ -27,18 +27,26 @@ namespace Coherence.Generated
         {
             [FieldOffset(0)]
             public System.Int32 m_TurnNumber;
+            [FieldOffset(4)]
+            public System.Int32 m_IntPlayState;
+            [FieldOffset(8)]
+            public System.Int32 m_IntGameState;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
         {
             FieldsMask |= _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_TurnNumberMask;
             m_TurnNumberSimulationFrame = frame;
+            FieldsMask |= _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_IntPlayStateMask;
+            m_IntPlayStateSimulationFrame = frame;
+            FieldsMask |= _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_IntGameStateMask;
+            m_IntGameStateSimulationFrame = frame;
         }
 
         public static unsafe _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 4) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
+            if (dataSize != 12) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 12) " +
                     "for component with ID 162");
             }
 
@@ -52,6 +60,8 @@ namespace Coherence.Generated
             var comp = (Interop*)data;
 
             orig.m_TurnNumber = comp->m_TurnNumber;
+            orig.m_IntPlayState = comp->m_IntPlayState;
+            orig.m_IntGameState = comp->m_IntGameState;
 
             return orig;
         }
@@ -60,13 +70,19 @@ namespace Coherence.Generated
         public static uint m_TurnNumberMask => 0b00000000000000000000000000000001;
         public AbsoluteSimulationFrame m_TurnNumberSimulationFrame;
         public System.Int32 m_TurnNumber;
+        public static uint m_IntPlayStateMask => 0b00000000000000000000000000000010;
+        public AbsoluteSimulationFrame m_IntPlayStateSimulationFrame;
+        public System.Int32 m_IntPlayState;
+        public static uint m_IntGameStateMask => 0b00000000000000000000000000000100;
+        public AbsoluteSimulationFrame m_IntGameStateSimulationFrame;
+        public System.Int32 m_IntGameState;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
         public uint GetComponentType() => 162;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000000000000001;
+        public uint InitialFieldsMask() => 0b00000000000000000000000000000111;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -75,7 +91,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 1;
+        public int GetFieldCount() => 3;
 
 
         
@@ -105,6 +121,10 @@ namespace Coherence.Generated
 
         private static readonly System.Int32 _m_TurnNumber_Min = -2147483648;
         private static readonly System.Int32 _m_TurnNumber_Max = 2147483647;
+        private static readonly System.Int32 _m_IntPlayState_Min = -2147483648;
+        private static readonly System.Int32 _m_IntPlayState_Max = 2147483647;
+        private static readonly System.Int32 _m_IntGameState_Min = -2147483648;
+        private static readonly System.Int32 _m_IntGameState_Max = 2147483647;
 
         public AbsoluteSimulationFrame? GetMinSimulationFrame()
         {
@@ -129,6 +149,20 @@ namespace Coherence.Generated
             }
 
             otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.m_IntPlayStateSimulationFrame = other.m_IntPlayStateSimulationFrame;
+                this.m_IntPlayState = other.m_IntPlayState;
+            }
+
+            otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.m_IntGameStateSimulationFrame = other.m_IntGameStateSimulationFrame;
+                this.m_IntGameState = other.m_IntGameState;
+            }
+
+            otherMask >>= 1;
             StoppedMask |= other.StoppedMask;
 
             return this;
@@ -143,7 +177,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 1);
+                bitStream.WriteMaskBits(data.StoppedMask, 3);
             }
 
             var mask = data.FieldsMask;
@@ -163,6 +197,36 @@ namespace Coherence.Generated
             }
 
             mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+                Coherence.Utils.Bounds.Check(data.m_IntPlayState, _m_IntPlayState_Min, _m_IntPlayState_Max, "_3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_IntPlayState", logger);
+
+                data.m_IntPlayState = Coherence.Utils.Bounds.Clamp(data.m_IntPlayState, _m_IntPlayState_Min, _m_IntPlayState_Max);
+
+                var fieldValue = data.m_IntPlayState;
+
+
+
+                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
+            }
+
+            mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+                Coherence.Utils.Bounds.Check(data.m_IntGameState, _m_IntGameState_Min, _m_IntGameState_Max, "_3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_IntGameState", logger);
+
+                data.m_IntGameState = Coherence.Utils.Bounds.Clamp(data.m_IntGameState, _m_IntGameState_Min, _m_IntGameState_Max);
+
+                var fieldValue = data.m_IntGameState;
+
+
+
+                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
+            }
+
+            mask >>= 1;
 
             return mask;
         }
@@ -172,7 +236,7 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(1);
+                stoppedMask = bitStream.ReadMaskBits(3);
             }
 
             var val = new _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886();
@@ -181,6 +245,18 @@ namespace Coherence.Generated
 
                 val.m_TurnNumber = bitStream.ReadIntegerRange(32, -2147483648);
                 val.FieldsMask |= _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_TurnNumberMask;
+            }
+            if (bitStream.ReadMask())
+            {
+
+                val.m_IntPlayState = bitStream.ReadIntegerRange(32, -2147483648);
+                val.FieldsMask |= _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_IntPlayStateMask;
+            }
+            if (bitStream.ReadMask())
+            {
+
+                val.m_IntGameState = bitStream.ReadIntegerRange(32, -2147483648);
+                val.FieldsMask |= _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.m_IntGameStateMask;
             }
 
             val.StoppedMask = stoppedMask;
@@ -193,8 +269,10 @@ namespace Coherence.Generated
         {
             return $"_3941f9337bf07904f8ebd80981d7e64f_3742310084580637886(" +
                 $" m_TurnNumber: { this.m_TurnNumber }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(1, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(1, '0') })";
+                $" m_IntPlayState: { this.m_IntPlayState }" +
+                $" m_IntGameState: { this.m_IntGameState }" +
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(3, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(3, '0') })";
         }
     }
 

@@ -30,6 +30,8 @@ component _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499 [id "161"]
 
 component _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 [id "162"]
   m_TurnNumber Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+  m_IntPlayState Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+  m_IntGameState Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
 component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "163"]
   MoveSpeed Float [compression "None"]

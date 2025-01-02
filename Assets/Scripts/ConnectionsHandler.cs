@@ -17,12 +17,23 @@ public class ConnectionsHandler : MonoBehaviour
     [SerializeField] GameObject m_PlayerPrefab;
     [SerializeField] CoherenceSync m_SimulatorSync; 
 
-    
-
     GameObject MyPlayer; 
+    
+    public static ConnectionsHandler Instance;
+
+
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this; 
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         CoherenceBridgeStore.TryGetBridge(gameObject.scene, out m_CoherenceBridge);
         m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
 
@@ -98,5 +109,16 @@ public class ConnectionsHandler : MonoBehaviour
         {
             item.Sync(); 
         }
+    }
+
+    public void ChangePlayState(int oldState, int newState)
+    {
+        Debug.Log("changing play state from connections handler");
+      MyPlayer.GetComponent<TinyPlayer>().OnChangePlayState(oldState, newState);
+    }
+     
+    public void ChangeGameState(int oldState, int newState)
+    {
+        MyPlayer.GetComponent<TinyPlayer>().OnChangeGameState(oldState, newState);
     }
 }

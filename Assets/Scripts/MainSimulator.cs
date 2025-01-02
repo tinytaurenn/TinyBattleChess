@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 
 
 public class MainSimulator : MonoBehaviour
@@ -18,7 +19,6 @@ public class MainSimulator : MonoBehaviour
     //public Dictionary<ClientID, CoherenceSync> m_Players = new();
     [SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
 
-    [Sync]public int m_TurnNumber = 1; 
 
     [SerializeField] TextMeshProUGUI m_RoundTime;
     [SerializeField] float m_ShopRoundTime = 90f; 
@@ -52,6 +52,9 @@ public class MainSimulator : MonoBehaviour
     internal EPlayState m_PlayState = EPlayState.Lobby;
     internal EGameState m_GameState = EGameState.Lobby;
 
+    [Sync][OnValueSynced(nameof(PlayStateValueSync))] public int m_IntPlayState = 0;
+    [Sync][OnValueSynced(nameof(GameStateValueSync))] public int m_IntGameState = 0;
+    [Sync]public int m_TurnNumber = 1; 
 
 
 #if COHERENCE_SIMULATOR || UNITY_EDITOR // DONT FORGET ONLY WORKS IN EDITOR 
@@ -65,6 +68,7 @@ public class MainSimulator : MonoBehaviour
     }
 
     
+
 
     private void OnEnable()
     {
@@ -173,6 +177,18 @@ public class MainSimulator : MonoBehaviour
         }
     }
 
+    public void PlayStateValueSync(int oldValue, int newValue)
+    {
+        Debug.Log("new value is " + (EPlayState)newValue);
+        ConnectionsHandler.Instance.ChangePlayState(oldValue, newValue);
+    }
+
+    public void GameStateValueSync(int oldValue, int newValue)
+    {
+        Debug.Log("new value is " + (EGameState)newValue);
+        ConnectionsHandler.Instance.ChangeGameState(oldValue, newValue);
+    }
+
     void TeleportAllPlayersToShop()
     {
         if(m_ShopSpawnPositions.childCount == 0 || m_ShopSpawnPositions == null) 
@@ -238,6 +254,7 @@ public class MainSimulator : MonoBehaviour
     {
         OnExitGameState(); 
         m_GameState = gameState;
+        m_IntGameState = (int)gameState;
         OnEnterGameState(); 
     }
     void OnEnterGameState()
@@ -292,6 +309,7 @@ public class MainSimulator : MonoBehaviour
     {
         OnExitPlayState();
         m_PlayState = playState;
+        m_IntPlayState = (int)playState;
         OnEnterPlayState();
     }
 
@@ -305,6 +323,7 @@ public class MainSimulator : MonoBehaviour
             case EPlayState.Shop:
                 m_RoundTime.enabled = true;
                 m_RoundTimer = m_ShopRoundTime;
+                
                 break;
             case EPlayState.Fighting:
                 TeleportPlayersToBattle(); 

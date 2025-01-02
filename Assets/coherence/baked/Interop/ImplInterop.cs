@@ -2014,8 +2014,10 @@ namespace Coherence.Generated
                     var val = new _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.Interop();
 
                     val.m_TurnNumber = orig.m_TurnNumber;
+                    val.m_IntPlayState = orig.m_IntPlayState;
+                    val.m_IntGameState = orig.m_IntGameState;
 
-                    updater.UpdateComponent(entity, componentType, val, 4, component.FieldsMask, component.StoppedMask, frames);
+                    updater.UpdateComponent(entity, componentType, val, 12, component.FieldsMask, component.StoppedMask, frames);
 
                     return;
                 }
