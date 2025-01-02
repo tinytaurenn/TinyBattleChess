@@ -54,7 +54,21 @@ public class MainSimulator : MonoBehaviour
 
     [Sync][OnValueSynced(nameof(PlayStateValueSync))] public int m_IntPlayState = 0;
     [Sync][OnValueSynced(nameof(GameStateValueSync))] public int m_IntGameState = 0;
-    [Sync]public int m_TurnNumber = 1; 
+    [Sync]public int m_TurnNumber = 1;
+
+
+    //run on every synced players
+    public void PlayStateValueSync(int oldValue, int newValue)
+    {
+        Debug.Log("new value is " + (EPlayState)newValue);
+        ConnectionsHandler.Instance.ChangePlayState(oldValue, newValue);
+    }
+    //run on every synced players
+    public void GameStateValueSync(int oldValue, int newValue)
+    {
+        Debug.Log("new value is " + (EGameState)newValue);
+        ConnectionsHandler.Instance.ChangeGameState(oldValue, newValue);
+    }
 
 
 #if COHERENCE_SIMULATOR || UNITY_EDITOR // DONT FORGET ONLY WORKS IN EDITOR 
@@ -176,18 +190,7 @@ public class MainSimulator : MonoBehaviour
             Debug.Log(player.name);
         }
     }
-
-    public void PlayStateValueSync(int oldValue, int newValue)
-    {
-        Debug.Log("new value is " + (EPlayState)newValue);
-        ConnectionsHandler.Instance.ChangePlayState(oldValue, newValue);
-    }
-
-    public void GameStateValueSync(int oldValue, int newValue)
-    {
-        Debug.Log("new value is " + (EGameState)newValue);
-        ConnectionsHandler.Instance.ChangeGameState(oldValue, newValue);
-    }
+    
 
     void TeleportAllPlayersToShop()
     {
