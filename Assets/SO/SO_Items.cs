@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Flags]
@@ -18,7 +20,7 @@ public class SO_Items : ScriptableObject
 {
     
 
-    public SO_Item[] Items;   
+    public List<SO_Item> Items;   
 
 
 }

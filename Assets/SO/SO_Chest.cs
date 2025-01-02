@@ -17,9 +17,11 @@ public class SO_Chest : ScriptableObject
 
     public List<SO_Item> GetItemList()
     {
+        List<SO_Item> ShuffleitemList = Items.Items;
+        ShuffleitemList.Shuffle();
         List<SO_Item> itemList = new List<SO_Item>();   
         Debug.Log("doing something chest");
-        foreach (var item in Items.Items)
+        foreach (var item in ShuffleitemList)
         {
            
             if ((item.GetType() == typeof(SO_BasicWeapon)) &&( (ItemType & EItemType.Weapon) != 0 ))
@@ -41,9 +43,12 @@ public class SO_Chest : ScriptableObject
 
     public List<SO_Item> GetItemList(int size)
     {
+        List<SO_Item> ShuffleitemList = Items.Items;
+        ShuffleitemList.Shuffle();
         List<SO_Item> itemList = new List<SO_Item>();
         Debug.Log("doing something chest");
-        foreach (var item in Items.Items)
+        int i = 0;
+        foreach (var item in ShuffleitemList)
         {
 
             if ((item.GetType() == typeof(SO_BasicWeapon)) && ((ItemType & EItemType.Weapon) != 0))
@@ -52,14 +57,14 @@ public class SO_Chest : ScriptableObject
                 itemList.Add(item);
 
             }
-            //next 
-
+           
+            i++;
+            if(i >= size)
+            {
+                break;
+            }
 
         }
-
-        //Utils.Shuffle(itemList);
-
-        itemList.Shuffle();
 
         return itemList;
 
