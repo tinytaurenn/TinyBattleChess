@@ -15,6 +15,12 @@ public static class Utils
         }
     }
 
+    public static T RandomInList<T>(this System.Collections.Generic.List<T> list)
+    {
+        int randomIndex = Random.Range(0, list.Count);
+        return list[randomIndex];
+    }
+
 
     public static bool IsInAngle(this UnityEngine.Transform centerTransform,  float degAngle,Vector3 targetPos)
     {

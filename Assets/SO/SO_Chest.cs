@@ -15,7 +15,7 @@ public class SO_Chest : ScriptableObject
 
     
 
-    public List<SO_Item> GetItemList()
+    public List<SO_Item> GetItemList(EItemRarity maxRarity)
     {
         List<SO_Item> ShuffleitemList = Items.Items;
         ShuffleitemList.Shuffle();
@@ -24,7 +24,8 @@ public class SO_Chest : ScriptableObject
         foreach (var item in ShuffleitemList)
         {
            
-            if ((item.GetType() == typeof(SO_BasicWeapon)) &&( (ItemType & EItemType.Weapon) != 0 ))
+            if ((item.GetType() == typeof(SO_BasicWeapon)) &&( (ItemType & EItemType.Weapon) != 0 ) 
+                && (int)item.EItemRarity <= (int)maxRarity)
             {
                 Debug.Log("adding weapon in chest list ");
                 itemList.Add(item);
@@ -41,7 +42,7 @@ public class SO_Chest : ScriptableObject
 
     }
 
-    public List<SO_Item> GetItemList(int size)
+    public List<SO_Item> GetItemList(int size, EItemRarity maxRarity)
     {
         List<SO_Item> ShuffleitemList = Items.Items;
         ShuffleitemList.Shuffle();
@@ -51,14 +52,16 @@ public class SO_Chest : ScriptableObject
         foreach (var item in ShuffleitemList)
         {
 
-            if ((item.GetType() == typeof(SO_BasicWeapon)) && ((ItemType & EItemType.Weapon) != 0))
+            if ((item.GetType() == typeof(SO_BasicWeapon)) && ((ItemType & EItemType.Weapon) != 0)
+                && (int)item.EItemRarity <= (int)maxRarity)
             {
                 Debug.Log("adding weapon in chest list ");
                 itemList.Add(item);
+                i++;
 
             }
            
-            i++;
+            
             if(i >= size)
             {
                 break;
@@ -67,6 +70,37 @@ public class SO_Chest : ScriptableObject
         }
 
         return itemList;
+
+    }
+    //local random 
+    public void GetItem()
+    {
+        EItemRarity rarity = GetItemRarity();
+        List<SO_Item> items = GetItemList(rarity);
+        Debug.Log("Item rarity: " + rarity);
+
+        SO_Item item = items.RandomInList(); 
+
+    }
+
+    public EItemRarity GetItemRarity()
+    {
+        //chose rarity 
+        float randomRarity = UnityEngine.Random.Range(0.01f, 99.99f);
+
+        if (randomRarity > Items.UnCommonChance) return EItemRarity.Common;
+
+        if (randomRarity > Items.RareChance) return EItemRarity.Uncommon;
+
+        if (randomRarity > Items.EpicChance) return EItemRarity.Rare;
+
+        if(randomRarity > Items.LegendaryChance) return EItemRarity.Epic;
+
+        return EItemRarity.Legendary;
+
+
+
+
 
     }
 

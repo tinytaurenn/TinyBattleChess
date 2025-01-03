@@ -12,5 +12,7 @@ public class SO_Item : ScriptableObject
 
     public int Cost = 10;
 
+    public EItemRarity EItemRarity = EItemRarity.Common;
+
     
 }
