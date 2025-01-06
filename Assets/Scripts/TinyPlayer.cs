@@ -129,16 +129,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
-                if(m_StunTimer > 0)
-                {
-                    m_StunTimer -= Time.deltaTime;
-                    if(m_StunTimer <= 0)
-                    {
-                        m_IsStunned = false;
-                        m_PlayerMovement.UnStun(); 
-                        m_StunTimer = 0;
-                    }
-                }
+                StunUpdate(); 
                 break;
             case EPlayerState.Spectator:
                 break;
@@ -249,17 +240,38 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
     public void HitStun()
     {
-        m_IsStunned = true;
-        m_PlayerMovement.Stun();
-        m_StunTimer = 0.5f; 
+        TimedStun(0.6f); 
         
 
     }
 
-    public void Stun(float time)
+    void Stun()
     {
         m_IsStunned = true; 
         m_PlayerMovement.Stun();
+        if (m_PlayerWeapons.m_MainWeapon != null) m_PlayerWeapons.m_MainWeapon.ActivateDamage(false);
+        if (m_PlayerWeapons.m_SecondaryWeapon != null) m_PlayerWeapons.m_SecondaryWeapon.ActivateDamage(false);
+
+    }
+
+    public void TimedStun(float time)
+    {
+        Stun();
+        m_StunTimer = time;
+    } 
+
+    void StunUpdate()
+    {
+        if (m_StunTimer > 0)
+        {
+            m_StunTimer -= Time.deltaTime;
+            if (m_StunTimer <= 0)
+            {
+                m_IsStunned = false;
+                m_PlayerMovement.UnStun();
+                m_StunTimer = 0;
+            }
+        }
     }
 
     void EnablePlayer(bool Enabled)
