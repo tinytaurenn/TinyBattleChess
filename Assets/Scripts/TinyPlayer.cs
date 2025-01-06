@@ -33,6 +33,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     [Sync] public  int m_Global_Health = 100;
     [Sync] public int m_Player_Health = 100; 
     public bool m_IsBeaten = false;
+    public bool m_IsStunned = false;
+    public float m_StunTimer = 0;
     
 
     [Space(10)]
@@ -127,6 +129,16 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
+                if(m_StunTimer > 0)
+                {
+                    m_StunTimer -= Time.deltaTime;
+                    if(m_StunTimer <= 0)
+                    {
+                        m_IsStunned = false;
+                        m_PlayerMovement.UnStun(); 
+                        m_StunTimer = 0;
+                    }
+                }
                 break;
             case EPlayerState.Spectator:
                 break;
@@ -178,6 +190,12 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     {
         Debug.Log("sync Player took " + damage + " weapon damage!");
         m_Player_Health -= damage;
+
+        m_PlayerFX.PlayHurtFX(0);
+        m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
+
+        HitStun();
+
         if (m_Player_Health <= 0)
         {
             m_Player_Health = 0;
@@ -200,6 +218,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_Player_Health -= damage;
         m_PlayerFX.PlayHurtFX(0); 
         m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
+
+        HitStun(); 
         
         if (m_Player_Health <= 0)
         {
@@ -226,6 +246,21 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         int soundVariationIndex = UnityEngine.Random.Range(0, 3);
         m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
     } 
+
+    public void HitStun()
+    {
+        m_IsStunned = true;
+        m_PlayerMovement.Stun();
+        m_StunTimer = 0.5f; 
+        
+
+    }
+
+    public void Stun(float time)
+    {
+        m_IsStunned = true; 
+        m_PlayerMovement.Stun();
+    }
 
     void EnablePlayer(bool Enabled)
     {

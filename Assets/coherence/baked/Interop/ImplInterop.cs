@@ -2082,8 +2082,9 @@ namespace Coherence.Generated
                     val.Parry = orig.Parry ? (System.Byte)1 : (System.Byte)0;
                     val.Attacking = orig.Attacking ? (System.Byte)1 : (System.Byte)0;
                     val.WeaponDirectionNESO = orig.WeaponDirectionNESO;
+                    val.Stunned = orig.Stunned ? (System.Byte)1 : (System.Byte)0;
 
-                    updater.UpdateComponent(entity, componentType, val, 13, component.FieldsMask, component.StoppedMask, frames);
+                    updater.UpdateComponent(entity, componentType, val, 14, component.FieldsMask, component.StoppedMask, frames);
 
                     return;
                 }

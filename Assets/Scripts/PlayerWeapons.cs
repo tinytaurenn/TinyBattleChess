@@ -62,12 +62,30 @@ public class PlayerWeapons : MonoBehaviour
     
     void Update()
     {
+
+        if(m_TinyPlayer.m_IsStunned || m_Animator.GetBool("Stunned"))
+        {
+            if (m_InParry || m_Parrying)
+            {
+                m_Animator.SetBool("Parry", false);
+                m_InParry = false;
+                m_Parrying = false;
+            } 
+            if(m_InAttack || m_Attacking || m_InAttackRelease)
+            {
+                m_InAttack = false;
+                m_InAttackRelease = false;
+                m_Attacking = false; 
+                m_Animator.SetBool("Attacking", false);
+            }
+        }
+
+
         if(m_MainWeapon == null)
         {
             return; 
         }
-        ParryUpdate();
-        AttackUpdate(); 
+        WeaponsUpdate(); 
         
     }
 
@@ -119,8 +137,20 @@ public class PlayerWeapons : MonoBehaviour
 
     }
 
+    void WeaponsUpdate()
+    {
+        if (m_TinyPlayer.m_IsStunned)
+        {
+            return;
+        }
+
+        ParryUpdate();
+        AttackUpdate();
+    }
+
     void ParryUpdate()
     {
+        
         if (m_InAttackRelease)
         {
             return;
@@ -246,6 +276,9 @@ public class PlayerWeapons : MonoBehaviour
     {
         Debug.Log("i get sync blocked ");
         m_Animator.SetTrigger("Blocked");
+        m_InAttack = false; 
+        m_InAttackRelease = false;
+        m_Attacking = false;
         m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
     }
 

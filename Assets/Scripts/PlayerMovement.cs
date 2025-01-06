@@ -343,6 +343,17 @@ namespace PlayerControls
 
         }
 
+        public void Stun()
+        {
+            m_Animator.SetBool("Stunned", true);    
+            
+        }
+
+        public void UnStun()
+        {
+            m_Animator.SetBool("Stunned", false);
+        }
+
         void GetOnPlatform()
         {
             transform.SetParent(m_Platform, true);
