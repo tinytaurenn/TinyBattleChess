@@ -204,6 +204,10 @@ public class MainSimulator : MonoBehaviour
 
         for (int i = 0; i < m_PlayerObjects.Count; i++)
         {
+            //if ((m_PlayerObjects[i].GetComponent<TinyPlayer>().m_IntPlayerState) != ((int)TinyPlayer.EPlayerState.Player))
+            //{
+            //    continue; 
+            //}
             CoherenceSync playerSync = m_PlayerObjects[i].GetComponent<CoherenceSync>();
             playerSync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_ShopSpawnPositions.GetChild(i).position);
         }

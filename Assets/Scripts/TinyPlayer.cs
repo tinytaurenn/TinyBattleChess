@@ -42,6 +42,10 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     [SerializeField] internal  Transform m_PlayerLeftHandSocket; 
     [SerializeField] internal Transform m_PlayerRightHandSocket;
 
+    [Space(10)]
+    [Header("Player Ghost")]
+    [SerializeField] GameObject m_PlayerGhost;
+
 
     private void Awake()
     {
@@ -92,6 +96,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_IntPlayerState = (int)playerState;
         OnEnterPlayerState();
 
+        m_PlayerControls.SwitchState();
+
     }
 
     void OnEnterPlayerState()
@@ -101,6 +107,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             case EPlayerState.Player:
                 break;
             case EPlayerState.Spectator:
+                m_PlayerGhost.SetActive(true);
                 break;
             default:
                 break;
@@ -112,7 +119,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
-                
+                EnablePlayer(false);
 
                 break;
             case EPlayerState.Spectator:
@@ -288,7 +295,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_PlayerModel.SetActive(Enabled);
         m_Collider.enabled = Enabled;
         m_PlayerWeapons.enabled = Enabled;
-        m_PlayerControls.enabled = Enabled;
+        //m_PlayerControls.enabled = Enabled;
         m_PlayerMovement.enabled = Enabled;
         m_PlayerUse.enabled = Enabled;
 
@@ -336,7 +343,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         Debug.Log("player death");
         m_PlayerWeapons.Drop(); 
 
-        EnablePlayer(false);
+        
 
         m_RagDoll.SpawnRagDoll(); 
 

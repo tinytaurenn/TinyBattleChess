@@ -513,6 +513,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c9e4d594-7a46-4e3f-86c5-a6692322b2fb",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a524860b-85f5-4e5a-a8b3-cd1b8492dd99",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
