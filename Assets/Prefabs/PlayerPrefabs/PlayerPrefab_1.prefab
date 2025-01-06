@@ -32,6 +32,7 @@ Transform:
   - {fileID: 281939687889754015}
   - {fileID: 8103583290972971173}
   - {fileID: 1335646123129724767}
+  - {fileID: 4876220487313072078}
   m_Father: {fileID: 687046392866188956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3057546199998800895
@@ -376,6 +377,18 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: -2306784185468642703}
       lodStepsActive: 1
+    - component: {fileID: 4876220487313072078}
+      lodStepsActive: 1
+    - component: {fileID: 4712347117822458830}
+      lodStepsActive: 1
+    - component: {fileID: 4712728788474423262}
+      lodStepsActive: 1
+    - component: {fileID: 4875955383390223112}
+      lodStepsActive: 1
+    - component: {fileID: 4691128559843334130}
+      lodStepsActive: 1
+    - component: {fileID: 4712728852006186716}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
   RigidbodyUpdateMode: 0
@@ -431,6 +444,7 @@ MonoBehaviour:
   - rid: 9113002675271893595
   - rid: 9113002675820298308
   - rid: 9113002675820298309
+  - rid: 5785724889091801255
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -957,6 +971,49 @@ MonoBehaviour:
         memberType: 8
         parameterAssemblyTypes:
         - UnityEngine.Vector3, UnityEngine
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 5785724889091801255
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5785724889091801256
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: a7ad24c8eb3b493a9cd174f26e9a45a7
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 5785724889091801256
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: TakeWeaponDamageSync
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
         ownerType:
           assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
             PublicKeyToken=null
@@ -1827,6 +1884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996d28bda861703428c8042556a29e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HurtFX: {fileID: 4712347117822458830}
   m_ParryAudios:
   - {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
   - {fileID: 8300000, guid: a7736c1763bd76c4eb0d52aaad581deb, type: 3}
@@ -2793,6 +2851,93 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5139532811389828999, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
   m_PrefabInstance: {fileID: 4212772194768105767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4874483115487216244
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3939830366801374500}
+    m_Modifications:
+    - target: {fileID: 1146961906002798, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_Name
+      value: BloodExplosion_Little
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+--- !u!198 &4691128559843334130 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198044048612103558, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+  m_PrefabInstance: {fileID: 4874483115487216244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4712347117822458830 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198222352082139578, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+  m_PrefabInstance: {fileID: 4874483115487216244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!199 &4712728788474423262 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 199105391370905002, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+  m_PrefabInstance: {fileID: 4874483115487216244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!199 &4712728852006186716 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 199105590202559656, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+  m_PrefabInstance: {fileID: 4874483115487216244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4875955383390223112 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4357395012778364, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+  m_PrefabInstance: {fileID: 4874483115487216244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4876220487313072078 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4068347281300922, guid: 5978cdbe554601b42a90cae4d0bd11f2, type: 3}
+  m_PrefabInstance: {fileID: 4874483115487216244}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8349155499158057808
 PrefabInstance:

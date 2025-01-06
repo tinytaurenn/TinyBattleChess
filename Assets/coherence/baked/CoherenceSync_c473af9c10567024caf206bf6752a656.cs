@@ -187,7 +187,6 @@ namespace Coherence.Generated
         private Entity entityId;
         private Logger logger = Coherence.Log.Log.GetLogger<CoherenceSync_c473af9c10567024caf206bf6752a656>();
         
-        private global::Dummy _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f_CommandTarget;
         private global::Dummy _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6_CommandTarget;
         private global::Dummy _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81_CommandTarget;
         private global::DummyFX _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e_CommandTarget;
@@ -208,7 +207,6 @@ namespace Coherence.Generated
         
         public CoherenceSync_c473af9c10567024caf206bf6752a656()
         {
-            bakedCommandBindings.Add("df4c30db719f4e8494aee9fa09f11b9f", BakeCommandBinding__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f);
             bakedCommandBindings.Add("1c65cbe28daf476c87b1ab1f32198cf6", BakeCommandBinding__c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6);
             bakedCommandBindings.Add("8993144edbc84f508e93768efb6c7b81", BakeCommandBinding__c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81);
             bakedCommandBindings.Add("31234557a30c47cda70d1bc9658bee3e", BakeCommandBinding__c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e);
@@ -232,41 +230,6 @@ namespace Coherence.Generated
             {
                 commandBindingBaker.Invoke(commandBinding, commandsHandler);
             }
-        }
-    
-        private void BakeCommandBinding__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f(CommandBinding commandBinding, CommandsHandler commandsHandler)
-        {
-            _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f_CommandTarget = (global::Dummy)commandBinding.UnityComponent;
-            commandsHandler.AddBakedCommand("Dummy.TakeDamageSync", "(System.Int32Coherence.Toolkit.CoherenceSync)", SendCommand__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f, ReceiveLocalCommand__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f, MessageTarget.All, _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f_CommandTarget, false);
-        }
-        
-        private void SendCommand__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f(MessageTarget target, object[] args)
-        {
-            var command = new _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f();
-            
-            int i = 0;
-            command.damage = (System.Int32)args[i++];
-            command.Damagersync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
-        
-            client.SendCommand(command, target, entityId);
-        }
-        
-        private void ReceiveLocalCommand__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f(MessageTarget target, object[] args)
-        {
-            var command = new _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f();
-            
-            int i = 0;
-            command.damage = (System.Int32)args[i++];
-            command.Damagersync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
-            
-            ReceiveCommand__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f(command);
-        }
-
-        private void ReceiveCommand__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f(_c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f command)
-        {
-            var target = _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f_CommandTarget;
-            
-            target.TakeDamageSync((System.Int32)(command.damage),bridge.EntityIdToCoherenceSync(command.Damagersync));
         }
     
         private void BakeCommandBinding__c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6(CommandBinding commandBinding, CommandsHandler commandsHandler)
@@ -413,9 +376,6 @@ namespace Coherence.Generated
         {
             switch (command)
             {
-                case _c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f castedCommand:
-                    ReceiveCommand__c473af9c10567024caf206bf6752a656_df4c30db719f4e8494aee9fa09f11b9f(castedCommand);
-                    break;
                 case _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6 castedCommand:
                     ReceiveCommand__c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6(castedCommand);
                     break;

@@ -23,6 +23,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     PlayerUse m_PlayerUse;
     PlayerWeapons m_PlayerWeapons;
     Ragdoll m_RagDoll;
+    PlayerFX m_PlayerFX; 
 
     [SerializeField] GameObject m_PlayerModel;
     [SerializeField] PlayerAnimEvents m_PlayerAnimEvents; 
@@ -50,6 +51,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_PlayerUse = GetComponent<PlayerUse>();
         m_PlayerWeapons = GetComponent<PlayerWeapons>();
         m_RagDoll = GetComponent<Ragdoll>();
+        m_PlayerFX = GetComponent<PlayerFX>();
 
 
 
@@ -166,27 +168,50 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         }
         else
         {
-            TakeDamageSync(damage, sync); 
+            TakeWeaponDamageSync(damage, sync); 
 
 
         }
+    }
+
+    public void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
+    {
+        Debug.Log("sync Player took " + damage + " weapon damage!");
+        m_Player_Health -= damage;
+        if (m_Player_Health <= 0)
+        {
+            m_Player_Health = 0;
+            Debug.Log("must die now");
+            Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);//sound
+            PlayerDeath(); 
+        }
+        else
+        {
+            Debug.Log("sending weapon synchit comand ");
+            Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
+        }
+
+
     }
 
     public void TakeDamageSync(int damage, CoherenceSync Damagersync)
     {
         Debug.Log("sync Player took " + damage + " damage!");
         m_Player_Health -= damage;
+        m_PlayerFX.PlayHurtFX(0); 
+        m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
+        
         if (m_Player_Health <= 0)
         {
             m_Player_Health = 0;
-            Debug.Log("must die now");
-            Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
-            PlayerDeath(); 
+            Debug.Log("must die now"); 
+            
+            PlayerDeath();
         }
         else
         {
             Debug.Log("sending synchit comand ");
-            Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
+            
         }
 
 

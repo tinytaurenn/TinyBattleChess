@@ -86,7 +86,7 @@ public class Dummy : MonoBehaviour, IDamageable
         }
         else
         {
-            TakeDamageSync(damage,sync);
+            TakeWeaponDamageSync(damage,sync);
             
 
         }
@@ -117,7 +117,7 @@ public class Dummy : MonoBehaviour, IDamageable
 
     }
 
-    public void TakeDamageSync(int damage, CoherenceSync Damagersync)
+    public void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
     {
         Debug.Log("sync Dummy took " + damage + " damage!");
 

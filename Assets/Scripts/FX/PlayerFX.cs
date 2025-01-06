@@ -8,7 +8,9 @@ public class PlayerFX : EntityFX
         base.PlayHurtFX(choiceIndex);
 
 
+        m_HurtFX.Play();
     }
+    
 
     public override void PlayParryFX(int choiceIndex)
     {
