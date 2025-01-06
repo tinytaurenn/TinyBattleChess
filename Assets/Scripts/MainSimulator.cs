@@ -17,7 +17,8 @@ public class MainSimulator : MonoBehaviour
     CoherenceBridge m_CoherenceBridge;
     CoherenceSync m_Sync; 
     //public Dictionary<ClientID, CoherenceSync> m_Players = new();
-    [SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
+    //[SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
+    [SerializeField] private List<CoherenceSync> m_PlayerSyncs = new List<CoherenceSync>();
 
 
     [SerializeField] TextMeshProUGUI m_RoundTime;
@@ -177,15 +178,15 @@ public class MainSimulator : MonoBehaviour
     public void RefreshPlayerList()
     {
         Debug.Log("Refreshing player list");
-        m_PlayerObjects.Clear();
+        m_PlayerSyncs.Clear();
         foreach (var player in FindObjectsByType<TinyPlayer>(FindObjectsSortMode.None))
         {
-            m_PlayerObjects.Add(player.gameObject);
+            m_PlayerSyncs.Add(player.GetComponent<CoherenceSync>());
 
 
         }
 
-        foreach (var player in m_PlayerObjects)
+        foreach (var player in m_PlayerSyncs)
         {
             Debug.Log(player.name);
         }
@@ -202,14 +203,14 @@ public class MainSimulator : MonoBehaviour
 
         Debug.Log("Sending players to shop");
 
-        for (int i = 0; i < m_PlayerObjects.Count; i++)
+        for (int i = 0; i < m_PlayerSyncs.Count; i++)
         {
             //if ((m_PlayerObjects[i].GetComponent<TinyPlayer>().m_IntPlayerState) != ((int)TinyPlayer.EPlayerState.Player))
             //{
             //    continue; 
             //}
-            CoherenceSync playerSync = m_PlayerObjects[i].GetComponent<CoherenceSync>();
-            playerSync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_ShopSpawnPositions.GetChild(i).position);
+            //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
+            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_ShopSpawnPositions.GetChild(i).position);
         }
 
     }
@@ -224,10 +225,10 @@ public class MainSimulator : MonoBehaviour
 
         Debug.Log("Sending players to Battle");
 
-        for (int i = 0; i < m_PlayerObjects.Count; i++)
+        for (int i = 0; i < m_PlayerSyncs.Count; i++)
         {
-            CoherenceSync playerSync = m_PlayerObjects[i].GetComponent<CoherenceSync>();
-            playerSync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BattleSpawnPositions.GetChild(i).position);
+            //CoherenceSync playerSync = m_PlayerObjects[i].GetComponent<CoherenceSync>();
+            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BattleSpawnPositions.GetChild(i).position);
         }
     }
 
