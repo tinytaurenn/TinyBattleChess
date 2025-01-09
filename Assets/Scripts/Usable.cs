@@ -6,13 +6,19 @@ public abstract class Usable : MonoBehaviour
     protected CoherenceSync m_Sync;
     protected virtual void Awake()
     {
- 
-        m_Sync = GetComponent<CoherenceSync>();
+        if(TryGetComponent<CoherenceSync>(out CoherenceSync sync))
+        {
+            m_Sync = sync;
+        }
+        
     }
 
     protected virtual void OnEnable()
     {
-        m_Sync = GetComponent<CoherenceSync>();
+        if (TryGetComponent<CoherenceSync>(out CoherenceSync sync))
+        {
+            m_Sync = sync;
+        }
     }
     void Start()
     {

@@ -17,14 +17,14 @@ public class WeaponEvents : MonoBehaviour
             return;
         }
         
-        if (m_PlayerWeapons.m_MainWeapon == null)
+        if (m_PlayerWeapons.GetMainWeapon() == null)
         {
             
             //Debug.Log("No weapon to activate"); 
             return;
         }
 
-        m_PlayerWeapons.m_MainWeapon.ActivateDamage(true);
+        m_PlayerWeapons.GetMainWeapon().ActivateDamage(true);
     }
     public void DeactivateWeaponDamage()
     {
@@ -33,13 +33,13 @@ public class WeaponEvents : MonoBehaviour
             //Debug.Log("No authority to Deactivate weapon");
             return;
         }
-        if (m_PlayerWeapons.m_MainWeapon == null)
+        if (m_PlayerWeapons.GetMainWeapon() == null)
         {
             //Debug.Log("No weapon to Deactivate");
             return;
         }
 
-        m_PlayerWeapons.m_MainWeapon.ActivateDamage(false);
+        m_PlayerWeapons.GetMainWeapon().ActivateDamage(false);
     }
 
 }

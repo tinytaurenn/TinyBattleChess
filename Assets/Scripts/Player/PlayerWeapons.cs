@@ -20,13 +20,9 @@ public class PlayerWeapons : MonoBehaviour
     
 
     TinyPlayer m_TinyPlayer;
+    PlayerLoadout m_PlayerLoadout;
     [SerializeField] Animator m_Animator; 
     internal CoherenceSync m_Sync;
-
-    [SerializeField] Grabbable m_GrabbedItem;
-
-    [SerializeField]internal  BasicWeapon m_MainWeapon; 
-    [SerializeField] internal BasicWeapon m_SecondaryWeapon;
 
     [Header("Weapon Infos")]
     [SerializeField] internal Vector2 m_LookDirection = Vector2.zero;
@@ -50,6 +46,7 @@ public class PlayerWeapons : MonoBehaviour
     private void Awake()
     {
         m_TinyPlayer = GetComponent<TinyPlayer>();
+        m_PlayerLoadout = GetComponent<PlayerLoadout>();
         m_Sync = GetComponent<CoherenceSync>();
         
 
@@ -81,7 +78,7 @@ public class PlayerWeapons : MonoBehaviour
         }
 
 
-        if(m_MainWeapon == null)
+        if(m_PlayerLoadout.m_EquippedMainWeapon == null)
         {
             return; 
         }
@@ -91,10 +88,7 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnDisable()
     {
-        if (m_GrabbedItem != null)
-        {
-            Drop();
-        }
+        m_PlayerLoadout.DropEverything();
     }
 
     
@@ -248,8 +242,8 @@ public class PlayerWeapons : MonoBehaviour
     {
         //Debug.Log("locking attack");
         m_InAttackRelease = true;
-        if(m_MainWeapon !=null) m_MainWeapon.m_HolderPlayerWeapons = this;
-        if(m_SecondaryWeapon !=null) m_SecondaryWeapon.m_HolderPlayerWeapons = this;
+        if(m_PlayerLoadout.m_EquippedMainWeapon !=null) m_PlayerLoadout.m_EquippedMainWeapon.m_HolderPlayerWeapons = this;
+        if(m_PlayerLoadout.m_EquippedSecondaryWeapon != null) m_PlayerLoadout.m_EquippedSecondaryWeapon.m_HolderPlayerWeapons = this;
 
 
         float normalizedTime = m_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime;
@@ -285,8 +279,8 @@ public class PlayerWeapons : MonoBehaviour
     public void SyncHit()
     {
         Debug.Log("i get sync Hit ");
-        
-        m_MainWeapon.PlayHitSound();
+
+        m_PlayerLoadout.m_EquippedMainWeapon.PlayHitSound();
     }
 
     public bool IsInParryAngle(Vector3 enemyPosition)
@@ -304,45 +298,29 @@ public class PlayerWeapons : MonoBehaviour
     public void EquipWeapon(Grabbable weapon)
     {
         
-        m_GrabbedItem = weapon;
-        m_GrabbedItem.m_Rigidbody.isKinematic = true;
-        m_GrabbedItem.m_Collider.enabled = false;
-        m_GrabbedItem.transform.SetParent(m_TinyPlayer.m_PlayerRightHandSocket, false);
-
-        m_GrabbedItem.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-
-        if(m_GrabbedItem.TryGetComponent<BasicWeapon>(out BasicWeapon basicWeapon))
+        if(weapon.TryGetComponent<BasicWeapon>(out BasicWeapon basicWeapon))
         {
-            m_MainWeapon = basicWeapon;
-           
+            
+            m_PlayerLoadout.EquipGrabbableItem(weapon); 
             
         }
-
-        
 
     }
 
     public void Drop(float throwForce = 0f)
     {
-        if(m_GrabbedItem == null)
-        {
-            return; 
-        }
-
-        m_GrabbedItem.transform.SetParent(null, true);
-        m_GrabbedItem.m_Rigidbody.isKinematic = false;
-        m_GrabbedItem.m_Rigidbody.AddForce(throwForce * transform.forward, ForceMode.VelocityChange);
-        m_GrabbedItem.m_Rigidbody.AddTorque(-transform.right * throwForce * 1f, ForceMode.VelocityChange);
-
-        m_GrabbedItem.Release();
-
-        m_GrabbedItem.m_Collider.enabled = true; 
-        m_GrabbedItem = null;
-        m_MainWeapon = null;
+        Debug.Log("dropping"); 
+        m_PlayerLoadout.DropItemInHand(throwForce);
 
 
     }
     #endregion
+
+    public BasicWeapon GetMainWeapon() => m_PlayerLoadout.m_EquippedMainWeapon;
+
+    public BasicWeapon GetSecondaryWeapon() => m_PlayerLoadout.m_EquippedSecondaryWeapon;
+   
+
 
     private void OnDrawGizmos()
     {
@@ -363,7 +341,7 @@ public class PlayerWeapons : MonoBehaviour
         {
             foreach (var item in Physics.OverlapSphere(transform.position, 15f))
             {
-                if(item.TryGetComponent<Dummy>(out Dummy dummy) && m_MainWeapon != null)
+                if(item.TryGetComponent<Dummy>(out Dummy dummy) && m_PlayerLoadout.m_EquippedMainWeapon != null)
                 {
 
                     float dot = Vector3.Dot(dummy.transform.forward.normalized, (dummy.transform.position - transform.position).normalized);
@@ -374,13 +352,13 @@ public class PlayerWeapons : MonoBehaviour
                     if (dotInDeg <= m_ParryAngle)
                     {
                         Gizmos.color = Color.green;
-                        Gizmos.DrawLine(dummy.transform.position, m_MainWeapon.m_HitPos.position);
+                        Gizmos.DrawLine(dummy.transform.position, m_PlayerLoadout.m_EquippedMainWeapon.m_HitPos.position);
 
                     }
                     else
                     {
                         Gizmos.color = Color.red;
-                        Gizmos.DrawLine(dummy.transform.position, m_MainWeapon.m_HitPos.position);
+                        Gizmos.DrawLine(dummy.transform.position, m_PlayerLoadout.m_EquippedMainWeapon.m_HitPos.position);
                     }
 
                     

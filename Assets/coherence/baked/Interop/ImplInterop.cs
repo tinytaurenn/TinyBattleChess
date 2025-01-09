@@ -2360,13 +2360,12 @@ namespace Coherence.Generated
                   case 18: return _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6.FromInterop(data, dataSize);
                   case 19: return _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e.FromInterop(data, dataSize);
                   case 20: return _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3.FromInterop(data, dataSize);
-                  case 21: return _5358ed04715b0f148a60e93c83f08be0_eea03180c9524795ae2b5bb889afe6fc.FromInterop(data, dataSize);
-                  case 22: return _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f.FromInterop(data, dataSize);
-                  case 23: return _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90.FromInterop(data, dataSize);
-                  case 24: return _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6.FromInterop(data, dataSize);
-                  case 25: return _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1.FromInterop(data, dataSize);
-                  case 26: return _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e.FromInterop(data, dataSize);
-                  case 27: return _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81.FromInterop(data, dataSize);
+                  case 21: return _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f.FromInterop(data, dataSize);
+                  case 22: return _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90.FromInterop(data, dataSize);
+                  case 23: return _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6.FromInterop(data, dataSize);
+                  case 24: return _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1.FromInterop(data, dataSize);
+                  case 25: return _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e.FromInterop(data, dataSize);
+                  case 26: return _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81.FromInterop(data, dataSize);
             }
 
             throw new ArgumentException($"Unkown command type {type}", nameof(type));
@@ -2628,17 +2627,6 @@ namespace Coherence.Generated
 
                 case 21:
                 {
-                    var orig = (_5358ed04715b0f148a60e93c83f08be0_eea03180c9524795ae2b5bb889afe6fc)command;
-                    var val = new _5358ed04715b0f148a60e93c83f08be0_eea03180c9524795ae2b5bb889afe6fc.Interop();
-
-                    val.Enabled = orig.Enabled ? (System.Byte)1 : (System.Byte)0;
-
-                    return sender.SendCommand(entity, target, type, val, 1);
-
-                }
-
-                case 22:
-                {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f.Interop();
 
@@ -2647,7 +2635,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 23:
+                case 22:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90.Interop();
@@ -2658,7 +2646,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 24:
+                case 23:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6)command;
                     var val = new _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6.Interop();
@@ -2670,7 +2658,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 25:
+                case 24:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1)command;
                     var val = new _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1.Interop();
@@ -2681,7 +2669,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 26:
+                case 25:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e)command;
                     var val = new _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e.Interop();
@@ -2692,7 +2680,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 27:
+                case 26:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81)command;
                     var val = new _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81.Interop();

@@ -20,14 +20,14 @@ public class SO_Chest : ScriptableObject
         List<SO_Item> ShuffleitemList = Items.Items;
         ShuffleitemList.Shuffle();
         List<SO_Item> itemList = new List<SO_Item>();   
-        Debug.Log("doing something chest");
+        Debug.Log("Getting Items chest"); 
         foreach (var item in ShuffleitemList)
         {
            
             if ((item.GetType() == typeof(SO_BasicWeapon)) &&( (ItemType & EItemType.Weapon) != 0 ) 
                 && (int)item.EItemRarity <= (int)maxRarity)
             {
-                Debug.Log("adding weapon in chest list ");
+                //Debug.Log("adding weapon in chest list ");
                 itemList.Add(item);
 
             }

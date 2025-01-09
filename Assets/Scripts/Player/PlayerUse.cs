@@ -12,8 +12,9 @@ namespace PlayerControls
         PlayerWeapons m_PlayerWeapons; 
         TinyPlayer m_TinyPlayer;
 
-        [SerializeField] public Grabbable m_Usable;
-        [SerializeField] GameObject m_UsableObject; 
+        [SerializeField] public Usable m_Usable;
+        [SerializeField] public Grabbable m_Grabbable;
+        //[SerializeField] GameObject m_UsableObject; 
         [SerializeField] float m_UseDistance = 2f;
         [SerializeField] [Sync] public bool m_ItemInUse = false;
         bool m_IsReplacing = false;
@@ -57,35 +58,48 @@ namespace PlayerControls
                 return; 
             }
 
-            if(m_Usable.m_IsHeld)
+            if(m_Usable.TryGetComponent<Grabbable>(out Grabbable grabbable))
             {
-                Debug.Log("item is held");
+                m_Grabbable = grabbable;
+                if (m_Grabbable.m_IsHeld)
+                {
+                    Debug.Log("item is held");
+                    return;
+                }
+                if (m_ItemInUse)
+                {
+
+                    Debug.Log("item in  use in player use");
+                    m_IsReplacing = true;
+                }
+
+
+                m_Grabbable.OnGrabValidate += OnGrabValidate;
+                m_Grabbable.TryUse();
+
                 return; 
-            }
-            if (m_ItemInUse)
-            {
 
-                Debug.Log("item in  use in player use");
-                m_IsReplacing = true;
             }
 
+            m_Usable.TryUse();
 
-            m_Usable.OnGrabValidate += OnGrabValidate;
-            m_Usable.TryUse(); 
+            
+
+
 
         }
 
         internal void DropPerformed()
         {
-            if (!m_ItemInUse) return; 
-            m_ItemInUse = false;
+            //if (!m_ItemInUse) return; 
+            //m_ItemInUse = false;
 
             m_PlayerWeapons.Drop();
         }
 
         private void OnGrabValidate(bool validated)
         {
-            m_Usable.OnGrabValidate -= OnGrabValidate;
+            m_Grabbable.OnGrabValidate -= OnGrabValidate;
 
             if (validated)
             {
@@ -98,7 +112,7 @@ namespace PlayerControls
                 if (m_Usable.TryGetComponent<IWeapon>(out IWeapon weapon))
                 {
                     Debug.Log("validate Equipping weapon");
-                    m_PlayerWeapons.EquipWeapon(m_Usable);
+                    m_PlayerWeapons.EquipWeapon(m_Grabbable);
                     m_ItemInUse = true;
                 }
             } else
@@ -135,17 +149,18 @@ namespace PlayerControls
             {
 
 
-                if (nearest.gameObject.TryGetComponent<Grabbable>(out Grabbable usable))
+                if (nearest.gameObject.TryGetComponent<Usable>(out Usable usable))
                 {
                     m_Usable = usable;
-                    m_UsableObject = nearest.gameObject;
+                    
+                   
                     return; 
                 }
                 
             }
 
             m_Usable = null;
-            m_UsableObject = null;
+            //m_UsableObject = null;
         }
 
         bool UsableDetection(out Collider nearest, out Collider[] allColliders)

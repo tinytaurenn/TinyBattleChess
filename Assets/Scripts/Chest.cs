@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour
+public class Chest : Usable
 {
     Collider m_Collider; 
 
@@ -12,20 +12,26 @@ public class Chest : MonoBehaviour
     public int Cost = 10; 
     
 
-    void Start()
+    
+    protected override void Awake()
     {
-        
-
-       
-    }
-    private void Awake()
-    {
+        base.Awake();
         m_Collider = GetComponent<Collider>();
     }
 
 
     void Update()
     {
+        
+    }
+
+    public override  void  TryUse()
+    {
+        base.TryUse();
+        LoadChest(EItemRarity.Common);
+        SO_Item newItem = GetItem();
+        Debug.Log("Chest opened : " + newItem.ItemName);
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerLoadout.EquipItemInLoadout(newItem); 
         
     }
 
@@ -39,5 +45,10 @@ public class Chest : MonoBehaviour
     public SO_Item GetItem()
     {
         return m_ChosenItems.RandomInList();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
     }
 }

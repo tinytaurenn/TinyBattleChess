@@ -26,6 +26,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     PlayerWeapons m_PlayerWeapons;
     Ragdoll m_RagDoll;
     PlayerFX m_PlayerFX; 
+    public PlayerLoadout m_PlayerLoadout;
 
     [SerializeField] GameObject m_PlayerModel;
     [SerializeField] PlayerAnimEvents m_PlayerAnimEvents; 
@@ -60,6 +61,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_PlayerWeapons = GetComponent<PlayerWeapons>();
         m_RagDoll = GetComponent<Ragdoll>();
         m_PlayerFX = GetComponent<PlayerFX>();
+        m_PlayerLoadout = GetComponent<PlayerLoadout>();
+
 
 
 
@@ -84,6 +87,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
         return simulator; 
     }
+
+    
     public void TeleportPlayer(Vector3 worldPos)
     {
         Debug.Log("teleporting to : " + worldPos);
@@ -269,8 +274,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     {
         m_IsStunned = true; 
         m_PlayerMovement.Stun();
-        if (m_PlayerWeapons.m_MainWeapon != null) m_PlayerWeapons.m_MainWeapon.ActivateDamage(false);
-        if (m_PlayerWeapons.m_SecondaryWeapon != null) m_PlayerWeapons.m_SecondaryWeapon.ActivateDamage(false);
+        if (m_PlayerWeapons.GetMainWeapon() != null) m_PlayerWeapons.GetMainWeapon().ActivateDamage(false);
+        if (m_PlayerWeapons.GetSecondaryWeapon() != null) m_PlayerWeapons.GetSecondaryWeapon().ActivateDamage(false);
 
     }
 
@@ -379,7 +384,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 break;
             case 1:
                 PlayerVisible(false);
-                if(ConnectionsHandler.Instance.GetLocalPlayerState() == EPlayerState.Spectator || ConnectionsHandler.Instance.GetLocalPlayerState() == EPlayerState.Disqualified)
+                if(ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerState == EPlayerState.Spectator || ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerState == EPlayerState.Disqualified)
                 {
                     Debug.Log("local player mode is spectator, enabling ghost"); 
                     m_PlayerGhost.SetActive(true);
@@ -387,7 +392,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 break;
             case 2:
                 PlayerVisible(false);
-                if (ConnectionsHandler.Instance.GetLocalPlayerState() == EPlayerState.Spectator || ConnectionsHandler.Instance.GetLocalPlayerState() == EPlayerState.Disqualified)
+                if (ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerState == EPlayerState.Spectator || ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerState == EPlayerState.Disqualified)
                 {
                     Debug.Log("local player mode is spectator, enabling ghost");
                     m_PlayerGhost.SetActive(true);

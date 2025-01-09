@@ -17,7 +17,8 @@ public class ConnectionsHandler : MonoBehaviour
     [SerializeField] GameObject m_PlayerPrefab;
     [SerializeField] CoherenceSync m_SimulatorSync; 
 
-    GameObject MyPlayer; 
+    GameObject MyPlayer;
+    public TinyPlayer LocalTinyPlayer { get; private set; }
     
     public static ConnectionsHandler Instance;
 
@@ -80,6 +81,7 @@ public class ConnectionsHandler : MonoBehaviour
 
         Destroy(MyPlayer); 
         MyPlayer = null;    
+        LocalTinyPlayer = null;
     }
 
     private void OnConnected(CoherenceBridge bridge)
@@ -100,6 +102,7 @@ public class ConnectionsHandler : MonoBehaviour
     {
         MyPlayer = Instantiate(m_PlayerPrefab, Vector3.zero, Quaternion.identity);
         MyPlayer.name = "[local] PLAYER";
+        LocalTinyPlayer = MyPlayer.GetComponent<TinyPlayer>();
         CameraManager.Instance.m_PlayerTransform = MyPlayer.transform; 
     }
 
@@ -111,19 +114,15 @@ public class ConnectionsHandler : MonoBehaviour
         }
     }
 
-    public TinyPlayer.EPlayerState GetLocalPlayerState()
-    {
-        return MyPlayer.GetComponent<TinyPlayer>().m_PlayerState;
-    }
-
+ 
     public void ChangePlayState(int oldState, int newState)
     {
         Debug.Log("changing play state from connections handler");
-      MyPlayer.GetComponent<TinyPlayer>().OnChangePlayState(oldState, newState);
+      LocalTinyPlayer.OnChangePlayState(oldState, newState);
     }
      
     public void ChangeGameState(int oldState, int newState)
     {
-        MyPlayer.GetComponent<TinyPlayer>().OnChangeGameState(oldState, newState);
+        LocalTinyPlayer.OnChangeGameState(oldState, newState);
     }
 }
