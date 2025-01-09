@@ -1214,7 +1214,7 @@ namespace Coherence.Generated
         {
             var target = _5358ed04715b0f148a60e93c83f08be0_eea03180c9524795ae2b5bb889afe6fc_CommandTarget;
             
-            target.EnableSyncElements((System.Boolean)(command.Enabled));
+            target.PlayerVisible((System.Boolean)(command.Enabled));
         }
     
         private void BakeCommandBinding__5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a(CommandBinding commandBinding, CommandsHandler commandsHandler)

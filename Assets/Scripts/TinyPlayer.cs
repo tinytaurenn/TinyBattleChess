@@ -1,5 +1,6 @@
 using Coherence.Toolkit;
 using PlayerControls;
+using System;
 using UnityEngine;
 
 
@@ -13,8 +14,9 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
     }
 
-    internal EPlayerState m_PlayerState = EPlayerState.Player;
+    [SerializeField] internal EPlayerState m_PlayerState = EPlayerState.Player;
     [OnValueSynced(nameof(SyncOnChangePlayerState))] public int m_IntPlayerState = 0;
+    
 
     CoherenceSync m_Sync;
     PlayerMovement m_PlayerMovement;
@@ -105,9 +107,16 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
+                m_PlayerGhost.SetActive(false);
+                SeeGhosts(false);
                 break;
             case EPlayerState.Spectator:
                 m_PlayerGhost.SetActive(true);
+                SeeGhosts(true); 
+                break;
+            case EPlayerState.Disqualified:
+                m_PlayerGhost.SetActive(true);
+                SeeGhosts(true);
                 break;
             default:
                 break;
@@ -124,6 +133,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 break;
             case EPlayerState.Spectator:
                 break;
+            case EPlayerState.Disqualified:
+                break;
             default:
                 break;
         }
@@ -139,6 +150,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 StunUpdate(); 
                 break;
             case EPlayerState.Spectator:
+                break;
+            case EPlayerState.Disqualified:
                 break;
             default:
                 break;
@@ -280,6 +293,20 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             }
         }
     }
+    /// <summary>
+    /// local function to see or not see other ghosts when you die in the game
+    /// </summary>
+    void SeeGhosts(bool See)
+    {
+        TinyPlayer[] players = FindObjectsByType<TinyPlayer>(FindObjectsSortMode.None);
+
+        foreach (var player in players)
+        {
+            if (player.m_IntPlayerState > 0) player.m_PlayerGhost.SetActive(See); 
+        }
+
+        
+    }
 
     void EnablePlayer(bool Enabled)
     {
@@ -302,35 +329,69 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         
     }
 
-    public void EnableSyncElements(bool Enabled)
+    public void PlayerVisible(bool Visible)
     {
-        if (Enabled)
+        if (Visible)
         {
 
         }
         else
         {
-            m_PlayerMovement.StopMovement();
+            //m_PlayerMovement.StopMovement();
             m_PlayerAnimEvents.StopRunParticles();
         }
-        m_Collider.enabled = Enabled;
-        m_PlayerModel.SetActive(Enabled);
+        m_Collider.enabled = Visible;
+        m_PlayerModel.SetActive(Visible);
     }
 
-
+    /// <summary>
+    /// Important function, called when another player change its state
+    /// </summary>
+    /// <param name="oldState"></param>
+    /// <param name="NewState"></param>
     public void SyncOnChangePlayerState(int oldState, int NewState) 
     {
+        //REMINDER
+        // 0 = player
+        // 1 = spectator
+        // 2 = disqualified
 
+
+
+        //exit 
+        switch (oldState)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+        //enter 
         switch (NewState)
         {
             case 0:
-                EnableSyncElements(true);
+                PlayerVisible(true);
+                m_PlayerGhost.SetActive(false);
                 break;
             case 1:
-                EnableSyncElements(false);
+                PlayerVisible(false);
+                if(ConnectionsHandler.Instance.GetLocalPlayerState() == EPlayerState.Spectator || ConnectionsHandler.Instance.GetLocalPlayerState() == EPlayerState.Disqualified)
+                {
+                    Debug.Log("local player mode is spectator, enabling ghost"); 
+                    m_PlayerGhost.SetActive(true);
+                }
                 break;
             case 2:
-                EnableSyncElements(false);
+                PlayerVisible(false);
+                if (ConnectionsHandler.Instance.GetLocalPlayerState() == EPlayerState.Spectator || ConnectionsHandler.Instance.GetLocalPlayerState() == EPlayerState.Disqualified)
+                {
+                    Debug.Log("local player mode is spectator, enabling ghost");
+                    m_PlayerGhost.SetActive(true);
+                }
                 break;
             default:
                 break;

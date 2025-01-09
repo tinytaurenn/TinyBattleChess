@@ -35,6 +35,9 @@ public class LobbyHUD : MonoBehaviour
     private void OnStartButtonClicked()
     {
         if(!m_Sync.HasStateAuthority) return;
+
+        if(ConnectionsHandler.Instance.GetLocalPlayerState() != TinyPlayer.EPlayerState.Player) return;
+
         MainSimulator mainSimulator = FindFirstObjectByType<MainSimulator>(); 
         if (mainSimulator != null)
         {

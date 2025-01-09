@@ -191,6 +191,38 @@ public class MainSimulator : MonoBehaviour
             Debug.Log(player.name);
         }
     }
+
+    public List<CoherenceSync> GetAllPlayersSyncByState(TinyPlayer.EPlayerState playerState)
+    {
+        List<CoherenceSync> players = new List<CoherenceSync>();
+        foreach (CoherenceSync playerSync in m_PlayerSyncs)
+        {
+            if(playerSync.GetComponent<TinyPlayer>().m_IntPlayerState == (int)playerState)
+            {
+                players.Add(playerSync);
+            }
+        }
+
+        return players;
+    }
+
+    public List<CoherenceSync> GetAllAlivePlayersSync(bool alive)
+    {
+
+        List<CoherenceSync> players = new List<CoherenceSync>();
+
+        foreach (CoherenceSync playerSync in m_PlayerSyncs)
+        {
+            bool isAlive = playerSync.GetComponent<TinyPlayer>().m_IntPlayerState == 0; 
+
+            if(isAlive == alive)
+            {
+                players.Add(playerSync);
+            }
+        }
+
+        return players;
+    }
     
 
     void TeleportAllPlayersToShop()
@@ -234,7 +266,18 @@ public class MainSimulator : MonoBehaviour
 
     public void StartGame()
     {
-        
+        if(m_PlayState != EPlayState.Lobby)
+        {
+            Debug.Log("Game already started");
+            return;
+        }
+
+        if(m_GameState != EGameState.Lobby)
+        {
+            Debug.Log("Game already started");
+            return;
+        }
+
         SwitchGameState(EGameState.InGame);
 
         

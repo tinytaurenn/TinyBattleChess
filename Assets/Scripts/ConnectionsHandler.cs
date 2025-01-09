@@ -111,6 +111,11 @@ public class ConnectionsHandler : MonoBehaviour
         }
     }
 
+    public TinyPlayer.EPlayerState GetLocalPlayerState()
+    {
+        return MyPlayer.GetComponent<TinyPlayer>().m_PlayerState;
+    }
+
     public void ChangePlayState(int oldState, int newState)
     {
         Debug.Log("changing play state from connections handler");
