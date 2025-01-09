@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Flags]
@@ -27,9 +28,10 @@ public enum EItemRarity
 
 public class SO_Items : ScriptableObject
 {
-    public List<SO_Item> Items;   
+    public List<SO_Item> Items;
 
     
+
     const float CommonChance = 100f;
 
     
@@ -46,6 +48,13 @@ public class SO_Items : ScriptableObject
 
     [Range(1f, 100f)]
     public float LegendaryChance = 15f;
+
+    public SO_Item FindItemByName(string name)
+    {
+        return Items.Find(item => item.ItemName == name);
+        
+    }
+
 
 
 

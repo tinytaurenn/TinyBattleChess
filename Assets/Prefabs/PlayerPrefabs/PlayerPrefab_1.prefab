@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 8830135264561283332}
   - component: {fileID: 3310887222814179707}
   - component: {fileID: 7936197508017733057}
+  - component: {fileID: 6693567637196801358}
   - component: {fileID: 7777286392842217631}
   - component: {fileID: -2306784185468642703}
   m_Layer: 6
@@ -362,6 +363,8 @@ MonoBehaviour:
     - component: {fileID: 1731985344248194043}
       lodStepsActive: 1
     - component: {fileID: 8830135264561283332}
+      lodStepsActive: 1
+    - component: {fileID: 6693567637196801358}
       lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
@@ -1848,6 +1851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f2acaad503ea140a05fb221da0ce4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerState: 0
   m_IntPlayerState: 0
   m_PlayerModel: {fileID: 3942809304985668726}
   m_PlayerAnimEvents: {fileID: 4490843030010982481}
@@ -1927,6 +1931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PreviousMoveInput: {x: 0, y: 0, z: 0}
   m_Speed: 5
+  m_VerticalSpeed: 5
   m_SmoothingValue: 0.5
   m_RotationSpeed: 12
   m_Acceleration: 10
@@ -1978,6 +1983,24 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
   - {fileID: 8300000, guid: a7736c1763bd76c4eb0d52aaad581deb, type: 3}
   - {fileID: 8300000, guid: 2b8c207613cd58b4889b0cc6bf739f2c, type: 3}
+--- !u!114 &6693567637196801358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004959108954425623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be86f379bb3c6364c80e6078d4dad85d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MainWeapon: {fileID: 0}
+  m_SecondaryWeapon: {fileID: 0}
+  m_Slot_1: {fileID: 0}
+  m_Slot_2: {fileID: 0}
+  m_Slot_3: {fileID: 0}
+  m_Slot_4: {fileID: 0}
 --- !u!82 &7777286392842217631
 AudioSource:
   m_ObjectHideFlags: 0

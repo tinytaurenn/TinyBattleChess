@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7886858918336485256}
-  - component: {fileID: 3742310084580637886}
   - component: {fileID: 5605270632006895831}
+  - component: {fileID: 3742310084580637886}
+  - component: {fileID: 463022347549678877}
+  - component: {fileID: 5243885957173460872}
   m_Layer: 0
   m_Name: MainSimulator
   m_TagString: Untagged
@@ -34,30 +36,6 @@ Transform:
   - {fileID: 8284520083408309598}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3742310084580637886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3290010422142779883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9ef253bc65b7b43a510b05f3b7905f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PlayerGameObject: {fileID: 0}
-  m_DummyGameObject: {fileID: 5699538527182793423, guid: c473af9c10567024caf206bf6752a656, type: 3}
-  m_PlayerObjects: []
-  m_RoundTime: {fileID: 1338625383742743499}
-  m_ShopRoundTime: 90
-  m_ShopSpawnPositions: {fileID: 0}
-  m_BattleSpawnPositions: {fileID: 0}
-  m_DummiesSpawnPositions: {fileID: 0}
-  SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
-  m_IntPlayState: 0
-  m_IntGameState: 0
-  m_TurnNumber: 1
 --- !u!114 &5605270632006895831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +95,10 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 1338625383742743499}
       lodStepsActive: 1
+    - component: {fileID: 463022347549678877}
+      lodStepsActive: 1
+    - component: {fileID: 5243885957173460872}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 1
   RigidbodyUpdateMode: 0
@@ -167,6 +149,8 @@ MonoBehaviour:
   coherenceTag: 
   componentActions:
   - rid: 5431316531586794273
+  - rid: 5785724961228325540
+  - rid: 5785724963220881413
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -399,6 +383,14 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 5785724961228325540
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 463022347549678877}
+    - rid: 5785724963220881413
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 5243885957173460872}
     - rid: 9113002650001998079
       type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -489,6 +481,54 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+--- !u!114 &3742310084580637886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290010422142779883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9ef253bc65b7b43a510b05f3b7905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerGameObject: {fileID: 0}
+  m_DummyGameObject: {fileID: 5699538527182793423, guid: c473af9c10567024caf206bf6752a656, type: 3}
+  m_PlayerSyncs: []
+  m_RoundTime: {fileID: 1338625383742743499}
+  m_ShopRoundTime: 90
+  m_ShopSpawnPositions: {fileID: 0}
+  m_BattleSpawnPositions: {fileID: 0}
+  m_DummiesSpawnPositions: {fileID: 0}
+  SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_IntPlayState: 0
+  m_IntGameState: 0
+  m_TurnNumber: 1
+--- !u!114 &463022347549678877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290010422142779883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6c779a9277b174eb717eb5fb12d652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5243885957173460872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290010422142779883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a890709fb98ee846957c198efd35bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4385315940812925499
 GameObject:
   m_ObjectHideFlags: 0

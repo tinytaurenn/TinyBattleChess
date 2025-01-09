@@ -15,7 +15,7 @@ public class SO_Chest : ScriptableObject
 
     
 
-    public List<SO_Item> GetItemList(EItemRarity maxRarity)
+    public List<SO_Item> GetItemsList(EItemRarity maxRarity)
     {
         List<SO_Item> ShuffleitemList = Items.Items;
         ShuffleitemList.Shuffle();
@@ -36,13 +36,13 @@ public class SO_Chest : ScriptableObject
 
         }
         
-        //Utils.Shuffle(itemList);
+        
 
         return itemList;
 
     }
 
-    public List<SO_Item> GetItemList(int size, EItemRarity maxRarity)
+    public List<SO_Item> GetItemsList(int size, EItemRarity maxRarity)
     {
         List<SO_Item> ShuffleitemList = Items.Items;
         ShuffleitemList.Shuffle();
@@ -68,15 +68,18 @@ public class SO_Chest : ScriptableObject
             }
 
         }
+        
 
         return itemList;
 
+        
+
     }
     //local random 
-    public void GetItem()
+    public void GetRandomItem()
     {
         EItemRarity rarity = GetItemRarity();
-        List<SO_Item> items = GetItemList(rarity);
+        List<SO_Item> items = GetItemsList(rarity);
         Debug.Log("Item rarity: " + rarity);
 
         SO_Item item = items.RandomInList(); 
