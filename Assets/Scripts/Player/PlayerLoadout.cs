@@ -1,8 +1,12 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class ESlotToGrabbableDictionary : SerializableDictionary<PlayerLoadout.ESlot, Grabbable> { }
 public class PlayerLoadout : MonoBehaviour
 {
-    enum ESlot
+    public enum ESlot
     {
         MainWeapon = 0,
         SecondaryWeapon = 1,
@@ -34,15 +38,20 @@ public class PlayerLoadout : MonoBehaviour
 
     [Space(5)]
 
-    public BasicWeapon m_EquippedMainWeapon;
-    public BasicWeapon m_EquippedSecondaryWeapon;
+    //public BasicWeapon m_EquippedMainWeapon;
+    //public BasicWeapon m_EquippedSecondaryWeapon;
     //public Armor m_EquippedHelmet;
     //public Armor m_EquippedChest;
     //public Armor m_EquippedLegs;
-    public Grabbable m_EquippedSlot_1;
-    public Grabbable m_EquippedSlot_2;
-    public Grabbable m_EquippedSlot_3;
-    public Grabbable m_EquippedSlot_4;
+    //
+    //public Grabbable m_EquippedSlot_1;
+    //public Grabbable m_EquippedSlot_2;
+    //public Grabbable m_EquippedSlot_3;
+    //public Grabbable m_EquippedSlot_4;
+
+    [SerializeField]
+    public ESlotToGrabbableDictionary m_EquippedItemsDico = new ESlotToGrabbableDictionary();
+
 
     [Space(10)]
     [Header("Player sockets")]
@@ -50,6 +59,19 @@ public class PlayerLoadout : MonoBehaviour
     [SerializeField] internal Transform m_PlayerRightHandSocket;
 
 
+    private void Awake()
+    {
+
+        m_EquippedItemsDico.Add(ESlot.MainWeapon, null);
+        m_EquippedItemsDico.Add(ESlot.SecondaryWeapon, null);
+        m_EquippedItemsDico.Add(ESlot.Slot_1, null);
+        m_EquippedItemsDico.Add(ESlot.Slot_2, null);
+        m_EquippedItemsDico.Add(ESlot.Slot_3, null);
+        m_EquippedItemsDico.Add(ESlot.Slot_4, null);
+
+
+        SelectSlot(m_SelectedSlot);
+    }
 
     public void EquipItemInLoadout(SO_Item item)
     {
@@ -76,13 +98,15 @@ public class PlayerLoadout : MonoBehaviour
 
             if (rightHand)
             {
-                m_EquippedMainWeapon.m_Rigidbody.isKinematic = true;
-                m_EquippedMainWeapon.m_Collider.enabled = false;
-                m_EquippedMainWeapon.transform.SetParent(m_PlayerRightHandSocket, false);
+                m_EquippedItemsDico[ESlot.MainWeapon].m_Rigidbody.isKinematic = true;
+                m_EquippedItemsDico[ESlot.MainWeapon].m_Collider.enabled = false;
+                m_EquippedItemsDico[ESlot.MainWeapon].transform.SetParent(m_PlayerRightHandSocket, false);
 
-                m_EquippedMainWeapon.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                m_SelectedSlot = ESlot.MainWeapon;
-                //m_InHandSlot = GetSlotFromGrabbable(m_EquippedMainWeapon);
+                m_EquippedItemsDico[ESlot.MainWeapon].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                //m_SelectedSlot = ESlot.MainWeapon;
+                SelectSlot(ESlot.MainWeapon);
+                
+                LocalUI.Instance.ChangeSlotIcon(m_SelectedSlot, m_EquippedItemsDico[ESlot.MainWeapon].SO_Item.ItemIcon);
 
             }
             else
@@ -95,6 +119,8 @@ public class PlayerLoadout : MonoBehaviour
 
             return;
         }
+
+        
     }
 
     public void DropItemInHand(float throwForce = 0f)
@@ -169,34 +195,36 @@ public class PlayerLoadout : MonoBehaviour
     void EquipWeapon(BasicWeapon weapon, out bool rightHand)
     {
         rightHand = true;
-        if (m_EquippedMainWeapon != null && m_EquippedMainWeapon.GetWeaponSize() == SO_BasicWeapon.EWeaponSize.Two_Handed)
+
+        
+        if ( m_EquippedItemsDico[ESlot.MainWeapon] != null && m_EquippedItemsDico[ESlot.MainWeapon].GetComponent<BasicWeapon>().GetWeaponSize() == SO_BasicWeapon.EWeaponSize.Two_Handed)
         {
-            m_EquippedMainWeapon = null;
+            m_EquippedItemsDico[ESlot.MainWeapon]= null;
 
         }
         if (weapon.GetWeaponSize() == SO_BasicWeapon.EWeaponSize.Two_Handed)
         {
-            m_EquippedMainWeapon = weapon;
-            m_EquippedSecondaryWeapon = null;
+            m_EquippedItemsDico[ESlot.MainWeapon]= weapon;
+            m_EquippedItemsDico[ESlot.SecondaryWeapon]= null;
 
             return;
         }
 
         if (weapon.GetWeaponSize() == SO_BasicWeapon.EWeaponSize.LeftOnly)
         {
-            m_EquippedSecondaryWeapon = weapon;
+            m_EquippedItemsDico[ESlot.SecondaryWeapon] = weapon;
             rightHand = false; 
         }
         else
         {
-            if (m_EquippedMainWeapon != null && m_EquippedSecondaryWeapon == null)
+            if (m_EquippedItemsDico[ESlot.MainWeapon] != null && m_EquippedItemsDico[ESlot.SecondaryWeapon].GetComponent<BasicWeapon>() == null)
             {
-                m_EquippedSecondaryWeapon = weapon;
+                m_EquippedItemsDico[ESlot.SecondaryWeapon]= weapon;
                 rightHand = false;
             }
             else
             {
-                m_EquippedMainWeapon = weapon;
+                m_EquippedItemsDico[ESlot.MainWeapon]= weapon;
 
             }
         }
@@ -209,57 +237,16 @@ public class PlayerLoadout : MonoBehaviour
 
     Grabbable GetGrabbableFromSlot(ESlot slot)
     {
-        switch (slot)
-        {
-            case ESlot.MainWeapon:
-                return m_EquippedMainWeapon;
-               
-            case ESlot.SecondaryWeapon:
-                return m_EquippedSecondaryWeapon;
-                
-            case ESlot.Slot_1:
-                return m_EquippedSlot_1;
-
-            case ESlot.Slot_2:
-                return m_EquippedSlot_2;
-            case ESlot.Slot_3:
-                return m_EquippedSlot_3;
-            case ESlot.Slot_4:
-                return m_EquippedSlot_4;
-                
-            default:
-                return m_EquippedMainWeapon;
-
-        }
+        
+        return m_EquippedItemsDico[slot];
     }
 
     void ClearOnSlot(ESlot slot)
     {
-        switch (slot)
-        {
-            case ESlot.MainWeapon:
-                m_EquippedMainWeapon = null;
-                return; 
-            case ESlot.SecondaryWeapon:
-                m_EquippedSecondaryWeapon = null;
-                return;
-            case ESlot.Slot_1:
-                m_EquippedSlot_1 = null;
-                return;
-            case ESlot.Slot_2:
-                m_EquippedSlot_2 = null;
-                return;
+        LocalUI.Instance.ClearSlot(slot);
 
-            case ESlot.Slot_3:
-                m_EquippedSlot_3 = null;
-                return;
-            case ESlot.Slot_4:
-                m_EquippedSlot_4 = null;
-                return;
-            default:
-                m_EquippedMainWeapon = null;
-                return;
-        }
+        m_EquippedItemsDico[slot] = null;
+
     }
 
     public void DropEverything()
@@ -269,6 +256,43 @@ public class PlayerLoadout : MonoBehaviour
             DropItemOnSlot(i);
         }
     
+    }
+
+    public void SlotActionPerformed()
+    {
+        //perform action on slot
+
+        Debug.Log("perfom slot action on slot : " + m_SelectedSlot);
+    }
+
+    public void SelectSlot(ESlot slot)
+    {
+        m_SelectedSlot = slot;
+        LocalUI.Instance.SelectSlot(slot);
+    }
+    public void ScrollSelect(float scrollAxis)
+    {
+        int slot = (int)m_SelectedSlot;
+
+
+        if(scrollAxis > 0)
+        {
+            Debug.Log("scrolled up");
+            slot = (slot + 1) % (int)ESlot.count;
+            SelectSlot((ESlot)slot);
+
+        }
+        else if (scrollAxis < 0)
+        {
+            Debug.Log("scrolled down");
+            slot = (slot - 1) % (int)ESlot.count;
+            if (slot < 0) slot = (int)ESlot.count - 1;
+            SelectSlot((ESlot)slot);
+
+
+        }
+       
+
     }
 
 }

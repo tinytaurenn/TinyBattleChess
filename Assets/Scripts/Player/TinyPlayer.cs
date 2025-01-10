@@ -330,6 +330,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         //m_PlayerControls.enabled = Enabled;
         m_PlayerMovement.enabled = Enabled;
         m_PlayerUse.enabled = Enabled;
+        m_PlayerLoadout.enabled = Enabled;
 
         
     }

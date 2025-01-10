@@ -16,6 +16,8 @@ namespace PlayerControls
         [SerializeField] InputActionReference m_MouseRightClick;
         [SerializeField] InputActionReference m_DropAction;
         [SerializeField] InputActionReference m_MouseLookAction;
+        [SerializeField] InputActionReference m_SlotAction; 
+        [SerializeField] InputActionReference m_ScrollWheelAction;
        
 
         //
@@ -27,6 +29,7 @@ namespace PlayerControls
         Vector2 m_MoveValue;
         Transform m_CameraTransform;
         CameraManager m_CameraManager; 
+        PlayerLoadout m_PlayerLoadout;
 
         private void OnEnable()
         {
@@ -39,6 +42,8 @@ namespace PlayerControls
             m_MouseRightClick.asset.Enable();
             m_DropAction.asset.Enable();
             m_MouseLookAction.asset.Enable();
+            m_SlotAction.asset.Enable();
+            m_ScrollWheelAction.asset.Enable();
 
 
 
@@ -49,9 +54,14 @@ namespace PlayerControls
 
             m_UseAction.action.performed += Use;
             m_DropAction.action.performed += Drop;
+            m_SlotAction.action.performed += SlotAction;
+
+            m_ScrollWheelAction.action.performed += ScrollWheelAction; 
 
             //m_MouseRightClick.action.performed += m_PlayerWeapons.Parry;
         }
+
+        
 
         private void OnDisable()
         {
@@ -64,6 +74,8 @@ namespace PlayerControls
             m_MouseRightClick.asset.Disable();
             m_DropAction.asset.Disable();
             m_MouseLookAction.asset.Disable();
+            m_SlotAction.asset.Disable();
+            m_ScrollWheelAction.asset.Disable();
 
 
 
@@ -73,6 +85,9 @@ namespace PlayerControls
 
             m_UseAction.action.performed -= Use;
             m_DropAction.action.performed -= Drop;
+            m_SlotAction.action.performed -= SlotAction;
+
+            m_ScrollWheelAction.action.performed -= ScrollWheelAction;
 
             //m_MouseRightClick.action.performed -= m_PlayerWeapons.Parry;
         }
@@ -86,6 +101,7 @@ namespace PlayerControls
             m_PlayerUse = GetComponent<PlayerUse>();
             m_PlayerWeapons = GetComponent<PlayerWeapons>();
             m_TinyPlayer = GetComponent<TinyPlayer>();
+            m_PlayerLoadout = GetComponent<PlayerLoadout>();
 
         }
 
@@ -158,21 +174,57 @@ namespace PlayerControls
             m_PlayerUse.DropPerformed(); 
         }
 
+        private void SlotAction(InputAction.CallbackContext context)
+        {
+            m_PlayerLoadout.SlotActionPerformed(); 
+        }
+
+        private void ScrollWheelAction(InputAction.CallbackContext context)
+        {
+            m_PlayerLoadout.ScrollSelect(context.ReadValue<float>());
+
+        }
+        void EnablePlayerInput(bool Enable)
+        {
+
+            if (Enable)
+            {
+                m_JumpAction.action.performed += Jump;
+                m_JumpAction.action.canceled += CancelJump;
+
+                m_UseAction.action.performed += Use;
+                m_DropAction.action.performed += Drop;
+                m_SlotAction.action.performed += SlotAction;
+
+                m_ScrollWheelAction.action.performed += ScrollWheelAction;
+            }
+            else
+            {
+                m_JumpAction.action.performed -= Jump;
+                m_JumpAction.action.canceled -= CancelJump;
+
+                m_UseAction.action.performed -= Use;
+                m_DropAction.action.performed -= Drop;
+                m_SlotAction.action.performed -= SlotAction;
+
+                m_ScrollWheelAction.action.performed -= ScrollWheelAction;
+            }
+        }
+
         internal void SwitchState()
         {
             switch (m_TinyPlayer.m_PlayerState)
             {
                 case TinyPlayer.EPlayerState.Player:
 
-                    m_JumpAction.action.performed += Jump;
-                    m_JumpAction.action.canceled += CancelJump;
+                    EnablePlayerInput(true); 
                     break;
                 case TinyPlayer.EPlayerState.Spectator:
-                    m_JumpAction.action.performed -= Jump;
-                    m_JumpAction.action.canceled -= CancelJump;
+                    EnablePlayerInput(false);
 
                     break;
                 case TinyPlayer.EPlayerState.Disqualified:
+                    EnablePlayerInput(false);
                     break;
                 default:
                     break;

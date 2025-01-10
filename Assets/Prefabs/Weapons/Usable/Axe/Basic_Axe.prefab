@@ -752,6 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099e92d446b79914b83f9775ed11600b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SO_Item: {fileID: 11400000, guid: 11a1200a62d5f3a44a4c2f55814895b8, type: 2}
   m_IsHeld: 0
   m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
