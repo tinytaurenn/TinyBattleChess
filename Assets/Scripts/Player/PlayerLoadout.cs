@@ -22,8 +22,8 @@ public class PlayerLoadout : MonoBehaviour
  
     [Header("Loadout Items")]
 
-    public SO_BasicWeapon m_MainWeapon; 
-    public SO_BasicWeapon m_SecondaryWeapon;
+    public SO_Weapon m_MainWeapon; 
+    public SO_Weapon m_SecondaryWeapon;
  
     public SO_Item m_Slot_1; 
     public SO_Item m_Slot_2;
@@ -81,19 +81,17 @@ public class PlayerLoadout : MonoBehaviour
     public void EquipItemInLoadout(SO_Item item)
     {
         
-        if (item.GetType() == typeof(SO_BasicWeapon))
+        if (item.GetType() == typeof(SO_Weapon))
         {
-            SO_BasicWeapon weapon = (SO_BasicWeapon)item;
+            Debug.Log("equip SO  weapon in loadout : " + item.GetType().ToString());
+            SO_Weapon weapon = (SO_Weapon)item;
             EquipWeaponLoadout(weapon);
             return; 
         }
-        if(item.GetType() == typeof(SO_Item))
-        {
-            SO_Item inventoryItem = (SO_Item)item;
-            EquipInventoryItemInLoadout(inventoryItem);
-            return; 
-        }
-        
+        Debug.Log("equip SO  item in loadout : " + item.GetType().ToString());
+        EquipInventoryItemInLoadout(item);
+        return;
+
     }
 
     public void EquipGrabbableItem(Grabbable item)
@@ -184,14 +182,14 @@ public class PlayerLoadout : MonoBehaviour
         item.m_Collider.enabled = true;
     }
 
-    void EquipWeaponLoadout(SO_BasicWeapon weapon)
+    void EquipWeaponLoadout(SO_Weapon weapon)
     {
-        if(m_MainWeapon != null && m_MainWeapon.WeaponSize == SO_BasicWeapon.EWeaponSize.Two_Handed)
+        if(m_MainWeapon != null && m_MainWeapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
             m_MainWeapon = null; 
             
         }
-        if(weapon.WeaponSize == SO_BasicWeapon.EWeaponSize.Two_Handed)
+        if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
             m_MainWeapon = weapon;
             m_SecondaryWeapon = null;
@@ -199,7 +197,7 @@ public class PlayerLoadout : MonoBehaviour
             return; 
         }
 
-        if (weapon.WeaponSize == SO_BasicWeapon.EWeaponSize.LeftOnly)
+        if (weapon.WeaponSize == SO_Weapon.EWeaponSize.LeftOnly)
         {
             m_SecondaryWeapon = weapon;
         }
@@ -220,6 +218,7 @@ public class PlayerLoadout : MonoBehaviour
     void EquipInventoryItemInLoadout(SO_Item item)
     {
         //find place and put in slot
+        Debug.Log("equip inventory item in loadout");
     }
 
     void EquipWeapon(BasicWeapon weapon, out bool rightHand)
@@ -227,12 +226,12 @@ public class PlayerLoadout : MonoBehaviour
         rightHand = true;
 
         
-        if ( m_EquippedWeapons[ESlot.MainWeapon] != null && m_EquippedWeapons[ESlot.MainWeapon].GetComponent<BasicWeapon>().GetWeaponSize() == SO_BasicWeapon.EWeaponSize.Two_Handed)
+        if ( m_EquippedWeapons[ESlot.MainWeapon] != null && m_EquippedWeapons[ESlot.MainWeapon].GetComponent<BasicWeapon>().GetWeaponSize() == SO_Weapon.EWeaponSize.Two_Handed)
         {
             m_EquippedWeapons[ESlot.MainWeapon]= null;
 
         }
-        if (weapon.GetWeaponSize() == SO_BasicWeapon.EWeaponSize.Two_Handed)
+        if (weapon.GetWeaponSize() == SO_Weapon.EWeaponSize.Two_Handed)
         {
             m_EquippedWeapons[ESlot.MainWeapon]= weapon;
             m_EquippedWeapons[ESlot.SecondaryWeapon]= null;
@@ -240,7 +239,7 @@ public class PlayerLoadout : MonoBehaviour
             return;
         }
 
-        if (weapon.GetWeaponSize() == SO_BasicWeapon.EWeaponSize.LeftOnly)
+        if (weapon.GetWeaponSize() == SO_Weapon.EWeaponSize.LeftOnly)
         {
             m_EquippedWeapons[ESlot.SecondaryWeapon] = weapon;
             rightHand = false; 

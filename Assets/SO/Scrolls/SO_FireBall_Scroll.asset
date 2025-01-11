@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e62223ee68bcc4aaa762d58c385291, type: 3}
-  m_Name: SO_Chest_Basic
+  m_Script: {fileID: 11500000, guid: fd6d75f5c26da504dbd031bd810a1df6, type: 3}
+  m_Name: SO_FireBall_Scroll
   m_EditorClassIdentifier: 
-  ItemType: -1
-  Items: {fileID: 11400000, guid: cdf0a9c9faefa3840928ebcbc2f0606f, type: 2}
+  ItemIcon: {fileID: 0}
+  ItemName: FireBall Scroll
+  Usable_GameObject: {fileID: 0}
+  Chest_GameObject: {fileID: 0}
+  Cost: 3
+  EItemRarity: 0
+  ScrollElem: 4
+  Charges: 3

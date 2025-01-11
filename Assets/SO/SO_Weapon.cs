@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-[CreateAssetMenu(fileName = "SO_BasicWeapon", menuName = "Scriptable Objects/Items/Weapons/SO_BasicWeapon")]
-public class SO_BasicWeapon : SO_Item
+[CreateAssetMenu(fileName = "SO_Weapon", menuName = "Scriptable Objects/Items/Weapons/SO_Weapon")]
+public class SO_Weapon : SO_Item
 {
     
-    public enum EWeaponType
+    public enum EWeaponType 
     {
         Sword = 1,
         Axe = 2,

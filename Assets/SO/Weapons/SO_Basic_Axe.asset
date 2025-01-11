@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b51df5d05d3cf6a4eaac81a596f09d2f, type: 3}
+  m_Script: {fileID: 11500000, guid: 647b40984c4686c4b8e96ecb23603bd3, type: 3}
   m_Name: SO_Basic_Axe
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 21300000, guid: deb651a80ba8bc744b874b76db2692c6, type: 3}
@@ -20,10 +20,9 @@ MonoBehaviour:
   EItemRarity: 0
   WeaponType: 2
   WeaponSize: 0
-  Damage: 12
-  Speed: 1.8
+  Damage: 10
+  Speed: 1.5
   HitSounds:
-  - {fileID: 8300000, guid: 2b901ac228ea622448cc3198f2358fc0, type: 3}
-  - {fileID: 8300000, guid: f81c7afdd6b84634a8db483151a6141c, type: 3}
-  - {fileID: 8300000, guid: 746f6a1adc41b4f4fb6b481d2298d1d6, type: 3}
-  - {fileID: 8300000, guid: 38d39d27c253d4249b981d48cafdde07, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

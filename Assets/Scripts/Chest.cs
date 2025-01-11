@@ -28,8 +28,9 @@ public class Chest : Usable
     public override  void  TryUse()
     {
         base.TryUse();
-        LoadChest(EItemRarity.Common);
-        SO_Item newItem = GetItem();
+        //LoadChest(EItemRarity.Common);
+        //SO_Item newItem = GetItem();
+        SO_Item newItem = GetItemFast();
         Debug.Log("Chest opened : " + newItem.ItemName);
         ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerLoadout.EquipItemInLoadout(newItem); 
         
@@ -37,7 +38,7 @@ public class Chest : Usable
 
     public void LoadChest(EItemRarity rarity)
     {
-        m_ChosenItems = m_ChestSO.GetItemsList(rarity);
+        m_ChosenItems = m_ChestSO.GetItemsList(5,rarity);
 
         
     }
@@ -45,6 +46,10 @@ public class Chest : Usable
     public SO_Item GetItem()
     {
         return m_ChosenItems.RandomInList();
+    }
+    public SO_Item GetItemFast()
+    {
+        return m_ChestSO.GetItemFast(EItemRarity.Common);
     }
 
     private void OnTriggerEnter(Collider other)

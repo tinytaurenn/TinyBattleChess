@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using static SO_BasicWeapon;
+using static SO_Weapon;
 
 public class BasicWeapon : Grabbable, IWeapon
 {

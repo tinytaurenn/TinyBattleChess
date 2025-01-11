@@ -13,7 +13,38 @@ public class SO_Chest : ScriptableObject
 
     [SerializeField] SO_Items Items;
 
-    
+    Dictionary<Type, EItemType> m_ItemTypesDico = new Dictionary<Type, EItemType>{
+    { typeof(SO_Weapon), EItemType.Weapon },
+    { typeof(SO_Potion), EItemType.Potion },
+    { typeof(SO_Scroll), EItemType.Scroll }//add armor and rune later
+
+};
+
+
+    public SO_Item GetItemFast(EItemRarity maxRarity)
+    {
+        List<SO_Item> ShuffleitemList = Items.Items;
+        ShuffleitemList.Shuffle();
+        Debug.Log("Getting Item chest");
+
+        foreach (var item in ShuffleitemList)
+        {
+
+            if (m_ItemTypesDico.TryGetValue(item.GetType(), out EItemType itemType))
+            {
+                if ((ItemType & itemType) != 0 && (int)item.EItemRarity <= (int)maxRarity)
+                {
+                    Debug.Log($"Adding {item.GetType().Name} to chest list");
+                    return item;
+                }
+            }
+
+
+        }
+        Debug.Log("No item found");
+        return null; 
+
+    }
 
     public List<SO_Item> GetItemsList(EItemRarity maxRarity)
     {
@@ -21,17 +52,19 @@ public class SO_Chest : ScriptableObject
         ShuffleitemList.Shuffle();
         List<SO_Item> itemList = new List<SO_Item>();   
         Debug.Log("Getting Items chest"); 
+
+       
         foreach (var item in ShuffleitemList)
         {
-           
-            if ((item.GetType() == typeof(SO_BasicWeapon)) &&( (ItemType & EItemType.Weapon) != 0 ) 
-                && (int)item.EItemRarity <= (int)maxRarity)
-            {
-                //Debug.Log("adding weapon in chest list ");
-                itemList.Add(item);
 
+            if (m_ItemTypesDico.TryGetValue(item.GetType(), out EItemType itemType))
+            {
+                if ((ItemType & itemType) != 0 && (int)item.EItemRarity <= (int)maxRarity)
+                {
+                    Debug.Log($"Adding {item.GetType().Name} to chest list");
+                    itemList.Add(item);
+                }
             }
-            //next 
 
 
         }
@@ -52,17 +85,18 @@ public class SO_Chest : ScriptableObject
         foreach (var item in ShuffleitemList)
         {
 
-            if ((item.GetType() == typeof(SO_BasicWeapon)) && ((ItemType & EItemType.Weapon) != 0)
-                && (int)item.EItemRarity <= (int)maxRarity)
+            if (m_ItemTypesDico.TryGetValue(item.GetType(), out EItemType itemType))
             {
-                Debug.Log("adding weapon in chest list ");
-                itemList.Add(item);
-                i++;
-
+                if ((ItemType & itemType) != 0 && (int)item.EItemRarity <= (int)maxRarity)
+                {
+                    Debug.Log($"Adding {item.GetType().Name} to chest list");
+                    itemList.Add(item);
+                    i++;
+                }
             }
-           
-            
-            if(i >= size)
+
+
+            if (i >= size)
             {
                 break;
             }
@@ -102,10 +136,9 @@ public class SO_Chest : ScriptableObject
         return EItemRarity.Legendary;
 
 
-
-
-
     }
+
+    
 
 
 }
