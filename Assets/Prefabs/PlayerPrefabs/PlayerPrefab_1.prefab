@@ -159,8 +159,10 @@ MonoBehaviour:
   m_MouseRightClick: {fileID: -414088526721206839, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_DropAction: {fileID: 2683022503882043607, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_MouseLookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_SlotAction: {fileID: 4458600950735058029, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_ScrollWheelAction: {fileID: -128666543783558814, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Slot1Action: {fileID: 4458600950735058029, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Slot2Action: {fileID: 3496227975339065341, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Slot3Action: {fileID: 5981155508306644295, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Slot4Action: {fileID: -8238599038450421036, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &712017614822695059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,12 +1961,9 @@ MonoBehaviour:
   m_Slot_3: {fileID: 0}
   m_Slot_4: {fileID: 0}
   m_SelectedSlot: 0
-  m_EquippedMainWeapon: {fileID: 0}
-  m_EquippedSecondaryWeapon: {fileID: 0}
-  m_EquippedSlot_1: {fileID: 0}
-  m_EquippedSlot_2: {fileID: 0}
-  m_EquippedSlot_3: {fileID: 0}
-  m_EquippedSlot_4: {fileID: 0}
+  m_EquippedItemsDico:
+    m_keys: 
+    m_values: []
   m_PlayerLeftHandSocket: {fileID: 3293726256454769268}
   m_PlayerRightHandSocket: {fileID: 1010069479959953380}
 --- !u!82 &7777286392842217631

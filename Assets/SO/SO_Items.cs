@@ -8,10 +8,10 @@ using UnityEngine;
 public enum EItemType
 {
     Weapon = 1,
-    Armor = 2,
-    Potion = 4,
-    Scroll = 8,
-    Gold = 16
+    Armor = 2,  // passive without consomption
+    Potion = 4, // passive with consomption
+    Scroll = 8, // ability with consomption
+    Rune = 16 // Ability without consomption
 }
 
 public enum EItemRarity

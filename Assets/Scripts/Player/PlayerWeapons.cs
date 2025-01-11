@@ -79,7 +79,7 @@ public class PlayerWeapons : MonoBehaviour
 
 
         
-        if (m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.MainWeapon] == null)
+        if (m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] == null)
         {
             return;
         }
@@ -243,8 +243,8 @@ public class PlayerWeapons : MonoBehaviour
     {
         //Debug.Log("locking attack");
         m_InAttackRelease = true;
-        if(m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.MainWeapon] !=null) m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().m_HolderPlayerWeapons = this;
-        if(m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.SecondaryWeapon] != null) m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.SecondaryWeapon].GetComponent<BasicWeapon>().m_HolderPlayerWeapons = this;
+        if(m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] !=null) m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().m_HolderPlayerWeapons = this;
+        if(m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon] != null) m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon].GetComponent<BasicWeapon>().m_HolderPlayerWeapons = this;
 
 
         float normalizedTime = m_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime;
@@ -281,7 +281,7 @@ public class PlayerWeapons : MonoBehaviour
     {
         Debug.Log("i get sync Hit ");
 
-        m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().PlayHitSound();
+        m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().PlayHitSound();
     }
 
     public bool IsInParryAngle(Vector3 enemyPosition)
@@ -311,15 +311,15 @@ public class PlayerWeapons : MonoBehaviour
     public void Drop(float throwForce = 0f)
     {
         Debug.Log("dropping"); 
-        m_PlayerLoadout.DropItemInHand(throwForce);
+        m_PlayerLoadout.DropWeapons(throwForce);
 
 
     }
     #endregion
 
-    public BasicWeapon GetMainWeapon() => m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>();
+    public BasicWeapon GetMainWeapon() => m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>();
 
-    public BasicWeapon GetSecondaryWeapon() => m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.SecondaryWeapon].GetComponent<BasicWeapon>();
+    public BasicWeapon GetSecondaryWeapon() => m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon].GetComponent<BasicWeapon>();
    
 
 
@@ -342,7 +342,7 @@ public class PlayerWeapons : MonoBehaviour
         {
             foreach (var item in Physics.OverlapSphere(transform.position, 15f))
             {
-                if(item.TryGetComponent<Dummy>(out Dummy dummy) && m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.MainWeapon] != null)
+                if(item.TryGetComponent<Dummy>(out Dummy dummy) && m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] != null)
                 {
 
                     float dot = Vector3.Dot(dummy.transform.forward.normalized, (dummy.transform.position - transform.position).normalized);
@@ -353,13 +353,13 @@ public class PlayerWeapons : MonoBehaviour
                     if (dotInDeg <= m_ParryAngle)
                     {
                         Gizmos.color = Color.green;
-                        Gizmos.DrawLine(dummy.transform.position, m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().m_HitPos.position);
+                        Gizmos.DrawLine(dummy.transform.position, m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().m_HitPos.position);
 
                     }
                     else
                     {
                         Gizmos.color = Color.red;
-                        Gizmos.DrawLine(dummy.transform.position, m_PlayerLoadout.m_EquippedItemsDico[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().m_HitPos.position);
+                        Gizmos.DrawLine(dummy.transform.position, m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().m_HitPos.position);
                     }
 
                     

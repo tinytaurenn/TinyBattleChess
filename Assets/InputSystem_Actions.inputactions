@@ -114,7 +114,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SlotAction",
+                    "name": "Slot1",
                     "type": "Button",
                     "id": "fd726f09-122e-4f77-b0e4-164df467df77",
                     "expectedControlType": "",
@@ -123,10 +123,28 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ScrollSelect",
-                    "type": "PassThrough",
-                    "id": "6567b9e4-8bbe-4999-bc1f-7bac1f945450",
-                    "expectedControlType": "Axis",
+                    "name": "Slot2",
+                    "type": "Button",
+                    "id": "559544f9-4a14-4837-86a2-641ad5f48e57",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slot3",
+                    "type": "Button",
+                    "id": "cfbdd77f-22f9-4dd9-90cb-083394e57dc7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slot4",
+                    "type": "Button",
+                    "id": "0b55fb24-ca1f-412f-b495-642f8f1f580e",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -565,7 +583,7 @@
                 {
                     "name": "",
                     "id": "719eee78-7f20-48ff-b9c8-60b9a941de48",
-                    "path": "<Keyboard>/g",
+                    "path": "<Keyboard>/h",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -580,18 +598,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SlotAction",
+                    "action": "Slot1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "52383528-b6d3-418f-bbb4-3b7f5c6a1f88",
-                    "path": "<Mouse>/scroll/y",
+                    "id": "daab781d-3bde-4a14-9e66-0f1df6f70dce",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ScrollSelect",
+                    "action": "Slot2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb9f829c-3e1f-4ba7-a1e9-980451116edb",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slot3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e9110121-f973-4793-9e5d-0fa6a525b205",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slot4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -16,8 +16,10 @@ namespace PlayerControls
         [SerializeField] InputActionReference m_MouseRightClick;
         [SerializeField] InputActionReference m_DropAction;
         [SerializeField] InputActionReference m_MouseLookAction;
-        [SerializeField] InputActionReference m_SlotAction; 
-        [SerializeField] InputActionReference m_ScrollWheelAction;
+        [SerializeField] InputActionReference m_Slot1Action; 
+        [SerializeField] InputActionReference m_Slot2Action; 
+        [SerializeField] InputActionReference m_Slot3Action; 
+        [SerializeField] InputActionReference m_Slot4Action; 
        
 
         //
@@ -42,8 +44,10 @@ namespace PlayerControls
             m_MouseRightClick.asset.Enable();
             m_DropAction.asset.Enable();
             m_MouseLookAction.asset.Enable();
-            m_SlotAction.asset.Enable();
-            m_ScrollWheelAction.asset.Enable();
+            m_Slot1Action.asset.Enable();
+            m_Slot2Action.asset.Enable();
+            m_Slot3Action.asset.Enable();
+            m_Slot4Action.asset.Enable();
 
 
 
@@ -54,9 +58,12 @@ namespace PlayerControls
 
             m_UseAction.action.performed += Use;
             m_DropAction.action.performed += Drop;
-            m_SlotAction.action.performed += SlotAction;
+            m_Slot1Action.action.performed += Slot1Action;
+            m_Slot2Action.action.performed += Slot2Action;
+            m_Slot3Action.action.performed += Slot3Action;
+            m_Slot4Action.action.performed += Slot4Action;
 
-            m_ScrollWheelAction.action.performed += ScrollWheelAction; 
+
 
             //m_MouseRightClick.action.performed += m_PlayerWeapons.Parry;
         }
@@ -74,8 +81,11 @@ namespace PlayerControls
             m_MouseRightClick.asset.Disable();
             m_DropAction.asset.Disable();
             m_MouseLookAction.asset.Disable();
-            m_SlotAction.asset.Disable();
-            m_ScrollWheelAction.asset.Disable();
+            m_Slot1Action.asset.Disable();
+            m_Slot2Action.asset.Disable();
+            m_Slot3Action.asset.Disable();
+            m_Slot4Action.asset.Disable();
+
 
 
 
@@ -85,9 +95,11 @@ namespace PlayerControls
 
             m_UseAction.action.performed -= Use;
             m_DropAction.action.performed -= Drop;
-            m_SlotAction.action.performed -= SlotAction;
+            m_Slot1Action.action.performed -= Slot1Action;
+            m_Slot2Action.action.performed -= Slot2Action;
+            m_Slot3Action.action.performed -= Slot3Action;
+            m_Slot4Action.action.performed -= Slot4Action;
 
-            m_ScrollWheelAction.action.performed -= ScrollWheelAction;
 
             //m_MouseRightClick.action.performed -= m_PlayerWeapons.Parry;
         }
@@ -174,16 +186,26 @@ namespace PlayerControls
             m_PlayerUse.DropPerformed(); 
         }
 
-        private void SlotAction(InputAction.CallbackContext context)
+        private void Slot1Action(InputAction.CallbackContext context)
         {
-            m_PlayerLoadout.SlotActionPerformed(); 
+            m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_1); 
+        }
+        private void Slot4Action(InputAction.CallbackContext context)
+        {
+            m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_2);
         }
 
-        private void ScrollWheelAction(InputAction.CallbackContext context)
+        private void Slot3Action(InputAction.CallbackContext context)
         {
-            m_PlayerLoadout.ScrollSelect(context.ReadValue<float>());
-
+            m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_3);
         }
+
+        private void Slot2Action(InputAction.CallbackContext context)
+        {
+            m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_4);
+        }
+
+
         void EnablePlayerInput(bool Enable)
         {
 
@@ -194,9 +216,14 @@ namespace PlayerControls
 
                 m_UseAction.action.performed += Use;
                 m_DropAction.action.performed += Drop;
-                m_SlotAction.action.performed += SlotAction;
 
-                m_ScrollWheelAction.action.performed += ScrollWheelAction;
+                m_Slot1Action.action.performed += Slot1Action;
+                m_Slot2Action.action.performed += Slot2Action;
+                m_Slot3Action.action.performed += Slot3Action;
+                m_Slot4Action.action.performed += Slot4Action;
+
+               
+
             }
             else
             {
@@ -205,9 +232,14 @@ namespace PlayerControls
 
                 m_UseAction.action.performed -= Use;
                 m_DropAction.action.performed -= Drop;
-                m_SlotAction.action.performed -= SlotAction;
 
-                m_ScrollWheelAction.action.performed -= ScrollWheelAction;
+                m_Slot1Action.action.performed -= Slot1Action;
+                m_Slot2Action.action.performed -= Slot2Action;
+                m_Slot3Action.action.performed -= Slot3Action;
+                m_Slot4Action.action.performed -= Slot4Action;
+
+
+
             }
         }
 
