@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class  InventoryItem : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField]protected SO_Item SO_Item;
     protected virtual void Start()
     {
         
