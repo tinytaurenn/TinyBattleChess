@@ -152,13 +152,23 @@ namespace PlayerControls
                 if (nearest.gameObject.TryGetComponent<Usable>(out Usable usable))
                 {
                     m_Usable = usable;
+
+                    if(usable.TryGetComponent<Grabbable>(out Grabbable grabbable))
+                    {
+                        LocalUI.Instance.ShowUsable("Grab " + grabbable.SO_Item.ItemName);
+                    }
+                    else
+                    {
+                        LocalUI.Instance.ShowUsable("Use " + usable.name);
+                    }
+
                     
                    
                     return; 
                 }
                 
             }
-
+            LocalUI.Instance.HideUsable();
             m_Usable = null;
             //m_UsableObject = null;
         }

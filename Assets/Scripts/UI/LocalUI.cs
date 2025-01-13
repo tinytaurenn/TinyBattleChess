@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ public class LocalUI : MonoBehaviour
 
     //Dictionary<PlayerLoadout.ESlot, SlotUI> m_SlotDictionary = new Dictionary<PlayerLoadout.ESlot, SlotUI>();
     ESlotToSlotUIDictionary m_SlotDictionary = new ESlotToSlotUIDictionary();
+
+    [SerializeField] TextMeshProUGUI m_UsableText; 
     
 
     private void Awake()
@@ -37,6 +40,8 @@ public class LocalUI : MonoBehaviour
         m_SlotDictionary.Add(PlayerLoadout.ESlot.Slot_3, m_InventorySlots[2]);
         m_SlotDictionary.Add(PlayerLoadout.ESlot.Slot_4, m_InventorySlots[3]);
 
+        m_UsableText.enabled = false;
+
     }
     
     public void SelectSlot(PlayerLoadout.ESlot slot)
@@ -55,6 +60,19 @@ public class LocalUI : MonoBehaviour
     public void ClearSlot(PlayerLoadout.ESlot slot)
     {
         m_SlotDictionary[slot].ChangeIcon(null);
+    }
+    public void ShowUsable()
+    {
+        m_UsableText.enabled = true;
+    }
+    public void ShowUsable(string Text)
+    {
+        m_UsableText.text = Text;
+        m_UsableText.enabled = true;
+    }
+    public void HideUsable()
+    {
+        m_UsableText.enabled = false;
     }
     
 

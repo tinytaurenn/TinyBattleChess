@@ -16,7 +16,7 @@ namespace PlayerControls
         }
         [SerializeField] ECrontrolState m_ControlState = ECrontrolState.Player;
 
-        [SerializeField] InputSystem_Actions m_InputActions;
+        InputSystem_Actions m_InputActions;
 
         //
         PlayerMovement m_PlayerMovement;
@@ -43,6 +43,10 @@ namespace PlayerControls
             m_InputActions.Player.Slot2.performed += Slot2Action;
             m_InputActions.Player.Slot3.performed += Slot3Action;
             m_InputActions.Player.Slot4.performed += Slot4Action;
+
+            m_InputActions.Ghost.Interact.performed += GhostUse;
+
+          
           
 
 
@@ -68,7 +72,10 @@ namespace PlayerControls
             m_InputActions.Player.Slot3.performed -= Slot3Action;
             m_InputActions.Player.Slot4.performed -= Slot4Action;
 
-           
+            m_InputActions.Ghost.Interact.performed -= GhostUse;
+            
+
+
 
 
             //m_MouseRightClick.action.performed -= m_PlayerWeapons.Parry;
@@ -151,6 +158,12 @@ namespace PlayerControls
         {
             
             m_PlayerUse.UsePerformed();
+        }
+
+        private void GhostUse(InputAction.CallbackContext context)
+        {
+
+            Debug.Log("Ghost Use");
         }
         private void Drop(InputAction.CallbackContext context)
         {

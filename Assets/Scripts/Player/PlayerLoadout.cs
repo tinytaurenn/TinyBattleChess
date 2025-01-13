@@ -10,6 +10,7 @@ public class ESlotToWeaponDictionary : SerializableDictionary<PlayerLoadout.ESlo
 public class ESlotToInventoryItemDictionary : SerializableDictionary<PlayerLoadout.ESlot, InventoryItem> { }
 public class PlayerLoadout : MonoBehaviour
 {
+    
     public enum ESlot
     {
         MainWeapon = 0,
@@ -20,6 +21,13 @@ public class PlayerLoadout : MonoBehaviour
         Slot_4 = 5,
         count = 6
     }
+
+    enum EInventoryType
+    {
+        Loadout, 
+        Equipped,
+    }
+    EInventoryType m_InventoryType = EInventoryType.Loadout;
  
     [Header("Loadout Items")]
 
@@ -221,12 +229,23 @@ public class PlayerLoadout : MonoBehaviour
         //find place and put in slot
         Debug.Log("equip inventory item in loadout");
 
-        ESlot slot = FindFirstEmptySlot();
+        //ESlot slot = FindFirstEmptySlot();
 
-        if(slot == ESlot.Slot_1) { m_Slot_1 = item; return;}
-        if (slot == ESlot.Slot_2) { m_Slot_2 = item; return; }
-        if (slot == ESlot.Slot_3) { m_Slot_3 = item; return; }
-        if (slot == ESlot.Slot_4) { m_Slot_4 = item; return; }
+        if(TryFindEmptySlot(out ESlot slot))
+        {
+
+            if (slot == ESlot.Slot_1) { m_Slot_1 = item; return; }
+            if (slot == ESlot.Slot_2) { m_Slot_2 = item; return; }
+            if (slot == ESlot.Slot_3) { m_Slot_3 = item; return; }
+            if (slot == ESlot.Slot_4) { m_Slot_4 = item; return; }
+        }
+        else
+        {
+            //select and replace
+            Debug.Log("no place left in loadout, replacing"); 
+        }
+
+        
 
 
     }
@@ -321,6 +340,18 @@ public class PlayerLoadout : MonoBehaviour
 
 
         return ESlot.Slot_1;
+    }
+    bool TryFindEmptySlot(out ESlot slot)
+    {
+        
+        
+        if (m_Slot_1 == null) {slot = ESlot.Slot_1; return true; }
+        if (m_Slot_2 == null) { slot = ESlot.Slot_2; return true; }
+        if (m_Slot_3 == null) { slot = ESlot.Slot_3; return true; }
+        if (m_Slot_4 == null) { slot = ESlot.Slot_4; return true; }
+
+        slot = 0; 
+        return false; 
     }
 
     
