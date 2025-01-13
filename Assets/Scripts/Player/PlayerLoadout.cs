@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerLoadout;
 
 [Serializable]
 public class ESlotToWeaponDictionary : SerializableDictionary<PlayerLoadout.ESlot, BasicWeapon> { }
@@ -219,6 +220,15 @@ public class PlayerLoadout : MonoBehaviour
     {
         //find place and put in slot
         Debug.Log("equip inventory item in loadout");
+
+        ESlot slot = FindFirstEmptySlot();
+
+        if(slot == ESlot.Slot_1) { m_Slot_1 = item; return;}
+        if (slot == ESlot.Slot_2) { m_Slot_2 = item; return; }
+        if (slot == ESlot.Slot_3) { m_Slot_3 = item; return; }
+        if (slot == ESlot.Slot_4) { m_Slot_4 = item; return; }
+
+
     }
 
     void EquipWeapon(BasicWeapon weapon, out bool rightHand)
@@ -298,7 +308,19 @@ public class PlayerLoadout : MonoBehaviour
             return; 
         }
 
+        
+    }
 
+    ESlot FindFirstEmptySlot()
+    {
+        
+        if(m_Slot_1 == null) return ESlot.Slot_1;
+        if (m_Slot_2 == null) return ESlot.Slot_2;
+        if (m_Slot_3 == null) return ESlot.Slot_3;
+        if (m_Slot_4 == null) return ESlot.Slot_4;
+
+
+        return ESlot.Slot_1;
     }
 
     

@@ -7,20 +7,16 @@ namespace PlayerControls
 {
     public class PlayerControls : MonoBehaviour
     {
-        [SerializeField] InputActionReference m_MovementInputAction;
-        [SerializeField] InputActionReference m_JumpAction;
-        [SerializeField] InputActionReference m_CrouchAction;
-        [SerializeField] InputActionReference m_SprintAction;
-        [SerializeField] InputActionReference m_UseAction;
-        [SerializeField] InputActionReference m_MouseLeftClick;
-        [SerializeField] InputActionReference m_MouseRightClick;
-        [SerializeField] InputActionReference m_DropAction;
-        [SerializeField] InputActionReference m_MouseLookAction;
-        [SerializeField] InputActionReference m_Slot1Action; 
-        [SerializeField] InputActionReference m_Slot2Action; 
-        [SerializeField] InputActionReference m_Slot3Action; 
-        [SerializeField] InputActionReference m_Slot4Action; 
-       
+        public enum ECrontrolState
+        {
+            Player,
+            Ghost,
+            Selecting,
+
+        }
+        [SerializeField] ECrontrolState m_ControlState = ECrontrolState.Player;
+
+        [SerializeField] InputSystem_Actions m_InputActions;
 
         //
         PlayerMovement m_PlayerMovement;
@@ -35,33 +31,19 @@ namespace PlayerControls
 
         private void OnEnable()
         {
-            m_MovementInputAction.asset.Enable();
-            m_JumpAction.asset.Enable();
-            m_CrouchAction.asset.Enable();
-            m_SprintAction.asset.Enable();
-            m_UseAction.asset.Enable();
-            m_MouseLeftClick.asset.Enable();
-            m_MouseRightClick.asset.Enable();
-            m_DropAction.asset.Enable();
-            m_MouseLookAction.asset.Enable();
-            m_Slot1Action.asset.Enable();
-            m_Slot2Action.asset.Enable();
-            m_Slot3Action.asset.Enable();
-            m_Slot4Action.asset.Enable();
+            //m_InputActions.Enable();
+            m_InputActions.Player.Enable();
+           
+            m_InputActions.Player.Jump.performed += Jump;
+            m_InputActions.Player.Jump.canceled += CancelJump;
 
-
-
-
-
-            m_JumpAction.action.performed += Jump;
-            m_JumpAction.action.canceled += CancelJump;
-
-            m_UseAction.action.performed += Use;
-            m_DropAction.action.performed += Drop;
-            m_Slot1Action.action.performed += Slot1Action;
-            m_Slot2Action.action.performed += Slot2Action;
-            m_Slot3Action.action.performed += Slot3Action;
-            m_Slot4Action.action.performed += Slot4Action;
+            m_InputActions.Player.Interact.performed += Use;
+            m_InputActions.Player.Drop.performed += Drop;
+            m_InputActions.Player.Slot1.performed += Slot1Action; 
+            m_InputActions.Player.Slot2.performed += Slot2Action;
+            m_InputActions.Player.Slot3.performed += Slot3Action;
+            m_InputActions.Player.Slot4.performed += Slot4Action;
+          
 
 
 
@@ -72,33 +54,21 @@ namespace PlayerControls
 
         private void OnDisable()
         {
-            m_MovementInputAction.asset.Disable();
-            m_JumpAction.asset.Disable();
-            m_CrouchAction.asset.Disable();
-            m_SprintAction.asset.Disable();
-            m_UseAction.asset.Disable();
-            m_MouseLeftClick.asset.Disable();
-            m_MouseRightClick.asset.Disable();
-            m_DropAction.asset.Disable();
-            m_MouseLookAction.asset.Disable();
-            m_Slot1Action.asset.Disable();
-            m_Slot2Action.asset.Disable();
-            m_Slot3Action.asset.Disable();
-            m_Slot4Action.asset.Disable();
+            m_InputActions.Player.Disable(); 
 
 
 
+            m_InputActions.Player.Jump.performed -= Jump;
+            m_InputActions.Player.Jump.canceled -= CancelJump;
 
+            m_InputActions.Player.Interact.performed -= Use;
+            m_InputActions.Player.Drop.performed -= Drop;
+            m_InputActions.Player.Slot1.performed -= Slot1Action;
+            m_InputActions.Player.Slot2.performed -= Slot2Action;
+            m_InputActions.Player.Slot3.performed -= Slot3Action;
+            m_InputActions.Player.Slot4.performed -= Slot4Action;
 
-            m_JumpAction.action.performed -= Jump;
-            m_JumpAction.action.canceled -= CancelJump;
-
-            m_UseAction.action.performed -= Use;
-            m_DropAction.action.performed -= Drop;
-            m_Slot1Action.action.performed -= Slot1Action;
-            m_Slot2Action.action.performed -= Slot2Action;
-            m_Slot3Action.action.performed -= Slot3Action;
-            m_Slot4Action.action.performed -= Slot4Action;
+           
 
 
             //m_MouseRightClick.action.performed -= m_PlayerWeapons.Parry;
@@ -107,13 +77,15 @@ namespace PlayerControls
         
 
         private void Awake()
-        {
+        { 
             m_PlayerMovement = GetComponent<PlayerMovement>();
             m_PlayerGhostMovement = GetComponent<PlayerGhostMovement>();
             m_PlayerUse = GetComponent<PlayerUse>();
             m_PlayerWeapons = GetComponent<PlayerWeapons>();
             m_TinyPlayer = GetComponent<TinyPlayer>();
             m_PlayerLoadout = GetComponent<PlayerLoadout>();
+
+            m_InputActions = new InputSystem_Actions();
 
         }
 
@@ -125,11 +97,9 @@ namespace PlayerControls
         // Update is called once per frame
         void Update()
         {
-            SetMovementValue(m_MovementInputAction.action.ReadValue<Vector2>());
-            SetIsSprinting(m_SprintAction.action.IsPressed());
-            m_PlayerWeapons.m_LookDirection = m_MouseLookAction.action.ReadValue<Vector2>();
-            m_PlayerWeapons.m_Parrying = m_MouseRightClick.action.IsPressed();
-            m_PlayerWeapons.m_Attacking = m_MouseLeftClick.action.IsPressed();
+            
+
+            ControlStateUpdate(); 
         }
 
         void SetMovementValue(Vector2 moveInput)
@@ -143,21 +113,22 @@ namespace PlayerControls
             Vector3 forward = new Vector3(m_CameraTransform.forward.x, 0, m_CameraTransform.forward.z).normalized;
             Vector3 right = new Vector3(m_CameraTransform.right.x, 0, m_CameraTransform.right.z).normalized;
 
-            switch (m_TinyPlayer.m_PlayerState)
+           
+            switch (m_ControlState)
             {
-                case TinyPlayer.EPlayerState.Player:
+                case ECrontrolState.Player:
                     m_PlayerMovement.MoveInput = right * m_MoveValue.x + forward * m_MoveValue.y;
                     break;
-                case TinyPlayer.EPlayerState.Spectator:
+                case ECrontrolState.Ghost:
                     m_PlayerGhostMovement.MoveInput = right * m_MoveValue.x + forward * m_MoveValue.y;
-                    m_PlayerGhostMovement.VerticalInput =  new Vector2((m_JumpAction.action.IsPressed() ? 1 : 0), (m_CrouchAction.action.IsPressed() ? 1 : 0));
+                    m_PlayerGhostMovement.VerticalInput = new Vector2((m_InputActions.Ghost.Up.IsPressed() ? 1 : 0), (m_InputActions.Ghost.Down.IsPressed() ? 1 : 0));
                     break;
-                case TinyPlayer.EPlayerState.Disqualified:
+                case ECrontrolState.Selecting:
                     break;
                 default:
                     break;
             }
-            
+
         }
         void SetIsSprinting(bool isSprinting)
         {
@@ -205,58 +176,68 @@ namespace PlayerControls
             m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_4);
         }
 
-
-        void EnablePlayerInput(bool Enable)
+        void ControlStateUpdate()
         {
-
-            if (Enable)
+            switch (m_ControlState)
             {
-                m_JumpAction.action.performed += Jump;
-                m_JumpAction.action.canceled += CancelJump;
+                case ECrontrolState.Player:
+                    SetMovementValue(m_InputActions.Player.Move.ReadValue<Vector2>());
+                    SetIsSprinting(m_InputActions.Player.Sprint.IsPressed());
+                    m_PlayerWeapons.m_LookDirection = m_InputActions.Player.Look.ReadValue<Vector2>();
+                    m_PlayerWeapons.m_Parrying = m_InputActions.Player.Parry.IsPressed();
+                    m_PlayerWeapons.m_Attacking = m_InputActions.Player.Attack.IsPressed();
+                    break;
+                case ECrontrolState.Ghost:
+                    SetMovementValue(m_InputActions.Ghost.Move.ReadValue<Vector2>());
+                   
+                    m_PlayerWeapons.m_LookDirection = m_InputActions.Ghost.Look.ReadValue<Vector2>();
 
-                m_UseAction.action.performed += Use;
-                m_DropAction.action.performed += Drop;
-
-                m_Slot1Action.action.performed += Slot1Action;
-                m_Slot2Action.action.performed += Slot2Action;
-                m_Slot3Action.action.performed += Slot3Action;
-                m_Slot4Action.action.performed += Slot4Action;
-
-               
-
-            }
-            else
-            {
-                m_JumpAction.action.performed -= Jump;
-                m_JumpAction.action.canceled -= CancelJump;
-
-                m_UseAction.action.performed -= Use;
-                m_DropAction.action.performed -= Drop;
-
-                m_Slot1Action.action.performed -= Slot1Action;
-                m_Slot2Action.action.performed -= Slot2Action;
-                m_Slot3Action.action.performed -= Slot3Action;
-                m_Slot4Action.action.performed -= Slot4Action;
-
-
-
+                    break;
+                case ECrontrolState.Selecting:
+                    break;
+                default:
+                    break;
             }
         }
 
-        internal void SwitchState()
+        internal void SwitchState(ECrontrolState state)
         {
-            switch (m_TinyPlayer.m_PlayerState)
+            if(m_ControlState == state) return;
+
+            OnExitState();
+            m_ControlState = state;
+            OnEnterState();
+
+        }
+
+        private void OnEnterState()
+        {
+            switch (m_ControlState)
             {
-                case TinyPlayer.EPlayerState.Player:
-
-                    EnablePlayerInput(true); 
+                case ECrontrolState.Player:
+                    m_InputActions.Player.Enable();
                     break;
-                case TinyPlayer.EPlayerState.Spectator:
-                    EnablePlayerInput(false);
-
+                case ECrontrolState.Ghost:
+                    m_InputActions.Ghost.Enable();
                     break;
-                case TinyPlayer.EPlayerState.Disqualified:
-                    EnablePlayerInput(false);
+                case ECrontrolState.Selecting:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OnExitState()
+        {
+            switch (m_ControlState)
+            {
+                case ECrontrolState.Player:
+                    m_InputActions.Player.Disable();
+                    break;
+                case ECrontrolState.Ghost:
+                    m_InputActions.Ghost.Disable();
+                    break;
+                case ECrontrolState.Selecting:
                     break;
                 default:
                     break;

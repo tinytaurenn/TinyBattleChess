@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1821750849323274275}
   - component: {fileID: 959426684229174818}
   m_Layer: 8
-  m_Name: BasicWeapon_Chest
+  m_Name: Basic_Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

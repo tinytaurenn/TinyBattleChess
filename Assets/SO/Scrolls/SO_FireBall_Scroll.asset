@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 0}
   ItemName: FireBall Scroll
-  Usable_GameObject: {fileID: 0}
+  Usable_GameObject: {fileID: 7003793399489357865, guid: 52c50e470fcf1e3419d4bf3ed75d999e, type: 3}
   Chest_GameObject: {fileID: 0}
   Cost: 3
   EItemRarity: 0

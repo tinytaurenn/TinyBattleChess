@@ -317,9 +317,25 @@ public class PlayerWeapons : MonoBehaviour
     }
     #endregion
 
-    public BasicWeapon GetMainWeapon() => m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>();
+    public BasicWeapon GetMainWeapon()
+    {
+        if(m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] == null)
+        {
+            Debug.Log("no main weapon ");
+            return null;
+        }
+        return m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>();
+    }
 
-    public BasicWeapon GetSecondaryWeapon() => m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon].GetComponent<BasicWeapon>();
+    public BasicWeapon GetSecondaryWeapon()
+    {
+        if (m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon] == null)
+        {
+            Debug.Log("no secondary weapon ");
+            return null;
+        }
+        return m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon].GetComponent<BasicWeapon>();
+    }
    
 
 

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd6d75f5c26da504dbd031bd810a1df6, type: 3}
-  m_Name: SO_HolyFire_Scroll
+  m_Name: SO_WaterBump_Scroll
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 0}
-  ItemName: Holy Fire Scroll
-  Usable_GameObject: {fileID: 0}
+  ItemName: Water Bump Scroll
+  Usable_GameObject: {fileID: 7003793399489357865, guid: 0f6b5aa5bcd577f4aa6ed491962442e0, type: 3}
   Chest_GameObject: {fileID: 0}
   Cost: 6
   EItemRarity: 2
-  ScrollElem: 36
+  ScrollElem: 264
   Charges: 3
