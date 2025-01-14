@@ -244,6 +244,7 @@ namespace PlayerControls
 
         public void StopMovement()
         {
+            MoveInput = Vector3.zero; 
             m_HorizontalVelocity = Vector3.zero;
             m_VerticalVelocity = Vector3.zero;
             m_rigidBody.linearVelocity = Vector3.zero;

@@ -94,7 +94,7 @@ public class CameraManager : MonoBehaviour
         float mouseDeltaX = MouseDelta.x;
         //float mouseDeltaY = m_MouseCamInputRef.action.ReadValue<Vector2>().y; 
 
-
+        //Debug.Log("mouse delta x is : " + mouseDeltaX); 
 
         Vector3 targetPostion = m_PlayerTransform.position;
 
@@ -145,8 +145,13 @@ public class CameraManager : MonoBehaviour
 
     internal void LookUpdate(InputAction.CallbackContext context)
     {
-        Debug.Log("LookUpdate " + context.ReadValue<Vector2>().ToString());
+        //Debug.Log("LookUpdate " + context.ReadValue<Vector2>().ToString());
         MouseDelta = context.ReadValue<Vector2>();
+    }
+
+    public void StopCameraMovement()
+    {
+        MouseDelta = Vector2.zero;
     }
 
     #endregion

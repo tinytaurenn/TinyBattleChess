@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6d75f5c26da504dbd031bd810a1df6, type: 3}
   m_Name: SO_FireBall_Scroll
   m_EditorClassIdentifier: 
-  ItemIcon: {fileID: 0}
+  ItemIcon: {fileID: 21300000, guid: bad174c93ff698a4ab2301eb19bb4271, type: 3}
   ItemName: FireBall Scroll
   ItemDescription: 
   Usable_GameObject: {fileID: 7003793399489357865, guid: 52c50e470fcf1e3419d4bf3ed75d999e, type: 3}

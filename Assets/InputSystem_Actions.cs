@@ -1522,6 +1522,51 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""54110e10-ec28-45a1-88c9-51b3a5fa18ec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Replace1"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a087cf6-9142-4800-8a4e-a03dfa813634"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Replace2"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2703503-c57f-4dc1-8524-4c31f8868233"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Replace3"",
+                    ""type"": ""Button"",
+                    ""id"": ""03e6b129-9b9b-4501-86ac-4bb81f0d98d3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Replace4"",
+                    ""type"": ""Button"",
+                    ""id"": ""e50d1623-928f-4db1-a2f2-8dc9778cd28e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1555,6 +1600,72 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Select_3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2be8e57d-b3ac-4296-a557-f12fade18abf"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e83a5a1-58c6-4f9f-91f2-b9bfb690624c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12b6b52a-76b8-4bd7-a3fb-ab1835361e5f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Replace1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4e08984-7e52-4b21-955f-97fbf828be85"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Replace2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81d1f405-37ef-4e8e-9a7b-afc61c950f0a"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Replace3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2bb0dfb-4fe3-4ac7-a721-8347ce3cfb44"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Replace4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1666,6 +1777,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_PowerSelect_Select_1 = m_PowerSelect.FindAction("Select_1", throwIfNotFound: true);
         m_PowerSelect_Select_2 = m_PowerSelect.FindAction("Select_2", throwIfNotFound: true);
         m_PowerSelect_Select_3 = m_PowerSelect.FindAction("Select_3", throwIfNotFound: true);
+        m_PowerSelect_Exit = m_PowerSelect.FindAction("Exit", throwIfNotFound: true);
+        m_PowerSelect_Replace1 = m_PowerSelect.FindAction("Replace1", throwIfNotFound: true);
+        m_PowerSelect_Replace2 = m_PowerSelect.FindAction("Replace2", throwIfNotFound: true);
+        m_PowerSelect_Replace3 = m_PowerSelect.FindAction("Replace3", throwIfNotFound: true);
+        m_PowerSelect_Replace4 = m_PowerSelect.FindAction("Replace4", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -2100,6 +2216,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PowerSelect_Select_1;
     private readonly InputAction m_PowerSelect_Select_2;
     private readonly InputAction m_PowerSelect_Select_3;
+    private readonly InputAction m_PowerSelect_Exit;
+    private readonly InputAction m_PowerSelect_Replace1;
+    private readonly InputAction m_PowerSelect_Replace2;
+    private readonly InputAction m_PowerSelect_Replace3;
+    private readonly InputAction m_PowerSelect_Replace4;
     public struct PowerSelectActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -2107,6 +2228,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @Select_1 => m_Wrapper.m_PowerSelect_Select_1;
         public InputAction @Select_2 => m_Wrapper.m_PowerSelect_Select_2;
         public InputAction @Select_3 => m_Wrapper.m_PowerSelect_Select_3;
+        public InputAction @Exit => m_Wrapper.m_PowerSelect_Exit;
+        public InputAction @Replace1 => m_Wrapper.m_PowerSelect_Replace1;
+        public InputAction @Replace2 => m_Wrapper.m_PowerSelect_Replace2;
+        public InputAction @Replace3 => m_Wrapper.m_PowerSelect_Replace3;
+        public InputAction @Replace4 => m_Wrapper.m_PowerSelect_Replace4;
         public InputActionMap Get() { return m_Wrapper.m_PowerSelect; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2125,6 +2251,21 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Select_3.started += instance.OnSelect_3;
             @Select_3.performed += instance.OnSelect_3;
             @Select_3.canceled += instance.OnSelect_3;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @Replace1.started += instance.OnReplace1;
+            @Replace1.performed += instance.OnReplace1;
+            @Replace1.canceled += instance.OnReplace1;
+            @Replace2.started += instance.OnReplace2;
+            @Replace2.performed += instance.OnReplace2;
+            @Replace2.canceled += instance.OnReplace2;
+            @Replace3.started += instance.OnReplace3;
+            @Replace3.performed += instance.OnReplace3;
+            @Replace3.canceled += instance.OnReplace3;
+            @Replace4.started += instance.OnReplace4;
+            @Replace4.performed += instance.OnReplace4;
+            @Replace4.canceled += instance.OnReplace4;
         }
 
         private void UnregisterCallbacks(IPowerSelectActions instance)
@@ -2138,6 +2279,21 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Select_3.started -= instance.OnSelect_3;
             @Select_3.performed -= instance.OnSelect_3;
             @Select_3.canceled -= instance.OnSelect_3;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @Replace1.started -= instance.OnReplace1;
+            @Replace1.performed -= instance.OnReplace1;
+            @Replace1.canceled -= instance.OnReplace1;
+            @Replace2.started -= instance.OnReplace2;
+            @Replace2.performed -= instance.OnReplace2;
+            @Replace2.canceled -= instance.OnReplace2;
+            @Replace3.started -= instance.OnReplace3;
+            @Replace3.performed -= instance.OnReplace3;
+            @Replace3.canceled -= instance.OnReplace3;
+            @Replace4.started -= instance.OnReplace4;
+            @Replace4.performed -= instance.OnReplace4;
+            @Replace4.canceled -= instance.OnReplace4;
         }
 
         public void RemoveCallbacks(IPowerSelectActions instance)
@@ -2245,5 +2401,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnSelect_1(InputAction.CallbackContext context);
         void OnSelect_2(InputAction.CallbackContext context);
         void OnSelect_3(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
+        void OnReplace1(InputAction.CallbackContext context);
+        void OnReplace2(InputAction.CallbackContext context);
+        void OnReplace3(InputAction.CallbackContext context);
+        void OnReplace4(InputAction.CallbackContext context);
     }
 }

@@ -112,17 +112,17 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
-                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.ECrontrolState.Player);
+                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
                 m_PlayerGhost.SetActive(false);
                 SeeGhosts(false);
                 break;
             case EPlayerState.Spectator:
-                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.ECrontrolState.Ghost);
+                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
                 m_PlayerGhost.SetActive(true);
                 SeeGhosts(true); 
                 break;
             case EPlayerState.Disqualified:
-                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.ECrontrolState.Ghost);
+                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
                 m_PlayerGhost.SetActive(true);
                 SeeGhosts(true);
                 break;

@@ -7,14 +7,14 @@ namespace PlayerControls
 {
     public class PlayerControls : MonoBehaviour
     {
-        public enum ECrontrolState
+        public enum EControlState
         {
             Player,
             Ghost,
             Selecting,
 
         }
-        [SerializeField] ECrontrolState m_ControlState = ECrontrolState.Player;
+        [SerializeField] EControlState m_ControlState = EControlState.Player;
 
         InputSystem_Actions m_InputActions;
 
@@ -34,27 +34,28 @@ namespace PlayerControls
             //m_InputActions.Enable();
             m_InputActions.Player.Enable();
 
-            m_InputActions.Player.Look.performed += CameraManager.Instance.LookUpdate;
-            m_InputActions.Ghost.Look.performed += CameraManager.Instance.LookUpdate;
            
             m_InputActions.Player.Jump.performed += Jump;
             m_InputActions.Player.Jump.canceled += CancelJump;
 
             m_InputActions.Player.Interact.performed += Use;
             m_InputActions.Player.Drop.performed += Drop;
-            m_InputActions.Player.Slot1.performed += Slot1Action; 
-            m_InputActions.Player.Slot2.performed += Slot2Action;
-            m_InputActions.Player.Slot3.performed += Slot3Action;
-            m_InputActions.Player.Slot4.performed += Slot4Action;
+
+            m_InputActions.Player.Slot1.performed +=  SlotAction1;
+            m_InputActions.Player.Slot2.performed += SlotAction2;
+            m_InputActions.Player.Slot3.performed += SlotAction3;
+            m_InputActions.Player.Slot4.performed += SlotAction4;
 
             m_InputActions.Ghost.Interact.performed += GhostUse;
 
-          
-          
+            m_InputActions.PowerSelect.Select_1.performed += ChoiceSelect1;
+            m_InputActions.PowerSelect.Select_2.performed += ChoiceSelect2;
+            m_InputActions.PowerSelect.Select_3.performed += ChoiceSelect3;
+
+            m_InputActions.PowerSelect.Exit.performed +=  ExitSelectionPanel;
 
 
 
-            //m_MouseRightClick.action.performed += m_PlayerWeapons.Parry;
         }
 
         
@@ -63,22 +64,25 @@ namespace PlayerControls
         {
             m_InputActions.Player.Disable();
 
-            m_InputActions.Player.Look.performed -= CameraManager.Instance.LookUpdate;
-            m_InputActions.Ghost.Look.performed -= CameraManager.Instance.LookUpdate;
 
             m_InputActions.Player.Jump.performed -= Jump;
             m_InputActions.Player.Jump.canceled -= CancelJump;
 
             m_InputActions.Player.Interact.performed -= Use;
             m_InputActions.Player.Drop.performed -= Drop;
-            m_InputActions.Player.Slot1.performed -= Slot1Action;
-            m_InputActions.Player.Slot2.performed -= Slot2Action;
-            m_InputActions.Player.Slot3.performed -= Slot3Action;
-            m_InputActions.Player.Slot4.performed -= Slot4Action;
+
+            m_InputActions.Player.Slot1.performed -= SlotAction1;
+            m_InputActions.Player.Slot2.performed -= SlotAction2;
+            m_InputActions.Player.Slot3.performed -= SlotAction3;
+            m_InputActions.Player.Slot4.performed -= SlotAction4;
 
             m_InputActions.Ghost.Interact.performed -= GhostUse;
-            
 
+            m_InputActions.PowerSelect.Select_1.performed -= ChoiceSelect1;
+            m_InputActions.PowerSelect.Select_2.performed -= ChoiceSelect2;
+            m_InputActions.PowerSelect.Select_3.performed -= ChoiceSelect3;
+
+            m_InputActions.PowerSelect.Exit.performed -= ExitSelectionPanel;
 
 
 
@@ -127,14 +131,15 @@ namespace PlayerControls
            
             switch (m_ControlState)
             {
-                case ECrontrolState.Player:
+                case EControlState.Player:
                     m_PlayerMovement.MoveInput = right * m_MoveValue.x + forward * m_MoveValue.y;
+                    
                     break;
-                case ECrontrolState.Ghost:
+                case EControlState.Ghost:
                     m_PlayerGhostMovement.MoveInput = right * m_MoveValue.x + forward * m_MoveValue.y;
                     m_PlayerGhostMovement.VerticalInput = new Vector2((m_InputActions.Ghost.Up.IsPressed() ? 1 : 0), (m_InputActions.Ghost.Down.IsPressed() ? 1 : 0));
                     break;
-                case ECrontrolState.Selecting:
+                case EControlState.Selecting:
                     break;
                 default:
                     break;
@@ -174,50 +179,88 @@ namespace PlayerControls
             m_PlayerUse.DropPerformed(); 
         }
 
-        private void Slot1Action(InputAction.CallbackContext context)
+        void SlotAction1(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_1);
+
+        void SlotAction2(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_2);
+
+        void SlotAction3(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_3);
+
+        void SlotAction4(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_4);
+
+       
+        void ChoiceSelect1(InputAction.CallbackContext context) => LocalUI.Instance.SelectItem(0);
+        void ChoiceSelect2(InputAction.CallbackContext context) => LocalUI.Instance.SelectItem(1);
+        void ChoiceSelect3(InputAction.CallbackContext context) => LocalUI.Instance.SelectItem(2);
+
+
+    
+
+        public void ExitSelectionPanel(InputAction.CallbackContext context)
         {
-            m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_1); 
-        }
-        private void Slot4Action(InputAction.CallbackContext context)
-        {
-            m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_2);
+            //
+            LocalUI.Instance.CloseSelection();
+            
         }
 
-        private void Slot3Action(InputAction.CallbackContext context)
+        public void ReplaceInventorySlot()
         {
-            m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_3);
+            m_InputActions.PowerSelect.Replace1.performed += ReplaceSlot1;
+            m_InputActions.PowerSelect.Replace2.performed += ReplaceSlot2;
+            m_InputActions.PowerSelect.Replace3.performed += ReplaceSlot3;
+            m_InputActions.PowerSelect.Replace4.performed += ReplaceSlot4; 
+
+            Debug.Log("exit unsuscribed");
+
+            m_InputActions.PowerSelect.Exit.performed -= ExitSelectionPanel;
+
+
+        }
+        void ReplaceSlot1(InputAction.CallbackContext context) => ReplaceSlot(0);
+        void ReplaceSlot2(InputAction.CallbackContext context) => ReplaceSlot(1);
+        void ReplaceSlot3(InputAction.CallbackContext context) => ReplaceSlot(2);
+        void ReplaceSlot4(InputAction.CallbackContext context) => ReplaceSlot(3);
+
+        private void ReplaceSlot(int slotIndex)
+        {
+            m_PlayerLoadout.ReplaceInventorySlotLoadout(slotIndex);
+
+            m_InputActions.PowerSelect.Replace1.performed -= ReplaceSlot1;
+            m_InputActions.PowerSelect.Replace2.performed -= ReplaceSlot2;
+            m_InputActions.PowerSelect.Replace3.performed -= ReplaceSlot3;
+            m_InputActions.PowerSelect.Replace4.performed -= ReplaceSlot4;
+
+            m_InputActions.PowerSelect.Exit.performed += ExitSelectionPanel;
         }
 
-        private void Slot2Action(InputAction.CallbackContext context)
-        {
-            m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_4);
-        }
+        
 
         void ControlStateUpdate()
         {
             switch (m_ControlState)
             {
-                case ECrontrolState.Player:
+                case EControlState.Player:
                     SetMovementValue(m_InputActions.Player.Move.ReadValue<Vector2>());
                     SetIsSprinting(m_InputActions.Player.Sprint.IsPressed());
                     m_PlayerWeapons.m_LookDirection = m_InputActions.Player.Look.ReadValue<Vector2>();
                     m_PlayerWeapons.m_Parrying = m_InputActions.Player.Parry.IsPressed();
                     m_PlayerWeapons.m_Attacking = m_InputActions.Player.Attack.IsPressed();
+                    CameraManager.Instance.MouseDelta = m_InputActions.Player.Look.ReadValue<Vector2>();
                     break;
-                case ECrontrolState.Ghost:
+                case EControlState.Ghost:
                     SetMovementValue(m_InputActions.Ghost.Move.ReadValue<Vector2>());
-                   
-                    
+                    CameraManager.Instance.MouseDelta = m_InputActions.Ghost.Look.ReadValue<Vector2>();
+
+
 
                     break;
-                case ECrontrolState.Selecting:
+                case EControlState.Selecting:
                     break;
                 default:
                     break;
             }
         }
 
-        internal void SwitchState(ECrontrolState state)
+        internal void SwitchState(EControlState state)
         {
             if(m_ControlState == state) return;
 
@@ -231,18 +274,19 @@ namespace PlayerControls
         {
             switch (m_ControlState)
             {
-                case ECrontrolState.Player:
+                case EControlState.Player:
                     m_InputActions.Player.Enable();
                     Cursor.visible = false;
                     break;
-                case ECrontrolState.Ghost:
+                case EControlState.Ghost:
                     m_InputActions.Ghost.Enable();
                     Cursor.visible = false;
 
                     break;
-                case ECrontrolState.Selecting:
+                case EControlState.Selecting:
                     m_InputActions.PowerSelect.Enable();
-                    CameraManager.Instance.MouseDelta = Vector2.zero;
+                    CameraManager.Instance.StopCameraMovement();
+                    m_PlayerMovement.StopMovement();
                     Cursor.visible = true;
                     break;
                 default:
@@ -254,13 +298,13 @@ namespace PlayerControls
         {
             switch (m_ControlState)
             {
-                case ECrontrolState.Player:
+                case EControlState.Player:
                     m_InputActions.Player.Disable();
                     break;
-                case ECrontrolState.Ghost:
+                case EControlState.Ghost:
                     m_InputActions.Ghost.Disable();
                     break;
-                case ECrontrolState.Selecting:
+                case EControlState.Selecting:
                     m_InputActions.PowerSelect.Disable();
                     break;
                 default:

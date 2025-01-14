@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Coherence.Core.NativeTransport;
+using static PlayerLoadout;
 
 public class ESlotToSlotUIDictionary : SerializableDictionary<PlayerLoadout.ESlot, SlotUI> { }
 
@@ -46,6 +47,7 @@ public class LocalUI : MonoBehaviour
 
     [SerializeField] List<FSelectionItem> m_SelectionItems = new List<FSelectionItem>();
     [SerializeField] List<GameObject> m_SelectionItemsGO = new List<GameObject>();
+    [SerializeField] List<SO_Item> m_SelectionItemsSO = new List<SO_Item>();
      
 
     private void Awake()
@@ -112,6 +114,9 @@ public class LocalUI : MonoBehaviour
         }
 
         m_SelectionItemsGO.Clear();
+        m_SelectionItemsSO.Clear();
+
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
     }
 
     public void OpenSelection(List<SO_Item> Items)
@@ -126,10 +131,37 @@ public class LocalUI : MonoBehaviour
             m_SelectionItems[i].SelectionItem_DescriptionText.text = Items[i].ItemDescription;
             GameObject itemGO = Instantiate(Items[i].Chest_GameObject, m_SelectionItems[i].StoreItem_Socket);
             m_SelectionItemsGO.Add(itemGO);
+            m_SelectionItemsSO.Add(Items[i]);
 
-
+           
         }
 
+
+
+
+    }
+
+    public void SelectItem(int selectIndex)
+    {
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerLoadout.EquipItemInLoadout(m_SelectionItemsSO[selectIndex]);
+        //CloseSelection(); 
+    }
+
+    public void RefreshInventoryUI(Dictionary<ESlot, SO_Item> items)
+    {
+        Debug.Log("Refreshing Inventory UI");
+        foreach (var SO_Item in items)
+        {
+            if (SO_Item.Value == null)
+            {
+                ChangeSlotIcon(SO_Item.Key, null);
+            }
+            else
+            {
+                ChangeSlotIcon(SO_Item.Key, SO_Item.Value.ItemIcon);
+            }
+            
+        }
     }
     
 

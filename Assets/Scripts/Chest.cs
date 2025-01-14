@@ -31,7 +31,7 @@ public class Chest : Usable
         base.TryUse();
 
         LoadChest(3,EItemRarity.Common);
-        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.SwitchState(PlayerControls.PlayerControls.ECrontrolState.Selecting);
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Selecting);
         LocalUI.Instance.OpenSelection(m_ChosenItems); 
 
         

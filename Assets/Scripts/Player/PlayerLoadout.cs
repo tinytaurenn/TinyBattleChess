@@ -39,6 +39,8 @@ public class PlayerLoadout : MonoBehaviour
     public SO_Item m_Slot_3;
     public SO_Item m_Slot_4;
 
+    [SerializeField] SO_Item m_StandByItem; 
+
     //public SO_Armor m_Helmet;
     //public SO_Armor m_Chest;
     //public SO_Armor m_Legs;
@@ -95,11 +97,17 @@ public class PlayerLoadout : MonoBehaviour
             Debug.Log("equip SO  weapon in loadout : " + item.GetType().ToString());
             SO_Weapon weapon = (SO_Weapon)item;
             EquipWeaponLoadout(weapon);
-            return; 
+            CloseItemSelection();
+
         }
-        Debug.Log("equip SO  item in loadout : " + item.GetType().ToString());
-        EquipInventoryItemInLoadout(item);
-        return;
+        else
+        {
+            Debug.Log("equip SO  item in loadout : " + item.GetType().ToString());
+            EquipInventoryItemInLoadout(item);
+            
+            
+        }
+        
 
     }
 
@@ -202,6 +210,7 @@ public class PlayerLoadout : MonoBehaviour
         {
             m_MainWeapon = weapon;
             m_SecondaryWeapon = null;
+
             
             return; 
         }
@@ -236,20 +245,48 @@ public class PlayerLoadout : MonoBehaviour
         if(TryFindEmptySlot(out ESlot slot))
         {
 
-            if (slot == ESlot.Slot_1) { m_Slot_1 = item; return; }
-            if (slot == ESlot.Slot_2) { m_Slot_2 = item; return; }
-            if (slot == ESlot.Slot_3) { m_Slot_3 = item; return; }
-            if (slot == ESlot.Slot_4) { m_Slot_4 = item; return; }
+            if (slot == ESlot.Slot_1) { m_Slot_1 = item; }
+            else if (slot == ESlot.Slot_2) { m_Slot_2 = item; }
+            else if (slot == ESlot.Slot_3) { m_Slot_3 = item; }
+            else if (slot == ESlot.Slot_4) { m_Slot_4 = item;  }
+
+            CloseItemSelection();
+
         }
         else
         {
             //select and replace
             Debug.Log("no place left in loadout, replacing"); 
+            m_StandByItem = item;
+            ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.ReplaceInventorySlot();
+            
         }
 
-        
 
+    }
 
+    public void ReplaceInventorySlotLoadout(int slot)
+    {
+        Debug.Log("replace inventory slot");
+        switch (slot)
+        {
+            case 0:
+                m_Slot_1 = m_StandByItem;
+                break;
+            case 1:
+                m_Slot_2 = m_StandByItem;
+                break;
+            case 2:
+                m_Slot_3 = m_StandByItem;
+                break;
+            case 3:
+                m_Slot_4 = m_StandByItem;
+                break;
+            default:
+                break;
+        }
+
+        CloseItemSelection();
     }
 
     void EquipWeapon(BasicWeapon weapon, out bool rightHand)
@@ -356,7 +393,79 @@ public class PlayerLoadout : MonoBehaviour
         return false; 
     }
 
-    
-    
+    void RefreshStuffUI()
+    {
+        switch (m_InventoryType)
+        {
+            case EInventoryType.Loadout:
+                ShowLoadoutUI();
+                break;
+            case EInventoryType.Equipped:
+                ShowEquippedUI();
+                break;
+            default:
+                break;
+        }
+    }
+
+    void CloseItemSelection()
+    {
+        Debug.Log("close item selection from playerloadout");
+        
+        LocalUI.Instance.CloseSelection();
+        SwitchStuffUI(EInventoryType.Loadout); 
+    }
+
+    private void SwitchStuffUI(EInventoryType inventoryType)
+    {
+       
+
+        switch (m_InventoryType)
+        {
+            case EInventoryType.Loadout:
+                ShowLoadoutUI(); 
+                break;
+            case EInventoryType.Equipped:
+                ShowEquippedUI(); 
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    void ShowLoadoutUI()
+    {
+        Debug.Log("show loadout ui"); 
+        Dictionary<ESlot, SO_Item> items = new Dictionary<ESlot, SO_Item>
+        {
+            {ESlot.MainWeapon, m_MainWeapon},
+            {ESlot.SecondaryWeapon, m_SecondaryWeapon},
+            {ESlot.Slot_1, m_Slot_1},
+            {ESlot.Slot_2, m_Slot_2},
+            {ESlot.Slot_3, m_Slot_3},
+            {ESlot.Slot_4, m_Slot_4},
+        };
+
+        LocalUI.Instance.RefreshInventoryUI(items);
+    }
+    void ShowEquippedUI()
+    {
+        Debug.Log("show Equipped ui");
+        Dictionary<ESlot, SO_Item> items = new Dictionary<ESlot, SO_Item>
+        {
+            {ESlot.MainWeapon, m_EquippedWeapons[ESlot.MainWeapon].SO_Item},
+            {ESlot.SecondaryWeapon, m_EquippedWeapons[ESlot.SecondaryWeapon].SO_Item},
+            {ESlot.Slot_1, m_EquippedItems[ESlot.Slot_1].SO_Item},
+            {ESlot.Slot_2, m_EquippedItems[ESlot.Slot_2].SO_Item},
+            {ESlot.Slot_3, m_EquippedItems[ESlot.Slot_3].SO_Item},
+            {ESlot.Slot_4, m_EquippedItems[ESlot.Slot_4].SO_Item},
+        };
+
+        LocalUI.Instance.RefreshInventoryUI(items);
+    }
+
+
+
 
 }

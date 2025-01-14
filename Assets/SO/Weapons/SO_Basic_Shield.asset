@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 21300000, guid: 59eaa3b53e379e443a2843d9f268f720, type: 3}
   ItemName: Basic Shield
+  ItemDescription: A Simple Shield
   Usable_GameObject: {fileID: 5939298459688205857, guid: 2c19a04c42faa6b4398e588b58d31f5f, type: 3}
   Chest_GameObject: {fileID: 148541982870755977, guid: d6262c38f8e30894b896ca3c890b3074, type: 3}
   Cost: 8
