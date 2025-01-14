@@ -8,7 +8,7 @@ public class SO_Item : ScriptableObject
    
     public string ItemName = "Basic Sword";
 
-    public Text Text;
+    public string ItemDescription;
 
     public GameObject Usable_GameObject;
     public GameObject Chest_GameObject;

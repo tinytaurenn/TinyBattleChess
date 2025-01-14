@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Coherence.Core.NativeTransport;
 
 public class ESlotToSlotUIDictionary : SerializableDictionary<PlayerLoadout.ESlot, SlotUI> { }
 
@@ -19,8 +20,33 @@ public class LocalUI : MonoBehaviour
     //Dictionary<PlayerLoadout.ESlot, SlotUI> m_SlotDictionary = new Dictionary<PlayerLoadout.ESlot, SlotUI>();
     ESlotToSlotUIDictionary m_SlotDictionary = new ESlotToSlotUIDictionary();
 
-    [SerializeField] TextMeshProUGUI m_UsableText; 
-    
+    [SerializeField] TextMeshProUGUI m_UsableText;
+
+    [Space(10)]
+    [Header("Selection Panel")]
+
+    [SerializeField] GameObject m_SelectionPanel;
+    [SerializeField] Image m_SelectionFade;
+
+    [Serializable]
+    struct FSelectionItem
+    {
+        public Transform StoreItem_Socket;
+        public TextMeshProUGUI SelectionItem_NameText; 
+        public TextMeshProUGUI SelectionItem_DescriptionText; 
+
+        public FSelectionItem(Transform Socket, TextMeshProUGUI NameText, TextMeshProUGUI DescriptionText)
+        {
+            StoreItem_Socket = Socket;
+            SelectionItem_NameText = NameText;
+            SelectionItem_DescriptionText = DescriptionText;
+        }
+
+    }
+
+    [SerializeField] List<FSelectionItem> m_SelectionItems = new List<FSelectionItem>();
+    [SerializeField] List<GameObject> m_SelectionItemsGO = new List<GameObject>();
+     
 
     private void Awake()
     {
@@ -73,6 +99,37 @@ public class LocalUI : MonoBehaviour
     public void HideUsable()
     {
         m_UsableText.enabled = false;
+    }
+
+    public void CloseSelection()
+    {
+        m_SelectionPanel.SetActive(false);
+        m_SelectionFade.enabled = false;
+
+        for (int i = 0; i < m_SelectionItemsGO.Count; i++)
+        {
+            Destroy(m_SelectionItemsGO[i]);
+        }
+
+        m_SelectionItemsGO.Clear();
+    }
+
+    public void OpenSelection(List<SO_Item> Items)
+    {
+
+        m_SelectionPanel.SetActive(true);
+        m_SelectionFade.enabled = true;
+
+        for (int i = 0; i < m_SelectionItems.Count; i++)
+        {
+            m_SelectionItems[i].SelectionItem_NameText.text = Items[i].ItemName;
+            m_SelectionItems[i].SelectionItem_DescriptionText.text = Items[i].ItemDescription;
+            GameObject itemGO = Instantiate(Items[i].Chest_GameObject, m_SelectionItems[i].StoreItem_Socket);
+            m_SelectionItemsGO.Add(itemGO);
+
+
+        }
+
     }
     
 

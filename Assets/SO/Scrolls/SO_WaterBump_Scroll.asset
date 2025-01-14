@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 0}
   ItemName: Water Bump Scroll
+  ItemDescription: 
   Usable_GameObject: {fileID: 7003793399489357865, guid: 0f6b5aa5bcd577f4aa6ed491962442e0, type: 3}
-  Chest_GameObject: {fileID: 0}
+  Chest_GameObject: {fileID: 7003793399489357865, guid: d8775dd911057784e995567a0b25843a, type: 3}
   Cost: 6
   EItemRarity: 2
   ScrollElem: 264

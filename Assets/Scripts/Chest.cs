@@ -31,19 +31,16 @@ public class Chest : Usable
         base.TryUse();
 
         LoadChest(3,EItemRarity.Common);
-        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.SwitchState(PlayerControls.PlayerControls.ECrontrolState.Selecting); 
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.SwitchState(PlayerControls.PlayerControls.ECrontrolState.Selecting);
+        LocalUI.Instance.OpenSelection(m_ChosenItems); 
 
-        //SO_Item newItem = GetItemFast();
-        //Debug.Log("Chest opened : " + newItem.ItemName);
-        //ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerLoadout.EquipItemInLoadout(newItem); 
         
     }
 
     public void LoadChest(int number,EItemRarity rarity)
     {
         m_ChosenItems = m_ChestSO.GetItemsList(number, rarity);
-
-        
+ 
     }
 
     public SO_Item GetItem()
