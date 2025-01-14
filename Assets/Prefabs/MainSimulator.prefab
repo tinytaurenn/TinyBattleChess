@@ -497,7 +497,7 @@ MonoBehaviour:
   m_DummyGameObject: {fileID: 5699538527182793423, guid: c473af9c10567024caf206bf6752a656, type: 3}
   m_PlayerSyncs: []
   m_RoundTime: {fileID: 1338625383742743499}
-  m_ShopRoundTime: 90
+  m_ShopRoundTime: 20
   m_ShopSpawnPositions: {fileID: 0}
   m_BattleSpawnPositions: {fileID: 0}
   m_DummiesSpawnPositions: {fileID: 0}
@@ -561,11 +561,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8284520083408309598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -26.9, y: -15.2}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10.4, y: -8.8}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &6482455505819006232
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

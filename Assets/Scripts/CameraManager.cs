@@ -11,8 +11,9 @@ public class CameraManager : MonoBehaviour
 
 
     public Transform m_PlayerTransform;
-    [SerializeField] InputActionReference m_MouseCamInputRef;
+    //[SerializeField] InputActionReference m_MouseCamInputRef;
     
+    public Vector2 MouseDelta { get; set; }
 
 
     [Space(10)]
@@ -48,12 +49,12 @@ public class CameraManager : MonoBehaviour
 
     private void OnEnable()
     {
-        m_MouseCamInputRef.action.Enable();
+        //m_MouseCamInputRef.action.Enable();
 
     }
     private void OnDisable()
     {
-        m_MouseCamInputRef.action.Disable();
+        //m_MouseCamInputRef.action.Disable();
 
     }
     void Start()
@@ -90,22 +91,16 @@ public class CameraManager : MonoBehaviour
 
     void MouseControlCamera()
     {
-        if (m_MouseCamInputRef.action.IsPressed())
-        {
-
-            float mouseDeltaX = m_MouseCamInputRef.action.ReadValue<Vector2>().x;
-            //float mouseDeltaY = m_MouseCamInputRef.action.ReadValue<Vector2>().y; 
+        float mouseDeltaX = MouseDelta.x;
+        //float mouseDeltaY = m_MouseCamInputRef.action.ReadValue<Vector2>().y; 
 
 
 
-            Vector3 targetPostion = m_PlayerTransform.position;
+        Vector3 targetPostion = m_PlayerTransform.position;
 
 
-            transform.RotateAround(targetPostion, Vector3.up, mouseDeltaX * m_CameraRotateSpeed);
-            //transform.RotateAround(targetPostion, transform.right, -mouseDeltaY * m_CameraRotateSpeed);
-
-
-        }
+        transform.RotateAround(targetPostion, Vector3.up, mouseDeltaX * m_CameraRotateSpeed);
+        //transform.RotateAround(targetPostion, transform.right, -mouseDeltaY * m_CameraRotateSpeed);
 
         Vector3 localTargetOffset = m_PlayerTransform.forward * m_TargetOffset.z + m_PlayerTransform.right * m_TargetOffset.x + m_PlayerTransform.up * m_TargetOffset.y;
         Vector3 targetLookAtPosition;
@@ -146,6 +141,12 @@ public class CameraManager : MonoBehaviour
         float zPositionLerp = Mathf.Lerp(transform.position.z, newPosition.z, m_FollowSpeed * Time.fixedDeltaTime);
 
         transform.position = new Vector3(xPositionLerp, yPositionLerp, zPositionLerp);
+    }
+
+    internal void LookUpdate(InputAction.CallbackContext context)
+    {
+        Debug.Log("LookUpdate " + context.ReadValue<Vector2>().ToString());
+        MouseDelta = context.ReadValue<Vector2>();
     }
 
     #endregion

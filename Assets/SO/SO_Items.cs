@@ -7,20 +7,20 @@ using UnityEngine;
 [Flags]
 public enum EItemType
 {
-    Weapon = 1,
-    Armor = 2,  // passive without consomption
-    Potion = 4, // passive with consomption
-    Scroll = 8, // ability with consomption
-    Rune = 16 // Ability without consomption
+    Weapon = 1, //rouge brun
+    Armor = 2,  // passive without consomption // gris bleu 
+    Potion = 4, // passive with consomption //vert pomme
+    Scroll = 8, // ability with consomption // orange colruyt 
+    Rune = 16 // Ability without consomption // bleu electrique
 }
 
 public enum EItemRarity
 {
-    Common = 0 ,
-    Uncommon = 1,
-    Rare = 2,
-    Epic= 3,
-    Legendary = 4
+    Common = 0 , // white
+    Uncommon = 1, // green 
+    Rare = 2, //blue
+    Epic= 3, // purple
+    Legendary = 4 // orange
 }
 
 [CreateAssetMenu(fileName = "SO_Items", menuName = "Scriptable Objects/Items/SO_Items")]

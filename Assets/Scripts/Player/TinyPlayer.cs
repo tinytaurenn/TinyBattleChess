@@ -21,7 +21,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     CoherenceSync m_Sync;
     PlayerMovement m_PlayerMovement;
     Collider m_Collider; 
-    PlayerControls.PlayerControls m_PlayerControls;
+    internal PlayerControls.PlayerControls m_PlayerControls;
     PlayerUse m_PlayerUse;
     PlayerWeapons m_PlayerWeapons;
     Ragdoll m_RagDoll;

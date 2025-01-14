@@ -231,6 +231,8 @@ public class PlayerLoadout : MonoBehaviour
 
         //ESlot slot = FindFirstEmptySlot();
 
+        //open UI
+
         if(TryFindEmptySlot(out ESlot slot))
         {
 

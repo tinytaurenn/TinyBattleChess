@@ -33,6 +33,9 @@ namespace PlayerControls
         {
             //m_InputActions.Enable();
             m_InputActions.Player.Enable();
+
+            m_InputActions.Player.Look.performed += CameraManager.Instance.LookUpdate;
+            m_InputActions.Ghost.Look.performed += CameraManager.Instance.LookUpdate;
            
             m_InputActions.Player.Jump.performed += Jump;
             m_InputActions.Player.Jump.canceled += CancelJump;
@@ -58,9 +61,10 @@ namespace PlayerControls
 
         private void OnDisable()
         {
-            m_InputActions.Player.Disable(); 
+            m_InputActions.Player.Disable();
 
-
+            m_InputActions.Player.Look.performed -= CameraManager.Instance.LookUpdate;
+            m_InputActions.Ghost.Look.performed -= CameraManager.Instance.LookUpdate;
 
             m_InputActions.Player.Jump.performed -= Jump;
             m_InputActions.Player.Jump.canceled -= CancelJump;
@@ -98,7 +102,7 @@ namespace PlayerControls
 
         void Start()
         {
-
+            OnEnterState(); 
         }
 
         // Update is called once per frame
@@ -203,7 +207,7 @@ namespace PlayerControls
                 case ECrontrolState.Ghost:
                     SetMovementValue(m_InputActions.Ghost.Move.ReadValue<Vector2>());
                    
-                    m_PlayerWeapons.m_LookDirection = m_InputActions.Ghost.Look.ReadValue<Vector2>();
+                    
 
                     break;
                 case ECrontrolState.Selecting:
@@ -229,11 +233,17 @@ namespace PlayerControls
             {
                 case ECrontrolState.Player:
                     m_InputActions.Player.Enable();
+                    Cursor.visible = false;
                     break;
                 case ECrontrolState.Ghost:
                     m_InputActions.Ghost.Enable();
+                    Cursor.visible = false;
+
                     break;
                 case ECrontrolState.Selecting:
+                    m_InputActions.PowerSelect.Enable();
+                    CameraManager.Instance.MouseDelta = Vector2.zero;
+                    Cursor.visible = true;
                     break;
                 default:
                     break;
@@ -251,6 +261,7 @@ namespace PlayerControls
                     m_InputActions.Ghost.Disable();
                     break;
                 case ECrontrolState.Selecting:
+                    m_InputActions.PowerSelect.Disable();
                     break;
                 default:
                     break;

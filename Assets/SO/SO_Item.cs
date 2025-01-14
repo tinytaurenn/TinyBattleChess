@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class SO_Item : ScriptableObject
@@ -6,6 +7,8 @@ public class SO_Item : ScriptableObject
     public Sprite ItemIcon; 
    
     public string ItemName = "Basic Sword";
+
+    public Text Text;
 
     public GameObject Usable_GameObject;
     public GameObject Chest_GameObject;

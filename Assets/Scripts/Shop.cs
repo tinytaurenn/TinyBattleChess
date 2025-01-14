@@ -24,7 +24,7 @@ public class Shop : MonoBehaviour
     {
         foreach (Chest chest in m_ChestList)
         {
-            chest.LoadChest(rarity);
+            chest.LoadChest(3,rarity);
         }
     }
     

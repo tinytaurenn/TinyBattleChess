@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2119591803661142741}
   - component: {fileID: 3381831493099673593}
   - component: {fileID: 803343475871954161}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GoldenTear_Potion_Usable
   m_TagString: Untagged
   m_Icon: {fileID: 0}

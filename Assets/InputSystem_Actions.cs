@@ -993,7 +993,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""7607c7b6-cd76-4816-beef-bd0341cfe950"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -1002,7 +1002,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""15cef263-9014-4fd5-94d9-4e4a6234a6ef"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -1491,6 +1491,74 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Power Select"",
+            ""id"": ""7530d1b3-4e19-492a-9fcd-3030b6c5c0cf"",
+            ""actions"": [
+                {
+                    ""name"": ""Select_1"",
+                    ""type"": ""Button"",
+                    ""id"": ""93f31ee5-0243-41e7-8103-7cdb91dd4f53"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select_2"",
+                    ""type"": ""Button"",
+                    ""id"": ""43e9d3cf-46ed-4159-a775-e7fcacc35efb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select_3"",
+                    ""type"": ""Button"",
+                    ""id"": ""5895b1d2-030f-427e-8604-19faf8903379"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""dc9061ad-2797-4f5b-be4f-be553a60f5b1"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e1fede1-d949-4996-b20d-d46bccfdf504"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select_2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99d59fcf-51c1-4528-86c4-0a5173fa7813"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select_3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1593,6 +1661,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Power Select
+        m_PowerSelect = asset.FindActionMap("Power Select", throwIfNotFound: true);
+        m_PowerSelect_Select_1 = m_PowerSelect.FindAction("Select_1", throwIfNotFound: true);
+        m_PowerSelect_Select_2 = m_PowerSelect.FindAction("Select_2", throwIfNotFound: true);
+        m_PowerSelect_Select_3 = m_PowerSelect.FindAction("Select_3", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1600,6 +1673,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Ghost.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Ghost.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PowerSelect.enabled, "This will cause a leak and performance issues, InputSystem_Actions.PowerSelect.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -2019,6 +2093,68 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Power Select
+    private readonly InputActionMap m_PowerSelect;
+    private List<IPowerSelectActions> m_PowerSelectActionsCallbackInterfaces = new List<IPowerSelectActions>();
+    private readonly InputAction m_PowerSelect_Select_1;
+    private readonly InputAction m_PowerSelect_Select_2;
+    private readonly InputAction m_PowerSelect_Select_3;
+    public struct PowerSelectActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+        public PowerSelectActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Select_1 => m_Wrapper.m_PowerSelect_Select_1;
+        public InputAction @Select_2 => m_Wrapper.m_PowerSelect_Select_2;
+        public InputAction @Select_3 => m_Wrapper.m_PowerSelect_Select_3;
+        public InputActionMap Get() { return m_Wrapper.m_PowerSelect; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PowerSelectActions set) { return set.Get(); }
+        public void AddCallbacks(IPowerSelectActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PowerSelectActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PowerSelectActionsCallbackInterfaces.Add(instance);
+            @Select_1.started += instance.OnSelect_1;
+            @Select_1.performed += instance.OnSelect_1;
+            @Select_1.canceled += instance.OnSelect_1;
+            @Select_2.started += instance.OnSelect_2;
+            @Select_2.performed += instance.OnSelect_2;
+            @Select_2.canceled += instance.OnSelect_2;
+            @Select_3.started += instance.OnSelect_3;
+            @Select_3.performed += instance.OnSelect_3;
+            @Select_3.canceled += instance.OnSelect_3;
+        }
+
+        private void UnregisterCallbacks(IPowerSelectActions instance)
+        {
+            @Select_1.started -= instance.OnSelect_1;
+            @Select_1.performed -= instance.OnSelect_1;
+            @Select_1.canceled -= instance.OnSelect_1;
+            @Select_2.started -= instance.OnSelect_2;
+            @Select_2.performed -= instance.OnSelect_2;
+            @Select_2.canceled -= instance.OnSelect_2;
+            @Select_3.started -= instance.OnSelect_3;
+            @Select_3.performed -= instance.OnSelect_3;
+            @Select_3.canceled -= instance.OnSelect_3;
+        }
+
+        public void RemoveCallbacks(IPowerSelectActions instance)
+        {
+            if (m_Wrapper.m_PowerSelectActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPowerSelectActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PowerSelectActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PowerSelectActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PowerSelectActions @PowerSelect => new PowerSelectActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -2103,5 +2239,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IPowerSelectActions
+    {
+        void OnSelect_1(InputAction.CallbackContext context);
+        void OnSelect_2(InputAction.CallbackContext context);
+        void OnSelect_3(InputAction.CallbackContext context);
     }
 }

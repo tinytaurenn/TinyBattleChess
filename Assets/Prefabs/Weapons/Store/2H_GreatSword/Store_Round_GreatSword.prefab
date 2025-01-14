@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5793559848071649141}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Store_Round_GreatSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4542925365583618919}
   - component: {fileID: 3461116862188701093}
   - component: {fileID: 3063069950254614984}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GreatSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}

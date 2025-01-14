@@ -1,3 +1,4 @@
+using PlayerControls;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,17 +29,19 @@ public class Chest : Usable
     public override  void  TryUse()
     {
         base.TryUse();
-        //LoadChest(EItemRarity.Common);
-        //SO_Item newItem = GetItem();
-        SO_Item newItem = GetItemFast();
-        Debug.Log("Chest opened : " + newItem.ItemName);
-        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerLoadout.EquipItemInLoadout(newItem); 
+
+        LoadChest(3,EItemRarity.Common);
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.SwitchState(PlayerControls.PlayerControls.ECrontrolState.Selecting); 
+
+        //SO_Item newItem = GetItemFast();
+        //Debug.Log("Chest opened : " + newItem.ItemName);
+        //ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerLoadout.EquipItemInLoadout(newItem); 
         
     }
 
-    public void LoadChest(EItemRarity rarity)
+    public void LoadChest(int number,EItemRarity rarity)
     {
-        m_ChosenItems = m_ChestSO.GetItemsList(5,rarity);
+        m_ChosenItems = m_ChestSO.GetItemsList(number, rarity);
 
         
     }

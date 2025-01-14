@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6490945435661782693}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Store_Basic_Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4250424828205375040}
   - component: {fileID: 5762513851498459854}
   - component: {fileID: 4981457288159329144}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
