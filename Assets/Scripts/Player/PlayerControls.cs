@@ -193,7 +193,11 @@ namespace PlayerControls
         void ChoiceSelect3(InputAction.CallbackContext context) => LocalUI.Instance.SelectItem(2);
 
 
-    
+        void SelectItem(int index)
+        {
+            m_InputActions.PowerSelect.Exit.performed += ExitSelectionPanel;
+            LocalUI.Instance.SelectItem(index);
+        }
 
         public void ExitSelectionPanel(InputAction.CallbackContext context)
         {
@@ -202,18 +206,28 @@ namespace PlayerControls
             
         }
 
-        public void ReplaceInventorySlot()
+        public void EnterReplaceInventorySlotControls()
         {
             m_InputActions.PowerSelect.Replace1.performed += ReplaceSlot1;
             m_InputActions.PowerSelect.Replace2.performed += ReplaceSlot2;
             m_InputActions.PowerSelect.Replace3.performed += ReplaceSlot3;
             m_InputActions.PowerSelect.Replace4.performed += ReplaceSlot4; 
 
-            Debug.Log("exit unsuscribed");
 
             m_InputActions.PowerSelect.Exit.performed -= ExitSelectionPanel;
 
 
+        }
+
+        public void ExitReplaceInventorySlotControls()
+        {
+            m_InputActions.PowerSelect.Replace1.performed -= ReplaceSlot1;
+            m_InputActions.PowerSelect.Replace2.performed -= ReplaceSlot2;
+            m_InputActions.PowerSelect.Replace3.performed -= ReplaceSlot3;
+            m_InputActions.PowerSelect.Replace4.performed -= ReplaceSlot4;
+
+
+            m_InputActions.PowerSelect.Exit.performed += ExitSelectionPanel;
         }
         void ReplaceSlot1(InputAction.CallbackContext context) => ReplaceSlot(0);
         void ReplaceSlot2(InputAction.CallbackContext context) => ReplaceSlot(1);
@@ -224,12 +238,7 @@ namespace PlayerControls
         {
             m_PlayerLoadout.ReplaceInventorySlotLoadout(slotIndex);
 
-            m_InputActions.PowerSelect.Replace1.performed -= ReplaceSlot1;
-            m_InputActions.PowerSelect.Replace2.performed -= ReplaceSlot2;
-            m_InputActions.PowerSelect.Replace3.performed -= ReplaceSlot3;
-            m_InputActions.PowerSelect.Replace4.performed -= ReplaceSlot4;
-
-            m_InputActions.PowerSelect.Exit.performed += ExitSelectionPanel;
+            ExitReplaceInventorySlotControls(); 
         }
 
         

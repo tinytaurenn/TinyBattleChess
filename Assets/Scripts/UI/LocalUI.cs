@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,7 +52,11 @@ public class LocalUI : MonoBehaviour
     [SerializeField] List<FSelectionItem> m_SelectionItems = new List<FSelectionItem>();
     [SerializeField] List<GameObject> m_SelectionItemsGO = new List<GameObject>();
     [SerializeField] List<SO_Item> m_SelectionItemsSO = new List<SO_Item>();
-     
+
+    [SerializeField] TextMeshProUGUI m_ReplacementText;
+    [SerializeField] Color m_ReplacementColor; 
+
+
 
     private void Awake()
     {
@@ -120,6 +125,7 @@ public class LocalUI : MonoBehaviour
         m_SelectionItemsSO.Clear();
 
         ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.ExitReplaceInventorySlotControls();
     }
 
     public void OpenSelection(List<SO_Item> Items)
@@ -147,7 +153,15 @@ public class LocalUI : MonoBehaviour
     public void SelectItem(int selectIndex)
     {
         ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerLoadout.EquipItemInLoadout(m_SelectionItemsSO[selectIndex]);
+
         //CloseSelection(); 
+    }
+
+    public void OnReplaceItem()
+    {
+        ColorSlots(m_ReplacementColor);
+        m_ReplacementText.enabled = true;
+
     }
 
     public void RefreshInventoryUI(Dictionary<ESlot, SO_Item> items, PlayerLoadout.EInventoryType inventoryType)
@@ -171,6 +185,8 @@ public class LocalUI : MonoBehaviour
 
     void ColorInventoryByInventoryType(PlayerLoadout.EInventoryType inventoryType)
     {
+
+        m_ReplacementText.enabled = false;
         switch (inventoryType)
         {
             case EInventoryType.Loadout:
@@ -189,6 +205,15 @@ public class LocalUI : MonoBehaviour
     {
         foreach (var slot in m_SlotDictionary)
         {
+            slot.Value.ColorSlot(color);
+        }
+    }
+
+    void ColorSlots(Color color)
+    {
+        foreach (var slot in m_SlotDictionary)
+        {
+            if(slot.Key == ESlot.SecondaryWeapon || slot.Key == ESlot.MainWeapon) continue;
             slot.Value.ColorSlot(color);
         }
     }

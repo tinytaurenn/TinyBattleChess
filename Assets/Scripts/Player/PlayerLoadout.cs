@@ -258,7 +258,8 @@ public class PlayerLoadout : MonoBehaviour
             //select and replace
             Debug.Log("no place left in loadout, replacing"); 
             m_StandByItem = item;
-            ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.ReplaceInventorySlot();
+            ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.EnterReplaceInventorySlotControls();
+            LocalUI.Instance.OnReplaceItem(); 
             
         }
 
