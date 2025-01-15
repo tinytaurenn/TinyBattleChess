@@ -33,6 +33,12 @@ public class LocalUI : MonoBehaviour
     [SerializeField] GameObject m_SelectionPanel;
     [SerializeField] Image m_SelectionFade;
 
+    [Space(10)]
+    [Header("Shop Related")]
+
+    [SerializeField] GameObject m_ShopRelatedGO;
+    [SerializeField] TextMeshProUGUI m_GoldText;
+
     [Serializable]
     struct FSelectionItem
     {
@@ -216,6 +222,17 @@ public class LocalUI : MonoBehaviour
             if(slot.Key == ESlot.SecondaryWeapon || slot.Key == ESlot.MainWeapon) continue;
             slot.Value.ColorSlot(color);
         }
+    }
+
+    public void UpdateGoldAmount(int amount)
+    {
+        m_GoldText.text = amount.ToString();
+    }
+
+    public void ShowShopRelated(bool show)
+    {
+        m_ShopRelatedGO.SetActive(show); 
+        UpdateGoldAmount(ConnectionsHandler.Instance.LocalTinyPlayer.PlayerGold);
     }
     
 

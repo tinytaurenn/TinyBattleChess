@@ -49,6 +49,20 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     [Header("Player Ghost")]
     [SerializeField] GameObject m_PlayerGhost;
 
+    [Space(10)]
+    [Header("Player Gold")]
+
+    [SerializeField] int m_PlayerGold = 10;
+
+    public int PlayerGold
+    {
+        get { return m_PlayerGold; }
+        set {
+            value = Mathf.Clamp(value, 0, 9999);
+            m_PlayerGold = value; 
+            LocalUI.Instance.UpdateGoldAmount(m_PlayerGold);
+            }
+    }
 
     private void Awake()
     {
@@ -447,6 +461,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 break;
             case 1: //shop 
                 Debug.Log("exit Shop ");
+                LocalUI.Instance.ShowShopRelated(false);
 
                 break;
             case 2: //fighting
@@ -471,10 +486,12 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             case 1: //shop 
                 Debug.Log("Shop, stopping PVP ");
                 m_PlayerLoadout.UnloadEquippedStuff();
+                LocalUI.Instance.ShowShopRelated(true); 
 
                 break;
             case 2: //fighting
                 m_PlayerLoadout.EquipLoadout(); 
+
 
                 
                 break;

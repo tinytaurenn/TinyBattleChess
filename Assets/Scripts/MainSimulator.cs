@@ -11,30 +11,38 @@ using UnityEngine.Playables;
 
 public class MainSimulator : MonoBehaviour
 {
+
+
     [SerializeField] GameObject m_PlayerGameObject;
     [SerializeField] GameObject m_DummyGameObject;
 
     CoherenceBridge m_CoherenceBridge;
     CoherenceSync m_Sync; 
-    //public Dictionary<ClientID, CoherenceSync> m_Players = new();
-    //[SerializeField] private List<GameObject> m_PlayerObjects = new List<GameObject>();
+
     [SerializeField] private List<CoherenceSync> m_PlayerSyncs = new List<CoherenceSync>();
 
+    [Space(10)]
+    [Header("Timers")]
 
     [SerializeField] TextMeshProUGUI m_RoundTime;
     [SerializeField] float m_ShopRoundTime = 90f; 
     float m_RoundTimer = 0f;
+
+    [Space(10)]
+    [Header("Transforms")]
 
     [SerializeField] Transform m_ShopSpawnPositions;
     [SerializeField] Transform m_BattleSpawnPositions;
     [SerializeField] Transform m_DummiesSpawnPositions;
 
     //test 
+    [Space(10)]
+    [Header("Testings")]
+
 
     [SerializeField] GameObject SwordGameObject; 
     GameObject MySword = null;
 
-    
 
     public enum EPlayState
     {
@@ -49,6 +57,9 @@ public class MainSimulator : MonoBehaviour
         Lobby,
         InGame
     }
+
+    [Space(10)]
+    [Header("Turns and States")]
 
     internal EPlayState m_PlayState = EPlayState.Lobby;
     internal EGameState m_GameState = EGameState.Lobby;
