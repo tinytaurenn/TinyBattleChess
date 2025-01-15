@@ -22,7 +22,7 @@ public class PlayerLoadout : MonoBehaviour
         count = 6
     }
 
-    enum EInventoryType
+    public enum EInventoryType
     {
         Loadout, 
         Equipped,
@@ -413,24 +413,14 @@ public class PlayerLoadout : MonoBehaviour
         Debug.Log("close item selection from playerloadout");
         
         LocalUI.Instance.CloseSelection();
-        SwitchStuffUI(EInventoryType.Loadout); 
+        RefreshStuffUI(); 
     }
 
-    private void SwitchStuffUI(EInventoryType inventoryType)
+    public void SwitchStuffUI(EInventoryType inventoryType)
     {
-       
+        m_InventoryType = inventoryType;
 
-        switch (m_InventoryType)
-        {
-            case EInventoryType.Loadout:
-                ShowLoadoutUI(); 
-                break;
-            case EInventoryType.Equipped:
-                ShowEquippedUI(); 
-                break;
-            default:
-                break;
-        }
+        RefreshStuffUI(); 
 
     }
 
@@ -447,23 +437,27 @@ public class PlayerLoadout : MonoBehaviour
             {ESlot.Slot_4, m_Slot_4},
         };
 
-        LocalUI.Instance.RefreshInventoryUI(items);
+        LocalUI.Instance.RefreshInventoryUI(items, m_InventoryType);
     }
     void ShowEquippedUI()
     {
         Debug.Log("show Equipped ui");
         Dictionary<ESlot, SO_Item> items = new Dictionary<ESlot, SO_Item>
         {
-            {ESlot.MainWeapon, m_EquippedWeapons[ESlot.MainWeapon].SO_Item},
-            {ESlot.SecondaryWeapon, m_EquippedWeapons[ESlot.SecondaryWeapon].SO_Item},
-            {ESlot.Slot_1, m_EquippedItems[ESlot.Slot_1].SO_Item},
-            {ESlot.Slot_2, m_EquippedItems[ESlot.Slot_2].SO_Item},
-            {ESlot.Slot_3, m_EquippedItems[ESlot.Slot_3].SO_Item},
-            {ESlot.Slot_4, m_EquippedItems[ESlot.Slot_4].SO_Item},
+            {ESlot.MainWeapon, GetEquippedSO_Weapon(ESlot.MainWeapon)},
+            {ESlot.SecondaryWeapon,GetEquippedSO_Weapon(ESlot.SecondaryWeapon)},
+            {ESlot.Slot_1, GetEquippedSO_Item(ESlot.Slot_1)},
+            {ESlot.Slot_2, GetEquippedSO_Item(ESlot.Slot_2)},
+            {ESlot.Slot_3, GetEquippedSO_Item(ESlot.Slot_3)},
+            {ESlot.Slot_4, GetEquippedSO_Item(ESlot.Slot_4)},
         };
 
-        LocalUI.Instance.RefreshInventoryUI(items);
+        LocalUI.Instance.RefreshInventoryUI(items,m_InventoryType); 
     }
+
+    SO_Item GetEquippedSO_Item(ESlot slot) => m_EquippedItems[slot] == null ? null : m_EquippedItems[slot].SO_Item;
+    SO_Item GetEquippedSO_Weapon(ESlot slot) => m_EquippedWeapons[slot] == null ? null : m_EquippedWeapons[slot].SO_Item;
+    
 
 
 

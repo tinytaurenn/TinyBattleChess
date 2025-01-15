@@ -23,6 +23,9 @@ public class LocalUI : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI m_UsableText;
 
+    [SerializeField] Color m_LoadoutColor;
+    [SerializeField] Color m_EquippedColor; 
+
     [Space(10)]
     [Header("Selection Panel")]
 
@@ -147,7 +150,7 @@ public class LocalUI : MonoBehaviour
         //CloseSelection(); 
     }
 
-    public void RefreshInventoryUI(Dictionary<ESlot, SO_Item> items)
+    public void RefreshInventoryUI(Dictionary<ESlot, SO_Item> items, PlayerLoadout.EInventoryType inventoryType)
     {
         Debug.Log("Refreshing Inventory UI");
         foreach (var SO_Item in items)
@@ -161,6 +164,32 @@ public class LocalUI : MonoBehaviour
                 ChangeSlotIcon(SO_Item.Key, SO_Item.Value.ItemIcon);
             }
             
+        }
+
+        ColorInventoryByInventoryType(inventoryType);
+    }
+
+    void ColorInventoryByInventoryType(PlayerLoadout.EInventoryType inventoryType)
+    {
+        switch (inventoryType)
+        {
+            case EInventoryType.Loadout:
+                ColorInventory(m_LoadoutColor);
+                break;
+            case EInventoryType.Equipped:
+                ColorInventory(m_EquippedColor);
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+    void ColorInventory(Color color)
+    {
+        foreach (var slot in m_SlotDictionary)
+        {
+            slot.Value.ColorSlot(color);
         }
     }
     

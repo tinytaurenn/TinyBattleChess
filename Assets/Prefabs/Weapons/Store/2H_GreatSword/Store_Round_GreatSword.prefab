@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5793559848071649141}
+  - component: {fileID: 2143914789121142020}
   m_Layer: 9
   m_Name: Store_Round_GreatSword
   m_TagString: Untagged
@@ -32,6 +33,20 @@ Transform:
   - {fileID: 4542925365583618919}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &2143914789121142020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214585312935867641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0df650bea815944873942a912f479a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Rotating: 1
+  m_RotationSpeed: 1
 --- !u!1 &2958090443089522545
 GameObject:
   m_ObjectHideFlags: 0

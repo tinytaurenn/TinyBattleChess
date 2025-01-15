@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 7777286392842217631}
   - component: {fileID: -2306784185468642703}
   m_Layer: 6
-  m_Name: PlayerPrefab_1
+  m_Name: PlayerPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,19 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effdb3c7654e73f4f999a256ffcdede0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementInputAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_JumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_CrouchAction: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_SprintAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_UseAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_MouseLeftClick: {fileID: 4953943394375631746, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_MouseRightClick: {fileID: -414088526721206839, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_DropAction: {fileID: 2683022503882043607, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_MouseLookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_Slot1Action: {fileID: 4458600950735058029, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_Slot2Action: {fileID: 3496227975339065341, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_Slot3Action: {fileID: 5981155508306644295, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_Slot4Action: {fileID: -8238599038450421036, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_ControlState: 0
 --- !u!114 &712017614822695059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,7 +1880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PreviousMoveInput: {x: 0, y: 0, z: 0}
-  m_Speed: 5
+  m_Speed: 10
   m_VerticalSpeed: 5
   m_SmoothingValue: 0.5
   m_RotationSpeed: 12
@@ -1960,8 +1948,11 @@ MonoBehaviour:
   m_Slot_2: {fileID: 0}
   m_Slot_3: {fileID: 0}
   m_Slot_4: {fileID: 0}
-  m_SelectedSlot: 0
-  m_EquippedItemsDico:
+  m_StandByItem: {fileID: 0}
+  m_EquippedWeapons:
+    m_keys: 
+    m_values: []
+  m_EquippedItems:
     m_keys: 
     m_values: []
   m_PlayerLeftHandSocket: {fileID: 3293726256454769268}

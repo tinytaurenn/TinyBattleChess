@@ -21,4 +21,9 @@ public class SlotUI : MonoBehaviour
         m_Border.color = Color.white;
     }
 
+    public void ColorSlot(Color color)
+    {
+        m_Border.color = color; 
+    }
+
 }

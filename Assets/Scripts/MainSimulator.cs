@@ -62,7 +62,7 @@ public class MainSimulator : MonoBehaviour
     public void PlayStateValueSync(int oldValue, int newValue)
     {
         Debug.Log("new value is " + (EPlayState)newValue);
-        ConnectionsHandler.Instance.ChangePlayState(oldValue, newValue);
+        ConnectionsHandler.Instance.ChangePlayState(oldValue, newValue); 
     }
     //run on every synced players
     public void GameStateValueSync(int oldValue, int newValue)
@@ -409,7 +409,7 @@ public class MainSimulator : MonoBehaviour
 
     void UpdatePlayState()
     {
-        
+       
 
         switch (m_PlayState)
         {

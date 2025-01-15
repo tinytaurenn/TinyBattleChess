@@ -423,16 +423,42 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     }
     public void OnChangePlayState(int oldIntPlayState,int NewIntPlayState)
     {
+
+        switch (oldIntPlayState)
+        {
+            case 0: // Lobby
+                Debug.Log("exit lobby  ");
+                break;
+            case 1: //shop 
+                Debug.Log("exit Shop ");
+
+                break;
+            case 2: //fighting
+                Debug.Log("exit Fighting ");
+                
+
+                break;
+            case 3: //end 
+
+                break;
+            default:
+                break;
+        }
+
+
         switch (NewIntPlayState)
         {
             case 0: // Lobby
                 Debug.Log("lobby, stopping PVP ");
+                m_PlayerLoadout.SwitchStuffUI(PlayerLoadout.EInventoryType.Loadout);
                 break;
             case 1: //shop 
                 Debug.Log("Shop, stopping PVP ");
+                m_PlayerLoadout.SwitchStuffUI(PlayerLoadout.EInventoryType.Loadout);
 
                 break;
             case 2: //fighting
+                m_PlayerLoadout.SwitchStuffUI(PlayerLoadout.EInventoryType.Equipped); 
                 
                 break;
             case 3: //end 

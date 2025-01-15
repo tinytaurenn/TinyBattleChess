@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5676640172574914801}
   - component: {fileID: 8941168181639787532}
   - component: {fileID: 5388847099447698426}
+  - component: {fileID: 7312853770491063796}
   m_Layer: 9
   m_Name: Store_Basic_Sword
   m_TagString: Weapon
@@ -86,3 +87,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7312853770491063796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634794106180705974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0df650bea815944873942a912f479a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Rotating: 1
+  m_RotationSpeed: 1

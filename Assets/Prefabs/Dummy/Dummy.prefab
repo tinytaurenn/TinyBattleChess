@@ -202,7 +202,6 @@ MonoBehaviour:
   preserveChildren: 1
   bindings:
   - rid: 9113002358946136937
-  - rid: 9113002362049397006
   - rid: 9113002362049397008
   - rid: 9113002364617097644
   - rid: 9113002380181898011
@@ -276,49 +275,6 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.TransformBindings.PositionBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 9113002362049397006
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 9113002362049397007
-        routing: 1
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: df4c30db719f4e8494aee9fa09f11b9f
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-        unityComponent: {fileID: 2607659342849482176}
-        coherenceSync: {fileID: 6164657841644225223}
-        interpolationSettings: {fileID: 0}
-    - rid: 9113002362049397007
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: TakeDamageSync
-        monoAssemblyType: 
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 0
-        valueSyncCallbackName: 
-        memberType: 8
-        parameterAssemblyTypes:
-        - System.Int32, mscorlib
-        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
-        ownerType:
-          assemblyQualifiedName: Dummy, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
     - rid: 9113002362049397008
@@ -626,6 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb6ca372003fd74b911fcd75fad88b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HurtFX: {fileID: 0}
   m_ParryAudios:
   - {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
   - {fileID: 8300000, guid: a7736c1763bd76c4eb0d52aaad581deb, type: 3}
