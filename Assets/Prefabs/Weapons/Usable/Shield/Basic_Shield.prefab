@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 5939298459688205857}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.411, y: -0.255, z: 54.138626}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -227,7 +227,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.6275768, y: 0.9694968, z: 0.17437744}
   m_Center: {x: 0.006922245, y: 0.46299228, z: 0.065090194}
@@ -254,7 +254,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
     Speed: 1.5
     Cost: 20
     WeaponType: 256
-    WeaponSize: 2
+    WeaponSize: 1
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
   HitSounds: []

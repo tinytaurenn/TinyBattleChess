@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 21300000, guid: eaa9df8574b806e4f9f8cd5cbcca1bd2, type: 3}
   ItemName: Round GreatSword
+  ItemDescription: 
   Usable_GameObject: {fileID: 2937394067836446206, guid: 28fbed09d7fea464681134cd159332ad, type: 3}
   Chest_GameObject: {fileID: 214585312935867641, guid: 073212ac4c95f9a44a31967e02a67cc3, type: 3}
   Cost: 10
   EItemRarity: 0
   WeaponType: 1
-  WeaponSize: 1
+  WeaponSize: 2
   Damage: 20
   Speed: 0.8
   HitSounds: []

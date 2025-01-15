@@ -73,6 +73,7 @@ public class PlayerLoadout : MonoBehaviour
     [Header("Player sockets")]
     [SerializeField] internal Transform m_PlayerLeftHandSocket;
     [SerializeField] internal Transform m_PlayerRightHandSocket;
+    [SerializeField] internal Transform m_PlayerPocket; 
 
 
     private void Awake()
@@ -137,8 +138,13 @@ public class PlayerLoadout : MonoBehaviour
             }
             else
             {
-                //m_InHandItem = m_EquippedSecondaryWeapon;
-                //m_InHandSlot = GetSlotFromGrabbable(m_EquippedSecondaryWeapon);
+                m_EquippedWeapons[ESlot.SecondaryWeapon].m_Rigidbody.isKinematic = true;
+                m_EquippedWeapons[ESlot.SecondaryWeapon].m_Collider.enabled = false;
+                m_EquippedWeapons[ESlot.SecondaryWeapon].transform.SetParent(m_PlayerLeftHandSocket, false);
+
+                m_EquippedWeapons[ESlot.SecondaryWeapon].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+                LocalUI.Instance.ChangeSlotIcon(ESlot.SecondaryWeapon, m_EquippedWeapons[ESlot.SecondaryWeapon].SO_Item.ItemIcon);
             }
             
 
@@ -153,6 +159,16 @@ public class PlayerLoadout : MonoBehaviour
     {
         Debug.Log("drop item in hand"); 
         DropItemOnSlot(ESlot.MainWeapon, throwForce);
+
+        if (m_EquippedWeapons[ESlot.MainWeapon] != null)
+        {
+            DropItemOnSlot(ESlot.MainWeapon, throwForce);
+            return; 
+        }
+        if (m_EquippedWeapons[ESlot.SecondaryWeapon] != null)
+        {
+            DropItemOnSlot(ESlot.SecondaryWeapon, throwForce);
+        }
 
     }
 
@@ -201,34 +217,21 @@ public class PlayerLoadout : MonoBehaviour
 
     void EquipWeaponLoadout(SO_Weapon weapon)
     {
-        if(m_MainWeapon != null && m_MainWeapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
-        {
-            m_MainWeapon = null; 
-            
-        }
+
         if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
             m_MainWeapon = weapon;
             m_SecondaryWeapon = null;
 
-            
-            return; 
         }
-
-        if (weapon.WeaponSize == SO_Weapon.EWeaponSize.LeftOnly)
+        else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
         {
-            m_SecondaryWeapon = weapon;
+            m_MainWeapon = weapon;
         }
-        else
+        else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
         {
-            if (m_MainWeapon != null && m_SecondaryWeapon == null)
-            {
-                m_SecondaryWeapon = weapon;
-            }
-            else
-            {
-                m_MainWeapon = weapon;
-            }
+            if (m_MainWeapon!=null && m_MainWeapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_MainWeapon = null; 
+            m_SecondaryWeapon = weapon; 
         }
 
     }
@@ -237,10 +240,6 @@ public class PlayerLoadout : MonoBehaviour
     {
         //find place and put in slot
         Debug.Log("equip inventory item in loadout");
-
-        //ESlot slot = FindFirstEmptySlot();
-
-        //open UI
 
         if(TryFindEmptySlot(out ESlot slot))
         {
@@ -295,36 +294,25 @@ public class PlayerLoadout : MonoBehaviour
         rightHand = true;
 
         
-        if ( m_EquippedWeapons[ESlot.MainWeapon] != null && m_EquippedWeapons[ESlot.MainWeapon].GetComponent<BasicWeapon>().GetWeaponSize() == SO_Weapon.EWeaponSize.Two_Handed)
-        {
-            m_EquippedWeapons[ESlot.MainWeapon]= null;
-
-        }
-        if (weapon.GetWeaponSize() == SO_Weapon.EWeaponSize.Two_Handed)
+        if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
             m_EquippedWeapons[ESlot.MainWeapon]= weapon;
             m_EquippedWeapons[ESlot.SecondaryWeapon]= null;
 
-            return;
+            
         }
 
-        if (weapon.GetWeaponSize() == SO_Weapon.EWeaponSize.LeftOnly)
+        else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
         {
+            //if (m_MainWeapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_MainWeapon = null;
+            if ((m_EquippedWeapons[ESlot.MainWeapon] != null) &&
+                m_EquippedWeapons[ESlot.MainWeapon].WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_EquippedWeapons[ESlot.MainWeapon] = null; 
             m_EquippedWeapons[ESlot.SecondaryWeapon] = weapon;
             rightHand = false; 
         }
-        else
+        else if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
         {
-            if (m_EquippedWeapons[ESlot.MainWeapon] != null && m_EquippedWeapons[ESlot.SecondaryWeapon].GetComponent<BasicWeapon>() == null)
-            {
-                m_EquippedWeapons[ESlot.SecondaryWeapon]= weapon;
-                rightHand = false;
-            }
-            else
-            {
-                m_EquippedWeapons[ESlot.MainWeapon]= weapon;
-
-            }
+            m_EquippedWeapons[ESlot.MainWeapon] = weapon;
         }
 
     }
@@ -360,12 +348,18 @@ public class PlayerLoadout : MonoBehaviour
 
     public void SlotActionPerformed(ESlot slot)
     {
+        
+
         Debug.Log("slot action performed " + slot);
         if(m_EquippedItems[slot] == null)
         {
-            Debug.Log("no item in slot");
+            Debug.Log("no item equipped in this  slot");
             return; 
         }
+        if(!ConnectionsHandler.Instance.LocalTinyPlayer.CanPlayerUseInventoryItem()) return;
+
+        Debug.Log("use item in slot");
+        m_EquippedItems[ESlot.MainWeapon].UseInventoryItem(); 
 
         
     }
@@ -458,6 +452,47 @@ public class PlayerLoadout : MonoBehaviour
 
     SO_Item GetEquippedSO_Item(ESlot slot) => m_EquippedItems[slot] == null ? null : m_EquippedItems[slot].SO_Item;
     SO_Item GetEquippedSO_Weapon(ESlot slot) => m_EquippedWeapons[slot] == null ? null : m_EquippedWeapons[slot].SO_Item;
+
+
+    public void EquipLoadout()
+    {
+        if(m_MainWeapon != null) m_EquippedWeapons[ESlot.MainWeapon] = Instantiate(m_MainWeapon.Usable_GameObject, m_PlayerRightHandSocket).GetComponent<BasicWeapon>();
+        if (m_SecondaryWeapon != null) m_EquippedWeapons[ESlot.SecondaryWeapon] = Instantiate(m_SecondaryWeapon.Usable_GameObject, m_PlayerLeftHandSocket).GetComponent<BasicWeapon>();
+        if (m_Slot_1 != null) m_EquippedItems[ESlot.Slot_1] = Instantiate(m_Slot_1.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
+        if (m_Slot_2 != null) m_EquippedItems[ESlot.Slot_2] = Instantiate(m_Slot_2.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
+        if (m_Slot_3 != null) m_EquippedItems[ESlot.Slot_3] = Instantiate(m_Slot_3.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
+        if (m_Slot_4 != null) m_EquippedItems[ESlot.Slot_4] = Instantiate(m_Slot_4.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
+
+
+        SwitchStuffUI(EInventoryType.Equipped);
+        SetupItems();
+
+    }
+
+    public void UnloadEquippedStuff()
+    {
+        if (m_EquippedWeapons[ESlot.MainWeapon] != null) {Destroy(m_EquippedWeapons[ESlot.MainWeapon].gameObject); m_EquippedWeapons[ESlot.MainWeapon] = null; }
+        if (m_EquippedWeapons[ESlot.SecondaryWeapon] != null) {Destroy(m_EquippedWeapons[ESlot.SecondaryWeapon].gameObject); m_EquippedWeapons[ESlot.SecondaryWeapon] = null; }
+        if (m_EquippedItems[ESlot.Slot_1] != null) { Destroy(m_EquippedItems[ESlot.Slot_1].gameObject); m_EquippedItems[ESlot.Slot_1] = null; }
+        if (m_EquippedItems[ESlot.Slot_2] != null) { Destroy(m_EquippedItems[ESlot.Slot_2].gameObject); m_EquippedItems[ESlot.Slot_2] = null; }
+        if (m_EquippedItems[ESlot.Slot_3] != null) { Destroy(m_EquippedItems[ESlot.Slot_3].gameObject); m_EquippedItems[ESlot.Slot_3] = null; }
+        if (m_EquippedItems[ESlot.Slot_4] != null) { Destroy(m_EquippedItems[ESlot.Slot_4].gameObject); m_EquippedItems[ESlot.Slot_4] = null; }
+
+        
+
+        SwitchStuffUI(EInventoryType.Loadout);
+
+
+    }
+
+    void SetupItems()
+    {
+        foreach (var item in m_EquippedItems)
+        {
+            if (item.Value == null) continue;
+            item.Value.SetupItem();
+        }
+    }
     
 
 

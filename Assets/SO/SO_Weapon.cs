@@ -23,9 +23,9 @@ public class SO_Weapon : SO_Item
     }
     public enum EWeaponSize
     {
-       One_Handed,
+       Right_Handed,
+       Left_Handed, 
        Two_Handed,
-       LeftOnly
        
     }
      

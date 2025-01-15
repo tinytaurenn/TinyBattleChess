@@ -35,6 +35,37 @@ Transform:
   - {fileID: 4876220487313072078}
   m_Father: {fileID: 687046392866188956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2818537070865572365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3957925043188666935}
+  m_Layer: 6
+  m_Name: Pocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3957925043188666935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818537070865572365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.084, y: -0.272, z: 0.246}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6138637022465402986}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3057546199998800895
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +388,8 @@ MonoBehaviour:
     - component: {fileID: 8830135264561283332}
       lodStepsActive: 1
     - component: {fileID: 6693567637196801358}
+      lodStepsActive: 1
+    - component: {fileID: 3957925043188666935}
       lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
@@ -1957,6 +1990,7 @@ MonoBehaviour:
     m_values: []
   m_PlayerLeftHandSocket: {fileID: 3293726256454769268}
   m_PlayerRightHandSocket: {fileID: 1010069479959953380}
+  m_PlayerPocket: {fileID: 3957925043188666935}
 --- !u!82 &7777286392842217631
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2747,6 +2781,9 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: -5586726036328529852, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8018118334481897805, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3957925043188666935}
     - targetCorrespondingSourceObject: {fileID: -4965325442729560347, guid: ebdc962bbd00fbd4c8284d4ca31de6be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8382485118973760699}

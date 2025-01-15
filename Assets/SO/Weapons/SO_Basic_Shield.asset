@@ -20,7 +20,7 @@ MonoBehaviour:
   Cost: 8
   EItemRarity: 0
   WeaponType: 256
-  WeaponSize: 2
+  WeaponSize: 1
   Damage: 0
   Speed: 1.5
   HitSounds: []

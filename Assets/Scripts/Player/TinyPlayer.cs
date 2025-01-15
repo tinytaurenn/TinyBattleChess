@@ -88,6 +88,21 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         return simulator; 
     }
 
+    public bool CanPlayerUseInventoryItem(bool inAttackReady = false, bool inParry = false)
+    {
+
+        if(m_PlayerState != EPlayerState.Player) return false;
+        if(m_IsStunned) return false;
+        if(m_PlayerWeapons.InAttackRelease) return false;
+
+
+
+        if(inAttackReady == false && m_PlayerWeapons.InAttackReady) return false;
+        if(inParry == false && m_PlayerWeapons.InParry) return false;
+
+        return true; 
+    }
+
     
     public void TeleportPlayer(Vector3 worldPos)
     {
@@ -120,6 +135,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
                 m_PlayerGhost.SetActive(true);
                 SeeGhosts(true); 
+                m_PlayerLoadout.UnloadEquippedStuff();
                 break;
             case EPlayerState.Disqualified:
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
@@ -192,7 +208,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 break;
         }
 
-        if (m_PlayerWeapons.m_Parrying && parry && m_PlayerWeapons.IsInParryAngle(attackerPos))
+        if (m_PlayerWeapons.InParry && parry && m_PlayerWeapons.IsInParryAngle(attackerPos))
         {
             ParrySync(damage, sync);
 
@@ -364,7 +380,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         // 0 = player
         // 1 = spectator
         // 2 = disqualified
-
+        if(ConnectionsHandler.Instance.LocalTinyPlayer == null) return;
 
 
         //exit 
@@ -450,15 +466,16 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         {
             case 0: // Lobby
                 Debug.Log("lobby, stopping PVP ");
-                m_PlayerLoadout.SwitchStuffUI(PlayerLoadout.EInventoryType.Loadout);
+                m_PlayerLoadout.UnloadEquippedStuff();
                 break;
             case 1: //shop 
                 Debug.Log("Shop, stopping PVP ");
-                m_PlayerLoadout.SwitchStuffUI(PlayerLoadout.EInventoryType.Loadout);
+                m_PlayerLoadout.UnloadEquippedStuff();
 
                 break;
             case 2: //fighting
-                m_PlayerLoadout.SwitchStuffUI(PlayerLoadout.EInventoryType.Equipped); 
+                m_PlayerLoadout.EquipLoadout(); 
+
                 
                 break;
             case 3: //end 

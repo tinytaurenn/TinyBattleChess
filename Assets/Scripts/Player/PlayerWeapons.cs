@@ -29,7 +29,7 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] internal EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
     [SerializeField] internal bool m_Parrying = false;
     [SerializeField] bool m_InParry = false; 
-    [SerializeField] internal  bool m_Attacking = false;
+    [SerializeField] internal bool m_Attacking = false;
     [SerializeField] bool m_InAttack = false;
     [SerializeField] bool m_InAttackRelease = false;
 
@@ -41,7 +41,13 @@ public class PlayerWeapons : MonoBehaviour
     [Space(10)]
     [Header("Parry Parameters")]
     [SerializeField] float m_ParryAngle = 20f;
-    
+
+
+    public bool InAttackReady => (m_InAttack && m_Attacking && !m_InAttackRelease); 
+    public bool InAttackRelease => (m_InAttackRelease); 
+    public bool InParry => (m_Parrying && m_InParry); 
+
+
 
     private void Awake()
     {

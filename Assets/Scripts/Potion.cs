@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class Potion : InventoryItem
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     protected override void Start()
     {
         base.Start();
@@ -12,5 +15,17 @@ public class Potion : InventoryItem
     protected override void Update()
     {
         base.Update();
+    }
+
+    public override void UseInventoryItem()
+    {
+        base.UseInventoryItem();
+
+        Debug.Log("using potion"); 
+    }
+
+    public override void SetupItem()
+    {
+        base.SetupItem();
     }
 }

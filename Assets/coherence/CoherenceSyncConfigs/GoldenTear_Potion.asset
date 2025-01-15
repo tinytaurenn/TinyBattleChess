@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579f4a509fd2f994fa391c0c78ea3f11, type: 3}
+  m_Name: GoldenTear_Potion
+  m_EditorClassIdentifier: 
+  id: 775a962259beb2f48b64b79887dce771
+  selfId: 520046cee3f48f847be839b4afabb556
+  editorTarget: {fileID: 7459850184392171940, guid: 775a962259beb2f48b64b79887dce771, type: 3}
+  includeInSchema: 1
+  objectProvider:
+    rid: 5785725103130804786
+  objectInstantiator:
+    rid: 5785725103130804787
+  references:
+    version: 2
+    RefIds:
+    - rid: 5785725103130804786
+      type: {class: DirectReferenceProvider, ns: Coherence.Toolkit, asm: Coherence.Toolkit}
+      data:
+        prefab: {fileID: 7459850184392171940, guid: 775a962259beb2f48b64b79887dce771, type: 3}
+    - rid: 5785725103130804787
+      type: {class: DefaultInstantiator, ns: Coherence.Toolkit, asm: Coherence.Toolkit}
+      data: 

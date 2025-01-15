@@ -47,7 +47,7 @@ public class BasicWeapon : Grabbable, IWeapon
     
 
     [SerializeField]
-    FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EWeaponType.Sword, EWeaponSize.One_Handed);
+    FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EWeaponType.Sword, EWeaponSize.Right_Handed);
 
     AudioSource m_AudioSource; 
     [SerializeField] List<AudioResource> HitSounds;
@@ -57,7 +57,16 @@ public class BasicWeapon : Grabbable, IWeapon
     [SerializeField] Collider m_DamageCollider;
     [SerializeField] public Transform m_HitPos; 
    
-    List<Collider> HitList = new List<Collider>(); 
+    List<Collider> HitList = new List<Collider>();
+
+    internal EWeaponType WeaponType => m_WeaponParameters.WeaponType;
+    internal EWeaponSize WeaponSize => m_WeaponParameters.WeaponSize;
+    internal int WeaponDamage => m_WeaponParameters.Damage; 
+    internal float WeaponSpeed => m_WeaponParameters.Speed;
+    internal int WeaponCost => m_WeaponParameters.Cost;
+    internal Vector3 WeaponPositionOffset => m_WeaponParameters.PositionOffset;
+    internal Vector3 WeaponRotationOffset => m_WeaponParameters.RotationOffset;
+
 
     protected override void Awake()
     {
@@ -81,18 +90,6 @@ public class BasicWeapon : Grabbable, IWeapon
         
     }
 
-    #region WeaponStats
-
-    internal EWeaponType GetWeaponType() => m_WeaponParameters.WeaponType;
-    internal EWeaponSize GetWeaponSize() => m_WeaponParameters.WeaponSize;
-    internal int GetWeaponDamage() => m_WeaponParameters.Damage;
-    internal float GetWeaponSpeed() => m_WeaponParameters.Speed;
-    internal int GetWeaponCost() => m_WeaponParameters.Cost;
-    internal Vector3 GetWeaponPositionOffset() => m_WeaponParameters.PositionOffset;
-    internal Vector3 GetWeaponRotationOffset() => m_WeaponParameters.RotationOffset;
-
-    
-    #endregion
 
 
     public override void Release()
