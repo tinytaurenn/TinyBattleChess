@@ -50,9 +50,9 @@ public class Chest : Usable
     {
         base.TryUse();
 
-        if(ConnectionsHandler.Instance.LocalTinyPlayer.PlayerGold < Cost)
+        if(!CanUseChest())
         {
-            Debug.Log("Not enough gold");
+            Debug.Log("cannot use chest");
             return;
         }
 
@@ -62,6 +62,15 @@ public class Chest : Usable
         LocalUI.Instance.OpenSelection(m_ChosenItems); 
 
         
+    }
+
+    bool CanUseChest()
+    {
+        if (!ConnectionsHandler.Instance.LocalTinyPlayer.CanUseGold) return false;
+        if (ConnectionsHandler.Instance.LocalTinyPlayer.PlayerGold < Cost) return false;
+
+        return true; 
+
     }
 
     public void LoadChest(int number,EItemRarity rarity)

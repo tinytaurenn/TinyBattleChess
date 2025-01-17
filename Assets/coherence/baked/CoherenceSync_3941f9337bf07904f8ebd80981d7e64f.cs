@@ -344,6 +344,7 @@ namespace Coherence.Generated
         private Logger logger = Coherence.Log.Log.GetLogger<CoherenceSync_3941f9337bf07904f8ebd80981d7e64f>();
         
         private global::MainSimulator _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752_CommandTarget;
+        private global::MainSimulator _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817_CommandTarget;
         
         
         private IClient client;
@@ -364,6 +365,7 @@ namespace Coherence.Generated
         public CoherenceSync_3941f9337bf07904f8ebd80981d7e64f()
         {
             bakedCommandBindings.Add("c093c0a7d8994787867fc73cbc178752", BakeCommandBinding__3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752);
+            bakedCommandBindings.Add("4d24fdcffe5142d6a70b463588b4f817", BakeCommandBinding__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817);
         }
         
         public override Binding BakeValueBinding(Binding valueBinding)
@@ -413,6 +415,39 @@ namespace Coherence.Generated
             
             target.StartGame();
         }
+    
+        private void BakeCommandBinding__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(CommandBinding commandBinding, CommandsHandler commandsHandler)
+        {
+            _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817_CommandTarget = (global::MainSimulator)commandBinding.UnityComponent;
+            commandsHandler.AddBakedCommand("MainSimulator.PlayerDeath", "(Coherence.Toolkit.CoherenceSync)", SendCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817, ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817, MessageTarget.All, _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817_CommandTarget, false);
+        }
+        
+        private void SendCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(MessageTarget target, object[] args)
+        {
+            var command = new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817();
+            
+            int i = 0;
+            command.playerSync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
+        
+            client.SendCommand(command, target, entityId);
+        }
+        
+        private void ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(MessageTarget target, object[] args)
+        {
+            var command = new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817();
+            
+            int i = 0;
+            command.playerSync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
+            
+            ReceiveCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(command);
+        }
+
+        private void ReceiveCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(_3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 command)
+        {
+            var target = _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817_CommandTarget;
+            
+            target.PlayerDeath(bridge.EntityIdToCoherenceSync(command.playerSync));
+        }
         
         public override void ReceiveCommand(IEntityCommand command)
         {
@@ -420,6 +455,9 @@ namespace Coherence.Generated
             {
                 case _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752 castedCommand:
                     ReceiveCommand__3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752(castedCommand);
+                    break;
+                case _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 castedCommand:
+                    ReceiveCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(castedCommand);
                     break;
                 default:
                     logger.Warning($"CoherenceSync_3941f9337bf07904f8ebd80981d7e64f Unhandled command: {command.GetType()}.");

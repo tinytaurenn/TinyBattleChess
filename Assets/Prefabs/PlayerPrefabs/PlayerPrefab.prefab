@@ -447,6 +447,8 @@ MonoBehaviour:
   - rid: 9113002675820298309
   - rid: 5785724889091801255
   - rid: 5785724890203292562
+  - rid: 5785725142605234257
+  - rid: 5785725142605234802
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -1078,6 +1080,93 @@ MonoBehaviour:
       type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
       data:
         component: {fileID: 8830135264561283332}
+    - rid: 5785725142605234257
+      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5785725142605234258
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 0901dfe2364f41f9acd490dee80466db
+        archetypeData:
+          type: 1
+          minRange: -2147483648
+          maxRange: 2147483647
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 1
+            bits: 32
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 5785725142605234258
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: BattleIndex
+        monoAssemblyType: System.Int32, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 5785725142605234802
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5785725142605234803
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 3c2c4486077949c288a3205124259b7f
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 5785725142605234803
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: ChangeBattleIndex
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
     - rid: 9113002313521562088
       type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -1846,6 +1935,9 @@ MonoBehaviour:
   m_PlayerLeftHandSocket: {fileID: 3293726256454769268}
   m_PlayerRightHandSocket: {fileID: 1010069479959953380}
   m_PlayerGhost: {fileID: 218920524866585134}
+  m_PlayerGold: 10
+  m_CanUseGold: 0
+  m_BattleIndex: -1
 --- !u!114 &58566053745997887
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,34 +16,34 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff : IEntityCommand
+    public struct _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public ByteArray name;
+            public Entity playerSync;
         }
 
-        public static unsafe _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 16) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
-                    "for command with ID 12");
+            if (dataSize != 4) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
+                    "for command with ID 9");
             }
 
-            var orig = new _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff();
+            var orig = new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817();
             var comp = (Interop*)data;
-            orig.name = comp->name.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->name.Data, (int)comp->name.Length) : null;
+            orig.playerSync = comp->playerSync;
             return orig;
         }
 
-        public System.String name;
+        public Entity playerSync;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 12;
+        public uint GetComponentType() => 9;
         
         public IEntityMessage Clone()
         {
@@ -60,6 +60,13 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = absoluteEntity;
+            err = mapper.MapToAbsoluteEntity(playerSync, false, out absoluteEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.playerSync = absoluteEntity;
+            
             return IEntityMapper.Error.None;
         }
         
@@ -71,42 +78,54 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = relativeEntity;
+            err = mapper.MapToRelativeEntity(playerSync, false, out relativeEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.playerSync = relativeEntity;
+            
             return IEntityMapper.Error.None;
         }
 
         public HashSet<Entity> GetEntityRefs() {
-            return default;
+            return new HashSet<Entity> {
+                this.playerSync,
+            };
         }
 
         public void NullEntityRefs(Entity entity) {
+            if (this.playerSync == entity) {
+                this.playerSync = Entity.InvalidRelative;
+            }
         }
         
-        public _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff(
+        public _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(
         Entity entity,
-        System.String name
+        Entity playerSync
 )
         {
             Entity = entity;
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.name = name; 
+            this.playerSync = playerSync; 
         }
         
-        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteShortString(commandData.name);
+            bitStream.WriteEntity(commandData.playerSync);
         }
         
-        public static _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var dataname = bitStream.ReadShortString();
+            var dataplayerSync = bitStream.ReadEntity();
     
-            return new _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff()
+            return new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817()
             {
                 Entity = entity,
                 Routing = target,
-                name = dataname
+                playerSync = dataplayerSync
             };   
         }
     }

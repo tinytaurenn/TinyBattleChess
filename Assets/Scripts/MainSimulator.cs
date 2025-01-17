@@ -43,6 +43,9 @@ public class MainSimulator : MonoBehaviour
     [SerializeField] GameObject SwordGameObject; 
     GameObject MySword = null;
 
+    [Space(10)]
+    [Header("BattleRound")]
+    BattleRoundManager m_BattleRoundManager;
 
     public enum EPlayState
     {
@@ -89,6 +92,7 @@ public class MainSimulator : MonoBehaviour
     {
         CoherenceBridgeStore.TryGetBridge(gameObject.scene, out m_CoherenceBridge);
         m_Sync = GetComponent<CoherenceSync>();
+        m_BattleRoundManager = GetComponent<BattleRoundManager>();
         m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
         m_CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
     }
@@ -270,7 +274,7 @@ public class MainSimulator : MonoBehaviour
 
         for (int i = 0; i < m_PlayerSyncs.Count; i++)
         {
-            //CoherenceSync playerSync = m_PlayerObjects[i].GetComponent<CoherenceSync>();
+            
             m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BattleSpawnPositions.GetChild(i).position);
         }
     }
@@ -292,6 +296,12 @@ public class MainSimulator : MonoBehaviour
         SwitchGameState(EGameState.InGame);
 
         
+    }
+
+    public void PlayerDeath(CoherenceSync playerSync)
+    {
+        
+        m_BattleRoundManager.PlayerDeath(playerSync);
     }
 
     void ShopRoundTimeUpdate()
@@ -383,12 +393,14 @@ public class MainSimulator : MonoBehaviour
             case EPlayState.Lobby:
                 break;
             case EPlayState.Shop:
+                TeleportAllPlayersToShop(); 
                 m_RoundTime.enabled = true;
                 m_RoundTimer = m_ShopRoundTime;
                 
                 break;
             case EPlayState.Fighting:
-                TeleportPlayersToBattle(); 
+                TeleportPlayersToBattle();
+                m_BattleRoundManager.StartBattleRound(GetAllAlivePlayersSync(true)); 
                 
                 break;
             case EPlayState.End:
@@ -437,6 +449,12 @@ public class MainSimulator : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void NextTurn()
+    {
+        m_TurnNumber++; 
+        SwitchPlayState(EPlayState.Shop);
     }
     #endregion
 

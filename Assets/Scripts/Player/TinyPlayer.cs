@@ -53,6 +53,9 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     [Header("Player Gold")]
 
     [SerializeField] int m_PlayerGold = 10;
+    [SerializeField] bool m_CanUseGold = false;
+
+    public bool CanUseGold { get { return m_CanUseGold; } set { m_CanUseGold = value; } }
 
     public int PlayerGold
     {
@@ -60,9 +63,14 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         set {
             value = Mathf.Clamp(value, 0, 9999);
             m_PlayerGold = value; 
-            LocalUI.Instance.UpdateGoldAmount(m_PlayerGold);
+            LocalUI.Instance.UpdateGoldAmount(m_PlayerGold); 
             }
     }
+
+    [Space(10)]
+    [Header("Player Battle")]
+    [SerializeField] int m_BattleIndex = -1; 
+    public int BattleIndex { get { return m_BattleIndex; } set { m_BattleIndex = value; } }
 
     private void Awake()
     {
@@ -100,6 +108,11 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         }
 
         return simulator; 
+    }
+
+    CoherenceSync GetSimulatorSync()
+    {
+        return GetSimulator().GetComponent<CoherenceSync>();
     }
 
     public bool CanPlayerUseInventoryItem(bool inAttackReady = false, bool inParry = false)
@@ -199,6 +212,13 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     #region Hits
     public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,Vector3 attackerPos)
     {
+
+        if (m_PlayerState != EPlayerState.Player)
+        {
+            Debug.Log("player is not alive");
+            return;
+        }
+
         EWeaponDirection direction = (EWeaponDirection)DirectionNESO;
         EWeaponDirection weaponDirection = m_PlayerWeapons.m_WeaponDirection;
         Debug.Log(" player take melee sync");
@@ -237,25 +257,34 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
     public void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
     {
+
         Debug.Log("sync Player took " + damage + " weapon damage!");
-        m_Player_Health -= damage;
 
         m_PlayerFX.PlayHurtFX(0);
         m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
-
+        Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly); //sound 
         HitStun();
+
+
+        if (GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+        {
+            Debug.Log("in lobby, no damage taken");
+            return;
+        }
+
+        m_Player_Health -= damage;
 
         if (m_Player_Health <= 0)
         {
             m_Player_Health = 0;
             Debug.Log("must die now");
-            Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);//sound
+         
             PlayerDeath(); 
         }
         else
         {
             Debug.Log("sending weapon synchit comand ");
-            Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
+            
         }
 
 
@@ -263,13 +292,22 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
     public void TakeDamageSync(int damage, CoherenceSync Damagersync)
     {
+
+
         Debug.Log("sync Player took " + damage + " damage!");
-        m_Player_Health -= damage;
         m_PlayerFX.PlayHurtFX(0); 
         m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
 
-        HitStun(); 
+        HitStun();
         
+
+        if (GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+        {
+            Debug.Log("in lobby, no damage taken");
+            return;
+        }
+        m_Player_Health -= damage;
+
         if (m_Player_Health <= 0)
         {
             m_Player_Health = 0;
@@ -448,9 +486,19 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_RagDoll.SpawnRagDoll(); 
 
         SwitchPlayerState(EPlayerState.Spectator);
+
+        GetSimulatorSync().SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
         
 
     }
+
+    //battle manager related 
+
+    public void ChangeBattleIndex(int index)
+    {
+        BattleIndex = index;    
+    }
+
     public void OnChangePlayState(int oldIntPlayState,int NewIntPlayState)
     {
 
@@ -462,6 +510,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             case 1: //shop 
                 Debug.Log("exit Shop ");
                 LocalUI.Instance.ShowShopRelated(false);
+                CanUseGold = false;
 
                 break;
             case 2: //fighting
@@ -487,6 +536,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 Debug.Log("Shop, stopping PVP ");
                 m_PlayerLoadout.UnloadEquippedStuff();
                 LocalUI.Instance.ShowShopRelated(true); 
+                CanUseGold = true;
 
                 break;
             case 2: //fighting

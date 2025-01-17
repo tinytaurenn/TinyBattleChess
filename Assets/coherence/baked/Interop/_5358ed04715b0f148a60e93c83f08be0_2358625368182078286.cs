@@ -31,6 +31,8 @@ namespace Coherence.Generated
             public System.Int32 m_Global_Health;
             [FieldOffset(8)]
             public System.Int32 m_Player_Health;
+            [FieldOffset(12)]
+            public System.Int32 BattleIndex;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
@@ -41,12 +43,14 @@ namespace Coherence.Generated
             m_Global_HealthSimulationFrame = frame;
             FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_Player_HealthMask;
             m_Player_HealthSimulationFrame = frame;
+            FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.BattleIndexMask;
+            BattleIndexSimulationFrame = frame;
         }
 
         public static unsafe _5358ed04715b0f148a60e93c83f08be0_2358625368182078286 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 12) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 12) " +
+            if (dataSize != 16) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
                     "for component with ID 173");
             }
 
@@ -62,6 +66,7 @@ namespace Coherence.Generated
             orig.m_IntPlayerState = comp->m_IntPlayerState;
             orig.m_Global_Health = comp->m_Global_Health;
             orig.m_Player_Health = comp->m_Player_Health;
+            orig.BattleIndex = comp->BattleIndex;
 
             return orig;
         }
@@ -76,13 +81,16 @@ namespace Coherence.Generated
         public static uint m_Player_HealthMask => 0b00000000000000000000000000000100;
         public AbsoluteSimulationFrame m_Player_HealthSimulationFrame;
         public System.Int32 m_Player_Health;
+        public static uint BattleIndexMask => 0b00000000000000000000000000001000;
+        public AbsoluteSimulationFrame BattleIndexSimulationFrame;
+        public System.Int32 BattleIndex;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
         public uint GetComponentType() => 173;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000000000000111;
+        public uint InitialFieldsMask() => 0b00000000000000000000000000001111;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -91,7 +99,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 3;
+        public int GetFieldCount() => 4;
 
 
         
@@ -125,6 +133,8 @@ namespace Coherence.Generated
         private static readonly System.Int32 _m_Global_Health_Max = 2147483647;
         private static readonly System.Int32 _m_Player_Health_Min = -2147483648;
         private static readonly System.Int32 _m_Player_Health_Max = 2147483647;
+        private static readonly System.Int32 _BattleIndex_Min = -2147483648;
+        private static readonly System.Int32 _BattleIndex_Max = 2147483647;
 
         public AbsoluteSimulationFrame? GetMinSimulationFrame()
         {
@@ -163,6 +173,13 @@ namespace Coherence.Generated
             }
 
             otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.BattleIndexSimulationFrame = other.BattleIndexSimulationFrame;
+                this.BattleIndex = other.BattleIndex;
+            }
+
+            otherMask >>= 1;
             StoppedMask |= other.StoppedMask;
 
             return this;
@@ -177,7 +194,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 3);
+                bitStream.WriteMaskBits(data.StoppedMask, 4);
             }
 
             var mask = data.FieldsMask;
@@ -227,6 +244,21 @@ namespace Coherence.Generated
             }
 
             mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+                Coherence.Utils.Bounds.Check(data.BattleIndex, _BattleIndex_Min, _BattleIndex_Max, "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286.BattleIndex", logger);
+
+                data.BattleIndex = Coherence.Utils.Bounds.Clamp(data.BattleIndex, _BattleIndex_Min, _BattleIndex_Max);
+
+                var fieldValue = data.BattleIndex;
+
+
+
+                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
+            }
+
+            mask >>= 1;
 
             return mask;
         }
@@ -236,7 +268,7 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(3);
+                stoppedMask = bitStream.ReadMaskBits(4);
             }
 
             var val = new _5358ed04715b0f148a60e93c83f08be0_2358625368182078286();
@@ -258,6 +290,12 @@ namespace Coherence.Generated
                 val.m_Player_Health = bitStream.ReadIntegerRange(32, -2147483648);
                 val.FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_Player_HealthMask;
             }
+            if (bitStream.ReadMask())
+            {
+
+                val.BattleIndex = bitStream.ReadIntegerRange(32, -2147483648);
+                val.FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.BattleIndexMask;
+            }
 
             val.StoppedMask = stoppedMask;
 
@@ -271,8 +309,9 @@ namespace Coherence.Generated
                 $" m_IntPlayerState: { this.m_IntPlayerState }" +
                 $" m_Global_Health: { this.m_Global_Health }" +
                 $" m_Player_Health: { this.m_Player_Health }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(3, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(3, '0') })";
+                $" BattleIndex: { this.BattleIndex }" +
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(4, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(4, '0') })";
         }
     }
 
