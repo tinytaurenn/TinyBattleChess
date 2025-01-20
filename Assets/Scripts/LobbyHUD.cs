@@ -14,7 +14,11 @@ public class LobbyHUD : MonoBehaviour
     CoherenceSync m_Sync;
     [SerializeField] TextMeshProUGUI m_LobbyText;
     [SerializeField] Button m_StartButton;
-    [SerializeField] Canvas m_MainCanvas; 
+    [SerializeField] Canvas m_GlobalCanvas;
+    [SerializeField] Canvas m_HostCanvas;
+    [SerializeField] Canvas m_RootCanvas; 
+
+    [SerializeField] Button m_ResetGameButton; 
 
 
 
@@ -30,7 +34,11 @@ public class LobbyHUD : MonoBehaviour
 
         m_StartButton.onClick.AddListener(OnStartButtonClicked);
 
+        m_ResetGameButton.onClick.AddListener(OnResetGameButtonClicked);
+
     }
+
+  
 
     private void OnStartButtonClicked()
     {
@@ -38,22 +46,47 @@ public class LobbyHUD : MonoBehaviour
 
         if(ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerState!= TinyPlayer.EPlayerState.Player) return;
 
-        MainSimulator mainSimulator = FindFirstObjectByType<MainSimulator>(); 
-        if (mainSimulator != null)
+        CoherenceSync mainSimulatorSync = Utils.GetSimulatorSync();
+        if (mainSimulatorSync != null)
         {
-            mainSimulator.GetComponent<CoherenceSync>().SendCommand<MainSimulator>(nameof(MainSimulator.StartGame), MessageTarget.AuthorityOnly);
+            mainSimulatorSync.SendCommand<MainSimulator>(nameof(MainSimulator.StartGame), MessageTarget.AuthorityOnly);
         }
 
-        HideLobbyHUD();
+        HideLobbyHUD(); 
+    }
+
+    private void OnResetGameButtonClicked()
+    {
+        if (!m_Sync.HasStateAuthority) return;
+
+        MainSimulator mainSimulator = Utils.GetSimulator();
+
+        if (mainSimulator == null) return; 
+
+        if (mainSimulator.m_IntGameState == (int)MainSimulator.EGameState.Lobby)
+        {
+            Debug.Log("Game is in lobby state, cant reset");
+            return;
+        }
+        mainSimulator.GetComponent<CoherenceSync>().SendCommand<MainSimulator>(nameof(MainSimulator.ResetGame), MessageTarget.AuthorityOnly);
+
+        ShowLobbyHUD();
+
     }
 
     public void HideLobbyHUD()
     {
-        m_MainCanvas.enabled = false;
+        m_GlobalCanvas.enabled = false;
     }
     public void ShowLobbyHUD()
     {
-        m_MainCanvas.enabled = true;
+        m_GlobalCanvas.enabled = true;
+        
+    }
+
+    public void ShowPause(bool show)
+    {
+        m_RootCanvas.enabled = show;
     }
     
 
@@ -101,11 +134,13 @@ public class LobbyHUD : MonoBehaviour
             Debug.Log("auth, set to start game");
             ShowLobbyHUD();
             m_LobbyText.text = "Start Game";
+            m_HostCanvas.enabled = true;
         }
         else
         {
             Debug.Log("no auth, set to waiting");
             m_LobbyText.text = "Waiting for host";
+            m_HostCanvas.enabled = false;
         }
     }
 

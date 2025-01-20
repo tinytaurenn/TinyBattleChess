@@ -13,6 +13,14 @@ public class LocalUI : MonoBehaviour
 {
     public static LocalUI Instance { get; private set; }
 
+    [Space(10)]
+    [Header(" Pause ")]
+    [SerializeField] LobbyHUD m_LobbyHUD;
+
+    [SerializeField] bool m_InPauseMenu = false; 
+
+    [Space(10)]
+    [Header("Inventory ")]
     [SerializeField] List<SlotUI> m_InventorySlots;
     [SerializeField] SlotUI m_MainWeaponSlot; 
     [SerializeField] SlotUI m_SecondaryWeaponSlot;
@@ -84,6 +92,14 @@ public class LocalUI : MonoBehaviour
 
         m_UsableText.enabled = false;
 
+    }
+
+    public void TogglePause()
+    {
+        m_InPauseMenu = !m_InPauseMenu;
+        m_LobbyHUD.ShowPause(m_InPauseMenu);  
+
+        Cursor.visible = m_InPauseMenu;
     }
     
     public void SelectSlot(PlayerLoadout.ESlot slot)

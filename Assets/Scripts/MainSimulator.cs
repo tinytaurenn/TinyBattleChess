@@ -34,7 +34,7 @@ public class MainSimulator : MonoBehaviour
     [SerializeField] Transform m_ShopSpawnPositions;
     [SerializeField] Transform m_BattleSpawnPositions;
     [SerializeField] Transform m_DummiesSpawnPositions;
-
+    [SerializeField] Transform m_LobbyPos; 
     //test 
     [Space(10)]
     [Header("Testings")]
@@ -150,6 +150,14 @@ public class MainSimulator : MonoBehaviour
         //RefreshPlayerList();
     }
 
+    public void ResetGame()
+    {
+        m_TurnNumber = 1;
+        SwitchGameState(EGameState.Lobby);
+
+
+    }
+
     
     void Start()
     {
@@ -262,6 +270,16 @@ public class MainSimulator : MonoBehaviour
 
     }
 
+    void TeleportAllPlayersToLobby()
+    {
+        for (int i = 0; i < m_PlayerSyncs.Count; i++)
+        {
+           
+            //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
+            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_LobbyPos.position);
+        }
+    }
+
     void TeleportPlayersToBattle()
     {
         if (m_ShopSpawnPositions.childCount == 0 || m_ShopSpawnPositions == null)
@@ -335,6 +353,7 @@ public class MainSimulator : MonoBehaviour
         switch (m_GameState)
         {
             case EGameState.Lobby:
+                SwitchPlayState(EPlayState.Lobby); 
                 break;
             case EGameState.InGame:
                 RefreshPlayerList();
@@ -391,6 +410,7 @@ public class MainSimulator : MonoBehaviour
         switch (m_PlayState)
         {
             case EPlayState.Lobby:
+                TeleportAllPlayersToLobby(); 
                 break;
             case EPlayState.Shop:
                 TeleportAllPlayersToShop(); 

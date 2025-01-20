@@ -16,34 +16,30 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 : IEntityCommand
+    public struct _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
-            [FieldOffset(0)]
-            public ByteArray name;
         }
 
-        public static unsafe _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 16) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
-                    "for command with ID 17");
+            if (dataSize != 0) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 0) " +
+                    "for command with ID 10");
             }
 
-            var orig = new _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1();
+            var orig = new _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9();
             var comp = (Interop*)data;
-            orig.name = comp->name.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->name.Data, (int)comp->name.Length) : null;
             return orig;
         }
 
-        public System.String name;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 17;
+        public uint GetComponentType() => 10;
         
         public IEntityMessage Clone()
         {
@@ -81,32 +77,18 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1(
-        Entity entity,
-        System.String name
-)
+        
+        public static void Serialize(_3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9 commandData, IOutProtocolBitStream bitStream)
         {
-            Entity = entity;
-            Routing = MessageTarget.All;
-            Sender = 0;
-            
-            this.name = name; 
         }
         
-        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 commandData, IOutProtocolBitStream bitStream)
+        public static _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            bitStream.WriteShortString(commandData.name);
-        }
-        
-        public static _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
-        {
-            var dataname = bitStream.ReadShortString();
     
-            return new _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1()
+            return new _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9()
             {
                 Entity = entity,
                 Routing = target,
-                name = dataname
             };   
         }
     }

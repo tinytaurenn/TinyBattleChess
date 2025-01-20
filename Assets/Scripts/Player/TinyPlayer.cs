@@ -98,22 +98,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     }
     //commands
 
-    MainSimulator GetSimulator()
-    {
-        MainSimulator simulator = FindFirstObjectByType<MainSimulator>(FindObjectsInactive.Exclude);
-        if (simulator == null)
-        {
-            Debug.Log("simulator not found");
-            return null; 
-        }
-
-        return simulator; 
-    }
-
-    CoherenceSync GetSimulatorSync()
-    {
-        return GetSimulator().GetComponent<CoherenceSync>();
-    }
+    
 
     public bool CanPlayerUseInventoryItem(bool inAttackReady = false, bool inParry = false)
     {
@@ -266,7 +251,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         HitStun();
 
 
-        if (GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+        if (Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
         {
             Debug.Log("in lobby, no damage taken");
             return;
@@ -301,7 +286,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         HitStun();
         
 
-        if (GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+        if (Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
         {
             Debug.Log("in lobby, no damage taken");
             return;
@@ -487,7 +472,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
         SwitchPlayerState(EPlayerState.Spectator);
 
-        GetSimulatorSync().SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
+        Utils.GetSimulatorSync().SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
         
 
     }

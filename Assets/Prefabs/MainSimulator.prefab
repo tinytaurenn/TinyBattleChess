@@ -134,6 +134,7 @@ MonoBehaviour:
   - rid: 5785724803057189779
   - rid: 5785724803057189780
   - rid: 5785725143061364934
+  - rid: 5785725211636662411
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -434,6 +435,47 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 5785725211636662411
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5785725211636662412
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 65b739adf2d449f184091d222d25ade9
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 3742310084580637886}
+        coherenceSync: {fileID: 5605270632006895831}
+        interpolationSettings: {fileID: 0}
+    - rid: 5785725211636662412
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: ResetGame
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: MainSimulator, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
     - rid: 9113002650001998079
       type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -544,6 +586,7 @@ MonoBehaviour:
   m_ShopSpawnPositions: {fileID: 0}
   m_BattleSpawnPositions: {fileID: 0}
   m_DummiesSpawnPositions: {fileID: 0}
+  m_LobbyPos: {fileID: 0}
   SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
   m_IntPlayState: 0
   m_IntGameState: 0
@@ -561,6 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BattlePlayerSize: 2
+  m_PlayersInBattle: []
 --- !u!114 &5243885957173460872
 MonoBehaviour:
   m_ObjectHideFlags: 0

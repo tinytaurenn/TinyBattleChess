@@ -1,3 +1,4 @@
+using Coherence.Toolkit;
 using UnityEngine;
 
 public static class Utils
@@ -39,5 +40,34 @@ public static class Utils
             return false;
         }
     }
-   
+
+    public static CoherenceSync GetSimulatorSync()
+    {
+        //MainSimulator simulator = FindFirstObjectByType<MainSimulator>(FindObjectsInactive.Exclude);
+        MainSimulator simulator = UnityEngine.Object.FindFirstObjectByType<MainSimulator>(UnityEngine.FindObjectsInactive.Exclude);
+
+        if (simulator == null)
+        {
+            Debug.Log("simulator not found");
+            return null;
+        }
+
+        return simulator.GetComponent<CoherenceSync>();
+    }
+
+    public static MainSimulator GetSimulator()
+    {
+        MainSimulator simulator = UnityEngine.Object.FindFirstObjectByType<MainSimulator>(UnityEngine.FindObjectsInactive.Exclude);
+
+        if (simulator == null)
+        {
+            Debug.Log("simulator not found");
+            return null;
+        }
+
+        return simulator; 
+    }
+
+    
+
 }

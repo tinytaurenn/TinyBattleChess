@@ -54,6 +54,8 @@ namespace PlayerControls
 
             m_InputActions.PowerSelect.Exit.performed +=  ExitSelectionPanel;
 
+            m_InputActions.Player.Pause.performed += TogglePause; 
+
 
 
         }
@@ -83,6 +85,8 @@ namespace PlayerControls
             m_InputActions.PowerSelect.Select_3.performed -= ChoiceSelect3;
 
             m_InputActions.PowerSelect.Exit.performed -= ExitSelectionPanel;
+
+            m_InputActions.Player.Pause.performed -= TogglePause;
 
 
 
@@ -191,6 +195,11 @@ namespace PlayerControls
         void ChoiceSelect1(InputAction.CallbackContext context) => LocalUI.Instance.SelectItem(0);
         void ChoiceSelect2(InputAction.CallbackContext context) => LocalUI.Instance.SelectItem(1);
         void ChoiceSelect3(InputAction.CallbackContext context) => LocalUI.Instance.SelectItem(2);
+
+        private void TogglePause(InputAction.CallbackContext context)
+        {
+            LocalUI.Instance.TogglePause();
+        }
 
 
         void SelectItem(int index)
