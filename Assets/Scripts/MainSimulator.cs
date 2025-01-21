@@ -2,11 +2,13 @@ using Coherence.Connection;
 using Coherence.Toolkit;
 using PlayerControls;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UIElements;
 
 
 public class MainSimulator : MonoBehaviour
@@ -162,8 +164,9 @@ public class MainSimulator : MonoBehaviour
     void Start()
     {
         if (!m_Sync.HasStateAuthority) return;
-        if (!Coherence.SimulatorUtility.IsSimulator) return; 
+        if (!Coherence.SimulatorUtility.IsSimulator) return;
 
+        //StartCoroutine(SpamSomething()); 
         
 
 
@@ -229,24 +232,33 @@ public class MainSimulator : MonoBehaviour
         return players;
     }
 
-    public List<CoherenceSync> GetAllAlivePlayersSync(bool alive)
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="state"></param> player is 0, ghost is 1, disqualified is 2 
+    /// <returns></returns>
+    public List<CoherenceSync> GetAllStateSync(int state)
     {
-
         List<CoherenceSync> players = new List<CoherenceSync>();
+
+        Debug.Log("getAllStateSync player count = " + m_PlayerSyncs.Count); 
 
         foreach (CoherenceSync playerSync in m_PlayerSyncs)
         {
-            bool isAlive = playerSync.GetComponent<TinyPlayer>().m_IntPlayerState == 0; 
+            Debug.Log(playerSync.GetComponent<TinyPlayer>().m_IntPlayerState); 
 
-            if(isAlive == alive)
+            if (playerSync.GetComponent<TinyPlayer>().m_IntPlayerState == state)
             {
                 players.Add(playerSync);
             }
         }
+        Debug.Log("getAllStateSync "+ state + "  count = " + players.Count);
 
         return players;
     }
-    
+
+
 
     void TeleportAllPlayersToShop()
     {
@@ -297,6 +309,30 @@ public class MainSimulator : MonoBehaviour
         }
     }
 
+    public void ReviveGhostPlayers()
+    {
+        foreach (var player in m_PlayerSyncs)
+        {
+            if(player.GetComponent<TinyPlayer>().m_IntPlayerState == 1  )
+            {
+                player.SendCommand<TinyPlayer>(nameof(TinyPlayer.SwitchPlayerState), Coherence.MessageTarget.AuthorityOnly,0);
+            }
+           
+        }
+    }
+
+    public void ReviveAllPlayers()
+    {
+        foreach (var player in m_PlayerSyncs)
+        {
+            if (player.GetComponent<TinyPlayer>().m_IntPlayerState != 0)
+            {
+                player.SendCommand<TinyPlayer>(nameof(TinyPlayer.SwitchPlayerState), Coherence.MessageTarget.AuthorityOnly, 0);
+            }
+
+        }
+    }
+
     public void StartGame()
     {
         if(m_PlayState != EPlayState.Lobby)
@@ -318,7 +354,7 @@ public class MainSimulator : MonoBehaviour
 
     public void PlayerDeath(CoherenceSync playerSync)
     {
-        
+ 
         m_BattleRoundManager.PlayerDeath(playerSync);
     }
 
@@ -410,6 +446,7 @@ public class MainSimulator : MonoBehaviour
         switch (m_PlayState)
         {
             case EPlayState.Lobby:
+                ReviveAllPlayers(); 
                 TeleportAllPlayersToLobby(); 
                 break;
             case EPlayState.Shop:
@@ -420,10 +457,11 @@ public class MainSimulator : MonoBehaviour
                 break;
             case EPlayState.Fighting:
                 TeleportPlayersToBattle();
-                m_BattleRoundManager.StartBattleRound(GetAllAlivePlayersSync(true)); 
+                m_BattleRoundManager.StartBattleRound(GetAllStateSync(0)); 
                 
                 break;
             case EPlayState.End:
+                Debug.Log("end of the game"); 
                 break;
             default:
                 break;
@@ -471,10 +509,53 @@ public class MainSimulator : MonoBehaviour
         }
     }
 
+    public void EndTurn()
+    {
+
+        //40 hp flat for now 
+
+        List<CoherenceSync> playerSync = GetAllStateSync(1); //ghosts 
+        Debug.Log("ghost in the game : " + playerSync.Count);
+        foreach (var player in playerSync)
+        {
+            player.SendCommand<TinyPlayer>(nameof(TinyPlayer.TakeGlobalDamage), Coherence.MessageTarget.AuthorityOnly, 40);
+        }
+
+        StartCoroutine(DelayedNextTurn());  
+    }
+
+    IEnumerator DelayedNextTurn()
+    {
+        yield return new WaitForSeconds(2);
+        NextTurn(); 
+    }
+
     public void NextTurn()
     {
-        m_TurnNumber++; 
+        List<CoherenceSync> disqualifiedSyncs = GetAllStateSync(2); //ghosts
+        Debug.Log("get all disqualified players : " + disqualifiedSyncs.Count);
+        Debug.Log("get all players for turn check : " + m_PlayerSyncs.Count);
+
+        if(disqualifiedSyncs.Count >= ( m_PlayerSyncs.Count -1))
+        {
+            SwitchPlayState(EPlayState.End);
+            return;
+        }
+        ReviveGhostPlayers(); 
+
+        m_TurnNumber++;
+
         SwitchPlayState(EPlayState.Shop);
+    }
+
+    IEnumerator SpamSomething()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(4);
+            GetAllStateSync(1); 
+        }
+        
     }
     #endregion
 

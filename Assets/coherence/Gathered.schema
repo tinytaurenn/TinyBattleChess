@@ -179,58 +179,64 @@ command _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7 [id "
 command _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff [id "13", routing "All"]
   name String 
 
-command _5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f [id "14", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562 [id "14", routing "All"]
+  damage Int 
+
+command _5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f [id "15", routing "All"]
   index Int 
 
-command _5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695 [id "15", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695 [id "16", routing "All"]
   damage Int 
   DamagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc [id "16", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8 [id "17", routing "All"]
+  intPlayerState Int 
+
+command _5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc [id "18", routing "All"]
   choiceIndex Int 
 
-command _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 [id "17", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1 [id "19", routing "All"]
   name String 
 
-command _5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a [id "18", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a [id "20", routing "All"]
   oldState Int 
   NewState Int 
 
-command _5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a [id "19", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a [id "21", routing "All"]
   DirectionNESO Int 
   sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
   damage Int 
   attackerPos Vector3 [compression "None"]
 
-command _5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7 [id "20", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7 [id "22", routing "All"]
   damage Int 
   Damagersync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6 [id "21", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6 [id "23", routing "All"]
   damage Int 
   Damagersync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e [id "22", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e [id "24", routing "All"]
 
-command _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 [id "23", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3 [id "25", routing "All"]
   worldPos Vector3 [compression "None"]
 
-command _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f [id "24", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f [id "26", routing "All"]
 
-command _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90 [id "25", routing "All"]
+command _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90 [id "27", routing "All"]
   choiceIndex Int 
 
-command _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6 [id "26", routing "All"]
+command _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6 [id "28", routing "All"]
   damage Int 
   DamagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1 [id "27", routing "All"]
+command _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1 [id "29", routing "All"]
   choiceIndex Int 
 
-command _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e [id "28", routing "All"]
+command _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e [id "30", routing "All"]
   choiceIndex Int 
 
-command _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81 [id "29", routing "All"]
+command _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81 [id "31", routing "All"]
   DirectionNESO Int 
   sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
   damage Int 

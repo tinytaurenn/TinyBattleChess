@@ -1,3 +1,4 @@
+using Coherence.Cloud;
 using Coherence.Toolkit;
 using PlayerControls;
 using System;
@@ -130,7 +131,20 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_IntPlayerState = (int)playerState;
         OnEnterPlayerState();
 
-       
+
+    }
+
+    public void SwitchPlayerState(int intPlayerState)
+    {
+        //Player = 0 ,
+        //Spectator = 1,
+        //Disqualified = 2
+
+        if (m_PlayerState ==(EPlayerState) intPlayerState) return;
+        OnExitPlayerState();
+        m_PlayerState = (EPlayerState)intPlayerState;
+        m_IntPlayerState = intPlayerState;
+        OnEnterPlayerState();
 
     }
 
@@ -139,9 +153,11 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
+                EnablePlayer(true); 
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
                 m_PlayerGhost.SetActive(false);
                 SeeGhosts(false);
+                m_Player_Health = 100;
                 break;
             case EPlayerState.Spectator:
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
@@ -307,6 +323,18 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         }
 
 
+    }
+
+    public void TakeGlobalDamage(int damage)
+    {
+        Debug.Log("Taking global damage");
+        m_Global_Health -= damage;
+        if (m_Global_Health <= 0)
+        {
+            m_Global_Health = 0;
+            Debug.Log("global health is 0, player disqualified");
+            SwitchPlayerState(EPlayerState.Disqualified);
+        }
     }
 
     public void ParrySync(int damage, CoherenceSync DamagerSync)
@@ -500,6 +528,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 break;
             case 2: //fighting
                 Debug.Log("exit Fighting ");
+                m_Player_Health = 100;
                 
 
                 break;

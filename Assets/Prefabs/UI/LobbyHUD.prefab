@@ -725,7 +725,7 @@ MonoBehaviour:
   onNetworkedDestruction:
     m_PersistentCalls:
       m_Calls: []
-  scenePrefabInstanceUUID: 49352
+  scenePrefabInstanceUUID: 
   coherenceUUID: LobbyHUD
   assetVersion: 
   usingReflection: 0

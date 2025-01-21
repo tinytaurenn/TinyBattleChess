@@ -449,6 +449,8 @@ MonoBehaviour:
   - rid: 5785724890203292562
   - rid: 5785725142605234257
   - rid: 5785725142605234802
+  - rid: 5785725212284158604
+  - rid: 5785725212284158651
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -1149,6 +1151,90 @@ MonoBehaviour:
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         name: ChangeBattleIndex
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 5785725212284158604
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5785725212284158605
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 5a11ef1c74b146c68052e6c75baab7d8
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 5785725212284158605
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: SwitchPlayerState
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        ownerType:
+          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 5785725212284158651
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 5785725212284158652
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 215915084e114f92bc20eb4f102e7562
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 2358625368182078286}
+        coherenceSync: {fileID: 712017614822695059}
+        interpolationSettings: {fileID: 0}
+    - rid: 5785725212284158652
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: TakeGlobalDamage
         monoAssemblyType: 
         required: 0
         enforcesLODingWhenFieldsOverriden: 0
@@ -1927,8 +2013,8 @@ MonoBehaviour:
   m_PlayerLoadout: {fileID: 0}
   m_PlayerModel: {fileID: 3942809304985668726}
   m_PlayerAnimEvents: {fileID: 4490843030010982481}
-  m_Global_Health: 100
-  m_Player_Health: 100
+  m_Global_Health: 70
+  m_Player_Health: 30
   m_IsBeaten: 0
   m_IsStunned: 0
   m_StunTimer: 0

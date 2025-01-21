@@ -1,5 +1,7 @@
 using Coherence.Toolkit;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BattleRoundManager : MonoBehaviour
@@ -87,8 +89,15 @@ public class BattleRoundManager : MonoBehaviour
     public void EndBattle()
     {
         Debug.Log("ending battle");
-        m_MainSimulator.NextTurn(); 
+
+        StartCoroutine(DelayedEndTurn());
     }
 
-   
+    IEnumerator DelayedEndTurn()
+    {
+        yield return new WaitForSeconds(3f);
+        m_MainSimulator.EndTurn();
+    }
+
+
 }
