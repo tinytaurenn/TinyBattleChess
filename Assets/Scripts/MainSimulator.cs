@@ -152,6 +152,13 @@ public class MainSimulator : MonoBehaviour
         //RefreshPlayerList();
     }
 
+    IEnumerator DelayedReset(float time)
+    {
+        yield return new WaitForSeconds(time);
+        ResetGame();
+    }
+
+
     public void ResetGame()
     {
         m_TurnNumber = 1;
@@ -289,6 +296,7 @@ public class MainSimulator : MonoBehaviour
            
             //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
             m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_LobbyPos.position);
+            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.ResetPlayerStats), Coherence.MessageTarget.AuthorityOnly);
         }
     }
 
@@ -390,6 +398,7 @@ public class MainSimulator : MonoBehaviour
         {
             case EGameState.Lobby:
                 SwitchPlayState(EPlayState.Lobby); 
+
                 break;
             case EGameState.InGame:
                 RefreshPlayerList();
@@ -462,6 +471,7 @@ public class MainSimulator : MonoBehaviour
                 break;
             case EPlayState.End:
                 Debug.Log("end of the game"); 
+                StartCoroutine(DelayedReset(5));
                 break;
             default:
                 break;

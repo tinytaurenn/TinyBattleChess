@@ -63,11 +63,11 @@ public class LobbyHUD : MonoBehaviour
 
         if (mainSimulator == null) return; 
 
-        if (mainSimulator.m_IntGameState == (int)MainSimulator.EGameState.Lobby)
-        {
-            Debug.Log("Game is in lobby state, cant reset");
-            return;
-        }
+        //if (mainSimulator.m_IntGameState == (int)MainSimulator.EGameState.Lobby)
+        //{
+        //    Debug.Log("Game is in lobby state, cant reset");
+        //    return;
+        //}
         mainSimulator.GetComponent<CoherenceSync>().SendCommand<MainSimulator>(nameof(MainSimulator.ResetGame), MessageTarget.AuthorityOnly);
 
         ShowLobbyHUD();
@@ -77,16 +77,19 @@ public class LobbyHUD : MonoBehaviour
     public void HideLobbyHUD()
     {
         m_GlobalCanvas.enabled = false;
+        m_GlobalCanvas.gameObject.SetActive(false);
     }
     public void ShowLobbyHUD()
     {
         m_GlobalCanvas.enabled = true;
+        m_GlobalCanvas.gameObject.SetActive(true);
         
     }
 
     public void ShowPause(bool show)
     {
         m_RootCanvas.enabled = show;
+        m_RootCanvas.gameObject.SetActive(show); 
     }
     
 

@@ -28,23 +28,23 @@ namespace Coherence.Generated
             [FieldOffset(0)]
             public System.Int32 m_IntPlayerState;
             [FieldOffset(4)]
-            public System.Int32 m_Global_Health;
-            [FieldOffset(8)]
-            public System.Int32 m_Player_Health;
-            [FieldOffset(12)]
             public System.Int32 BattleIndex;
+            [FieldOffset(8)]
+            public System.Int32 PlayerHealth;
+            [FieldOffset(12)]
+            public System.Int32 GlobalHealth;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
         {
             FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_IntPlayerStateMask;
             m_IntPlayerStateSimulationFrame = frame;
-            FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_Global_HealthMask;
-            m_Global_HealthSimulationFrame = frame;
-            FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_Player_HealthMask;
-            m_Player_HealthSimulationFrame = frame;
             FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.BattleIndexMask;
             BattleIndexSimulationFrame = frame;
+            FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.PlayerHealthMask;
+            PlayerHealthSimulationFrame = frame;
+            FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.GlobalHealthMask;
+            GlobalHealthSimulationFrame = frame;
         }
 
         public static unsafe _5358ed04715b0f148a60e93c83f08be0_2358625368182078286 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
@@ -64,9 +64,9 @@ namespace Coherence.Generated
             var comp = (Interop*)data;
 
             orig.m_IntPlayerState = comp->m_IntPlayerState;
-            orig.m_Global_Health = comp->m_Global_Health;
-            orig.m_Player_Health = comp->m_Player_Health;
             orig.BattleIndex = comp->BattleIndex;
+            orig.PlayerHealth = comp->PlayerHealth;
+            orig.GlobalHealth = comp->GlobalHealth;
 
             return orig;
         }
@@ -75,15 +75,15 @@ namespace Coherence.Generated
         public static uint m_IntPlayerStateMask => 0b00000000000000000000000000000001;
         public AbsoluteSimulationFrame m_IntPlayerStateSimulationFrame;
         public System.Int32 m_IntPlayerState;
-        public static uint m_Global_HealthMask => 0b00000000000000000000000000000010;
-        public AbsoluteSimulationFrame m_Global_HealthSimulationFrame;
-        public System.Int32 m_Global_Health;
-        public static uint m_Player_HealthMask => 0b00000000000000000000000000000100;
-        public AbsoluteSimulationFrame m_Player_HealthSimulationFrame;
-        public System.Int32 m_Player_Health;
-        public static uint BattleIndexMask => 0b00000000000000000000000000001000;
+        public static uint BattleIndexMask => 0b00000000000000000000000000000010;
         public AbsoluteSimulationFrame BattleIndexSimulationFrame;
         public System.Int32 BattleIndex;
+        public static uint PlayerHealthMask => 0b00000000000000000000000000000100;
+        public AbsoluteSimulationFrame PlayerHealthSimulationFrame;
+        public System.Int32 PlayerHealth;
+        public static uint GlobalHealthMask => 0b00000000000000000000000000001000;
+        public AbsoluteSimulationFrame GlobalHealthSimulationFrame;
+        public System.Int32 GlobalHealth;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
@@ -129,12 +129,12 @@ namespace Coherence.Generated
 
         private static readonly System.Int32 _m_IntPlayerState_Min = -2147483648;
         private static readonly System.Int32 _m_IntPlayerState_Max = 2147483647;
-        private static readonly System.Int32 _m_Global_Health_Min = -2147483648;
-        private static readonly System.Int32 _m_Global_Health_Max = 2147483647;
-        private static readonly System.Int32 _m_Player_Health_Min = -2147483648;
-        private static readonly System.Int32 _m_Player_Health_Max = 2147483647;
         private static readonly System.Int32 _BattleIndex_Min = -2147483648;
         private static readonly System.Int32 _BattleIndex_Max = 2147483647;
+        private static readonly System.Int32 _PlayerHealth_Min = -2147483648;
+        private static readonly System.Int32 _PlayerHealth_Max = 2147483647;
+        private static readonly System.Int32 _GlobalHealth_Min = -2147483648;
+        private static readonly System.Int32 _GlobalHealth_Max = 2147483647;
 
         public AbsoluteSimulationFrame? GetMinSimulationFrame()
         {
@@ -161,22 +161,22 @@ namespace Coherence.Generated
             otherMask >>= 1;
             if ((otherMask & 0x01) != 0)
             {
-                this.m_Global_HealthSimulationFrame = other.m_Global_HealthSimulationFrame;
-                this.m_Global_Health = other.m_Global_Health;
-            }
-
-            otherMask >>= 1;
-            if ((otherMask & 0x01) != 0)
-            {
-                this.m_Player_HealthSimulationFrame = other.m_Player_HealthSimulationFrame;
-                this.m_Player_Health = other.m_Player_Health;
-            }
-
-            otherMask >>= 1;
-            if ((otherMask & 0x01) != 0)
-            {
                 this.BattleIndexSimulationFrame = other.BattleIndexSimulationFrame;
                 this.BattleIndex = other.BattleIndex;
+            }
+
+            otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.PlayerHealthSimulationFrame = other.PlayerHealthSimulationFrame;
+                this.PlayerHealth = other.PlayerHealth;
+            }
+
+            otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.GlobalHealthSimulationFrame = other.GlobalHealthSimulationFrame;
+                this.GlobalHealth = other.GlobalHealth;
             }
 
             otherMask >>= 1;
@@ -217,41 +217,41 @@ namespace Coherence.Generated
             if (bitStream.WriteMask((mask & 0x01) != 0))
             {
 
-                Coherence.Utils.Bounds.Check(data.m_Global_Health, _m_Global_Health_Min, _m_Global_Health_Max, "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_Global_Health", logger);
-
-                data.m_Global_Health = Coherence.Utils.Bounds.Clamp(data.m_Global_Health, _m_Global_Health_Min, _m_Global_Health_Max);
-
-                var fieldValue = data.m_Global_Health;
-
-
-
-                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
-            }
-
-            mask >>= 1;
-            if (bitStream.WriteMask((mask & 0x01) != 0))
-            {
-
-                Coherence.Utils.Bounds.Check(data.m_Player_Health, _m_Player_Health_Min, _m_Player_Health_Max, "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_Player_Health", logger);
-
-                data.m_Player_Health = Coherence.Utils.Bounds.Clamp(data.m_Player_Health, _m_Player_Health_Min, _m_Player_Health_Max);
-
-                var fieldValue = data.m_Player_Health;
-
-
-
-                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
-            }
-
-            mask >>= 1;
-            if (bitStream.WriteMask((mask & 0x01) != 0))
-            {
-
                 Coherence.Utils.Bounds.Check(data.BattleIndex, _BattleIndex_Min, _BattleIndex_Max, "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286.BattleIndex", logger);
 
                 data.BattleIndex = Coherence.Utils.Bounds.Clamp(data.BattleIndex, _BattleIndex_Min, _BattleIndex_Max);
 
                 var fieldValue = data.BattleIndex;
+
+
+
+                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
+            }
+
+            mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+                Coherence.Utils.Bounds.Check(data.PlayerHealth, _PlayerHealth_Min, _PlayerHealth_Max, "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286.PlayerHealth", logger);
+
+                data.PlayerHealth = Coherence.Utils.Bounds.Clamp(data.PlayerHealth, _PlayerHealth_Min, _PlayerHealth_Max);
+
+                var fieldValue = data.PlayerHealth;
+
+
+
+                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
+            }
+
+            mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+                Coherence.Utils.Bounds.Check(data.GlobalHealth, _GlobalHealth_Min, _GlobalHealth_Max, "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286.GlobalHealth", logger);
+
+                data.GlobalHealth = Coherence.Utils.Bounds.Clamp(data.GlobalHealth, _GlobalHealth_Min, _GlobalHealth_Max);
+
+                var fieldValue = data.GlobalHealth;
 
 
 
@@ -281,20 +281,20 @@ namespace Coherence.Generated
             if (bitStream.ReadMask())
             {
 
-                val.m_Global_Health = bitStream.ReadIntegerRange(32, -2147483648);
-                val.FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_Global_HealthMask;
-            }
-            if (bitStream.ReadMask())
-            {
-
-                val.m_Player_Health = bitStream.ReadIntegerRange(32, -2147483648);
-                val.FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.m_Player_HealthMask;
-            }
-            if (bitStream.ReadMask())
-            {
-
                 val.BattleIndex = bitStream.ReadIntegerRange(32, -2147483648);
                 val.FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.BattleIndexMask;
+            }
+            if (bitStream.ReadMask())
+            {
+
+                val.PlayerHealth = bitStream.ReadIntegerRange(32, -2147483648);
+                val.FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.PlayerHealthMask;
+            }
+            if (bitStream.ReadMask())
+            {
+
+                val.GlobalHealth = bitStream.ReadIntegerRange(32, -2147483648);
+                val.FieldsMask |= _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.GlobalHealthMask;
             }
 
             val.StoppedMask = stoppedMask;
@@ -307,9 +307,9 @@ namespace Coherence.Generated
         {
             return $"_5358ed04715b0f148a60e93c83f08be0_2358625368182078286(" +
                 $" m_IntPlayerState: { this.m_IntPlayerState }" +
-                $" m_Global_Health: { this.m_Global_Health }" +
-                $" m_Player_Health: { this.m_Player_Health }" +
                 $" BattleIndex: { this.BattleIndex }" +
+                $" PlayerHealth: { this.PlayerHealth }" +
+                $" GlobalHealth: { this.GlobalHealth }" +
                 $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(4, '0') }, " +
                 $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(4, '0') })";
         }

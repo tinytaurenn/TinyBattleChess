@@ -17,7 +17,13 @@ public class LocalUI : MonoBehaviour
     [Header(" Pause ")]
     [SerializeField] LobbyHUD m_LobbyHUD;
 
-    [SerializeField] bool m_InPauseMenu = false; 
+    [SerializeField] bool m_InPauseMenu = false;
+
+    [Space(10)]
+    [Header("Player Stats ")]
+    [SerializeField] Slider m_PlayerHealth_Slider;
+    [SerializeField] Slider m_PlayerGlobalHealth_Slider;
+    [SerializeField] TextMeshProUGUI m_PlayerHealth_ValueText;
 
     [Space(10)]
     [Header("Inventory ")]
@@ -249,6 +255,18 @@ public class LocalUI : MonoBehaviour
     {
         m_ShopRelatedGO.SetActive(show); 
         UpdateGoldAmount(ConnectionsHandler.Instance.LocalTinyPlayer.PlayerGold);
+    }
+
+    public void UpdatePlayerHealthSlider(int value)
+    {
+        m_PlayerHealth_Slider.value = value;
+    }
+
+    public void UpdateGlobalHealthSlider(int value)
+    {
+        m_PlayerGlobalHealth_Slider.value = value;
+        m_PlayerHealth_ValueText.text = value.ToString();
+
     }
     
 

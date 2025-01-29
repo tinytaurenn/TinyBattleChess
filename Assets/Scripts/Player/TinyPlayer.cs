@@ -34,8 +34,25 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
     [Space(10)]
     [Header("Player Stats")]
-    [Sync] public  int m_Global_Health = 100;
-    [Sync] public int m_Player_Health = 100; 
+    [Sync] [SerializeField] int m_Global_Health = 100;
+    [Sync] [SerializeField] int m_Player_Health = 100; 
+
+    public int GlobalHealth { 
+        get { return m_Global_Health;  }
+        set {
+            OnChangeGlobalPlayerHealth(m_Global_Health, value);
+            m_Global_Health = value;
+        }
+    }
+    public int PlayerHealth {
+        get { return m_Player_Health;  }
+        set { 
+            OnChangePlayerHealth(m_Player_Health, value);
+            m_Player_Health = value; 
+        }
+    }
+
+
     public bool m_IsBeaten = false;
     public bool m_IsStunned = false;
     public float m_StunTimer = 0;
@@ -97,9 +114,13 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         
         UpdatePlayerState();
     }
+    private void Start()
+    {
+        RefreshPlayerUI(); 
+    }
     //commands
 
-    
+
 
     public bool CanPlayerUseInventoryItem(bool inAttackReady = false, bool inParry = false)
     {
@@ -134,7 +155,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
     }
 
-    public void SwitchPlayerState(int intPlayerState)
+    public void SwitchPlayerState(int intPlayerState) 
     {
         //Player = 0 ,
         //Spectator = 1,
@@ -157,7 +178,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
                 m_PlayerGhost.SetActive(false);
                 SeeGhosts(false);
-                m_Player_Health = 100;
+                PlayerHealth = 100;
+                
                 break;
             case EPlayerState.Spectator:
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
@@ -273,11 +295,11 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             return;
         }
 
-        m_Player_Health -= damage;
+        PlayerHealth -= damage;
 
-        if (m_Player_Health <= 0)
+        if (PlayerHealth <= 0)
         {
-            m_Player_Health = 0;
+            PlayerHealth = 0;
             Debug.Log("must die now");
          
             PlayerDeath(); 
@@ -307,11 +329,11 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             Debug.Log("in lobby, no damage taken");
             return;
         }
-        m_Player_Health -= damage;
+        PlayerHealth -= damage;
 
-        if (m_Player_Health <= 0)
+        if (PlayerHealth <= 0)
         {
-            m_Player_Health = 0;
+            PlayerHealth = 0;
             Debug.Log("must die now"); 
             
             PlayerDeath();
@@ -328,10 +350,10 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     public void TakeGlobalDamage(int damage)
     {
         Debug.Log("Taking global damage");
-        m_Global_Health -= damage;
-        if (m_Global_Health <= 0)
+        GlobalHealth -= damage;
+        if (GlobalHealth <= 0)
         {
-            m_Global_Health = 0;
+            GlobalHealth = 0;
             Debug.Log("global health is 0, player disqualified");
             SwitchPlayerState(EPlayerState.Disqualified);
         }
@@ -434,6 +456,34 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_PlayerModel.SetActive(Visible);
     }
 
+    public void ResetPlayerStats()
+    {
+        GlobalHealth = 100;
+        PlayerHealth = 100;
+        PlayerGold = 10;
+    }
+
+    void OnChangePlayerHealth(int oldHealh, int newHealth)
+    {
+        Debug.Log("player health changed from " + oldHealh + " to " + newHealth);
+        if (!m_Sync.HasStateAuthority) return; // event triggered from all
+        LocalUI.Instance.UpdatePlayerHealthSlider(newHealth);
+    }
+
+    void OnChangeGlobalPlayerHealth(int oldGlobal, int newGlobal)
+    {
+        Debug.Log("global player health changed from " + oldGlobal + " to " + newGlobal);
+        if (!m_Sync.HasStateAuthority) return; // event triggered from all
+        LocalUI.Instance.UpdateGlobalHealthSlider(newGlobal);
+    }
+
+    void RefreshPlayerUI()
+    {
+        LocalUI.Instance.UpdatePlayerHealthSlider(PlayerHealth);
+        LocalUI.Instance.UpdateGlobalHealthSlider(GlobalHealth);
+        LocalUI.Instance.UpdateGoldAmount(PlayerGold);
+    }
+
     /// <summary>
     /// Important function, called when another player change its state
     /// </summary>
@@ -528,7 +578,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 break;
             case 2: //fighting
                 Debug.Log("exit Fighting ");
-                m_Player_Health = 100;
+                PlayerHealth = 100;
                 
 
                 break;
@@ -545,6 +595,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             case 0: // Lobby
                 Debug.Log("lobby, stopping PVP ");
                 m_PlayerLoadout.UnloadEquippedStuff();
+                FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude).ShowLobbyHUD();
                 break;
             case 1: //shop 
                 Debug.Log("Shop, stopping PVP ");
