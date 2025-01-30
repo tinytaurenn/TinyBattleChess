@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579f4a509fd2f994fa391c0c78ea3f11, type: 3}
+  m_Name: Metal_Helmet
+  m_EditorClassIdentifier: 
+  id: d74ec397b646aca44b0b3a0dd609d93f
+  selfId: fc512ff2be39fe14495dd9b67c320544
+  editorTarget: {fileID: 5898950250766439224, guid: d74ec397b646aca44b0b3a0dd609d93f, type: 3}
+  includeInSchema: 1
+  objectProvider:
+    rid: 5785725432779506367
+  objectInstantiator:
+    rid: 5785725432779506368
+  references:
+    version: 2
+    RefIds:
+    - rid: 5785725432779506367
+      type: {class: DirectReferenceProvider, ns: Coherence.Toolkit, asm: Coherence.Toolkit}
+      data:
+        prefab: {fileID: 5898950250766439224, guid: d74ec397b646aca44b0b3a0dd609d93f, type: 3}
+    - rid: 5785725432779506368
+      type: {class: DefaultInstantiator, ns: Coherence.Toolkit, asm: Coherence.Toolkit}
+      data: 

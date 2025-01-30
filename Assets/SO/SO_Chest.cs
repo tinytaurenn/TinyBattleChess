@@ -16,7 +16,11 @@ public class SO_Chest : ScriptableObject
     Dictionary<Type, EItemType> m_ItemTypesDico = new Dictionary<Type, EItemType>{
     { typeof(SO_Weapon), EItemType.Weapon },
     { typeof(SO_Potion), EItemType.Potion },
-    { typeof(SO_Scroll), EItemType.Scroll }//add armor and rune later
+    { typeof(SO_Scroll), EItemType.Scroll },
+    { typeof(SO_Armor), EItemType.Armor },
+    //{ typeof(SO_Rune), EItemType.Rune }
+        
+    //add armor and rune later
 
 };
 

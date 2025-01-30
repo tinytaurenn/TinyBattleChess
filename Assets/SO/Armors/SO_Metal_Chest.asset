@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13773dd9196d2794b9a437b1a627ff70, type: 3}
   m_Name: SO_Metal_Chest
   m_EditorClassIdentifier: 
-  ItemIcon: {fileID: 0}
+  ItemIcon: {fileID: 21300000, guid: 6f97845087b178a47839abac13528b3f, type: 3}
   ItemName: Metal Chest
   ItemDescription: a metal chest
   Usable_GameObject: {fileID: 2670494187592001894, guid: 7a48fb6866149a6488e2e1096523ccff, type: 3}
-  Chest_GameObject: {fileID: 0}
+  Chest_GameObject: {fileID: 5592630990500486725, guid: 17578025ca6da8a4aa2f14b2d56bc8a6, type: 3}
   Cost: 10
   EItemRarity: 0
   ArmorType: 3

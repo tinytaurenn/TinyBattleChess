@@ -20,6 +20,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     
 
     CoherenceSync m_Sync;
+
+    public CoherenceSync Sync => m_Sync;
     PlayerMovement m_PlayerMovement;
     Collider m_Collider; 
     internal PlayerControls.PlayerControls m_PlayerControls;
@@ -287,7 +289,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         Debug.Log("sync Player took " + damage + " weapon damage!");
 
         m_PlayerFX.PlayHurtFX(0);
-        m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
+        Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
         Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly); //sound 
         HitStun();
 
@@ -322,7 +324,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
         Debug.Log("sync Player took " + damage + " damage!");
         m_PlayerFX.PlayHurtFX(0); 
-        m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
+        Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
 
         HitStun();
         
@@ -369,7 +371,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         DamagerSync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncBlocked), Coherence.MessageTarget.AuthorityOnly);
 
         int soundVariationIndex = UnityEngine.Random.Range(0, 3);
-        m_Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
+        Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
     } 
 
     public void HitStun()

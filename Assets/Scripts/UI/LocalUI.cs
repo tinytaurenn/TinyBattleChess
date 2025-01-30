@@ -100,6 +100,11 @@ public class LocalUI : MonoBehaviour
         m_SlotDictionary.Add(PlayerLoadout.ESlot.Slot_3, m_InventorySlots[2]);
         m_SlotDictionary.Add(PlayerLoadout.ESlot.Slot_4, m_InventorySlots[3]);
 
+        m_SlotDictionary.Add(PlayerLoadout.ESlot.Helmet, m_HelmetSlot);
+        m_SlotDictionary.Add(PlayerLoadout.ESlot.Chest, m_ChestSlot);
+        m_SlotDictionary.Add(PlayerLoadout.ESlot.Shoulders, m_ShouldersSlot);
+
+
         m_UsableText.enabled = false;
 
     }

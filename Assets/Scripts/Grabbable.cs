@@ -9,7 +9,7 @@ public abstract class Grabbable : Usable
     public SO_Item SO_Item
     {
         get { return m_SO_Item;}
-        private set { m_SO_Item = value; }
+        set { m_SO_Item = value; }
     }
 
     [SerializeField] SO_Item m_SO_Item; 

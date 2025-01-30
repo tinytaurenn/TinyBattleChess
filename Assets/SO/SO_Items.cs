@@ -23,7 +23,7 @@ public enum EItemRarity
     Legendary = 4 // orange
 }
 
-[CreateAssetMenu(fileName = "SO_Items", menuName = "Scriptable Objects/Items/SO_Items")]
+[CreateAssetMenu(fileName = "SO_Items", menuName = "Scriptable Objects/Items/SO_Items")] 
 
 
 public class SO_Items : ScriptableObject

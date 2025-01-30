@@ -1,7 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerLoadout;
+using UnityEngine.InputSystem.UI;
 
 [Serializable]
 public class ESlotToWeaponDictionary : SerializableDictionary<PlayerLoadout.ESlot, BasicWeapon> { }
@@ -11,7 +12,7 @@ public class ESlotToInventoryItemDictionary : SerializableDictionary<PlayerLoado
 
 [Serializable]
 
-public class EArmorTypeToArmorDictionary : SerializableDictionary<SO_Armor.EArmorPlace, Armor> { }
+public class EArmorTypeToArmorDictionary : SerializableDictionary<PlayerLoadout.ESlot, Armor> { }
 
 public class PlayerLoadout : MonoBehaviour
 {
@@ -24,7 +25,10 @@ public class PlayerLoadout : MonoBehaviour
         Slot_2 = 3,
         Slot_3 = 4,
         Slot_4 = 5,
-        count = 6
+        Helmet = 6,
+        Chest = 7,
+        Shoulders = 8,
+        count = 9
     }
 
     public enum EInventoryType
@@ -33,6 +37,8 @@ public class PlayerLoadout : MonoBehaviour
         Equipped,
     }
     EInventoryType m_InventoryType = EInventoryType.Loadout;
+
+    TinyPlayer m_TinyPlayer; 
  
     [Header("Loadout Items")]
     [Space(5)]
@@ -86,6 +92,8 @@ public class PlayerLoadout : MonoBehaviour
     private void Awake()
     {
 
+        m_TinyPlayer = GetComponent<TinyPlayer>();
+
         m_EquippedWeapons.Add(ESlot.MainWeapon, null);
         m_EquippedWeapons.Add(ESlot.SecondaryWeapon, null);
        
@@ -94,9 +102,9 @@ public class PlayerLoadout : MonoBehaviour
         m_EquippedItems.Add(ESlot.Slot_3, null);
         m_EquippedItems.Add(ESlot.Slot_4, null);
         //
-        m_EquippedArmor.Add(SO_Armor.EArmorPlace.Helmet, null);
-        m_EquippedArmor.Add(SO_Armor.EArmorPlace.Chest, null);
-        m_EquippedArmor.Add(SO_Armor.EArmorPlace.Shoulders, null);
+        m_EquippedArmor.Add(ESlot.Helmet, null);
+        m_EquippedArmor.Add(ESlot.Chest, null);
+        m_EquippedArmor.Add(ESlot.Shoulders, null);
         //
         //SelectSlot(m_SelectedSlot);
     }
@@ -115,7 +123,7 @@ public class PlayerLoadout : MonoBehaviour
         {
             Debug.Log("equip SO  armor in loadout : " + item.GetType().ToString());
             SO_Armor armor = (SO_Armor)item;
-            //EquipArmorLoadout(armor);
+            EquipArmorInLoadout(armor);
             CloseItemSelection();
         }
         else
@@ -295,7 +303,7 @@ public class PlayerLoadout : MonoBehaviour
             //select and replace
             Debug.Log("no place left in loadout, replacing"); 
             m_StandByItem = item;
-            ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.EnterReplaceInventorySlotControls();
+            m_TinyPlayer.m_PlayerControls.EnterReplaceInventorySlotControls();
             LocalUI.Instance.OnReplaceItem(); 
             
         }
@@ -338,7 +346,7 @@ public class PlayerLoadout : MonoBehaviour
             {
                 DropWeapons();
             }
-            m_EquippedWeapons[ESlot.MainWeapon]= weapon;
+            m_EquippedWeapons[ESlot.MainWeapon]= weapon; 
             m_EquippedWeapons[ESlot.SecondaryWeapon]= null;
 
             
@@ -400,7 +408,7 @@ public class PlayerLoadout : MonoBehaviour
             Debug.Log("no item equipped in this  slot");
             return; 
         }
-        if(!ConnectionsHandler.Instance.LocalTinyPlayer.CanPlayerUseInventoryItem()) return;
+        if(!m_TinyPlayer.CanPlayerUseInventoryItem()) return;
 
         Debug.Log("use item in slot");
         m_EquippedItems[ESlot.MainWeapon].UseInventoryItem(); 
@@ -474,6 +482,10 @@ public class PlayerLoadout : MonoBehaviour
             {ESlot.Slot_2, m_Slot_2},
             {ESlot.Slot_3, m_Slot_3},
             {ESlot.Slot_4, m_Slot_4},
+            {ESlot.Helmet, m_Helmet},
+            {ESlot.Chest, m_Chest},
+            {ESlot.Shoulders, m_Shoulders},
+
         };
 
         LocalUI.Instance.RefreshInventoryUI(items, m_InventoryType);
@@ -489,6 +501,9 @@ public class PlayerLoadout : MonoBehaviour
             {ESlot.Slot_2, GetEquippedSO_Item(ESlot.Slot_2)},
             {ESlot.Slot_3, GetEquippedSO_Item(ESlot.Slot_3)},
             {ESlot.Slot_4, GetEquippedSO_Item(ESlot.Slot_4)},
+            {ESlot.Helmet, GetEquippedSO_Armor(ESlot.Helmet)},
+            {ESlot.Chest, GetEquippedSO_Armor(ESlot.Chest)},
+            {ESlot.Shoulders, GetEquippedSO_Armor(ESlot.Shoulders)},
         };
 
         LocalUI.Instance.RefreshInventoryUI(items,m_InventoryType); 
@@ -497,22 +512,34 @@ public class PlayerLoadout : MonoBehaviour
     SO_Item GetEquippedSO_Item(ESlot slot) => m_EquippedItems[slot] == null ? null : m_EquippedItems[slot].SO_Item;
     SO_Item GetEquippedSO_Weapon(ESlot slot) => m_EquippedWeapons[slot] == null ? null : m_EquippedWeapons[slot].SO_Item;
 
-    SO_Item GetEquippedSO_Armor(SO_Armor.EArmorPlace armorPlace) => m_EquippedArmor[armorPlace] == null ? null : m_EquippedArmor[armorPlace].SO_Item;
+    SO_Item GetEquippedSO_Armor(ESlot slot) => m_EquippedArmor[slot] == null ? null : m_EquippedArmor[slot].SO_Item;
 
 
     public void EquipLoadout()
     {
+        //weapons
         if(m_MainWeapon != null) m_EquippedWeapons[ESlot.MainWeapon] = Instantiate(m_MainWeapon.Usable_GameObject, m_PlayerRightHandSocket).GetComponent<BasicWeapon>();
         if (m_SecondaryWeapon != null) m_EquippedWeapons[ESlot.SecondaryWeapon] = Instantiate(m_SecondaryWeapon.Usable_GameObject, m_PlayerLeftHandSocket).GetComponent<BasicWeapon>();
+        //inventory
         if (m_Slot_1 != null) m_EquippedItems[ESlot.Slot_1] = Instantiate(m_Slot_1.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
         if (m_Slot_2 != null) m_EquippedItems[ESlot.Slot_2] = Instantiate(m_Slot_2.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
         if (m_Slot_3 != null) m_EquippedItems[ESlot.Slot_3] = Instantiate(m_Slot_3.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
         if (m_Slot_4 != null) m_EquippedItems[ESlot.Slot_4] = Instantiate(m_Slot_4.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
+        //armors
+        if (m_Helmet != null) m_EquippedArmor[ESlot.Helmet] = Instantiate(m_Helmet.Usable_GameObject, m_HelmetSocket).GetComponent<Armor>();
+        if (m_Chest != null) m_EquippedArmor[ESlot.Chest] = Instantiate(m_Chest.Usable_GameObject, m_ChestSocket).GetComponent<Armor>();
+        if (m_Shoulders != null)
+        {
+            m_EquippedArmor[ESlot.Shoulders] = Instantiate(m_Shoulders.Usable_GameObject, m_LeftShoulderSocket).GetComponent<Armor>();
+            if (m_EquippedArmor[ESlot.Shoulders].TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
+            {
+                EquipShoulders(shoulders);
 
-        if(m_Helmet != null) EquipArmor(m_Helmet);
-        if (m_Chest != null) EquipArmor(m_Chest);
-        if (m_Shoulders != null) EquipArmor(m_Shoulders);
-
+            }
+            
+        
+        }
+           
 
 
         SwitchStuffUI(EInventoryType.Equipped);
@@ -520,30 +547,17 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
-    void EquipArmor(SO_Armor armor)
+    void EquipShoulders(Shoulders_Armor shoulders)
     {
-        switch (armor.ArmorPLace)
-        {
-            case SO_Armor.EArmorPlace.Helmet:
-                m_EquippedArmor[armor.ArmorPLace] = Instantiate(armor.Usable_GameObject, m_HelmetSocket).GetComponent<Armor>();
-                break;
-            case SO_Armor.EArmorPlace.Chest:
-                m_EquippedArmor[armor.ArmorPLace] = Instantiate(armor.Usable_GameObject, m_ChestSocket).GetComponent<Armor>();
-                break;
-            case SO_Armor.EArmorPlace.Shoulders:
-                m_EquippedArmor[armor.ArmorPLace] = Instantiate(armor.Usable_GameObject, m_LeftShoulderSocket).GetComponent<Armor>();
-                if(armor.Usable_GameObject.TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
-                {
-                    shoulders.LeftShoulder.transform.SetParent(m_LeftShoulderSocket, false);
-                    shoulders.RightShoulder.transform.SetParent(m_RightShoulderSocket, false);
-                }
-                break;
-            default:
-                break;
-        }
+        shoulders.InstantiatedLeftShoulder =  Instantiate(shoulders.LeftShoulder, m_LeftShoulderSocket);
+        shoulders.InstantiatedLeftShoulder.transform.localPosition = Vector3.zero;
+        shoulders.InstantiatedLeftShoulder.transform.localRotation = Quaternion.identity;
+        shoulders.InstantiatedRightShoulder =  Instantiate(shoulders.RightShoulder, m_RightShoulderSocket);
+        shoulders.InstantiatedRightShoulder.transform.localPosition = Vector3.zero;
+        shoulders.InstantiatedRightShoulder.transform.localRotation = Quaternion.identity;
 
-        
     }
+
 
     public void UnloadEquippedStuff()
     {
@@ -553,6 +567,21 @@ public class PlayerLoadout : MonoBehaviour
         if (m_EquippedItems[ESlot.Slot_2] != null) { Destroy(m_EquippedItems[ESlot.Slot_2].gameObject); m_EquippedItems[ESlot.Slot_2] = null; }
         if (m_EquippedItems[ESlot.Slot_3] != null) { Destroy(m_EquippedItems[ESlot.Slot_3].gameObject); m_EquippedItems[ESlot.Slot_3] = null; }
         if (m_EquippedItems[ESlot.Slot_4] != null) { Destroy(m_EquippedItems[ESlot.Slot_4].gameObject); m_EquippedItems[ESlot.Slot_4] = null; }
+        if (m_EquippedArmor[ESlot.Helmet] != null) { Destroy(m_EquippedArmor[ESlot.Helmet].gameObject); m_EquippedArmor[ESlot.Helmet] = null; }
+        if (m_EquippedArmor[ESlot.Chest] != null) { Destroy(m_EquippedArmor[ESlot.Chest].gameObject); m_EquippedArmor[ESlot.Chest] = null; }
+        if (m_EquippedArmor[ESlot.Shoulders] != null)
+        {
+
+            if (m_EquippedArmor[ESlot.Shoulders].TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
+            {
+                Destroy(shoulders.InstantiatedLeftShoulder.gameObject);
+                Destroy(shoulders.InstantiatedRightShoulder.gameObject);
+            }
+
+            Destroy(m_EquippedArmor[ESlot.Shoulders].gameObject); 
+            m_EquippedArmor[ESlot.Shoulders] = null;
+         }
+
 
         
 

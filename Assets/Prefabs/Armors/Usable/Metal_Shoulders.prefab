@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8993610119869251358, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8993610119869251358, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8993610119869251358, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -60,24 +72,28 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4a287e3f43f02ea488a3c0401d0a0400, type: 2}
+    - target: {fileID: 6646493918987163242, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6646493918987163242, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6646493918987163242, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -5414783652687930880, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
+    - {fileID: -8036701627917124727, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6247734567211433748}
   m_SourcePrefab: {fileID: 100100000, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
---- !u!1 &5000790571779872022 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -5414783652687930880, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
-  m_PrefabInstance: {fileID: 8195621631029038870}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7046818402552018079 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8036701627917124727, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
-  m_PrefabInstance: {fileID: 8195621631029038870}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9042625118260654663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 946a941850f8252469d29cc6dcc5eeb9, type: 3}
@@ -95,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5cc30aad01e12040a19e352276ccb53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ArmorStyle: 2
+  m_SO_Item: {fileID: 11400000, guid: 1259dc8de33b550449b5e2ec28721055, type: 2}
   m_ArmorType: 3
   m_ArmorValue: 3
-  LeftShoulder: {fileID: 5000790571779872022}
-  RightShoulder: {fileID: 7046818402552018079}
+  m_LeftShoulder: {fileID: 2600376100106101127, guid: 406b1ac2c4f206b48b7f7599db0bf7a9, type: 3}
+  m_RightShoulder: {fileID: 4199366146844185901, guid: c1430919458aebb499cffdc9a9527493, type: 3}

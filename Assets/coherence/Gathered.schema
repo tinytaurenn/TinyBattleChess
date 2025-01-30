@@ -53,14 +53,18 @@ component _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 [id "168"]
   m_IntPlayState Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   m_IntGameState Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _52c50e470fcf1e3419d4bf3ed75d999e_17500377362836339264 [id "169"]
+component _406b1ac2c4f206b48b7f7599db0bf7a9_14447331401665559380 [id "169"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _52c50e470fcf1e3419d4bf3ed75d999e_2421689411287955229 [id "170"]
+component _52c50e470fcf1e3419d4bf3ed75d999e_17500377362836339264 [id "170"]
+  path String [bits "6"]
+  pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+component _52c50e470fcf1e3419d4bf3ed75d999e_2421689411287955229 [id "171"]
   enabled Bool [bits "1"]
 
-component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "171"]
+component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "172"]
   MoveSpeed Float [compression "None"]
   Grounded Bool [bits "1"]
   CarryingBig Bool [bits "1"]
@@ -71,92 +75,104 @@ component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "171"]
   Stunned Bool [bits "1"]
   ShieldParry Bool [bits "1"]
 
-component _5358ed04715b0f148a60e93c83f08be0_2130127191657380802 [id "172"]
+component _5358ed04715b0f148a60e93c83f08be0_2130127191657380802 [id "173"]
   m_BodyTextureIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _5358ed04715b0f148a60e93c83f08be0_2358625368182078286 [id "173"]
+component _5358ed04715b0f148a60e93c83f08be0_2358625368182078286 [id "174"]
   m_IntPlayerState Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   BattleIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   PlayerHealth Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   GlobalHealth Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _5358ed04715b0f148a60e93c83f08be0_58566053745997887 [id "174"]
+component _5358ed04715b0f148a60e93c83f08be0_58566053745997887 [id "175"]
   m_ItemInUse Bool [bits "1"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_4509086355188942050 [id "175"]
+component _5bdd7302d83b75e4ea45b36178bc0730_4509086355188942050 [id "176"]
   rotation Quaternion [bits "32", sim-frames "true"]
   position Vector3 [sim-frames "true", compression "None"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_5732756931578646146 [id "176"]
+component _5bdd7302d83b75e4ea45b36178bc0730_5732756931578646146 [id "177"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_6882032591032927303 [id "177"]
+component _5bdd7302d83b75e4ea45b36178bc0730_6882032591032927303 [id "178"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_7583829343254099563 [id "178"]
+component _5bdd7302d83b75e4ea45b36178bc0730_7583829343254099563 [id "179"]
   rotation Quaternion [bits "32", sim-frames "true"]
   position Vector3 [sim-frames "true", compression "None"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_8012800132177806423 [id "179"]
+component _5bdd7302d83b75e4ea45b36178bc0730_8012800132177806423 [id "180"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761 [id "180"]
+component _5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761 [id "181"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983 [id "181"]
+component _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983 [id "182"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _775a962259beb2f48b64b79887dce771_4486487952480385274 [id "182"]
+component _775a962259beb2f48b64b79887dce771_4486487952480385274 [id "183"]
   enabled Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_9024384128650397308 [id "183"]
+component _775a962259beb2f48b64b79887dce771_9024384128650397308 [id "184"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _843a4365828b49f4bb28b996f46ef351_5533348190771354695 [id "184"]
+component _7a48fb6866149a6488e2e1096523ccff_5153324027185580596 [id "185"]
+  path String [bits "6"]
+  pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+component _843a4365828b49f4bb28b996f46ef351_5533348190771354695 [id "186"]
   playAutomatically Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058 [id "185"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058 [id "187"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204 [id "186"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204 [id "188"]
   enabled Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_7748839666212120403 [id "187"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_7748839666212120403 [id "189"]
   m_IsHeld Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307 [id "188"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307 [id "190"]
   isKinematic Bool [bits "1"]
 
-component _9e558580774fe6f47a64686c5829e786_4118834038646693485 [id "189"]
+component _9e558580774fe6f47a64686c5829e786_4118834038646693485 [id "191"]
   enabled Bool [bits "1"]
 
-component _c473af9c10567024caf206bf6752a656_5919305605642209624 [id "190"]
+component _c1430919458aebb499cffdc9a9527493_6712201074196649712 [id "192"]
+  path String [bits "6"]
+  pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+component _c473af9c10567024caf206bf6752a656_5919305605642209624 [id "193"]
   DummyParry Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386 [id "191"]
-  m_IsHeld Bool [bits "1"]
-
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539 [id "192"]
-  isKinematic Bool [bits "1"]
-
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513 [id "193"]
+component _d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830 [id "194"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811 [id "194"]
+component _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386 [id "195"]
+  m_IsHeld Bool [bits "1"]
+
+component _e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539 [id "196"]
+  isKinematic Bool [bits "1"]
+
+component _e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513 [id "197"]
+  path String [bits "6"]
+  pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+component _e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811 [id "198"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_4025658085450113105 [id "195"]
+component _ebe3c005c8a4429419dab111d22f160c_4025658085450113105 [id "199"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_8923926967690582782 [id "196"]
+component _ebe3c005c8a4429419dab111d22f160c_8923926967690582782 [id "200"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
