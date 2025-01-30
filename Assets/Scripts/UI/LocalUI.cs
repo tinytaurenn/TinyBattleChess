@@ -31,6 +31,10 @@ public class LocalUI : MonoBehaviour
     [SerializeField] SlotUI m_MainWeaponSlot; 
     [SerializeField] SlotUI m_SecondaryWeaponSlot;
 
+    [SerializeField] SlotUI m_HelmetSlot;
+    [SerializeField] SlotUI m_ChestSlot;
+    [SerializeField] SlotUI m_ShouldersSlot; 
+
     [SerializeField] SlotUI m_SelectedSlot;
 
     //Dictionary<PlayerLoadout.ESlot, SlotUI> m_SlotDictionary = new Dictionary<PlayerLoadout.ESlot, SlotUI>();

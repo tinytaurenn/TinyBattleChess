@@ -17,7 +17,7 @@ namespace PlayerControls
         //[SerializeField] GameObject m_UsableObject; 
         [SerializeField] float m_UseDistance = 2f;
         [SerializeField] [Sync] public bool m_ItemInUse = false;
-        bool m_IsReplacing = false;
+        //bool m_IsReplacing = false;
 
         float m_LastUseTime = 0;
         [SerializeField] float m_UseCooldown = 0.3f;
