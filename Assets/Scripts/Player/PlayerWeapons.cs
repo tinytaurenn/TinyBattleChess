@@ -32,6 +32,7 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] internal bool m_Attacking = false;
     [SerializeField] bool m_InAttack = false;
     [SerializeField] bool m_InAttackRelease = false;
+    [SerializeField] bool m_InShieldParry = false; 
 
 
     [Header("Weapon Parameters")]
@@ -45,7 +46,9 @@ public class PlayerWeapons : MonoBehaviour
 
     public bool InAttackReady => (m_InAttack && m_Attacking && !m_InAttackRelease); 
     public bool InAttackRelease => (m_InAttackRelease); 
-    public bool InParry => (m_Parrying && m_InParry); 
+    public bool InParry => (m_Parrying && m_InParry);
+
+    public bool InShieldParry => (m_Parrying && m_InParry && m_InShieldParry); 
 
 
 
@@ -85,9 +88,10 @@ public class PlayerWeapons : MonoBehaviour
 
 
         
-        if (m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] == null)
+        if (m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] == null
+            && m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon] == null )
         {
-            return;
+            return; //to change 
         }
         WeaponsUpdate(); 
         
@@ -159,12 +163,21 @@ public class PlayerWeapons : MonoBehaviour
 
         if (m_Parrying)
         {
+
             if (m_InParry)
             {
                 return;
             }
 
             m_InParry = true;
+
+            if (m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon] != null 
+                && m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon].WeaponType == SO_Weapon.EWeaponType.Shield)
+            {
+                Debug.Log("got some shield baby");
+                ShieldParry(); 
+                return; 
+            }
 
             GetWeaponDirection(); 
 
@@ -175,6 +188,14 @@ public class PlayerWeapons : MonoBehaviour
             ReleaseParry();
         }
 
+    }
+    internal void ShieldParry()
+    {
+        m_InShieldParry = true;
+        m_Parrying = true;
+        m_InAttack = false;
+        m_Animator.SetBool("ShieldParry", true);
+        m_Animator.SetBool("Parry", true);
     }
 
     internal void Parry()
@@ -187,14 +208,16 @@ public class PlayerWeapons : MonoBehaviour
 
         SetAnimatorWeaponDirection(); 
 
-        m_Animator.SetBool("Parry", true);
+        m_Animator.SetBool("Parry", true); 
 
     }
 
     void ReleaseParry()
     {
+        m_Animator.SetBool("ShieldParry", false);
         m_Animator.SetBool("Parry", false);
         m_InParry = false;
+        m_InShieldParry = false; 
 
     }
 
@@ -314,7 +337,7 @@ public class PlayerWeapons : MonoBehaviour
 
     }
 
-    public void Drop(float throwForce = 0f)
+    public void Drop(float throwForce = 5f)
     {
         Debug.Log("dropping"); 
         m_PlayerLoadout.DropWeapons(throwForce);

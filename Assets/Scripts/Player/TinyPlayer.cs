@@ -249,6 +249,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
 
         bool parry = false;
 
+        
         switch (direction)
         {
             case EWeaponDirection.Right:
@@ -264,6 +265,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
                 parry = weaponDirection == EWeaponDirection.Down;
                 break;
         }
+
+        if (m_PlayerWeapons.InShieldParry) parry = true; 
 
         if (m_PlayerWeapons.InParry && parry && m_PlayerWeapons.IsInParryAngle(attackerPos))
         {

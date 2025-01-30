@@ -125,6 +125,8 @@ public class PlayerLoadout : MonoBehaviour
 
             if (rightHand)
             {
+
+
                 m_EquippedWeapons[ESlot.MainWeapon].m_Rigidbody.isKinematic = true;
                 m_EquippedWeapons[ESlot.MainWeapon].m_Collider.enabled = false;
                 m_EquippedWeapons[ESlot.MainWeapon].transform.SetParent(m_PlayerRightHandSocket, false);
@@ -172,7 +174,7 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
-    public void DropWeapons(float throwForce = 0f)
+    public void DropWeapons(float throwForce = 5f)
     {
         if(GetGrabbableFromSlot((ESlot)ESlot.MainWeapon)!= null)
         {
@@ -185,7 +187,7 @@ public class PlayerLoadout : MonoBehaviour
             ClearOnSlot(ESlot.SecondaryWeapon);
         }
     }
-    void DropItemOnSlot(int slot, float throwForce = 0f)
+    void DropItemOnSlot(int slot, float throwForce = 5f)
     {
         if (GetGrabbableFromSlot((ESlot)slot) == null) return;
 
@@ -194,7 +196,7 @@ public class PlayerLoadout : MonoBehaviour
         ClearOnSlot((ESlot)slot);
     }
 
-    void DropItemOnSlot(ESlot slot, float throwForce = 0f)
+    void DropItemOnSlot(ESlot slot, float throwForce = 5f)
     {
         Debug.Log("drop item on slot");
         if (GetGrabbableFromSlot(slot) == null) return;
@@ -204,7 +206,7 @@ public class PlayerLoadout : MonoBehaviour
         ClearOnSlot(slot);
     }
 
-    void DropItem(Grabbable item, float throwForce = 0f)
+    void DropItem(Grabbable item, float throwForce = 5f)
     {
         Debug.Log("dropping item"); 
         item.transform.SetParent(null, true);
@@ -296,6 +298,10 @@ public class PlayerLoadout : MonoBehaviour
         
         if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
+            if (m_EquippedWeapons[ESlot.MainWeapon] != null || m_EquippedWeapons[ESlot.SecondaryWeapon] != null)
+            {
+                DropWeapons();
+            }
             m_EquippedWeapons[ESlot.MainWeapon]= weapon;
             m_EquippedWeapons[ESlot.SecondaryWeapon]= null;
 
@@ -304,6 +310,7 @@ public class PlayerLoadout : MonoBehaviour
 
         else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
         {
+            DropItemOnSlot(ESlot.SecondaryWeapon);
             //if (m_MainWeapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_MainWeapon = null;
             if ((m_EquippedWeapons[ESlot.MainWeapon] != null) &&
                 m_EquippedWeapons[ESlot.MainWeapon].WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_EquippedWeapons[ESlot.MainWeapon] = null; 
@@ -312,7 +319,8 @@ public class PlayerLoadout : MonoBehaviour
         }
         else if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
         {
-            m_EquippedWeapons[ESlot.MainWeapon] = weapon;
+            DropItemOnSlot(ESlot.MainWeapon);
+            m_EquippedWeapons[ESlot.MainWeapon] = weapon; 
         }
 
     }

@@ -66,12 +66,7 @@ namespace PlayerControls
                     Debug.Log("item is held");
                     return;
                 }
-                if (m_ItemInUse)
-                {
-
-                    Debug.Log("item in  use in player use");
-                    m_IsReplacing = true;
-                }
+                
 
 
                 m_Grabbable.OnGrabValidate += OnGrabValidate;
@@ -103,11 +98,7 @@ namespace PlayerControls
 
             if (validated)
             {
-                if(m_IsReplacing)
-                {
-                    m_PlayerWeapons.Drop();
-                    m_IsReplacing = false; 
-                }
+               
 
                 if (m_Usable.TryGetComponent<IWeapon>(out IWeapon weapon))
                 {
