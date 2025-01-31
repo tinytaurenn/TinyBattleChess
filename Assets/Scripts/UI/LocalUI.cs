@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static Coherence.Core.NativeTransport;
@@ -203,9 +205,11 @@ public class LocalUI : MonoBehaviour
 
     public void RefreshInventoryUI(Dictionary<ESlot, SO_Item> items, PlayerLoadout.EInventoryType inventoryType)
     {
+         
         Debug.Log("Refreshing Inventory UI");
         foreach (var SO_Item in items)
         {
+            
             if (SO_Item.Value == null)
             {
                 ChangeSlotIcon(SO_Item.Key, null);

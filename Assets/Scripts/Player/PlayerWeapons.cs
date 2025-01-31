@@ -231,6 +231,10 @@ public class PlayerWeapons : MonoBehaviour
         {
             return; 
         }
+        if (m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] == null)
+        {
+            return; 
+        }
         if (m_Attacking)
         {
             if(m_InAttack)

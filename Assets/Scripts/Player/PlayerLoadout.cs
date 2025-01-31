@@ -517,8 +517,17 @@ public class PlayerLoadout : MonoBehaviour
 
     public void EquipLoadout()
     {
+        StartCoroutine(DelayedEquipLoadout());
+
+    }
+
+    IEnumerator DelayedEquipLoadout()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitUntil(() => );
+        
         //weapons
-        if(m_MainWeapon != null) m_EquippedWeapons[ESlot.MainWeapon] = Instantiate(m_MainWeapon.Usable_GameObject, m_PlayerRightHandSocket).GetComponent<BasicWeapon>();
+        if (m_MainWeapon != null) m_EquippedWeapons[ESlot.MainWeapon] = Instantiate(m_MainWeapon.Usable_GameObject, m_PlayerRightHandSocket).GetComponent<BasicWeapon>();
         if (m_SecondaryWeapon != null) m_EquippedWeapons[ESlot.SecondaryWeapon] = Instantiate(m_SecondaryWeapon.Usable_GameObject, m_PlayerLeftHandSocket).GetComponent<BasicWeapon>();
         //inventory
         if (m_Slot_1 != null) m_EquippedItems[ESlot.Slot_1] = Instantiate(m_Slot_1.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
@@ -536,15 +545,12 @@ public class PlayerLoadout : MonoBehaviour
                 EquipShoulders(shoulders);
 
             }
-            
-        
         }
-           
+
 
 
         SwitchStuffUI(EInventoryType.Equipped);
         SetupItems();
-
     }
 
     void EquipShoulders(Shoulders_Armor shoulders)
@@ -558,35 +564,61 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
-
     public void UnloadEquippedStuff()
     {
-        if (m_EquippedWeapons[ESlot.MainWeapon] != null) {Destroy(m_EquippedWeapons[ESlot.MainWeapon].gameObject); m_EquippedWeapons[ESlot.MainWeapon] = null; }
-        if (m_EquippedWeapons[ESlot.SecondaryWeapon] != null) {Destroy(m_EquippedWeapons[ESlot.SecondaryWeapon].gameObject); m_EquippedWeapons[ESlot.SecondaryWeapon] = null; }
-        if (m_EquippedItems[ESlot.Slot_1] != null) { Destroy(m_EquippedItems[ESlot.Slot_1].gameObject); m_EquippedItems[ESlot.Slot_1] = null; }
-        if (m_EquippedItems[ESlot.Slot_2] != null) { Destroy(m_EquippedItems[ESlot.Slot_2].gameObject); m_EquippedItems[ESlot.Slot_2] = null; }
-        if (m_EquippedItems[ESlot.Slot_3] != null) { Destroy(m_EquippedItems[ESlot.Slot_3].gameObject); m_EquippedItems[ESlot.Slot_3] = null; }
-        if (m_EquippedItems[ESlot.Slot_4] != null) { Destroy(m_EquippedItems[ESlot.Slot_4].gameObject); m_EquippedItems[ESlot.Slot_4] = null; }
-        if (m_EquippedArmor[ESlot.Helmet] != null) { Destroy(m_EquippedArmor[ESlot.Helmet].gameObject); m_EquippedArmor[ESlot.Helmet] = null; }
-        if (m_EquippedArmor[ESlot.Chest] != null) { Destroy(m_EquippedArmor[ESlot.Chest].gameObject); m_EquippedArmor[ESlot.Chest] = null; }
+        StartCoroutine(DelayedUnloadEquippedStuff());
+    }
+
+    IEnumerator DelayedUnloadEquippedStuff()
+    {
+
+        yield return new WaitForSeconds(0.1f);
+
+        List<GameObject> toBin = new List<GameObject>();
+
+        if (m_EquippedWeapons[ESlot.MainWeapon] != null) { toBin.Add(m_EquippedWeapons[ESlot.MainWeapon].gameObject); m_EquippedWeapons[ESlot.MainWeapon] = null; }
+        if (m_EquippedWeapons[ESlot.SecondaryWeapon] != null) { toBin.Add(m_EquippedWeapons[ESlot.SecondaryWeapon].gameObject); m_EquippedWeapons[ESlot.SecondaryWeapon] = null; }
+        if (m_EquippedItems[ESlot.Slot_1] != null) { toBin.Add(m_EquippedItems[ESlot.Slot_1].gameObject); m_EquippedItems[ESlot.Slot_1] = null; }
+        if (m_EquippedItems[ESlot.Slot_2] != null) { toBin.Add(m_EquippedItems[ESlot.Slot_2].gameObject); m_EquippedItems[ESlot.Slot_2] = null; }
+        if (m_EquippedItems[ESlot.Slot_3] != null) { toBin.Add(m_EquippedItems[ESlot.Slot_3].gameObject); m_EquippedItems[ESlot.Slot_3] = null; }
+        if (m_EquippedItems[ESlot.Slot_4] != null) { toBin.Add(m_EquippedItems[ESlot.Slot_4].gameObject); m_EquippedItems[ESlot.Slot_4] = null; }
+        if (m_EquippedArmor[ESlot.Helmet] != null) { toBin.Add(m_EquippedArmor[ESlot.Helmet].gameObject); m_EquippedArmor[ESlot.Helmet] = null; }
+        if (m_EquippedArmor[ESlot.Chest] != null) { toBin.Add(m_EquippedArmor[ESlot.Chest].gameObject); m_EquippedArmor[ESlot.Chest] = null; }
         if (m_EquippedArmor[ESlot.Shoulders] != null)
         {
 
             if (m_EquippedArmor[ESlot.Shoulders].TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
             {
-                Destroy(shoulders.InstantiatedLeftShoulder.gameObject);
-                Destroy(shoulders.InstantiatedRightShoulder.gameObject);
+                toBin.Add(shoulders.InstantiatedLeftShoulder.gameObject);
+                toBin.Add(shoulders.InstantiatedRightShoulder.gameObject);
             }
 
-            Destroy(m_EquippedArmor[ESlot.Shoulders].gameObject); 
+            toBin.Add(m_EquippedArmor[ESlot.Shoulders].gameObject);
             m_EquippedArmor[ESlot.Shoulders] = null;
-         }
-
-
-        
-
+        }
         SwitchStuffUI(EInventoryType.Loadout);
 
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (var item in toBin)
+        {
+            Destroy(item);
+        }
+    }
+
+    public void ClearLoadout()
+    {
+        m_MainWeapon = null;
+        m_SecondaryWeapon = null;
+        m_Slot_1 = null;
+        m_Slot_2 = null;
+        m_Slot_3 = null;
+        m_Slot_4 = null;
+        m_Helmet = null;
+        m_Chest = null;
+        m_Shoulders = null;
+
+        RefreshStuffUI();
 
     }
 

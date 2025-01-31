@@ -471,14 +471,14 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     void OnChangePlayerHealth(int oldHealh, int newHealth)
     {
         Debug.Log("player health changed from " + oldHealh + " to " + newHealth);
-        if (!m_Sync.HasStateAuthority) return; // event triggered from all
+        if (Sync==null || !Sync.HasStateAuthority) return; // event triggered from all
         LocalUI.Instance.UpdatePlayerHealthSlider(newHealth);
     }
 
     void OnChangeGlobalPlayerHealth(int oldGlobal, int newGlobal)
     {
         Debug.Log("global player health changed from " + oldGlobal + " to " + newGlobal);
-        if (!m_Sync.HasStateAuthority) return; // event triggered from all
+        if (Sync == null || !Sync.HasStateAuthority) return; // event triggered from all
         LocalUI.Instance.UpdateGlobalHealthSlider(newGlobal);
     }
 
@@ -600,6 +600,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
             case 0: // Lobby
                 Debug.Log("lobby, stopping PVP ");
                 m_PlayerLoadout.UnloadEquippedStuff();
+                m_PlayerLoadout.ClearLoadout(); 
                 FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude).ShowLobbyHUD();
                 break;
             case 1: //shop 
@@ -628,6 +629,8 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         switch (NewIntGameState)
         {
             case 0: //lobby
+
+                
                 break;
             case 1: //InGame
                 break;
