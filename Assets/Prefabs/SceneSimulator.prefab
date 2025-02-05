@@ -45,7 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fd7c1344e4f8949aeadc15e06ad6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CoherenceBridge: {fileID: 0}
   m_PlayerNumberText: {fileID: 1233432129763572731}
+  m_ConnectedPlayerSyncs: []
+  m_PlayerPrefabTest: {fileID: 0}
 --- !u!1 &6419195040365366561
 GameObject:
   m_ObjectHideFlags: 0
