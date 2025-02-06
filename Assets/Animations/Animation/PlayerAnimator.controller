@@ -161,9 +161,6 @@ AnimatorStateMachine:
     m_State: {fileID: -3060768608578460820}
     m_Position: {x: 555.28284, y: -65.10806, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -4033989472224918781}
-    m_Position: {x: -270, y: -700, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: -8906816883907579962}
     m_Position: {x: 590, y: -400, z: 0}
   - serializedVersion: 1
@@ -784,32 +781,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -2056006510712403265, guid: 7a442c01aaa054fa4b78984ca94cfe8e, type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-4033989472224918781
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: RightAttack_RightHand_Release
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

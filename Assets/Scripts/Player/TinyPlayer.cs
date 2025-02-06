@@ -61,11 +61,6 @@ public class TinyPlayer : MonoBehaviour, IDamageable
     
 
     [Space(10)]
-    [Header("Player sockets")]
-    [SerializeField] internal  Transform m_PlayerLeftHandSocket; 
-    [SerializeField] internal Transform m_PlayerRightHandSocket;
-
-    [Space(10)]
     [Header("Player Ghost")]
     [SerializeField] GameObject m_PlayerGhost;
 
@@ -554,6 +549,12 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         m_RagDoll.SpawnRagDoll(); 
 
         SwitchPlayerState(EPlayerState.Spectator);
+
+        if(Utils.GetSimulatorSync() ==null)
+        {
+            Debug.Log("simulator sync not found"); 
+            return;
+        }
 
         Utils.GetSimulatorSync().SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
         
