@@ -183,48 +183,52 @@ namespace Coherence.Generated
                 case 156: return _0f16d1bc84b720e41945040d44446e92_8466982124699937639.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 157: return _0f6b5aa5bcd577f4aa6ed491962442e0_1923514185311723796.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 158: return _0f6b5aa5bcd577f4aa6ed491962442e0_2421689411287955229.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 159: return _28fbed09d7fea464681134cd159332ad_1064604958396770310.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 160: return _28fbed09d7fea464681134cd159332ad_1985906079244697212.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 161: return _28fbed09d7fea464681134cd159332ad_2187496778573307055.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 162: return _28fbed09d7fea464681134cd159332ad_5939546729887440551.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 163: return _2c19a04c42faa6b4398e588b58d31f5f_17001797403845922607.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 164: return _2c19a04c42faa6b4398e588b58d31f5f_3384389735842056370.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 165: return _2c19a04c42faa6b4398e588b58d31f5f_6415732900446197949.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 166: return _2c19a04c42faa6b4398e588b58d31f5f_97645489704987816.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 167: return _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 168: return _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 169: return _406b1ac2c4f206b48b7f7599db0bf7a9_14447331401665559380.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 170: return _52c50e470fcf1e3419d4bf3ed75d999e_17500377362836339264.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 171: return _52c50e470fcf1e3419d4bf3ed75d999e_2421689411287955229.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 172: return _5358ed04715b0f148a60e93c83f08be0_1947441686218104907.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 173: return _5358ed04715b0f148a60e93c83f08be0_2130127191657380802.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 174: return _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 175: return _5358ed04715b0f148a60e93c83f08be0_58566053745997887.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 176: return _5bdd7302d83b75e4ea45b36178bc0730_4509086355188942050.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 177: return _5bdd7302d83b75e4ea45b36178bc0730_5732756931578646146.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 178: return _5bdd7302d83b75e4ea45b36178bc0730_6882032591032927303.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 179: return _5bdd7302d83b75e4ea45b36178bc0730_7583829343254099563.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 180: return _5bdd7302d83b75e4ea45b36178bc0730_8012800132177806423.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 181: return _5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 182: return _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 183: return _775a962259beb2f48b64b79887dce771_4486487952480385274.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 184: return _775a962259beb2f48b64b79887dce771_9024384128650397308.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 185: return _7a48fb6866149a6488e2e1096523ccff_5153324027185580596.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 186: return _843a4365828b49f4bb28b996f46ef351_5533348190771354695.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 187: return _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 188: return _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 189: return _8741b68fc3e4c6648bf6807cc4d527cf_7748839666212120403.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 190: return _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 191: return _9e558580774fe6f47a64686c5829e786_4118834038646693485.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 192: return _c1430919458aebb499cffdc9a9527493_6712201074196649712.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 193: return _c473af9c10567024caf206bf6752a656_5919305605642209624.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 194: return _d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 195: return _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 196: return _e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 197: return _e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 198: return _e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 199: return _ebe3c005c8a4429419dab111d22f160c_4025658085450113105.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 200: return _ebe3c005c8a4429419dab111d22f160c_8923926967690582782.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 159: return _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 160: return _276f4c8c1f54c8d41afce07cc23e23c3_4012604043449858976.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 161: return _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 162: return _276f4c8c1f54c8d41afce07cc23e23c3_6470269326165104134.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 163: return _28fbed09d7fea464681134cd159332ad_1064604958396770310.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 164: return _28fbed09d7fea464681134cd159332ad_1985906079244697212.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 165: return _28fbed09d7fea464681134cd159332ad_2187496778573307055.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 166: return _28fbed09d7fea464681134cd159332ad_5939546729887440551.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 167: return _2c19a04c42faa6b4398e588b58d31f5f_17001797403845922607.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 168: return _2c19a04c42faa6b4398e588b58d31f5f_3384389735842056370.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 169: return _2c19a04c42faa6b4398e588b58d31f5f_6415732900446197949.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 170: return _2c19a04c42faa6b4398e588b58d31f5f_97645489704987816.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 171: return _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 172: return _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 173: return _406b1ac2c4f206b48b7f7599db0bf7a9_14447331401665559380.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 174: return _52c50e470fcf1e3419d4bf3ed75d999e_17500377362836339264.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 175: return _52c50e470fcf1e3419d4bf3ed75d999e_2421689411287955229.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 176: return _5358ed04715b0f148a60e93c83f08be0_1947441686218104907.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 177: return _5358ed04715b0f148a60e93c83f08be0_2130127191657380802.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 178: return _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 179: return _5358ed04715b0f148a60e93c83f08be0_58566053745997887.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 180: return _5bdd7302d83b75e4ea45b36178bc0730_4509086355188942050.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 181: return _5bdd7302d83b75e4ea45b36178bc0730_5732756931578646146.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 182: return _5bdd7302d83b75e4ea45b36178bc0730_6882032591032927303.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 183: return _5bdd7302d83b75e4ea45b36178bc0730_7583829343254099563.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 184: return _5bdd7302d83b75e4ea45b36178bc0730_8012800132177806423.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 185: return _5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 186: return _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 187: return _775a962259beb2f48b64b79887dce771_4486487952480385274.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 188: return _775a962259beb2f48b64b79887dce771_9024384128650397308.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 189: return _7a48fb6866149a6488e2e1096523ccff_5153324027185580596.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 190: return _843a4365828b49f4bb28b996f46ef351_5533348190771354695.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 191: return _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 192: return _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 193: return _8741b68fc3e4c6648bf6807cc4d527cf_7748839666212120403.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 194: return _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 195: return _9e558580774fe6f47a64686c5829e786_4118834038646693485.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 196: return _c1430919458aebb499cffdc9a9527493_6712201074196649712.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 197: return _c473af9c10567024caf206bf6752a656_5919305605642209624.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 198: return _d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 199: return _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 200: return _e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 201: return _e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 202: return _e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 203: return _ebe3c005c8a4429419dab111d22f160c_4025658085450113105.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 204: return _ebe3c005c8a4429419dab111d22f160c_8923926967690582782.FromInterop(data, dataSize, simFrames, simFramesCount);
             }
 
             throw new ArgumentException($"Unkown component type {type}", nameof(type));
@@ -1992,6 +1996,61 @@ namespace Coherence.Generated
                 }
                 case 159:
                 {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062)component;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.Interop();
+
+                    val.MoveSpeed = orig.MoveSpeed;
+                    val.Grounded = orig.Grounded ? (System.Byte)1 : (System.Byte)0;
+                    val.CarryingBig = orig.CarryingBig ? (System.Byte)1 : (System.Byte)0;
+                    val.CarryingSmall = orig.CarryingSmall ? (System.Byte)1 : (System.Byte)0;
+                    val.Parry = orig.Parry ? (System.Byte)1 : (System.Byte)0;
+                    val.Attacking = orig.Attacking ? (System.Byte)1 : (System.Byte)0;
+                    val.WeaponDirectionNESO = orig.WeaponDirectionNESO;
+                    val.Stunned = orig.Stunned ? (System.Byte)1 : (System.Byte)0;
+                    val.ShieldParry = orig.ShieldParry ? (System.Byte)1 : (System.Byte)0;
+
+                    updater.UpdateComponent(entity, componentType, val, 15, component.FieldsMask, component.StoppedMask, frames);
+
+                    return;
+                }
+                case 160:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_4012604043449858976)component;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_4012604043449858976.Interop();
+
+                    val.m_ItemInUse = orig.m_ItemInUse ? (System.Byte)1 : (System.Byte)0;
+
+                    updater.UpdateComponent(entity, componentType, val, 1, component.FieldsMask, component.StoppedMask, frames);
+
+                    return;
+                }
+                case 161:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777)component;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777.Interop();
+
+                    val.m_IntPlayerState = orig.m_IntPlayerState;
+                    val.BattleIndex = orig.BattleIndex;
+                    val.PlayerHealth = orig.PlayerHealth;
+                    val.GlobalHealth = orig.GlobalHealth;
+
+                    updater.UpdateComponent(entity, componentType, val, 16, component.FieldsMask, component.StoppedMask, frames);
+
+                    return;
+                }
+                case 162:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_6470269326165104134)component;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_6470269326165104134.Interop();
+
+                    val.m_BodyTextureIndex = orig.m_BodyTextureIndex;
+
+                    updater.UpdateComponent(entity, componentType, val, 4, component.FieldsMask, component.StoppedMask, frames);
+
+                    return;
+                }
+                case 163:
+                {
                     var orig = (_28fbed09d7fea464681134cd159332ad_1064604958396770310)component;
                     var val = new _28fbed09d7fea464681134cd159332ad_1064604958396770310.Interop();
 
@@ -2001,7 +2060,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 160:
+                case 164:
                 {
                     var orig = (_28fbed09d7fea464681134cd159332ad_1985906079244697212)component;
                     var val = new _28fbed09d7fea464681134cd159332ad_1985906079244697212.Interop();
@@ -2012,7 +2071,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 161:
+                case 165:
                 {
                     var orig = (_28fbed09d7fea464681134cd159332ad_2187496778573307055)component;
                     var val = new _28fbed09d7fea464681134cd159332ad_2187496778573307055.Interop();
@@ -2024,7 +2083,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 162:
+                case 166:
                 {
                     var orig = (_28fbed09d7fea464681134cd159332ad_5939546729887440551)component;
                     var val = new _28fbed09d7fea464681134cd159332ad_5939546729887440551.Interop();
@@ -2035,7 +2094,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 163:
+                case 167:
                 {
                     var orig = (_2c19a04c42faa6b4398e588b58d31f5f_17001797403845922607)component;
                     var val = new _2c19a04c42faa6b4398e588b58d31f5f_17001797403845922607.Interop();
@@ -2047,7 +2106,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 164:
+                case 168:
                 {
                     var orig = (_2c19a04c42faa6b4398e588b58d31f5f_3384389735842056370)component;
                     var val = new _2c19a04c42faa6b4398e588b58d31f5f_3384389735842056370.Interop();
@@ -2058,7 +2117,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 165:
+                case 169:
                 {
                     var orig = (_2c19a04c42faa6b4398e588b58d31f5f_6415732900446197949)component;
                     var val = new _2c19a04c42faa6b4398e588b58d31f5f_6415732900446197949.Interop();
@@ -2069,7 +2128,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 166:
+                case 170:
                 {
                     var orig = (_2c19a04c42faa6b4398e588b58d31f5f_97645489704987816)component;
                     var val = new _2c19a04c42faa6b4398e588b58d31f5f_97645489704987816.Interop();
@@ -2080,7 +2139,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 167:
+                case 171:
                 {
                     var orig = (_3941f9337bf07904f8ebd80981d7e64f_1338625383742743499)component;
                     var val = new _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499.Interop();
@@ -2092,7 +2151,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 168:
+                case 172:
                 {
                     var orig = (_3941f9337bf07904f8ebd80981d7e64f_3742310084580637886)component;
                     var val = new _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886.Interop();
@@ -2105,7 +2164,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 169:
+                case 173:
                 {
                     var orig = (_406b1ac2c4f206b48b7f7599db0bf7a9_14447331401665559380)component;
                     var val = new _406b1ac2c4f206b48b7f7599db0bf7a9_14447331401665559380.Interop();
@@ -2117,7 +2176,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 170:
+                case 174:
                 {
                     var orig = (_52c50e470fcf1e3419d4bf3ed75d999e_17500377362836339264)component;
                     var val = new _52c50e470fcf1e3419d4bf3ed75d999e_17500377362836339264.Interop();
@@ -2129,7 +2188,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 171:
+                case 175:
                 {
                     var orig = (_52c50e470fcf1e3419d4bf3ed75d999e_2421689411287955229)component;
                     var val = new _52c50e470fcf1e3419d4bf3ed75d999e_2421689411287955229.Interop();
@@ -2140,7 +2199,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 172:
+                case 176:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_1947441686218104907)component;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_1947441686218104907.Interop();
@@ -2159,7 +2218,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 173:
+                case 177:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_2130127191657380802)component;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_2130127191657380802.Interop();
@@ -2170,7 +2229,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 174:
+                case 178:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_2358625368182078286)component;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_2358625368182078286.Interop();
@@ -2184,7 +2243,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 175:
+                case 179:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_58566053745997887)component;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_58566053745997887.Interop();
@@ -2195,7 +2254,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 176:
+                case 180:
                 {
                     var orig = (_5bdd7302d83b75e4ea45b36178bc0730_4509086355188942050)component;
                     var val = new _5bdd7302d83b75e4ea45b36178bc0730_4509086355188942050.Interop();
@@ -2207,7 +2266,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 177:
+                case 181:
                 {
                     var orig = (_5bdd7302d83b75e4ea45b36178bc0730_5732756931578646146)component;
                     var val = new _5bdd7302d83b75e4ea45b36178bc0730_5732756931578646146.Interop();
@@ -2219,7 +2278,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 178:
+                case 182:
                 {
                     var orig = (_5bdd7302d83b75e4ea45b36178bc0730_6882032591032927303)component;
                     var val = new _5bdd7302d83b75e4ea45b36178bc0730_6882032591032927303.Interop();
@@ -2231,7 +2290,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 179:
+                case 183:
                 {
                     var orig = (_5bdd7302d83b75e4ea45b36178bc0730_7583829343254099563)component;
                     var val = new _5bdd7302d83b75e4ea45b36178bc0730_7583829343254099563.Interop();
@@ -2243,7 +2302,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 180:
+                case 184:
                 {
                     var orig = (_5bdd7302d83b75e4ea45b36178bc0730_8012800132177806423)component;
                     var val = new _5bdd7302d83b75e4ea45b36178bc0730_8012800132177806423.Interop();
@@ -2255,7 +2314,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 181:
+                case 185:
                 {
                     var orig = (_5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761)component;
                     var val = new _5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761.Interop();
@@ -2267,7 +2326,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 182:
+                case 186:
                 {
                     var orig = (_5bdd7302d83b75e4ea45b36178bc0730_851302204959615983)component;
                     var val = new _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983.Interop();
@@ -2279,7 +2338,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 183:
+                case 187:
                 {
                     var orig = (_775a962259beb2f48b64b79887dce771_4486487952480385274)component;
                     var val = new _775a962259beb2f48b64b79887dce771_4486487952480385274.Interop();
@@ -2290,7 +2349,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 184:
+                case 188:
                 {
                     var orig = (_775a962259beb2f48b64b79887dce771_9024384128650397308)component;
                     var val = new _775a962259beb2f48b64b79887dce771_9024384128650397308.Interop();
@@ -2302,7 +2361,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 185:
+                case 189:
                 {
                     var orig = (_7a48fb6866149a6488e2e1096523ccff_5153324027185580596)component;
                     var val = new _7a48fb6866149a6488e2e1096523ccff_5153324027185580596.Interop();
@@ -2314,7 +2373,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 186:
+                case 190:
                 {
                     var orig = (_843a4365828b49f4bb28b996f46ef351_5533348190771354695)component;
                     var val = new _843a4365828b49f4bb28b996f46ef351_5533348190771354695.Interop();
@@ -2325,7 +2384,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 187:
+                case 191:
                 {
                     var orig = (_8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058)component;
                     var val = new _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058.Interop();
@@ -2337,7 +2396,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 188:
+                case 192:
                 {
                     var orig = (_8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204)component;
                     var val = new _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204.Interop();
@@ -2348,7 +2407,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 189:
+                case 193:
                 {
                     var orig = (_8741b68fc3e4c6648bf6807cc4d527cf_7748839666212120403)component;
                     var val = new _8741b68fc3e4c6648bf6807cc4d527cf_7748839666212120403.Interop();
@@ -2359,7 +2418,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 190:
+                case 194:
                 {
                     var orig = (_8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307)component;
                     var val = new _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307.Interop();
@@ -2370,7 +2429,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 191:
+                case 195:
                 {
                     var orig = (_9e558580774fe6f47a64686c5829e786_4118834038646693485)component;
                     var val = new _9e558580774fe6f47a64686c5829e786_4118834038646693485.Interop();
@@ -2381,7 +2440,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 192:
+                case 196:
                 {
                     var orig = (_c1430919458aebb499cffdc9a9527493_6712201074196649712)component;
                     var val = new _c1430919458aebb499cffdc9a9527493_6712201074196649712.Interop();
@@ -2393,7 +2452,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 193:
+                case 197:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_5919305605642209624)component;
                     var val = new _c473af9c10567024caf206bf6752a656_5919305605642209624.Interop();
@@ -2404,7 +2463,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 194:
+                case 198:
                 {
                     var orig = (_d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830)component;
                     var val = new _d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830.Interop();
@@ -2416,7 +2475,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 195:
+                case 199:
                 {
                     var orig = (_e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386)component;
                     var val = new _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386.Interop();
@@ -2427,7 +2486,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 196:
+                case 200:
                 {
                     var orig = (_e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539)component;
                     var val = new _e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539.Interop();
@@ -2438,7 +2497,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 197:
+                case 201:
                 {
                     var orig = (_e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513)component;
                     var val = new _e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513.Interop();
@@ -2450,7 +2509,7 @@ namespace Coherence.Generated
 
 }                    return;
                 }
-                case 198:
+                case 202:
                 {
                     var orig = (_e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811)component;
                     var val = new _e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811.Interop();
@@ -2461,7 +2520,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 199:
+                case 203:
                 {
                     var orig = (_ebe3c005c8a4429419dab111d22f160c_4025658085450113105)component;
                     var val = new _ebe3c005c8a4429419dab111d22f160c_4025658085450113105.Interop();
@@ -2472,7 +2531,7 @@ namespace Coherence.Generated
 
                     return;
                 }
-                case 200:
+                case 204:
                 {
                     var orig = (_ebe3c005c8a4429419dab111d22f160c_8923926967690582782)component;
                     var val = new _ebe3c005c8a4429419dab111d22f160c_8923926967690582782.Interop();
@@ -2501,31 +2560,48 @@ namespace Coherence.Generated
                   case 5: return SceneIndexChanged.FromInterop(data, dataSize);
                   case 6: return GenericCommand.FromInterop(data, dataSize);
                   case 7: return _0f16d1bc84b720e41945040d44446e92_f6e7317eb2d9445693e6de376bc04b1c.FromInterop(data, dataSize);
-                  case 8: return _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec.FromInterop(data, dataSize);
-                  case 9: return _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817.FromInterop(data, dataSize);
-                  case 10: return _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9.FromInterop(data, dataSize);
-                  case 11: return _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752.FromInterop(data, dataSize);
-                  case 12: return _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7.FromInterop(data, dataSize);
-                  case 13: return _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff.FromInterop(data, dataSize);
-                  case 14: return _5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562.FromInterop(data, dataSize);
-                  case 15: return _5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f.FromInterop(data, dataSize);
-                  case 16: return _5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695.FromInterop(data, dataSize);
-                  case 17: return _5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8.FromInterop(data, dataSize);
-                  case 18: return _5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc.FromInterop(data, dataSize);
-                  case 19: return _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1.FromInterop(data, dataSize);
-                  case 20: return _5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0.FromInterop(data, dataSize);
-                  case 21: return _5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a.FromInterop(data, dataSize);
-                  case 22: return _5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a.FromInterop(data, dataSize);
-                  case 23: return _5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7.FromInterop(data, dataSize);
-                  case 24: return _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6.FromInterop(data, dataSize);
-                  case 25: return _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e.FromInterop(data, dataSize);
-                  case 26: return _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3.FromInterop(data, dataSize);
-                  case 27: return _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f.FromInterop(data, dataSize);
-                  case 28: return _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90.FromInterop(data, dataSize);
-                  case 29: return _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6.FromInterop(data, dataSize);
-                  case 30: return _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1.FromInterop(data, dataSize);
-                  case 31: return _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e.FromInterop(data, dataSize);
-                  case 32: return _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81.FromInterop(data, dataSize);
+                  case 8: return _276f4c8c1f54c8d41afce07cc23e23c3_0ffc5a7e1fd04f489472cf9e12415bf7.FromInterop(data, dataSize);
+                  case 9: return _276f4c8c1f54c8d41afce07cc23e23c3_1acf624c9c73468c81732449828bf8ff.FromInterop(data, dataSize);
+                  case 10: return _276f4c8c1f54c8d41afce07cc23e23c3_215915084e114f92bc20eb4f102e7562.FromInterop(data, dataSize);
+                  case 11: return _276f4c8c1f54c8d41afce07cc23e23c3_3c2c4486077949c288a3205124259b7f.FromInterop(data, dataSize);
+                  case 12: return _276f4c8c1f54c8d41afce07cc23e23c3_530c1dd565f54f568914150057129695.FromInterop(data, dataSize);
+                  case 13: return _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8.FromInterop(data, dataSize);
+                  case 14: return _276f4c8c1f54c8d41afce07cc23e23c3_5bad42507fe140d4b87c78206fab3ecc.FromInterop(data, dataSize);
+                  case 15: return _276f4c8c1f54c8d41afce07cc23e23c3_7556cd7d7e774997864e997434cec5d1.FromInterop(data, dataSize);
+                  case 16: return _276f4c8c1f54c8d41afce07cc23e23c3_7815420e2f7042c4ab2a7a4134b2c5d0.FromInterop(data, dataSize);
+                  case 17: return _276f4c8c1f54c8d41afce07cc23e23c3_7df3250732b84749b4b733d375fb051a.FromInterop(data, dataSize);
+                  case 18: return _276f4c8c1f54c8d41afce07cc23e23c3_8b78238963064f8a9a06610499e56d2a.FromInterop(data, dataSize);
+                  case 19: return _276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7.FromInterop(data, dataSize);
+                  case 20: return _276f4c8c1f54c8d41afce07cc23e23c3_be1772b2e3ab48799d12f62174227ea6.FromInterop(data, dataSize);
+                  case 21: return _276f4c8c1f54c8d41afce07cc23e23c3_ca4b907df43c44708307a1b7f77fbc3e.FromInterop(data, dataSize);
+                  case 22: return _276f4c8c1f54c8d41afce07cc23e23c3_dc362dd6cca24e2995ad9011ec93c5e3.FromInterop(data, dataSize);
+                  case 23: return _276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f.FromInterop(data, dataSize);
+                  case 24: return _276f4c8c1f54c8d41afce07cc23e23c3_ffd7dabd1f4c4775a990a9bb59bc6b90.FromInterop(data, dataSize);
+                  case 25: return _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec.FromInterop(data, dataSize);
+                  case 26: return _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817.FromInterop(data, dataSize);
+                  case 27: return _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9.FromInterop(data, dataSize);
+                  case 28: return _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752.FromInterop(data, dataSize);
+                  case 29: return _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7.FromInterop(data, dataSize);
+                  case 30: return _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff.FromInterop(data, dataSize);
+                  case 31: return _5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562.FromInterop(data, dataSize);
+                  case 32: return _5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f.FromInterop(data, dataSize);
+                  case 33: return _5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695.FromInterop(data, dataSize);
+                  case 34: return _5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8.FromInterop(data, dataSize);
+                  case 35: return _5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc.FromInterop(data, dataSize);
+                  case 36: return _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1.FromInterop(data, dataSize);
+                  case 37: return _5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0.FromInterop(data, dataSize);
+                  case 38: return _5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a.FromInterop(data, dataSize);
+                  case 39: return _5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a.FromInterop(data, dataSize);
+                  case 40: return _5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7.FromInterop(data, dataSize);
+                  case 41: return _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6.FromInterop(data, dataSize);
+                  case 42: return _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e.FromInterop(data, dataSize);
+                  case 43: return _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3.FromInterop(data, dataSize);
+                  case 44: return _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f.FromInterop(data, dataSize);
+                  case 45: return _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90.FromInterop(data, dataSize);
+                  case 46: return _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6.FromInterop(data, dataSize);
+                  case 47: return _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1.FromInterop(data, dataSize);
+                  case 48: return _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e.FromInterop(data, dataSize);
+                  case 49: return _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81.FromInterop(data, dataSize);
             }
 
             throw new ArgumentException($"Unkown command type {type}", nameof(type));
@@ -2638,6 +2714,198 @@ namespace Coherence.Generated
 
                 case 8:
                 {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_0ffc5a7e1fd04f489472cf9e12415bf7)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_0ffc5a7e1fd04f489472cf9e12415bf7.Interop();
+
+                    val.oldIndex = orig.oldIndex;
+                    val.Newindex = orig.Newindex;
+
+                    return sender.SendCommand(entity, target, type, val, 8);
+
+                }
+
+                case 9:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_1acf624c9c73468c81732449828bf8ff)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_1acf624c9c73468c81732449828bf8ff.Interop();
+
+                    var pinnedname = orig.name != null ? Encoding.UTF8.GetBytes(orig.name) : null; fixed (void* pinnedPtrname = pinnedname) { val.name = new ByteArray { Data = pinnedPtrname, Length =  pinnedname?.Length ?? 0 };
+
+                    return sender.SendCommand(entity, target, type, val, 16);
+
+}                }
+
+                case 10:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_215915084e114f92bc20eb4f102e7562)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_215915084e114f92bc20eb4f102e7562.Interop();
+
+                    val.damage = orig.damage;
+
+                    return sender.SendCommand(entity, target, type, val, 4);
+
+                }
+
+                case 11:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_3c2c4486077949c288a3205124259b7f)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_3c2c4486077949c288a3205124259b7f.Interop();
+
+                    val.index = orig.index;
+
+                    return sender.SendCommand(entity, target, type, val, 4);
+
+                }
+
+                case 12:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_530c1dd565f54f568914150057129695)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_530c1dd565f54f568914150057129695.Interop();
+
+                    val.damage = orig.damage;
+                    val.DamagerSync = orig.DamagerSync;
+
+                    return sender.SendCommand(entity, target, type, val, 8);
+
+                }
+
+                case 13:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8.Interop();
+
+                    val.intPlayerState = orig.intPlayerState;
+
+                    return sender.SendCommand(entity, target, type, val, 4);
+
+                }
+
+                case 14:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_5bad42507fe140d4b87c78206fab3ecc)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_5bad42507fe140d4b87c78206fab3ecc.Interop();
+
+                    val.choiceIndex = orig.choiceIndex;
+
+                    return sender.SendCommand(entity, target, type, val, 4);
+
+                }
+
+                case 15:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_7556cd7d7e774997864e997434cec5d1)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_7556cd7d7e774997864e997434cec5d1.Interop();
+
+                    var pinnedname = orig.name != null ? Encoding.UTF8.GetBytes(orig.name) : null; fixed (void* pinnedPtrname = pinnedname) { val.name = new ByteArray { Data = pinnedPtrname, Length =  pinnedname?.Length ?? 0 };
+
+                    return sender.SendCommand(entity, target, type, val, 16);
+
+}                }
+
+                case 16:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_7815420e2f7042c4ab2a7a4134b2c5d0)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_7815420e2f7042c4ab2a7a4134b2c5d0.Interop();
+
+
+                    return sender.SendCommand(entity, target, type, val, 0);
+
+                }
+
+                case 17:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_7df3250732b84749b4b733d375fb051a)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_7df3250732b84749b4b733d375fb051a.Interop();
+
+                    val.oldState = orig.oldState;
+                    val.NewState = orig.NewState;
+
+                    return sender.SendCommand(entity, target, type, val, 8);
+
+                }
+
+                case 18:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_8b78238963064f8a9a06610499e56d2a)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_8b78238963064f8a9a06610499e56d2a.Interop();
+
+                    val.DirectionNESO = orig.DirectionNESO;
+                    val.sync = orig.sync;
+                    val.damage = orig.damage;
+                    val.attackerPos = orig.attackerPos;
+
+                    return sender.SendCommand(entity, target, type, val, 24);
+
+                }
+
+                case 19:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7.Interop();
+
+                    val.damage = orig.damage;
+                    val.Damagersync = orig.Damagersync;
+
+                    return sender.SendCommand(entity, target, type, val, 8);
+
+                }
+
+                case 20:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_be1772b2e3ab48799d12f62174227ea6)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_be1772b2e3ab48799d12f62174227ea6.Interop();
+
+                    val.damage = orig.damage;
+                    val.Damagersync = orig.Damagersync;
+
+                    return sender.SendCommand(entity, target, type, val, 8);
+
+                }
+
+                case 21:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_ca4b907df43c44708307a1b7f77fbc3e)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_ca4b907df43c44708307a1b7f77fbc3e.Interop();
+
+
+                    return sender.SendCommand(entity, target, type, val, 0);
+
+                }
+
+                case 22:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_dc362dd6cca24e2995ad9011ec93c5e3)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_dc362dd6cca24e2995ad9011ec93c5e3.Interop();
+
+                    val.worldPos = orig.worldPos;
+
+                    return sender.SendCommand(entity, target, type, val, 12);
+
+                }
+
+                case 23:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f.Interop();
+
+
+                    return sender.SendCommand(entity, target, type, val, 0);
+
+                }
+
+                case 24:
+                {
+                    var orig = (_276f4c8c1f54c8d41afce07cc23e23c3_ffd7dabd1f4c4775a990a9bb59bc6b90)command;
+                    var val = new _276f4c8c1f54c8d41afce07cc23e23c3_ffd7dabd1f4c4775a990a9bb59bc6b90.Interop();
+
+                    val.choiceIndex = orig.choiceIndex;
+
+                    return sender.SendCommand(entity, target, type, val, 4);
+
+                }
+
+                case 25:
+                {
                     var orig = (_2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec)command;
                     var val = new _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec.Interop();
 
@@ -2647,7 +2915,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 9:
+                case 26:
                 {
                     var orig = (_3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817)command;
                     var val = new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817.Interop();
@@ -2658,7 +2926,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 10:
+                case 27:
                 {
                     var orig = (_3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9)command;
                     var val = new _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9.Interop();
@@ -2668,7 +2936,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 11:
+                case 28:
                 {
                     var orig = (_3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752)command;
                     var val = new _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752.Interop();
@@ -2678,7 +2946,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 12:
+                case 29:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7.Interop();
@@ -2690,7 +2958,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 13:
+                case 30:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff.Interop();
@@ -2701,7 +2969,7 @@ namespace Coherence.Generated
 
 }                }
 
-                case 14:
+                case 31:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562.Interop();
@@ -2712,7 +2980,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 15:
+                case 32:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f.Interop();
@@ -2723,7 +2991,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 16:
+                case 33:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695.Interop();
@@ -2735,7 +3003,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 17:
+                case 34:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8.Interop();
@@ -2746,7 +3014,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 18:
+                case 35:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc.Interop();
@@ -2757,7 +3025,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 19:
+                case 36:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1.Interop();
@@ -2768,7 +3036,7 @@ namespace Coherence.Generated
 
 }                }
 
-                case 20:
+                case 37:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0.Interop();
@@ -2778,7 +3046,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 21:
+                case 38:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a.Interop();
@@ -2790,7 +3058,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 22:
+                case 39:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a.Interop();
@@ -2804,7 +3072,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 23:
+                case 40:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7.Interop();
@@ -2816,7 +3084,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 24:
+                case 41:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6.Interop();
@@ -2828,7 +3096,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 25:
+                case 42:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e.Interop();
@@ -2838,7 +3106,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 26:
+                case 43:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3.Interop();
@@ -2849,7 +3117,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 27:
+                case 44:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f.Interop();
@@ -2859,7 +3127,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 28:
+                case 45:
                 {
                     var orig = (_5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90)command;
                     var val = new _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90.Interop();
@@ -2870,7 +3138,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 29:
+                case 46:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6)command;
                     var val = new _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6.Interop();
@@ -2882,7 +3150,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 30:
+                case 47:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1)command;
                     var val = new _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1.Interop();
@@ -2893,7 +3161,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 31:
+                case 48:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e)command;
                     var val = new _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e.Interop();
@@ -2904,7 +3172,7 @@ namespace Coherence.Generated
 
                 }
 
-                case 32:
+                case 49:
                 {
                     var orig = (_c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81)command;
                     var val = new _c473af9c10567024caf206bf6752a656_8993144edbc84f508e93768efb6c7b81.Interop();
