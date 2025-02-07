@@ -1,4 +1,5 @@
 using Coherence.Toolkit;
+using PlayerControls;
 using UnityEngine;
 
 public static class Utils
@@ -68,6 +69,30 @@ public static class Utils
         return simulator; 
     }
 
-    
+
+    public static Vector3 VectorTowardsTransform(this UnityEngine.Transform from, Transform to)
+    {
+        return (to.position - from.position).normalized;
+    }
+    public static Vector3 VectorTowardsTransform(this UnityEngine.Transform from, Transform to, bool isFlat = true)
+    {
+        Vector3 direction = (to.position - from.position).normalized;
+        if (isFlat) direction.y = 0;
+        return direction;
+    }
+
+    public static Vector3 VectorTowardsPosition(this UnityEngine.Transform from, Vector3 to)
+    {
+        return (to - from.position).normalized;
+    }
+
+    public static Vector3 VectorTowardsPosition(this UnityEngine.Transform from, Vector3 to, bool isFlat = true)
+    {
+        Vector3 direction = (to - from.position).normalized;
+        if (isFlat) direction.y = 0;
+        return direction;
+    }
+
+
 
 }

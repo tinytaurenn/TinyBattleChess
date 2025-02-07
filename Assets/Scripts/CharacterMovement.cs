@@ -264,7 +264,7 @@ public abstract class CharacterMovement : MonoBehaviour
         {
             if (m_Animator == null) return;
             m_Animator.SetTrigger("Jump");
-            m_sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Jump");
+            if(m_sync !=null) m_sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Jump");
         }
         m_JumpTimer = m_JumpLength;
 
