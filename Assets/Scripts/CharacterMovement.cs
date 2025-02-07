@@ -57,6 +57,7 @@ public abstract class CharacterMovement : MonoBehaviour
     [Header("Slip")]
 
     [SerializeField] float m_SlipCheckDistance = 0.3f;
+    [SerializeField] float m_SlipRayDistance = 0f;
 
 
 
@@ -180,7 +181,7 @@ public abstract class CharacterMovement : MonoBehaviour
 
             //ground check
             bool wasGrounded = m_Isgrounded;
-            Ray groundRay = new Ray(transform.position, Vector3.down);
+            Ray groundRay = new Ray(transform.position + Vector3.up, Vector3.down);
             //QueryTriggerInteraction.Ignore is for triggers 
             m_Isgrounded = Physics.Raycast(groundRay, out RaycastHit raycast, rayDistance, m_WalkableLayer, QueryTriggerInteraction.Ignore);
 
@@ -354,9 +355,16 @@ public abstract class CharacterMovement : MonoBehaviour
 
     private void UpdateAnimator()
     {
+        //Debug.Log("magnitude : " + m_HorizontalVelocity.magnitude + " current speed : " + m_CurrentSpeed);
 
         float animSpeed = m_HorizontalVelocity.magnitude / m_CurrentSpeed;
         if (IsSprinting) animSpeed *= m_SprintMultiplier;
+
+        if(animSpeed < 0.01f)
+        {
+            animSpeed = 0f; // avoid animator to read extreme values
+            
+        }
 
         m_Animator.SetFloat("MoveSpeed", animSpeed);
         m_Animator.SetBool("Grounded", m_Isgrounded);
@@ -381,7 +389,7 @@ public abstract class CharacterMovement : MonoBehaviour
     {
         direction = Vector3.up;
 
-        Vector3 raySpawnPos = transform.position + Vector3.down * m_SpringHeight;
+        Vector3 raySpawnPos = transform.position + Vector3.down * m_SlipRayDistance;
 
         Vector3 forward = transform.forward * m_SlipCheckDistance;
         Vector3 back = -transform.forward * m_SlipCheckDistance;
@@ -462,7 +470,7 @@ public abstract class CharacterMovement : MonoBehaviour
 
     void BorderDetectionGizmos()
     {
-        Vector3 raySpawnPos = transform.position + Vector3.down * m_SpringHeight;
+        Vector3 raySpawnPos = transform.position + Vector3.down * m_SlipRayDistance;
 
         Vector3 forward = transform.forward * m_SlipCheckDistance;
         Vector3 back = -transform.forward * m_SlipCheckDistance;

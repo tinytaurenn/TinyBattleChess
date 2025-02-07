@@ -324,7 +324,7 @@ public class TinyPlayer : MonoBehaviour, IDamageable
         HitStun();
         
 
-        if (Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+        if (Utils.GetSimulator() != null && Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
         {
             Debug.Log("in lobby, no damage taken");
             return;
