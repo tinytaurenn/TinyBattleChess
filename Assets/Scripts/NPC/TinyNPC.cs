@@ -2,7 +2,7 @@ using Coherence.Toolkit;
 using UnityEngine;
 
 
-public class TinyNPC : MonoBehaviour, IDamageable
+public class TinyNPC : Entity, IDamageable
 {
     public enum EMovementType
     {
@@ -13,8 +13,21 @@ public class TinyNPC : MonoBehaviour, IDamageable
         Attack
     }
 
+    public enum ENPCBehavior
+    {
+       Aggressive,
+       Neutral,
+       Friendly
+    }
+
+
     [SerializeField] EMovementType m_MovementType = EMovementType.Idle;
     public EMovementType MovementType => m_MovementType;
+
+    [SerializeField] ENPCBehavior m_NPCBehavior = ENPCBehavior.Neutral;
+    public ENPCBehavior NPCBehavior => m_NPCBehavior;
+
+    //team ID
 
     NPC_Movement m_Movement;
 
@@ -23,6 +36,12 @@ public class TinyNPC : MonoBehaviour, IDamageable
     [Header("Global")]
     [SerializeField] float m_StopDistance = 1f;
     [SerializeField] Vector3 m_StartPosition;
+
+    [Space(10)]
+    [Header("Detection")]
+    [SerializeField] float m_DetectionRadius = 10f;
+    [SerializeField] LayerMask m_DetectionLayer;
+
 
     [Space(10)]
     [Header("Patrol")]
@@ -47,7 +66,8 @@ public class TinyNPC : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        UpdateState(); 
+        UpdateState();
+        EnemyDetection(); 
         
     }
 
@@ -84,6 +104,9 @@ public class TinyNPC : MonoBehaviour, IDamageable
     }
     void UpdateState()
     {
+
+        if (m_Target == null) SwitchState(EMovementType.Patrol);//? 
+
         switch (m_MovementType)
         {
             case EMovementType.Idle:
@@ -93,10 +116,12 @@ public class TinyNPC : MonoBehaviour, IDamageable
     
                 break;
             case EMovementType.Follow:
+                
                 break;
             case EMovementType.Flee:
                 break;
             case EMovementType.Attack:
+                
                 break;
         }
     }
@@ -178,11 +203,32 @@ public class TinyNPC : MonoBehaviour, IDamageable
         m_NextPatrolPosition.y = m_IsFreeRoam ? transform.position.y : m_StartPosition.y;
     }
 
+    void EnemyDetection()
+    {
+        Collider[] enemies = Physics.OverlapSphere(transform.position, m_DetectionRadius, m_DetectionLayer);
+        
+        var closestEnemy = Utils.FindClosestCollider(transform.position, enemies);
+        m_Target = closestEnemy.transform;
+
+        
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.gray;
         Vector3 pos = m_IsFreeRoam ? transform.position : m_StartPosition;  
         Gizmos.DrawWireSphere(pos,m_PatrolRadius);
+
+        //detexction
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, m_DetectionRadius);
+
+        if(m_Target != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, m_Target.position);
+            Gizmos.DrawWireCube(m_Target.position, Vector3.one); 
+        }
     }
 
     public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos)
@@ -199,4 +245,7 @@ public class TinyNPC : MonoBehaviour, IDamageable
     {
         throw new System.NotImplementedException();
     }
+
+    
+    
 }

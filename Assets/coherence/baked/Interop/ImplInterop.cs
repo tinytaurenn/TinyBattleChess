@@ -2033,8 +2033,9 @@ namespace Coherence.Generated
                     val.BattleIndex = orig.BattleIndex;
                     val.PlayerHealth = orig.PlayerHealth;
                     val.GlobalHealth = orig.GlobalHealth;
+                    val.GameID = orig.GameID;
 
-                    updater.UpdateComponent(entity, componentType, val, 16, component.FieldsMask, component.StoppedMask, frames);
+                    updater.UpdateComponent(entity, componentType, val, 20, component.FieldsMask, component.StoppedMask, frames);
 
                     return;
                 }

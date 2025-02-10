@@ -5,7 +5,7 @@ using System;
 using UnityEngine;
 
 
-public class TinyPlayer : MonoBehaviour, IDamageable
+public class TinyPlayer : Entity, IDamageable
 {
     public enum EPlayerState
     {

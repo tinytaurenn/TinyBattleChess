@@ -256,12 +256,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63626c563eff73247b69f55b27ad0dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementType: 0
+  m_MovementType: 1
   m_Target: {fileID: 0}
-  m_PatrolRadius: 10
+  m_StopDistance: 1
+  m_StartPosition: {x: 0, y: 0, z: 0}
+  m_DetectionRadius: 10
+  m_DetectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  m_IsPatrolWaiting: 0
+  m_IsFreeRoam: 0
+  m_PatrolRadius: 5
   m_NextPatrolPosition: {x: 0, y: 0, z: 0}
   m_PreviousPatrolPosition: {x: 0, y: 0, z: 0}
-  m_IsPatrolWaiting: 0
   m_PatrolTimer: 0
   m_PatrolWaitTime: 5
 --- !u!114 &7596318646031367095

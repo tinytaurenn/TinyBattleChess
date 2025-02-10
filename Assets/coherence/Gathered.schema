@@ -37,6 +37,7 @@ component _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777 [id "161"]
   BattleIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   PlayerHealth Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   GlobalHealth Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+  GameID Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
 component _276f4c8c1f54c8d41afce07cc23e23c3_6470269326165104134 [id "162"]
   m_BodyTextureIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]

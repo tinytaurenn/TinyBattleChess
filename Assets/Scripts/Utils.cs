@@ -93,6 +93,24 @@ public static class Utils
         return direction;
     }
 
+    public static Collider FindClosestCollider(Vector3 pos, Collider[] colliders)
+    {
+        Collider closestCollider = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (Collider collider in colliders)
+        {
+            float distance = Vector3.Distance(pos, collider.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestCollider = collider;
+            }
+        }
+
+        return closestCollider;
+    }
+
 
 
 }
