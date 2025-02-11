@@ -40,7 +40,7 @@ public abstract class Grabbable : Usable
 
     private void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
     {
-        Debug.Log("disconnected");
+        Debug.Log("Grabbable disconnected");
         if(m_Sync.CoherenceBridge != null) m_Sync.CoherenceBridge.onDisconnected.RemoveListener(OnDisconnected);
         if(this.gameObject != null) Destroy(gameObject);
 

@@ -16,34 +16,34 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e : IEntityCommand
+    public struct _61db515efe9556c45853cdc384e6813b_1b1a00c45fed46f28f78ccefb78b31f7 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Int32 choiceIndex;
+            public System.Int32 gameID;
         }
 
-        public static unsafe _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _61db515efe9556c45853cdc384e6813b_1b1a00c45fed46f28f78ccefb78b31f7 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
             if (dataSize != 4) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
-                    "for command with ID 56");
+                    "for command with ID 50");
             }
 
-            var orig = new _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e();
+            var orig = new _61db515efe9556c45853cdc384e6813b_1b1a00c45fed46f28f78ccefb78b31f7();
             var comp = (Interop*)data;
-            orig.choiceIndex = comp->choiceIndex;
+            orig.gameID = comp->gameID;
             return orig;
         }
 
-        public System.Int32 choiceIndex;
+        public System.Int32 gameID;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 56;
+        public uint GetComponentType() => 50;
         
         public IEntityMessage Clone()
         {
@@ -81,32 +81,32 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e(
+        public _61db515efe9556c45853cdc384e6813b_1b1a00c45fed46f28f78ccefb78b31f7(
         Entity entity,
-        System.Int32 choiceIndex
+        System.Int32 gameID
 )
         {
             Entity = entity;
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.choiceIndex = choiceIndex; 
+            this.gameID = gameID; 
         }
         
-        public static void Serialize(_c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_61db515efe9556c45853cdc384e6813b_1b1a00c45fed46f28f78ccefb78b31f7 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteIntegerRange(commandData.choiceIndex, 32, -2147483648);
+            bitStream.WriteIntegerRange(commandData.gameID, 32, -2147483648);
         }
         
-        public static _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _61db515efe9556c45853cdc384e6813b_1b1a00c45fed46f28f78ccefb78b31f7 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var datachoiceIndex = bitStream.ReadIntegerRange(32, -2147483648);
+            var datagameID = bitStream.ReadIntegerRange(32, -2147483648);
     
-            return new _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e()
+            return new _61db515efe9556c45853cdc384e6813b_1b1a00c45fed46f28f78ccefb78b31f7()
             {
                 Entity = entity,
                 Routing = target,
-                choiceIndex = datachoiceIndex
+                gameID = datagameID
             };   
         }
     }

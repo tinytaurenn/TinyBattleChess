@@ -1,3 +1,4 @@
+using Coherence.Connection;
 using Coherence.Toolkit;
 using System.Collections;
 using UnityEngine;
@@ -29,6 +30,8 @@ public class TinyNPC : Entity, IDamageable
     public ENPCBehavior NPCBehavior => m_NPCBehavior;
 
     //team ID
+
+    CoherenceSync m_Sync;
 
     NPC_Movement m_Movement;
 
@@ -73,7 +76,18 @@ public class TinyNPC : Entity, IDamageable
     void Awake()
     {
         m_Movement = GetComponent<NPC_Movement>();
+        m_Sync = GetComponent<CoherenceSync>();
+
+        m_Sync.CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
     }
+
+    private void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
+    {
+        Debug.Log("Skeleton disconnected");
+        if (m_Sync.CoherenceBridge != null) m_Sync.CoherenceBridge.onDisconnected.RemoveListener(OnDisconnected);
+        if (this.gameObject != null) Destroy(gameObject);
+    }
+
     void Start()
     {
         m_StartPosition = transform.position;
@@ -179,6 +193,7 @@ public class TinyNPC : Entity, IDamageable
             case EMovementType.Flee:
                 break;
             case EMovementType.Attack:
+             
                 break;
         }
     }
@@ -320,7 +335,6 @@ public class TinyNPC : Entity, IDamageable
             m_FollowTarget = closestEnemy.transform;
         }
 
-        
     }
 
     void OnEnemyDetect()

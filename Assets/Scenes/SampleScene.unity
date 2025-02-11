@@ -12095,37 +12095,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton_Soldier
       objectReference: {fileID: 0}
-    - target: {fileID: 1609919595645306701, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_AggroTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609919595645306701, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_IsFreeRoam
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609919595645306701, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_NPCBehavior
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609919595645306701, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_IsPatrolUnit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609919595645306701, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_MovementType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609919595645306701, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_StopDistance
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609919595645306701, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_DetectionRadius
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609919595645306701, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_AfterAggroStandingTime
-      value: 2
+    - target: {fileID: 2353739285565979599, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
+      propertyPath: scenePrefabInstanceUUID
+      value: 249956
       objectReference: {fileID: 0}
     - target: {fileID: 3103966775795908886, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
       propertyPath: m_LocalPosition.x
