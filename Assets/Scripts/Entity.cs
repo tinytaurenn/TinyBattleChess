@@ -3,13 +3,18 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    [SerializeField] protected int m_GameID = -1; 
+    [SerializeField] protected int m_GameID = -1;
+    [Sync]
     public int GameID
     {
         get { return m_GameID; }
         set { m_GameID = value; }
     }
 
+    public void ChangeGameID(int gameID)
+    {
+        GameID = gameID; 
+    }
 
     public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos);
 

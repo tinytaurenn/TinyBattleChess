@@ -1,3 +1,4 @@
+using Coherence.Cloud;
 using Coherence.Connection;
 using Coherence.Toolkit;
 using PlayerControls;
@@ -216,12 +217,19 @@ public class MainSimulator : MonoBehaviour
         {
             m_PlayerSyncs.Add(player.GetComponent<CoherenceSync>());
 
+            
+
 
         }
 
         foreach (var player in m_PlayerSyncs)
         {
             Debug.Log(player.name);
+
+        }
+        for (int i = 0; i < m_PlayerSyncs.Count; i++)
+        {
+            m_PlayerSyncs[i].SendCommand<EntityCommands>(nameof(EntityCommands.ChangeGameIDCommand), Coherence.MessageTarget.AuthorityOnly, i);
         }
     }
 

@@ -1,4 +1,5 @@
 using Coherence.Toolkit;
+using System.Collections;
 using UnityEngine;
 
 
@@ -31,16 +32,22 @@ public class TinyNPC : Entity, IDamageable
 
     NPC_Movement m_Movement;
 
-    [SerializeField] Transform m_Target;
+    [SerializeField] Transform m_ClosestTarget;
+    [SerializeField] Transform m_FollowTarget;
     [Space(10)]
     [Header("Global")]
     [SerializeField] float m_StopDistance = 1f;
     [SerializeField] Vector3 m_StartPosition;
 
     [Space(10)]
+    [Header("Summoned")]
+    [SerializeField] Transform m_MasterTransform = null; 
+
+    [Space(10)]
     [Header("Detection")]
     [SerializeField] float m_DetectionRadius = 10f;
     [SerializeField] LayerMask m_DetectionLayer;
+    [SerializeField] bool m_IsPatrolUnit = false;
 
 
     [Space(10)]
@@ -53,6 +60,16 @@ public class TinyNPC : Entity, IDamageable
     [SerializeField] float m_PatrolTimer = 0f;
     [SerializeField] float m_PatrolWaitTime = 5f;
 
+    [Space(10)]
+    [Header("Aggro")]
+    [SerializeField] float m_AggroTimer = 0f;
+    [SerializeField] float m_AggroTime = 5f;
+    [SerializeField] bool m_AfterAggroStanding = false;
+    [SerializeField] float m_AfterAggroStandingTime = 3f;
+    [SerializeField] float m_AfterAggroStandingTimer = 0f;
+    Coroutine m_AfterAggroStandingRoutine; 
+    
+
     void Awake()
     {
         m_Movement = GetComponent<NPC_Movement>();
@@ -60,7 +77,9 @@ public class TinyNPC : Entity, IDamageable
     void Start()
     {
         m_StartPosition = transform.position;
-        GetNewPatrolPosition();
+
+        m_MovementType = m_IsPatrolUnit ? EMovementType.Patrol : EMovementType.Idle;
+        OnEnterState(); 
     }
 
     // Update is called once per frame
@@ -105,22 +124,23 @@ public class TinyNPC : Entity, IDamageable
     void UpdateState()
     {
 
-        if (m_Target == null) SwitchState(EMovementType.Patrol);//? 
-
         switch (m_MovementType)
         {
             case EMovementType.Idle:
+                IdleUpdate();
                 break;
             case EMovementType.Patrol:
                 PatrolingUpdate(); 
     
                 break;
             case EMovementType.Follow:
+                FollowUpdate();
                 
                 break;
             case EMovementType.Flee:
                 break;
             case EMovementType.Attack:
+                AttackUpdate();
                 
                 break;
         }
@@ -152,6 +172,7 @@ public class TinyNPC : Entity, IDamageable
                 break;
             case EMovementType.Patrol:
                 m_PatrolTimer = 0f;
+                GetNewPatrolPosition(); 
                 break;
             case EMovementType.Follow:
                 break;
@@ -164,6 +185,9 @@ public class TinyNPC : Entity, IDamageable
 
     void PatrolingUpdate()
     {
+
+        OnEnemyDetect(); 
+
         if (m_IsPatrolWaiting)
         {
             m_PatrolTimer += Time.deltaTime;
@@ -186,12 +210,89 @@ public class TinyNPC : Entity, IDamageable
         }
         
     }
+    void IdleUpdate()
+    {
+        OnEnemyDetect(); 
+
+        if(!m_IsFreeRoam
+            && Vector3.Distance(transform.position, m_StartPosition) >= m_StopDistance)
+        {
+            m_Movement.MoveOnPosition(m_StartPosition);
+            return; 
+        }
+
+        if (m_Movement.MoveInput.magnitude > 0.1f) m_Movement.StopMovement(); 
+    }
 
     void PatrolMovementUpdate()
     {
         if (m_IsPatrolWaiting) return; 
      
         m_Movement.MoveOnPosition(m_NextPatrolPosition);
+
+        
+    }
+
+    void FollowUpdate()
+    {
+
+        if (m_MasterTransform == null)
+        {
+            SwitchState(m_IsPatrolUnit ? EMovementType.Patrol : EMovementType.Idle);
+            return; 
+        }
+
+
+        if (Vector3.Distance(transform.position, m_MasterTransform.position) <= m_StopDistance *2 )
+        {
+            m_Movement.StopMovement();
+        }
+        else
+        {
+            FollowTarget(m_MasterTransform);
+        }
+    }
+
+    void AttackUpdate()
+    {
+        AfterAggroCheck();
+
+        if (m_FollowTarget == null) return;
+
+        if (Vector3.Distance(transform.position, m_FollowTarget.position) <= m_StopDistance)
+        {
+            //attack
+            m_Movement.StopMovement();
+        }
+        else
+        {
+            FollowTarget(m_FollowTarget);
+            if(m_ClosestTarget == null)
+            {
+                m_AggroTimer += Time.deltaTime;
+                if(m_AggroTimer >= m_AggroTime)
+                {
+
+                    m_FollowTarget = null;
+                    m_AggroTimer = 0f;
+
+                    m_AfterAggroStanding = true; 
+
+                    
+                }
+
+            }
+            else
+            {
+                m_AggroTimer = 0f;
+            }
+            
+        }
+    }
+
+    void FollowTarget(Transform targetTransform)
+    {
+        m_Movement.MoveOnTarget(targetTransform);
     }
 
     void GetNewPatrolPosition()
@@ -207,11 +308,68 @@ public class TinyNPC : Entity, IDamageable
     {
         Collider[] enemies = Physics.OverlapSphere(transform.position, m_DetectionRadius, m_DetectionLayer);
         
-        var closestEnemy = Utils.FindClosestCollider(transform.position, enemies);
-        m_Target = closestEnemy?.transform;
+        var closestEnemy = Utils.FindClosestCollider(transform.position, enemies,m_MasterTransform);
+        if(closestEnemy == null)
+        {
+            m_ClosestTarget = null;
+
+        }
+        else
+        {
+            m_ClosestTarget = closestEnemy.transform;
+            m_FollowTarget = closestEnemy.transform;
+        }
 
         
     }
+
+    void OnEnemyDetect()
+    {
+        if(m_FollowTarget == null) return;
+
+        m_AfterAggroStanding = false;
+        m_AfterAggroStandingTimer = 0f;
+
+        switch (m_NPCBehavior)
+        {
+            case ENPCBehavior.Aggressive:
+                SwitchState(EMovementType.Attack);
+                break;
+            case ENPCBehavior.Neutral:
+                //nothing
+                break;
+            case ENPCBehavior.Friendly:
+                //wave ?
+                break;
+            default:
+                break;
+        }
+
+
+    }
+
+    void AfterAggroCheck()
+    {
+        if (m_AfterAggroStanding)
+        {
+
+            if (m_Movement.MoveInput.magnitude > 0.1f) m_Movement.StopMovement();
+
+            m_AfterAggroStandingTimer += Time.deltaTime;
+
+            if (m_AfterAggroStandingTimer >= m_AfterAggroStandingTime)
+            {
+                m_AfterAggroStandingTimer = 0f;
+                m_AfterAggroStanding = false;
+                SwitchState(m_IsPatrolUnit ? EMovementType.Patrol : EMovementType.Idle);
+            }
+
+            OnEnemyDetect();
+
+            return;
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.gray;
@@ -223,11 +381,11 @@ public class TinyNPC : Entity, IDamageable
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, m_DetectionRadius);
 
-        if(m_Target != null)
+        if(m_ClosestTarget != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, m_Target.position);
-            Gizmos.DrawWireCube(m_Target.position, Vector3.one); 
+            Gizmos.DrawLine(transform.position, m_ClosestTarget.position);
+            Gizmos.DrawWireCube(m_ClosestTarget.position, Vector3.one); 
         }
     }
 

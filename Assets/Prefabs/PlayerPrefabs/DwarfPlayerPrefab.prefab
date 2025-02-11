@@ -16280,6 +16280,7 @@ MonoBehaviour:
   - rid: 4705201930606215541
   - rid: 4705201931075715105
   - rid: 4705201931075715107
+  - rid: 4705201942386966609
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -16477,6 +16478,48 @@ MonoBehaviour:
         valueSyncCallbackName: 
         memberType: 8
         parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705201942386966609
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705201942386966610
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: ae56a69edb1a46fe8f3778c65b97b751
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 4912870117678723158}
+        coherenceSync: {fileID: 1055140489967927550}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705201942386966610
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: ChangeGameIDCommand
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
         ownerType:
           assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null

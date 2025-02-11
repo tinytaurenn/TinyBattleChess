@@ -111,6 +111,53 @@ public static class Utils
         return closestCollider;
     }
 
+    public static Collider FindClosestCollider(Vector3 pos, Collider[] colliders,Transform MasterMask)
+    {
+        Collider closestCollider = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (Collider collider in colliders)
+        {
+            if(collider.transform == MasterMask)
+            {
+                continue;
+            }
+            float distance = Vector3.Distance(pos, collider.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestCollider = collider;
+            }
+        }
+
+        return closestCollider;
+    }
+
+    public static Collider FindClosestCollider(Vector3 pos, Collider[] colliders,int gameIDMask)
+    {
+        Collider closestCollider = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (Collider collider in colliders)
+        {
+            if(collider.TryGetComponent<Entity>(out Entity entity))
+            {
+                if(entity.GameID == gameIDMask)
+                {
+                    continue;
+                }
+            }
+            float distance = Vector3.Distance(pos, collider.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestCollider = collider;
+            }
+        }
+
+        return closestCollider;
+    }
+
 
 
 }
