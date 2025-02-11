@@ -169,7 +169,7 @@ public class TinyNPC : Entity, IDamageable
             m_PatrolTimer += Time.deltaTime;
             if (m_PatrolTimer >= m_PatrolWaitTime)
             {
-                Debug.Log("finding position to go "); 
+                //Debug.Log("finding position to go "); 
                 m_IsPatrolWaiting = false;
                 m_PatrolTimer = 0f;
             }
@@ -208,7 +208,7 @@ public class TinyNPC : Entity, IDamageable
         Collider[] enemies = Physics.OverlapSphere(transform.position, m_DetectionRadius, m_DetectionLayer);
         
         var closestEnemy = Utils.FindClosestCollider(transform.position, enemies);
-        m_Target = closestEnemy.transform;
+        m_Target = closestEnemy?.transform;
 
         
     }
@@ -231,21 +231,35 @@ public class TinyNPC : Entity, IDamageable
         }
     }
 
-    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void ParrySync(int damage, CoherenceSync DamagerSync)
-    {
-        throw new System.NotImplementedException();
-    }
-
     
-    
+
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void ParrySync(int damage, CoherenceSync DamagerSync)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void SyncBlocked()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void SyncHit()
+    {
+        throw new System.NotImplementedException();
+    }
 }

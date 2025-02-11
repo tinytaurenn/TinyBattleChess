@@ -16,34 +16,30 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8 : IEntityCommand
+    public struct _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
-            [FieldOffset(0)]
-            public System.Int32 intPlayerState;
         }
 
-        public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 4) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
-                    "for command with ID 14");
+            if (dataSize != 0) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 0) " +
+                    "for command with ID 55");
             }
 
-            var orig = new _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8();
+            var orig = new _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604();
             var comp = (Interop*)data;
-            orig.intPlayerState = comp->intPlayerState;
             return orig;
         }
 
-        public System.Int32 intPlayerState;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 14;
+        public uint GetComponentType() => 55;
         
         public IEntityMessage Clone()
         {
@@ -81,32 +77,18 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8(
-        Entity entity,
-        System.Int32 intPlayerState
-)
+        
+        public static void Serialize(_c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604 commandData, IOutProtocolBitStream bitStream)
         {
-            Entity = entity;
-            Routing = MessageTarget.All;
-            Sender = 0;
-            
-            this.intPlayerState = intPlayerState; 
         }
         
-        public static void Serialize(_276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8 commandData, IOutProtocolBitStream bitStream)
+        public static _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            bitStream.WriteIntegerRange(commandData.intPlayerState, 32, -2147483648);
-        }
-        
-        public static _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
-        {
-            var dataintPlayerState = bitStream.ReadIntegerRange(32, -2147483648);
     
-            return new _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8()
+            return new _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604()
             {
                 Entity = entity,
                 Routing = target,
-                intPlayerState = dataintPlayerState
             };   
         }
     }

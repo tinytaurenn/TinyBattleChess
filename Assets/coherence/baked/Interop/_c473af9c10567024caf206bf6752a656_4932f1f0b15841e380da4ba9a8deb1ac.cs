@@ -16,38 +16,46 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7 : IEntityCommand
+    public struct _c473af9c10567024caf206bf6752a656_4932f1f0b15841e380da4ba9a8deb1ac : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Int32 damage;
+            public System.Int32 DirectionNESO;
             [FieldOffset(4)]
-            public Entity Damagersync;
+            public Entity sync;
+            [FieldOffset(8)]
+            public System.Int32 damage;
+            [FieldOffset(12)]
+            public Vector3 attackerPos;
         }
 
-        public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _c473af9c10567024caf206bf6752a656_4932f1f0b15841e380da4ba9a8deb1ac FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 8) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 8) " +
-                    "for command with ID 21");
+            if (dataSize != 24) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 24) " +
+                    "for command with ID 52");
             }
 
-            var orig = new _276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7();
+            var orig = new _c473af9c10567024caf206bf6752a656_4932f1f0b15841e380da4ba9a8deb1ac();
             var comp = (Interop*)data;
+            orig.DirectionNESO = comp->DirectionNESO;
+            orig.sync = comp->sync;
             orig.damage = comp->damage;
-            orig.Damagersync = comp->Damagersync;
+            orig.attackerPos = comp->attackerPos;
             return orig;
         }
 
+        public System.Int32 DirectionNESO;
+        public Entity sync;
         public System.Int32 damage;
-        public Entity Damagersync;
+        public Vector3 attackerPos;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 21;
+        public uint GetComponentType() => 52;
         
         public IEntityMessage Clone()
         {
@@ -64,12 +72,12 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = absoluteEntity;
-            err = mapper.MapToAbsoluteEntity(Damagersync, false, out absoluteEntity);
+            err = mapper.MapToAbsoluteEntity(sync, false, out absoluteEntity);
             if (err != IEntityMapper.Error.None)
             {
                 return err;
             }
-            this.Damagersync = absoluteEntity;
+            this.sync = absoluteEntity;
             
             return IEntityMapper.Error.None;
         }
@@ -82,59 +90,71 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = relativeEntity;
-            err = mapper.MapToRelativeEntity(Damagersync, false, out relativeEntity);
+            err = mapper.MapToRelativeEntity(sync, false, out relativeEntity);
             if (err != IEntityMapper.Error.None)
             {
                 return err;
             }
-            this.Damagersync = relativeEntity;
+            this.sync = relativeEntity;
             
             return IEntityMapper.Error.None;
         }
 
         public HashSet<Entity> GetEntityRefs() {
             return new HashSet<Entity> {
-                this.Damagersync,
+                this.sync,
             };
         }
 
         public void NullEntityRefs(Entity entity) {
-            if (this.Damagersync == entity) {
-                this.Damagersync = Entity.InvalidRelative;
+            if (this.sync == entity) {
+                this.sync = Entity.InvalidRelative;
             }
         }
         
-        public _276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7(
+        public _c473af9c10567024caf206bf6752a656_4932f1f0b15841e380da4ba9a8deb1ac(
         Entity entity,
+        System.Int32 DirectionNESO,
+        Entity sync,
         System.Int32 damage,
-        Entity Damagersync
+        Vector3 attackerPos
 )
         {
             Entity = entity;
             Routing = MessageTarget.All;
             Sender = 0;
             
+            this.DirectionNESO = DirectionNESO; 
+            this.sync = sync; 
             this.damage = damage; 
-            this.Damagersync = Damagersync; 
+            this.attackerPos = attackerPos; 
         }
         
-        public static void Serialize(_276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_c473af9c10567024caf206bf6752a656_4932f1f0b15841e380da4ba9a8deb1ac commandData, IOutProtocolBitStream bitStream)
         {
+            bitStream.WriteIntegerRange(commandData.DirectionNESO, 32, -2147483648);
+            bitStream.WriteEntity(commandData.sync);
             bitStream.WriteIntegerRange(commandData.damage, 32, -2147483648);
-            bitStream.WriteEntity(commandData.Damagersync);
+            var converted_attackerPos = commandData.attackerPos.ToCoreVector3();
+            bitStream.WriteVector3(converted_attackerPos, FloatMeta.NoCompression());
         }
         
-        public static _276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _c473af9c10567024caf206bf6752a656_4932f1f0b15841e380da4ba9a8deb1ac Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
+            var dataDirectionNESO = bitStream.ReadIntegerRange(32, -2147483648);
+            var datasync = bitStream.ReadEntity();
             var datadamage = bitStream.ReadIntegerRange(32, -2147483648);
-            var dataDamagersync = bitStream.ReadEntity();
+            var converted_attackerPos = bitStream.ReadVector3(FloatMeta.NoCompression());
+            var dataattackerPos = converted_attackerPos.ToUnityVector3();
     
-            return new _276f4c8c1f54c8d41afce07cc23e23c3_a7ad24c8eb3b493a9cd174f26e9a45a7()
+            return new _c473af9c10567024caf206bf6752a656_4932f1f0b15841e380da4ba9a8deb1ac()
             {
                 Entity = entity,
                 Routing = target,
+                DirectionNESO = dataDirectionNESO,
+                sync = datasync,
                 damage = datadamage,
-                Damagersync = dataDamagersync
+                attackerPos = dataattackerPos
             };   
         }
     }

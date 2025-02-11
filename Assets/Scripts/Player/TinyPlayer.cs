@@ -230,7 +230,7 @@ public class TinyPlayer : Entity, IDamageable
     }
 
     #region Hits
-    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,Vector3 attackerPos)
     {
 
         if (m_PlayerState != EPlayerState.Player)
@@ -278,14 +278,14 @@ public class TinyPlayer : Entity, IDamageable
         }
     }
 
-    public void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
     {
 
         Debug.Log("sync Player took " + damage + " weapon damage!");
 
         m_PlayerFX.PlayHurtFX(0);
         Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
-        Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly); //sound 
+        Damagersync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncHitCommand), Coherence.MessageTarget.AuthorityOnly); //sound 
         HitStun();
 
 
@@ -313,7 +313,7 @@ public class TinyPlayer : Entity, IDamageable
 
     }
 
-    public void TakeDamageSync(int damage, CoherenceSync Damagersync)
+    public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
     {
 
 
@@ -359,15 +359,25 @@ public class TinyPlayer : Entity, IDamageable
         }
     }
 
-    public void ParrySync(int damage, CoherenceSync DamagerSync)
+    public override void ParrySync(int damage, CoherenceSync DamagerSync)
     {
         Debug.Log("sync Player parried ");
         Debug.Log(DamagerSync.transform.name + " parried!");
-        DamagerSync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncBlocked), Coherence.MessageTarget.AuthorityOnly);
+        DamagerSync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncBlockedCommand), Coherence.MessageTarget.AuthorityOnly);
 
         int soundVariationIndex = UnityEngine.Random.Range(0, 3);
         Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
-    } 
+    }
+
+    public override void SyncBlocked()
+    {
+        m_PlayerWeapons.SyncBlocked();
+    }
+
+    public override void SyncHit()
+    {
+        m_PlayerWeapons.SyncHit();
+    }
 
     public void HitStun()
     {

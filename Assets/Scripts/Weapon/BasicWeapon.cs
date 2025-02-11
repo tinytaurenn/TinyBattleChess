@@ -156,26 +156,10 @@ private void OnTriggerEnter(Collider other)
                 return;
             }
 
-            if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
+            if (other.TryGetComponent<EntityCommands>(out EntityCommands entCommands))
             {
-                Debug.Log("Weapon hit " + other.name);
-
-                //check defense 
-
-                //sync.SendCommand<IDamageable>(nameof(IDamageable.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly,m_Sync,(int)m_HolderPlayerWeapons.m_WeaponDirection);
-                if(other.TryGetComponent<Dummy>(out Dummy dummy))
-                {
-                    Debug.Log("sending commannd to dummy");
-                    sync.SendCommand<Dummy>(nameof(Dummy.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage, m_HolderPlayerWeapons.transform.position);
-                }
-
-                if(other.TryGetComponent<TinyPlayer>(out TinyPlayer tinyPlayer)) 
-                {
-                    Debug.Log("sending commannd to player");
-                    sync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TakeMeleeSync), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage,m_HitPos.position);
-                }
-
-
+                Debug.Log("sending commannd to dummy");
+                sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage, m_HolderPlayerWeapons.transform.position);
             }
         }
 

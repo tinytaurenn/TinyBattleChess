@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Dummy : MonoBehaviour, IDamageable
+public class Dummy : Entity, IDamageable
 {
 
     [SerializeField] bool m_InParry = false;
@@ -54,7 +54,7 @@ public class Dummy : MonoBehaviour, IDamageable
     
 
   
-    public void TakeMeleeSync(int DirectionNESO, CoherenceSync sync,int damage, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync,int damage, Vector3 attackerPos)
     {
 
         EWeaponDirection direction = (EWeaponDirection)DirectionNESO; 
@@ -86,7 +86,7 @@ public class Dummy : MonoBehaviour, IDamageable
         }
         else
         {
-            TakeWeaponDamageSync(damage,sync);
+            TakeWeaponDamageSync(damage,sync); 
             
 
         }
@@ -117,14 +117,14 @@ public class Dummy : MonoBehaviour, IDamageable
 
     }
 
-    public void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
     {
         Debug.Log("sync Dummy took " + damage + " damage!");
 
         Debug.Log("dummy sending synchit comand ");
         Damagersync.SendCommand<PlayerWeapons>(nameof(PlayerWeapons.SyncHit), Coherence.MessageTarget.AuthorityOnly);
     }
-    public void ParrySync(int damage,CoherenceSync DamagerSync)
+    public override void ParrySync(int damage,CoherenceSync DamagerSync)
     {
         Debug.Log("sync Dummy parried "); 
         //Debug.Log(DamagerSync.transform.name + " parried!"); // cant get a transform from serv side
@@ -133,7 +133,18 @@ public class Dummy : MonoBehaviour, IDamageable
         m_Sync.SendCommand<DummyFX>(nameof(DummyFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
     }
 
-    
+    public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
+    {
+        throw new NotImplementedException();
+    }
 
+    public override void SyncBlocked()
+    {
+        throw new NotImplementedException();
+    }
 
+    public override void SyncHit()
+    {
+        throw new NotImplementedException();
+    }
 }
