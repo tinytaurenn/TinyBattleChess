@@ -1,8 +1,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using UnityEditor;
 using UnityEngine;
+
 
 [Flags]
 public enum EItemType
@@ -30,7 +31,6 @@ public class SO_Items : ScriptableObject
 {
     public List<SO_Item> Items;
 
-    
 
     const float CommonChance = 100f;
 
@@ -55,6 +55,7 @@ public class SO_Items : ScriptableObject
         
     }
 
+    
 
 
 

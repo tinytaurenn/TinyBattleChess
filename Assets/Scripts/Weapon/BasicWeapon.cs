@@ -84,6 +84,12 @@ public class BasicWeapon : Grabbable, IWeapon
         
     }
 
+    public void SetupWeapon(Collider damageCollider, FWeaponParameters weaponParameters)
+    {
+        m_DamageCollider = damageCollider;
+        m_WeaponParameters = weaponParameters;
+    }
+
 
     private void OnDrawGizmos()
     {
