@@ -52,7 +52,7 @@ public class BasicWeapon : Grabbable, IWeapon
     AudioSource m_AudioSource; 
     [SerializeField] List<AudioResource> HitSounds;
 
-    internal PlayerWeapons m_HolderPlayerWeapons = null; 
+    internal Transform m_HolderTransform = null; 
 
     [SerializeField] Collider m_DamageCollider;
     [SerializeField] public Transform m_HitPos; 
@@ -101,12 +101,13 @@ public class BasicWeapon : Grabbable, IWeapon
     public override void Release()
     {
         base.Release();
-        m_HolderPlayerWeapons = null;
+        m_HolderTransform = null;
         
     }
 
     public void ActivateDamage(bool activate)
     {
+        Debug.Log("activating damage collider");
         m_DamageCollider.enabled = activate;
         if(activate)
         {
@@ -157,15 +158,27 @@ private void OnTriggerEnter(Collider other)
 
         if (other.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
         {
-            if (sync.HasStateAuthority)
+            if (m_HolderTransform == other.transform)
             {
+                Debug.Log("same holder");
                 return;
             }
+            Debug.Log("found coSync");
 
             if (other.TryGetComponent<EntityCommands>(out EntityCommands entCommands))
             {
+                int weaponDir = 0; 
+                if (m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons weapons))
+                {
+                    weaponDir = (int)weapons.m_WeaponDirection; 
+                }else if (m_HolderTransform.TryGetComponent<HumanoidNPC>(out HumanoidNPC npc))
+                {
+                    weaponDir = (int)npc.m_WeaponDirection; 
+                }
+                CoherenceSync holderSync = m_HolderTransform.GetComponent<CoherenceSync>();
+              
                 Debug.Log("sending commannd to dummy");
-                sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, (int)m_HolderPlayerWeapons.m_WeaponDirection, m_HolderPlayerWeapons.m_Sync, m_WeaponParameters.Damage, m_HolderPlayerWeapons.transform.position);
+                sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, weaponDir, holderSync, m_WeaponParameters.Damage, m_HolderTransform.transform.position);
             }
         }
 

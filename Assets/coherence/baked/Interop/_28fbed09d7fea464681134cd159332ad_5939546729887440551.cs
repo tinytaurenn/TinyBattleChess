@@ -27,18 +27,22 @@ namespace Coherence.Generated
         {
             [FieldOffset(0)]
             public System.Byte m_IsHeld;
+            [FieldOffset(1)]
+            public System.Byte IsNPCHeld;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
         {
             FieldsMask |= _28fbed09d7fea464681134cd159332ad_5939546729887440551.m_IsHeldMask;
             m_IsHeldSimulationFrame = frame;
+            FieldsMask |= _28fbed09d7fea464681134cd159332ad_5939546729887440551.IsNPCHeldMask;
+            IsNPCHeldSimulationFrame = frame;
         }
 
         public static unsafe _28fbed09d7fea464681134cd159332ad_5939546729887440551 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 1) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 1) " +
+            if (dataSize != 2) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 2) " +
                     "for component with ID 166");
             }
 
@@ -52,6 +56,7 @@ namespace Coherence.Generated
             var comp = (Interop*)data;
 
             orig.m_IsHeld = comp->m_IsHeld != 0;
+            orig.IsNPCHeld = comp->IsNPCHeld != 0;
 
             return orig;
         }
@@ -60,13 +65,16 @@ namespace Coherence.Generated
         public static uint m_IsHeldMask => 0b00000000000000000000000000000001;
         public AbsoluteSimulationFrame m_IsHeldSimulationFrame;
         public System.Boolean m_IsHeld;
+        public static uint IsNPCHeldMask => 0b00000000000000000000000000000010;
+        public AbsoluteSimulationFrame IsNPCHeldSimulationFrame;
+        public System.Boolean IsNPCHeld;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
         public uint GetComponentType() => 166;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000000000000001;
+        public uint InitialFieldsMask() => 0b00000000000000000000000000000011;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -75,7 +83,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 1;
+        public int GetFieldCount() => 2;
 
 
         
@@ -127,6 +135,13 @@ namespace Coherence.Generated
             }
 
             otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.IsNPCHeldSimulationFrame = other.IsNPCHeldSimulationFrame;
+                this.IsNPCHeld = other.IsNPCHeld;
+            }
+
+            otherMask >>= 1;
             StoppedMask |= other.StoppedMask;
 
             return this;
@@ -141,7 +156,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 1);
+                bitStream.WriteMaskBits(data.StoppedMask, 2);
             }
 
             var mask = data.FieldsMask;
@@ -158,6 +173,18 @@ namespace Coherence.Generated
             }
 
             mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+
+                var fieldValue = data.IsNPCHeld;
+
+
+
+                bitStream.WriteBool(fieldValue);
+            }
+
+            mask >>= 1;
 
             return mask;
         }
@@ -167,7 +194,7 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(1);
+                stoppedMask = bitStream.ReadMaskBits(2);
             }
 
             var val = new _28fbed09d7fea464681134cd159332ad_5939546729887440551();
@@ -176,6 +203,12 @@ namespace Coherence.Generated
 
                 val.m_IsHeld = bitStream.ReadBool();
                 val.FieldsMask |= _28fbed09d7fea464681134cd159332ad_5939546729887440551.m_IsHeldMask;
+            }
+            if (bitStream.ReadMask())
+            {
+
+                val.IsNPCHeld = bitStream.ReadBool();
+                val.FieldsMask |= _28fbed09d7fea464681134cd159332ad_5939546729887440551.IsNPCHeldMask;
             }
 
             val.StoppedMask = stoppedMask;
@@ -188,8 +221,9 @@ namespace Coherence.Generated
         {
             return $"_28fbed09d7fea464681134cd159332ad_5939546729887440551(" +
                 $" m_IsHeld: { this.m_IsHeld }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(1, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(1, '0') })";
+                $" IsNPCHeld: { this.IsNPCHeld }" +
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(2, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(2, '0') })";
         }
     }
 

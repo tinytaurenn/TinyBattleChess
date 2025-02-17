@@ -10746,6 +10746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SO_Item: {fileID: 0}
   m_IsHeld: 0
+  m_IsNPCHeld: 0
   m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
@@ -12094,10 +12095,6 @@ PrefabInstance:
     - target: {fileID: 1285079827946305606, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
       propertyPath: m_Name
       value: Skeleton_Soldier
-      objectReference: {fileID: 0}
-    - target: {fileID: 2353739285565979599, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: scenePrefabInstanceUUID
-      value: 249956
       objectReference: {fileID: 0}
     - target: {fileID: 3103966775795908886, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
       propertyPath: m_LocalPosition.x

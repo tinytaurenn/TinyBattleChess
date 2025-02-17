@@ -2,10 +2,8 @@ using Coherence;
 using Coherence.Toolkit;
 using System;
 using System.Collections;
-using System.Reflection.Emit;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
+
 
 
 public enum EWeaponDirection
@@ -276,8 +274,8 @@ public class PlayerWeapons : MonoBehaviour
     {
         //Debug.Log("locking attack");
         m_InAttackRelease = true;
-        if(m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] !=null) m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().m_HolderPlayerWeapons = this;
-        if(m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon] != null) m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon].GetComponent<BasicWeapon>().m_HolderPlayerWeapons = this;
+        if(m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon] !=null) m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.MainWeapon].GetComponent<BasicWeapon>().m_HolderTransform = transform;
+        if(m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon] != null) m_PlayerLoadout.m_EquippedWeapons[PlayerLoadout.ESlot.SecondaryWeapon].GetComponent<BasicWeapon>().m_HolderTransform = transform;
 
 
         float normalizedTime = m_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime;

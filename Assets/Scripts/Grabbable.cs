@@ -15,6 +15,12 @@ public abstract class Grabbable : Usable
     [SerializeField] SO_Item m_SO_Item; 
 
     [Sync] public bool m_IsHeld;
+    [SerializeField] protected bool m_IsNPCHeld = false; 
+    [Sync] public bool IsNPCHeld
+    {
+        get { return m_IsHeld && m_IsNPCHeld; }
+        set { m_IsNPCHeld = value; }
+    }
 
     public event Action<bool> OnGrabValidate;
 
@@ -32,9 +38,10 @@ public abstract class Grabbable : Usable
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Collider = GetComponent<Collider>();
 
-        m_Sync.CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
-        
-        
+        if(m_Sync && m_Sync.CoherenceBridge) m_Sync.CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
+
+
+
 
     }
 
@@ -83,6 +90,7 @@ public abstract class Grabbable : Usable
 
     private void OnStateAuthority()
     {
+        if (IsNPCHeld) return; 
         if(m_GrabRequested)
         {
             m_GrabRequested = false;
@@ -91,6 +99,7 @@ public abstract class Grabbable : Usable
         }
         else
         {
+            //Debug.Log("grabbable OnStateAuthority");
             m_Rigidbody.isKinematic = false;
             m_Collider.enabled = true;
             m_IsHeld = false;

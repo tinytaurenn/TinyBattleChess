@@ -169,10 +169,11 @@ GameObject:
   - component: {fileID: 3103966775795908886}
   - component: {fileID: 7802325523913527825}
   - component: {fileID: 250450228331426890}
-  - component: {fileID: 1609919595645306701}
+  - component: {fileID: 6363404363339079209}
   - component: {fileID: 7596318646031367095}
   - component: {fileID: 2353739285565979599}
   - component: {fileID: 5392367273706050435}
+  - component: {fileID: 8284657521133109096}
   m_Layer: 0
   m_Name: Skeleton_Soldier
   m_TagString: Untagged
@@ -246,7 +247,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &1609919595645306701
+--- !u!114 &6363404363339079209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,10 +256,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1285079827946305606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63626c563eff73247b69f55b27ad0dad, type: 3}
+  m_Script: {fileID: 11500000, guid: 363d59f823d4d3046afe04fb3d5999f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameID: -1
+  m_Animator: {fileID: 26648702269276731}
   m_MovementType: 1
   m_NPCBehavior: 0
   m_ClosestTarget: {fileID: 0}
@@ -266,23 +268,34 @@ MonoBehaviour:
   m_StopDistance: 1.5
   m_StartPosition: {x: 0, y: 0, z: 0}
   m_MasterTransform: {fileID: 0}
-  m_DetectionRadius: 7
+  m_DetectionRadius: 10
   m_DetectionLayer:
     serializedVersion: 2
     m_Bits: 64
   m_IsPatrolUnit: 1
   m_IsPatrolWaiting: 0
   m_IsFreeRoam: 0
-  m_PatrolRadius: 5
+  m_PatrolRadius: 10
   m_NextPatrolPosition: {x: 0, y: 0, z: 0}
   m_PreviousPatrolPosition: {x: 0, y: 0, z: 0}
   m_PatrolTimer: 0
   m_PatrolWaitTime: 5
   m_AggroTimer: 0
-  m_AggroTime: 3
+  m_AggroTime: 5
   m_AfterAggroStanding: 0
-  m_AfterAggroStandingTime: 2
+  m_AfterAggroStandingTime: 3
   m_AfterAggroStandingTimer: 0
+  m_InAttack: 0
+  m_InParry: 0
+  m_AttackState: 0
+  m_MainWeapon: {fileID: 6356792583010282281}
+  m_SecondaryWeapon: {fileID: 0}
+  m_WeaponDirection: 1
+  m_BaseReleaseDelay: 0.15
+  m_ParryAngle: 20
+  m_HoldAttackDistance: 5
+  m_InShieldParry: 0
+  m_InAttackRelease: 0
 --- !u!114 &7596318646031367095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,10 +379,6 @@ MonoBehaviour:
     - component: {fileID: 7802325523913527825}
       lodStepsActive: 1
     - component: {fileID: 250450228331426890}
-      lodStepsActive: 1
-    - component: {fileID: 1609919595645306701}
-      lodStepsActive: 1
-    - component: {fileID: 7596318646031367095}
       lodStepsActive: 1
     - component: {fileID: 3237322019791045891}
       lodStepsActive: 1
@@ -457,6 +466,38 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 5392367273706050435}
       lodStepsActive: 1
+    - component: {fileID: 6363404363339079209}
+      lodStepsActive: 1
+    - component: {fileID: 7596318646031367095}
+      lodStepsActive: 1
+    - component: {fileID: 3073720021366616524}
+      lodStepsActive: 1
+    - component: {fileID: 8284657521133109096}
+      lodStepsActive: 1
+    - component: {fileID: 5667872666439273933}
+      lodStepsActive: 1
+    - component: {fileID: 8721097242474005096}
+      lodStepsActive: 1
+    - component: {fileID: 6837441656151455394}
+      lodStepsActive: 1
+    - component: {fileID: 8678713046406615990}
+      lodStepsActive: 1
+    - component: {fileID: 3590389392199260471}
+      lodStepsActive: 1
+    - component: {fileID: 6356792583010282281}
+      lodStepsActive: 1
+    - component: {fileID: 1585024031336365888}
+      lodStepsActive: 1
+    - component: {fileID: 2498996679317788037}
+      lodStepsActive: 1
+    - component: {fileID: 5995825489112967207}
+      lodStepsActive: 1
+    - component: {fileID: 5054866979856770418}
+      lodStepsActive: 1
+    - component: {fileID: 1110613664455956447}
+      lodStepsActive: 1
+    - component: {fileID: 3730931016363192385}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
   RigidbodyUpdateMode: 0
@@ -485,7 +526,6 @@ MonoBehaviour:
   preserveChildren: 0
   bindings:
   - rid: 4705201942386967360
-  - rid: 4705201942386967361
   - rid: 4705201942386967366
   - rid: 4705201942386967368
   - rid: 4705201942386967372
@@ -501,6 +541,12 @@ MonoBehaviour:
   - rid: 4705201942386967542
   - rid: 4705201942386967544
   - rid: 4705201942386967546
+  - rid: 4705202078184636498
+  - rid: 4705202078184636561
+  - rid: 4705202078184636734
+  - rid: 4705202078184636736
+  - rid: 4705202078184636738
+  - rid: 4705202078184636740
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -516,8 +562,10 @@ MonoBehaviour:
   usingReflection: 0
   coherenceTag: 
   componentActions:
-  - rid: 4705201942386967370
   - rid: 4705201942386967371
+  - rid: 4705202078184636503
+  - rid: 4705202078184636504
+  - rid: 4705202078184636665
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -549,30 +597,6 @@ MonoBehaviour:
         unityComponent: {fileID: 3103966775795908886}
         coherenceSync: {fileID: 2353739285565979599}
         interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
-    - rid: 4705201942386967361
-      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 4705201942386967363
-        routing: 0
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: fafce6ec54484187af94cad2092c62ad
-        archetypeData:
-          type: 1
-          minRange: -2147483648
-          maxRange: 2147483647
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 1
-            bits: 32
-            precision: 0
-            floatCompression: 0
-        unityComponent: {fileID: 1609919595645306701}
-        coherenceSync: {fileID: 2353739285565979599}
-        interpolationSettings: {fileID: 0}
     - rid: 4705201942386967362
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
@@ -591,27 +615,6 @@ MonoBehaviour:
           rid: -2
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.TransformBindings.PositionBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 4705201942386967363
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: GameID
-        monoAssemblyType: System.Int32, mscorlib
-        required: 1
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 16
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: TinyNPC, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
@@ -705,10 +708,6 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 4705201942386967370
-      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
-      data:
-        component: {fileID: 1609919595645306701}
     - rid: 4705201942386967371
       type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
       data:
@@ -1296,6 +1295,276 @@ MonoBehaviour:
         oldName: 
         oldParameterAssemblyTypes: []
         parameterHash: -449490811
+    - rid: 4705202078184636498
+      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202078184636499
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 62989a85fb8b481f9614ff4848369743
+        archetypeData:
+          type: 1
+          minRange: -2147483648
+          maxRange: 2147483647
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 1
+            bits: 32
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 6363404363339079209}
+        coherenceSync: {fileID: 2353739285565979599}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202078184636499
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: GameID
+        monoAssemblyType: System.Int32, mscorlib
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: HumanoidNPC, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202078184636503
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 6363404363339079209}
+    - rid: 4705202078184636504
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 5392367273706050435}
+    - rid: 4705202078184636561
+      type: {class: ByteArrayBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202078184636562
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 2cf14ab597da4948a99c8a5d529916fb
+        archetypeData:
+          type: 10
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 10
+            bits: 4072
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 8284657521133109096}
+        coherenceSync: {fileID: 2353739285565979599}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202078184636562
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: ids
+        monoAssemblyType: System.Byte[], mscorlib
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: OnReceivedIds
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: Coherence.Toolkit.PrefabSyncGroup, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.ByteArrayBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202078184636665
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 3730931016363192385}
+    - rid: 4705202078184636734
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202078184636735
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 23c790be1e954b58a8158dc4d10866d5
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 26648702269276731}
+        coherenceSync: {fileID: 2353739285565979599}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202078184636735
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: SetTrigger
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202078184636736
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202078184636737
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: a918acae1a75477f894684d0abdf3d4e
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 26648702269276731}
+        coherenceSync: {fileID: 2353739285565979599}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202078184636737
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: SetTrigger
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.String, mscorlib
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202078184636738
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202078184636739
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 8a1700f288ef45e6aac8a2ca83715943
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 26648702269276731}
+        coherenceSync: {fileID: 2353739285565979599}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202078184636739
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: ResetTrigger
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.String, mscorlib
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202078184636740
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202078184636741
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 54c6ab62e08a42faaf348095f78abb69
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 26648702269276731}
+        coherenceSync: {fileID: 2353739285565979599}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202078184636741
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: ResetTrigger
+        monoAssemblyType: 
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
 --- !u!114 &5392367273706050435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1308,6 +1577,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec6926e518f2314488d842e4dff7fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8284657521133109096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285079827946305606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a4d85758c73cd4aa52a54cf875b8ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ids: 
 --- !u!1 &2167689555186892935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,6 +1779,7 @@ Transform:
   m_Children:
   - {fileID: 4895158014142385667}
   - {fileID: 1895558060376049130}
+  - {fileID: 3073720021366616524}
   m_Father: {fileID: 5305301180716572767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3153800833441035979
@@ -1564,6 +1847,38 @@ Transform:
   - {fileID: 7256417494559302980}
   m_Father: {fileID: 2117040961546564052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3976426788771580241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3073720021366616524}
+  m_Layer: 0
+  m_Name: RightWeapon_Socket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3073720021366616524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3976426788771580241}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0.007, y: 0.012, z: 0.154}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5667872666439273933}
+  m_Father: {fileID: 5971269402580137854}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!1 &4088844326642723319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,6 +2624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3237322019791045891}
   - component: {fileID: 26648702269276731}
+  - component: {fileID: 3730931016363192385}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -2355,6 +2671,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3730931016363192385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8371112799069498422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed58e40c5a0625b46a1f4035965a26ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NPC: {fileID: 6363404363339079209}
 --- !u!1 &8498538514881965941
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,3 +2875,135 @@ Transform:
   - {fileID: 5966789298859606462}
   m_Father: {fileID: 7020872391613946707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6953524377771086887
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3073720021366616524}
+    m_Modifications:
+    - target: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_Name
+      value: Basic_Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000037748947
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4055558226076958478, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_IsHeld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4055558226076958478, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_IsNPCHeld
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+--- !u!4 &1110613664455956447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8004674082304361464, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1585024031336365888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8466982124699937639, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ac520fda41f43c7b508d780e58180a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &2498996679317788037 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4814868800259129762, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &3590389392199260471 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5885151061618887952, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5054866979856770418 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 2763414840703086933, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5667872666439273933 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3375366271663266282, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5995825489112967207 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3695927073167064064, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6356792583010282281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4055558226076958478, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099e92d446b79914b83f9775ed11600b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &6837441656151455394 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4511649569503519365, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8678713046406615990 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1733633089735608209, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &8721097242474005096 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 1835337969978693199, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_PrefabInstance: {fileID: 6953524377771086887}
+  m_PrefabAsset: {fileID: 0}

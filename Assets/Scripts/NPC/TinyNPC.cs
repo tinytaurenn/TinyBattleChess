@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class TinyNPC : Entity, IDamageable
+public abstract class TinyNPC : Entity, IDamageable
 {
     public enum EMovementType
     {
@@ -22,6 +22,15 @@ public class TinyNPC : Entity, IDamageable
        Friendly
     }
 
+    [Header("Setup Settings")]
+    [SerializeField] protected Animator m_Animator;
+
+    protected CoherenceSync m_Sync;
+
+    NPC_Movement m_Movement;
+
+    [Space(10)]
+    [Header("Global")]
 
     [SerializeField] EMovementType m_MovementType = EMovementType.Idle;
     public EMovementType MovementType => m_MovementType;
@@ -31,15 +40,13 @@ public class TinyNPC : Entity, IDamageable
 
     //team ID
 
-    CoherenceSync m_Sync;
 
-    NPC_Movement m_Movement;
+
 
     [SerializeField] Transform m_ClosestTarget;
-    [SerializeField] Transform m_FollowTarget;
-    [Space(10)]
-    [Header("Global")]
-    [SerializeField] float m_StopDistance = 1f;
+    [SerializeField] protected Transform m_FollowTarget;
+
+    [SerializeField] protected float m_StopDistance = 1f;
     [SerializeField] Vector3 m_StartPosition;
 
     [Space(10)]
@@ -70,7 +77,21 @@ public class TinyNPC : Entity, IDamageable
     [SerializeField] bool m_AfterAggroStanding = false;
     [SerializeField] float m_AfterAggroStandingTime = 3f;
     [SerializeField] float m_AfterAggroStandingTimer = 0f;
-    Coroutine m_AfterAggroStandingRoutine; 
+    Coroutine m_AfterAggroStandingRoutine;
+
+    [SerializeField] protected bool m_InAttack = false;
+    public bool InAttack
+    {
+        get { return m_InAttack; }
+        set { m_InAttack = value; }
+    }
+    [SerializeField] protected bool m_InParry = false;
+    public bool InParry
+    {
+        get { return m_InParry; }
+        set { m_InParry = value; }
+    }
+
     
 
     void Awake()
@@ -268,16 +289,33 @@ public class TinyNPC : Entity, IDamageable
         }
     }
 
-    void AttackUpdate()
+    protected virtual void AttackUpdate()
     {
         AfterAggroCheck();
 
         if (m_FollowTarget == null) return;
 
+        if (m_FollowTarget.TryGetComponent<TinyPlayer>(out TinyPlayer player))
+        {
+            if(player.m_IntPlayerState != 0)
+            {
+                m_ClosestTarget = null;
+                m_FollowTarget = null;
+                m_AggroTimer = 0f;
+
+                m_AfterAggroStanding = true;
+
+                return; 
+                
+            }
+        }
+        
+
         if (Vector3.Distance(transform.position, m_FollowTarget.position) <= m_StopDistance)
         {
             //attack
             m_Movement.StopMovement();
+            //OnAttack(); 
         }
         else
         {
@@ -303,6 +341,11 @@ public class TinyNPC : Entity, IDamageable
             }
             
         }
+    }
+
+    protected virtual void OnAttack()
+    {
+        Debug.Log("npc attacking their target"); 
     }
 
     void FollowTarget(Transform targetTransform)
@@ -364,6 +407,7 @@ public class TinyNPC : Entity, IDamageable
 
     void AfterAggroCheck()
     {
+
         if (m_AfterAggroStanding)
         {
 
@@ -417,7 +461,7 @@ public class TinyNPC : Entity, IDamageable
 
     public override void ParrySync(int damage, CoherenceSync DamagerSync)
     {
-        throw new System.NotImplementedException();
+        //see below
     }
 
     public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
@@ -427,11 +471,11 @@ public class TinyNPC : Entity, IDamageable
 
     public override void SyncBlocked()
     {
-        throw new System.NotImplementedException();
+        //see below
     }
 
     public override void SyncHit()
     {
-        throw new System.NotImplementedException();
+        //se below
     }
 }

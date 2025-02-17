@@ -122,6 +122,15 @@ public static class Utils
             {
                 continue;
             }
+            if (collider.TryGetComponent<TinyPlayer>(out TinyPlayer player))
+            {
+                Debug.Log("tinyplayer found");
+                if (player.m_IntPlayerState != 0)
+                {
+                    Debug.Log("tinyplayer not in play ");
+                    continue;
+                }
+            }
             float distance = Vector3.Distance(pos, collider.transform.position);
             if (distance < closestDistance)
             {
@@ -130,6 +139,7 @@ public static class Utils
             }
         }
 
+        
         return closestCollider;
     }
 
@@ -147,6 +157,13 @@ public static class Utils
                     continue;
                 }
             }
+            if (collider.TryGetComponent<TinyPlayer>(out TinyPlayer player))
+            {
+                if (player.m_IntPlayerState != 0)
+                {
+                    continue;
+                }
+            }
             float distance = Vector3.Distance(pos, collider.transform.position);
             if (distance < closestDistance)
             {
@@ -157,6 +174,8 @@ public static class Utils
 
         return closestCollider;
     }
+
+    
 
 
 

@@ -288,12 +288,17 @@ public class TinyPlayer : Entity, IDamageable
         Damagersync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncHitCommand), Coherence.MessageTarget.AuthorityOnly); //sound 
         HitStun();
 
-
-        if (Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+        if(Utils.GetSimulator() != null)
         {
-            Debug.Log("in lobby, no damage taken");
-            return;
+            if (Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+            {
+                Debug.Log("in lobby, no damage taken");
+                return;
+            }
+           
         }
+        
+        Debug.Log("simulator not found, game is not hosted");
 
         PlayerHealth -= damage;
 
