@@ -297,7 +297,8 @@ MonoBehaviour:
   m_InShieldParry: 0
   m_InAttackRelease: 0
   m_CanAttack: 1
-  m_AttackDelay: 2
+  m_AttackCooldown: 1
+  m_AttackDelay: 0.3
 --- !u!114 &7596318646031367095
 MonoBehaviour:
   m_ObjectHideFlags: 0
