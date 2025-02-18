@@ -27,24 +27,28 @@ namespace Coherence.Generated
         {
             [FieldOffset(0)]
             public System.Int32 GameID;
+            [FieldOffset(4)]
+            public System.Byte CanAttack;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
         {
             FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.GameIDMask;
             GameIDSimulationFrame = frame;
+            FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.CanAttackMask;
+            CanAttackSimulationFrame = frame;
         }
 
         public static unsafe _61db515efe9556c45853cdc384e6813b_6363404363339079209 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 4) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
-                    "for component with ID 188");
+            if (dataSize != 5) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 5) " +
+                    "for component with ID 189");
             }
 
             if (simFramesCount != 0) {
                 throw new Exception($"Given simFrames size is not equal to the expected length. ({simFramesCount} != 0) " +
-                    "for component with ID 188");
+                    "for component with ID 189");
             }
 
             var orig = new _61db515efe9556c45853cdc384e6813b_6363404363339079209();
@@ -52,6 +56,7 @@ namespace Coherence.Generated
             var comp = (Interop*)data;
 
             orig.GameID = comp->GameID;
+            orig.CanAttack = comp->CanAttack != 0;
 
             return orig;
         }
@@ -60,13 +65,16 @@ namespace Coherence.Generated
         public static uint GameIDMask => 0b00000000000000000000000000000001;
         public AbsoluteSimulationFrame GameIDSimulationFrame;
         public System.Int32 GameID;
+        public static uint CanAttackMask => 0b00000000000000000000000000000010;
+        public AbsoluteSimulationFrame CanAttackSimulationFrame;
+        public System.Boolean CanAttack;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
-        public uint GetComponentType() => 188;
+        public uint GetComponentType() => 189;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000000000000001;
+        public uint InitialFieldsMask() => 0b00000000000000000000000000000011;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -75,7 +83,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 1;
+        public int GetFieldCount() => 2;
 
 
         
@@ -103,8 +111,8 @@ namespace Coherence.Generated
         public int GetComponentOrder() => order;
         public bool IsSendOrdered() => false;
 
-        private static readonly System.Int32 _GameID_Min = -2147483648;
-        private static readonly System.Int32 _GameID_Max = 2147483647;
+        private static readonly System.Int32 _GameID_Min = -99;
+        private static readonly System.Int32 _GameID_Max = 99;
 
         public AbsoluteSimulationFrame? GetMinSimulationFrame()
         {
@@ -129,6 +137,13 @@ namespace Coherence.Generated
             }
 
             otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.CanAttackSimulationFrame = other.CanAttackSimulationFrame;
+                this.CanAttack = other.CanAttack;
+            }
+
+            otherMask >>= 1;
             StoppedMask |= other.StoppedMask;
 
             return this;
@@ -143,7 +158,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 1);
+                bitStream.WriteMaskBits(data.StoppedMask, 2);
             }
 
             var mask = data.FieldsMask;
@@ -159,7 +174,19 @@ namespace Coherence.Generated
 
 
 
-                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
+                bitStream.WriteIntegerRange(fieldValue, 8, -99);
+            }
+
+            mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+
+                var fieldValue = data.CanAttack;
+
+
+
+                bitStream.WriteBool(fieldValue);
             }
 
             mask >>= 1;
@@ -172,15 +199,21 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(1);
+                stoppedMask = bitStream.ReadMaskBits(2);
             }
 
             var val = new _61db515efe9556c45853cdc384e6813b_6363404363339079209();
             if (bitStream.ReadMask())
             {
 
-                val.GameID = bitStream.ReadIntegerRange(32, -2147483648);
+                val.GameID = bitStream.ReadIntegerRange(8, -99);
                 val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.GameIDMask;
+            }
+            if (bitStream.ReadMask())
+            {
+
+                val.CanAttack = bitStream.ReadBool();
+                val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.CanAttackMask;
             }
 
             val.StoppedMask = stoppedMask;
@@ -193,8 +226,9 @@ namespace Coherence.Generated
         {
             return $"_61db515efe9556c45853cdc384e6813b_6363404363339079209(" +
                 $" GameID: { this.GameID }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(1, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(1, '0') })";
+                $" CanAttack: { this.CanAttack }" +
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(2, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(2, '0') })";
         }
     }
 

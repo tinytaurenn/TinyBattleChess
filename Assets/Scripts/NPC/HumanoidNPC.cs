@@ -40,7 +40,18 @@ public class HumanoidNPC : TinyNPC
     {
         get { return m_InShieldParry && m_InParry; }
     }
-    [SerializeField] protected bool m_InAttackRelease; 
+    [SerializeField] protected bool m_InAttackRelease;
+
+    [SerializeField] protected bool m_CanAttack = true;
+    [Sync]
+    public bool CanAttack
+    {
+        get { return m_CanAttack; }
+        set { m_CanAttack = value; }
+    }
+   
+    [SerializeField] protected float m_AttackDelay = 1f;
+
     protected override void OnAttack()
     {
         base.OnAttack();
@@ -72,15 +83,23 @@ public class HumanoidNPC : TinyNPC
             SwitchAttackState(EAttackState.None);
         }
 
-        m_Animator.SetBool("Attacking", InAttack);
+
+        
+
 
         switch (m_AttackState)
         {
             case EAttackState.None:
+               
                 break;
             case EAttackState.Attacking:
                 break;
             case EAttackState.Release:
+                
+                if (m_CanAttack && !InAttack)
+                {
+                    SwitchAttackState(EAttackState.Attacking);
+                }
                 break;
             case EAttackState.Parrying:
                 break;
@@ -109,11 +128,23 @@ public class HumanoidNPC : TinyNPC
                 InAttack = false;
                 break;
             case EAttackState.Attacking:
-                m_WeaponDirection = (EWeaponDirection)UnityEngine.Random.Range(0, 4); // temporary
-                InAttack = true; 
+                if (m_CanAttack)
+                {
+                    InAttack = true;
+                    m_WeaponDirection = (EWeaponDirection)UnityEngine.Random.Range(0, 4); // temporary
+
+
+                    m_Animator.SetInteger("WeaponDirectionNESO", (int)m_WeaponDirection);
+
+                    m_Animator.SetBool("Attacking", InAttack);
+
+                    StartCoroutine(AttackDelayRoutine(m_AttackDelay));
+                }
+                
                 break;
             case EAttackState.Release:
                 InAttack = false;
+                StartCoroutine(ReleaseDelayRoutine(m_BaseReleaseDelay));
                 break;
             case EAttackState.Parrying:
                 InAttack = false;
@@ -121,8 +152,11 @@ public class HumanoidNPC : TinyNPC
             default:
                 break;
         }
-        m_Animator.SetInteger("WeaponDirectionNESO", (int)m_WeaponDirection); 
-        m_Animator.SetBool("Attacking", InAttack);
+
+
+
+
+
     }
 
     void OnExitAttackState()
@@ -168,6 +202,21 @@ public class HumanoidNPC : TinyNPC
         //Debug.Log("Unlocking attack");
         m_InAttackRelease = false;
         m_InAttack = false;
+    }
+
+    IEnumerator AttackDelayRoutine(float time)
+    {
+
+        m_CanAttack = false;
+        yield return new WaitForSeconds(time);
+
+        m_CanAttack = true;
+    }
+
+    IEnumerator ReleaseDelayRoutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        m_Animator.SetBool("Attacking", false);
     }
 
     public override void SyncHit()

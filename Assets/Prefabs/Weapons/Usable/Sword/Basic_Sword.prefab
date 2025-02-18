@@ -818,6 +818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SO_Item: {fileID: 11400000, guid: 9f17c0a6f186ae843b8cc3c62ec5a116, type: 2}
   m_IsHeld: 0
+  m_IsNPCHeld: 0
   m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}

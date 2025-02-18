@@ -28,33 +28,23 @@ namespace Coherence.Generated
             [FieldOffset(0)]
             public System.Single MoveSpeed;
             [FieldOffset(4)]
-            public System.Byte Grounded;
-            [FieldOffset(5)]
-            public System.Byte CarryingSmall;
-            [FieldOffset(6)]
-            public System.Byte CarryingBig;
-            [FieldOffset(7)]
             public System.Byte ShieldParry;
-            [FieldOffset(8)]
+            [FieldOffset(5)]
             public System.Byte Parry;
-            [FieldOffset(9)]
+            [FieldOffset(6)]
             public System.Byte Attacking;
-            [FieldOffset(10)]
+            [FieldOffset(7)]
             public System.Int32 WeaponDirectionNESO;
-            [FieldOffset(14)]
+            [FieldOffset(11)]
             public System.Byte Stunned;
+            [FieldOffset(12)]
+            public System.Byte Grounded;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
         {
             FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.MoveSpeedMask;
             MoveSpeedSimulationFrame = frame;
-            FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.GroundedMask;
-            GroundedSimulationFrame = frame;
-            FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.CarryingSmallMask;
-            CarryingSmallSimulationFrame = frame;
-            FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.CarryingBigMask;
-            CarryingBigSimulationFrame = frame;
             FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.ShieldParryMask;
             ShieldParrySimulationFrame = frame;
             FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.ParryMask;
@@ -65,12 +55,14 @@ namespace Coherence.Generated
             WeaponDirectionNESOSimulationFrame = frame;
             FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.StunnedMask;
             StunnedSimulationFrame = frame;
+            FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.GroundedMask;
+            GroundedSimulationFrame = frame;
         }
 
         public static unsafe _61db515efe9556c45853cdc384e6813b_26648702269276731 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 15) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 15) " +
+            if (dataSize != 13) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 13) " +
                     "for component with ID 187");
             }
 
@@ -84,14 +76,12 @@ namespace Coherence.Generated
             var comp = (Interop*)data;
 
             orig.MoveSpeed = comp->MoveSpeed;
-            orig.Grounded = comp->Grounded != 0;
-            orig.CarryingSmall = comp->CarryingSmall != 0;
-            orig.CarryingBig = comp->CarryingBig != 0;
             orig.ShieldParry = comp->ShieldParry != 0;
             orig.Parry = comp->Parry != 0;
             orig.Attacking = comp->Attacking != 0;
             orig.WeaponDirectionNESO = comp->WeaponDirectionNESO;
             orig.Stunned = comp->Stunned != 0;
+            orig.Grounded = comp->Grounded != 0;
 
             return orig;
         }
@@ -100,37 +90,31 @@ namespace Coherence.Generated
         public static uint MoveSpeedMask => 0b00000000000000000000000000000001;
         public AbsoluteSimulationFrame MoveSpeedSimulationFrame;
         public System.Single MoveSpeed;
-        public static uint GroundedMask => 0b00000000000000000000000000000010;
-        public AbsoluteSimulationFrame GroundedSimulationFrame;
-        public System.Boolean Grounded;
-        public static uint CarryingSmallMask => 0b00000000000000000000000000000100;
-        public AbsoluteSimulationFrame CarryingSmallSimulationFrame;
-        public System.Boolean CarryingSmall;
-        public static uint CarryingBigMask => 0b00000000000000000000000000001000;
-        public AbsoluteSimulationFrame CarryingBigSimulationFrame;
-        public System.Boolean CarryingBig;
-        public static uint ShieldParryMask => 0b00000000000000000000000000010000;
+        public static uint ShieldParryMask => 0b00000000000000000000000000000010;
         public AbsoluteSimulationFrame ShieldParrySimulationFrame;
         public System.Boolean ShieldParry;
-        public static uint ParryMask => 0b00000000000000000000000000100000;
+        public static uint ParryMask => 0b00000000000000000000000000000100;
         public AbsoluteSimulationFrame ParrySimulationFrame;
         public System.Boolean Parry;
-        public static uint AttackingMask => 0b00000000000000000000000001000000;
+        public static uint AttackingMask => 0b00000000000000000000000000001000;
         public AbsoluteSimulationFrame AttackingSimulationFrame;
         public System.Boolean Attacking;
-        public static uint WeaponDirectionNESOMask => 0b00000000000000000000000010000000;
+        public static uint WeaponDirectionNESOMask => 0b00000000000000000000000000010000;
         public AbsoluteSimulationFrame WeaponDirectionNESOSimulationFrame;
         public System.Int32 WeaponDirectionNESO;
-        public static uint StunnedMask => 0b00000000000000000000000100000000;
+        public static uint StunnedMask => 0b00000000000000000000000000100000;
         public AbsoluteSimulationFrame StunnedSimulationFrame;
         public System.Boolean Stunned;
+        public static uint GroundedMask => 0b00000000000000000000000001000000;
+        public AbsoluteSimulationFrame GroundedSimulationFrame;
+        public System.Boolean Grounded;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
         public uint GetComponentType() => 187;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000000111111111;
+        public uint InitialFieldsMask() => 0b00000000000000000000000001111111;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -139,7 +123,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 9;
+        public int GetFieldCount() => 7;
 
 
         
@@ -167,8 +151,8 @@ namespace Coherence.Generated
         public int GetComponentOrder() => order;
         public bool IsSendOrdered() => false;
 
-        private static readonly System.Int32 _WeaponDirectionNESO_Min = -2147483648;
-        private static readonly System.Int32 _WeaponDirectionNESO_Max = 2147483647;
+        private static readonly System.Int32 _WeaponDirectionNESO_Min = -1;
+        private static readonly System.Int32 _WeaponDirectionNESO_Max = 5;
 
         public AbsoluteSimulationFrame? GetMinSimulationFrame()
         {
@@ -190,27 +174,6 @@ namespace Coherence.Generated
             {
                 this.MoveSpeedSimulationFrame = other.MoveSpeedSimulationFrame;
                 this.MoveSpeed = other.MoveSpeed;
-            }
-
-            otherMask >>= 1;
-            if ((otherMask & 0x01) != 0)
-            {
-                this.GroundedSimulationFrame = other.GroundedSimulationFrame;
-                this.Grounded = other.Grounded;
-            }
-
-            otherMask >>= 1;
-            if ((otherMask & 0x01) != 0)
-            {
-                this.CarryingSmallSimulationFrame = other.CarryingSmallSimulationFrame;
-                this.CarryingSmall = other.CarryingSmall;
-            }
-
-            otherMask >>= 1;
-            if ((otherMask & 0x01) != 0)
-            {
-                this.CarryingBigSimulationFrame = other.CarryingBigSimulationFrame;
-                this.CarryingBig = other.CarryingBig;
             }
 
             otherMask >>= 1;
@@ -249,6 +212,13 @@ namespace Coherence.Generated
             }
 
             otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.GroundedSimulationFrame = other.GroundedSimulationFrame;
+                this.Grounded = other.Grounded;
+            }
+
+            otherMask >>= 1;
             StoppedMask |= other.StoppedMask;
 
             return this;
@@ -263,7 +233,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 9);
+                bitStream.WriteMaskBits(data.StoppedMask, 7);
             }
 
             var mask = data.FieldsMask;
@@ -277,42 +247,6 @@ namespace Coherence.Generated
 
 
                 bitStream.WriteFloat(fieldValue, FloatMeta.NoCompression());
-            }
-
-            mask >>= 1;
-            if (bitStream.WriteMask((mask & 0x01) != 0))
-            {
-
-
-                var fieldValue = data.Grounded;
-
-
-
-                bitStream.WriteBool(fieldValue);
-            }
-
-            mask >>= 1;
-            if (bitStream.WriteMask((mask & 0x01) != 0))
-            {
-
-
-                var fieldValue = data.CarryingSmall;
-
-
-
-                bitStream.WriteBool(fieldValue);
-            }
-
-            mask >>= 1;
-            if (bitStream.WriteMask((mask & 0x01) != 0))
-            {
-
-
-                var fieldValue = data.CarryingBig;
-
-
-
-                bitStream.WriteBool(fieldValue);
             }
 
             mask >>= 1;
@@ -363,7 +297,7 @@ namespace Coherence.Generated
 
 
 
-                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
+                bitStream.WriteIntegerRange(fieldValue, 3, -1);
             }
 
             mask >>= 1;
@@ -372,6 +306,18 @@ namespace Coherence.Generated
 
 
                 var fieldValue = data.Stunned;
+
+
+
+                bitStream.WriteBool(fieldValue);
+            }
+
+            mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+
+                var fieldValue = data.Grounded;
 
 
 
@@ -388,7 +334,7 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(9);
+                stoppedMask = bitStream.ReadMaskBits(7);
             }
 
             var val = new _61db515efe9556c45853cdc384e6813b_26648702269276731();
@@ -397,24 +343,6 @@ namespace Coherence.Generated
 
                 val.MoveSpeed = bitStream.ReadFloat(FloatMeta.NoCompression());
                 val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.MoveSpeedMask;
-            }
-            if (bitStream.ReadMask())
-            {
-
-                val.Grounded = bitStream.ReadBool();
-                val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.GroundedMask;
-            }
-            if (bitStream.ReadMask())
-            {
-
-                val.CarryingSmall = bitStream.ReadBool();
-                val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.CarryingSmallMask;
-            }
-            if (bitStream.ReadMask())
-            {
-
-                val.CarryingBig = bitStream.ReadBool();
-                val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.CarryingBigMask;
             }
             if (bitStream.ReadMask())
             {
@@ -437,7 +365,7 @@ namespace Coherence.Generated
             if (bitStream.ReadMask())
             {
 
-                val.WeaponDirectionNESO = bitStream.ReadIntegerRange(32, -2147483648);
+                val.WeaponDirectionNESO = bitStream.ReadIntegerRange(3, -1);
                 val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.WeaponDirectionNESOMask;
             }
             if (bitStream.ReadMask())
@@ -445,6 +373,12 @@ namespace Coherence.Generated
 
                 val.Stunned = bitStream.ReadBool();
                 val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.StunnedMask;
+            }
+            if (bitStream.ReadMask())
+            {
+
+                val.Grounded = bitStream.ReadBool();
+                val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_26648702269276731.GroundedMask;
             }
 
             val.StoppedMask = stoppedMask;
@@ -457,16 +391,14 @@ namespace Coherence.Generated
         {
             return $"_61db515efe9556c45853cdc384e6813b_26648702269276731(" +
                 $" MoveSpeed: { this.MoveSpeed }" +
-                $" Grounded: { this.Grounded }" +
-                $" CarryingSmall: { this.CarryingSmall }" +
-                $" CarryingBig: { this.CarryingBig }" +
                 $" ShieldParry: { this.ShieldParry }" +
                 $" Parry: { this.Parry }" +
                 $" Attacking: { this.Attacking }" +
                 $" WeaponDirectionNESO: { this.WeaponDirectionNESO }" +
                 $" Stunned: { this.Stunned }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(9, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(9, '0') })";
+                $" Grounded: { this.Grounded }" +
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(7, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(7, '0') })";
         }
     }
 

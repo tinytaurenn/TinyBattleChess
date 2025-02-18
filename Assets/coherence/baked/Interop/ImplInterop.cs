@@ -212,8 +212,8 @@ namespace Coherence.Generated
                 case 185: return _5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 186: return _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 187: return _61db515efe9556c45853cdc384e6813b_26648702269276731.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 188: return _61db515efe9556c45853cdc384e6813b_6363404363339079209.FromInterop(data, dataSize, simFrames, simFramesCount);
-                case 189: return _61db515efe9556c45853cdc384e6813b_8284657521133109096.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 188: return _61db515efe9556c45853cdc384e6813b_6236027375457903363.FromInterop(data, dataSize, simFrames, simFramesCount);
+                case 189: return _61db515efe9556c45853cdc384e6813b_6363404363339079209.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 190: return _775a962259beb2f48b64b79887dce771_4486487952480385274.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 191: return _775a962259beb2f48b64b79887dce771_9024384128650397308.FromInterop(data, dataSize, simFrames, simFramesCount);
                 case 192: return _7a48fb6866149a6488e2e1096523ccff_5153324027185580596.FromInterop(data, dataSize, simFrames, simFramesCount);
@@ -2353,40 +2353,39 @@ namespace Coherence.Generated
                     var val = new _61db515efe9556c45853cdc384e6813b_26648702269276731.Interop();
 
                     val.MoveSpeed = orig.MoveSpeed;
-                    val.Grounded = orig.Grounded ? (System.Byte)1 : (System.Byte)0;
-                    val.CarryingSmall = orig.CarryingSmall ? (System.Byte)1 : (System.Byte)0;
-                    val.CarryingBig = orig.CarryingBig ? (System.Byte)1 : (System.Byte)0;
                     val.ShieldParry = orig.ShieldParry ? (System.Byte)1 : (System.Byte)0;
                     val.Parry = orig.Parry ? (System.Byte)1 : (System.Byte)0;
                     val.Attacking = orig.Attacking ? (System.Byte)1 : (System.Byte)0;
                     val.WeaponDirectionNESO = orig.WeaponDirectionNESO;
                     val.Stunned = orig.Stunned ? (System.Byte)1 : (System.Byte)0;
+                    val.Grounded = orig.Grounded ? (System.Byte)1 : (System.Byte)0;
 
-                    updater.UpdateComponent(entity, componentType, val, 15, component.FieldsMask, component.StoppedMask, frames);
+                    updater.UpdateComponent(entity, componentType, val, 13, component.FieldsMask, component.StoppedMask, frames);
 
                     return;
                 }
                 case 188:
                 {
-                    var orig = (_61db515efe9556c45853cdc384e6813b_6363404363339079209)component;
-                    var val = new _61db515efe9556c45853cdc384e6813b_6363404363339079209.Interop();
-
-                    val.GameID = orig.GameID;
-
-                    updater.UpdateComponent(entity, componentType, val, 4, component.FieldsMask, component.StoppedMask, frames);
-
-                    return;
-                }
-                case 189:
-                {
-                    var orig = (_61db515efe9556c45853cdc384e6813b_8284657521133109096)component;
-                    var val = new _61db515efe9556c45853cdc384e6813b_8284657521133109096.Interop();
+                    var orig = (_61db515efe9556c45853cdc384e6813b_6236027375457903363)component;
+                    var val = new _61db515efe9556c45853cdc384e6813b_6236027375457903363.Interop();
 
                     fixed (void* pinnedPtrids = orig.ids) { val.ids = new ByteArray { Data = pinnedPtrids, Length =  orig.ids?.Length ?? 0 };
 
                     updater.UpdateComponent(entity, componentType, val, 16, component.FieldsMask, component.StoppedMask, frames);
 
 }                    return;
+                }
+                case 189:
+                {
+                    var orig = (_61db515efe9556c45853cdc384e6813b_6363404363339079209)component;
+                    var val = new _61db515efe9556c45853cdc384e6813b_6363404363339079209.Interop();
+
+                    val.GameID = orig.GameID;
+                    val.CanAttack = orig.CanAttack ? (System.Byte)1 : (System.Byte)0;
+
+                    updater.UpdateComponent(entity, componentType, val, 5, component.FieldsMask, component.StoppedMask, frames);
+
+                    return;
                 }
                 case 190:
                 {

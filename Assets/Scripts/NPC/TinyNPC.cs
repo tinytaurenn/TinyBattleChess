@@ -451,31 +451,31 @@ public abstract class TinyNPC : Entity, IDamageable
 
     public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("not implemented TakeMeleeSync");
     }
 
     public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("not implemented TakeWeaponDamageSync");
     }
 
     public override void ParrySync(int damage, CoherenceSync DamagerSync)
     {
-        //see below
+        Debug.Log("not implemented ParrySync");
     }
 
     public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("not implemented TakeDamageSync");
     }
 
     public override void SyncBlocked()
     {
-        //see below
+        Debug.Log("not implemented SyncBlocked");
     }
 
     public override void SyncHit()
     {
-        //se below
+        Debug.Log("not implemented SyncHit");
     }
 }

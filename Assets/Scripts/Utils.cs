@@ -124,10 +124,10 @@ public static class Utils
             }
             if (collider.TryGetComponent<TinyPlayer>(out TinyPlayer player))
             {
-                Debug.Log("tinyplayer found");
+                //Debug.Log("tinyplayer found");
                 if (player.m_IntPlayerState != 0)
                 {
-                    Debug.Log("tinyplayer not in play ");
+                    //Debug.Log("tinyplayer not in play ");
                     continue;
                 }
             }

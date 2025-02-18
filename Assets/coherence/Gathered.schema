@@ -145,20 +145,19 @@ component _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983 [id "186"]
 
 component _61db515efe9556c45853cdc384e6813b_26648702269276731 [id "187"]
   MoveSpeed Float [compression "None"]
-  Grounded Bool [bits "1"]
-  CarryingSmall Bool [bits "1"]
-  CarryingBig Bool [bits "1"]
   ShieldParry Bool [bits "1"]
   Parry Bool [bits "1"]
   Attacking Bool [bits "1"]
-  WeaponDirectionNESO Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+  WeaponDirectionNESO Int [bits "3", range-min "-1", range-max "5"]
   Stunned Bool [bits "1"]
+  Grounded Bool [bits "1"]
 
-component _61db515efe9556c45853cdc384e6813b_6363404363339079209 [id "188"]
-  GameID Int [bits "32", range-min "-2147483648", range-max "2147483647"]
-
-component _61db515efe9556c45853cdc384e6813b_8284657521133109096 [id "189"]
+component _61db515efe9556c45853cdc384e6813b_6236027375457903363 [id "188"]
   ids Bytes [bits "4072"]
+
+component _61db515efe9556c45853cdc384e6813b_6363404363339079209 [id "189"]
+  GameID Int [bits "8", range-min "-99", range-max "99"]
+  CanAttack Bool [bits "1"]
 
 component _775a962259beb2f48b64b79887dce771_4486487952480385274 [id "190"]
   enabled Bool [bits "1"]
