@@ -92,29 +92,14 @@ public class Dummy : Entity, IDamageable
         }
 
     }
-
-    public bool IsInParryAngle(Vector3 enemyPosition) 
+    public override void Stun()
     {
-        
+        Debug.Log("cannot be stunned");
+    }
 
-        float dot = Vector3.Dot(transform.forward.normalized, (enemyPosition - transform.position).normalized);
-
-
-        float dotInDeg = Mathf.Acos(dot) * Mathf.Rad2Deg;
-
-        if (dotInDeg <= m_ParryAngle)
-        {
-            Debug.Log(" parried! " + "angle is : " + dotInDeg); 
-            return true; 
-
-        }
-        else
-        {
-            Debug.Log(" not parried! " + "angle is : " + dotInDeg);
-            return false; 
-        }
-
-
+    public override void EntityDeath()
+    {
+        Debug.Log("dummy died");    
     }
 
     public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)

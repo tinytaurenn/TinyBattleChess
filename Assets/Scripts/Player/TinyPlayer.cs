@@ -286,34 +286,8 @@ public class TinyPlayer : Entity, IDamageable
         m_PlayerFX.PlayHurtFX(0);
         Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
         Damagersync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncHitCommand), Coherence.MessageTarget.AuthorityOnly); //sound 
-        HitStun();
-
-        if(Utils.GetSimulator() != null)
-        {
-            if (Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
-            {
-                Debug.Log("in lobby, no damage taken");
-                return;
-            }
-           
-        }
         
-        Debug.Log("simulator not found, game is not hosted");
-
-        PlayerHealth -= damage;
-
-        if (PlayerHealth <= 0)
-        {
-            PlayerHealth = 0;
-            Debug.Log("must die now");
-         
-            PlayerDeath(); 
-        }
-        else
-        {
-            Debug.Log("sending weapon synchit comand ");
-            
-        }
+        TakeDamageSync(damage, Damagersync);
 
 
     }
@@ -327,26 +301,32 @@ public class TinyPlayer : Entity, IDamageable
         Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
 
         HitStun();
-        
 
-        if (Utils.GetSimulator() != null && Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+        if (Utils.GetSimulator() != null)
         {
-            Debug.Log("in lobby, no damage taken");
-            return;
+            if (Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+            {
+                Debug.Log("in lobby, no damage taken");
+                return;
+            }
+
         }
+
+        Debug.Log("simulator not found, game is not hosted");
+
         PlayerHealth -= damage;
 
         if (PlayerHealth <= 0)
         {
             PlayerHealth = 0;
-            Debug.Log("must die now"); 
-            
-            PlayerDeath();
+            Debug.Log("must die now");
+
+            EntityDeath();
         }
         else
         {
-            Debug.Log("sending synchit comand ");
-            
+            Debug.Log("sending weapon synchit comand ");
+
         }
 
 
@@ -391,7 +371,7 @@ public class TinyPlayer : Entity, IDamageable
 
     }
 
-    void Stun()
+    public override void Stun()
     {
         m_IsStunned = true; 
         m_PlayerMovement.Stun();
@@ -553,7 +533,7 @@ public class TinyPlayer : Entity, IDamageable
         }
 
     }
-    public void PlayerDeath()
+    public override void EntityDeath()
     {
         if (!m_Sync.HasStateAuthority) return; 
         Debug.Log("player death");

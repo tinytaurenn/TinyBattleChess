@@ -1,7 +1,9 @@
 using Coherence;
 using Coherence.Toolkit;
+using PlayerControls;
 using System.Collections;
 using UnityEngine;
+using static TinyPlayer;
 
 public class HumanoidNPC : TinyNPC
 {
@@ -68,6 +70,7 @@ public class HumanoidNPC : TinyNPC
         if (m_FollowTarget == null)
         {
             SwitchAttackState(EAttackState.None);
+            return; 
         }
         float distanceFromTarget = Vector3.Distance(transform.position, m_FollowTarget.position);
 
@@ -227,6 +230,37 @@ public class HumanoidNPC : TinyNPC
         StartCoroutine(AttackDelayRoutine(m_AttackCooldown));
     }
 
+    public override void Stun()
+    {
+        base.Stun(); 
+        if (m_MainWeapon != null) m_MainWeapon.ActivateDamage(false);
+        if (m_SecondaryWeapon != null) m_SecondaryWeapon.ActivateDamage(false);
+
+    }
+
+
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+        Debug.Log("NPC death");
+        //m_PlayerWeapons.Drop();
+
+       // m_RagDoll.SpawnRagDoll();
+
+        //SwitchPlayerState(EPlayerState.Spectator);
+
+
+        //if (Utils.GetSimulatorSync() == null)
+        //{
+        //    Debug.Log("simulator sync not found");
+        //    return;
+        //}
+
+        //Utils.GetSimulatorSync().SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
+
+    }
+
+
     public override void SyncHit()
     {
         Debug.Log("i get sync Hit ");
@@ -246,24 +280,57 @@ public class HumanoidNPC : TinyNPC
         m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
     }
 
-    public override void ParrySync(int damage, CoherenceSync DamagerSync)
-    {
-        base.ParrySync(damage, DamagerSync);
-    }
+    
 
     public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
     {
         base.TakeDamageSync(damage, Damagersync);
+
     }
 
     public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos)
     {
-        base.TakeMeleeSync(DirectionNESO, sync, damage, attackerPos);
+        //base.TakeMeleeSync(DirectionNESO, sync, damage, attackerPos);
+
+        if (InParry && transform.IsInAngle(m_ParryAngle, attackerPos))
+        {
+
+            Debug.Log(" Humanoid NPC parry in angle");
+            Debug.Log(" Humanoid NPC parry calculations");
+
+            if (InShieldParry)
+            {
+                Debug.Log(" Humanoid NPC shield parry");
+            }
+
+            ParrySync(damage, sync);
+        }
+        else
+        {
+            TakeWeaponDamageSync(damage, sync);
+        }
+    }
+
+    public override void ParrySync(int damage, CoherenceSync DamagerSync)
+    {
+        Debug.Log("sync humanoid NPC  parried ");
+        Debug.Log(DamagerSync.transform.name + " parried!");
+        DamagerSync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncBlockedCommand), Coherence.MessageTarget.AuthorityOnly);
+
+        //int soundVariationIndex = UnityEngine.Random.Range(0, 3);
+        //Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex);
     }
 
     public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
     {
-        base.TakeWeaponDamageSync(damage, Damagersync);
+        Debug.Log("sync humanoid took " + damage + " weapon damage!");
+
+        //m_PlayerFX.PlayHurtFX(0);
+        //Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
+        Damagersync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncHitCommand), Coherence.MessageTarget.AuthorityOnly); //
+
+        TakeDamageSync(damage, Damagersync);
+
     }
 
 }

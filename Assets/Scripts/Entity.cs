@@ -16,6 +16,10 @@ public abstract class Entity : MonoBehaviour
         GameID = gameID; 
     }
 
+    public abstract void EntityDeath();
+
+    public abstract void Stun(); 
+
     public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos);
 
     public abstract void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync);

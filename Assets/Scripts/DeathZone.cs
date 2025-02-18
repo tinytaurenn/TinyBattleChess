@@ -19,7 +19,7 @@ public class DeathZone : MonoBehaviour
         {
             if(other.TryGetComponent<TinyPlayer>(out TinyPlayer player))
             {
-                player.PlayerDeath(); 
+                player.EntityDeath(); 
             }
         }
     }

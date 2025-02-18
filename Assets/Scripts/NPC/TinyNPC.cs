@@ -8,18 +8,19 @@ public abstract class TinyNPC : Entity, IDamageable
 {
     public enum EMovementType
     {
-        Idle,
-        Patrol,
-        Follow,
-        Flee,
-        Attack
+        Idle = 0,
+        Patrol = 1,
+        Follow= 2,
+        Flee= 3,
+        Attack= 4,
+        Dead = 5
     }
 
     public enum ENPCBehavior
     {
-       Aggressive,
-       Neutral,
-       Friendly
+       Aggressive = 0,
+       Neutral = 1,
+       Friendly = 2
     }
 
     [Header("Setup Settings")]
@@ -27,27 +28,46 @@ public abstract class TinyNPC : Entity, IDamageable
 
     protected CoherenceSync m_Sync;
 
-    NPC_Movement m_Movement;
+    protected NPC_Movement m_Movement;
 
     [Space(10)]
     [Header("Global")]
 
     [SerializeField] EMovementType m_MovementType = EMovementType.Idle;
-    public EMovementType MovementType => m_MovementType;
+    [Sync]
+    public int IntMovementType
+    {
+        get { return (int)m_MovementType; }
+        set { m_MovementType = (EMovementType)value; }
+    }
 
     [SerializeField] ENPCBehavior m_NPCBehavior = ENPCBehavior.Neutral;
-    public ENPCBehavior NPCBehavior => m_NPCBehavior;
+
+    [Sync]
+    public int IntNPCBehavior
+    {
+        get { return (int)m_NPCBehavior; }
+        set { m_NPCBehavior = (ENPCBehavior)value; }
+    }
 
     //team ID
-
-
-
-
+   
     [SerializeField] Transform m_ClosestTarget;
     [SerializeField] protected Transform m_FollowTarget;
 
     [SerializeField] protected float m_StopDistance = 1f;
     [SerializeField] Vector3 m_StartPosition;
+
+
+    [Space(10)]
+    [Header("Stats")]
+    [SerializeField] int m_Health = 100;
+    [Sync]
+    public int Health
+    {
+        get { return m_Health; }
+        set { m_Health = value; }
+    }
 
     [Space(10)]
     [Header("Summoned")]
@@ -92,6 +112,14 @@ public abstract class TinyNPC : Entity, IDamageable
         set { m_InParry = value; }
     }
 
+    [SerializeField] protected bool m_IsStunned = false;
+    [Sync]
+    public bool IsStunned
+    {
+        get { return m_IsStunned; }
+        set { m_IsStunned = value; }
+    }
+
     
 
     void Awake()
@@ -100,6 +128,8 @@ public abstract class TinyNPC : Entity, IDamageable
         m_Sync = GetComponent<CoherenceSync>();
 
         m_Sync.CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
+
+        
     }
 
     private void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
@@ -111,7 +141,16 @@ public abstract class TinyNPC : Entity, IDamageable
 
     void Start()
     {
+
+        if (m_MovementType == EMovementType.Dead)
+        {
+            m_Movement.enabled = false;
+            this.enabled = false;
+            return;
+        }
+
         m_StartPosition = transform.position;
+
 
         m_MovementType = m_IsPatrolUnit ? EMovementType.Patrol : EMovementType.Idle;
         OnEnterState(); 
@@ -120,6 +159,7 @@ public abstract class TinyNPC : Entity, IDamageable
     // Update is called once per frame
     void Update()
     {
+        if ((EMovementType)IntMovementType == EMovementType.Dead) return;
         UpdateState();
         EnemyDetection(); 
         
@@ -127,7 +167,7 @@ public abstract class TinyNPC : Entity, IDamageable
 
     public void SwitchState(EMovementType state)
     {
-        if (MovementType == state) return;
+        if (m_MovementType == state) return;
 
         OnExitState();
         m_MovementType = state;
@@ -136,6 +176,7 @@ public abstract class TinyNPC : Entity, IDamageable
     }
     private void FixedUpdate()
     {
+        if ((EMovementType)IntMovementType == EMovementType.Dead) return;
         FixedUpdateState(); 
     }
 
@@ -153,6 +194,8 @@ public abstract class TinyNPC : Entity, IDamageable
             case EMovementType.Flee:
                 break;
             case EMovementType.Attack:
+                break;
+            case EMovementType.Dead:
                 break;
         }
     }
@@ -178,6 +221,8 @@ public abstract class TinyNPC : Entity, IDamageable
                 AttackUpdate();
                 
                 break;
+            case EMovementType.Dead:
+                break;
         }
     }
 
@@ -195,6 +240,8 @@ public abstract class TinyNPC : Entity, IDamageable
             case EMovementType.Flee:
                 break;
             case EMovementType.Attack:
+                break;
+            case EMovementType.Dead:
                 break;
         }
     }
@@ -215,6 +262,12 @@ public abstract class TinyNPC : Entity, IDamageable
                 break;
             case EMovementType.Attack:
              
+                break;
+            case EMovementType.Dead:
+                m_Animator.SetBool("Dead", true);
+                GetComponent<Collider>().enabled = false;
+                GetComponent<Rigidbody>().isKinematic = true;
+                m_Movement.enabled = false; 
                 break;
         }
     }
@@ -427,6 +480,41 @@ public abstract class TinyNPC : Entity, IDamageable
             return;
         }
     }
+    public override void EntityDeath()
+    {
+        //
+        Debug.Log("NPC death");
+        SwitchState(EMovementType.Dead);
+
+    }
+
+    void HitStun()
+    {
+        StartCoroutine(TimedStun(0.6f));
+    }
+
+    public override void Stun()
+    {
+
+        IsStunned = true;
+        m_Movement.Stun();
+
+    }
+
+    void UnStun()
+    {
+        IsStunned = false;
+        m_Movement.UnStun();
+
+    }
+
+    IEnumerator TimedStun(float time)
+    {
+        Stun();
+        yield return new WaitForSeconds(time);
+        UnStun();
+    }
+
 
     private void OnDrawGizmos()
     {
@@ -466,7 +554,24 @@ public abstract class TinyNPC : Entity, IDamageable
 
     public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
     {
-        Debug.Log("not implemented TakeDamageSync");
+        Debug.Log("simulator not found, game is not hosted");
+
+        HitStun();
+
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            Debug.Log("must die now");
+
+            EntityDeath();
+        }
+        else
+        {
+            Debug.Log("sending weapon synchit comand ");
+
+        }
     }
 
     public override void SyncBlocked()
