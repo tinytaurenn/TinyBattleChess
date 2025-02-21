@@ -16281,6 +16281,8 @@ MonoBehaviour:
   - rid: 4705201931075715105
   - rid: 4705201931075715107
   - rid: 4705201942386966609
+  - rid: 4705202171634253914
+  - rid: 4705202171634253915
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -16536,6 +16538,90 @@ MonoBehaviour:
       type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
       data:
         component: {fileID: 5906994445890104330}
+    - rid: 4705202171634253914
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202171634253916
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 4b7f2cbb359f468a88ffaf812d9604d8
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 4912870117678723158}
+        coherenceSync: {fileID: 1055140489967927550}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202171634253915
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202171634253917
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 9afb046d4e1a43d1ac6f8e2d978fb239
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 4912870117678723158}
+        coherenceSync: {fileID: 1055140489967927550}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202171634253916
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: GetAttackState
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
+        ownerType:
+          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202171634253917
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: OnReceiveAttackState
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        ownerType:
+          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
     - rid: 5431316396223758966
       type: {class: PositionBinding, ns: Coherence.Toolkit.Bindings.TransformBindings, asm: Coherence.Toolkit}
       data:

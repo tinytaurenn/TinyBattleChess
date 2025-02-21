@@ -16,34 +16,34 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec : IEntityCommand
+    public struct _61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Int32 index;
+            public Entity AskerSync;
         }
 
-        public static unsafe _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
             if (dataSize != 4) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
-                    "for command with ID 31");
+                    "for command with ID 56");
             }
 
-            var orig = new _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec();
+            var orig = new _61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28();
             var comp = (Interop*)data;
-            orig.index = comp->index;
+            orig.AskerSync = comp->AskerSync;
             return orig;
         }
 
-        public System.Int32 index;
+        public Entity AskerSync;
         
         public Entity Entity { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 31;
+        public uint GetComponentType() => 56;
         
         public IEntityMessage Clone()
         {
@@ -60,6 +60,13 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = absoluteEntity;
+            err = mapper.MapToAbsoluteEntity(AskerSync, false, out absoluteEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.AskerSync = absoluteEntity;
+            
             return IEntityMapper.Error.None;
         }
         
@@ -71,42 +78,54 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = relativeEntity;
+            err = mapper.MapToRelativeEntity(AskerSync, false, out relativeEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.AskerSync = relativeEntity;
+            
             return IEntityMapper.Error.None;
         }
 
         public HashSet<Entity> GetEntityRefs() {
-            return default;
+            return new HashSet<Entity> {
+                this.AskerSync,
+            };
         }
 
         public void NullEntityRefs(Entity entity) {
+            if (this.AskerSync == entity) {
+                this.AskerSync = Entity.InvalidRelative;
+            }
         }
         
-        public _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec(
+        public _61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28(
         Entity entity,
-        System.Int32 index
+        Entity AskerSync
 )
         {
             Entity = entity;
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.index = index; 
+            this.AskerSync = AskerSync; 
         }
         
-        public static void Serialize(_2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteIntegerRange(commandData.index, 32, -2147483648);
+            bitStream.WriteEntity(commandData.AskerSync);
         }
         
-        public static _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var dataindex = bitStream.ReadIntegerRange(32, -2147483648);
+            var dataAskerSync = bitStream.ReadEntity();
     
-            return new _2c19a04c42faa6b4398e588b58d31f5f_f456fe8329af41d4a6104467e1faebec()
+            return new _61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28()
             {
                 Entity = entity,
                 Routing = target,
-                index = dataindex
+                AskerSync = dataAskerSync
             };   
         }
     }

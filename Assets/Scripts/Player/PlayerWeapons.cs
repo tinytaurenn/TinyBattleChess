@@ -159,8 +159,15 @@ public class PlayerWeapons : MonoBehaviour
             return;
         }
 
+
         if (m_Parrying)
         {
+
+            if (m_InAttack)
+            {
+                m_InAttack = false;
+                m_Animator.SetBool("Attacking", false);
+            }
 
             if (m_InParry)
             {

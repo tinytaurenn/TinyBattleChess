@@ -32,4 +32,8 @@ public abstract class Entity : MonoBehaviour
     public abstract void SyncBlocked();
 
     public abstract void SyncHit();
+
+    public abstract bool GetAttackState(out EWeaponDirection attackDir);
+
+    public abstract void OnReceiveAttackState(EWeaponDirection attackDir);
 }

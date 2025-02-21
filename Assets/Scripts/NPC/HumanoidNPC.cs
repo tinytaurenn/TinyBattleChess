@@ -3,18 +3,9 @@ using Coherence.Toolkit;
 using PlayerControls;
 using System.Collections;
 using UnityEngine;
-using static TinyPlayer;
 
 public class HumanoidNPC : TinyNPC
 {
-
-    public enum EWeaponDirection
-    {
-        Up = 0,
-        Right = 1,
-        Down = 2,
-        Left = 3,
-    }
 
     public enum EAttackState
     {
@@ -25,12 +16,14 @@ public class HumanoidNPC : TinyNPC
     }
     [SerializeField] protected EAttackState m_AttackState = EAttackState.None; 
 
+
     [Header("Weapon Infos")]
     [SerializeField] protected BasicWeapon m_MainWeapon;
     [SerializeField] protected BasicWeapon m_SecondaryWeapon;
     public BasicWeapon GetMainWeapon() => m_MainWeapon;
     public BasicWeapon GetSecondaryWeapon() => m_SecondaryWeapon;
     [SerializeField] internal EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
+    [SerializeField] protected EWeaponDirection m_AttackerDirection = EWeaponDirection.Left;
 
     [SerializeField] float m_BaseReleaseDelay = 0.15f;
     [SerializeField] float m_ParryAngle = 20f;
@@ -55,6 +48,11 @@ public class HumanoidNPC : TinyNPC
     [SerializeField] protected float m_AttackCooldown = 1f;
     [SerializeField] protected float m_AttackDelay = 0.4f;
 
+    [SerializeField] protected float m_AttackCheckTimer = 0f;
+    [SerializeField] protected float m_AttackCheckTime = 2f;
+    [SerializeField] protected float m_InParryTimer = 0f;
+    [SerializeField] protected float m_InParryTime = 3f;
+
     protected override void OnAttack()
     {
         base.OnAttack();
@@ -72,6 +70,22 @@ public class HumanoidNPC : TinyNPC
             SwitchAttackState(EAttackState.None);
             return; 
         }
+        m_AttackCheckTimer += Time.deltaTime;
+        if (m_AttackCheckTimer >= m_AttackCheckTime)
+        {
+            m_AttackCheckTimer = 0f;
+
+            if (m_FollowTarget.TryGetComponent<CoherenceSync>(out CoherenceSync entSync))
+            {
+                if (m_FollowTarget.TryGetComponent<EntityCommands>(out EntityCommands entityCommands))
+                {
+                    entSync.SendCommand<EntityCommands>(nameof(EntityCommands.GetAttackState), Coherence.MessageTarget.AuthorityOnly, m_Sync);
+                    //entityCommands.GetAttackState(m_Sync);
+                }
+            }
+
+        }
+
         float distanceFromTarget = Vector3.Distance(transform.position, m_FollowTarget.position);
 
 
@@ -106,6 +120,14 @@ public class HumanoidNPC : TinyNPC
 
                 break;
             case EAttackState.Parrying:
+                m_InParryTimer += Time.deltaTime;
+                if (m_InParryTimer >= m_InParryTime)
+                {
+                    m_InParryTimer = 0f;
+                    m_InParry = false;
+                    m_Animator.SetBool("Parry", false);
+                    SwitchAttackState(EAttackState.None);
+                }
                 break;
             default:
                 break;
@@ -113,6 +135,29 @@ public class HumanoidNPC : TinyNPC
 
 
 
+    }
+
+    protected override void OnExitState()
+    {
+        base.OnExitState();
+        switch (m_MovementType)
+        {
+            case EMovementType.Idle:
+                break;
+            case EMovementType.Patrol:
+                break;
+            case EMovementType.Follow:
+                break;
+            case EMovementType.Flee:
+                break;
+            case EMovementType.Attack:
+                m_AttackCheckTimer = 0f;
+                break;
+            case EMovementType.Dead:
+                break;
+            default:
+                break;
+        }
     }
 
     void SwitchAttackState(EAttackState attackState)
@@ -154,7 +199,10 @@ public class HumanoidNPC : TinyNPC
                 StartCoroutine(ReleaseDelayRoutine(m_AttackDelay));
                 break;
             case EAttackState.Parrying:
-                InAttack = false;
+                m_InAttack = false;
+                m_Animator.SetBool("Attacking", false);
+                Debug.Log("starting in parry mode NPC ");
+                SetParry(m_AttackerDirection);
                 break;
             default:
                 break;
@@ -260,6 +308,36 @@ public class HumanoidNPC : TinyNPC
 
     }
 
+    void SetParry(EWeaponDirection attackerDirection)
+    {
+        if(InParry)
+        {
+            return;
+        }
+        
+        switch (attackerDirection)
+        {
+            case EWeaponDirection.Up:
+                m_Animator.SetInteger("WeaponDirectionNESO", 0);
+                break;
+            case EWeaponDirection.Right:
+                m_Animator.SetInteger("WeaponDirectionNESO", 3);
+                break;
+            case EWeaponDirection.Down:
+                m_Animator.SetInteger("WeaponDirectionNESO", 2);
+                break;
+            case EWeaponDirection.Left:
+                m_Animator.SetInteger("WeaponDirectionNESO", 1);
+                break;
+            default:
+                break;
+        }
+
+        m_InParry = true;
+       
+        m_Animator.SetBool("Parry", true);
+    }
+
 
     public override void SyncHit()
     {
@@ -291,18 +369,39 @@ public class HumanoidNPC : TinyNPC
     public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos)
     {
         //base.TakeMeleeSync(DirectionNESO, sync, damage, attackerPos);
+        bool rightParry = false; 
+        switch (DirectionNESO)
+        {
+            case 0:
+                rightParry = m_WeaponDirection == EWeaponDirection.Up;
+                break;
+            case 1:
+                rightParry = m_WeaponDirection == EWeaponDirection.Left;
+                break;
+            case 2:
+                rightParry = m_WeaponDirection == EWeaponDirection.Down;
+                break;
+            case 3:
+                rightParry = m_WeaponDirection == EWeaponDirection.Right;
+                break;
+            default:
+                break;
+        }
+        rightParry = InParry && rightParry && transform.IsInAngle(m_ParryAngle, attackerPos); 
 
-        if (InParry && transform.IsInAngle(m_ParryAngle, attackerPos))
+
+        if (rightParry)
         {
 
             Debug.Log(" Humanoid NPC parry in angle");
             Debug.Log(" Humanoid NPC parry calculations");
 
-            if (InShieldParry)
-            {
-                Debug.Log(" Humanoid NPC shield parry");
-            }
+            
 
+            ParrySync(damage, sync);
+        }
+        else if (InShieldParry &&  transform.IsInAngle(m_ParryAngle, attackerPos) )
+        {
             ParrySync(damage, sync);
         }
         else
@@ -331,6 +430,18 @@ public class HumanoidNPC : TinyNPC
 
         TakeDamageSync(damage, Damagersync);
 
+    }
+
+    public override bool GetAttackState(out EWeaponDirection attackDir)
+    {
+        attackDir = m_WeaponDirection;
+        return true;
+    }
+    public override void OnReceiveAttackState(EWeaponDirection attackDir)
+    {
+        base.OnReceiveAttackState(attackDir);
+        m_AttackerDirection = attackDir;
+        SwitchAttackState(EAttackState.Parrying);
     }
 
 }

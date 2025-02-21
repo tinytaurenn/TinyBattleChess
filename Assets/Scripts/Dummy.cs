@@ -132,4 +132,15 @@ public class Dummy : Entity, IDamageable
     {
         throw new NotImplementedException();
     }
+
+    public override bool GetAttackState(out EWeaponDirection attackDir)
+    {
+        attackDir = EWeaponDirection.Up;
+        return true;
+    }
+
+    public override void OnReceiveAttackState(EWeaponDirection attackDir)
+    {
+        throw new System.NotImplementedException();
+    }
 }

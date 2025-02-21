@@ -33,7 +33,7 @@ public abstract class TinyNPC : Entity, IDamageable
     [Space(10)]
     [Header("Global")]
 
-    [SerializeField] EMovementType m_MovementType = EMovementType.Idle;
+    [SerializeField] protected EMovementType m_MovementType = EMovementType.Idle;
     [Sync]
     public int IntMovementType
     {
@@ -120,7 +120,6 @@ public abstract class TinyNPC : Entity, IDamageable
         set { m_IsStunned = value; }
     }
 
-    
 
     void Awake()
     {
@@ -160,6 +159,22 @@ public abstract class TinyNPC : Entity, IDamageable
     void Update()
     {
         if ((EMovementType)IntMovementType == EMovementType.Dead) return;
+
+        if (IsStunned || m_Animator.GetBool("Stunned"))
+        {
+            if (InParry)
+            {
+                m_InParry = false;
+                m_Animator.SetBool("Parry", false);
+            }
+            if (InAttack)
+            {
+                m_InAttack = false;
+                m_Animator.SetBool("Attacking", false);
+            }
+            return; 
+        }
+
         UpdateState();
         EnemyDetection(); 
         
@@ -226,7 +241,7 @@ public abstract class TinyNPC : Entity, IDamageable
         }
     }
 
-    void OnExitState()
+    protected virtual void OnExitState()
     {
         switch (m_MovementType)
         {
@@ -264,6 +279,8 @@ public abstract class TinyNPC : Entity, IDamageable
              
                 break;
             case EMovementType.Dead:
+                if(m_Animator.GetBool("Parry")) m_Animator.SetBool("Parry", false);
+                if(m_Animator.GetBool("Attacking")) m_Animator.SetBool("Attacking", false);
                 m_Animator.SetBool("Dead", true);
                 GetComponent<Collider>().enabled = false;
                 GetComponent<Rigidbody>().isKinematic = true;
@@ -347,6 +364,9 @@ public abstract class TinyNPC : Entity, IDamageable
         AfterAggroCheck();
 
         if (m_FollowTarget == null) return;
+
+       
+
 
         if (m_FollowTarget.TryGetComponent<TinyPlayer>(out TinyPlayer player))
         {
@@ -582,5 +602,14 @@ public abstract class TinyNPC : Entity, IDamageable
     public override void SyncHit()
     {
         Debug.Log("not implemented SyncHit");
+    }
+
+    
+    public override  void OnReceiveAttackState(EWeaponDirection attackDir)
+    {
+        Debug.Log(" got attack state,  is : " + attackDir);
+        
+
+
     }
 }

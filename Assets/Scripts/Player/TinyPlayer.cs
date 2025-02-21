@@ -556,6 +556,21 @@ public class TinyPlayer : Entity, IDamageable
 
     }
 
+    public override bool GetAttackState(out EWeaponDirection attackDir)
+    {
+        
+        attackDir = m_PlayerWeapons.m_WeaponDirection;
+
+        return m_PlayerWeapons.InAttackReady;
+
+    }
+
+    public override void OnReceiveAttackState(EWeaponDirection attackDir)
+    {
+        
+        throw new System.NotImplementedException();
+    }
+
     //battle manager related 
 
     public void ChangeBattleIndex(int index)

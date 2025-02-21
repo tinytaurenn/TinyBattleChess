@@ -1,5 +1,6 @@
 using Coherence.Toolkit;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EntityCommands : MonoBehaviour
 {
@@ -41,6 +42,30 @@ public class EntityCommands : MonoBehaviour
         if (TryGetComponent<Entity>(out Entity ent))
         {
             ent.ChangeGameID(gameID);
+        }
+    }
+    [Command]
+    public void GetAttackState(CoherenceSync AskerSync)
+    {
+        if (TryGetComponent<Entity>(out Entity ent))
+        {
+
+            if(ent.GetAttackState(out EWeaponDirection attackDir))
+            {
+                if (AskerSync.GetComponent<EntityCommands>())
+                {
+                    AskerSync.SendCommand<EntityCommands>(nameof(OnReceiveAttackState), Coherence.MessageTarget.AuthorityOnly, (int)attackDir);
+                }
+            }
+        }
+    }
+    [Command]
+    public void OnReceiveAttackState(int intAttackDir)
+    {
+        if (TryGetComponent<Entity>(out Entity ent))
+        {
+
+            ent.OnReceiveAttackState((EWeaponDirection)intAttackDir);
         }
     }
 }
