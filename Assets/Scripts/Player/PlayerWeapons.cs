@@ -23,6 +23,7 @@ public class PlayerWeapons : MonoBehaviour
     internal CoherenceSync m_Sync;
 
     [Header("Weapon Infos")]
+    [SerializeField] internal bool m_TwoHanded = false;
     [SerializeField] internal Vector2 m_LookDirection = Vector2.zero;
     [SerializeField] internal EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
     [SerializeField] internal bool m_Parrying = false;
@@ -60,7 +61,8 @@ public class PlayerWeapons : MonoBehaviour
     }
     void Start()
     {
-        
+
+
     }
 
     
@@ -344,6 +346,12 @@ public class PlayerWeapons : MonoBehaviour
             
         }
 
+    }
+
+    public void SetTwoHanded(bool twohanded)
+    {
+        m_TwoHanded = twohanded;
+        m_Animator.SetBool("TwoHanded", m_TwoHanded);
     }
 
     public void Drop(float throwForce = 5f)

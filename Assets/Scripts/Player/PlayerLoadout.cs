@@ -348,8 +348,8 @@ public class PlayerLoadout : MonoBehaviour
             }
             m_EquippedWeapons[ESlot.MainWeapon]= weapon; 
             m_EquippedWeapons[ESlot.SecondaryWeapon]= null;
+            m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(true);
 
-            
         }
 
         else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
@@ -359,12 +359,15 @@ public class PlayerLoadout : MonoBehaviour
             if ((m_EquippedWeapons[ESlot.MainWeapon] != null) &&
                 m_EquippedWeapons[ESlot.MainWeapon].WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_EquippedWeapons[ESlot.MainWeapon] = null; 
             m_EquippedWeapons[ESlot.SecondaryWeapon] = weapon;
-            rightHand = false; 
+            rightHand = false;
+            m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
+            
         }
         else if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
         {
             DropItemOnSlot(ESlot.MainWeapon);
-            m_EquippedWeapons[ESlot.MainWeapon] = weapon; 
+            m_EquippedWeapons[ESlot.MainWeapon] = weapon;
+            m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
         }
 
     }

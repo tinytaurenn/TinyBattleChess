@@ -26,7 +26,7 @@ public class TinyPlayer : Entity, IDamageable
     Collider m_Collider; 
     internal PlayerControls.PlayerControls m_PlayerControls;
     PlayerUse m_PlayerUse;
-    PlayerWeapons m_PlayerWeapons;
+    public PlayerWeapons m_PlayerWeapons;
     Ragdoll m_RagDoll;
     PlayerFX m_PlayerFX; 
     public PlayerLoadout m_PlayerLoadout;
