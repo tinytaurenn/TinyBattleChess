@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class HumanoidNPC : TinyNPC
 {
+    HumanoidFX m_HumanoidFX; 
 
     public enum EAttackState
     {
@@ -54,6 +55,12 @@ public class HumanoidNPC : TinyNPC
     [SerializeField] protected float m_InParryTimer = 0f;
     [SerializeField] protected float m_InParryTime = 3f;
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+        m_HumanoidFX = GetComponent<HumanoidFX>();
+    }
     protected override void OnAttack()
     {
         base.OnAttack();
@@ -413,16 +420,17 @@ public class HumanoidNPC : TinyNPC
         Debug.Log(DamagerSync.transform.name + " parried!");
         DamagerSync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncBlockedCommand), Coherence.MessageTarget.AuthorityOnly);
 
-        //int soundVariationIndex = UnityEngine.Random.Range(0, 3);
-        //Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex);
+        int soundVariationIndex = UnityEngine.Random.Range(0, 3);
+        m_HumanoidFX.PlayParryFX(soundVariationIndex);
+        m_Sync.SendCommand<HumanoidFX>(nameof(HumanoidFX.PlayParryFX), Coherence.MessageTarget.Other, soundVariationIndex);
     }
 
     public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
     {
         Debug.Log("sync humanoid took " + damage + " weapon damage!");
 
-        //m_PlayerFX.PlayHurtFX(0);
-        //Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
+        m_HumanoidFX.PlayHurtFX(0);
+        m_Sync.SendCommand<HumanoidFX>(nameof(HumanoidFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
         Damagersync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncHitCommand), Coherence.MessageTarget.AuthorityOnly); //
 
         TakeDamageSync(damage, Damagersync);

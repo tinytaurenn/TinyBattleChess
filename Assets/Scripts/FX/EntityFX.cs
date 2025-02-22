@@ -18,14 +18,9 @@ public abstract class EntityFX : MonoBehaviour
         m_AudioSource = GetComponent<AudioSource>();
 
     }
-    public virtual void PlayHurtFX(int choiceIndex)
-    {
-        Debug.Log("PlayHurtFX");
-    }
+    [Command]
+    public abstract void PlayHurtFX(int choiceIndex);
+    [Command]
+    public abstract void PlayParryFX(int choiceIndex);
 
-    public virtual void PlayParryFX(int choiceIndex)
-    {
-        Debug.Log("PlayParryFX");
-
-    }
 }

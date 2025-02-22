@@ -121,7 +121,7 @@ public abstract class TinyNPC : Entity, IDamageable
     }
 
 
-    void Awake()
+    protected virtual void Awake()
     {
         m_Movement = GetComponent<NPC_Movement>();
         m_Sync = GetComponent<CoherenceSync>();
