@@ -35,5 +35,5 @@ public abstract class Entity : MonoBehaviour
 
     public abstract bool GetAttackState(out EWeaponDirection attackDir);
 
-    public abstract void OnReceiveAttackState(EWeaponDirection attackDir);
+    public abstract void OnReceiveAttackState(bool isAttacking,EWeaponDirection attackDir);
 }

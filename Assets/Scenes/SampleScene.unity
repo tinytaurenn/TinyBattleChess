@@ -10769,20 +10769,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 1936371533}
     m_Modifications:
     - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_CameraDistance
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_CameraUpOffset
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_CombatRotationSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_CombatCameraRotateSpeed
-      value: 3
+      propertyPath: m_PlayerTransform
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7551853741299698321, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12026,14 +12014,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3103966775795908886, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6363404363339079209, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_Health
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6363404363339079209, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
-      propertyPath: m_IsPatrolUnit
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

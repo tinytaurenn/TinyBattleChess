@@ -16,7 +16,6 @@ public class StuffUnloader : Usable
 
     public override void TryUse()
     {
-        base.TryUse();
 
         Debug.Log("using unloader");
 

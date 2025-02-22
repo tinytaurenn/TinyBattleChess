@@ -48,7 +48,7 @@ public class Chest : Usable
 
     public override  void  TryUse()
     {
-        base.TryUse();
+        //base.TryUse();
 
         if(!CanUseChest())
         {

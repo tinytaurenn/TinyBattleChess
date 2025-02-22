@@ -139,7 +139,7 @@ public class Dummy : Entity, IDamageable
         return true;
     }
 
-    public override void OnReceiveAttackState(EWeaponDirection attackDir)
+    public override void OnReceiveAttackState(bool isAttacking, EWeaponDirection attackDir)
     {
         throw new System.NotImplementedException();
     }

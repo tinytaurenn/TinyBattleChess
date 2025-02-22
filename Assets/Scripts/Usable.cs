@@ -20,20 +20,9 @@ public abstract class Usable : MonoBehaviour
             m_Sync = sync;
         }
     }
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public virtual void TryUse()
-    {
+    public abstract void TryUse();
 
-    }
     
 }

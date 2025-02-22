@@ -177,7 +177,7 @@ private void OnTriggerEnter(Collider other)
                 }
                 CoherenceSync holderSync = m_HolderTransform.GetComponent<CoherenceSync>();
               
-                Debug.Log("sending commannd to dummy");
+                Debug.Log("sending commannd to target");
                 sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, weaponDir, holderSync, m_WeaponParameters.Damage, m_HolderTransform.transform.position);
             }
         }

@@ -49,23 +49,21 @@ public class EntityCommands : MonoBehaviour
     {
         if (TryGetComponent<Entity>(out Entity ent))
         {
+            bool isAttacking = ent.GetAttackState(out EWeaponDirection attackDir);
 
-            if(ent.GetAttackState(out EWeaponDirection attackDir))
+            if (AskerSync.GetComponent<EntityCommands>())
             {
-                if (AskerSync.GetComponent<EntityCommands>())
-                {
-                    AskerSync.SendCommand<EntityCommands>(nameof(OnReceiveAttackState), Coherence.MessageTarget.AuthorityOnly, (int)attackDir);
-                }
+                AskerSync.SendCommand<EntityCommands>(nameof(OnReceiveAttackState), Coherence.MessageTarget.AuthorityOnly,isAttacking, (int)attackDir);
             }
         }
     }
     [Command]
-    public void OnReceiveAttackState(int intAttackDir)
+    public void OnReceiveAttackState(bool isAttacking,int intAttackDir)
     {
         if (TryGetComponent<Entity>(out Entity ent))
         {
 
-            ent.OnReceiveAttackState((EWeaponDirection)intAttackDir);
+            ent.OnReceiveAttackState(isAttacking,(EWeaponDirection)intAttackDir);
         }
     }
 }

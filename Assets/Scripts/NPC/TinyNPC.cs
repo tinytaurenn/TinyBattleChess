@@ -169,7 +169,7 @@ public abstract class TinyNPC : Entity, IDamageable
             }
             if (InAttack)
             {
-                m_InAttack = false;
+                m_InAttack = false; 
                 m_Animator.SetBool("Attacking", false);
             }
             return; 
@@ -605,7 +605,7 @@ public abstract class TinyNPC : Entity, IDamageable
     }
 
     
-    public override  void OnReceiveAttackState(EWeaponDirection attackDir)
+    public override  void OnReceiveAttackState(bool isAttacking, EWeaponDirection attackDir)
     {
         Debug.Log(" got attack state,  is : " + attackDir);
         

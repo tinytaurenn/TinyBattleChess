@@ -17,7 +17,6 @@ public class LootSpot :  Usable
 
     public override void TryUse()
     {
-        base.TryUse();
 
         Debug.Log("using lootspot");
         foreach (SO_Armor item in m_ArmorItems)

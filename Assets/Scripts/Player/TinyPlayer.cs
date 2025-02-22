@@ -565,7 +565,7 @@ public class TinyPlayer : Entity, IDamageable
 
     }
 
-    public override void OnReceiveAttackState(EWeaponDirection attackDir)
+    public override void OnReceiveAttackState(bool isAttacking, EWeaponDirection attackDir)
     {
         
         throw new System.NotImplementedException();
