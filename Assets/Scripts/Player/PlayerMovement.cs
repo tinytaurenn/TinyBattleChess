@@ -38,18 +38,20 @@ namespace PlayerControls
         {
             base.MovementUpdate();
 
+
             if (m_CameraManager != null)
             {
+
                 Vector3 cameraForward = new Vector3(m_CameraManager.transform.forward.x, 0, m_CameraManager.transform.forward.z).normalized;
                 Quaternion newRotation = Quaternion.LookRotation(cameraForward * 100f);
                 transform.rotation = Quaternion.Lerp(m_rigidBody.rotation, newRotation, Time.deltaTime * m_RotationSpeed);
 
             }
-  
+
         }
 
 
-        
+
 
     } 
 }

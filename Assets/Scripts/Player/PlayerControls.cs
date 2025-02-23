@@ -130,7 +130,8 @@ namespace PlayerControls
             }
             m_MoveValue = moveInput;
             Vector3 forward = new Vector3(m_CameraTransform.forward.x, 0, m_CameraTransform.forward.z).normalized;
-            Vector3 right = new Vector3(m_CameraTransform.right.x, 0, m_CameraTransform.right.z).normalized;
+            Vector3 right2 = new Vector3(m_CameraTransform.right.x, 0, m_CameraTransform.right.z).normalized;
+            Vector3 right = new Vector3(transform.right.x, 0, transform.right.z).normalized;
 
            
             switch (m_ControlState)
@@ -294,9 +295,11 @@ namespace PlayerControls
             {
                 case EControlState.Player:
                     m_InputActions.Player.Enable();
+                    m_PlayerGhostMovement.enabled = false;
                     Cursor.visible = false;
                     break;
                 case EControlState.Ghost:
+                    m_PlayerMovement.enabled = false;
                     m_InputActions.Ghost.Enable();
                     Cursor.visible = false;
 

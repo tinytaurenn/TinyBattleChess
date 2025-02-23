@@ -83,7 +83,7 @@ public class CameraManager : MonoBehaviour
 
     void ThirdPersoMouseControlCamera()
     {
-        MouseControlCamera();
+        //MouseControlCamera();
         LerpCameraDistance();
 
 
@@ -102,10 +102,17 @@ public class CameraManager : MonoBehaviour
         transform.RotateAround(targetPostion, Vector3.up, mouseDeltaX * m_CameraRotateSpeed);
         //transform.RotateAround(targetPostion, transform.right, -mouseDeltaY * m_CameraRotateSpeed);
 
-        Vector3 localTargetOffset = m_PlayerTransform.forward * m_TargetOffset.z + m_PlayerTransform.right * m_TargetOffset.x + m_PlayerTransform.up * m_TargetOffset.y;
+        Vector3 newPlayerPos = new Vector3(m_PlayerTransform.position.x, transform.position.y, m_PlayerTransform.position.z);
+        Vector3 localTargetOffset2 = m_PlayerTransform.forward * m_TargetOffset.z + m_PlayerTransform.right * m_TargetOffset.x + m_PlayerTransform.up * m_TargetOffset.y;
+
+        Vector3 customForward = (newPlayerPos - transform.position).normalized;
+        Vector3 customRight = Vector3.Cross(Vector3.up, customForward).normalized;
+        
+        Vector3 localTargetOffset = customForward * m_TargetOffset.z + customRight * m_TargetOffset.x + Vector3.up * m_TargetOffset.y;
+
         Vector3 targetLookAtPosition;
         PlayerMovement playerMove = m_PlayerTransform.GetComponent<PlayerMovement>();
-        if (!playerMove.m_Isgrounded || playerMove.m_IsFalling)
+        if (!playerMove.m_Isgrounded ||  playerMove.m_IsFalling)
         {
             targetLookAtPosition = m_PlayerTransform.position + localTargetOffset + Vector3.down * m_FallingDownOffSet;
         }
@@ -152,6 +159,22 @@ public class CameraManager : MonoBehaviour
     public void StopCameraMovement()
     {
         MouseDelta = Vector2.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(m_PlayerTransform == null) return;
+        Gizmos.color = Color.blue;
+        Vector3 newPlayerPos = new Vector3(m_PlayerTransform.position.x, transform.position.y, m_PlayerTransform.position.z);
+        Vector3 customForward = (newPlayerPos - transform.position).normalized;
+        Gizmos.DrawRay(transform.position, customForward * 2);
+        Gizmos.color = Color.red;
+        Vector3 customRight = Vector3.Cross(Vector3.up, customForward).normalized;
+        Gizmos.DrawRay(transform.position, customRight * 2);
+
+
+        Vector3 localTargetOffset = customForward * m_TargetOffset.z + customRight * m_TargetOffset.x + Vector3.up * m_TargetOffset.y;
+        Gizmos.DrawWireSphere(m_PlayerTransform.position + localTargetOffset, 2); 
     }
 
     #endregion
