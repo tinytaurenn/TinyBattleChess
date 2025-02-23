@@ -340,6 +340,7 @@ public class PlayerLoadout : MonoBehaviour
         rightHand = true;
 
         
+        
         if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
             if (m_EquippedWeapons[ESlot.MainWeapon] != null || m_EquippedWeapons[ESlot.SecondaryWeapon] != null)
@@ -369,6 +370,9 @@ public class PlayerLoadout : MonoBehaviour
             m_EquippedWeapons[ESlot.MainWeapon] = weapon;
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
         }
+
+        m_TinyPlayer.m_PlayerWeapons.SetWeaponParameters(weapon);
+
 
     }
     public Grabbable GetGrabbableInHand()

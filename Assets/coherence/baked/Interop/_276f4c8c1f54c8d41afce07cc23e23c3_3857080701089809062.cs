@@ -43,6 +43,10 @@ namespace Coherence.Generated
             public System.Byte Stunned;
             [FieldOffset(14)]
             public System.Byte ShieldParry;
+            [FieldOffset(15)]
+            public System.Byte TwoHanded;
+            [FieldOffset(16)]
+            public System.Single WeaponSpeed;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
@@ -65,12 +69,16 @@ namespace Coherence.Generated
             StunnedSimulationFrame = frame;
             FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.ShieldParryMask;
             ShieldParrySimulationFrame = frame;
+            FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.TwoHandedMask;
+            TwoHandedSimulationFrame = frame;
+            FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.WeaponSpeedMask;
+            WeaponSpeedSimulationFrame = frame;
         }
 
         public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 15) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 15) " +
+            if (dataSize != 20) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 20) " +
                     "for component with ID 159");
             }
 
@@ -92,6 +100,8 @@ namespace Coherence.Generated
             orig.WeaponDirectionNESO = comp->WeaponDirectionNESO;
             orig.Stunned = comp->Stunned != 0;
             orig.ShieldParry = comp->ShieldParry != 0;
+            orig.TwoHanded = comp->TwoHanded != 0;
+            orig.WeaponSpeed = comp->WeaponSpeed;
 
             return orig;
         }
@@ -124,13 +134,19 @@ namespace Coherence.Generated
         public static uint ShieldParryMask => 0b00000000000000000000000100000000;
         public AbsoluteSimulationFrame ShieldParrySimulationFrame;
         public System.Boolean ShieldParry;
+        public static uint TwoHandedMask => 0b00000000000000000000001000000000;
+        public AbsoluteSimulationFrame TwoHandedSimulationFrame;
+        public System.Boolean TwoHanded;
+        public static uint WeaponSpeedMask => 0b00000000000000000000010000000000;
+        public AbsoluteSimulationFrame WeaponSpeedSimulationFrame;
+        public System.Single WeaponSpeed;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
         public uint GetComponentType() => 159;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000000111111111;
+        public uint InitialFieldsMask() => 0b00000000000000000000011111111111;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -139,7 +155,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 9;
+        public int GetFieldCount() => 11;
 
 
         
@@ -249,6 +265,20 @@ namespace Coherence.Generated
             }
 
             otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.TwoHandedSimulationFrame = other.TwoHandedSimulationFrame;
+                this.TwoHanded = other.TwoHanded;
+            }
+
+            otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.WeaponSpeedSimulationFrame = other.WeaponSpeedSimulationFrame;
+                this.WeaponSpeed = other.WeaponSpeed;
+            }
+
+            otherMask >>= 1;
             StoppedMask |= other.StoppedMask;
 
             return this;
@@ -263,7 +293,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 9);
+                bitStream.WriteMaskBits(data.StoppedMask, 11);
             }
 
             var mask = data.FieldsMask;
@@ -379,6 +409,30 @@ namespace Coherence.Generated
             }
 
             mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+
+                var fieldValue = data.TwoHanded;
+
+
+
+                bitStream.WriteBool(fieldValue);
+            }
+
+            mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+
+                var fieldValue = data.WeaponSpeed;
+
+
+
+                bitStream.WriteFloat(fieldValue, FloatMeta.NoCompression());
+            }
+
+            mask >>= 1;
 
             return mask;
         }
@@ -388,7 +442,7 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(9);
+                stoppedMask = bitStream.ReadMaskBits(11);
             }
 
             var val = new _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062();
@@ -446,6 +500,18 @@ namespace Coherence.Generated
                 val.ShieldParry = bitStream.ReadBool();
                 val.FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.ShieldParryMask;
             }
+            if (bitStream.ReadMask())
+            {
+
+                val.TwoHanded = bitStream.ReadBool();
+                val.FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.TwoHandedMask;
+            }
+            if (bitStream.ReadMask())
+            {
+
+                val.WeaponSpeed = bitStream.ReadFloat(FloatMeta.NoCompression());
+                val.FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.WeaponSpeedMask;
+            }
 
             val.StoppedMask = stoppedMask;
 
@@ -465,8 +531,10 @@ namespace Coherence.Generated
                 $" WeaponDirectionNESO: { this.WeaponDirectionNESO }" +
                 $" Stunned: { this.Stunned }" +
                 $" ShieldParry: { this.ShieldParry }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(9, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(9, '0') })";
+                $" TwoHanded: { this.TwoHanded }" +
+                $" WeaponSpeed: { this.WeaponSpeed }" +
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(11, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(11, '0') })";
         }
     }
 

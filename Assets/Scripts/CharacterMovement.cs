@@ -73,6 +73,7 @@ public abstract class CharacterMovement : MonoBehaviour
     {
         m_rigidBody = GetComponent<Rigidbody>();
         m_sync = GetComponent<CoherenceSync>();
+        
     }
     protected virtual void Start()
     {
@@ -82,6 +83,9 @@ public abstract class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        
+
+
         JumpTick();
         m_rigidBody.linearVelocity += Vector3.up * 10;
 

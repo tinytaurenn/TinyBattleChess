@@ -31,12 +31,15 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] internal bool m_Attacking = false;
     [SerializeField] bool m_InAttack = false;
     [SerializeField] bool m_InAttackRelease = false;
-    [SerializeField] bool m_InShieldParry = false; 
+    [SerializeField] bool m_InShieldParry = false;
+    [SerializeField] bool m_CanAttack = true;
 
 
     [Header("Weapon Parameters")]
 
     [SerializeField] float m_BaseReleaseDelay = 0.15f;
+    [SerializeField] float m_BaseAttackCoolDown = 0.2f;
+    [SerializeField] float m_BlockedAttackCooldown = 0.5f;
 
     [Space(10)]
     [Header("Parry Parameters")]
@@ -62,7 +65,8 @@ public class PlayerWeapons : MonoBehaviour
     void Start()
     {
 
-
+        AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(1);
+        AnimatorStateInfo nextStateInfo = m_Animator.GetNextAnimatorStateInfo(1);
     }
 
     
@@ -230,6 +234,10 @@ public class PlayerWeapons : MonoBehaviour
 
     void AttackUpdate()
     {
+        if (!m_CanAttack)
+        {
+            return;
+        }
         if (m_Parrying)
         {
                return;
@@ -304,6 +312,12 @@ public class PlayerWeapons : MonoBehaviour
         m_InAttackRelease = false;
         m_InAttack = false;
     }
+    IEnumerator AttackCoolDownRoutine(float time)
+    {
+        m_CanAttack = false;
+        yield return new WaitForSeconds(time);
+        m_CanAttack = true;
+    }
 
    
 
@@ -315,7 +329,9 @@ public class PlayerWeapons : MonoBehaviour
         m_InAttackRelease = false;
         m_Attacking = false;
         m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
+        StartCoroutine(AttackCoolDownRoutine(m_BlockedAttackCooldown));
     }
+
 
     public void SyncHit()
     {
@@ -352,6 +368,11 @@ public class PlayerWeapons : MonoBehaviour
     {
         m_TwoHanded = twohanded;
         m_Animator.SetBool("TwoHanded", m_TwoHanded);
+    }
+
+    public void SetWeaponParameters(BasicWeapon weapon)
+    {
+        m_Animator.SetFloat("WeaponSpeed", weapon.WeaponSpeed);
     }
 
     public void Drop(float throwForce = 5f)

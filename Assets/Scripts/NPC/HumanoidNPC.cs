@@ -1,6 +1,5 @@
 using Coherence;
 using Coherence.Toolkit;
-using PlayerControls;
 using System.Collections;
 using UnityEngine;
 
@@ -29,7 +28,12 @@ public class HumanoidNPC : TinyNPC
     [SerializeField] float m_BaseReleaseDelay = 0.15f;
     [SerializeField] float m_ParryAngle = 20f;
     [SerializeField] protected bool m_IsParryUnit = true; 
-    [SerializeField] float m_HoldAttackDistance = 3f; 
+    [SerializeField] float m_HoldAttackDistance = 3f;
+
+
+
+    [SerializeField] protected bool m_CanAttack = true;
+    [SerializeField] float m_BlockedAttackCooldown = 0.5f;
 
 
     [SerializeField] bool m_InShieldParry = false;
@@ -39,7 +43,7 @@ public class HumanoidNPC : TinyNPC
     }
     [SerializeField] protected bool m_InAttackRelease;
 
-    [SerializeField] protected bool m_CanAttack = true;
+    [SerializeField] protected bool m_CanSwordAttack = true;
     [Sync]
     public bool CanAttack
     {
@@ -96,7 +100,7 @@ public class HumanoidNPC : TinyNPC
             case EAttackState.Attacking:
                 if (m_IsParryUnit) AttackCheckUpdate();
 
-                if (distanceFromTarget <= m_StopDistance)
+                if (distanceFromTarget <= m_StopDistance && m_CanSwordAttack)
                 {
                     //Debug.Log("release attack");
                     SwitchAttackState(EAttackState.Release);
@@ -306,6 +310,13 @@ public class HumanoidNPC : TinyNPC
 
     }
 
+    IEnumerator AttackCoolDownRoutine(float time)
+    {
+        m_CanSwordAttack = false;
+        yield return new WaitForSeconds(time);
+        m_CanSwordAttack = true;
+    }
+
     void SetParry(EWeaponDirection attackerDirection)
     {
         
@@ -355,6 +366,7 @@ public class HumanoidNPC : TinyNPC
         m_InAttackRelease = false;
         InAttack = false;
         m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
+        StartCoroutine(AttackCoolDownRoutine(m_BlockedAttackCooldown));
     }
 
     

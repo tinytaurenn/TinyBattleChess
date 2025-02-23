@@ -1,7 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class NPC_Movement : CharacterMovement
 {
