@@ -295,11 +295,11 @@ namespace PlayerControls
             {
                 case EControlState.Player:
                     m_InputActions.Player.Enable();
-                    m_PlayerGhostMovement.enabled = false;
+                    //m_PlayerGhostMovement.enabled = false;
                     Cursor.visible = false;
                     break;
                 case EControlState.Ghost:
-                    m_PlayerMovement.enabled = false;
+                    //m_PlayerMovement.enabled = false;
                     m_InputActions.Ghost.Enable();
                     Cursor.visible = false;
 

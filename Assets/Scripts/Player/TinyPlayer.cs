@@ -23,6 +23,7 @@ public class TinyPlayer : Entity, IDamageable
 
     public CoherenceSync Sync => m_Sync;
     PlayerMovement m_PlayerMovement;
+    PlayerGhostMovement m_GhostMovement;
     Collider m_Collider; 
     internal PlayerControls.PlayerControls m_PlayerControls;
     PlayerUse m_PlayerUse;
@@ -92,6 +93,7 @@ public class TinyPlayer : Entity, IDamageable
 
         m_Sync = GetComponent<CoherenceSync>();
         m_PlayerMovement = GetComponent<PlayerMovement>();
+        m_GhostMovement = GetComponent<PlayerGhostMovement>();
         m_Collider = GetComponent<Collider>();
         m_PlayerControls = GetComponent<PlayerControls.PlayerControls>();
         m_PlayerUse = GetComponent<PlayerUse>();
@@ -430,6 +432,8 @@ public class TinyPlayer : Entity, IDamageable
         m_PlayerWeapons.enabled = Enabled;
         //m_PlayerControls.enabled = Enabled;
         m_PlayerMovement.enabled = Enabled;
+        m_GhostMovement.enabled = !Enabled;
+        
         m_PlayerUse.enabled = Enabled;
         m_PlayerLoadout.enabled = Enabled;
 

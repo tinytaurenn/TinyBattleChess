@@ -631,10 +631,15 @@ public class PlayerLoadout : MonoBehaviour
 
     void SetupItems()
     {
-        foreach (var item in m_EquippedItems)
+        foreach (var inventoyItem in m_EquippedItems)
         {
-            if (item.Value == null) continue;
-            item.Value.SetupItem();
+            if (inventoyItem.Value == null) continue;
+            inventoyItem.Value.SetupItem();
+        }
+
+        foreach (var weapon in m_EquippedWeapons)
+        {
+            m_TinyPlayer.m_PlayerWeapons.SetWeaponParameters(weapon.Value);
         }
     }
     
