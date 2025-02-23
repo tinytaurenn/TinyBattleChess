@@ -639,6 +639,7 @@ public class PlayerLoadout : MonoBehaviour
 
         foreach (var weapon in m_EquippedWeapons)
         {
+            if (weapon.Value == null) continue; 
             m_TinyPlayer.m_PlayerWeapons.SetWeaponParameters(weapon.Value);
         }
     }

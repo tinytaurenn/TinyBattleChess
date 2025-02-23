@@ -1112,17 +1112,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("UnityEngine.Animator.SetTrigger", "(System.String)", SendCommand__5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff();
             
             int i = 0;
             command.name = (System.String)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff();
             
@@ -1145,17 +1145,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("UnityEngine.Animator.ResetTrigger", "(System.String)", SendCommand__5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1();
             
             int i = 0;
             command.name = (System.String)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_7556cd7d7e774997864e997434cec5d1();
             
@@ -1178,7 +1178,7 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("PlayerClothes.ChangeBody", "(System.Int32System.Int32)", SendCommand__5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7();
             
@@ -1186,10 +1186,10 @@ namespace Coherence.Generated
             command.oldIndex = (System.Int32)args[i++];
             command.Newindex = (System.Int32)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_0ffc5a7e1fd04f489472cf9e12415bf7();
             
@@ -1213,17 +1213,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.TeleportPlayer", "(UnityEngine.Vector3)", SendCommand__5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3();
             
             int i = 0;
             command.worldPos = (UnityEngine.Vector3)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_dc362dd6cca24e2995ad9011ec93c5e3();
             
@@ -1246,7 +1246,7 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.TakeDamageSync", "(System.Int32Coherence.Toolkit.CoherenceSync)", SendCommand__5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6();
             
@@ -1254,10 +1254,10 @@ namespace Coherence.Generated
             command.damage = (System.Int32)args[i++];
             command.Damagersync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_be1772b2e3ab48799d12f62174227ea6();
             
@@ -1281,7 +1281,7 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.ParrySync", "(System.Int32Coherence.Toolkit.CoherenceSync)", SendCommand__5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695();
             
@@ -1289,10 +1289,10 @@ namespace Coherence.Generated
             command.damage = (System.Int32)args[i++];
             command.DamagerSync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_530c1dd565f54f568914150057129695();
             
@@ -1316,7 +1316,7 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.TakeMeleeSync", "(System.Int32Coherence.Toolkit.CoherenceSyncSystem.Int32UnityEngine.Vector3)", SendCommand__5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a();
             
@@ -1326,10 +1326,10 @@ namespace Coherence.Generated
             command.damage = (System.Int32)args[i++];
             command.attackerPos = (UnityEngine.Vector3)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_8b78238963064f8a9a06610499e56d2a();
             
@@ -1355,7 +1355,7 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.SyncOnChangePlayerState", "(System.Int32System.Int32)", SendCommand__5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a();
             
@@ -1363,10 +1363,10 @@ namespace Coherence.Generated
             command.oldState = (System.Int32)args[i++];
             command.NewState = (System.Int32)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_7df3250732b84749b4b733d375fb051a();
             
@@ -1390,7 +1390,7 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.TakeWeaponDamageSync", "(System.Int32Coherence.Toolkit.CoherenceSync)", SendCommand__5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7();
             
@@ -1398,10 +1398,10 @@ namespace Coherence.Generated
             command.damage = (System.Int32)args[i++];
             command.Damagersync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_a7ad24c8eb3b493a9cd174f26e9a45a7();
             
@@ -1425,17 +1425,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.ChangeBattleIndex", "(System.Int32)", SendCommand__5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f();
             
             int i = 0;
             command.index = (System.Int32)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_3c2c4486077949c288a3205124259b7f();
             
@@ -1458,17 +1458,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.SwitchPlayerState", "(System.Int32)", SendCommand__5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8();
             
             int i = 0;
             command.intPlayerState = (System.Int32)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_5a11ef1c74b146c68052e6c75baab7d8();
             
@@ -1491,17 +1491,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.TakeGlobalDamage", "(System.Int32)", SendCommand__5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562();
             
             int i = 0;
             command.damage = (System.Int32)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_215915084e114f92bc20eb4f102e7562();
             
@@ -1524,15 +1524,15 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("TinyPlayer.ResetPlayerStats", "()", SendCommand__5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0();
             
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_7815420e2f7042c4ab2a7a4134b2c5d0();
             
@@ -1553,15 +1553,15 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("PlayerWeapons.SyncBlocked", "()", SendCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e();
             
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_ca4b907df43c44708307a1b7f77fbc3e();
             
@@ -1582,15 +1582,15 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("PlayerWeapons.SyncHit", "()", SendCommand__5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f();
             
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_fe7687c6ebbe498593fa8efc77cda63f();
             
@@ -1611,17 +1611,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("PlayerFX.PlayHurtFX", "(System.Int32)", SendCommand__5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90();
             
             int i = 0;
             command.choiceIndex = (System.Int32)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_ffd7dabd1f4c4775a990a9bb59bc6b90();
             
@@ -1644,17 +1644,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("PlayerFX.PlayParryFX", "(System.Int32)", SendCommand__5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc, ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc, MessageTarget.All, _5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc_CommandTarget, false);
         }
         
-        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc(MessageTarget target, object[] args)
+        private void SendCommand__5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc();
             
             int i = 0;
             command.choiceIndex = (System.Int32)args[i++];
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc();
             
@@ -1727,7 +1727,8 @@ namespace Coherence.Generated
                     ReceiveCommand__5358ed04715b0f148a60e93c83f08be0_5bad42507fe140d4b87c78206fab3ecc(castedCommand);
                     break;
                 default:
-                    logger.Warning($"CoherenceSync_5358ed04715b0f148a60e93c83f08be0 Unhandled command: {command.GetType()}.");
+                    logger.Warning(Coherence.Log.Warning.ToolkitBakedSyncReceiveCommandUnhandled,
+                        $"CoherenceSync_5358ed04715b0f148a60e93c83f08be0 Unhandled command: {command.GetType()}.");
                     break;
             }
         }
@@ -1754,7 +1755,8 @@ namespace Coherence.Generated
                 return components;
             }
     
-            logger.Warning($"Unable to find archetype {archetypeName} in dictionary. Please, bake manually (coherence > Bake)");
+            logger.Warning(Coherence.Log.Warning.ToolkitBakedSyncCreateEntityMissingArchetype,
+                $"Unable to find archetype {archetypeName} in dictionary. Please, bake manually (coherence > Bake)");
             
             return null;
         }
@@ -1771,5 +1773,4 @@ namespace Coherence.Generated
             this.client = client;        
         }
     }
-
 }

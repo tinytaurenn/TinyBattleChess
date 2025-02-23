@@ -40,4 +40,4 @@ MonoBehaviour:
   - {fileID: -1758743643018166929, guid: 691235c47cd532249b762c1bcef3f4a0, type: 3}
   extraSchemas: []
   defaultTransportMode: 0
-  defaultTransportModeMigrated: 0
+  defaultTransportModeMigrated: 1

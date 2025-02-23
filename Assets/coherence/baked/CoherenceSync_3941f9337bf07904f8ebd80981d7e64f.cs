@@ -395,15 +395,15 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("MainSimulator.StartGame", "()", SendCommand__3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752, ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752, MessageTarget.All, _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752_CommandTarget, false);
         }
         
-        private void SendCommand__3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752(MessageTarget target, object[] args)
+        private void SendCommand__3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752();
             
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _3941f9337bf07904f8ebd80981d7e64f_c093c0a7d8994787867fc73cbc178752();
             
@@ -424,17 +424,17 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("MainSimulator.PlayerDeath", "(Coherence.Toolkit.CoherenceSync)", SendCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817, ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817, MessageTarget.All, _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817_CommandTarget, false);
         }
         
-        private void SendCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(MessageTarget target, object[] args)
+        private void SendCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817();
             
             int i = 0;
             command.playerSync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817();
             
@@ -457,15 +457,15 @@ namespace Coherence.Generated
             commandsHandler.AddBakedCommand("MainSimulator.ResetGame", "()", SendCommand__3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9, ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9, MessageTarget.All, _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9_CommandTarget, false);
         }
         
-        private void SendCommand__3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9(MessageTarget target, object[] args)
+        private void SendCommand__3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9(MessageTarget target, ChannelID channelID, object[] args)
         {
             var command = new _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9();
             
         
-            client.SendCommand(command, target, entityId);
+            client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9(MessageTarget target, object[] args)
+        private void ReceiveLocalCommand__3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9(MessageTarget target, ChannelID _, object[] args)
         {
             var command = new _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9();
             
@@ -494,7 +494,8 @@ namespace Coherence.Generated
                     ReceiveCommand__3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9(castedCommand);
                     break;
                 default:
-                    logger.Warning($"CoherenceSync_3941f9337bf07904f8ebd80981d7e64f Unhandled command: {command.GetType()}.");
+                    logger.Warning(Coherence.Log.Warning.ToolkitBakedSyncReceiveCommandUnhandled,
+                        $"CoherenceSync_3941f9337bf07904f8ebd80981d7e64f Unhandled command: {command.GetType()}.");
                     break;
             }
         }
@@ -521,7 +522,8 @@ namespace Coherence.Generated
                 return components;
             }
     
-            logger.Warning($"Unable to find archetype {archetypeName} in dictionary. Please, bake manually (coherence > Bake)");
+            logger.Warning(Coherence.Log.Warning.ToolkitBakedSyncCreateEntityMissingArchetype,
+                $"Unable to find archetype {archetypeName} in dictionary. Please, bake manually (coherence > Bake)");
             
             return null;
         }
@@ -538,5 +540,4 @@ namespace Coherence.Generated
             this.client = client;        
         }
     }
-
 }

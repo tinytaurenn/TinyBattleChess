@@ -2333,7 +2333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784c870e57f1c4b499b118f4e7cdfa81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 500
+  extent: 500
+  extentUpdateThreshold: 0.01
+  distanceUpdateThreshold: 0.01
 --- !u!4 &454001463
 Transform:
   m_ObjectHideFlags: 0
@@ -12057,7 +12059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1285079827946305606, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3103966775795908886, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
       propertyPath: m_LocalPosition.x
