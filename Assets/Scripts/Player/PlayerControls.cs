@@ -129,8 +129,8 @@ namespace PlayerControls
                 m_CameraTransform = m_CameraManager.transform;
             }
             m_MoveValue = moveInput;
-            Vector3 forward = new Vector3(m_CameraTransform.forward.x, 0, m_CameraTransform.forward.z).normalized;
-            Vector3 right2 = new Vector3(m_CameraTransform.right.x, 0, m_CameraTransform.right.z).normalized;
+            Vector3 forward = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+          
             Vector3 right = new Vector3(transform.right.x, 0, transform.right.z).normalized;
 
            

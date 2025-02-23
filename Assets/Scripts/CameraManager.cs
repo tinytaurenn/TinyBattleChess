@@ -83,7 +83,7 @@ public class CameraManager : MonoBehaviour
 
     void ThirdPersoMouseControlCamera()
     {
-        //MouseControlCamera();
+        MouseControlCamera();
         LerpCameraDistance();
 
 

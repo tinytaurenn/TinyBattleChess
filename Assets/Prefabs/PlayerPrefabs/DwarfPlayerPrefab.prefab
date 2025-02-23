@@ -18239,6 +18239,7 @@ MonoBehaviour:
   m_GameID: 0
   m_PlayerState: 0
   m_IntPlayerState: 0
+  m_PlayerWeapons: {fileID: 0}
   m_PlayerLoadout: {fileID: 0}
   m_PlayerModel: {fileID: 8700259401479634791}
   m_PlayerAnimEvents: {fileID: 8102871620425803765}
@@ -18343,6 +18344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 3857080701089809062}
+  m_TwoHanded: 0
   m_LookDirection: {x: 0, y: 0}
   m_WeaponDirection: 0
   m_Parrying: 0
