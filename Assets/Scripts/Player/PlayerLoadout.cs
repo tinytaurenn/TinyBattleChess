@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
 
@@ -609,7 +610,28 @@ public class PlayerLoadout : MonoBehaviour
 
         foreach (var item in toBin)
         {
+            Debug.Log("destroying equipped :" + item.name);
             Destroy(item);
+        }
+        yield return new WaitForSeconds(0.1f);
+        CheckAndDestroyInSocket(m_ChestSocket);
+        CheckAndDestroyInSocket(m_HelmetSocket);
+        CheckAndDestroyInSocket(m_LeftShoulderSocket);
+        CheckAndDestroyInSocket(m_RightShoulderSocket);
+        CheckAndDestroyInSocket(m_PlayerLeftHandSocket);
+        CheckAndDestroyInSocket(m_PlayerRightHandSocket);
+        CheckAndDestroyInSocket(m_PlayerPocket);
+
+    }
+
+    void CheckAndDestroyInSocket(Transform socket)
+    {
+        if (socket.childCount > 0)
+        {
+            foreach (GameObject item in socket)
+            {
+                Destroy(item);
+            }
         }
     }
 

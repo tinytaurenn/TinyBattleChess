@@ -115,10 +115,10 @@ public class TinyPlayer : Entity, IDamageable
     }
     private void Start()
     {
-        RefreshPlayerUI(); 
+        RefreshPlayerUI();
+
     }
     //commands
-
 
 
     public bool CanPlayerUseInventoryItem(bool inAttackReady = false, bool inParry = false)

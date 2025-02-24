@@ -1,15 +1,12 @@
-using Coherence.Cloud;
 using Coherence.Connection;
 using Coherence.Toolkit;
 using PlayerControls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Playables;
-using UnityEngine.UIElements;
+
 
 
 public class MainSimulator : MonoBehaviour
@@ -41,10 +38,9 @@ public class MainSimulator : MonoBehaviour
     //test 
     [Space(10)]
     [Header("Testings")]
-
-
     [SerializeField] GameObject SwordGameObject; 
     GameObject MySword = null;
+
 
     [Space(10)]
     [Header("BattleRound")]
@@ -467,7 +463,8 @@ public class MainSimulator : MonoBehaviour
                 TeleportAllPlayersToLobby(); 
                 break;
             case EPlayState.Shop:
-                TeleportAllPlayersToShop(); 
+                TeleportAllPlayersToShop();
+                CleanAllCleanables(); 
                 m_RoundTime.enabled = true;
                 m_RoundTimer = m_ShopRoundTime;
                 
@@ -566,15 +563,15 @@ public class MainSimulator : MonoBehaviour
         SwitchPlayState(EPlayState.Shop);
     }
 
-    IEnumerator SpamSomething()
+    void CleanAllCleanables()
     {
-        while (true)
+        foreach (ICleanable cleanable in FindObjectsByType(typeof(ICleanable), FindObjectsSortMode.None))
         {
-            yield return new WaitForSeconds(4);
-            GetAllStateSync(1); 
+            cleanable.CleanObject(); 
         }
-        
     }
+
+ 
     #endregion
 
     #endregion
