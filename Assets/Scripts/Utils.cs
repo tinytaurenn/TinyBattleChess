@@ -175,9 +175,19 @@ public static class Utils
         return closestCollider;
     }
 
-  
+    public static Vector3 RotateAround(Vector3 pos, Vector3 targetPos, Vector3 axis, float angle)
+    {
+        Vector3 dir = pos - targetPos;
+        Quaternion rot = Quaternion.AngleAxis(angle, axis);
+        Vector3 newDir = rot * dir;
+        Vector3 myPos = targetPos + newDir;
 
-    
+        return myPos;
+    }
+
+
+
+
 
 
 
