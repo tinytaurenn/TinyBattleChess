@@ -73,6 +73,20 @@ public static class Utils
         return true; 
     }
 
+    public static bool GetSimulatorLocal(out MainSimulator simulator)
+    {
+
+        simulator = ConnectionsHandler.Instance.MainSimulator; 
+
+        if (simulator == null)
+        {
+            Debug.Log("simulator not found");
+            return false;
+        }
+
+        return true;
+    }
+
 
     public static Vector3 VectorTowardsTransform(this UnityEngine.Transform from, Transform to)
     {

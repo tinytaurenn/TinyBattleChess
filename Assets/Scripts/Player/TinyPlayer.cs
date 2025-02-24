@@ -33,7 +33,9 @@ public class TinyPlayer : Entity, IDamageable
     public PlayerLoadout m_PlayerLoadout;
 
     [SerializeField] GameObject m_PlayerModel;
-    [SerializeField] PlayerAnimEvents m_PlayerAnimEvents; 
+    [SerializeField] PlayerAnimEvents m_PlayerAnimEvents;
+    [SerializeField] float m_SyncUpdateTimer = 0f;
+    [SerializeField] float m_SyncUpdateTime = 2f; 
 
     [Space(10)]
     [Header("Player Stats")]
@@ -113,6 +115,8 @@ public class TinyPlayer : Entity, IDamageable
         
         UpdatePlayerState();
     }
+
+    
     private void Start()
     {
         RefreshPlayerUI();
@@ -304,13 +308,21 @@ public class TinyPlayer : Entity, IDamageable
 
         HitStun();
 
-        if(Utils.GetSimulator(out MainSimulator simulator))
+        if (Utils.GetSimulatorLocal(out MainSimulator simulator))
         {
             if (simulator.m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
             {
                 Debug.Log("in lobby, no damage taken");
                 return;
             }
+        }
+
+
+
+        if (m_PlayerState != EPlayerState.Player)
+        {
+            Debug.Log("player is not alive");
+            return;
         }
 
         Debug.Log("simulator not found, game is not hosted");
@@ -547,15 +559,17 @@ public class TinyPlayer : Entity, IDamageable
         m_RagDoll.SpawnRagDoll(); 
 
         SwitchPlayerState(EPlayerState.Spectator);
-      
-        if(Utils.GetSimulatorSync(out CoherenceSync sync))
+
+        if (Utils.GetSimulatorLocal(out MainSimulator simulator))
         {
-            sync.SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
+            simulator.Sync.SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
         }
         else
         {
-            return; 
+            return;
         }
+
+
     }
 
     public override bool GetAttackState(out EWeaponDirection attackDir)

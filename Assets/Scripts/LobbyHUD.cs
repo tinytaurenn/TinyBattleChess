@@ -47,10 +47,11 @@ public class LobbyHUD : MonoBehaviour
         if(ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerState!= TinyPlayer.EPlayerState.Player) return;
 
 
-        if(Utils.GetSimulatorSync(out CoherenceSync sync))
+        if(Utils.GetSimulatorLocal(out MainSimulator simulator))
         {
-            sync.SendCommand<MainSimulator>(nameof(MainSimulator.StartGame), MessageTarget.AuthorityOnly);
+            simulator.Sync.SendCommand<MainSimulator>(nameof(MainSimulator.StartGame), MessageTarget.AuthorityOnly);
         }
+
 
         HideLobbyHUD(); 
     }
@@ -59,9 +60,9 @@ public class LobbyHUD : MonoBehaviour
     {
         if (!m_Sync.HasStateAuthority) return;
 
-        if(Utils.GetSimulatorSync(out CoherenceSync sync))
+        if(Utils.GetSimulatorLocal(out MainSimulator simulator))
         {
-            sync.SendCommand<MainSimulator>(nameof(MainSimulator.ResetGame), MessageTarget.AuthorityOnly);
+            simulator.Sync.SendCommand<MainSimulator>(nameof(MainSimulator.ResetGame), MessageTarget.AuthorityOnly);
         }
         else
         {

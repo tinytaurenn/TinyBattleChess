@@ -419,7 +419,7 @@ public class PlayerLoadout : MonoBehaviour
         if(!m_TinyPlayer.CanPlayerUseInventoryItem()) return;
 
         Debug.Log("use item in slot");
-        m_EquippedItems[ESlot.MainWeapon].UseInventoryItem(); 
+        m_EquippedItems[slot].UseInventoryItem(); 
 
         
     }
@@ -628,9 +628,10 @@ public class PlayerLoadout : MonoBehaviour
     {
         if (socket.childCount > 0)
         {
-            foreach (GameObject item in socket)
+            foreach (object item in socket)
             {
-                Destroy(item);
+                if((GameObject)item != null) Destroy((GameObject)item);
+
             }
         }
     }

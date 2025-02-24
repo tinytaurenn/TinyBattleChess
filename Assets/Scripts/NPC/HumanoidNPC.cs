@@ -293,20 +293,7 @@ public class HumanoidNPC : TinyNPC
     {
         base.EntityDeath();
         Debug.Log("NPC death");
-        //m_PlayerWeapons.Drop();
 
-       // m_RagDoll.SpawnRagDoll();
-
-        //SwitchPlayerState(EPlayerState.Spectator);
-
-
-        //if (Utils.GetSimulatorSync() == null)
-        //{
-        //    Debug.Log("simulator sync not found");
-        //    return;
-        //}
-
-        //Utils.GetSimulatorSync().SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
 
     }
 

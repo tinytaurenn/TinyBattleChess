@@ -19,8 +19,30 @@ public class ConnectionsHandler : MonoBehaviour
 
     GameObject MyPlayer;
     public TinyPlayer LocalTinyPlayer { get; private set; }
+
+    [SerializeField] MainSimulator m_MainSimulator; 
+
+    public MainSimulator MainSimulator
+    {
+        get
+        {
+          if(m_MainSimulator == null)
+            {
+                Debug.Log("MainSimulator is null in connections handler");
+                return null; 
+            }
+            else
+            {
+                return m_MainSimulator;
+            }
+        }
+        private set { m_MainSimulator = value;  }
+    }
     
     public static ConnectionsHandler Instance;
+
+    [SerializeField] float m_SyncUpdateTimer = 0f; 
+    [SerializeField] float m_SyncUpdateTime = 1f;
 
 
 
@@ -70,7 +92,33 @@ public class ConnectionsHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SyncingNetworkElements(); 
+    }
+
+    void SyncingNetworkElements()
+    {
+        m_SyncUpdateTimer += Time.deltaTime;
+        if (m_SyncUpdateTimer < m_SyncUpdateTime)
+        {
+            return;
+        }
+        else
+        {
+            m_SyncUpdateTimer = 0f;
+        }
+
+        if (MainSimulator == null)
+        {
+            if (Utils.GetSimulator(out MainSimulator simulator))
+            {
+                MainSimulator = simulator;
+            }
+            else
+            {
+                Debug.Log("main simulator not found in sync update");
+            }
+        }
+
     }
 
     private void OnDisconnected(CoherenceBridge bridge, ConnectionCloseReason reason)

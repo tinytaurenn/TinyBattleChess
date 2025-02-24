@@ -28,7 +28,8 @@ public abstract class  InventoryItem : MonoBehaviour
 
     public virtual void UseInventoryItem()
     {
-        
+        Debug.Log("using iventory item"); 
+
     }
 
     public virtual void SetupItem()

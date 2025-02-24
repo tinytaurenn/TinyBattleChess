@@ -300,7 +300,7 @@ namespace PlayerControls
                     break;
                 case EControlState.Ghost:
                     m_PlayerMovement.enabled = false;
-                    m_InputActions.Ghost.Enable();
+                    m_InputActions.Ghost.Enable(); 
                     Cursor.visible = false;
 
                     break;

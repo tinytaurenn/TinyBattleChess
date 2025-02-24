@@ -19,6 +19,8 @@ public class MainSimulator : MonoBehaviour
     CoherenceBridge m_CoherenceBridge;
     CoherenceSync m_Sync; 
 
+    public CoherenceSync Sync => m_Sync;
+
     [SerializeField] private List<CoherenceSync> m_PlayerSyncs = new List<CoherenceSync>();
 
     [Space(10)]
@@ -85,7 +87,7 @@ public class MainSimulator : MonoBehaviour
     }
 
 
-#if COHERENCE_SIMULATOR || UNITY_EDITOR // DONT FORGET ONLY WORKS IN EDITOR 
+//#if COHERENCE_SIMULATOR || UNITY_EDITOR // DONT FORGET ONLY WORKS IN EDITOR 
 
     private void Awake()
     {
@@ -576,7 +578,7 @@ public class MainSimulator : MonoBehaviour
 
     #endregion
 
-#endif
+//#endif
 
 
 
