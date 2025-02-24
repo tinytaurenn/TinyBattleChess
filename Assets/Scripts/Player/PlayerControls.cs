@@ -129,9 +129,9 @@ namespace PlayerControls
                 m_CameraTransform = m_CameraManager.transform;
             }
             m_MoveValue = moveInput;
-            Vector3 forward = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+            Vector3 forward = new Vector3(m_CameraTransform.forward.x, 0, m_CameraTransform.forward.z).normalized;
           
-            Vector3 right = new Vector3(transform.right.x, 0, transform.right.z).normalized;
+            Vector3 right = new Vector3(m_CameraTransform.right.x, 0, m_CameraTransform.right.z).normalized;
 
            
             switch (m_ControlState)
@@ -264,6 +264,7 @@ namespace PlayerControls
                     m_PlayerWeapons.m_Parrying = m_InputActions.Player.Parry.IsPressed();
                     m_PlayerWeapons.m_Attacking = m_InputActions.Player.Attack.IsPressed();
                     CameraManager.Instance.MouseDelta = m_InputActions.Player.Look.ReadValue<Vector2>();
+                    m_PlayerMovement.MouseDelta = m_InputActions.Player.Look.ReadValue<Vector2>();
                     break;
                 case EControlState.Ghost:
                     SetMovementValue(m_InputActions.Ghost.Move.ReadValue<Vector2>());
@@ -295,11 +296,11 @@ namespace PlayerControls
             {
                 case EControlState.Player:
                     m_InputActions.Player.Enable();
-                    //m_PlayerGhostMovement.enabled = false;
+                    m_PlayerGhostMovement.enabled = false;
                     Cursor.visible = false;
                     break;
                 case EControlState.Ghost:
-                    //m_PlayerMovement.enabled = false;
+                    m_PlayerMovement.enabled = false;
                     m_InputActions.Ghost.Enable();
                     Cursor.visible = false;
 

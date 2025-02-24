@@ -27,8 +27,8 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] float m_CameraDistance = 10f;
     [SerializeField] float m_CameraUpOffset = 3f;
-    [SerializeField] float m_CameraRotateSpeed = 7f;
     [SerializeField] float m_FallingDownOffSet = 3f;
+    [SerializeField] float m_LastGroundedYPos = 0f;
 
    
 
@@ -83,54 +83,52 @@ public class CameraManager : MonoBehaviour
 
     void ThirdPersoMouseControlCamera()
     {
-        MouseControlCamera();
+        //MouseControlCamera();
+        LookAtPlayer(); 
         LerpCameraDistance();
 
 
     }
 
-    void MouseControlCamera()
+    void LookAtPlayer()
     {
-        float mouseDeltaX = MouseDelta.x;
-        //float mouseDeltaY = m_MouseCamInputRef.action.ReadValue<Vector2>().y; 
-
-        //Debug.Log("mouse delta x is : " + mouseDeltaX); 
-
         Vector3 targetPostion = m_PlayerTransform.position;
-
-
-        transform.RotateAround(targetPostion, Vector3.up, mouseDeltaX * m_CameraRotateSpeed);
-        //transform.RotateAround(targetPostion, transform.right, -mouseDeltaY * m_CameraRotateSpeed);
-
-        Vector3 newPlayerPos = new Vector3(m_PlayerTransform.position.x, transform.position.y, m_PlayerTransform.position.z);
-        Vector3 localTargetOffset2 = m_PlayerTransform.forward * m_TargetOffset.z + m_PlayerTransform.right * m_TargetOffset.x + m_PlayerTransform.up * m_TargetOffset.y;
-
-        Vector3 customForward = (newPlayerPos - transform.position).normalized;
-        Vector3 customRight = Vector3.Cross(Vector3.up, customForward).normalized;
-        
-        Vector3 localTargetOffset = customForward * m_TargetOffset.z + customRight * m_TargetOffset.x + Vector3.up * m_TargetOffset.y;
 
         Vector3 targetLookAtPosition;
         PlayerMovement playerMove = m_PlayerTransform.GetComponent<PlayerMovement>();
-        if (!playerMove.m_Isgrounded ||  playerMove.m_IsFalling)
+        Vector3 newPlayerPos = new Vector3(m_PlayerTransform.position.x, transform.position.y, m_PlayerTransform.position.z);
+        Vector3 customForward = (newPlayerPos - transform.position).normalized;
+        Vector3 customRight = Vector3.Cross(Vector3.up, customForward).normalized;
+
+        Vector3 localTargetOffset = customForward * m_TargetOffset.z + customRight * m_TargetOffset.x + Vector3.up * m_TargetOffset.y;
+        if (!playerMove.m_Isgrounded || playerMove.m_IsFalling)
         {
-            targetLookAtPosition = m_PlayerTransform.position + localTargetOffset + Vector3.down * m_FallingDownOffSet;
+            if(m_LastGroundedYPos < m_PlayerTransform.position.y + m_FallingDownOffSet)
+            {
+                Vector3 lastGroundedPlayerPos = new Vector3(m_PlayerTransform.position.x, m_LastGroundedYPos, m_PlayerTransform.position.z);
+                targetLookAtPosition = lastGroundedPlayerPos + localTargetOffset;
+                
+            }
+            else
+            {
+                targetLookAtPosition = m_PlayerTransform.position + localTargetOffset + Vector3.down * m_FallingDownOffSet;
+            }
+            
         }
         else
         {
-
+            m_LastGroundedYPos = m_PlayerTransform.position.y;
 
             targetLookAtPosition = m_PlayerTransform.position + localTargetOffset;
-            
+
         }
-
-
 
         Quaternion targetRotation = Quaternion.LookRotation(targetLookAtPosition - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, m_RotationSpeed * Time.fixedDeltaTime);
     }
 
-    void LerpCameraDistance()
+
+    void LerpCameraDistance2()
     {
 
         Vector3 targetPostion = m_PlayerTransform.position;
@@ -150,10 +148,24 @@ public class CameraManager : MonoBehaviour
         transform.position = new Vector3(xPositionLerp, yPositionLerp, zPositionLerp);
     }
 
-    internal void LookUpdate(InputAction.CallbackContext context)
+    void LerpCameraDistance()
     {
-        //Debug.Log("LookUpdate " + context.ReadValue<Vector2>().ToString());
-        MouseDelta = context.ReadValue<Vector2>();
+
+        Vector3 targetPostion = m_PlayerTransform.position;
+        Vector3 cameraPos = transform.position;
+        Vector3 direction = m_PlayerTransform.forward; 
+
+        // Normalize the direction vector
+        direction.Normalize();
+
+        Vector3 newPosition = targetPostion - direction * m_CameraDistance;
+        newPosition = newPosition + (Vector3.up * m_CameraUpOffset);
+
+        float xPositionLerp = Mathf.Lerp(transform.position.x, newPosition.x, m_FollowSpeed * Time.fixedDeltaTime);
+        float yPositionLerp = Mathf.Lerp(transform.position.y, newPosition.y, m_UpFollowSpeed * Time.fixedDeltaTime);
+        float zPositionLerp = Mathf.Lerp(transform.position.z, newPosition.z, m_FollowSpeed * Time.fixedDeltaTime);
+
+        transform.position = new Vector3(xPositionLerp, yPositionLerp, zPositionLerp);
     }
 
     public void StopCameraMovement()

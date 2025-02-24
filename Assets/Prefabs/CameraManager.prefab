@@ -151,11 +151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerTransform: {fileID: 0}
-  m_FollowSpeed: 12
-  m_UpFollowSpeed: 6
-  m_RotationSpeed: 6
-  m_TargetOffset: {x: 0, y: 0.5, z: 8}
-  m_CameraDistance: 3.5
-  m_CameraUpOffset: 4
-  m_CameraRotateSpeed: 1
+  m_FollowSpeed: 15
+  m_UpFollowSpeed: 5
+  m_RotationSpeed: 15
+  m_TargetOffset: {x: 0, y: 0.5, z: 10}
+  m_CameraDistance: 3.32
+  m_CameraUpOffset: 3.85
   m_FallingDownOffSet: 3
+  m_LastGroundedYPos: 0

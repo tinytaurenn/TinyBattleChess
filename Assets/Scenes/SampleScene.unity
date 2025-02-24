@@ -10834,24 +10834,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 1936371533}
     m_Modifications:
     - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_UpFollowSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_CameraDistance
-      value: 3.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_CameraUpOffset
-      value: 3.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_TargetOffset.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_PlayerTransform
-      value: 
+      propertyPath: m_FallingDownOffSet
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7551853741299698321, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12059,7 +12043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1285079827946305606, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3103966775795908886, guid: 61db515efe9556c45853cdc384e6813b, type: 3}
       propertyPath: m_LocalPosition.x
