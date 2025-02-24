@@ -1,7 +1,7 @@
 using Coherence.Connection;
 using Coherence.Toolkit;
 using PlayerControls;
-using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,7 +13,7 @@ public class MainSimulator : MonoBehaviour
 {
 
 
-    [SerializeField] GameObject m_PlayerGameObject;
+    [SerializeField] GameObject m_PlayerGameObject; 
     [SerializeField] GameObject m_DummyGameObject;
 
     CoherenceBridge m_CoherenceBridge;
@@ -565,7 +565,7 @@ public class MainSimulator : MonoBehaviour
 
     void CleanAllCleanables()
     {
-        foreach (ICleanable cleanable in FindObjectsByType(typeof(ICleanable), FindObjectsSortMode.None))
+        foreach (ICleanable cleanable in FindObjectsByType(typeof(MonoBehaviour), FindObjectsSortMode.None).OfType<ICleanable>())
         {
             cleanable.CleanObject(); 
         }

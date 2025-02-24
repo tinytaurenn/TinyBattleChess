@@ -227,7 +227,7 @@ public abstract class CharacterMovement : MonoBehaviour
 
     }
 
-    public void StopMovement()
+    public virtual void StopMovement()
     {
         MoveInput = Vector3.zero;
         m_HorizontalVelocity = Vector3.zero;

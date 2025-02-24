@@ -42,31 +42,35 @@ public static class Utils
         }
     }
 
-    public static CoherenceSync GetSimulatorSync()
+    public static bool GetSimulatorSync(out CoherenceSync sync)
     {
         //MainSimulator simulator = FindFirstObjectByType<MainSimulator>(FindObjectsInactive.Exclude);
         MainSimulator simulator = UnityEngine.Object.FindFirstObjectByType<MainSimulator>(UnityEngine.FindObjectsInactive.Exclude);
 
         if (simulator == null)
         {
+            sync = null; 
             Debug.Log("simulator not found");
-            return null;
+            return false;
         }
 
-        return simulator.GetComponent<CoherenceSync>();
+        sync = simulator.GetComponent<CoherenceSync>();
+
+        return true;
     }
 
-    public static MainSimulator GetSimulator()
+    public static bool GetSimulator(out MainSimulator simulator)
     {
-        MainSimulator simulator = UnityEngine.Object.FindFirstObjectByType<MainSimulator>(UnityEngine.FindObjectsInactive.Exclude);
+        
+        simulator = UnityEngine.Object.FindFirstObjectByType<MainSimulator>(UnityEngine.FindObjectsInactive.Exclude);
 
         if (simulator == null)
         {
             Debug.Log("simulator not found");
-            return null;
+            return false;
         }
 
-        return simulator; 
+        return true; 
     }
 
 

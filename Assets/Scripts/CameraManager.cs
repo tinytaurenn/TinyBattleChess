@@ -13,7 +13,6 @@ public class CameraManager : MonoBehaviour
     public Transform m_PlayerTransform;
     //[SerializeField] InputActionReference m_MouseCamInputRef;
     
-    public Vector2 MouseDelta { get; set; }
 
 
     [Space(10)]
@@ -168,10 +167,6 @@ public class CameraManager : MonoBehaviour
         transform.position = new Vector3(xPositionLerp, yPositionLerp, zPositionLerp);
     }
 
-    public void StopCameraMovement()
-    {
-        MouseDelta = Vector2.zero;
-    }
 
     private void OnDrawGizmos()
     {

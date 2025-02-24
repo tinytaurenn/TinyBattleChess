@@ -27,6 +27,8 @@ public class PlayerGhostMovement : MonoBehaviour
     [SerializeField]float  m_Magnitude; 
     [SerializeField]float  m_PreviousMagnitude;
 
+
+    public Vector2 MouseDelta { get; set; }
     void Start()
     {
         
@@ -97,14 +99,19 @@ public class PlayerGhostMovement : MonoBehaviour
         m_PreviousMoveInput = vectorDelta;
         m_PreviousMagnitude = magnitudeDelta;
 
-        m_rigidBody.linearVelocity = m_HorizontalVelocity; 
+        m_rigidBody.linearVelocity = m_HorizontalVelocity;
 
-        if (m_CameraManager != null)
-        {
-            Vector3 cameraForward = new Vector3(m_CameraManager.transform.forward.x, 0, m_CameraManager.transform.forward.z).normalized;
-            Quaternion newRotation = Quaternion.LookRotation(cameraForward * 100f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * m_RotationSpeed);
+        float mouseDeltaX = MouseDelta.x;
 
-        }
+        Quaternion newRotation = Quaternion.Euler(0, mouseDeltaX, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * newRotation, Time.fixedDeltaTime * m_RotationSpeed);
+    }
+
+    public void StopMovement()
+    {
+        MouseDelta = Vector2.zero;
+        MoveInput = Vector3.zero;
+        m_HorizontalVelocity = Vector3.zero;
+        m_rigidBody.linearVelocity = Vector3.zero;
     }
 }

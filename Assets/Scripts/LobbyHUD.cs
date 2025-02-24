@@ -46,10 +46,10 @@ public class LobbyHUD : MonoBehaviour
 
         if(ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerState!= TinyPlayer.EPlayerState.Player) return;
 
-        CoherenceSync mainSimulatorSync = Utils.GetSimulatorSync();
-        if (mainSimulatorSync != null)
+
+        if(Utils.GetSimulatorSync(out CoherenceSync sync))
         {
-            mainSimulatorSync.SendCommand<MainSimulator>(nameof(MainSimulator.StartGame), MessageTarget.AuthorityOnly);
+            sync.SendCommand<MainSimulator>(nameof(MainSimulator.StartGame), MessageTarget.AuthorityOnly);
         }
 
         HideLobbyHUD(); 
@@ -59,16 +59,21 @@ public class LobbyHUD : MonoBehaviour
     {
         if (!m_Sync.HasStateAuthority) return;
 
-        MainSimulator mainSimulator = Utils.GetSimulator();
-
-        if (mainSimulator == null) return; 
+        if(Utils.GetSimulatorSync(out CoherenceSync sync))
+        {
+            sync.SendCommand<MainSimulator>(nameof(MainSimulator.ResetGame), MessageTarget.AuthorityOnly);
+        }
+        else
+        {
+            return; 
+        }
 
         //if (mainSimulator.m_IntGameState == (int)MainSimulator.EGameState.Lobby)
         //{
         //    Debug.Log("Game is in lobby state, cant reset");
         //    return;
         //}
-        mainSimulator.GetComponent<CoherenceSync>().SendCommand<MainSimulator>(nameof(MainSimulator.ResetGame), MessageTarget.AuthorityOnly);
+        
 
         ShowLobbyHUD();
 

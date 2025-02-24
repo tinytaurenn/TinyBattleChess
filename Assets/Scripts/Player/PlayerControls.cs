@@ -263,12 +263,11 @@ namespace PlayerControls
                     m_PlayerWeapons.m_LookDirection = m_InputActions.Player.Look.ReadValue<Vector2>();
                     m_PlayerWeapons.m_Parrying = m_InputActions.Player.Parry.IsPressed();
                     m_PlayerWeapons.m_Attacking = m_InputActions.Player.Attack.IsPressed();
-                    CameraManager.Instance.MouseDelta = m_InputActions.Player.Look.ReadValue<Vector2>();
                     m_PlayerMovement.MouseDelta = m_InputActions.Player.Look.ReadValue<Vector2>();
                     break;
                 case EControlState.Ghost:
                     SetMovementValue(m_InputActions.Ghost.Move.ReadValue<Vector2>());
-                    CameraManager.Instance.MouseDelta = m_InputActions.Ghost.Look.ReadValue<Vector2>();
+                    m_PlayerGhostMovement.MouseDelta = m_InputActions.Ghost.Look.ReadValue<Vector2>();
 
 
 
@@ -307,7 +306,6 @@ namespace PlayerControls
                     break;
                 case EControlState.Selecting:
                     m_InputActions.PowerSelect.Enable();
-                    CameraManager.Instance.StopCameraMovement();
                     m_PlayerMovement.StopMovement();
                     Cursor.visible = true;
                     break;

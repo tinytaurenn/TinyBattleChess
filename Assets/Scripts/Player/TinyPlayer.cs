@@ -304,14 +304,13 @@ public class TinyPlayer : Entity, IDamageable
 
         HitStun();
 
-        if (Utils.GetSimulator() != null)
+        if(Utils.GetSimulator(out MainSimulator simulator))
         {
-            if (Utils.GetSimulator().m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
+            if (simulator.m_IntPlayState != (int)MainSimulator.EPlayState.Fighting)
             {
                 Debug.Log("in lobby, no damage taken");
                 return;
             }
-
         }
 
         Debug.Log("simulator not found, game is not hosted");
@@ -548,16 +547,15 @@ public class TinyPlayer : Entity, IDamageable
         m_RagDoll.SpawnRagDoll(); 
 
         SwitchPlayerState(EPlayerState.Spectator);
-
-        if(Utils.GetSimulatorSync() ==null)
+      
+        if(Utils.GetSimulatorSync(out CoherenceSync sync))
         {
-            Debug.Log("simulator sync not found"); 
-            return;
+            sync.SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
         }
-
-        Utils.GetSimulatorSync().SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
-        
-
+        else
+        {
+            return; 
+        }
     }
 
     public override bool GetAttackState(out EWeaponDirection attackDir)
@@ -620,6 +618,7 @@ public class TinyPlayer : Entity, IDamageable
                 break;
             case 1: //shop 
                 Debug.Log("Shop, stopping PVP ");
+                PlayerGold = 10; 
                 m_PlayerLoadout.UnloadEquippedStuff();
                 LocalUI.Instance.ShowShopRelated(true); 
                 CanUseGold = true;
