@@ -605,6 +605,10 @@ public class TinyPlayer : Entity, IDamageable
             case 1: //shop 
                 Debug.Log("exit Shop ");
                 LocalUI.Instance.ShowShopRelated(false);
+                if(m_PlayerControls.m_ControlState == PlayerControls.PlayerControls.EControlState.Selecting)
+                {
+                    LocalUI.Instance.CloseSelection(); 
+                }
                 CanUseGold = false;
 
                 break;

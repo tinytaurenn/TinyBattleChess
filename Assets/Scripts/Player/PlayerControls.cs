@@ -14,7 +14,7 @@ namespace PlayerControls
             Selecting,
 
         }
-        [SerializeField] EControlState m_ControlState = EControlState.Player;
+        [SerializeField] internal EControlState m_ControlState = EControlState.Player;
 
         InputSystem_Actions m_InputActions;
 

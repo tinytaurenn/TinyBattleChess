@@ -580,6 +580,8 @@ public class PlayerLoadout : MonoBehaviour
     IEnumerator DelayedUnloadEquippedStuff()
     {
 
+        
+
         yield return new WaitForSeconds(0.1f);
 
         List<GameObject> toBin = new List<GameObject>();
@@ -621,6 +623,8 @@ public class PlayerLoadout : MonoBehaviour
         CheckAndDestroyInSocket(m_PlayerLeftHandSocket);
         CheckAndDestroyInSocket(m_PlayerRightHandSocket);
         CheckAndDestroyInSocket(m_PlayerPocket);
+
+        m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
 
     }
 

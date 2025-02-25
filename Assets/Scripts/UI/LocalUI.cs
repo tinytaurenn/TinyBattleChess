@@ -167,6 +167,8 @@ public class LocalUI : MonoBehaviour
         ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.ExitReplaceInventorySlotControls();
     }
 
+
+
     public void OpenSelection(List<SO_Item> Items)
     {
 
