@@ -11159,6 +11159,10 @@ PrefabInstance:
       value: MainSimulator
       objectReference: {fileID: 0}
     - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
+      propertyPath: m_GameMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
       propertyPath: m_LobbyPos
       value: 
       objectReference: {fileID: 2003280241}

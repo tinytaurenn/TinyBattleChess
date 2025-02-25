@@ -1,8 +1,6 @@
 using Coherence.Toolkit;
-using System;
-using System.Xml;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace PlayerControls
 {

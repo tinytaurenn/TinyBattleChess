@@ -1,21 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.UI;
 
-[Serializable]
-public class ESlotToWeaponDictionary : SerializableDictionary<PlayerLoadout.ESlot, BasicWeapon> { }
 
-[Serializable]
-public class ESlotToInventoryItemDictionary : SerializableDictionary<PlayerLoadout.ESlot, InventoryItem> { }
-
-[Serializable]
-
-public class EArmorTypeToArmorDictionary : SerializableDictionary<PlayerLoadout.ESlot, Armor> { }
-
-// new 
 [Serializable]
 public class ESlotToGrabbableDictionary : SerializableDictionary<PlayerLoadout.ESlot, Grabbable> { }
 
@@ -147,34 +135,18 @@ public class PlayerLoadout : MonoBehaviour
 
             BasicWeapon weapon = (BasicWeapon)item;
 
-            EquipWeapon(weapon, out bool rightHand);
+            EquipWeapon(weapon, out ESlot hand);
 
-            if (rightHand)
-            {
+            m_EquippedItems[hand].m_Rigidbody.isKinematic = true;
+            m_EquippedItems[hand].m_Collider.enabled = false;
+            m_EquippedItems[hand].transform.SetParent(m_PlayerRightHandSocket, false);
 
+            m_EquippedItems[hand].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            //m_SelectedSlot = ESlot.MainWeapon;
+            //SelectSlot(ESlot.MainWeapon);
 
-                m_EquippedItems[ESlot.MainWeapon].m_Rigidbody.isKinematic = true;
-                m_EquippedItems[ESlot.MainWeapon].m_Collider.enabled = false;
-                m_EquippedItems[ESlot.MainWeapon].transform.SetParent(m_PlayerRightHandSocket, false);
+            LocalUI.Instance.ChangeSlotIcon(ESlot.MainWeapon, m_EquippedItems[hand].SO_Item.ItemIcon);
 
-                m_EquippedItems[ESlot.MainWeapon].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                //m_SelectedSlot = ESlot.MainWeapon;
-                //SelectSlot(ESlot.MainWeapon);
-                
-                LocalUI.Instance.ChangeSlotIcon(ESlot.MainWeapon, m_EquippedItems[ESlot.MainWeapon].SO_Item.ItemIcon);
-
-            }
-            else
-            {
-                m_EquippedItems[ESlot.SecondaryWeapon].m_Rigidbody.isKinematic = true;
-                m_EquippedItems[ESlot.SecondaryWeapon].m_Collider.enabled = false;
-                m_EquippedItems[ESlot.SecondaryWeapon].transform.SetParent(m_PlayerLeftHandSocket, false);
-
-                m_EquippedItems[ESlot.SecondaryWeapon].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-
-                LocalUI.Instance.ChangeSlotIcon(ESlot.SecondaryWeapon, m_EquippedItems[ESlot.SecondaryWeapon].SO_Item.ItemIcon);
-            }
-            
 
 
             return;
@@ -241,29 +213,29 @@ public class PlayerLoadout : MonoBehaviour
 
     public void DropWeapons(float throwForce = 5f)
     {
-        if(GetGrabbableFromSlot((ESlot)ESlot.MainWeapon)!= null)
+        if(m_EquippedItems[ESlot.MainWeapon] != null)
         {
-            DropWeapon(GetGrabbableFromSlot(ESlot.MainWeapon), throwForce);
+            DropWeapon(m_EquippedItems[ESlot.MainWeapon], throwForce);
             ClearOnSlot(ESlot.MainWeapon);
         }
-        if (GetGrabbableFromSlot((ESlot)ESlot.SecondaryWeapon) != null)
+        if (m_EquippedItems[ESlot.SecondaryWeapon] != null)
         {
-            DropWeapon(GetGrabbableFromSlot(ESlot.SecondaryWeapon), throwForce);
+            DropWeapon(m_EquippedItems[ESlot.SecondaryWeapon], throwForce);
             ClearOnSlot(ESlot.SecondaryWeapon);
         }
     }
     void DropItemOnSlot(int slot, float throwForce = 5f)
     {
-        if (GetGrabbableFromSlot((ESlot)slot) == null) return;
+        if (m_EquippedItems[(ESlot)slot] == null) return;
 
 
-        if (GetGrabbableFromSlot((ESlot)slot) is BasicWeapon)
+        if (m_EquippedItems[(ESlot)slot] is BasicWeapon)
         {
-            DropWeapon(GetGrabbableFromSlot((ESlot)slot), throwForce);
+            DropWeapon(m_EquippedItems[(ESlot)slot], throwForce);
         }
         else
         {
-            DropItem(GetGrabbableFromSlot((ESlot)slot));
+            DropItem(m_EquippedItems[(ESlot)slot]);
         }
         ClearOnSlot((ESlot)slot);
 
@@ -272,15 +244,15 @@ public class PlayerLoadout : MonoBehaviour
     void DropItemOnSlot(ESlot slot, float throwForce = 5f)
     {
         Debug.Log("drop item on slot");
-        if (GetGrabbableFromSlot(slot) == null) return;
+        if (m_EquippedItems[slot] == null) return;
 
-        if (GetGrabbableFromSlot(slot) is BasicWeapon)
+        if (m_EquippedItems[slot] is BasicWeapon)
         {
-            DropWeapon(GetGrabbableFromSlot(slot), throwForce);
+            DropWeapon(m_EquippedItems[slot], throwForce);
         }
         else
         {
-            DropItem(GetGrabbableFromSlot(slot)); 
+            DropItem(m_EquippedItems[slot]); 
         }
 
 
@@ -403,9 +375,9 @@ public class PlayerLoadout : MonoBehaviour
         CloseItemSelection();
     }
 
-    void EquipWeapon(BasicWeapon weapon, out bool rightHand)
+    void EquipWeapon(BasicWeapon weapon, out ESlot hand)
     {
-        rightHand = true;
+        hand = ESlot.MainWeapon;
 
         
         
@@ -428,7 +400,7 @@ public class PlayerLoadout : MonoBehaviour
             if ((m_EquippedItems[ESlot.MainWeapon] != null) &&
                 m_EquippedItems[ESlot.MainWeapon].GetComponent<BasicWeapon>().WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_EquippedItems[ESlot.MainWeapon] = null;
             m_EquippedItems[ESlot.SecondaryWeapon] = weapon;
-            rightHand = false;
+            hand = ESlot.SecondaryWeapon;
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
             
         }
@@ -491,13 +463,7 @@ public class PlayerLoadout : MonoBehaviour
     }
     public Grabbable GetGrabbableInHand()
     {
-        return GetGrabbableFromSlot(ESlot.MainWeapon);    
-    }
-
-    Grabbable GetGrabbableFromSlot(ESlot slot)
-    {
-      
-        return m_EquippedItems[slot];
+        return m_EquippedItems[ESlot.MainWeapon];    
     }
 
     void ClearOnSlot(ESlot slot)
@@ -626,24 +592,22 @@ public class PlayerLoadout : MonoBehaviour
         Debug.Log("show Equipped ui");
         Dictionary<ESlot, SO_Item> items = new Dictionary<ESlot, SO_Item>
         {
-            {ESlot.MainWeapon, GetEquippedSO_Weapon(ESlot.MainWeapon)},
-            {ESlot.SecondaryWeapon,GetEquippedSO_Weapon(ESlot.SecondaryWeapon)},
+            {ESlot.MainWeapon, GetEquippedSO_Item(ESlot.MainWeapon)},
+            {ESlot.SecondaryWeapon,GetEquippedSO_Item(ESlot.SecondaryWeapon)},
             {ESlot.Slot_1, GetEquippedSO_Item(ESlot.Slot_1)},
             {ESlot.Slot_2, GetEquippedSO_Item(ESlot.Slot_2)},
             {ESlot.Slot_3, GetEquippedSO_Item(ESlot.Slot_3)},
             {ESlot.Slot_4, GetEquippedSO_Item(ESlot.Slot_4)},
-            {ESlot.Helmet, GetEquippedSO_Armor(ESlot.Helmet)},
-            {ESlot.Chest, GetEquippedSO_Armor(ESlot.Chest)},
-            {ESlot.Shoulders, GetEquippedSO_Armor(ESlot.Shoulders)},
+            {ESlot.Helmet, GetEquippedSO_Item(ESlot.Helmet)},
+            {ESlot.Chest, GetEquippedSO_Item(ESlot.Chest)},
+            {ESlot.Shoulders, GetEquippedSO_Item(ESlot.Shoulders)},
         };
 
         LocalUI.Instance.RefreshInventoryUI(items,m_InventoryType); 
     }
 
     SO_Item GetEquippedSO_Item(ESlot slot) => m_EquippedItems[slot] == null ? null : m_EquippedItems[slot].SO_Item;
-    SO_Item GetEquippedSO_Weapon(ESlot slot) => m_EquippedItems[slot] == null ? null : m_EquippedItems[slot].SO_Item;
-
-    SO_Item GetEquippedSO_Armor(ESlot slot) => m_EquippedItems[slot] == null ? null : m_EquippedItems[slot].SO_Item;
+ 
 
 
     public void EquipLoadout()
@@ -703,64 +667,64 @@ public class PlayerLoadout : MonoBehaviour
     IEnumerator DelayedUnloadEquippedStuff()
     {
 
-        
 
         yield return new WaitForSeconds(0.1f);
 
+
+        for (int i = 0; i < m_EquippedItems.Count; i++)
+        {
+            UnloadCheckEquippedItemOnSlot((ESlot)i); 
+        }
+
+
+        SwitchStuffUI(EInventoryType.Loadout);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Transform[] sockets = {m_ChestSocket, m_HelmetSocket, m_LeftShoulderSocket, m_RightShoulderSocket, m_PlayerLeftHandSocket, m_PlayerRightHandSocket, m_PlayerPocket }; 
+        CheckAndDestroyInSockets(sockets);
+
+        m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
+
+    }
+    void UnloadCheckEquippedItemOnSlot(ESlot slot)
+    {
+
         List<GameObject> toBin = new List<GameObject>();
 
-        if (m_EquippedItems[ESlot.MainWeapon] != null) { toBin.Add(m_EquippedItems[ESlot.MainWeapon].gameObject); m_EquippedItems[ESlot.MainWeapon] = null; }
-        if (m_EquippedItems[ESlot.SecondaryWeapon] != null) { toBin.Add(m_EquippedItems[ESlot.SecondaryWeapon].gameObject); m_EquippedItems[ESlot.SecondaryWeapon] = null; }
-        if (m_EquippedItems[ESlot.Slot_1] != null) { toBin.Add(m_EquippedItems[ESlot.Slot_1].gameObject); m_EquippedItems[ESlot.Slot_1] = null; }
-        if (m_EquippedItems[ESlot.Slot_2] != null) { toBin.Add(m_EquippedItems[ESlot.Slot_2].gameObject); m_EquippedItems[ESlot.Slot_2] = null; }
-        if (m_EquippedItems[ESlot.Slot_3] != null) { toBin.Add(m_EquippedItems[ESlot.Slot_3].gameObject); m_EquippedItems[ESlot.Slot_3] = null; }
-        if (m_EquippedItems[ESlot.Slot_4] != null) { toBin.Add(m_EquippedItems[ESlot.Slot_4].gameObject); m_EquippedItems[ESlot.Slot_4] = null; }
-        if (m_EquippedItems[ESlot.Helmet] != null) { toBin.Add(m_EquippedItems[ESlot.Helmet].gameObject); m_EquippedItems[ESlot.Helmet] = null; }
-        if (m_EquippedItems[ESlot.Chest] != null) { toBin.Add(m_EquippedItems[ESlot.Chest].gameObject); m_EquippedItems[ESlot.Chest] = null; }
-        if (m_EquippedItems[ESlot.Shoulders] != null)
-        {
+        if (m_EquippedItems[slot] != null) {
 
-            if (m_EquippedItems[ESlot.Shoulders].TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
+            if (m_EquippedItems[slot].TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
             {
                 toBin.Add(shoulders.InstantiatedLeftShoulder.gameObject);
                 toBin.Add(shoulders.InstantiatedRightShoulder.gameObject);
             }
 
-            toBin.Add(m_EquippedItems[ESlot.Shoulders].gameObject);
-            m_EquippedItems[ESlot.Shoulders] = null;
-        }
-        SwitchStuffUI(EInventoryType.Loadout);
+            toBin.Add(m_EquippedItems[slot].gameObject);
+            m_EquippedItems[slot] = null;
 
-        yield return new WaitForSeconds(0.1f);
-
-        foreach (var item in toBin)
-        {
-            Debug.Log("destroying equipped :" + item.name);
-            Destroy(item);
-        }
-        yield return new WaitForSeconds(0.1f);
-        CheckAndDestroyInSocket(m_ChestSocket);
-        CheckAndDestroyInSocket(m_HelmetSocket);
-        CheckAndDestroyInSocket(m_LeftShoulderSocket);
-        CheckAndDestroyInSocket(m_RightShoulderSocket);
-        CheckAndDestroyInSocket(m_PlayerLeftHandSocket);
-        CheckAndDestroyInSocket(m_PlayerRightHandSocket);
-        CheckAndDestroyInSocket(m_PlayerPocket);
-
-        m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
-
-    }
-
-    void CheckAndDestroyInSocket(Transform socket)
-    {
-        if (socket.childCount > 0)
-        {
-            foreach (object item in socket)
+            foreach (var item in toBin)
             {
-                if((GameObject)item != null) Destroy((GameObject)item);
-
+                Debug.Log("destroying equipped :" + item.name);
+                Destroy(item);
             }
         }
+    }
+
+    void CheckAndDestroyInSockets(Transform[] sockets)
+    {
+        foreach (Transform socket in sockets)
+        {
+            if (socket.childCount > 0)
+            {
+                foreach (object item in socket)
+                {
+                    if ((GameObject)item != null) Destroy((GameObject)item);
+
+                }
+            }
+        }
+        
     }
 
     public void ClearLoadout()
