@@ -26,7 +26,7 @@ public class ConnectionsHandler : MonoBehaviour
     {
         get
         {
-          if(m_MainSimulator == null)
+          if(m_MainSimulator == null || !m_MainSimulator.gameObject.activeInHierarchy)
             {
                 Debug.Log("MainSimulator is null in connections handler");
                 return null; 

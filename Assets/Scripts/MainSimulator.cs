@@ -63,10 +63,10 @@ public class MainSimulator : MonoBehaviour
     }
 
     [Space(10)]
-    [Header("Turns and States")]
+    [Header("Turns and States")] 
 
-    internal EPlayState m_PlayState = EPlayState.Lobby;
-    internal EGameState m_GameState = EGameState.Lobby;
+    [SerializeField] internal EPlayState m_PlayState = EPlayState.Lobby;
+    [SerializeField] internal EGameState m_GameState = EGameState.Lobby;
 
     [Sync][OnValueSynced(nameof(PlayStateValueSync))] public int m_IntPlayState = 0;
     [Sync][OnValueSynced(nameof(GameStateValueSync))] public int m_IntGameState = 0;
@@ -117,6 +117,8 @@ public class MainSimulator : MonoBehaviour
         m_CoherenceBridge.ClientConnections.OnSynced -= OnSynced; 
         m_CoherenceBridge.ClientConnections.OnCreated -= OnCreated;
         m_CoherenceBridge.ClientConnections.OnDestroyed -= OnDestroyed;
+
+        Debug.Log("main simulator OnDisable");
     }
 
     private void OnLiveQuerySynced(CoherenceBridge arg0)

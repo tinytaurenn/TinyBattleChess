@@ -117,9 +117,9 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 2
+  m_AntialiasingQuality: 1
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
+    m_Quality: 2
     m_FrameInfluence: 0.1
     m_JitterScale: 1
     m_MipBias: 0
@@ -157,5 +157,5 @@ MonoBehaviour:
   m_TargetOffset: {x: 0, y: 0.5, z: 10}
   m_CameraDistance: 3.32
   m_CameraUpOffset: 3.85
-  m_FallingDownOffSet: 3
+  m_FallingDownOffSet: 5
   m_LastGroundedYPos: 0

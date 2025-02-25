@@ -211,8 +211,8 @@ namespace PlayerControls
 
         public void ExitSelectionPanel(InputAction.CallbackContext context)
         {
-            //
-            LocalUI.Instance.CloseSelection();
+            //not sure using it 
+            //LocalUI.Instance.CloseSelection();
             
         }
 

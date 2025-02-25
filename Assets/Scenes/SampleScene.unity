@@ -94,7 +94,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: b04a6baf182574644b78ce9bf0c91e68, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1754,7 +1754,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
+  m_SoftShadowQuality: 2
 --- !u!1001 &415546383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5653,6 +5653,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1933475586}
     m_Modifications:
+    - target: {fileID: 957084932295647951, guid: 28fbed09d7fea464681134cd159332ad, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2937394067836446206, guid: 28fbed09d7fea464681134cd159332ad, type: 3}
       propertyPath: m_Name
       value: Round_GreatSword
@@ -9622,6 +9626,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest
       objectReference: {fileID: 0}
+    - target: {fileID: 3801848833029945301, guid: e003e7e78253f3a4cabb5210419c119d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6334879928717948188, guid: e003e7e78253f3a4cabb5210419c119d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.66
@@ -9660,6 +9668,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6334879928717948188, guid: e003e7e78253f3a4cabb5210419c119d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070952950781288371, guid: e003e7e78253f3a4cabb5210419c119d, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070952950781288371, guid: e003e7e78253f3a4cabb5210419c119d, type: 3}
+      propertyPath: m_StaticShadowCaster
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10273,10 +10289,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1936371533}
     m_Modifications:
-    - target: {fileID: 734749161811543002, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
-      propertyPath: m_FallingDownOffSet
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7551853741299698321, guid: 5be12576a506ba7419cfec0391c31acf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.2668743
