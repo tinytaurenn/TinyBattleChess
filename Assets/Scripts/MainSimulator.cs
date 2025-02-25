@@ -35,6 +35,7 @@ public class MainSimulator : MonoBehaviour
 
     [SerializeField] Transform m_ShopSpawnPositions;
     [SerializeField] Transform m_BattleSpawnPositions;
+    [SerializeField] Transform m_BigArenaBattleSpawnPositions;
     [SerializeField] Transform m_DummiesSpawnPositions;
     [SerializeField] Transform m_LobbyPos; 
     //test 
@@ -47,6 +48,12 @@ public class MainSimulator : MonoBehaviour
     [Space(10)]
     [Header("BattleRound")]
     BattleRoundManager m_BattleRoundManager;
+
+    public enum EGameMode
+    {
+        AutoChess, 
+        DeathMatch
+    }
 
     public enum EPlayState
     {
@@ -61,9 +68,14 @@ public class MainSimulator : MonoBehaviour
         Lobby,
         InGame
     }
+    [Space(10)]
+    [Header("GameMode")]
+    [SerializeField] EGameMode m_GameMode = EGameMode.AutoChess;
+
 
     [Space(10)]
     [Header("Turns and States")] 
+
 
     [SerializeField] internal EPlayState m_PlayState = EPlayState.Lobby;
     [SerializeField] internal EGameState m_GameState = EGameState.Lobby;
@@ -310,18 +322,23 @@ public class MainSimulator : MonoBehaviour
 
     void TeleportPlayersToBattle()
     {
-        if (m_ShopSpawnPositions.childCount == 0 || m_ShopSpawnPositions == null)
-        {
-            Debug.Log("No spawn positions for Battle");
-            return;
-        }
 
         Debug.Log("Sending players to Battle");
 
         for (int i = 0; i < m_PlayerSyncs.Count; i++)
         {
+            switch (m_GameMode)
+            {
+                case EGameMode.AutoChess:
+                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BattleSpawnPositions.GetChild(i).position);
+                    break;
+                case EGameMode.DeathMatch:
+                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BigArenaBattleSpawnPositions.GetChild(i).position);
+                    break;
+                default:
+                    break;
+            }
             
-            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BattleSpawnPositions.GetChild(i).position);
         }
     }
 
@@ -370,8 +387,18 @@ public class MainSimulator : MonoBehaviour
 
     public void PlayerDeath(CoherenceSync playerSync)
     {
- 
-        m_BattleRoundManager.PlayerDeath(playerSync);
+        switch (m_GameMode)
+        {
+            case EGameMode.AutoChess:
+                m_BattleRoundManager.PlayerDeath(playerSync);
+                break;
+            case EGameMode.DeathMatch:
+                break;
+            default:
+                break;
+        }
+
+       
     }
 
     void ShopRoundTimeUpdate()
@@ -402,10 +429,26 @@ public class MainSimulator : MonoBehaviour
     void OnEnterGameState()
     {
         Debug.Log("Entering game state" + m_GameState.ToString());
+        switch (m_GameMode)
+        {
+            case EGameMode.AutoChess:
+                OnEnterAutoChessGameState();
+                break;
+            case EGameMode.DeathMatch:
+                OnEnterDeathMatchGameState();
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    void OnEnterAutoChessGameState()
+    {
         switch (m_GameState)
         {
             case EGameState.Lobby:
-                SwitchPlayState(EPlayState.Lobby); 
+                SwitchPlayState(EPlayState.Lobby);
 
                 break;
             case EGameState.InGame:
@@ -414,6 +457,25 @@ public class MainSimulator : MonoBehaviour
                 TeleportAllPlayersToShop();
 
                 SwitchPlayState(EPlayState.Shop);
+                break;
+            default:
+                break;
+        }
+    }
+
+    void OnEnterDeathMatchGameState()
+    {
+        switch (m_GameState)
+        {
+            case EGameState.Lobby:
+                SwitchPlayState(EPlayState.Lobby);
+
+                break;
+            case EGameState.InGame:
+                RefreshPlayerList();
+
+
+                SwitchPlayState(EPlayState.Fighting);
                 break;
             default:
                 break;
@@ -460,26 +522,71 @@ public class MainSimulator : MonoBehaviour
     void OnEnterPlayState()
     {
         Debug.Log("Entering play state" + m_PlayState.ToString());
+        switch (m_GameMode)
+        {
+            case EGameMode.AutoChess:
+                OnEnterAutoChessPlayState(); 
+                break;
+            case EGameMode.DeathMatch:
+                OnEnterDeathMatchPlayState();
+                break;
+            default:
+                break;
+        }
+    }
+    void OnEnterDeathMatchPlayState()
+    {
+        Debug.Log("Entering play state" + m_PlayState.ToString());
         switch (m_PlayState)
         {
             case EPlayState.Lobby:
-                ReviveAllPlayers(); 
-                TeleportAllPlayersToLobby(); 
+                RefreshPlayerList();
+                ReviveAllPlayers();
+                TeleportAllPlayersToLobby();
                 break;
             case EPlayState.Shop:
                 TeleportAllPlayersToShop();
-                CleanAllCleanables(); 
+                CleanAllCleanables();
                 m_RoundTime.enabled = true;
                 m_RoundTimer = m_ShopRoundTime;
-                
+
                 break;
             case EPlayState.Fighting:
                 TeleportPlayersToBattle();
-                m_BattleRoundManager.StartBattleRound(GetAllStateSync(0)); 
-                
+
                 break;
             case EPlayState.End:
-                Debug.Log("end of the game"); 
+                Debug.Log("end of the game");
+                StartCoroutine(DelayedReset(5));
+                break;
+            default:
+                break;
+        }
+    }
+
+    void OnEnterAutoChessPlayState()
+    {
+        Debug.Log("Entering play state" + m_PlayState.ToString());
+        switch (m_PlayState)
+        {
+            case EPlayState.Lobby:
+                ReviveAllPlayers();
+                TeleportAllPlayersToLobby();
+                break;
+            case EPlayState.Shop:
+                TeleportAllPlayersToShop();
+                CleanAllCleanables();
+                m_RoundTime.enabled = true;
+                m_RoundTimer = m_ShopRoundTime;
+
+                break;
+            case EPlayState.Fighting:
+                TeleportPlayersToBattle();
+                m_BattleRoundManager.StartBattleRound(GetAllStateSync(0));
+
+                break;
+            case EPlayState.End:
+                Debug.Log("end of the game");
                 StartCoroutine(DelayedReset(5));
                 break;
             default:
@@ -489,15 +596,48 @@ public class MainSimulator : MonoBehaviour
 
     void OnExitPlayState()
     {
+        switch (m_GameMode)
+        {
+            case EGameMode.AutoChess:
+                OnExitAutoChessPlayState();
+                break;
+            case EGameMode.DeathMatch:
+                OnExitDeathMatchPlayState();
+                break;
+            default:
+                break;
+        }
+    }
+    void OnExitDeathMatchPlayState()
+    {
         switch (m_PlayState)
         {
-            case EPlayState.Lobby: 
+            case EPlayState.Lobby:
+                break;
+            case EPlayState.Shop:
+                break;
+            case EPlayState.Fighting:
+
+
+                break;
+            case EPlayState.End:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void OnExitAutoChessPlayState()
+    {
+        switch (m_PlayState)
+        {
+            case EPlayState.Lobby:
                 break;
             case EPlayState.Shop:
                 m_RoundTime.enabled = false;
                 break;
             case EPlayState.Fighting:
-                
+
 
                 break;
             case EPlayState.End:

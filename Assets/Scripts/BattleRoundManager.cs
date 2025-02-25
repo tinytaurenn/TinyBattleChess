@@ -2,6 +2,7 @@ using Coherence.Toolkit;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 public class BattleRoundManager : MonoBehaviour
@@ -50,6 +51,7 @@ public class BattleRoundManager : MonoBehaviour
 
     public void PlayerDeath(CoherenceSync playerSync)
     {
+       
         m_PlayersInBattle.Remove(playerSync.GetComponent<TinyPlayer>());
 
         Debug.Log("index of dead player :" + playerSync.GetComponent<TinyPlayer>().BattleIndex);

@@ -1,40 +1,29 @@
 using Coherence.Toolkit;
 using UnityEngine;
 
-public abstract class Armor : MonoBehaviour
+public abstract class Armor : Grabbable
 {
-    protected CoherenceSync m_Sync;
 
-    public SO_Item SO_Item
-    {
-        get { return m_SO_Item; }
-        
-        set { m_SO_Item = value; }
-    }
 
-    [SerializeField] SO_Item m_SO_Item;
 
     [Space(10)]
     [Header("Armor infos")]
     [SerializeField] protected SO_Armor.EArmorType m_ArmorType;
 
-    [SerializeField]protected  int m_ArmorValue = 3;
+    [SerializeField]protected  int m_ArmorValue = 3; 
 
     public abstract SO_Armor.EArmorPlace ArmorPlace { get;}
 
-    protected virtual void Awake()
+
+    protected override void Start()
     {
-        m_Sync = GetComponent<CoherenceSync>();         
-    }
-    protected virtual void Start()
-    {
-        
+        base.Start();
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 
     protected virtual int CalculateDamageWithArmor(int baseDamage)

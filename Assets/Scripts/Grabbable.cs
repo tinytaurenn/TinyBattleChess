@@ -2,6 +2,7 @@ using Coherence;
 using Coherence.Connection;
 using Coherence.Toolkit;
 using System;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public abstract class Grabbable : Usable
@@ -45,17 +46,17 @@ public abstract class Grabbable : Usable
 
     }
 
-    private void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
+    protected virtual void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
     {
-        Debug.Log("Grabbable disconnected");
+        //Debug.Log("Grabbable disconnected");
         if(m_Sync.CoherenceBridge != null) m_Sync.CoherenceBridge.onDisconnected.RemoveListener(OnDisconnected);
         if(this.gameObject != null) Destroy(gameObject);
 
     }
 
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
     }
     protected override void OnEnable()
     {
@@ -81,6 +82,7 @@ public abstract class Grabbable : Usable
     }
     private void OnAuthorityRequestRejected(AuthorityType arg0)
     {
+
         OnGrabValidate?.Invoke(false);
     }
     private void OnStateRemote()
@@ -90,9 +92,11 @@ public abstract class Grabbable : Usable
 
     private void OnStateAuthority()
     {
+        Debug.Log("grabbable OnStateAuthority");
         if (IsNPCHeld) return; 
         if(m_GrabRequested)
         {
+            Debug.Log("grabbable grab requested");
             m_GrabRequested = false;
             DoGrab();
 
@@ -109,13 +113,14 @@ public abstract class Grabbable : Usable
 
     private bool OnAuthorityRequested(ClientID requesterID, AuthorityType authorityType, CoherenceSync sync)
     {
+        Debug.Log("auth requested, sending : " + !m_IsHeld);
         return !m_IsHeld; 
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 
     public override void TryUse()
@@ -129,7 +134,8 @@ public abstract class Grabbable : Usable
         else
         {
            m_GrabRequested = true;
-           m_Sync.RequestAuthority(AuthorityType.Full); 
+           m_Sync.RequestAuthority(AuthorityType.Full);
+            Debug.Log("Requesting auth");
 
 
         }
@@ -139,6 +145,14 @@ public abstract class Grabbable : Usable
     {
         m_IsHeld = true;
         OnGrabValidate?.Invoke(true);
+        m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other,false);
+
+    }
+
+    [Command]
+    public void EnableComponent(bool enable)
+    {
+        this.enabled = enable;
 
     }
 
@@ -150,6 +164,7 @@ public abstract class Grabbable : Usable
 
     public virtual void Release()
     {
-        m_IsHeld = false; 
+        m_IsHeld = false;
+        m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other, true);
     }
 }

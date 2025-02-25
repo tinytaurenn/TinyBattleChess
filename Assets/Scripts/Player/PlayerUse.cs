@@ -94,18 +94,13 @@ namespace PlayerControls
 
         private void OnGrabValidate(bool validated)
         {
+            Debug.Log("grabbable grab validate"); 
             m_Grabbable.OnGrabValidate -= OnGrabValidate;
 
             if (validated)
             {
-               
 
-                if (m_Usable.TryGetComponent<IWeapon>(out IWeapon weapon))
-                {
-                    Debug.Log("validate Equipping weapon");
-                    m_PlayerWeapons.EquipWeapon(m_Grabbable);
-                    m_ItemInUse = true;
-                }
+                m_TinyPlayer.m_PlayerLoadout.EquipGrabbableItem(m_Grabbable);
             } else
             {
 

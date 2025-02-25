@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 579f4a509fd2f994fa391c0c78ea3f11, type: 3}
-  m_Name: MainSimulator
+  m_Name: MainSimulator 1
   m_EditorClassIdentifier: 
   id: 3941f9337bf07904f8ebd80981d7e64f
-  selfId: a15d4ac5f37c7be429eec29e56fcdca0
+  selfId: 51e50d93c0f0c33429773aa9310fc3d3
   editorTarget: {fileID: 3290010422142779883, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
   includeInSchema: 1
   objectProvider:
-    rid: 5431316462921056980
+    rid: 4705202262804267029
   objectInstantiator:
-    rid: 5431316462921056981
+    rid: 4705202262804267030
   references:
     version: 2
     RefIds:
-    - rid: 5431316462921056980
+    - rid: 4705202262804267029
       type: {class: DirectReferenceProvider, ns: Coherence.Toolkit, asm: Coherence.Toolkit}
       data:
         prefab: {fileID: 3290010422142779883, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
-    - rid: 5431316462921056981
+    - rid: 4705202262804267030
       type: {class: DefaultInstantiator, ns: Coherence.Toolkit, asm: Coherence.Toolkit}
       data: 

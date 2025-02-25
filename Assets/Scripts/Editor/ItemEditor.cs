@@ -100,6 +100,8 @@ public class ItemEditor : EditorWindow
         coherenceSync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
         coherenceSync.authorityTransferType = CoherenceSync.AuthorityTransferType.Request;
 
+        
+
         UsableItem.AddComponent<CoherenceNode>(); 
 
         AudioSource audioSource = UsableItem.AddComponent<AudioSource>();

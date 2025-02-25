@@ -1,30 +1,25 @@
 using UnityEngine;
 
-public abstract class  InventoryItem : MonoBehaviour
+public abstract class  InventoryItem : Grabbable
 {
-    public SO_Item SO_Item
-    {
-        get { return m_SO_Item; } private set { m_SO_Item = value; }
-    }
 
-    [SerializeField] SO_Item m_SO_Item;
 
     [SerializeField] protected Renderer m_Renderer; 
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
-        
+        base.Awake(); 
     }
-    protected virtual void Start()
+    protected override void Start()
     {
-        
+        base.Start();
     }
 
-    // Update is called once per frame
-    protected virtual void Update() 
+    protected override void Update()
     {
-        
+        base.Update(); 
     }
+
 
     public virtual void UseInventoryItem()
     {

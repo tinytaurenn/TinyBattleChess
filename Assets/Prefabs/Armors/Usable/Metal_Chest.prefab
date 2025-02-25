@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da84548369800984894ef81435c9edc1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -20.151382
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da84548369800984894ef81435c9edc1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da84548369800984894ef81435c9edc1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -13.298719
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da84548369800984894ef81435c9edc1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Metal_Chest
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: da84548369800984894ef81435c9edc1, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -81,6 +85,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da84548369800984894ef81435c9edc1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5153324027185580596}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da84548369800984894ef81435c9edc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3206994536959658864}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: da84548369800984894ef81435c9edc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7591037996061170254}
   m_SourcePrefab: {fileID: 100100000, guid: da84548369800984894ef81435c9edc1, type: 3}
 --- !u!33 &1867739754881481849 stripped
 MeshFilter:
@@ -105,6 +115,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SO_Item: {fileID: 11400000, guid: 36dce61b370678a499b444e929fd775e, type: 2}
+  m_IsHeld: 0
+  m_IsNPCHeld: 0
+  m_GrabRequested: 0
+  m_Rigidbody: {fileID: 0}
+  m_Collider: {fileID: 0}
   m_ArmorType: 3
   m_ArmorValue: 6
 --- !u!114 &893983495769378730
@@ -158,6 +173,10 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 5153324027185580596}
       lodStepsActive: 1
+    - component: {fileID: 3206994536959658864}
+      lodStepsActive: 1
+    - component: {fileID: 7591037996061170254}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 1
   RigidbodyUpdateMode: 0
@@ -177,7 +196,7 @@ MonoBehaviour:
     Assembly-CSharp
   approveAuthorityTransferRequests: 1
   simulationType: 0
-  authorityTransferType: 0
+  authorityTransferType: 1
   orphanedBehavior: 0
   lifetimeType: 0
   uniquenessType: 0
@@ -190,6 +209,11 @@ MonoBehaviour:
   - rid: 5785725432779506535
   - rid: 5785725432779506537
   - rid: 5785725432779506538
+  - rid: 4705202262804267409
+  - rid: 4705202262804267410
+  - rid: 4705202263538270901
+  - rid: 4705202263538270903
+  - rid: 4705202265946587461
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -204,8 +228,7 @@ MonoBehaviour:
   assetVersion: 
   usingReflection: 0
   coherenceTag: 
-  componentActions:
-  - rid: 5785725440326370066
+  componentActions: []
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -213,6 +236,228 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 4705202262804267409
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202262804267411
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 988f93baebfe4d5e9566aeeb0120e389
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 5843287501086471510}
+        coherenceSync: {fileID: 893983495769378730}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202262804267410
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202262804267412
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: a62dbcc6ca6643f28ffeb92e3c0b7f46
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 5843287501086471510}
+        coherenceSync: {fileID: 893983495769378730}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202262804267411
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: m_IsHeld
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: Chest_Armor, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202262804267412
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: IsNPCHeld
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: Chest_Armor, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202263538270901
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202263538270902
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 3e1461d49f9d42d78b0fe11a94c706aa
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 3206994536959658864}
+        coherenceSync: {fileID: 893983495769378730}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202263538270902
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: enabled
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.BoxCollider, UnityEngine.PhysicsModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202263538270903
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202263538270904
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 0e36ceae8dbd4a2e95648760ad1fca2e
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 7591037996061170254}
+        coherenceSync: {fileID: 893983495769378730}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202263538270904
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: isKinematic
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Rigidbody, UnityEngine.PhysicsModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202265946587461
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202265946587462
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 4986cfec4cc84eb1bfabd72178c7e14c
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 5843287501086471510}
+        coherenceSync: {fileID: 893983495769378730}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202265946587462
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: EnableComponent
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Boolean, mscorlib
+        ownerType:
+          assemblyQualifiedName: Chest_Armor, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
     - rid: 5785725432779506361
       type: {class: PositionBinding, ns: Coherence.Toolkit.Bindings.TransformBindings, asm: Coherence.Toolkit}
       data:
@@ -438,10 +683,6 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 5785725440326370066
-      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
-      data:
-        component: {fileID: 5843287501086471510}
 --- !u!114 &5153324027185580596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +697,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: 
   pathDirtyCounter: 0
+--- !u!65 &3206994536959658864
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670494187592001894}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.009521049, y: 0.0073906505, z: 0.008144713}
+  m_Center: {x: 0, y: -0.00009620387, z: -0.00005601253}
+--- !u!54 &7591037996061170254
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670494187592001894}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &3333878667567363036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da84548369800984894ef81435c9edc1, type: 3}

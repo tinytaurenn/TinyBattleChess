@@ -66,7 +66,7 @@ public static class Utils
 
         if (simulator == null)
         {
-            Debug.Log("simulator not found");
+            //Debug.Log("simulator not found");
             return false;
         }
 

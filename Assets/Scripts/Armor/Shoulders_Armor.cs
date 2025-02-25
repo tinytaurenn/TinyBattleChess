@@ -10,6 +10,9 @@ public class Shoulders_Armor : Armor
     [SerializeField] GameObject m_InstantiatedLeftShoulder; 
     [SerializeField] GameObject m_InstantiatedRightShoulder;
 
+    [SerializeField] Renderer m_LeftShoulderVisual;
+    [SerializeField] Renderer m_RightShoulderVisual; 
+
     public GameObject LeftShoulder => m_LeftShoulder;
     public GameObject RightShoulder => m_RightShoulder;
 
@@ -27,5 +30,12 @@ public class Shoulders_Armor : Armor
     protected override void Update()
     {
         base.Update();
+    }
+
+    public void ShowVisuals(bool show)
+    {
+        m_LeftShoulderVisual.enabled = show;
+        m_RightShoulderVisual.enabled = show;
+
     }
 }

@@ -227,6 +227,7 @@ MonoBehaviour:
   - rid: 9113002315945345093
   - rid: 9113002337526088037
   - rid: 4705202078184636630
+  - rid: 4705202265946587457
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -292,6 +293,48 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202265946587457
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202265946587458
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 9bf6305f1f3b46c7b70f03febe05f8e0
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 1180113770390813386}
+        coherenceSync: {fileID: 2004167909013043257}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202265946587458
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: EnableComponent
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Boolean, mscorlib
+        ownerType:
+          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
     - rid: 9113002268945547857
@@ -716,6 +759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SO_Item: {fileID: 11400000, guid: 8e5e1e94d30c8514d96fd1548f8ce79b, type: 2}
   m_IsHeld: 0
+  m_IsNPCHeld: 0
   m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}

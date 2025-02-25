@@ -34,8 +34,6 @@ public class TinyPlayer : Entity, IDamageable
 
     [SerializeField] GameObject m_PlayerModel;
     [SerializeField] PlayerAnimEvents m_PlayerAnimEvents;
-    [SerializeField] float m_SyncUpdateTimer = 0f;
-    [SerializeField] float m_SyncUpdateTime = 2f; 
 
     [Space(10)]
     [Header("Player Stats")]

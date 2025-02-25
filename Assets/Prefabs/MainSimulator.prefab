@@ -72,7 +72,7 @@ MonoBehaviour:
   OnInputSimulatorConnected:
     m_PersistentCalls:
       m_Calls: []
-  coherenceSyncConfig: {fileID: 11400000, guid: a15d4ac5f37c7be429eec29e56fcdca0, type: 2}
+  coherenceSyncConfig: {fileID: 11400000, guid: 51e50d93c0f0c33429773aa9310fc3d3, type: 2}
   archetype:
     lodLevels:
     - distance: 0
@@ -585,9 +585,13 @@ MonoBehaviour:
   m_ShopRoundTime: 20
   m_ShopSpawnPositions: {fileID: 0}
   m_BattleSpawnPositions: {fileID: 0}
+  m_BigArenaBattleSpawnPositions: {fileID: 0}
   m_DummiesSpawnPositions: {fileID: 0}
   m_LobbyPos: {fileID: 0}
   SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_GameMode: 1
+  m_PlayState: 0
+  m_GameState: 0
   m_IntPlayState: 0
   m_IntGameState: 0
   m_TurnNumber: 1

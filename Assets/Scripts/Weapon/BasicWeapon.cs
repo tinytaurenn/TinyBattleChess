@@ -68,20 +68,22 @@ public class BasicWeapon : Grabbable, IWeapon
     internal Vector3 WeaponRotationOffset => m_WeaponParameters.RotationOffset;
 
 
+
+
     protected override void Awake()
     {
         base.Awake();
         m_AudioSource = GetComponent<AudioSource>();    
     }
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update(); 
     }
 
     public void SetupWeapon(Collider damageCollider, FWeaponParameters weaponParameters)
@@ -137,11 +139,14 @@ public class BasicWeapon : Grabbable, IWeapon
 
     }
 
-    
-
 
 private void OnTriggerEnter(Collider other)
     {
+        if(m_Sync == null || !m_Sync.HasStateAuthority)
+        {
+            return; 
+        }
+
         if (HitList.Contains(other)) return; 
 
         HitList.Add(other);

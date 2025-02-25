@@ -272,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SO_Item: {fileID: 11400000, guid: d5b3598698790874bb2a0b67468977c5, type: 2}
   m_IsHeld: 0
+  m_IsNPCHeld: 0
   m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
@@ -507,6 +508,7 @@ MonoBehaviour:
   - rid: 5785724889091801197
   - rid: 5785724889091801198
   - rid: 4705202078184636626
+  - rid: 4705202265946587449
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -572,6 +574,48 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202265946587449
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202265946587450
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 32be48b0c7d3495f9a9e4c762e63b625
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 97645489704987816}
+        coherenceSync: {fileID: 2599363250466214494}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202265946587450
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: EnableComponent
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Boolean, mscorlib
+        ownerType:
+          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
     - rid: 5785724889091801094

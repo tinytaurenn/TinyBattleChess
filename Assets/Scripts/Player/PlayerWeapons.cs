@@ -340,15 +340,10 @@ public class PlayerWeapons : MonoBehaviour
     #endregion
 
     #region EquipAndDrop
-    public void EquipWeapon(Grabbable weapon)
+    public void EquipGrabbable(Grabbable grabbable)
     {
-        
-        if(weapon.TryGetComponent<BasicWeapon>(out BasicWeapon basicWeapon))
-        {
-            
-            m_PlayerLoadout.EquipGrabbableItem(weapon); 
-            
-        }
+
+        m_PlayerLoadout.EquipGrabbableItem(grabbable);
 
     }
 

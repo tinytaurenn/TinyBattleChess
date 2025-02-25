@@ -83,6 +83,7 @@ public class PlayerLoadout : MonoBehaviour
     [SerializeField] internal Transform m_PlayerLeftHandSocket;
     [SerializeField] internal Transform m_PlayerRightHandSocket;
     [SerializeField] internal Transform m_PlayerPocket;
+    [SerializeField] internal Transform m_DropSocket;
     [Header("Player Armor sockets")]
     [SerializeField] internal Transform m_HelmetSocket;
     [SerializeField] internal Transform m_ChestSocket;
@@ -142,7 +143,7 @@ public class PlayerLoadout : MonoBehaviour
     {
 
 
-        if (item.GetType() == typeof(BasicWeapon))
+        if (item is BasicWeapon)
         {
 
             BasicWeapon weapon = (BasicWeapon)item;
@@ -179,8 +180,47 @@ public class PlayerLoadout : MonoBehaviour
 
             return;
         }
+        else if (item is Armor)
+        {
+            Debug.Log("equip armor of type armor "); 
+            Armor armor = (Armor)item;
+            EquipArmor(armor,out ESlot slot, out Transform socket);
+            if(armor is Shoulders_Armor)
+            {
+                Shoulders_Armor shoulders = (Shoulders_Armor)armor;
 
-        
+                EquipShoulders(shoulders);
+
+                shoulders.ShowVisuals(false);
+
+
+            }
+            m_EquippedArmor[slot].m_Rigidbody.isKinematic = true;
+            m_EquippedArmor[slot].m_Collider.enabled = false;
+            m_EquippedArmor[slot].transform.SetParent(socket, false);
+            m_EquippedArmor[slot].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+
+
+            LocalUI.Instance.ChangeSlotIcon(slot, m_EquippedArmor[slot].SO_Item.ItemIcon);
+
+        }
+        else if (item is InventoryItem)
+        {
+            Debug.Log("equip armor of type invetory item ");
+            EquipInventoryItem((InventoryItem)item, out ESlot slot);
+
+            m_EquippedItems[slot].m_Rigidbody.isKinematic = true;
+            m_EquippedItems[slot].m_Collider.enabled = false;
+            m_EquippedItems[slot].transform.SetParent(m_PlayerPocket, false);
+            m_EquippedItems[slot].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            LocalUI.Instance.ChangeSlotIcon(slot, m_EquippedItems[slot].SO_Item.ItemIcon);
+
+        }
+
+
+
     }
 
     public void DropItemInHand(float throwForce = 0f)
@@ -204,12 +244,12 @@ public class PlayerLoadout : MonoBehaviour
     {
         if(GetGrabbableFromSlot((ESlot)ESlot.MainWeapon)!= null)
         {
-            DropItem(GetGrabbableFromSlot(ESlot.MainWeapon), throwForce);
+            DropWeapon(GetGrabbableFromSlot(ESlot.MainWeapon), throwForce);
             ClearOnSlot(ESlot.MainWeapon);
         }
         if (GetGrabbableFromSlot((ESlot)ESlot.SecondaryWeapon) != null)
         {
-            DropItem(GetGrabbableFromSlot(ESlot.SecondaryWeapon), throwForce);
+            DropWeapon(GetGrabbableFromSlot(ESlot.SecondaryWeapon), throwForce);
             ClearOnSlot(ESlot.SecondaryWeapon);
         }
     }
@@ -218,7 +258,14 @@ public class PlayerLoadout : MonoBehaviour
         if (GetGrabbableFromSlot((ESlot)slot) == null) return;
 
 
-        DropItem(GetGrabbableFromSlot((ESlot)slot), throwForce);
+        if (GetGrabbableFromSlot((ESlot)slot) is BasicWeapon)
+        {
+            DropWeapon(GetGrabbableFromSlot((ESlot)slot), throwForce);
+        }
+        else
+        {
+            DropItem(GetGrabbableFromSlot((ESlot)slot));
+        }
         ClearOnSlot((ESlot)slot);
 
     }
@@ -228,12 +275,21 @@ public class PlayerLoadout : MonoBehaviour
         Debug.Log("drop item on slot");
         if (GetGrabbableFromSlot(slot) == null) return;
 
-       
-        DropItem(GetGrabbableFromSlot(slot), throwForce); 
+        if (GetGrabbableFromSlot(slot) is BasicWeapon)
+        {
+            DropWeapon(GetGrabbableFromSlot(slot), throwForce);
+        }
+        else
+        {
+            DropItem(GetGrabbableFromSlot(slot)); 
+        }
+
+
+
         ClearOnSlot(slot);
     }
 
-    void DropItem(Grabbable item, float throwForce = 5f)
+    void DropWeapon(Grabbable item, float throwForce = 5f)
     {
         Debug.Log("dropping item"); 
         item.transform.SetParent(null, true);
@@ -241,6 +297,18 @@ public class PlayerLoadout : MonoBehaviour
         item.m_Rigidbody.AddForce(throwForce * transform.forward, ForceMode.VelocityChange);
         item.m_Rigidbody.AddTorque(-transform.right * 1f, ForceMode.VelocityChange);
         item.Release(); 
+        item.m_Collider.enabled = true;
+    }
+
+    void DropItem(Grabbable item)
+    {
+        Debug.Log("dropping item");
+        item.transform.SetParent(null, true);
+        item.transform.position = m_DropSocket.position;    
+        item.m_Rigidbody.isKinematic = false;
+        item.m_Rigidbody.AddForce(transform.forward, ForceMode.VelocityChange);
+        item.m_Rigidbody.AddTorque(-transform.right * 1f, ForceMode.VelocityChange);
+        item.Release();
         item.m_Collider.enabled = true;
     }
 
@@ -288,7 +356,7 @@ public class PlayerLoadout : MonoBehaviour
         //find place and put in slot
         Debug.Log("equip inventory item in loadout");
 
-        if(TryFindEmptySlot(out ESlot slot))
+        if(TryFindEmptyLoadoutSlot(out ESlot slot))
         {
 
             if (slot == ESlot.Slot_1) { m_Slot_1 = item; }
@@ -376,6 +444,52 @@ public class PlayerLoadout : MonoBehaviour
 
 
     }
+
+    void EquipArmor(Armor armor, out ESlot slot, out Transform socket)
+    {
+        slot = ESlot.Helmet; 
+        socket = null;
+
+       
+       if (armor is Head_Armor)
+        {
+            slot = ESlot.Helmet;
+            if (m_EquippedArmor[slot] != null) DropItemOnSlot(slot);
+            m_EquippedArmor[ESlot.Helmet] = armor;
+            socket = m_HelmetSocket;
+        }
+        else if (armor is Chest_Armor)
+        {
+            slot = ESlot.Chest;
+            if (m_EquippedArmor[slot] != null) DropItemOnSlot(slot);
+            m_EquippedArmor[ESlot.Chest] = armor;
+            socket = m_ChestSocket;
+        }
+        else if( armor is Shoulders_Armor)
+        {
+            Debug.Log("equipping shoulders"); 
+            slot= ESlot.Shoulders;
+            if (m_EquippedArmor[slot] != null)
+            {
+                m_EquippedArmor[slot].GetComponent<Shoulders_Armor>().ShowVisuals(true);
+                DropItemOnSlot(slot);
+
+            }
+            m_EquippedArmor[ESlot.Shoulders] = armor;
+            socket = m_LeftShoulderSocket;
+        }
+
+    }
+
+    void EquipInventoryItem(InventoryItem item, out ESlot slot)
+    {
+        if (TryFindEmptyEquippedSlot(out slot))
+        {
+            m_EquippedItems[slot] = item;
+
+        }
+
+    }
     public Grabbable GetGrabbableInHand()
     {
         return GetGrabbableFromSlot(ESlot.MainWeapon);    
@@ -384,7 +498,31 @@ public class PlayerLoadout : MonoBehaviour
     Grabbable GetGrabbableFromSlot(ESlot slot)
     {
         
-        return m_EquippedWeapons[slot];
+        switch (slot)
+        {
+            case ESlot.MainWeapon:
+                return m_EquippedWeapons[slot];
+            case ESlot.SecondaryWeapon:
+                return m_EquippedWeapons[slot];
+            case ESlot.Slot_1:
+                return m_EquippedItems[slot];
+            case ESlot.Slot_2:
+                return m_EquippedItems[slot];
+            case ESlot.Slot_3:
+                return m_EquippedItems[slot];
+            case ESlot.Slot_4:
+                return m_EquippedItems[slot];
+            case ESlot.Helmet:
+                return m_EquippedArmor[slot];
+            case ESlot.Chest:
+                return m_EquippedArmor[slot];
+            case ESlot.Shoulders:
+                return m_EquippedArmor[slot];
+            case ESlot.count:
+            default:
+                break;
+        }
+        return m_EquippedItems[slot];
     }
 
     void ClearOnSlot(ESlot slot)
@@ -424,18 +562,7 @@ public class PlayerLoadout : MonoBehaviour
         
     }
 
-    ESlot FindFirstEmptySlot()
-    {
-        
-        if(m_Slot_1 == null) return ESlot.Slot_1;
-        if (m_Slot_2 == null) return ESlot.Slot_2;
-        if (m_Slot_3 == null) return ESlot.Slot_3;
-        if (m_Slot_4 == null) return ESlot.Slot_4;
-
-
-        return ESlot.Slot_1;
-    }
-    bool TryFindEmptySlot(out ESlot slot)
+    bool TryFindEmptyLoadoutSlot(out ESlot slot)
     {
         
         
@@ -446,6 +573,19 @@ public class PlayerLoadout : MonoBehaviour
 
         slot = 0; 
         return false; 
+    }
+
+    bool TryFindEmptyEquippedSlot(out ESlot slot)
+    {
+
+
+        if (m_EquippedItems[ESlot.Slot_1] == null) { slot = ESlot.Slot_1; return true; }
+        if (m_EquippedItems[ESlot.Slot_2] == null) { slot = ESlot.Slot_2; return true; }
+        if (m_EquippedItems[ESlot.Slot_3] == null) { slot = ESlot.Slot_3; return true; }
+        if (m_EquippedItems[ESlot.Slot_4] == null) { slot = ESlot.Slot_4; return true; }
+
+        slot = ESlot.Slot_1;
+        return false;
     }
 
     void RefreshStuffUI()

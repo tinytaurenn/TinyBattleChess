@@ -28,7 +28,7 @@ public class ConnectionsHandler : MonoBehaviour
         {
           if(m_MainSimulator == null || !m_MainSimulator.gameObject.activeInHierarchy)
             {
-                Debug.Log("MainSimulator is null in connections handler");
+                //Debug.Log("MainSimulator is null in connections handler");
                 return null; 
             }
             else
@@ -115,7 +115,7 @@ public class ConnectionsHandler : MonoBehaviour
             }
             else
             {
-                Debug.Log("main simulator not found in sync update");
+                //Debug.Log("main simulator not found in sync update");
             }
         }
 
