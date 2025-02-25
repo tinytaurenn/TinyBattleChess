@@ -6,6 +6,8 @@ using UnityEngine;
 
 [Serializable]
 public class ESlotToGrabbableDictionary : SerializableDictionary<PlayerLoadout.ESlot, Grabbable> { }
+[Serializable]
+public class EslotToSoItemDictionary : SerializableDictionary<PlayerLoadout.ESlot, SO_Item> { }
 
 public class PlayerLoadout : MonoBehaviour
 {
@@ -35,20 +37,8 @@ public class PlayerLoadout : MonoBehaviour
  
     [Header("Loadout Items")]
     [Space(5)]
-    [Header("Weapons")]
-    public SO_Weapon m_MainWeapon; 
-    public SO_Weapon m_SecondaryWeapon;
-    [Space(5)]
-    [Header("Items")]
-    public SO_Item m_Slot_1; 
-    public SO_Item m_Slot_2;
-    public SO_Item m_Slot_3;
-    public SO_Item m_Slot_4;
-    [Space(5)]
-    [Header("Armor")]
-    public SO_Armor m_Helmet;
-    public SO_Armor m_Chest;
-    public SO_Armor m_Shoulders;
+    [SerializeField]
+    public EslotToSoItemDictionary m_LoadoutItems = new EslotToSoItemDictionary();
     [Space(5)]
     [SerializeField] SO_Item m_StandByItem;
 
@@ -62,6 +52,8 @@ public class PlayerLoadout : MonoBehaviour
 
     [SerializeField]
     public ESlotToGrabbableDictionary m_EquippedItems = new ESlotToGrabbableDictionary();
+
+    
 
 
 
@@ -96,6 +88,18 @@ public class PlayerLoadout : MonoBehaviour
         m_EquippedItems.Add(ESlot.Shoulders, null);
         //
         //SelectSlot(m_SelectedSlot);
+
+        //
+        m_LoadoutItems.Add(ESlot.MainWeapon, null);
+        m_LoadoutItems.Add(ESlot.SecondaryWeapon, null);
+        m_LoadoutItems.Add(ESlot.Slot_1, null);
+        m_LoadoutItems.Add(ESlot.Slot_2, null);
+        m_LoadoutItems.Add(ESlot.Slot_3, null);
+        m_LoadoutItems.Add(ESlot.Slot_4, null);
+        m_LoadoutItems.Add(ESlot.Helmet, null);
+        m_LoadoutItems.Add(ESlot.Chest, null);
+        m_LoadoutItems.Add(ESlot.Shoulders, null);
+
     }
 
     public void EquipItemInLoadout(SO_Item item)
@@ -288,34 +292,35 @@ public class PlayerLoadout : MonoBehaviour
 
         if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
-            m_MainWeapon = weapon;
-            m_SecondaryWeapon = null;
+            m_LoadoutItems[ESlot.MainWeapon] = weapon;
+            m_LoadoutItems[ESlot.SecondaryWeapon] = null;
 
         }
         else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
         {
-            m_MainWeapon = weapon;
+            m_LoadoutItems[ESlot.MainWeapon] = weapon;
         }
         else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
         {
-            if (m_MainWeapon!=null && m_MainWeapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_MainWeapon = null; 
-            m_SecondaryWeapon = weapon; 
+            if (m_LoadoutItems[ESlot.MainWeapon] != null && ((SO_Weapon)m_LoadoutItems[ESlot.MainWeapon]).WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_LoadoutItems[ESlot.MainWeapon] = null;
+            m_LoadoutItems[ESlot.SecondaryWeapon] = weapon; 
         }
 
     }
 
     public void EquipArmorInLoadout(SO_Armor armor)
     {
+
         switch (armor.ArmorPLace)
         {
             case SO_Armor.EArmorPlace.Helmet:
-                m_Helmet = armor;
+                m_LoadoutItems[ESlot.Helmet] = armor;
                 break;
             case SO_Armor.EArmorPlace.Chest:
-                m_Chest = armor;
+                m_LoadoutItems[ESlot.Chest] = armor;
                 break;
             case SO_Armor.EArmorPlace.Shoulders:
-                m_Shoulders = armor;
+                m_LoadoutItems[ESlot.Shoulders] = armor;
                 break;
             default:
                 break;
@@ -329,11 +334,7 @@ public class PlayerLoadout : MonoBehaviour
 
         if(TryFindEmptyLoadoutSlot(out ESlot slot))
         {
-
-            if (slot == ESlot.Slot_1) { m_Slot_1 = item; }
-            else if (slot == ESlot.Slot_2) { m_Slot_2 = item; }
-            else if (slot == ESlot.Slot_3) { m_Slot_3 = item; }
-            else if (slot == ESlot.Slot_4) { m_Slot_4 = item;  }
+            m_LoadoutItems[slot] = item;
 
             CloseItemSelection();
 
@@ -354,23 +355,9 @@ public class PlayerLoadout : MonoBehaviour
     public void ReplaceInventorySlotLoadout(int slot)
     {
         Debug.Log("replace inventory slot");
-        switch (slot)
-        {
-            case 0:
-                m_Slot_1 = m_StandByItem;
-                break;
-            case 1:
-                m_Slot_2 = m_StandByItem;
-                break;
-            case 2:
-                m_Slot_3 = m_StandByItem;
-                break;
-            case 3:
-                m_Slot_4 = m_StandByItem;
-                break;
-            default:
-                break;
-        }
+
+        m_LoadoutItems[(ESlot)slot] = m_StandByItem;
+      
 
         CloseItemSelection();
     }
@@ -515,10 +502,10 @@ public class PlayerLoadout : MonoBehaviour
     {
         
         
-        if (m_Slot_1 == null) {slot = ESlot.Slot_1; return true; }
-        if (m_Slot_2 == null) { slot = ESlot.Slot_2; return true; }
-        if (m_Slot_3 == null) { slot = ESlot.Slot_3; return true; }
-        if (m_Slot_4 == null) { slot = ESlot.Slot_4; return true; }
+        if (m_LoadoutItems[ESlot.Slot_1] == null) {slot = ESlot.Slot_1; return true; }
+        if (m_LoadoutItems[ESlot.Slot_2] == null) { slot = ESlot.Slot_2; return true; }
+        if (m_LoadoutItems[ESlot.Slot_3] == null) { slot = ESlot.Slot_3; return true; }
+        if (m_LoadoutItems[ESlot.Slot_4] == null) { slot = ESlot.Slot_4; return true; }
 
         slot = 0; 
         return false; 
@@ -571,21 +558,8 @@ public class PlayerLoadout : MonoBehaviour
     void ShowLoadoutUI()
     {
         Debug.Log("show loadout ui"); 
-        Dictionary<ESlot, SO_Item> items = new Dictionary<ESlot, SO_Item>
-        {
-            {ESlot.MainWeapon, m_MainWeapon},
-            {ESlot.SecondaryWeapon, m_SecondaryWeapon},
-            {ESlot.Slot_1, m_Slot_1},
-            {ESlot.Slot_2, m_Slot_2},
-            {ESlot.Slot_3, m_Slot_3},
-            {ESlot.Slot_4, m_Slot_4},
-            {ESlot.Helmet, m_Helmet},
-            {ESlot.Chest, m_Chest},
-            {ESlot.Shoulders, m_Shoulders},
 
-        };
-
-        LocalUI.Instance.RefreshInventoryUI(items, m_InventoryType);
+        LocalUI.Instance.RefreshInventoryUI(m_LoadoutItems, m_InventoryType);
     }
     void ShowEquippedUI()
     {
@@ -616,32 +590,60 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
-    IEnumerator DelayedEquipLoadout()
+    void EquipLoadoutSlot(ESlot slot)
     {
-        yield return new WaitForSeconds(0.1f);
-        //yield return new WaitUntil(() => );
-        
-        //weapons
-        if (m_MainWeapon != null) m_EquippedItems[ESlot.MainWeapon] = Instantiate(m_MainWeapon.Usable_GameObject, m_PlayerRightHandSocket).GetComponent<BasicWeapon>();
-        if (m_SecondaryWeapon != null) m_EquippedItems[ESlot.SecondaryWeapon] = Instantiate(m_SecondaryWeapon.Usable_GameObject, m_PlayerLeftHandSocket).GetComponent<BasicWeapon>();
-        //inventory
-        if (m_Slot_1 != null) m_EquippedItems[ESlot.Slot_1] = Instantiate(m_Slot_1.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
-        if (m_Slot_2 != null) m_EquippedItems[ESlot.Slot_2] = Instantiate(m_Slot_2.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
-        if (m_Slot_3 != null) m_EquippedItems[ESlot.Slot_3] = Instantiate(m_Slot_3.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
-        if (m_Slot_4 != null) m_EquippedItems[ESlot.Slot_4] = Instantiate(m_Slot_4.Usable_GameObject, m_PlayerPocket).GetComponent<InventoryItem>();
-        //armors
-        if (m_Helmet != null) m_EquippedItems[ESlot.Helmet] = Instantiate(m_Helmet.Usable_GameObject, m_HelmetSocket).GetComponent<Armor>();
-        if (m_Chest != null) m_EquippedItems[ESlot.Chest] = Instantiate(m_Chest.Usable_GameObject, m_ChestSocket).GetComponent<Armor>();
-        if (m_Shoulders != null)
+        Transform socket = m_PlayerPocket;
+        switch (slot)
         {
-            m_EquippedItems[ESlot.Shoulders] = Instantiate(m_Shoulders.Usable_GameObject, m_LeftShoulderSocket).GetComponent<Armor>();
-            if (m_EquippedItems[ESlot.Shoulders].TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
+            case ESlot.MainWeapon:
+                socket = m_PlayerRightHandSocket;
+                break;
+            case ESlot.SecondaryWeapon:
+                socket = m_PlayerLeftHandSocket;
+                break;
+            case ESlot.Slot_1:
+                break;
+            case ESlot.Slot_2:
+                break;
+            case ESlot.Slot_3:
+                break;
+            case ESlot.Slot_4:
+                break;
+            case ESlot.Helmet:
+                socket = m_HelmetSocket;
+                break;
+            case ESlot.Chest:
+                socket = m_ChestSocket;
+                break;
+            case ESlot.Shoulders:
+                socket = m_LeftShoulderSocket;
+                break;
+            case ESlot.count:
+                break;
+            default:
+                break;
+        }
+        if (m_LoadoutItems[slot] != null)
+        {
+            m_EquippedItems[slot] = Instantiate(m_LoadoutItems[slot].Usable_GameObject, socket).GetComponent<Grabbable>();
+            if (m_EquippedItems[slot].TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
             {
                 EquipShoulders(shoulders);
 
             }
         }
+            
+    }
 
+    IEnumerator DelayedEquipLoadout()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //yield return new WaitUntil(() => );
+
+        for (int i = 0; i < m_LoadoutItems.Count; i++)
+        {
+            EquipLoadoutSlot((ESlot)i);
+        }
 
 
         SwitchStuffUI(EInventoryType.Equipped);
@@ -729,15 +731,12 @@ public class PlayerLoadout : MonoBehaviour
 
     public void ClearLoadout()
     {
-        m_MainWeapon = null;
-        m_SecondaryWeapon = null;
-        m_Slot_1 = null;
-        m_Slot_2 = null;
-        m_Slot_3 = null;
-        m_Slot_4 = null;
-        m_Helmet = null;
-        m_Chest = null;
-        m_Shoulders = null;
+
+        for (int i = 0; i < m_LoadoutItems.Count; i++)
+        {
+            m_LoadoutItems[(ESlot)i] = null; 
+        }
+
 
         RefreshStuffUI();
 
