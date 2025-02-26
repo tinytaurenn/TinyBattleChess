@@ -9,6 +9,8 @@ public class ESlotToGrabbableDictionary : SerializableDictionary<PlayerLoadout.E
 [Serializable]
 public class EslotToSoItemDictionary : SerializableDictionary<PlayerLoadout.ESlot, SO_Item> { }
 
+public class EslotToSocket : SerializableDictionary<PlayerLoadout.ESlot, Transform> { }
+
 public class PlayerLoadout : MonoBehaviour
 {
     
@@ -69,26 +71,23 @@ public class PlayerLoadout : MonoBehaviour
     [SerializeField] internal Transform m_LeftShoulderSocket;
     [SerializeField] internal Transform m_RightShoulderSocket;
 
+    
+    EslotToSocket m_EslotToSocket = new EslotToSocket();
 
     private void Awake()
     {
 
         m_TinyPlayer = GetComponent<TinyPlayer>();
-
+        //
         m_EquippedItems.Add(ESlot.MainWeapon, null);
         m_EquippedItems.Add(ESlot.SecondaryWeapon, null);
-       
         m_EquippedItems.Add(ESlot.Slot_1, null); 
         m_EquippedItems.Add(ESlot.Slot_2, null);
         m_EquippedItems.Add(ESlot.Slot_3, null);
         m_EquippedItems.Add(ESlot.Slot_4, null);
-        //
         m_EquippedItems.Add(ESlot.Helmet, null);
         m_EquippedItems.Add(ESlot.Chest, null);
         m_EquippedItems.Add(ESlot.Shoulders, null);
-        //
-        //SelectSlot(m_SelectedSlot);
-
         //
         m_LoadoutItems.Add(ESlot.MainWeapon, null);
         m_LoadoutItems.Add(ESlot.SecondaryWeapon, null);
@@ -99,6 +98,17 @@ public class PlayerLoadout : MonoBehaviour
         m_LoadoutItems.Add(ESlot.Helmet, null);
         m_LoadoutItems.Add(ESlot.Chest, null);
         m_LoadoutItems.Add(ESlot.Shoulders, null);
+        //
+        m_EslotToSocket.Add(ESlot.MainWeapon, m_PlayerRightHandSocket);
+        m_EslotToSocket.Add(ESlot.SecondaryWeapon, m_PlayerLeftHandSocket);
+        m_EslotToSocket.Add(ESlot.Slot_1, m_PlayerPocket);
+        m_EslotToSocket.Add(ESlot.Slot_2, m_PlayerPocket);
+        m_EslotToSocket.Add(ESlot.Slot_3, m_PlayerPocket);
+        m_EslotToSocket.Add(ESlot.Slot_4, m_PlayerPocket);
+        m_EslotToSocket.Add(ESlot.Helmet, m_HelmetSocket);
+        m_EslotToSocket.Add(ESlot.Chest, m_ChestSocket);
+        m_EslotToSocket.Add(ESlot.Shoulders, m_ChestSocket);
+
 
     }
 
@@ -140,16 +150,17 @@ public class PlayerLoadout : MonoBehaviour
             BasicWeapon weapon = (BasicWeapon)item;
 
             EquipWeapon(weapon, out ESlot hand);
+            Debug.Log("weapon equipped, hand is : " + hand); 
 
             m_EquippedItems[hand].m_Rigidbody.isKinematic = true;
             m_EquippedItems[hand].m_Collider.enabled = false;
-            m_EquippedItems[hand].transform.SetParent(m_PlayerRightHandSocket, false);
+            m_EquippedItems[hand].transform.SetParent(m_EslotToSocket[hand], false);
 
             m_EquippedItems[hand].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             //m_SelectedSlot = ESlot.MainWeapon;
             //SelectSlot(ESlot.MainWeapon);
 
-            LocalUI.Instance.ChangeSlotIcon(ESlot.MainWeapon, m_EquippedItems[hand].SO_Item.ItemIcon);
+            LocalUI.Instance.ChangeSlotIcon(hand, m_EquippedItems[hand].SO_Item.ItemIcon);
 
 
 
@@ -382,10 +393,20 @@ public class PlayerLoadout : MonoBehaviour
 
         else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
         {
-            DropItemOnSlot(ESlot.SecondaryWeapon);
-            //if (m_MainWeapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_MainWeapon = null;
+            Debug.Log("equipping left handed weapon");
+
             if ((m_EquippedItems[ESlot.MainWeapon] != null) &&
-                m_EquippedItems[ESlot.MainWeapon].GetComponent<BasicWeapon>().WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_EquippedItems[ESlot.MainWeapon] = null;
+                m_EquippedItems[ESlot.MainWeapon].GetComponent<BasicWeapon>().WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
+            {
+                DropWeapons();
+
+            }
+            else
+            {
+                DropItemOnSlot(ESlot.SecondaryWeapon);
+            }
+
+
             m_EquippedItems[ESlot.SecondaryWeapon] = weapon;
             hand = ESlot.SecondaryWeapon;
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
@@ -564,23 +585,17 @@ public class PlayerLoadout : MonoBehaviour
     void ShowEquippedUI()
     {
         Debug.Log("show Equipped ui");
-        Dictionary<ESlot, SO_Item> items = new Dictionary<ESlot, SO_Item>
-        {
-            {ESlot.MainWeapon, GetEquippedSO_Item(ESlot.MainWeapon)},
-            {ESlot.SecondaryWeapon,GetEquippedSO_Item(ESlot.SecondaryWeapon)},
-            {ESlot.Slot_1, GetEquippedSO_Item(ESlot.Slot_1)},
-            {ESlot.Slot_2, GetEquippedSO_Item(ESlot.Slot_2)},
-            {ESlot.Slot_3, GetEquippedSO_Item(ESlot.Slot_3)},
-            {ESlot.Slot_4, GetEquippedSO_Item(ESlot.Slot_4)},
-            {ESlot.Helmet, GetEquippedSO_Item(ESlot.Helmet)},
-            {ESlot.Chest, GetEquippedSO_Item(ESlot.Chest)},
-            {ESlot.Shoulders, GetEquippedSO_Item(ESlot.Shoulders)},
-        };
+        Dictionary<ESlot, SO_Item> items = new Dictionary<ESlot, SO_Item>();
 
-        LocalUI.Instance.RefreshInventoryUI(items,m_InventoryType); 
+        for (int i = 0; i < m_EquippedItems.Count; i++)
+        {
+            items.Add((ESlot)i, m_EquippedItems[(ESlot)i] == null ? null :  m_EquippedItems[(ESlot)i].SO_Item);
+        }
+
+        LocalUI.Instance.RefreshInventoryUI(items, m_InventoryType);
+
     }
 
-    SO_Item GetEquippedSO_Item(ESlot slot) => m_EquippedItems[slot] == null ? null : m_EquippedItems[slot].SO_Item;
  
 
 
@@ -593,36 +608,8 @@ public class PlayerLoadout : MonoBehaviour
     void EquipLoadoutSlot(ESlot slot)
     {
         Transform socket = m_PlayerPocket;
-        switch (slot)
-        {
-            case ESlot.MainWeapon:
-                socket = m_PlayerRightHandSocket;
-                break;
-            case ESlot.SecondaryWeapon:
-                socket = m_PlayerLeftHandSocket;
-                break;
-            case ESlot.Slot_1:
-                break;
-            case ESlot.Slot_2:
-                break;
-            case ESlot.Slot_3:
-                break;
-            case ESlot.Slot_4:
-                break;
-            case ESlot.Helmet:
-                socket = m_HelmetSocket;
-                break;
-            case ESlot.Chest:
-                socket = m_ChestSocket;
-                break;
-            case ESlot.Shoulders:
-                socket = m_LeftShoulderSocket;
-                break;
-            case ESlot.count:
-                break;
-            default:
-                break;
-        }
+
+        socket = m_EslotToSocket[slot];
         if (m_LoadoutItems[slot] != null)
         {
             m_EquippedItems[slot] = Instantiate(m_LoadoutItems[slot].Usable_GameObject, socket).GetComponent<Grabbable>();

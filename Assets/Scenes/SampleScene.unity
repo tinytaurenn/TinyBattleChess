@@ -10818,7 +10818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
       propertyPath: m_GameMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
       propertyPath: m_LobbyPos

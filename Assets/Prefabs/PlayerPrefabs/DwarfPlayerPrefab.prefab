@@ -18341,6 +18341,7 @@ MonoBehaviour:
   m_PlayerAnimEvents: {fileID: 8102871620425803765}
   m_Global_Health: 40
   m_Player_Health: 100
+  m_RespawnTimer: 0
   m_IsBeaten: 0
   m_IsStunned: 0
   m_StunTimer: 0
@@ -18468,9 +18469,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HurtFX: {fileID: 383888135478304253}
   m_ParryAudios:
-  - {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
-  - {fileID: 8300000, guid: a7736c1763bd76c4eb0d52aaad581deb, type: 3}
-  - {fileID: 8300000, guid: 2b8c207613cd58b4889b0cc6bf739f2c, type: 3}
+  - {fileID: 8300000, guid: ba65c498c0992aa43a25b4ca11346d60, type: 3}
+  - {fileID: 8300000, guid: e6ab87aba29962643b4905ccc6642ab9, type: 3}
+  - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}
 --- !u!114 &5906994445890104330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18483,23 +18484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be86f379bb3c6364c80e6078d4dad85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MainWeapon: {fileID: 0}
-  m_SecondaryWeapon: {fileID: 0}
-  m_Slot_1: {fileID: 0}
-  m_Slot_2: {fileID: 0}
-  m_Slot_3: {fileID: 0}
-  m_Slot_4: {fileID: 0}
-  m_Helmet: {fileID: 0}
-  m_Chest: {fileID: 0}
-  m_Shoulders: {fileID: 0}
+  m_LoadoutItems:
+    m_keys: 
+    m_values: []
   m_StandByItem: {fileID: 0}
-  m_EquippedWeapons:
-    m_keys: 
-    m_values: []
   m_EquippedItems:
-    m_keys: 
-    m_values: []
-  m_EquippedArmor:
     m_keys: 
     m_values: []
   m_PlayerLeftHandSocket: {fileID: 5680511396531309575}

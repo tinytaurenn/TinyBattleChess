@@ -52,6 +52,8 @@ public class BasicWeapon : Grabbable, IWeapon
     AudioSource m_AudioSource; 
     [SerializeField] List<AudioResource> HitSounds;
 
+    [SerializeField] List<AudioResource> m_ParryAudios;
+
     internal Transform m_HolderTransform = null; 
 
     [SerializeField] Collider m_DamageCollider;

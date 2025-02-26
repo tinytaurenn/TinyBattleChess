@@ -2,7 +2,6 @@ using Coherence;
 using Coherence.Connection;
 using Coherence.Toolkit;
 using System;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public abstract class Grabbable : Usable
@@ -31,6 +30,8 @@ public abstract class Grabbable : Usable
     [HideInInspector] public Rigidbody m_Rigidbody;
     [HideInInspector] public Collider m_Collider;
 
+    Vector3 m_ItemScale = Vector3.one;
+
 
     protected override void Awake()
     {
@@ -42,7 +43,7 @@ public abstract class Grabbable : Usable
         if(m_Sync && m_Sync.CoherenceBridge) m_Sync.CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
 
 
-
+        m_ItemScale = transform.localScale;
 
     }
 
@@ -166,5 +167,6 @@ public abstract class Grabbable : Usable
     {
         m_IsHeld = false;
         m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other, true);
+        transform.localScale = m_ItemScale;
     }
 }

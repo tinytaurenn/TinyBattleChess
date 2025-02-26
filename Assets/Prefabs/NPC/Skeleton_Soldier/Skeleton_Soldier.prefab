@@ -363,9 +363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HurtFX: {fileID: 5070958220991262674}
   m_ParryAudios:
-  - {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
-  - {fileID: 8300000, guid: a7736c1763bd76c4eb0d52aaad581deb, type: 3}
-  - {fileID: 8300000, guid: 2b8c207613cd58b4889b0cc6bf739f2c, type: 3}
+  - {fileID: 8300000, guid: ba65c498c0992aa43a25b4ca11346d60, type: 3}
+  - {fileID: 8300000, guid: e6ab87aba29962643b4905ccc6642ab9, type: 3}
+  - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}
 --- !u!114 &2353739285565979599
 MonoBehaviour:
   m_ObjectHideFlags: 0
