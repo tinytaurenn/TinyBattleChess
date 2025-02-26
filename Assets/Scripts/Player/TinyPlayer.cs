@@ -500,7 +500,16 @@ public class TinyPlayer : Entity, IDamageable
         DamagerSync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncBlockedCommand), Coherence.MessageTarget.AuthorityOnly);
 
         int soundVariationIndex = UnityEngine.Random.Range(0, 3);
-        Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
+       
+        BasicWeapon basicWeapon = m_PlayerWeapons.InShieldParry ? (BasicWeapon)m_PlayerLoadout.m_EquippedItems[PlayerLoadout.ESlot.SecondaryWeapon] : (BasicWeapon)m_PlayerLoadout.m_EquippedItems[PlayerLoadout.ESlot.MainWeapon]; 
+        if(basicWeapon != null)
+        {
+            basicWeapon.PlayParryFX(soundVariationIndex);
+            if(basicWeapon.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
+            {
+                sync.SendCommand<BasicWeapon>(nameof(BasicWeapon.PlayParryFX), Coherence.MessageTarget.Other, soundVariationIndex);
+            }
+        }
     }
 
     public override void SyncBlocked()

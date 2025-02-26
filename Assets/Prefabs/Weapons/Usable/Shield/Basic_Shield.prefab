@@ -285,6 +285,8 @@ MonoBehaviour:
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
   HitSounds: []
+  m_ParryAudios:
+  - {fileID: 8300000, guid: 7c56236de72ba03458d8d6f940f491eb, type: 3}
   m_DamageCollider: {fileID: 176563875519719840}
   m_HitPos: {fileID: 6087489037048558016}
 --- !u!82 &1453443674401267765
@@ -509,6 +511,7 @@ MonoBehaviour:
   - rid: 5785724889091801198
   - rid: 4705202078184636626
   - rid: 4705202265946587449
+  - rid: 4705202283288462236
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -607,6 +610,48 @@ MonoBehaviour:
         memberType: 8
         parameterAssemblyTypes:
         - System.Boolean, mscorlib
+        ownerType:
+          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202283288462236
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202283288462237
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 31201987de254569a6593a202020c19f
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 97645489704987816}
+        coherenceSync: {fileID: 2599363250466214494}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202283288462237
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: PlayParryFX
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
         ownerType:
           assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
             PublicKeyToken=null

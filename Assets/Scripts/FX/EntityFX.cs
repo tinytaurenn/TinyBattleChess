@@ -9,9 +9,6 @@ public abstract class EntityFX : MonoBehaviour
     protected AudioSource m_AudioSource;
 
     [SerializeField] protected ParticleSystem m_HurtFX; 
-
-    [SerializeField] protected AudioResource[] m_ParryAudios;
-
     private void Awake()
     {
         m_Sync = GetComponent<CoherenceSync>();

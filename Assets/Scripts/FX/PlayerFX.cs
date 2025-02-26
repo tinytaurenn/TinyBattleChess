@@ -12,8 +12,7 @@ public class PlayerFX : EntityFX
 
     public override void PlayParryFX(int choiceIndex)
     {
-        m_AudioSource.resource = m_ParryAudios[choiceIndex];
-        m_AudioSource.Play();
+
 
     }
 }

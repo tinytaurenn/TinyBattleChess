@@ -132,6 +132,7 @@ public class BasicWeapon : Grabbable, IWeapon
         }
 
     }
+    [Command]
     public void SyncHitSound(int index)
 
     {
@@ -140,9 +141,16 @@ public class BasicWeapon : Grabbable, IWeapon
 
 
     }
+    [Command]
+    public void PlayParryFX(int choiceIndex)
+    {
+        m_AudioSource.resource = m_ParryAudios[choiceIndex];
+        m_AudioSource.Play();
+
+    }
 
 
-private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(m_Sync == null || !m_Sync.HasStateAuthority)
         {

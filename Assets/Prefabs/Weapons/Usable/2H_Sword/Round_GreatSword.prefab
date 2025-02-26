@@ -226,6 +226,8 @@ MonoBehaviour:
   - rid: 9113002337526088037
   - rid: 4705202078184636632
   - rid: 4705202265946587467
+  - rid: 4705202283288462242
+  - rid: 4705202283288462293
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -324,6 +326,90 @@ MonoBehaviour:
         memberType: 8
         parameterAssemblyTypes:
         - System.Boolean, mscorlib
+        ownerType:
+          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202283288462242
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202283288462243
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 2346f80354de4a65986fb1d80f3afd49
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 5939546729887440551}
+        coherenceSync: {fileID: 6286584065924085034}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202283288462243
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: PlayParryFX
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        ownerType:
+          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 4705202283288462293
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202283288462294
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 3264fe4a82264f98b06c13e7ba0aa8b8
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 5939546729887440551}
+        coherenceSync: {fileID: 6286584065924085034}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202283288462294
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: SyncHitSound
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
         ownerType:
           assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
             PublicKeyToken=null
@@ -769,7 +855,15 @@ MonoBehaviour:
     WeaponSize: 2
     PositionOffset: {x: 0, y: 0, z: -0.05}
     RotationOffset: {x: 0, y: 0, z: 0}
-  HitSounds: []
+  HitSounds:
+  - {fileID: 8300000, guid: 2b901ac228ea622448cc3198f2358fc0, type: 3}
+  - {fileID: 8300000, guid: f81c7afdd6b84634a8db483151a6141c, type: 3}
+  - {fileID: 8300000, guid: 746f6a1adc41b4f4fb6b481d2298d1d6, type: 3}
+  - {fileID: 8300000, guid: 38d39d27c253d4249b981d48cafdde07, type: 3}
+  m_ParryAudios:
+  - {fileID: 8300000, guid: ba65c498c0992aa43a25b4ca11346d60, type: 3}
+  - {fileID: 8300000, guid: e6ab87aba29962643b4905ccc6642ab9, type: 3}
+  - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}
   m_DamageCollider: {fileID: 3125254832121060178}
   m_HitPos: {fileID: 556501000204083608}
 --- !u!114 &2187496778573307055
