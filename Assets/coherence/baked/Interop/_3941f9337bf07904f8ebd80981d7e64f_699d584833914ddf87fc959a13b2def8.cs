@@ -16,25 +16,29 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9 : IEntityCommand
+    public struct _3941f9337bf07904f8ebd80981d7e64f_699d584833914ddf87fc959a13b2def8 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
+            [FieldOffset(0)]
+            public Entity askerSync;
         }
 
-        public static unsafe _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _3941f9337bf07904f8ebd80981d7e64f_699d584833914ddf87fc959a13b2def8 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 0) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 0) " +
+            if (dataSize != 4) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
                     "for command with ID 37");
             }
 
-            var orig = new _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9();
+            var orig = new _3941f9337bf07904f8ebd80981d7e64f_699d584833914ddf87fc959a13b2def8();
             var comp = (Interop*)data;
+            orig.askerSync = comp->askerSync;
             return orig;
         }
 
+        public Entity askerSync;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
@@ -57,6 +61,13 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = absoluteEntity;
+            err = mapper.MapToAbsoluteEntity(askerSync, false, out absoluteEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.askerSync = absoluteEntity;
+            
             return IEntityMapper.Error.None;
         }
         
@@ -68,28 +79,55 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = relativeEntity;
+            err = mapper.MapToRelativeEntity(askerSync, false, out relativeEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.askerSync = relativeEntity;
+            
             return IEntityMapper.Error.None;
         }
 
         public HashSet<Entity> GetEntityRefs() {
-            return default;
+            return new HashSet<Entity> {
+                this.askerSync,
+            };
         }
 
         public void NullEntityRefs(Entity entity) {
+            if (this.askerSync == entity) {
+                this.askerSync = Entity.InvalidRelative;
+            }
         }
         
-        
-        public static void Serialize(_3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9 commandData, IOutProtocolBitStream bitStream)
+        public _3941f9337bf07904f8ebd80981d7e64f_699d584833914ddf87fc959a13b2def8(
+        Entity entity,
+        Entity askerSync
+)
         {
+            Entity = entity;
+            ChannelID = Coherence.ChannelID.Default;
+            Routing = MessageTarget.All;
+            Sender = 0;
+            
+            this.askerSync = askerSync; 
         }
         
-        public static _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static void Serialize(_3941f9337bf07904f8ebd80981d7e64f_699d584833914ddf87fc959a13b2def8 commandData, IOutProtocolBitStream bitStream)
         {
+            bitStream.WriteEntity(commandData.askerSync);
+        }
+        
+        public static _3941f9337bf07904f8ebd80981d7e64f_699d584833914ddf87fc959a13b2def8 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        {
+            var dataaskerSync = bitStream.ReadEntity();
     
-            return new _3941f9337bf07904f8ebd80981d7e64f_65b739adf2d449f184091d222d25ade9()
+            return new _3941f9337bf07904f8ebd80981d7e64f_699d584833914ddf87fc959a13b2def8()
             {
                 Entity = entity,
                 Routing = target,
+                askerSync = dataaskerSync
             };   
         }
     }

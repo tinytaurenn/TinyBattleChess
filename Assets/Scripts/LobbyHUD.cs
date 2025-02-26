@@ -49,7 +49,7 @@ public class LobbyHUD : MonoBehaviour
 
         if(Utils.GetSimulatorLocal(out MainSimulator simulator))
         {
-            simulator.Sync.SendCommand<MainSimulator>(nameof(MainSimulator.StartGame), MessageTarget.AuthorityOnly);
+            simulator.Sync.SendCommand<MainSimulatorCommands>(nameof(MainSimulatorCommands.StartGame), MessageTarget.AuthorityOnly);
         }
 
 
@@ -62,7 +62,7 @@ public class LobbyHUD : MonoBehaviour
 
         if(Utils.GetSimulatorLocal(out MainSimulator simulator))
         {
-            simulator.Sync.SendCommand<MainSimulator>(nameof(MainSimulator.ResetGame), MessageTarget.AuthorityOnly);
+            simulator.Sync.SendCommand<MainSimulatorCommands>(nameof(MainSimulatorCommands.ResetGame), MessageTarget.AuthorityOnly);
         }
         else
         {

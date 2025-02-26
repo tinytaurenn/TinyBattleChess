@@ -51,8 +51,9 @@ public class MainSimulator : MonoBehaviour
 
     [Space(10)]
     [Header("DeathMatch Options ")]
+    [Sync]
+    public float m_RespawnTime = 5f;
 
-    [SerializeField] float m_RespawnTime = 5f;
 
     public enum EGameMode
     {
@@ -347,6 +348,23 @@ public class MainSimulator : MonoBehaviour
             }
             
         }
+    }
+    public Vector3 GetTeleportPoint()
+    {
+        Vector3 pos = m_LobbyPos.transform.position; 
+        switch (m_GameMode)
+        {
+            case EGameMode.AutoChess:
+               
+                break;
+            case EGameMode.DeathMatch:
+                Vector3 deathMatchPos = m_BigArenaBattleSpawnPositions.GetChild(UnityEngine.Random.Range(0, m_BigArenaBattleSpawnPositions.childCount)).position;
+                return deathMatchPos; 
+               
+            default:
+                break;
+        }
+        return pos; 
     }
 
     public void ReviveGhostPlayers()

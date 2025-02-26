@@ -16,7 +16,7 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 : IEntityCommand
+    public struct _3941f9337bf07904f8ebd80981d7e64f_b202adf0df3740e384107a17bd00b519 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
@@ -25,14 +25,14 @@ namespace Coherence.Generated
             public Entity playerSync;
         }
 
-        public static unsafe _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _3941f9337bf07904f8ebd80981d7e64f_b202adf0df3740e384107a17bd00b519 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
             if (dataSize != 4) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
-                    "for command with ID 36");
+                    "for command with ID 38");
             }
 
-            var orig = new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817();
+            var orig = new _3941f9337bf07904f8ebd80981d7e64f_b202adf0df3740e384107a17bd00b519();
             var comp = (Interop*)data;
             orig.playerSync = comp->playerSync;
             return orig;
@@ -44,7 +44,7 @@ namespace Coherence.Generated
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 36;
+        public uint GetComponentType() => 38;
         
         public IEntityMessage Clone()
         {
@@ -101,7 +101,7 @@ namespace Coherence.Generated
             }
         }
         
-        public _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817(
+        public _3941f9337bf07904f8ebd80981d7e64f_b202adf0df3740e384107a17bd00b519(
         Entity entity,
         Entity playerSync
 )
@@ -114,16 +114,16 @@ namespace Coherence.Generated
             this.playerSync = playerSync; 
         }
         
-        public static void Serialize(_3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_3941f9337bf07904f8ebd80981d7e64f_b202adf0df3740e384107a17bd00b519 commandData, IOutProtocolBitStream bitStream)
         {
             bitStream.WriteEntity(commandData.playerSync);
         }
         
-        public static _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _3941f9337bf07904f8ebd80981d7e64f_b202adf0df3740e384107a17bd00b519 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
             var dataplayerSync = bitStream.ReadEntity();
     
-            return new _3941f9337bf07904f8ebd80981d7e64f_4d24fdcffe5142d6a70b463588b4f817()
+            return new _3941f9337bf07904f8ebd80981d7e64f_b202adf0df3740e384107a17bd00b519()
             {
                 Entity = entity,
                 Routing = target,

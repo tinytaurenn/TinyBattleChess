@@ -17,6 +17,8 @@ public class TinyPlayer : Entity, IDamageable
 
     [SerializeField] internal EPlayerState m_PlayerState = EPlayerState.Player;
     [OnValueSynced(nameof(SyncOnChangePlayerState))] public int m_IntPlayerState = 0;
+
+    MainSimulator.EGameMode m_Gamemode = MainSimulator.EGameMode.AutoChess;
     
 
     CoherenceSync m_Sync;
@@ -44,7 +46,7 @@ public class TinyPlayer : Entity, IDamageable
     [Header("DeathMatch Options ")]
 
     [SerializeField] float m_RespawnTimer = 0f; 
-    float m_RespawnTime = 5f;
+    float m_RespawnTime = 10f;
 
 
     public int GlobalHealth { 
@@ -126,6 +128,8 @@ public class TinyPlayer : Entity, IDamageable
     {
         RefreshPlayerUI();
 
+        
+
     }
     //commands
 
@@ -179,12 +183,11 @@ public class TinyPlayer : Entity, IDamageable
 
     void OnEnterPlayerState()
     {
-        int gameMode = 0;
         if(Utils.GetSimulatorLocal(out MainSimulator simulator))
         {
-            gameMode = simulator.m_IntGameMode;
+            m_Gamemode = (MainSimulator.EGameMode) simulator.m_IntGameMode;
         }
-        switch ((MainSimulator.EGameMode)gameMode)
+        switch (m_Gamemode)
         {
             case MainSimulator.EGameMode.AutoChess:
                 OnEnterStateAutoChess();
@@ -200,9 +203,15 @@ public class TinyPlayer : Entity, IDamageable
     }
     void OnEnterStateDeathMatch()
     {
+        bool simulatorIsOn = (Utils.GetSimulatorLocal(out MainSimulator simulator)); 
+        
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
+                if (simulatorIsOn)
+                {
+                    simulator.Sync.SendCommand<MainSimulatorCommands>(nameof(MainSimulatorCommands.AskForTeleport), Coherence.MessageTarget.AuthorityOnly, m_Sync);
+                }
                 EnablePlayer(true);
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
                 m_PlayerGhost.SetActive(false);
@@ -214,6 +223,12 @@ public class TinyPlayer : Entity, IDamageable
                 m_PlayerGhost.SetActive(true);
                 SeeGhosts(true);
                 m_PlayerLoadout.UnloadEquippedStuff();
+                if(simulatorIsOn)
+                {
+                    m_RespawnTime = simulator.m_RespawnTime; 
+                }
+
+                
                 break;
             case EPlayerState.Disqualified:
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
@@ -254,12 +269,7 @@ public class TinyPlayer : Entity, IDamageable
 
     void OnExitPlayerState()
     {
-        int gameMode = 0;
-        if (Utils.GetSimulatorLocal(out MainSimulator simulator))
-        {
-            gameMode = simulator.m_IntGameMode;
-        }
-        switch ((MainSimulator.EGameMode)gameMode)
+        switch (m_Gamemode)
         {
             case MainSimulator.EGameMode.AutoChess:
                 OnExitPlayerStateAutoChess();
@@ -312,10 +322,45 @@ public class TinyPlayer : Entity, IDamageable
 
     void UpdatePlayerState()
     {
+        switch (m_Gamemode)
+        {
+            case MainSimulator.EGameMode.AutoChess:
+                UpdatePlayerStateAutoChess();
+                break;
+            case MainSimulator.EGameMode.DeathMatch:
+                UpdatePlayerStateDeathMatch();
+                break;
+            default:
+                break;
+        }
+    }
+    void UpdatePlayerStateDeathMatch()
+    {
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
-                StunUpdate(); 
+                StunUpdate();
+                break;
+            case EPlayerState.Spectator:
+                m_RespawnTimer += Time.deltaTime;
+                if (m_RespawnTimer >= m_RespawnTime)
+                {
+                    m_RespawnTimer = 0f;
+                    SwitchPlayerState(EPlayerState.Player); 
+                }
+                break;
+            case EPlayerState.Disqualified:
+                break;
+            default:
+                break;
+        }
+    }
+    void UpdatePlayerStateAutoChess()
+    {
+        switch (m_PlayerState)
+        {
+            case EPlayerState.Player:
+                StunUpdate();
                 break;
             case EPlayerState.Spectator:
                 break;
@@ -653,7 +698,7 @@ public class TinyPlayer : Entity, IDamageable
 
         if (Utils.GetSimulatorLocal(out MainSimulator simulator))
         {
-            simulator.Sync.SendCommand<MainSimulator>(nameof(MainSimulator.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
+            simulator.Sync.SendCommand<MainSimulatorCommands>(nameof(MainSimulatorCommands.PlayerDeath), Coherence.MessageTarget.AuthorityOnly, m_Sync);
         }
         else
         {
