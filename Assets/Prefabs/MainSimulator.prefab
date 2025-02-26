@@ -135,6 +135,7 @@ MonoBehaviour:
   - rid: 5785724803057189780
   - rid: 5785725143061364934
   - rid: 5785725211636662411
+  - rid: 4705202280438694573
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -160,6 +161,51 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 4705202280438694573
+      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 4705202280438694574
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 793e525435564d61839f864b8e3db7dc
+        archetypeData:
+          type: 1
+          minRange: -2147483648
+          maxRange: 2147483647
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 1
+            bits: 32
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 3742310084580637886}
+        coherenceSync: {fileID: 5605270632006895831}
+        interpolationSettings: {fileID: 0}
+    - rid: 4705202280438694574
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: m_IntGameMode
+        monoAssemblyType: System.Int32, mscorlib
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: MainSimulator, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
     - rid: 5431316452668605049
       type: {class: PositionBinding, ns: Coherence.Toolkit.Bindings.TransformBindings, asm: Coherence.Toolkit}
       data:
@@ -589,7 +635,9 @@ MonoBehaviour:
   m_DummiesSpawnPositions: {fileID: 0}
   m_LobbyPos: {fileID: 0}
   SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_RespawnTime: 5
   m_GameMode: 1
+  m_IntGameMode: 0
   m_PlayState: 0
   m_GameState: 0
   m_IntPlayState: 0

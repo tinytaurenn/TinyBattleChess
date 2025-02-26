@@ -38,7 +38,14 @@ public class TinyPlayer : Entity, IDamageable
     [Space(10)]
     [Header("Player Stats")]
     [Sync] [SerializeField] int m_Global_Health = 100;
-    [Sync] [SerializeField] int m_Player_Health = 100; 
+    [Sync] [SerializeField] int m_Player_Health = 100;
+
+    [Space(10)]
+    [Header("DeathMatch Options ")]
+
+    [SerializeField] float m_RespawnTimer = 0f; 
+    float m_RespawnTime = 5f;
+
 
     public int GlobalHealth { 
         get { return m_Global_Health;  }
@@ -172,20 +179,67 @@ public class TinyPlayer : Entity, IDamageable
 
     void OnEnterPlayerState()
     {
+        int gameMode = 0;
+        if(Utils.GetSimulatorLocal(out MainSimulator simulator))
+        {
+            gameMode = simulator.m_IntGameMode;
+        }
+        switch ((MainSimulator.EGameMode)gameMode)
+        {
+            case MainSimulator.EGameMode.AutoChess:
+                OnEnterStateAutoChess();
+                break;
+            case MainSimulator.EGameMode.DeathMatch:
+                OnEnterStateDeathMatch();
+                break;
+            default:
+                break;
+        }
+
+       
+    }
+    void OnEnterStateDeathMatch()
+    {
         switch (m_PlayerState)
         {
             case EPlayerState.Player:
-                EnablePlayer(true); 
+                EnablePlayer(true);
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
                 m_PlayerGhost.SetActive(false);
                 SeeGhosts(false);
                 PlayerHealth = 100;
-                
                 break;
             case EPlayerState.Spectator:
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
                 m_PlayerGhost.SetActive(true);
-                SeeGhosts(true); 
+                SeeGhosts(true);
+                m_PlayerLoadout.UnloadEquippedStuff();
+                break;
+            case EPlayerState.Disqualified:
+                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
+                m_PlayerGhost.SetActive(true);
+                SeeGhosts(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    void OnEnterStateAutoChess()
+    {
+        switch (m_PlayerState)
+        {
+            case EPlayerState.Player:
+                EnablePlayer(true);
+                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
+                m_PlayerGhost.SetActive(false);
+                SeeGhosts(false);
+                PlayerHealth = 100;
+                break;
+            case EPlayerState.Spectator:
+                m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
+                m_PlayerGhost.SetActive(true);
+                SeeGhosts(true);
                 m_PlayerLoadout.UnloadEquippedStuff();
                 break;
             case EPlayerState.Disqualified:
@@ -199,6 +253,45 @@ public class TinyPlayer : Entity, IDamageable
     }
 
     void OnExitPlayerState()
+    {
+        int gameMode = 0;
+        if (Utils.GetSimulatorLocal(out MainSimulator simulator))
+        {
+            gameMode = simulator.m_IntGameMode;
+        }
+        switch ((MainSimulator.EGameMode)gameMode)
+        {
+            case MainSimulator.EGameMode.AutoChess:
+                OnExitPlayerStateAutoChess();
+                break;
+            case MainSimulator.EGameMode.DeathMatch:
+                OnExitPlayerStateDeathMatch();
+                break;
+            default:
+                break;
+        }
+
+
+    }
+    void OnExitPlayerStateDeathMatch()
+    {
+        switch (m_PlayerState)
+        {
+            case EPlayerState.Player:
+                EnablePlayer(false);
+
+                break;
+            case EPlayerState.Spectator:
+                break;
+            case EPlayerState.Disqualified:
+                break;
+            default:
+                break;
+        }
+
+
+    }
+    void OnExitPlayerStateAutoChess()
     {
         switch (m_PlayerState)
         {

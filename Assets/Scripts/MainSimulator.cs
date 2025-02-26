@@ -49,6 +49,11 @@ public class MainSimulator : MonoBehaviour
     [Header("BattleRound")]
     BattleRoundManager m_BattleRoundManager;
 
+    [Space(10)]
+    [Header("DeathMatch Options ")]
+
+    [SerializeField] float m_RespawnTime = 5f;
+
     public enum EGameMode
     {
         AutoChess, 
@@ -71,6 +76,7 @@ public class MainSimulator : MonoBehaviour
     [Space(10)]
     [Header("GameMode")]
     [SerializeField] EGameMode m_GameMode = EGameMode.AutoChess;
+    [Sync] public int m_IntGameMode = 0;
 
 
     [Space(10)]
@@ -188,6 +194,7 @@ public class MainSimulator : MonoBehaviour
 
         //StartCoroutine(SpamSomething()); 
         
+        m_IntGameMode = (int)m_GameMode;
 
 
         if (MySword == null)
@@ -336,7 +343,7 @@ public class MainSimulator : MonoBehaviour
                     m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BigArenaBattleSpawnPositions.GetChild(i).position);
                     break;
                 default:
-                    break;
+                    break; 
             }
             
         }
