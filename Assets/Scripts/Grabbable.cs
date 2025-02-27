@@ -58,6 +58,7 @@ public abstract class Grabbable : Usable
     protected override void Start()
     {
         base.Start();
+        OnStateAuthority();
     }
     protected override void OnEnable()
     {
@@ -105,8 +106,8 @@ public abstract class Grabbable : Usable
         else
         {
             //Debug.Log("grabbable OnStateAuthority");
-            m_Rigidbody.isKinematic = false;
             m_Collider.enabled = true;
+            m_Rigidbody.isKinematic = false;
             m_IsHeld = false;
 
         }

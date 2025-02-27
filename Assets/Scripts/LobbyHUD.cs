@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LobbyHUD : MonoBehaviour
@@ -35,10 +36,15 @@ public class LobbyHUD : MonoBehaviour
         m_StartButton.onClick.AddListener(OnStartButtonClicked);
 
         m_ResetGameButton.onClick.AddListener(OnResetGameButtonClicked);
+        DontDestroyOnLoad(this.gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
-  
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        LocalUI.Instance.m_LobbyHUD = this;
+    }
 
     private void OnStartButtonClicked()
     {

@@ -4,16 +4,6 @@ using UnityEngine;
 public class LootSpot :  Usable
 {
     [SerializeField] public List<SO_Armor> m_ArmorItems; 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public override void TryUse()
     {

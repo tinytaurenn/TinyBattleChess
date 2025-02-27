@@ -17,7 +17,7 @@ public class LocalUI : MonoBehaviour
 
     [Space(10)]
     [Header(" Pause ")]
-    [SerializeField] LobbyHUD m_LobbyHUD;
+    public LobbyHUD m_LobbyHUD;
 
     [SerializeField] bool m_InPauseMenu = false;
 
@@ -86,6 +86,8 @@ public class LocalUI : MonoBehaviour
 
     private void Awake()
     {
+
+        DontDestroyOnLoad(this.gameObject);
         if (Instance == null)
         {
             Instance = this;

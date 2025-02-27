@@ -4,8 +4,11 @@ using Coherence.Connection;
 using Coherence.Toolkit;
 using PlayerControls;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.SceneManagement;
 
 public class ConnectionsHandler : MonoBehaviour
@@ -14,6 +17,7 @@ public class ConnectionsHandler : MonoBehaviour
     
 
     [SerializeField] CoherenceBridge m_CoherenceBridge;
+    [SerializeField] CoherenceLiveQuery m_CoherenceQuery; 
     [SerializeField] GameObject m_PlayerPrefab;
     [SerializeField] CoherenceSync m_SimulatorSync; 
 
@@ -57,8 +61,31 @@ public class ConnectionsHandler : MonoBehaviour
             Destroy(this);
         }
 
+        DontDestroyOnLoad(this.gameObject);
+
+
+
         CoherenceBridgeStore.TryGetBridge(gameObject.scene, out m_CoherenceBridge);
+
+        var scene = m_CoherenceBridge.gameObject.scene;
+        DontDestroyOnLoad(m_CoherenceBridge);
+        m_CoherenceBridge.InstantiationScene = scene;
+        m_CoherenceQuery.BridgeResolve += _ => m_CoherenceBridge;
+        CoherenceSync.BridgeResolve += _ => m_CoherenceBridge;
+
+
         m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        Debug.Log("scene has loaded");
+        m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex); 
+        m_CoherenceBridge.InstantiationScene = scene;
+        //LocalUI.Instance.m_LobbyHUD = FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude); 
+
 
     }
 
@@ -86,7 +113,6 @@ public class ConnectionsHandler : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -144,6 +170,24 @@ public class ConnectionsHandler : MonoBehaviour
         PlayerSpawn();
         //SyncAll(); 
        
+    }
+
+    public void LoadArena()
+    {
+        StartCoroutine(LoadArenaRoutine());
+    }
+    private IEnumerator LoadArenaRoutine()
+    {
+        if(MainSimulator != null && MainSimulator.Sync != null)
+        {
+            CoherenceSync[] bringAlong = new CoherenceSync[] { MainSimulator.Sync,LocalTinyPlayer.Sync };
+            yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, 1,bringAlong);
+        }
+        else
+        {
+            CoherenceSync[] bringAlong = new CoherenceSync[] { LocalTinyPlayer.Sync};
+            yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, 1, bringAlong);
+        }
     }
 
     void PlayerSpawn()

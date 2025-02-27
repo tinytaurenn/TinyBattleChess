@@ -110,6 +110,7 @@ public class MainSimulator : MonoBehaviour
 
     private void Awake()
     {
+        //DontDestroyOnLoad(this.gameObject);
         CoherenceBridgeStore.TryGetBridge(gameObject.scene, out m_CoherenceBridge);
         m_Sync = GetComponent<CoherenceSync>();
         m_BattleRoundManager = GetComponent<BattleRoundManager>();

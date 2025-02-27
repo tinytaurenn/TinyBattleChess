@@ -287,6 +287,8 @@ MonoBehaviour:
   HitSounds: []
   m_ParryAudios:
   - {fileID: 8300000, guid: 7c56236de72ba03458d8d6f940f491eb, type: 3}
+  - {fileID: 8300000, guid: 7c56236de72ba03458d8d6f940f491eb, type: 3}
+  - {fileID: 8300000, guid: 7c56236de72ba03458d8d6f940f491eb, type: 3}
   m_DamageCollider: {fileID: 176563875519719840}
   m_HitPos: {fileID: 6087489037048558016}
 --- !u!82 &1453443674401267765

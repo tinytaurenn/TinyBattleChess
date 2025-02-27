@@ -2759,7 +2759,7 @@ GameObject:
   - component: {fileID: 8488167677949007587}
   - component: {fileID: 4742738434629441013}
   m_Layer: 0
-  m_Name: LOCAL UI
+  m_Name: '[LOCAL] UI'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

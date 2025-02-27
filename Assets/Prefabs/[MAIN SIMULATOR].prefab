@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 463022347549678877}
   - component: {fileID: 5243885957173460872}
   m_Layer: 0
-  m_Name: MainSimulator
+  m_Name: '[MAIN SIMULATOR]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
