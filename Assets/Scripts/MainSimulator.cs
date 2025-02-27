@@ -33,11 +33,7 @@ public class MainSimulator : MonoBehaviour
     [Space(10)]
     [Header("Transforms")]
 
-    [SerializeField] Transform m_ShopSpawnPositions;
-    [SerializeField] Transform m_BattleSpawnPositions;
-    [SerializeField] Transform m_BigArenaBattleSpawnPositions;
     [SerializeField] Transform m_DummiesSpawnPositions;
-    [SerializeField] Transform m_LobbyPos; 
     //test 
     [Space(10)]
     [Header("Testings")]
@@ -298,7 +294,7 @@ public class MainSimulator : MonoBehaviour
 
     void TeleportAllPlayersToShop()
     {
-        if(m_ShopSpawnPositions.childCount == 0 || m_ShopSpawnPositions == null) 
+        if(SCENE_MANAGER.Instance.ShopSpawnPos.childCount == 0 || SCENE_MANAGER.Instance.ShopSpawnPos == null) 
         {
             Debug.Log("No spawn positions for shop");
             return;
@@ -313,7 +309,7 @@ public class MainSimulator : MonoBehaviour
             //    continue; 
             //}
             //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
-            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_ShopSpawnPositions.GetChild(i).position);
+            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.ShopSpawnPos.GetChild(i).position);
         }
 
     }
@@ -324,7 +320,7 @@ public class MainSimulator : MonoBehaviour
         {
            
             //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
-            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_LobbyPos.position);
+            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.LobbyPos.position);
             m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.ResetPlayerStats), Coherence.MessageTarget.AuthorityOnly);
         }
     }
@@ -339,10 +335,10 @@ public class MainSimulator : MonoBehaviour
             switch (m_GameMode)
             {
                 case EGameMode.AutoChess:
-                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BattleSpawnPositions.GetChild(i).position);
+                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.BattleSpawnPos.GetChild(i).position);
                     break;
                 case EGameMode.DeathMatch:
-                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, m_BigArenaBattleSpawnPositions.GetChild(i).position);
+                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(i).position);
                     break;
                 default:
                     break; 
@@ -352,14 +348,14 @@ public class MainSimulator : MonoBehaviour
     }
     public Vector3 GetTeleportPoint()
     {
-        Vector3 pos = m_LobbyPos.transform.position; 
+        Vector3 pos = SCENE_MANAGER.Instance.LobbyPos.transform.position; 
         switch (m_GameMode)
         {
             case EGameMode.AutoChess:
                
                 break;
             case EGameMode.DeathMatch:
-                Vector3 deathMatchPos = m_BigArenaBattleSpawnPositions.GetChild(UnityEngine.Random.Range(0, m_BigArenaBattleSpawnPositions.childCount)).position;
+                Vector3 deathMatchPos = SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(UnityEngine.Random.Range(0, SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.childCount)).position;
                 return deathMatchPos; 
                
             default:
