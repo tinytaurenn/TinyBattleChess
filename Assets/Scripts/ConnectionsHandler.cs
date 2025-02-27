@@ -192,7 +192,7 @@ public class ConnectionsHandler : MonoBehaviour
 
     void PlayerSpawn()
     {
-        MyPlayer = Instantiate(m_PlayerPrefab, Vector3.zero, Quaternion.identity);
+        MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.LobbyPos.position, Quaternion.identity);
         MyPlayer.name = "[local] PLAYER";
         LocalTinyPlayer = MyPlayer.GetComponent<TinyPlayer>();
         CameraManager.Instance.m_PlayerTransform = MyPlayer.transform; 

@@ -41,6 +41,7 @@ public class SCENE_MANAGER : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
+
         Debug.Log("scene manager scene loaded"); 
     }
 
