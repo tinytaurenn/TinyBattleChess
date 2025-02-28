@@ -22391,6 +22391,10 @@ PrefabInstance:
       propertyPath: m_BigArenaBattleSpawnPositions
       value: 
       objectReference: {fileID: 33022706}
+    - target: {fileID: 5605270632006895831, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
+      propertyPath: scenePrefabInstanceUUID
+      value: -331048
+      objectReference: {fileID: 0}
     - target: {fileID: 7886858918336485256, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.2083158

@@ -338,8 +338,9 @@ public class MainSimulator : MonoBehaviour
                     m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.BattleSpawnPos.GetChild(i).position);
                     break;
                 case EGameMode.DeathMatch:
+                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.LoadToArena),Coherence.MessageTarget.AuthorityOnly);
                     m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(i).position);
-                    break;
+                    break; 
                 default:
                     break; 
             }

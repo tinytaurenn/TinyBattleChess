@@ -149,11 +149,16 @@ public class TinyPlayer : Entity, IDamageable
         return true; 
     }
 
-    
+    [Command]
     public void TeleportPlayer(Vector3 worldPos)
     {
         Debug.Log("teleporting to : " + worldPos);
         transform.position = worldPos;
+    }
+    [Command]
+    public void LoadToArena()
+    {
+        ConnectionsHandler.Instance.LoadArena(); 
     }
 
     public void SwitchPlayerState(EPlayerState playerState)

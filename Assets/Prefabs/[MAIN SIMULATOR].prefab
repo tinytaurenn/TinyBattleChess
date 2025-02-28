@@ -121,10 +121,10 @@ MonoBehaviour:
     Assembly-CSharp
   approveAuthorityTransferRequests: 1
   simulationType: 2
-  authorityTransferType: 2
+  authorityTransferType: 1
   orphanedBehavior: 1
-  lifetimeType: 0
-  uniquenessType: 0
+  lifetimeType: 1
+  uniquenessType: 1
   replacementStrategy: 0
   unsyncedNetworkEntityPriority: 0
   preserveChildren: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scenePrefabInstanceUUID: 
-  coherenceUUID: 
+  coherenceUUID: MainSimulator
   assetVersion: 
   usingReflection: 0
   coherenceTag: 
@@ -721,11 +721,7 @@ MonoBehaviour:
   m_PlayerSyncs: []
   m_RoundTime: {fileID: 1338625383742743499}
   m_ShopRoundTime: 20
-  m_ShopSpawnPositions: {fileID: 0}
-  m_BattleSpawnPositions: {fileID: 0}
-  m_BigArenaBattleSpawnPositions: {fileID: 0}
   m_DummiesSpawnPositions: {fileID: 0}
-  m_LobbyPos: {fileID: 0}
   SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
   m_RespawnTime: 5
   m_GameMode: 1
