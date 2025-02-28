@@ -23,6 +23,7 @@ public class LobbyHUD : MonoBehaviour
 
 
 
+
     private void Awake()
     {
         m_Sync = GetComponent<CoherenceSync>();
