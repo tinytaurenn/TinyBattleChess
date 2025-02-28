@@ -79,15 +79,7 @@ public class ConnectionsHandler : MonoBehaviour
 
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        Debug.Log("scene has loaded");
-        m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex); 
-        m_CoherenceBridge.InstantiationScene = scene;
-        //LocalUI.Instance.m_LobbyHUD = FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude); 
-
-
-    }
+    
 
     private void OnLiveQuerySynced(CoherenceBridge arg0)
     {
@@ -171,22 +163,54 @@ public class ConnectionsHandler : MonoBehaviour
         //SyncAll(); 
        
     }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        Debug.Log("scene has loaded");
+        m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex);
+        m_CoherenceBridge.InstantiationScene = scene;
+        //LocalUI.Instance.m_LobbyHUD = FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude); 
+        
+
+
+    }
 
     public void LoadArena()
     {
-        StartCoroutine(LoadArenaRoutine());
+        StartCoroutine(LoadSceneRoutine(1));
     }
-    private IEnumerator LoadArenaRoutine()
+    public void LoadLobby()
+    {
+        StartCoroutine(LoadSceneRoutine(0));
+    }
+    private IEnumerator LoadSceneRoutine(int sceneIndex)
     {
         if(MainSimulator != null && MainSimulator.Sync != null)
         {
             CoherenceSync[] bringAlong = new CoherenceSync[] { MainSimulator.Sync,LocalTinyPlayer.Sync };
-            yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, 1,bringAlong);
+            yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
         }
         else
         {
             CoherenceSync[] bringAlong = new CoherenceSync[] { LocalTinyPlayer.Sync};
-            yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, 1, bringAlong);
+            yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
+        }
+
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().buildIndex == sceneIndex);
+        switch (SCENE_MANAGER.Instance.ScenePlayState)
+        {
+            case MainSimulator.EPlayState.Lobby:
+                LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.LobbyPos.position);
+                break;
+            case MainSimulator.EPlayState.Shop:
+                LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.ShopSpawnPos.GetChild(0).position);
+                break;
+            case MainSimulator.EPlayState.Fighting:
+                LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.BattleSpawnPos.GetChild(0).position);
+                break;
+            case MainSimulator.EPlayState.End:
+                break;
+            default:
+                break;
         }
     }
 

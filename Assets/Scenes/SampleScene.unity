@@ -2230,6 +2230,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003280241}
     - target: {fileID: 4286449139685858614, guid: 3c375bd045ebf7c46a3076c18447f919, type: 3}
+      propertyPath: m_ScenePlayState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4286449139685858614, guid: 3c375bd045ebf7c46a3076c18447f919, type: 3}
       propertyPath: m_ShopSpawnPositions
       value: 
       objectReference: {fileID: 1973274855}

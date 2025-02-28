@@ -318,10 +318,25 @@ public class MainSimulator : MonoBehaviour
     {
         for (int i = 0; i < m_PlayerSyncs.Count; i++)
         {
-           
-            //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
-            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.LobbyPos.position);
-            m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.ResetPlayerStats), Coherence.MessageTarget.AuthorityOnly);
+            switch (m_GameMode)
+            {
+                case EGameMode.AutoChess:
+                    //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
+                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.LobbyPos.position);
+                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.ResetPlayerStats), Coherence.MessageTarget.AuthorityOnly);
+                    break;
+                case EGameMode.DeathMatch:
+                    //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
+
+                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.LoadToLobby), Coherence.MessageTarget.AuthorityOnly);
+                    //m_PlayerSyncs[i].SendOrderedCommand<TinyPlayer>(nameof(TinyPlayer.ResetPlayerStats), Coherence.MessageTarget.AuthorityOnly);
+                    //m_PlayerSyncs[i].SendOrderedCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.LobbyPos.position);
+                    break;
+                default:
+                    break;
+            }
+
+            
         }
     }
 

@@ -4719,6 +4719,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7410436684582398122, guid: 7857ccb49ecb3864787412f46a05c3b2, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594018252911746129, guid: 7857ccb49ecb3864787412f46a05c3b2, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7644627420475203035, guid: 7857ccb49ecb3864787412f46a05c3b2, type: 3}
@@ -13259,6 +13263,10 @@ PrefabInstance:
       propertyPath: m_LobbyPos
       value: 
       objectReference: {fileID: 2003280241}
+    - target: {fileID: 4286449139685858614, guid: 3c375bd045ebf7c46a3076c18447f919, type: 3}
+      propertyPath: m_ScenePlayState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4286449139685858614, guid: 3c375bd045ebf7c46a3076c18447f919, type: 3}
       propertyPath: m_ShopSpawnPositions
       value: 

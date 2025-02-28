@@ -22,7 +22,9 @@ public class SCENE_MANAGER : MonoBehaviour
     public Transform BigArenaBattleSpawnPos => m_BigArenaBattleSpawnPositions;
     public Transform LobbyPos => m_LobbyPos;
 
+    [SerializeField] MainSimulator.EPlayState m_ScenePlayState = MainSimulator.EPlayState.Fighting; 
 
+    public MainSimulator.EPlayState ScenePlayState => m_ScenePlayState;
 
     private void Awake()
     {
@@ -43,6 +45,7 @@ public class SCENE_MANAGER : MonoBehaviour
     {
 
         Debug.Log("scene manager scene loaded"); 
+        //ConnectionsHandler.Instance.LocalTinyPlayer.TeleportPlayer(m_BattleSpawnPositions.GetChild(0).position);
     }
 
     private void OnEnable()

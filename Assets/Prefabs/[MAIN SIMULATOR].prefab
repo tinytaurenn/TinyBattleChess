@@ -123,7 +123,7 @@ MonoBehaviour:
   simulationType: 2
   authorityTransferType: 1
   orphanedBehavior: 1
-  lifetimeType: 1
+  lifetimeType: 0
   uniquenessType: 1
   replacementStrategy: 0
   unsyncedNetworkEntityPriority: 0

@@ -160,6 +160,14 @@ public class TinyPlayer : Entity, IDamageable
     {
         ConnectionsHandler.Instance.LoadArena(); 
     }
+    [Command]
+    public void LoadToLobby()
+    {
+        ResetPlayerStats(); 
+        ConnectionsHandler.Instance.LoadLobby();
+    }
+
+
 
     public void SwitchPlayerState(EPlayerState playerState)
     {

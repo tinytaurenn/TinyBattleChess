@@ -16,21 +16,21 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f : IEntityCommand
+    public struct _5358ed04715b0f148a60e93c83f08be0_c2bf9c8c47fe470b87e473b72a445695 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
         }
 
-        public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5358ed04715b0f148a60e93c83f08be0_c2bf9c8c47fe470b87e473b72a445695 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
             if (dataSize != 0) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 0) " +
-                    "for command with ID 34");
+                    "for command with ID 61");
             }
 
-            var orig = new _276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f();
+            var orig = new _5358ed04715b0f148a60e93c83f08be0_c2bf9c8c47fe470b87e473b72a445695();
             var comp = (Interop*)data;
             return orig;
         }
@@ -40,7 +40,7 @@ namespace Coherence.Generated
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 34;
+        public uint GetComponentType() => 61;
         
         public IEntityMessage Clone()
         {
@@ -79,14 +79,14 @@ namespace Coherence.Generated
         }
         
         
-        public static void Serialize(_276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_c2bf9c8c47fe470b87e473b72a445695 commandData, IOutProtocolBitStream bitStream)
         {
         }
         
-        public static _276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _5358ed04715b0f148a60e93c83f08be0_c2bf9c8c47fe470b87e473b72a445695 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
     
-            return new _276f4c8c1f54c8d41afce07cc23e23c3_fe7687c6ebbe498593fa8efc77cda63f()
+            return new _5358ed04715b0f148a60e93c83f08be0_c2bf9c8c47fe470b87e473b72a445695()
             {
                 Entity = entity,
                 Routing = target,
