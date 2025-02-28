@@ -6,6 +6,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
+using Coherence;
 
 
 
@@ -106,15 +109,17 @@ public class MainSimulator : MonoBehaviour
 
     private void Awake()
     {
-        //DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
         CoherenceBridgeStore.TryGetBridge(gameObject.scene, out m_CoherenceBridge);
         m_Sync = GetComponent<CoherenceSync>();
         m_BattleRoundManager = GetComponent<BattleRoundManager>();
         m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
         m_CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
-    }
 
-    
+
+
+
+    }
 
 
     private void OnEnable()
@@ -123,9 +128,7 @@ public class MainSimulator : MonoBehaviour
         m_CoherenceBridge.ClientConnections.OnCreated += OnCreated;
         m_CoherenceBridge.ClientConnections.OnDestroyed += OnDestroyed;
 
-
     }
-
 
 
     private void OnDisable()
@@ -145,6 +148,8 @@ public class MainSimulator : MonoBehaviour
 
     private void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
     {
+
+
         if(MySword != null)
         {
             Debug.Log("destroying sword"); 
@@ -221,7 +226,10 @@ public class MainSimulator : MonoBehaviour
         if (!m_Sync.HasStateAuthority) return;
         if (!Coherence.SimulatorUtility.IsSimulator) return;
 
-        UpdateGameState(); 
+        UpdateGameState();
+
+        Debug.Log("simulator in scene :" + SceneManager.GetActiveScene().name);
+
         
     }
 
@@ -354,7 +362,7 @@ public class MainSimulator : MonoBehaviour
                     break;
                 case EGameMode.DeathMatch:
                     m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.LoadToArena),Coherence.MessageTarget.AuthorityOnly);
-                    m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(i).position);
+                    
                     break; 
                 default:
                     break; 
@@ -580,6 +588,7 @@ public class MainSimulator : MonoBehaviour
             case EPlayState.Lobby:
                 RefreshPlayerList();
                 ReviveAllPlayers();
+                
                 TeleportAllPlayersToLobby();
                 break;
             case EPlayState.Shop:
@@ -590,6 +599,7 @@ public class MainSimulator : MonoBehaviour
 
                 break;
             case EPlayState.Fighting:
+                StartCoroutine(LoadSceneRoutine(1)); 
                 TeleportPlayersToBattle();
 
                 break;
@@ -753,12 +763,23 @@ public class MainSimulator : MonoBehaviour
         }
     }
 
- 
-    #endregion
+
+
 
     #endregion
 
-//#endif
+    private IEnumerator LoadSceneRoutine(int sceneIndex)
+    {
+        Debug.Log("loadscene in simulator"); 
+        CoherenceSync[] bringAlong = new CoherenceSync[] { Sync };
+        yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
+        m_CoherenceBridge.SceneManager.SetClientScene(sceneIndex);
+
+    }
+
+    #endregion
+
+    //#endif
 
 
 

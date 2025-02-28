@@ -167,7 +167,8 @@ public class LobbyHUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+
     }
 
     void OnLiveQuerySynced(CoherenceBridge arg0)

@@ -119,9 +119,9 @@ MonoBehaviour:
       m_Calls: []
   bakedScriptType: Coherence.Generated.CoherenceSync_3941f9337bf07904f8ebd80981d7e64f,
     Assembly-CSharp
-  approveAuthorityTransferRequests: 1
+  approveAuthorityTransferRequests: 0
   simulationType: 2
-  authorityTransferType: 1
+  authorityTransferType: 0
   orphanedBehavior: 1
   lifetimeType: 0
   uniquenessType: 1
@@ -159,6 +159,7 @@ MonoBehaviour:
   - rid: 5431316531586794273
   - rid: 5785724961228325540
   - rid: 5785724963220881413
+  - rid: 4705202329177817550
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -422,6 +423,10 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 4705202329177817550
+      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
+      data:
+        component: {fileID: 8852548882446359390}
     - rid: 5431316452668605049
       type: {class: PositionBinding, ns: Coherence.Toolkit.Bindings.TransformBindings, asm: Coherence.Toolkit}
       data:

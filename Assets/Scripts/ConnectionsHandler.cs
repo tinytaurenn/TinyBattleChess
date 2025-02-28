@@ -169,7 +169,7 @@ public class ConnectionsHandler : MonoBehaviour
         m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex);
         m_CoherenceBridge.InstantiationScene = scene;
         //LocalUI.Instance.m_LobbyHUD = FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude); 
-        
+
 
 
     }
@@ -184,16 +184,20 @@ public class ConnectionsHandler : MonoBehaviour
     }
     private IEnumerator LoadSceneRoutine(int sceneIndex)
     {
-        if(MainSimulator != null && MainSimulator.Sync != null)
-        {
-            CoherenceSync[] bringAlong = new CoherenceSync[] { MainSimulator.Sync,LocalTinyPlayer.Sync };
-            yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
-        }
-        else
-        {
-            CoherenceSync[] bringAlong = new CoherenceSync[] { LocalTinyPlayer.Sync};
-            yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
-        }
+        //if(MainSimulator != null && MainSimulator.Sync != null)
+        //{
+        //    CoherenceSync[] bringAlong = new CoherenceSync[] { MainSimulator.Sync,LocalTinyPlayer.Sync };
+        //    yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
+        //}
+        //else
+        //{
+        //    CoherenceSync[] bringAlong = new CoherenceSync[] { LocalTinyPlayer.Sync};
+        //    yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
+        //}
+
+
+        CoherenceSync[] bringAlong = new CoherenceSync[] { LocalTinyPlayer.Sync };
+        yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
 
         yield return new WaitUntil(() => SceneManager.GetActiveScene().buildIndex == sceneIndex);
         switch (SCENE_MANAGER.Instance.ScenePlayState)
@@ -205,7 +209,7 @@ public class ConnectionsHandler : MonoBehaviour
                 LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.ShopSpawnPos.GetChild(0).position);
                 break;
             case MainSimulator.EPlayState.Fighting:
-                LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.BattleSpawnPos.GetChild(0).position);
+                LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(0).position);
                 break;
             case MainSimulator.EPlayState.End:
                 break;
