@@ -58,10 +58,10 @@ public class ConnectionsHandler : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
 
 
 
@@ -76,7 +76,6 @@ public class ConnectionsHandler : MonoBehaviour
 
         m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
         SceneManager.sceneLoaded += OnSceneLoaded;
-
     }
 
     

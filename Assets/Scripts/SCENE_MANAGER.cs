@@ -1,8 +1,3 @@
-using Coherence.Toolkit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +6,7 @@ public class SCENE_MANAGER : MonoBehaviour
     //put on every scene 
     public static SCENE_MANAGER Instance { get; private set;  }
 
-
+    
 
     [SerializeField] Transform m_ShopSpawnPositions;
     [SerializeField] Transform m_BattleSpawnPositions;

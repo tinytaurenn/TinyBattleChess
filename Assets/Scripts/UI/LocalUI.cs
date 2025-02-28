@@ -94,7 +94,7 @@ public class LocalUI : MonoBehaviour
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         m_SlotDictionary.Add(PlayerLoadout.ESlot.MainWeapon, m_MainWeaponSlot);

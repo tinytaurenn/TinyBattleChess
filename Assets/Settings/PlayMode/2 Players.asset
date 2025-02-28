@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a689d91966dfb46499fb63f130d9b905, type: 3}
-  m_Name: Simulator 1 Player
+  m_Name: 2 Players
   m_EditorClassIdentifier: 
   m_Description: 
   m_EnableEditors: 1
@@ -22,21 +22,16 @@ MonoBehaviour:
     - Main Editor|0_deploy
     m_PlayerTag: 
     m_InitialScene: {fileID: 0}
-  m_EditorInstances: []
-  m_LocalInstances:
-  - Name: Instance
-    <CorrespondingNodeId>k__BackingField: Instance - Run
-    m_Nodes:
-    - Instance - Build
-    - Instance - Run
-    m_BuildProfile: {fileID: 11400000, guid: aabf11a0c60308243b7a56e19e2e497a, type: 2}
-    advancedConfiguration:
-      m_StreamLogsToMainEditor: 1
-      m_LogsColor: {r: 0.3643, g: 0.581, b: 0.8679, a: 1}
-      m_Arguments: '"D:\Unity\TinyBattleChess\Builds\SIMULATOR\sim_x86_64.exe" --coherence-simulation-server
-        --coherence-simulator-type world --coherence-region local --coherence-ip
-        127.0.0.1 --coherence-port 32001 --coherence-world-id 123 --coherence-room-id
-        0 --coherence-unique-room-id 0'
+  m_EditorInstances:
+  - Name: Player 2
+    <CorrespondingNodeId>k__BackingField: 
+    m_Nodes: []
+    m_PlayerTag: 
+    m_InitialScene: {fileID: 0}
+    m_AdvancedConfiguration:
+      StreamLogsToMainEditor: 0
+      LogsColor: {r: 0.24964277, g: 0.8301887, b: 0.019579919, a: 1}
+  m_LocalInstances: []
   m_RemoteInstances: []
   m_OverridePort: 0
   m_Port: 0

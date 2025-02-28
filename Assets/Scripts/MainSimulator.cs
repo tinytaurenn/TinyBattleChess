@@ -587,9 +587,9 @@ public class MainSimulator : MonoBehaviour
         {
             case EPlayState.Lobby:
                 RefreshPlayerList();
-                ReviveAllPlayers();
                 
                 TeleportAllPlayersToLobby();
+                StartCoroutine(LoadSceneRoutine(0));
                 break;
             case EPlayState.Shop:
                 TeleportAllPlayersToShop();
@@ -599,8 +599,8 @@ public class MainSimulator : MonoBehaviour
 
                 break;
             case EPlayState.Fighting:
-                StartCoroutine(LoadSceneRoutine(1)); 
                 TeleportPlayersToBattle();
+                StartCoroutine(LoadSceneRoutine(1)); 
 
                 break;
             case EPlayState.End:
@@ -773,7 +773,6 @@ public class MainSimulator : MonoBehaviour
         Debug.Log("loadscene in simulator"); 
         CoherenceSync[] bringAlong = new CoherenceSync[] { Sync };
         yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
-        m_CoherenceBridge.SceneManager.SetClientScene(sceneIndex);
 
     }
 
