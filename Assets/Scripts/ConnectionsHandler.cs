@@ -159,6 +159,8 @@ public class ConnectionsHandler : MonoBehaviour
 
         Destroy(LocalTinyPlayer.gameObject);     
         m_TinyPlayer = null;
+
+        SceneManager.LoadScene(0);
     }
 
     private void OnConnected(CoherenceBridge bridge)

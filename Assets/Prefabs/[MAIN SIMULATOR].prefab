@@ -121,7 +121,7 @@ MonoBehaviour:
     Assembly-CSharp
   approveAuthorityTransferRequests: 0
   simulationType: 2
-  authorityTransferType: 0
+  authorityTransferType: 1
   orphanedBehavior: 1
   lifetimeType: 0
   uniquenessType: 1
