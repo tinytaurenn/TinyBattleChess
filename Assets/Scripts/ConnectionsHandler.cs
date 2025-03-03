@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.SceneManagement;
@@ -66,6 +67,7 @@ public class ConnectionsHandler : MonoBehaviour
 
 
         CoherenceBridgeStore.TryGetBridge(gameObject.scene, out m_CoherenceBridge);
+        
 
         var scene = m_CoherenceBridge.gameObject.scene;
         DontDestroyOnLoad(m_CoherenceBridge);
@@ -76,6 +78,7 @@ public class ConnectionsHandler : MonoBehaviour
 
         m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
     }
 
     
@@ -157,7 +160,12 @@ public class ConnectionsHandler : MonoBehaviour
 
         if(Coherence.SimulatorUtility.IsSimulator) return;
 
- 
+        uint scene = m_CoherenceBridge.SceneManager.GetClientScene();
+        Debug.Log("bridge scene : " + scene);
+
+        scene = CoherenceBridgeStore.MasterBridge.SceneManager.GetClientScene();
+        Debug.Log("main bridge scene : " + scene);
+
         PlayerSpawn();
         //SyncAll(); 
        

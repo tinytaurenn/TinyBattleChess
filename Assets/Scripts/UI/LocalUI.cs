@@ -87,7 +87,7 @@ public class LocalUI : MonoBehaviour
     private void Awake()
     {
 
-        DontDestroyOnLoad(this.gameObject);
+
         if (Instance == null)
         {
             Instance = this;
@@ -96,6 +96,7 @@ public class LocalUI : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(this.gameObject);
 
         m_SlotDictionary.Add(PlayerLoadout.ESlot.MainWeapon, m_MainWeaponSlot);
         m_SlotDictionary.Add(PlayerLoadout.ESlot.SecondaryWeapon, m_SecondaryWeaponSlot);

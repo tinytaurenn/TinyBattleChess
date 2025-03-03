@@ -3,6 +3,7 @@ using Coherence.Toolkit;
 using PlayerControls;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class TinyPlayer : Entity, IDamageable
@@ -166,6 +167,29 @@ public class TinyPlayer : Entity, IDamageable
         ResetPlayerStats();
         SwitchPlayerState(0); 
         ConnectionsHandler.Instance.LoadLobby();
+    }
+    [Command]
+    public void SyncSimulatorScene(int sceneIndex)
+    {
+        Debug.Log("sync simulator in tinyplayer ");
+        if (SceneManager.GetActiveScene().buildIndex == sceneIndex)
+        {
+            Debug.Log("same scene then the simulator"); 
+
+        }
+
+        switch (sceneIndex)
+        {
+            case 0:
+                LoadToLobby();
+                break;
+            case 1:
+                LoadToArena();
+                break; 
+
+            default:
+                break;
+        }
     }
 
 

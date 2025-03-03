@@ -148,6 +148,8 @@ namespace Coherence.Samples.WorldDialog
         {
             ShowLoadingState();
             bridge.JoinWorld(worldsListView.Selection.WorldData);
+            
+
         }
 
         private void OnWorldsFetched(RequestResponse<IReadOnlyList<WorldData>> requestResponse)

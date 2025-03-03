@@ -116,17 +116,25 @@ public class MainSimulator : MonoBehaviour
         m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
         m_CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
 
+        SceneManager.sceneLoaded += OnSceneLoaded; 
+
 
 
 
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
+    {
+        m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex); 
+        m_CoherenceBridge.InstantiationScene = scene;
+    }
 
     private void OnEnable()
     {
         m_CoherenceBridge.ClientConnections.OnSynced += OnSynced;
         m_CoherenceBridge.ClientConnections.OnCreated += OnCreated;
         m_CoherenceBridge.ClientConnections.OnDestroyed += OnDestroyed;
+
 
     }
 
@@ -164,7 +172,16 @@ public class MainSimulator : MonoBehaviour
 
     private void OnCreated(CoherenceClientConnection connection)
     {
+        Debug.Log(" a player is connected");
         //RefreshPlayerList();
+
+        //foreach (var player in m_PlayerSyncs)
+        //{
+        //    player.SendCommand<TinyPlayer>(nameof(TinyPlayer.SyncSimulatorScene), Coherence.MessageTarget.AuthorityOnly, SceneManager.GetActiveScene().buildIndex);
+        //    //doesnt work because its only looking for players in the simulator scene 
+        //}
+       
+        
 
     }
 
@@ -228,7 +245,7 @@ public class MainSimulator : MonoBehaviour
 
         UpdateGameState();
 
-        Debug.Log("simulator in scene :" + SceneManager.GetActiveScene().name);
+        //Debug.Log("simulator in scene :" + SceneManager.GetActiveScene().name);
 
         
     }

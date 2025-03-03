@@ -2,6 +2,7 @@ using Coherence;
 using Coherence.Connection;
 using Coherence.Toolkit;
 using System;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
@@ -26,25 +27,15 @@ public class LobbyHUD : MonoBehaviour
 
     private void Awake()
     {
-        m_Sync = GetComponent<CoherenceSync>();
-        m_Sync.CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
-
-        m_Sync.OnStateAuthority.AddListener(OnStateAuth);
-        m_Sync.OnAuthTransferComplete.AddListener(OnAuthTransfer);
-        m_Sync.OnAuthorityRequested += OnAuthRequested;
-        m_Sync.OnAuthorityRequestRejected.AddListener(OnAuthRequestRejected);
-
-        m_StartButton.onClick.AddListener(OnStartButtonClicked);
-
-        m_ResetGameButton.onClick.AddListener(OnResetGameButtonClicked);
-        DontDestroyOnLoad(this.gameObject);
-        SceneManager.sceneLoaded += OnSceneLoaded;
+       StartCoroutine(LoadAsyncRoutine());
 
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        LocalUI.Instance.m_LobbyHUD = this;
+        Debug.Log("Scene loaded in lobby hud script");
+        Debug.Log("local UI instance is null : " + LocalUI.Instance == null);
+        LocalUI.Instance.m_LobbyHUD = this; 
     }
 
     private void OnStartButtonClicked()
@@ -170,6 +161,27 @@ public class LobbyHUD : MonoBehaviour
     {
 
 
+    }
+
+    IEnumerator LoadAsyncRoutine()
+    {
+        m_Sync = GetComponent<CoherenceSync>();
+        
+
+        m_Sync.OnStateAuthority.AddListener(OnStateAuth);
+        m_Sync.OnAuthTransferComplete.AddListener(OnAuthTransfer);
+        m_Sync.OnAuthorityRequested += OnAuthRequested;
+        m_Sync.OnAuthorityRequestRejected.AddListener(OnAuthRequestRejected);
+
+        m_StartButton.onClick.AddListener(OnStartButtonClicked);
+
+        m_ResetGameButton.onClick.AddListener(OnResetGameButtonClicked);
+        DontDestroyOnLoad(this.gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        yield return new WaitUntil(() => m_Sync.CoherenceBridge != null);
+
+        m_Sync.CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
     }
 
     void OnLiveQuerySynced(CoherenceBridge arg0)

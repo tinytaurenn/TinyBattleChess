@@ -38,7 +38,7 @@ public class ServerSidedBlock : MonoBehaviour
 
     void ChangeScene()
     {
-        StartCoroutine(LoadSceneRoutine(1));
+        //StartCoroutine(LoadSceneRoutine(1));
     }
 
     private IEnumerator LoadSceneRoutine(int sceneIndex)
