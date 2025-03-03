@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
 using Coherence;
+using Coherence.Cloud;
 
 
 
@@ -52,6 +53,8 @@ public class MainSimulator : MonoBehaviour
     [Header("DeathMatch Options ")]
     [Sync]
     public float m_RespawnTime = 5f;
+
+    
 
 
     public enum EGameMode
@@ -105,7 +108,9 @@ public class MainSimulator : MonoBehaviour
     }
 
 
-//#if COHERENCE_SIMULATOR || UNITY_EDITOR // DONT FORGET ONLY WORKS IN EDITOR 
+
+
+    //#if COHERENCE_SIMULATOR || UNITY_EDITOR // DONT FORGET ONLY WORKS IN EDITOR 
 
     private void Awake()
     {
@@ -115,18 +120,25 @@ public class MainSimulator : MonoBehaviour
         m_BattleRoundManager = GetComponent<BattleRoundManager>();
         m_CoherenceBridge.onLiveQuerySynced.AddListener(OnLiveQuerySynced);
         m_CoherenceBridge.onDisconnected.AddListener(OnDisconnected);
+        m_CoherenceBridge.onConnected.AddListener(OnConnected);
 
-        SceneManager.sceneLoaded += OnSceneLoaded; 
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+
 
 
 
 
     }
 
+    
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
     {
         m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex); 
         m_CoherenceBridge.InstantiationScene = scene;
+
+        
     }
 
     private void OnEnable()
@@ -151,7 +163,7 @@ public class MainSimulator : MonoBehaviour
     private void OnLiveQuerySynced(CoherenceBridge arg0)
     {
         
-        
+
     }
 
     private void OnDisconnected(CoherenceBridge arg0, ConnectionCloseReason arg1)
@@ -163,6 +175,11 @@ public class MainSimulator : MonoBehaviour
             Debug.Log("destroying sword"); 
             Destroy(MySword);
         }
+    }
+
+    private void OnConnected(CoherenceBridge arg0)
+    {
+        StartCoroutine(SyncVariablesToCloud());
     }
 
     private void OnDestroyed(CoherenceClientConnection connection)
@@ -232,6 +249,9 @@ public class MainSimulator : MonoBehaviour
                
             }
         }
+
+        
+
 
 
     }
@@ -606,6 +626,7 @@ public class MainSimulator : MonoBehaviour
                 RefreshPlayerList();
                 
                 TeleportAllPlayersToLobby();
+
                 StartCoroutine(LoadSceneRoutine(0));
                 break;
             case EPlayState.Shop:
@@ -617,6 +638,8 @@ public class MainSimulator : MonoBehaviour
                 break;
             case EPlayState.Fighting:
                 TeleportPlayersToBattle();
+                
+                
                 StartCoroutine(LoadSceneRoutine(1)); 
 
                 break;
@@ -733,6 +756,7 @@ public class MainSimulator : MonoBehaviour
         }
     }
 
+
     public void EndTurn()
     {
 
@@ -787,10 +811,24 @@ public class MainSimulator : MonoBehaviour
 
     private IEnumerator LoadSceneRoutine(int sceneIndex)
     {
+        Debug.Log("saving scene index  : " + sceneIndex);
+        StorageOperation operation = ConnectionsHandler.Instance.m_CloudStorage.SaveObjectAsync<int>(ConnectionsHandler.Instance.SceneToLoad, sceneIndex);
+        yield return operation;
+        
+
+        
+
         Debug.Log("loadscene in simulator"); 
         CoherenceSync[] bringAlong = new CoherenceSync[] { Sync };
         yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
 
+    }
+
+
+    IEnumerator SyncVariablesToCloud()
+    {
+        StorageOperation operation = ConnectionsHandler.Instance.m_CloudStorage.SaveObjectAsync<int>(ConnectionsHandler.Instance.SceneToLoad, SceneManager.GetActiveScene().buildIndex);
+        yield return operation;
     }
 
     #endregion

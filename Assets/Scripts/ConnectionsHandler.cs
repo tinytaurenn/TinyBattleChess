@@ -5,19 +5,15 @@ using Coherence.Toolkit;
 using PlayerControls;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.SceneManagement;
 
 public class ConnectionsHandler : MonoBehaviour
 {
 
-    
 
-    [SerializeField] CoherenceBridge m_CoherenceBridge;
+
+    [SerializeField] CoherenceBridge m_CoherenceBridge ; 
     [SerializeField] CoherenceLiveQuery m_CoherenceQuery; 
     [SerializeField] GameObject m_PlayerPrefab;
     [SerializeField] CoherenceSync m_SimulatorSync; 
@@ -26,6 +22,7 @@ public class ConnectionsHandler : MonoBehaviour
     public TinyPlayer LocalTinyPlayer { get; private set; }
 
     [SerializeField] MainSimulator m_MainSimulator; 
+
 
     public MainSimulator MainSimulator
     {
@@ -48,6 +45,11 @@ public class ConnectionsHandler : MonoBehaviour
 
     [SerializeField] float m_SyncUpdateTimer = 0f; 
     [SerializeField] float m_SyncUpdateTime = 1f;
+
+    [Header("Data Storage")]
+
+    public CloudStorage m_CloudStorage => m_CoherenceBridge.CloudService.GameServices.CloudStorage;
+    public StorageObjectId SceneToLoad = (0, 0); //value , objectID
 
 
 
@@ -86,6 +88,8 @@ public class ConnectionsHandler : MonoBehaviour
     private void OnLiveQuerySynced(CoherenceBridge arg0)
     {
         //m_SimulatorSync = FindFirstObjectByType<MainSimulator>().GetComponent<CoherenceSync>();
+        //int sceneInt = await m_CoherenceBridge.CloudService.GameServices.CloudStorage.LoadObjectAsync(m_MainSimulator.SceneToLoad);
+        
         m_CoherenceBridge.onLiveQuerySynced.RemoveListener(OnLiveQuerySynced);
     }
 
@@ -107,7 +111,9 @@ public class ConnectionsHandler : MonoBehaviour
 
     void Start()
     {
+        
     }
+
 
     // Update is called once per frame
     void Update()
@@ -160,15 +166,28 @@ public class ConnectionsHandler : MonoBehaviour
 
         if(Coherence.SimulatorUtility.IsSimulator) return;
 
-        uint scene = m_CoherenceBridge.SceneManager.GetClientScene();
-        Debug.Log("bridge scene : " + scene);
 
-        scene = CoherenceBridgeStore.MasterBridge.SceneManager.GetClientScene();
-        Debug.Log("main bridge scene : " + scene);
+        StartCoroutine(SpawnSync(m_CloudStorage.LoadObjectAsync<int>(SceneToLoad)));
 
-        PlayerSpawn();
+        
         //SyncAll(); 
        
+    }
+
+    IEnumerator SpawnSync(StorageOperation<int> operation)
+    {
+        yield return operation;
+        Debug.Log("operation result : " + operation.Result.ToString());
+        PlayerSpawn();
+        yield return new WaitUntil(() => LocalTinyPlayer != null);
+
+        if (operation.Result != SceneManager.GetActiveScene().buildIndex)
+        {
+            StartCoroutine(LoadSceneRoutine(operation.Result));
+        }
+
+
+
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
@@ -191,16 +210,7 @@ public class ConnectionsHandler : MonoBehaviour
     }
     private IEnumerator LoadSceneRoutine(int sceneIndex)
     {
-        //if(MainSimulator != null && MainSimulator.Sync != null)
-        //{
-        //    CoherenceSync[] bringAlong = new CoherenceSync[] { MainSimulator.Sync,LocalTinyPlayer.Sync };
-        //    yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
-        //}
-        //else
-        //{
-        //    CoherenceSync[] bringAlong = new CoherenceSync[] { LocalTinyPlayer.Sync};
-        //    yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
-        //}
+
 
 
         CoherenceSync[] bringAlong = new CoherenceSync[] { LocalTinyPlayer.Sync };
@@ -223,6 +233,7 @@ public class ConnectionsHandler : MonoBehaviour
             default:
                 break;
         }
+
     }
 
     void PlayerSpawn()
