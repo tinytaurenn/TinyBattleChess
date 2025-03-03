@@ -16,7 +16,7 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232 : IEntityCommand
+    public struct _5358ed04715b0f148a60e93c83f08be0_28c35fa17ede4464a03a84b17c8fc49c : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
@@ -25,14 +25,14 @@ namespace Coherence.Generated
             public System.Byte isHost;
         }
 
-        public static unsafe _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5358ed04715b0f148a60e93c83f08be0_28c35fa17ede4464a03a84b17c8fc49c FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
             if (dataSize != 1) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 1) " +
-                    "for command with ID 54");
+                    "for command with ID 52");
             }
 
-            var orig = new _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232();
+            var orig = new _5358ed04715b0f148a60e93c83f08be0_28c35fa17ede4464a03a84b17c8fc49c();
             var comp = (Interop*)data;
             orig.isHost = comp->isHost != 0;
             return orig;
@@ -44,7 +44,7 @@ namespace Coherence.Generated
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 54;
+        public uint GetComponentType() => 52;
         
         public IEntityMessage Clone()
         {
@@ -82,7 +82,7 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232(
+        public _5358ed04715b0f148a60e93c83f08be0_28c35fa17ede4464a03a84b17c8fc49c(
         Entity entity,
         System.Boolean isHost
 )
@@ -95,16 +95,16 @@ namespace Coherence.Generated
             this.isHost = isHost; 
         }
         
-        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_28c35fa17ede4464a03a84b17c8fc49c commandData, IOutProtocolBitStream bitStream)
         {
             bitStream.WriteBool(commandData.isHost);
         }
         
-        public static _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _5358ed04715b0f148a60e93c83f08be0_28c35fa17ede4464a03a84b17c8fc49c Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
             var dataisHost = bitStream.ReadBool();
     
-            return new _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232()
+            return new _5358ed04715b0f148a60e93c83f08be0_28c35fa17ede4464a03a84b17c8fc49c()
             {
                 Entity = entity,
                 Routing = target,

@@ -848,6 +848,7 @@ public class MainSimulator : MonoBehaviour
     IEnumerator SyncVariablesToCloud()
     {
         StorageOperation operation = ConnectionsHandler.Instance.m_CloudStorage.SaveObjectAsync<int>(ConnectionsHandler.Instance.SceneToLoad, SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("sync saving to " + SceneManager.GetActiveScene().buildIndex);    
         yield return operation;
     }
 

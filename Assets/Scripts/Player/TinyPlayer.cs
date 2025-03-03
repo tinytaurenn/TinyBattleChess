@@ -1,3 +1,4 @@
+using Coherence;
 using Coherence.Cloud;
 using Coherence.Toolkit;
 using PlayerControls;
@@ -26,7 +27,10 @@ public class TinyPlayer : Entity, IDamageable
     public bool IsHost
     {
         get { return m_IsHost; } 
-        set { m_IsHost = value; }
+        set { 
+            m_IsHost = value;
+            
+        }
     }
 
     CoherenceSync m_Sync;
@@ -160,6 +164,7 @@ public class TinyPlayer : Entity, IDamageable
     public void BecomeHost(bool isHost)
     {
         IsHost = isHost;
+        
     }
 
     [Command]

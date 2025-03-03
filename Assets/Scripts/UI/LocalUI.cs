@@ -117,6 +117,7 @@ public class LocalUI : MonoBehaviour
     public void TogglePause()
     {
         m_InPauseMenu = !m_InPauseMenu;
+
         m_LobbyHUD.ShowPause(m_InPauseMenu);  
 
         Cursor.visible = m_InPauseMenu;

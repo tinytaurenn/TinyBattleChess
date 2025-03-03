@@ -18,14 +18,16 @@ public class ConnectionsHandler : MonoBehaviour
     [SerializeField] GameObject m_PlayerPrefab;
     [SerializeField] CoherenceSync m_SimulatorSync; 
 
-    GameObject MyPlayer;
-    public TinyPlayer LocalTinyPlayer { get; private set; }
+
+    [SerializeField] TinyPlayer m_TinyPlayer;
+    public TinyPlayer LocalTinyPlayer => m_TinyPlayer;  
 
     [SerializeField] MainSimulator m_MainSimulator; 
 
 
     public MainSimulator MainSimulator
     {
+        
         get
         {
           if(m_MainSimulator == null || !m_MainSimulator.gameObject.activeInHierarchy)
@@ -55,6 +57,8 @@ public class ConnectionsHandler : MonoBehaviour
 
     private void Awake()
     {
+
+
         if (Instance == null)
         {
             Instance = this; 
@@ -153,9 +157,8 @@ public class ConnectionsHandler : MonoBehaviour
 
         
 
-        Destroy(MyPlayer); 
-        MyPlayer = null;    
-        LocalTinyPlayer = null;
+        Destroy(LocalTinyPlayer.gameObject);     
+        m_TinyPlayer = null;
     }
 
     private void OnConnected(CoherenceBridge bridge)
@@ -191,7 +194,7 @@ public class ConnectionsHandler : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
-        Debug.Log("scene has loaded");
+        Debug.Log("scene has loaded"); 
         m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex);
         m_CoherenceBridge.InstantiationScene = scene;
         //LocalUI.Instance.m_LobbyHUD = FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude); 
@@ -238,9 +241,28 @@ public class ConnectionsHandler : MonoBehaviour
 
     void PlayerSpawn()
     {
-        MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.LobbyPos.position, Quaternion.identity);
+        GameObject MyPlayer = null;
+        switch (SCENE_MANAGER.Instance.ScenePlayState)
+        {
+
+            case MainSimulator.EPlayState.Lobby:
+                 MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.LobbyPos.position, Quaternion.identity);
+                break;
+            case MainSimulator.EPlayState.Shop:
+                 MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.ShopSpawnPos.GetChild(0).position, Quaternion.identity);
+                break;
+            case MainSimulator.EPlayState.Fighting:
+                 MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(0).position, Quaternion.identity);
+                break;
+            case MainSimulator.EPlayState.End:
+                 MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.LobbyPos.position, Quaternion.identity);
+                break;
+            default:
+                break;
+        }
+        
         MyPlayer.name = "[local] PLAYER";
-        LocalTinyPlayer = MyPlayer.GetComponent<TinyPlayer>();
+        m_TinyPlayer = MyPlayer.GetComponent<TinyPlayer>();
         CameraManager.Instance.m_PlayerTransform = MyPlayer.transform; 
     }
 
