@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 using System;
 using Coherence;
 using Coherence.Cloud;
+using Unity.VisualScripting;
 
 
 
@@ -179,26 +180,22 @@ public class MainSimulator : MonoBehaviour
 
     private void OnConnected(CoherenceBridge arg0)
     {
+        if (!SimulatorUtility.IsSimulator) return; 
         StartCoroutine(SyncVariablesToCloud());
     }
 
     private void OnDestroyed(CoherenceClientConnection connection)
     {
         //RefreshPlayerList();
+
+        StartCoroutine(UpdateHost());
     }
 
     private void OnCreated(CoherenceClientConnection connection)
     {
         Debug.Log(" a player is connected");
-        //RefreshPlayerList();
 
-        //foreach (var player in m_PlayerSyncs)
-        //{
-        //    player.SendCommand<TinyPlayer>(nameof(TinyPlayer.SyncSimulatorScene), Coherence.MessageTarget.AuthorityOnly, SceneManager.GetActiveScene().buildIndex);
-        //    //doesnt work because its only looking for players in the simulator scene 
-        //}
-       
-        
+        StartCoroutine(UpdateHost());
 
     }
 
@@ -270,6 +267,31 @@ public class MainSimulator : MonoBehaviour
         
     }
 
+    IEnumerator UpdateHost()
+    {
+        yield return new WaitForSeconds(1);
+        Debug.Log("updating  host ");
+        RefreshPlayerList();
+        if(m_PlayerSyncs.Count == 0)
+        {
+            Debug.Log("No players player list for update");
+            yield break;  
+        }
+
+        foreach (var player in m_PlayerSyncs)
+        {
+            if (player.GetComponent<TinyPlayer>().IsHost)
+            {
+                Debug.Log("a player is already a host ");
+                yield break;  
+            }
+
+        }
+        Debug.Log("sending host become command ");
+
+        m_PlayerSyncs[0].SendOrderedCommand<TinyPlayer>(nameof(TinyPlayer.BecomeHost), Coherence.MessageTarget.AuthorityOnly, true);
+    }
+
 
     public void RefreshPlayerList()
     {
@@ -278,8 +300,6 @@ public class MainSimulator : MonoBehaviour
         foreach (var player in FindObjectsByType<TinyPlayer>(FindObjectsSortMode.None))
         {
             m_PlayerSyncs.Add(player.GetComponent<CoherenceSync>());
-
-            
 
 
         }

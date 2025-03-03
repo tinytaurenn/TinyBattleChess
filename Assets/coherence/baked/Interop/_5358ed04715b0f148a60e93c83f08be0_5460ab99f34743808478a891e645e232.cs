@@ -16,35 +16,35 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff : IEntityCommand
+    public struct _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public ByteArray name;
+            public System.Byte isHost;
         }
 
-        public static unsafe _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 16) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
-                    "for command with ID 50");
+            if (dataSize != 1) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 1) " +
+                    "for command with ID 54");
             }
 
-            var orig = new _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff();
+            var orig = new _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232();
             var comp = (Interop*)data;
-            orig.name = comp->name.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->name.Data, (int)comp->name.Length) : null;
+            orig.isHost = comp->isHost != 0;
             return orig;
         }
 
-        public System.String name;
+        public System.Boolean isHost;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 50;
+        public uint GetComponentType() => 54;
         
         public IEntityMessage Clone()
         {
@@ -82,9 +82,9 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff(
+        public _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232(
         Entity entity,
-        System.String name
+        System.Boolean isHost
 )
         {
             Entity = entity;
@@ -92,23 +92,23 @@ namespace Coherence.Generated
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.name = name; 
+            this.isHost = isHost; 
         }
         
-        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteShortString(commandData.name);
+            bitStream.WriteBool(commandData.isHost);
         }
         
-        public static _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var dataname = bitStream.ReadShortString();
+            var dataisHost = bitStream.ReadBool();
     
-            return new _5358ed04715b0f148a60e93c83f08be0_1acf624c9c73468c81732449828bf8ff()
+            return new _5358ed04715b0f148a60e93c83f08be0_5460ab99f34743808478a891e645e232()
             {
                 Entity = entity,
                 Routing = target,
-                name = dataname
+                isHost = dataisHost
             };   
         }
     }

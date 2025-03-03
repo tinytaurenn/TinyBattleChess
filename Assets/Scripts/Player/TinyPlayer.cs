@@ -20,7 +20,14 @@ public class TinyPlayer : Entity, IDamageable
     [OnValueSynced(nameof(SyncOnChangePlayerState))] public int m_IntPlayerState = 0;
 
     MainSimulator.EGameMode m_Gamemode = MainSimulator.EGameMode.AutoChess;
-    
+
+    [SerializeField] bool m_IsHost = false;
+    [Sync]
+    public bool IsHost
+    {
+        get { return m_IsHost; } 
+        set { m_IsHost = value; }
+    }
 
     CoherenceSync m_Sync;
 
@@ -148,6 +155,11 @@ public class TinyPlayer : Entity, IDamageable
         if(inParry == false && m_PlayerWeapons.InParry) return false;
 
         return true; 
+    }
+    [Command]
+    public void BecomeHost(bool isHost)
+    {
+        IsHost = isHost;
     }
 
     [Command]
