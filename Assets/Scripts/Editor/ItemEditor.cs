@@ -6,8 +6,11 @@ using UnityEngine;
 public class ItemEditor : EditorWindow
 {
     public SO_Item SO_Item;
-    public Mesh itemMesh; 
-    
+    public Mesh itemMesh;
+    string matPath = "Assets/Art/DEBUG/M_ArenaDebug.mat";
+    Material baseMaterial; 
+
+
 
     [MenuItem("TinyTools/Create Item from scriptable object")]
     public static void ShowWindow()
@@ -20,6 +23,9 @@ public class ItemEditor : EditorWindow
         ItemEditor window = GetWindow<ItemEditor>("Item Maker");
         window.SO_Item = soItem;
         window.Show();
+        
+
+
     }
 
     void OnGUI()
@@ -30,7 +36,9 @@ public class ItemEditor : EditorWindow
         SO_Item = (SO_Item)EditorGUILayout.ObjectField("Item", SO_Item, typeof(SO_Item), false);
         itemMesh = (Mesh)EditorGUILayout.ObjectField("Item Mesh", itemMesh, typeof(Mesh), false);
 
-       if(SO_Item == null)
+        baseMaterial = AssetDatabase.LoadAssetAtPath<Material>(matPath);
+
+        if (SO_Item == null)
         {
             EditorGUILayout.HelpBox("Please assign a SO_Item ", MessageType.Warning);
             return; 
@@ -127,6 +135,7 @@ public class ItemEditor : EditorWindow
         
 
         MeshRenderer meshRenderer = weaponMesh.AddComponent<MeshRenderer>();
+        meshRenderer.material = baseMaterial;
 
         //triggers
 
@@ -190,6 +199,7 @@ public class ItemEditor : EditorWindow
 
 
         MeshRenderer storeMeshRenderer = storeWeaponMesh.AddComponent<MeshRenderer>();
+        storeMeshRenderer.material = baseMaterial;
 
         string storeItemname = "store " + itemName;
         string storePath = $"Assets/Prefabs/Weapons/Store/{storeItemname}.prefab";
@@ -225,14 +235,15 @@ public class ItemEditor : EditorWindow
 
                 armorScript = armorItem.AddComponent<Head_Armor>();
                 armorItem.AddComponent<MeshFilter>().mesh = itemMesh;
-                armorItem.AddComponent<MeshRenderer>();
+                armorItem.AddComponent<MeshRenderer>().material = baseMaterial;
 
 
                 break;
             case SO_Armor.EArmorPlace.Chest:
                 armorScript = armorItem.AddComponent<Chest_Armor>();
                 armorItem.AddComponent<MeshFilter>().mesh = itemMesh;
-                armorItem.AddComponent<MeshRenderer>();
+                armorItem.AddComponent<MeshRenderer>().material = baseMaterial;
+
                 break;
             case SO_Armor.EArmorPlace.Shoulders:
                 armorScript = armorItem.AddComponent<Shoulders_Armor>();
@@ -245,8 +256,9 @@ public class ItemEditor : EditorWindow
                 rightShoulderMesh.transform.parent = armorItem.transform;
                 leftShoulderMesh.AddComponent<MeshFilter>().mesh = itemMesh;
                 rightShoulderMesh.AddComponent<MeshFilter>().mesh = itemMesh;
-                leftShoulderMesh.AddComponent<MeshRenderer>();
-                rightShoulderMesh.AddComponent<MeshRenderer>();
+                leftShoulderMesh.AddComponent<MeshRenderer>().material = baseMaterial;
+                rightShoulderMesh.AddComponent<MeshRenderer>().material = baseMaterial; 
+
                 Shoulders_Armor shoulders_Armor = armorScript as Shoulders_Armor;
                 shoulders_Armor.m_LeftShoulderVisual = leftShoulderMesh.GetComponent<Renderer>();
                 shoulders_Armor.m_RightShoulderVisual = rightShoulderMesh.GetComponent<Renderer>();
@@ -259,8 +271,8 @@ public class ItemEditor : EditorWindow
 
                 LeftShoulder.AddComponent<MeshFilter>().mesh = itemMesh;
                 RightShoulder.AddComponent<MeshFilter>().mesh = itemMesh;
-                LeftShoulder.AddComponent<MeshRenderer>();
-                RightShoulder.AddComponent<MeshRenderer>();
+                LeftShoulder.AddComponent<MeshRenderer>().material = baseMaterial;
+                RightShoulder.AddComponent<MeshRenderer>().material = baseMaterial;
                 CoherenceSync leftShoulderSync = LeftShoulder.AddComponent<CoherenceSync>(); 
                 leftShoulderSync.simulationType = CoherenceSync.SimulationType.ClientSide;
                 leftShoulderSync.lifetimeType = CoherenceSync.LifetimeType.SessionBased;
@@ -333,14 +345,14 @@ public class ItemEditor : EditorWindow
         GameObject storeArmorMesh = new GameObject("ItemMesh");
         storeArmorMesh.transform.parent = storeItem.transform;
         storeArmorMesh.AddComponent<MeshFilter>().mesh = itemMesh;
-        storeArmorMesh.AddComponent<MeshRenderer>();
+        storeArmorMesh.AddComponent<MeshRenderer>().material = baseMaterial;
 
         if(sO_Armor.ArmorPlace == SO_Armor.EArmorPlace.Shoulders)
         {
             GameObject storeRightShoulder = new GameObject("RightShoulder_Mesh");
             storeRightShoulder.transform.parent = storeItem.transform;
             storeRightShoulder.AddComponent<MeshFilter>().mesh = itemMesh;
-            storeRightShoulder.AddComponent<MeshRenderer>();
+            storeRightShoulder.AddComponent<MeshRenderer>().material = baseMaterial;
         }
 
 
