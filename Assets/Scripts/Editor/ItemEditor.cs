@@ -320,6 +320,39 @@ public class ItemEditor : EditorWindow
         DestroyImmediate(armorItem);
 
 
+        ////
+        ///store prefab
+        ///
+        GameObject storeItem = new GameObject("store " + itemName);
+
+        StoreItem storeItemScript = storeItem.AddComponent<StoreItem>();
+        storeItemScript.m_Rotating = true;
+        storeItemScript.m_RotationSpeed = 1;
+
+        GameObject storeArmorMesh = new GameObject("ItemMesh");
+        storeArmorMesh.transform.parent = storeItem.transform;
+        storeArmorMesh.AddComponent<MeshFilter>().mesh = itemMesh;
+        storeArmorMesh.AddComponent<MeshRenderer>();
+
+        if(sO_Armor.ArmorPlace == SO_Armor.EArmorPlace.Shoulders)
+        {
+            GameObject storeRightShoulder = new GameObject("RightShoulder_Mesh");
+            storeRightShoulder.transform.parent = storeItem.transform;
+            storeRightShoulder.AddComponent<MeshFilter>().mesh = itemMesh;
+            storeRightShoulder.AddComponent<MeshRenderer>();
+        }
+
+
+
+
+        string storeItemname = "store " + itemName;
+        string storePath = $"Assets/Prefabs/Armors/Store/{storeItemname}.prefab";
+        var storePrefab = PrefabUtility.SaveAsPrefabAsset(storeItem, storePath);
+
+        SO_Item.Chest_GameObject = storePrefab;
+
+        DestroyImmediate(storeItem);
+
         AssetDatabase.Refresh();
 
     }
