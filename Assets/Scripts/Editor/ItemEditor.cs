@@ -288,6 +288,7 @@ public class ItemEditor : EditorWindow
             default:
                 break;
         }
+        armorScript.SO_Item = SO_Item;
 
         armorScript.m_IsHeld = false;
         armorScript.IsNPCHeld = false;
