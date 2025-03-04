@@ -44,4 +44,5 @@ public class SO_Weapon : SO_Item
     Vector3 RotationOffset = Vector3.zero;
 
     public List<AudioResource> HitSounds;
+    public List<AudioResource> ParrySounds;
 }

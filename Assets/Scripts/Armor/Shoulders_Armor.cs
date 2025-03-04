@@ -4,23 +4,32 @@ using UnityEngine;
 public class Shoulders_Armor : Armor
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] GameObject m_LeftShoulder;
-    [SerializeField] GameObject m_RightShoulder;
+    [SerializeField]public  GameObject m_LeftShoulder;
+    [SerializeField]public  GameObject m_RightShoulder;
 
     [SerializeField] GameObject m_InstantiatedLeftShoulder; 
     [SerializeField] GameObject m_InstantiatedRightShoulder;
 
-    [SerializeField] Renderer m_LeftShoulderVisual;
-    [SerializeField] Renderer m_RightShoulderVisual; 
-
-    public GameObject LeftShoulder => m_LeftShoulder;
-    public GameObject RightShoulder => m_RightShoulder;
+    [SerializeField]public  Renderer m_LeftShoulderVisual;
+    [SerializeField] public Renderer m_RightShoulderVisual; 
 
     public GameObject InstantiatedLeftShoulder { get { return m_InstantiatedLeftShoulder; } set { m_InstantiatedLeftShoulder = value; } }
     public GameObject InstantiatedRightShoulder { get { return m_InstantiatedRightShoulder; } set { m_InstantiatedRightShoulder = value; } }
 
-    public override SO_Armor.EArmorPlace ArmorPlace => SO_Armor.EArmorPlace.Shoulders;
-    
+    public override FArmorParameters ArmorParameters
+    {
+        get
+        {
+            return new FArmorParameters(
+            base.ArmorParameters.MagicArmor,
+            base.ArmorParameters.Armor,
+            base.ArmorParameters.Cost,
+            base.ArmorParameters.ArmorType,
+            SO_Armor.EArmorPlace.Shoulders);
+        }
+        set => base.ArmorParameters = value;
+    }
+
     protected override void Start()
     {
         base.Start();

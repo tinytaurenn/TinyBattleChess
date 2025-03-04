@@ -49,10 +49,20 @@ public class BasicWeapon : Grabbable, IWeapon
     [SerializeField]
     FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EWeaponType.Sword, EWeaponSize.Right_Handed);
 
-    AudioSource m_AudioSource; 
-    [SerializeField] List<AudioResource> HitSounds;
+    public FWeaponParameters WeaponParameters {
+        get
+        {
+            return m_WeaponParameters; 
+        } set 
+        { 
+            m_WeaponParameters = value; 
+        } 
+    }
 
-    [SerializeField] List<AudioResource> m_ParryAudios;
+    AudioSource m_AudioSource; 
+    public List<AudioResource> HitSounds;
+
+    public List<AudioResource> m_ParryAudios;
 
     internal Transform m_HolderTransform = null; 
 

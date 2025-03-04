@@ -1,19 +1,45 @@
 using Coherence.Toolkit;
+using System;
 using UnityEngine;
 
 public abstract class Armor : Grabbable
 {
+    [Serializable]
+    public struct FArmorParameters
+    {
+        public int MagicArmor;
+        public int Armor;
+        public int Cost; 
+        public SO_Armor.EArmorType ArmorType;
+        public SO_Armor.EArmorPlace ArmorPlace;
 
+        public FArmorParameters(int magicArmor,int armor, int cost, SO_Armor.EArmorType armorType, SO_Armor.EArmorPlace armorPlace)
+        {
+            MagicArmor = magicArmor;
+            Armor = armor;
+            Cost = cost;
+            ArmorType = armorType;
+            ArmorPlace = armorPlace;
+        }
+    }
 
 
     [Space(10)]
     [Header("Armor infos")]
-    [SerializeField] protected SO_Armor.EArmorType m_ArmorType;
 
-    [SerializeField]protected  int m_ArmorValue = 3; 
+    [SerializeField] FArmorParameters m_ArmorParameters = new FArmorParameters(0,0,10, SO_Armor.EArmorType.Leather, SO_Armor.EArmorPlace.Chest);  
 
-    public abstract SO_Armor.EArmorPlace ArmorPlace { get;}
-
+    public virtual FArmorParameters ArmorParameters
+    {
+        get
+        {
+            return m_ArmorParameters;
+        }
+        set
+        {
+            m_ArmorParameters = value;
+        }
+    }
 
     protected override void Start()
     {
@@ -30,7 +56,7 @@ public abstract class Armor : Grabbable
     {
         int calculatedDamage = baseDamage;
 
-        calculatedDamage = Mathf.Clamp(calculatedDamage - m_ArmorValue, 0, calculatedDamage);
+        calculatedDamage = Mathf.Clamp(calculatedDamage - ArmorParameters.Armor, 0, calculatedDamage);
 
         return calculatedDamage; 
     }

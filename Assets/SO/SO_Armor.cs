@@ -19,7 +19,11 @@ public class SO_Armor : SO_Item
     }
 
     public EArmorType ArmorType; 
-    public EArmorPlace ArmorPLace;
+    public EArmorPlace ArmorPlace;
+    public int MagicArmor;
+    public int Armor;
+
+
 
     
 }

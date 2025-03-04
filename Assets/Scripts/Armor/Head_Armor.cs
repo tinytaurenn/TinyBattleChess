@@ -3,7 +3,14 @@ using UnityEngine;
 public class Head_Armor : Armor
 {
 
-    public override SO_Armor.EArmorPlace ArmorPlace => SO_Armor.EArmorPlace.Helmet;
+    public override FArmorParameters ArmorParameters { 
+        get {  return new FArmorParameters(
+            base.ArmorParameters.MagicArmor,
+            base.ArmorParameters.Armor,
+            base.ArmorParameters.Cost,
+            base.ArmorParameters.ArmorType,
+            SO_Armor.EArmorPlace.Helmet);}
+        set => base.ArmorParameters = value; }
     protected override void Start()
     {
         base.Start();

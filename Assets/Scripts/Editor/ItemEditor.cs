@@ -84,6 +84,9 @@ public class ItemEditor : EditorWindow
         Debug.Log($"Added '{typeof(BasicWeapon)}' script to {itemName}");
 
 
+
+
+
         
 
         // Add Collider
@@ -99,6 +102,7 @@ public class ItemEditor : EditorWindow
         coherenceSync.orphanedBehavior = CoherenceSync.OrphanedBehavior.AutoAdopt;
         coherenceSync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
         coherenceSync.authorityTransferType = CoherenceSync.AuthorityTransferType.Request;
+        coherenceSync.approveAuthorityTransferRequests = true;
 
         
 
@@ -109,7 +113,7 @@ public class ItemEditor : EditorWindow
         audioSource.spatialBlend = 1;
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
 
-        // visuals
+        // Store visuals 
 
         GameObject weaponMesh= new GameObject("WeaponMesh");
 
@@ -134,11 +138,18 @@ public class ItemEditor : EditorWindow
 
         weaponScript.SO_Item = SO_Item;
         weaponScript.m_IsHeld = false;
+        weaponScript.IsNPCHeld = false;
 
         SO_Weapon soWeapon = SO_Item as SO_Weapon;
         BasicWeapon.FWeaponParameters weaponParameters = new BasicWeapon.FWeaponParameters(soWeapon.Damage,soWeapon.Speed,soWeapon.Cost,soWeapon.WeaponType,soWeapon.WeaponSize);
 
+        weaponScript.m_ParryAudios = soWeapon.ParrySounds;
+        weaponScript.HitSounds = soWeapon.HitSounds;
+
+
+
         weaponScript.SetupWeapon(boxCollider, weaponParameters); 
+
 
 
 
@@ -200,6 +211,117 @@ public class ItemEditor : EditorWindow
 
     void CreateArmor()
     {
+
+        string itemName = SO_Item.ItemName;
+
+        GameObject armorItem = new GameObject(itemName);
+
+        SO_Armor sO_Armor = SO_Item as SO_Armor;
+
+        Armor armorScript = null; 
+        switch (sO_Armor.ArmorPlace)
+        {
+            case SO_Armor.EArmorPlace.Helmet:
+
+                armorScript = armorItem.AddComponent<Head_Armor>();
+                armorItem.AddComponent<MeshFilter>().mesh = itemMesh;
+                armorItem.AddComponent<MeshRenderer>();
+
+
+                break;
+            case SO_Armor.EArmorPlace.Chest:
+                armorScript = armorItem.AddComponent<Chest_Armor>();
+                armorItem.AddComponent<MeshFilter>().mesh = itemMesh;
+                armorItem.AddComponent<MeshRenderer>();
+                break;
+            case SO_Armor.EArmorPlace.Shoulders:
+                armorScript = armorItem.AddComponent<Shoulders_Armor>();
+                //add other shoulders
+                
+
+                GameObject leftShoulderMesh = new GameObject("LeftShoulder_Mesh");
+                GameObject rightShoulderMesh = new GameObject("RightShoulder_Mesh");
+                leftShoulderMesh.transform.parent = armorItem.transform;
+                rightShoulderMesh.transform.parent = armorItem.transform;
+                leftShoulderMesh.AddComponent<MeshFilter>().mesh = itemMesh;
+                rightShoulderMesh.AddComponent<MeshFilter>().mesh = itemMesh;
+                leftShoulderMesh.AddComponent<MeshRenderer>();
+                rightShoulderMesh.AddComponent<MeshRenderer>();
+                Shoulders_Armor shoulders_Armor = armorScript as Shoulders_Armor;
+                shoulders_Armor.m_LeftShoulderVisual = leftShoulderMesh.GetComponent<Renderer>();
+                shoulders_Armor.m_RightShoulderVisual = rightShoulderMesh.GetComponent<Renderer>();
+
+
+
+                //
+                GameObject LeftShoulder = new GameObject(itemName + "_Left_Shoulder");
+                GameObject RightShoulder = new GameObject(itemName + "_Right_Shoulder");
+
+                LeftShoulder.AddComponent<MeshFilter>().mesh = itemMesh;
+                RightShoulder.AddComponent<MeshFilter>().mesh = itemMesh;
+                LeftShoulder.AddComponent<MeshRenderer>();
+                RightShoulder.AddComponent<MeshRenderer>();
+                CoherenceSync leftShoulderSync = LeftShoulder.AddComponent<CoherenceSync>(); 
+                leftShoulderSync.simulationType = CoherenceSync.SimulationType.ClientSide;
+                leftShoulderSync.lifetimeType = CoherenceSync.LifetimeType.SessionBased;
+                leftShoulderSync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
+                leftShoulderSync.authorityTransferType = CoherenceSync.AuthorityTransferType.NotTransferable; 
+
+                CoherenceSync rightShoulderSync = RightShoulder.AddComponent<CoherenceSync>();
+                rightShoulderSync.simulationType = CoherenceSync.SimulationType.ClientSide;
+                rightShoulderSync.lifetimeType = CoherenceSync.LifetimeType.SessionBased;
+                rightShoulderSync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
+                rightShoulderSync.authorityTransferType = CoherenceSync.AuthorityTransferType.NotTransferable;
+                LeftShoulder.AddComponent<CoherenceNode>(); 
+                RightShoulder.AddComponent<CoherenceNode>();
+                
+
+                string leftShoulderPath = $"Assets/Prefabs/Armors/Usable/{itemName}_Left_Shoulder.prefab";
+                string rightShoulderPath = $"Assets/Prefabs/Armors/Usable/{itemName}_Right_Shoulder.prefab";
+                var leftShoulderPrefab = PrefabUtility.SaveAsPrefabAsset(LeftShoulder, leftShoulderPath);
+                var rightShoulderPrefab = PrefabUtility.SaveAsPrefabAsset(RightShoulder, rightShoulderPath);
+
+                shoulders_Armor.m_LeftShoulder = leftShoulderPrefab;
+                shoulders_Armor.m_RightShoulder = rightShoulderPrefab;
+
+                break;
+            default:
+                break;
+        }
+
+        armorScript.m_IsHeld = false;
+        armorScript.IsNPCHeld = false;
+        armorScript.ArmorParameters = new Armor.FArmorParameters(sO_Armor.MagicArmor, sO_Armor.Armor, sO_Armor.Cost, sO_Armor.ArmorType, sO_Armor.ArmorPlace);
+
+
+        Rigidbody rb =  armorItem.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
+        BoxCollider collider = armorItem.AddComponent<BoxCollider>();
+        collider.enabled = false;
+        CoherenceSync sync = armorItem.AddComponent<CoherenceSync>();
+        sync.simulationType = CoherenceSync.SimulationType.ClientSide;
+        sync.lifetimeType = CoherenceSync.LifetimeType.SessionBased;
+        sync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
+        sync.authorityTransferType = CoherenceSync.AuthorityTransferType.Request;
+        sync.approveAuthorityTransferRequests = true;
+
+        armorItem.AddComponent<CoherenceNode>();
+
+        
+
+        //
+
+        string path = $"Assets/Prefabs/Armors/Usable/{itemName}.prefab";
+        var prefab = PrefabUtility.SaveAsPrefabAsset(armorItem, path);
+
+        SO_Item.Usable_GameObject = prefab;
+
+        // Clean up the scene by destroying the temporary object
+        DestroyImmediate(armorItem);
+
+
+        AssetDatabase.Refresh();
+
     }
     void CreatePotion()
     {

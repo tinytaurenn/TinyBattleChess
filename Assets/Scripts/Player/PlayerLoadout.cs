@@ -321,8 +321,8 @@ public class PlayerLoadout : MonoBehaviour
 
     public void EquipArmorInLoadout(SO_Armor armor)
     {
-
-        switch (armor.ArmorPLace)
+        
+        switch (armor.ArmorPlace)
         {
             case SO_Armor.EArmorPlace.Helmet:
                 m_LoadoutItems[ESlot.Helmet] = armor;
@@ -639,10 +639,10 @@ public class PlayerLoadout : MonoBehaviour
 
     void EquipShoulders(Shoulders_Armor shoulders)
     {
-        shoulders.InstantiatedLeftShoulder =  Instantiate(shoulders.LeftShoulder, m_LeftShoulderSocket);
+        shoulders.InstantiatedLeftShoulder =  Instantiate(shoulders.m_LeftShoulder, m_LeftShoulderSocket);
         shoulders.InstantiatedLeftShoulder.transform.localPosition = Vector3.zero;
         shoulders.InstantiatedLeftShoulder.transform.localRotation = Quaternion.identity;
-        shoulders.InstantiatedRightShoulder =  Instantiate(shoulders.RightShoulder, m_RightShoulderSocket);
+        shoulders.InstantiatedRightShoulder =  Instantiate(shoulders.m_RightShoulder, m_RightShoulderSocket);
         shoulders.InstantiatedRightShoulder.transform.localPosition = Vector3.zero;
         shoulders.InstantiatedRightShoulder.transform.localRotation = Quaternion.identity;
 

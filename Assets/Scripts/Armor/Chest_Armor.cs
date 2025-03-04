@@ -2,7 +2,19 @@ using UnityEngine;
 
 public class Chest_Armor : Armor
 {
-    public override SO_Armor.EArmorPlace ArmorPlace => SO_Armor.EArmorPlace.Chest;
+    public override FArmorParameters ArmorParameters
+    {
+        get
+        {
+            return new FArmorParameters(
+            base.ArmorParameters.MagicArmor,
+            base.ArmorParameters.Armor,
+            base.ArmorParameters.Cost,
+            base.ArmorParameters.ArmorType,
+            SO_Armor.EArmorPlace.Chest);
+        }
+        set => base.ArmorParameters = value;
+    }
     protected override void Start()
     {
         base.Start();
