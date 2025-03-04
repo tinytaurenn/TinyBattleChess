@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 432124}
   - component: {fileID: 3316746}
   - component: {fileID: 2307958}
+  - component: {fileID: 7867002670066439121}
   m_Layer: 0
   m_Name: SM_Env_Wall_Alcove_Small_01
   m_TagString: Untagged
@@ -86,3 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7867002670066439121
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118452}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.156758, y: 5.184411, z: 1.8893318}
+  m_Center: {x: -2.476179, y: 2.5500562, z: -0.55018806}

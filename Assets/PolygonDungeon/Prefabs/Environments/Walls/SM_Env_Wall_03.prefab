@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 446176}
   - component: {fileID: 3366708}
   - component: {fileID: 2370236}
+  - component: {fileID: 7461309483230275497}
   m_Layer: 0
   m_Name: SM_Env_Wall_03
   m_TagString: Untagged
@@ -86,3 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7461309483230275497
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189982}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.1782904, y: 5.1280828, z: 0.42949286}
+  m_Center: {x: -2.4718928, y: 2.5222669, z: 0.057517994}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 426902}
   - component: {fileID: 3363694}
   - component: {fileID: 2361306}
+  - component: {fileID: 3423657118050875320}
   m_Layer: 0
   m_Name: SM_Prop_Vase_01
   m_TagString: Untagged
@@ -86,3 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3423657118050875320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126132}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5152728, y: 0.8037959, z: 0.48373038}
+  m_Center: {x: 0.020353783, y: 0.40189788, z: -0.000009537355}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 476228}
   - component: {fileID: 3312000}
   - component: {fileID: 2360018}
+  - component: {fileID: 4077054929081540131}
   m_Layer: 0
   m_Name: SM_Prop_Tech_Crystal_01
   m_TagString: Untagged
@@ -86,3 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4077054929081540131
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168806}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.48244476, y: 1.678065, z: 0.4783985}
+  m_Center: {x: 0.004103055, y: 0.8390325, z: 0.008477612}
