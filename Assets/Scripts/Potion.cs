@@ -4,9 +4,10 @@ using static SO_Potion;
 
 public class Potion : InventoryItem
 {
-    public List<FPotionEffect> PotionEffects { get; set; }
-
-    public int PotionCharges { get; set; } = 1; 
+    [SerializeField] List<FPotionEffect> m_PotionEffect;
+    public List<FPotionEffect> PotionEffects { get { return m_PotionEffect; } set { m_PotionEffect = value; }  }
+    [SerializeField] int m_PotionCharges = 1;
+    public int PotionCharges { get { return m_PotionCharges; } set { m_PotionCharges = value; } }
     protected override void Awake()
     {
         base.Awake();
