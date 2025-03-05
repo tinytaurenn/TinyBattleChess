@@ -1,5 +1,6 @@
 
 using Coherence.Toolkit;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -85,10 +86,12 @@ public class ItemEditor : EditorWindow
         string itemName = SO_Item.ItemName;
 
 
-        GameObject UsableItem = new GameObject(itemName);
-
+        GameObject weaponGameObject = new GameObject(itemName);
+        weaponGameObject.layer = LayerMask.NameToLayer("Usable");
+        
+        
         //parent.AddComponent(typeof(BasicWeapon));
-        BasicWeapon weaponScript =  UsableItem.AddComponent<BasicWeapon>();
+        BasicWeapon weaponScript =  weaponGameObject.AddComponent<BasicWeapon>();
         Debug.Log($"Added '{typeof(BasicWeapon)}' script to {itemName}");
 
 
@@ -98,13 +101,13 @@ public class ItemEditor : EditorWindow
         
 
         // Add Collider
-        BoxCollider boxColl =  UsableItem.AddComponent<BoxCollider>();
+        BoxCollider boxColl =  weaponGameObject.AddComponent<BoxCollider>();
         boxColl.enabled = false;    
 
-        Rigidbody rb = UsableItem.AddComponent<Rigidbody>();
+        Rigidbody rb = weaponGameObject.AddComponent<Rigidbody>();
         rb.isKinematic = true;
 
-        CoherenceSync coherenceSync = UsableItem.AddComponent<CoherenceSync>();
+        CoherenceSync coherenceSync = weaponGameObject.AddComponent<CoherenceSync>();
         coherenceSync.simulationType = CoherenceSync.SimulationType.ClientSide;
         coherenceSync.lifetimeType = CoherenceSync.LifetimeType.Persistent;
         coherenceSync.orphanedBehavior = CoherenceSync.OrphanedBehavior.AutoAdopt;
@@ -114,9 +117,9 @@ public class ItemEditor : EditorWindow
 
         
 
-        UsableItem.AddComponent<CoherenceNode>(); 
+        weaponGameObject.AddComponent<CoherenceNode>(); 
 
-        AudioSource audioSource = UsableItem.AddComponent<AudioSource>();
+        AudioSource audioSource = weaponGameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
         audioSource.spatialBlend = 1;
         audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
@@ -125,7 +128,7 @@ public class ItemEditor : EditorWindow
 
         GameObject weaponMesh= new GameObject("WeaponMesh");
 
-        weaponMesh.transform.parent = UsableItem.transform;
+        weaponMesh.transform.parent = weaponGameObject.transform;
 
         MeshFilter meshFilter = weaponMesh.AddComponent<MeshFilter>();
         if(itemMesh != null)
@@ -140,7 +143,7 @@ public class ItemEditor : EditorWindow
         //triggers
 
         GameObject DamageCollider = new GameObject("DamageCollider");
-        DamageCollider.transform.parent = UsableItem.transform;
+        DamageCollider.transform.parent = weaponGameObject.transform;
         BoxCollider boxCollider = DamageCollider.AddComponent<BoxCollider>();
         boxCollider.isTrigger = true;
 
@@ -165,12 +168,12 @@ public class ItemEditor : EditorWindow
 
         // Save prefab to Assets folder
         string path = $"Assets/Prefabs/Weapons/Usable/{itemName}.prefab";
-        var prefab = PrefabUtility.SaveAsPrefabAsset(UsableItem, path);
+        var prefab = PrefabUtility.SaveAsPrefabAsset(weaponGameObject, path);
 
         SO_Item.Usable_GameObject = prefab;
 
         // Clean up the scene by destroying the temporary object
-        DestroyImmediate(UsableItem);
+        DestroyImmediate(weaponGameObject);
 
         // Refresh the asset database
         
@@ -182,6 +185,7 @@ public class ItemEditor : EditorWindow
         //
 
         GameObject storeItem = new GameObject("store " + itemName);
+        storeItem.layer = LayerMask.NameToLayer("Store");
 
         StoreItem storeItemScript = storeItem.AddComponent<StoreItem>();
         storeItemScript.m_Rotating = true;
@@ -225,6 +229,7 @@ public class ItemEditor : EditorWindow
         string itemName = SO_Item.ItemName;
 
         GameObject armorItem = new GameObject(itemName);
+        armorItem.layer = LayerMask.NameToLayer("Usable");
 
         SO_Armor sO_Armor = SO_Item as SO_Armor;
 
@@ -234,15 +239,20 @@ public class ItemEditor : EditorWindow
             case SO_Armor.EArmorPlace.Helmet:
 
                 armorScript = armorItem.AddComponent<Head_Armor>();
-                armorItem.AddComponent<MeshFilter>().mesh = itemMesh;
-                armorItem.AddComponent<MeshRenderer>().material = baseMaterial;
+                GameObject helmetMesh = new GameObject("Helmet_Mesh");
+                helmetMesh.transform.parent = armorItem.transform;
+
+                helmetMesh.AddComponent<MeshFilter>().mesh = itemMesh;
+                helmetMesh.AddComponent<MeshRenderer>().material = baseMaterial;
 
 
                 break;
             case SO_Armor.EArmorPlace.Chest:
                 armorScript = armorItem.AddComponent<Chest_Armor>();
-                armorItem.AddComponent<MeshFilter>().mesh = itemMesh;
-                armorItem.AddComponent<MeshRenderer>().material = baseMaterial;
+                GameObject chestMesh = new GameObject("Chest_Mesh");
+                chestMesh.transform.parent = armorItem.transform;
+                chestMesh.AddComponent<MeshFilter>().mesh = itemMesh;
+                chestMesh.AddComponent<MeshRenderer>().material = baseMaterial;
 
                 break;
             case SO_Armor.EArmorPlace.Shoulders:
@@ -338,6 +348,8 @@ public class ItemEditor : EditorWindow
         ///
         GameObject storeItem = new GameObject("store " + itemName);
 
+        storeItem.layer = LayerMask.NameToLayer("Store");
+
         StoreItem storeItemScript = storeItem.AddComponent<StoreItem>();
         storeItemScript.m_Rotating = true;
         storeItemScript.m_RotationSpeed = 1;
@@ -371,10 +383,131 @@ public class ItemEditor : EditorWindow
     }
     void CreatePotion()
     {
+        string itemName = SO_Item.ItemName;
 
+        GameObject potionItem = new GameObject(itemName);
+        potionItem.layer = LayerMask.NameToLayer("Usable");
+        //
+        GameObject potionMesh = new GameObject("Potion_Mesh");
+        potionMesh.transform.parent = potionItem.transform;
+        MeshFilter meshFilter = potionMesh.AddComponent<MeshFilter>();
+        meshFilter.mesh = itemMesh;
+        Renderer renderer = potionMesh.AddComponent<MeshRenderer>();
+        renderer.material = baseMaterial;
+        Potion potionScript = potionItem.AddComponent<Potion>();
+        potionScript.SO_Item = SO_Item;
+        potionScript.m_IsHeld = false;
+        potionScript.IsNPCHeld = false;
+        //potionScript.renderer = renderer;
+        CoherenceSync sync = potionItem.AddComponent<CoherenceSync>();
+        sync.simulationType = CoherenceSync.SimulationType.ClientSide;
+        sync.lifetimeType = CoherenceSync.LifetimeType.Persistent;
+        sync.orphanedBehavior = CoherenceSync.OrphanedBehavior.AutoAdopt;
+        sync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
+        sync.authorityTransferType = CoherenceSync.AuthorityTransferType.Request;
+        sync.approveAuthorityTransferRequests = true;
+        potionScript.AddComponent<CoherenceNode>(); 
+        Rigidbody rigidbody = potionItem.AddComponent<Rigidbody>();
+        rigidbody.isKinematic = true;
+        BoxCollider collider = potionItem.AddComponent<BoxCollider>();
+        collider.enabled = false;
+
+
+        //
+        string path = $"Assets/Prefabs/Potions/Usable/{itemName}.prefab";
+        var prefab = PrefabUtility.SaveAsPrefabAsset(potionItem, path);
+
+        SO_Item.Usable_GameObject = prefab;
+
+        // Clean up the scene by destroying the temporary object
+        DestroyImmediate(potionItem);
+
+        GameObject storeItem = new GameObject("store " + itemName);
+        storeItem.layer = LayerMask.NameToLayer("Store");
+
+        StoreItem storeItemScript = storeItem.AddComponent<StoreItem>();
+        GameObject storePotionMesh = new GameObject("Potion_Mesh");
+        storePotionMesh.transform.parent = storeItem.transform;
+
+        storePotionMesh.AddComponent<MeshFilter>().mesh = itemMesh;
+        storePotionMesh.AddComponent<MeshRenderer>().material = baseMaterial;
+
+        storeItemScript.m_Rotating = true;
+        storeItemScript.m_RotationSpeed = 1;
+
+        string storePath = $"Assets/Prefabs/Potions/Store/{itemName}.prefab";
+        var storePrefab = PrefabUtility.SaveAsPrefabAsset(storeItem, storePath);
+
+        SO_Item.Chest_GameObject = storePrefab;
+
+        DestroyImmediate(storeItem);
+
+
+        AssetDatabase.Refresh();
     }
     void CreateScroll()
     {
+        string itemName = SO_Item.ItemName;
+
+        GameObject ScrollItem = new GameObject(itemName);
+        ScrollItem.layer = LayerMask.NameToLayer("Usable");
+        Scroll scrollScript = ScrollItem.AddComponent<Scroll>();
+        //
+        GameObject scrollMesh = new GameObject("Scroll_Mesh");
+        scrollMesh.transform.parent = ScrollItem.transform;
+
+        MeshFilter meshFilter = scrollMesh.AddComponent<MeshFilter>();
+        meshFilter.mesh = itemMesh;
+        Renderer renderer = scrollMesh.AddComponent<MeshRenderer>();
+        renderer.material = baseMaterial;
+        scrollScript.SO_Item = SO_Item;
+        scrollScript.m_IsHeld = false;
+        scrollScript.IsNPCHeld = false;
+        //potionScript.renderer = renderer;
+        CoherenceSync sync = ScrollItem.AddComponent<CoherenceSync>();
+        sync.simulationType = CoherenceSync.SimulationType.ClientSide;
+        sync.lifetimeType = CoherenceSync.LifetimeType.Persistent;
+        sync.orphanedBehavior = CoherenceSync.OrphanedBehavior.AutoAdopt;
+        sync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
+        sync.authorityTransferType = CoherenceSync.AuthorityTransferType.Request;
+        sync.approveAuthorityTransferRequests = true;
+        scrollScript.AddComponent<CoherenceNode>();
+        Rigidbody rigidbody = ScrollItem.AddComponent<Rigidbody>();
+        rigidbody.isKinematic = true;
+        BoxCollider collider = ScrollItem.AddComponent<BoxCollider>();
+        collider.enabled = false;
+
+
+        //
+        string path = $"Assets/Prefabs/Scrolls/Usable/{itemName}.prefab";
+        var prefab = PrefabUtility.SaveAsPrefabAsset(ScrollItem, path);
+
+        SO_Item.Usable_GameObject = prefab;
+
+        // Clean up the scene by destroying the temporary object
+        DestroyImmediate(ScrollItem);
+
+        GameObject storeItem = new GameObject("store " + itemName);
+        storeItem.layer = LayerMask.NameToLayer("Store");
+        StoreItem storeItemScript = storeItem.AddComponent<StoreItem>();
+        GameObject storeScrollMesh = new GameObject("Scroll_Mesh");
+        storeScrollMesh.transform.parent = storeItem.transform;
+
+        storeScrollMesh.AddComponent<MeshFilter>().mesh = itemMesh;
+        storeScrollMesh.AddComponent<MeshRenderer>().material = baseMaterial;
+
+        storeItemScript.m_Rotating = true;
+        storeItemScript.m_RotationSpeed = 1;
+
+        string storePath = $"Assets/Prefabs/Scrolls/Store/{itemName}.prefab";
+        var storePrefab = PrefabUtility.SaveAsPrefabAsset(storeItem, storePath);
+
+        SO_Item.Chest_GameObject = storePrefab;
+
+        DestroyImmediate(storeItem);
+
+
+        AssetDatabase.Refresh();
 
     }
 
