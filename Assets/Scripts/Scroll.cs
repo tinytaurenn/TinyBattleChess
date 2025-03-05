@@ -1,8 +1,13 @@
 using UnityEngine;
+using static SO_Scroll;
 
 public class Scroll : InventoryItem
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public EScrollElem ScrollElems { get; set; }
+
+    public int ScrollCharges { get; set; } = 1; 
 
     protected override void Awake()
     {

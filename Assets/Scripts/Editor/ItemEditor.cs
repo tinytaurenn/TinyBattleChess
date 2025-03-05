@@ -384,6 +384,7 @@ public class ItemEditor : EditorWindow
     void CreatePotion()
     {
         string itemName = SO_Item.ItemName;
+        SO_Potion soPotion = SO_Item as SO_Potion;
 
         GameObject potionItem = new GameObject(itemName);
         potionItem.layer = LayerMask.NameToLayer("Usable");
@@ -395,6 +396,8 @@ public class ItemEditor : EditorWindow
         Renderer renderer = potionMesh.AddComponent<MeshRenderer>();
         renderer.material = baseMaterial;
         Potion potionScript = potionItem.AddComponent<Potion>();
+        potionScript.PotionEffects = soPotion.Effects; 
+        potionScript.PotionCharges = soPotion.Charges;
         potionScript.SO_Item = SO_Item;
         potionScript.m_IsHeld = false;
         potionScript.IsNPCHeld = false;
@@ -435,7 +438,8 @@ public class ItemEditor : EditorWindow
         storeItemScript.m_Rotating = true;
         storeItemScript.m_RotationSpeed = 1;
 
-        string storePath = $"Assets/Prefabs/Potions/Store/{itemName}.prefab";
+        string storeItemname = "store " + itemName;
+        string storePath = $"Assets/Prefabs/Potions/Store/{storeItemname}.prefab";
         var storePrefab = PrefabUtility.SaveAsPrefabAsset(storeItem, storePath);
 
         SO_Item.Chest_GameObject = storePrefab;
@@ -449,6 +453,8 @@ public class ItemEditor : EditorWindow
     {
         string itemName = SO_Item.ItemName;
 
+        SO_Scroll soScroll = SO_Item as SO_Scroll;
+
         GameObject ScrollItem = new GameObject(itemName);
         ScrollItem.layer = LayerMask.NameToLayer("Usable");
         Scroll scrollScript = ScrollItem.AddComponent<Scroll>();
@@ -460,6 +466,8 @@ public class ItemEditor : EditorWindow
         meshFilter.mesh = itemMesh;
         Renderer renderer = scrollMesh.AddComponent<MeshRenderer>();
         renderer.material = baseMaterial;
+        scrollScript.ScrollElems = soScroll.ScrollElem; 
+        scrollScript.ScrollCharges = soScroll.Charges;
         scrollScript.SO_Item = SO_Item;
         scrollScript.m_IsHeld = false;
         scrollScript.IsNPCHeld = false;
@@ -498,8 +506,9 @@ public class ItemEditor : EditorWindow
 
         storeItemScript.m_Rotating = true;
         storeItemScript.m_RotationSpeed = 1;
+        string storeItemname = "store " + itemName;
 
-        string storePath = $"Assets/Prefabs/Scrolls/Store/{itemName}.prefab";
+        string storePath = $"Assets/Prefabs/Scrolls/Store/{storeItemname}.prefab";
         var storePrefab = PrefabUtility.SaveAsPrefabAsset(storeItem, storePath);
 
         SO_Item.Chest_GameObject = storePrefab;

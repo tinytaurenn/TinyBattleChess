@@ -1,7 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
+using static SO_Potion;
 
 public class Potion : InventoryItem
 {
+    public List<FPotionEffect> PotionEffects { get; set; }
+
+    public int PotionCharges { get; set; } = 1; 
     protected override void Awake()
     {
         base.Awake();
