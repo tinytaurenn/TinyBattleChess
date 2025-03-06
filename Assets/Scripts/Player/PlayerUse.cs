@@ -65,12 +65,9 @@ namespace PlayerControls
                     return;
                 }
                 
-
-
                 m_Grabbable.OnUseValidate += OnGrabValidate;
-                m_Grabbable.TryUse();
 
-                return; 
+                
 
             }
 

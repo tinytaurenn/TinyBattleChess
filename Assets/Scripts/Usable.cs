@@ -1,4 +1,5 @@
 using Coherence;
+using Coherence.Connection;
 using Coherence.Toolkit;
 using System;
 using UnityEngine;
@@ -36,13 +37,17 @@ public abstract class Usable : MonoBehaviour
         }
         if (m_Sync == null) return;
 
+        m_Sync.OnStateAuthority.AddListener(OnStateAuthority);
         m_Sync.OnAuthorityRequestRejected.AddListener(OnAuthorityRequestRejected);
+        m_Sync.OnAuthorityRequested += OnAuthorityRequested;
     }
 
     protected virtual void OnDisable()
     {
-        if (m_Sync == null) return; 
+        if (m_Sync == null) return;
+        m_Sync.OnStateAuthority.RemoveListener(OnStateAuthority);
         m_Sync.OnAuthorityRequestRejected.RemoveListener(OnAuthorityRequestRejected);
+        m_Sync.OnAuthorityRequested -= OnAuthorityRequested;
     }
 
 
@@ -54,10 +59,28 @@ public abstract class Usable : MonoBehaviour
         OnUseValidate?.Invoke(true);
     }
 
+    protected virtual void OnStateAuthority()
+    {
+        Debug.Log("usable main OnStateAuthority");
+        if (m_UseRequested)
+        {
+            Debug.Log("grabbable grab requested");
+            m_UseRequested = false;
+            DoUse();
+
+        }
+       
+    }
+
     protected virtual void OnAuthorityRequestRejected(AuthorityType arg0)
     {
 
         OnUseValidate?.Invoke(false);
+    }
+
+    protected virtual bool OnAuthorityRequested(ClientID requesterID, AuthorityType authorityType, CoherenceSync sync)
+    {
+        return true;
     }
 
 

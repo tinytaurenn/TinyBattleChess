@@ -58,8 +58,6 @@ public abstract class Grabbable : Usable
     protected override void OnEnable()
     {
         base.OnEnable();
-        m_Sync.OnAuthorityRequested += OnAuthorityRequested;
-        m_Sync.OnStateAuthority.AddListener(OnStateAuthority);
         m_Sync.OnStateRemote.AddListener(OnStateRemote);
         
 
@@ -70,8 +68,6 @@ public abstract class Grabbable : Usable
     protected override void OnDisable()
     {
         base.OnDisable(); 
-        m_Sync.OnAuthorityRequested -= OnAuthorityRequested;
-        m_Sync.OnStateAuthority.RemoveListener(OnStateAuthority);
         m_Sync.OnStateRemote.RemoveListener(OnStateRemote);
 
 
@@ -87,20 +83,18 @@ public abstract class Grabbable : Usable
         Debug.Log("grabbable OnStateRemote");
     }
 
-    private void OnStateAuthority()
+    protected override void OnStateAuthority()
     {
         Debug.Log("grabbable OnStateAuthority");
         if (IsNPCHeld) return; 
+
         if(m_UseRequested)
         {
-            Debug.Log("grabbable grab requested");
             m_UseRequested = false;
             DoUse();
-
         }
         else
         {
-            //Debug.Log("grabbable OnStateAuthority");
             m_Collider.enabled = true;
             m_Rigidbody.isKinematic = false;
             m_IsHeld = false;
@@ -108,7 +102,7 @@ public abstract class Grabbable : Usable
         }
     }
 
-    private bool OnAuthorityRequested(ClientID requesterID, AuthorityType authorityType, CoherenceSync sync)
+    protected override bool OnAuthorityRequested(ClientID requesterID, AuthorityType authorityType, CoherenceSync sync)
     {
         Debug.Log("auth requested, sending : " + !m_IsHeld);
         return !m_IsHeld; 
