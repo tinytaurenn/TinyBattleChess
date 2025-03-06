@@ -496,7 +496,15 @@ public class TinyPlayer : Entity, IDamageable
         Debug.Log("sync Player took " + damage + " damage!");
         m_PlayerFX.PlayHurtFX(0); 
         Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
+        //
+        //armors calculations
+        //
+        damage =  m_PlayerLoadout.DamageReduction(damage);
 
+        Debug.Log("sync Player took " + damage + " reduced damage!");
+
+
+        //
         HitStun();
 
         if (Utils.GetSimulatorLocal(out MainSimulator simulator))

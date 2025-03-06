@@ -750,6 +750,34 @@ public class PlayerLoadout : MonoBehaviour
 
 
     }
+
+    public int DamageReduction(int damage)
+    {
+        float armor = 0; 
+        if (m_EquippedItems[ESlot.Chest] != null)
+        {
+            armor += ((Armor)m_EquippedItems[ESlot.Chest]).ArmorParameters.Armor;
+
+        }
+        if (m_EquippedItems[ESlot.Helmet] != null)
+        {
+
+            armor += ((Armor)m_EquippedItems[ESlot.Helmet]).ArmorParameters.Armor;
+        }
+        if (m_EquippedItems[ESlot.Shoulders] != null)
+        {
+
+            armor += ((Armor)m_EquippedItems[ESlot.Shoulders]).ArmorParameters.Armor;
+        }
+
+        float damageReduction = 100 / (100 + armor);
+        Debug.Log("damage reduction  is " + damageReduction);
+        damage = (int)((float)damage * damageReduction);
+        Debug.Log("damage calculated in reduction is " + damage);
+
+
+        return damage; 
+    }
     
 
 

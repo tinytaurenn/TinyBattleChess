@@ -124,8 +124,12 @@ MonoBehaviour:
   m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
-  m_ArmorType: 3
-  m_ArmorValue: 3
+  m_ArmorParameters:
+    MagicArmor: 0
+    Armor: 15
+    Cost: 10
+    ArmorType: 1
+    ArmorPlace: 1
 --- !u!114 &3145767428935242335
 MonoBehaviour:
   m_ObjectHideFlags: 0
