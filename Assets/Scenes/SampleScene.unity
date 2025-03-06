@@ -11507,12 +11507,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8514513596420739708, guid: 2a01b08a88ea4644fa4dc8321c8278e5, type: 3}
+      propertyPath: coherenceUUID
+      value: Seat_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514513596420739708, guid: 2a01b08a88ea4644fa4dc8321c8278e5, type: 3}
       propertyPath: scenePrefabInstanceUUID
-      value: -54016
+      value: -50158
       objectReference: {fileID: 0}
     - target: {fileID: 9071617892442216490, guid: 2a01b08a88ea4644fa4dc8321c8278e5, type: 3}
       propertyPath: m_Name
       value: Seatable_Stooll
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071617892442216490, guid: 2a01b08a88ea4644fa4dc8321c8278e5, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

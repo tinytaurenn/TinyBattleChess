@@ -118,18 +118,7 @@ public abstract class Grabbable : Usable
     {
         Debug.Log("TryGrab");
 
-        if (m_Sync.HasStateAuthority)
-        {
-            DoUse();
-        }
-        else
-        {
-            m_UseRequested = true;
-           m_Sync.RequestAuthority(AuthorityType.Full);
-            Debug.Log("Requesting auth");
-
-
-        }
+        base.TryUse();
     }
 
     protected override void DoUse()

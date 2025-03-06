@@ -1,3 +1,4 @@
+using Coherence;
 using Coherence.Toolkit;
 using UnityEngine;
 
@@ -11,13 +12,20 @@ public class Seat : Usable
     }
     public override void TryUse()
     {
-        if(IsOccupied)
+        if (!m_Sync.HasStateAuthority)
         {
-            Debug.Log("Seat is occupied");
-            return;
+            m_Sync.RequestAuthority(AuthorityType.Full);
+            
         }
-        IsOccupied = true; 
 
+        DoUse();
 
+    }
+
+    protected override void DoUse()
+    {
+        base.DoUse();
+        Debug.Log("Sitting on seat");
+        IsOccupied = true;
     }
 }

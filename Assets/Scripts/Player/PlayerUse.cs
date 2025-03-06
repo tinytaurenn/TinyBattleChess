@@ -1,5 +1,5 @@
 using Coherence.Toolkit;
-
+using System;
 using UnityEngine;
 
 namespace PlayerControls
@@ -58,17 +58,27 @@ namespace PlayerControls
 
             if(m_Usable.TryGetComponent<Grabbable>(out Grabbable grabbable))
             {
-                m_Grabbable = grabbable;
+                m_Usable = grabbable;
                 if (m_Grabbable.m_IsHeld)
                 {
                     Debug.Log("item is held");
                     return;
                 }
                 
-                m_Grabbable.OnUseValidate += OnGrabValidate;
+                m_Usable.OnUseValidate += OnGrabValidate;
 
                 
 
+            }
+            if(m_Usable.TryGetComponent<Seat>(out Seat seat))
+            {
+                m_Usable = seat; 
+                if(seat.IsOccupied)
+                {
+                    Debug.Log("Seat is occupied");
+                    return;
+                }
+                m_Usable.OnUseValidate += OnSeatValidate; 
             }
 
             m_Usable.TryUse();
@@ -78,6 +88,8 @@ namespace PlayerControls
 
 
         }
+
+        
 
         internal void DropPerformed()
         {
@@ -101,6 +113,15 @@ namespace PlayerControls
 
             }
 
+        }
+
+        private void OnSeatValidate(bool validated)
+        {
+            m_Usable.OnUseValidate -= OnSeatValidate;
+            if (validated)
+            {
+                Debug.Log("sitting on chair"); 
+            }
         }
 
         #region UseDetection

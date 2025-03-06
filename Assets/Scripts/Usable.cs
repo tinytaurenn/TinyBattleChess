@@ -52,7 +52,21 @@ public abstract class Usable : MonoBehaviour
 
 
 
-    public abstract void TryUse();
+    public virtual void TryUse()
+    {
+        if (m_Sync.HasStateAuthority)
+        {
+            DoUse();
+        }
+        else
+        {
+            m_UseRequested = true;
+            m_Sync.RequestAuthority(AuthorityType.Full);
+            Debug.Log("Requesting auth");
+
+
+        }
+    }
 
     protected virtual void DoUse()
     {
