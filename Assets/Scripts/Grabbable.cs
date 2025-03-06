@@ -22,11 +22,6 @@ public abstract class Grabbable : Usable
         set { m_IsNPCHeld = value; }
     }
 
-    public event Action<bool> OnGrabValidate;
-
-    [SerializeField] bool m_GrabRequested = false; 
-
-
     [HideInInspector] public Rigidbody m_Rigidbody;
     [HideInInspector] public Collider m_Collider;
 
@@ -66,26 +61,26 @@ public abstract class Grabbable : Usable
         m_Sync.OnAuthorityRequested += OnAuthorityRequested;
         m_Sync.OnStateAuthority.AddListener(OnStateAuthority);
         m_Sync.OnStateRemote.AddListener(OnStateRemote);
-        m_Sync.OnAuthorityRequestRejected.AddListener(OnAuthorityRequestRejected);
+        
 
     }
 
-    
 
-    private void OnDisable()
+
+    protected override void OnDisable()
     {
+        base.OnDisable(); 
         m_Sync.OnAuthorityRequested -= OnAuthorityRequested;
         m_Sync.OnStateAuthority.RemoveListener(OnStateAuthority);
         m_Sync.OnStateRemote.RemoveListener(OnStateRemote);
-        m_Sync.OnAuthorityRequestRejected.RemoveListener(OnAuthorityRequestRejected);
 
 
         
     }
-    private void OnAuthorityRequestRejected(AuthorityType arg0)
+    protected override void OnAuthorityRequestRejected(AuthorityType arg0)
     {
 
-        OnGrabValidate?.Invoke(false);
+        base.OnAuthorityRequestRejected(arg0);
     }
     private void OnStateRemote()
     {
@@ -96,11 +91,11 @@ public abstract class Grabbable : Usable
     {
         Debug.Log("grabbable OnStateAuthority");
         if (IsNPCHeld) return; 
-        if(m_GrabRequested)
+        if(m_UseRequested)
         {
             Debug.Log("grabbable grab requested");
-            m_GrabRequested = false;
-            DoGrab();
+            m_UseRequested = false;
+            DoUse();
 
         }
         else
@@ -131,11 +126,11 @@ public abstract class Grabbable : Usable
 
         if (m_Sync.HasStateAuthority)
         {
-            DoGrab();
+            DoUse();
         }
         else
         {
-           m_GrabRequested = true;
+            m_UseRequested = true;
            m_Sync.RequestAuthority(AuthorityType.Full);
             Debug.Log("Requesting auth");
 
@@ -143,10 +138,10 @@ public abstract class Grabbable : Usable
         }
     }
 
-    void DoGrab()
+    protected override void DoUse()
     {
         m_IsHeld = true;
-        OnGrabValidate?.Invoke(true);
+        base.DoUse();
         m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other,false);
 
     }

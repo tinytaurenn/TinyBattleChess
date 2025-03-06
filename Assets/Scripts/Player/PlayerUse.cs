@@ -67,7 +67,7 @@ namespace PlayerControls
                 
 
 
-                m_Grabbable.OnGrabValidate += OnGrabValidate;
+                m_Grabbable.OnUseValidate += OnGrabValidate;
                 m_Grabbable.TryUse();
 
                 return; 
@@ -93,7 +93,7 @@ namespace PlayerControls
         private void OnGrabValidate(bool validated)
         {
             Debug.Log("grabbable grab validate"); 
-            m_Grabbable.OnGrabValidate -= OnGrabValidate;
+            m_Grabbable.OnUseValidate -= OnGrabValidate;
 
             if (validated)
             {
