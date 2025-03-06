@@ -564,7 +564,7 @@ public class TinyPlayer : Entity, IDamageable
 
         int soundVariationIndex = UnityEngine.Random.Range(0, 3);
        
-        BasicWeapon basicWeapon = m_PlayerWeapons.InShieldParry ? (BasicWeapon)m_PlayerLoadout.m_EquippedItems[PlayerLoadout.ESlot.SecondaryWeapon] : (BasicWeapon)m_PlayerLoadout.m_EquippedItems[PlayerLoadout.ESlot.MainWeapon]; 
+        BasicWeapon basicWeapon = m_PlayerWeapons.InShieldParry ? (BasicWeapon)m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] : (BasicWeapon)m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon]; 
         if(basicWeapon != null)
         {
             basicWeapon.PlayParryFX(soundVariationIndex);

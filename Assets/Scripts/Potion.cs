@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static SO_Potion;
 
 public class Potion : InventoryItem
 {

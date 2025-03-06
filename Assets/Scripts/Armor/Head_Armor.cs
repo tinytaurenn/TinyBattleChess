@@ -9,7 +9,7 @@ public class Head_Armor : Armor
             base.ArmorParameters.Armor,
             base.ArmorParameters.Cost,
             base.ArmorParameters.ArmorType,
-            SO_Armor.EArmorPlace.Helmet);}
+            EArmorPlace.Helmet);}
         set => base.ArmorParameters = value; }
     protected override void Start()
     {

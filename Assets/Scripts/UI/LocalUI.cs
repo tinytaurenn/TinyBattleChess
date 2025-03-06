@@ -1,15 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static Coherence.Core.NativeTransport;
 using static PlayerLoadout;
 
-public class ESlotToSlotUIDictionary : SerializableDictionary<PlayerLoadout.ESlot, SlotUI> { }
+public class ESlotToSlotUIDictionary : SerializableDictionary<EStuffSlot, SlotUI> { }
 
 public class LocalUI : MonoBehaviour
 {
@@ -98,16 +94,16 @@ public class LocalUI : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
 
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.MainWeapon, m_MainWeaponSlot);
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.SecondaryWeapon, m_SecondaryWeaponSlot);
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.Slot_1, m_InventorySlots[0]);
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.Slot_2, m_InventorySlots[1]);
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.Slot_3, m_InventorySlots[2]);
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.Slot_4, m_InventorySlots[3]);
+        m_SlotDictionary.Add(EStuffSlot.MainWeapon, m_MainWeaponSlot);
+        m_SlotDictionary.Add(EStuffSlot.SecondaryWeapon, m_SecondaryWeaponSlot);
+        m_SlotDictionary.Add(EStuffSlot.Slot_1, m_InventorySlots[0]);
+        m_SlotDictionary.Add(EStuffSlot.Slot_2, m_InventorySlots[1]);
+        m_SlotDictionary.Add(EStuffSlot.Slot_3, m_InventorySlots[2]);
+        m_SlotDictionary.Add(EStuffSlot.Slot_4, m_InventorySlots[3]);
 
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.Helmet, m_HelmetSlot);
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.Chest, m_ChestSlot);
-        m_SlotDictionary.Add(PlayerLoadout.ESlot.Shoulders, m_ShouldersSlot);
+        m_SlotDictionary.Add(EStuffSlot.Helmet, m_HelmetSlot);
+        m_SlotDictionary.Add(EStuffSlot.Chest, m_ChestSlot);
+        m_SlotDictionary.Add(EStuffSlot.Shoulders, m_ShouldersSlot);
 
 
         m_UsableText.enabled = false;
@@ -123,7 +119,7 @@ public class LocalUI : MonoBehaviour
         Cursor.visible = m_InPauseMenu;
     }
     
-    public void SelectSlot(PlayerLoadout.ESlot slot)
+    public void SelectSlot(EStuffSlot slot)
     {
         if(m_SelectedSlot != null) m_SelectedSlot.UnSelectSlot();
 
@@ -131,12 +127,12 @@ public class LocalUI : MonoBehaviour
         m_SelectedSlot.SelectSlot();
     }
 
-    public void ChangeSlotIcon(PlayerLoadout.ESlot slot, Sprite Icon)
+    public void ChangeSlotIcon(EStuffSlot slot, Sprite Icon)
     {
         m_SlotDictionary[slot].ChangeIcon(Icon);
     }
 
-    public void ClearSlot(PlayerLoadout.ESlot slot)
+    public void ClearSlot(EStuffSlot slot)
     {
         m_SlotDictionary[slot].ChangeIcon(null);
     }
@@ -209,7 +205,7 @@ public class LocalUI : MonoBehaviour
 
     }
 
-    public void RefreshInventoryUI(Dictionary<ESlot, SO_Item> items, PlayerLoadout.EInventoryType inventoryType)
+    public void RefreshInventoryUI(Dictionary<EStuffSlot, SO_Item> items, PlayerLoadout.EInventoryType inventoryType)
     {
          
         Debug.Log("Refreshing Inventory UI");
@@ -260,7 +256,7 @@ public class LocalUI : MonoBehaviour
     {
         foreach (var slot in m_SlotDictionary)
         {
-            if(slot.Key == ESlot.SecondaryWeapon || slot.Key == ESlot.MainWeapon) continue;
+            if(slot.Key == EStuffSlot.SecondaryWeapon || slot.Key == EStuffSlot.MainWeapon) continue;
             slot.Value.ColorSlot(color);
         }
     }

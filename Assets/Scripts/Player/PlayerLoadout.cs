@@ -5,28 +5,16 @@ using UnityEngine;
 
 
 [Serializable]
-public class ESlotToGrabbableDictionary : SerializableDictionary<PlayerLoadout.ESlot, Grabbable> { }
+public class ESlotToGrabbableDictionary : SerializableDictionary<EStuffSlot, Grabbable> { }
 [Serializable]
-public class EslotToSoItemDictionary : SerializableDictionary<PlayerLoadout.ESlot, SO_Item> { }
+public class EslotToSoItemDictionary : SerializableDictionary<EStuffSlot, SO_Item> { }
 
-public class EslotToSocket : SerializableDictionary<PlayerLoadout.ESlot, Transform> { }
+public class EslotToSocket : SerializableDictionary<EStuffSlot, Transform> { }
 
 public class PlayerLoadout : MonoBehaviour
 {
     
-    public enum ESlot
-    {
-        MainWeapon = 0,
-        SecondaryWeapon = 1,
-        Slot_1 = 2,
-        Slot_2 = 3,
-        Slot_3 = 4,
-        Slot_4 = 5,
-        Helmet = 6,
-        Chest = 7,
-        Shoulders = 8,
-        count = 9
-    }
+    
 
     public enum EInventoryType
     {
@@ -79,35 +67,35 @@ public class PlayerLoadout : MonoBehaviour
 
         m_TinyPlayer = GetComponent<TinyPlayer>();
         //
-        m_EquippedItems.Add(ESlot.MainWeapon, null);
-        m_EquippedItems.Add(ESlot.SecondaryWeapon, null);
-        m_EquippedItems.Add(ESlot.Slot_1, null); 
-        m_EquippedItems.Add(ESlot.Slot_2, null);
-        m_EquippedItems.Add(ESlot.Slot_3, null);
-        m_EquippedItems.Add(ESlot.Slot_4, null);
-        m_EquippedItems.Add(ESlot.Helmet, null);
-        m_EquippedItems.Add(ESlot.Chest, null);
-        m_EquippedItems.Add(ESlot.Shoulders, null);
+        m_EquippedItems.Add(EStuffSlot.MainWeapon, null);
+        m_EquippedItems.Add(EStuffSlot.SecondaryWeapon, null);
+        m_EquippedItems.Add(EStuffSlot.Slot_1, null); 
+        m_EquippedItems.Add(EStuffSlot.Slot_2, null);
+        m_EquippedItems.Add(EStuffSlot.Slot_3, null);
+        m_EquippedItems.Add(EStuffSlot.Slot_4, null);
+        m_EquippedItems.Add(EStuffSlot.Helmet, null);
+        m_EquippedItems.Add(EStuffSlot.Chest, null);
+        m_EquippedItems.Add(EStuffSlot.Shoulders, null);
         //
-        m_LoadoutItems.Add(ESlot.MainWeapon, null);
-        m_LoadoutItems.Add(ESlot.SecondaryWeapon, null);
-        m_LoadoutItems.Add(ESlot.Slot_1, null);
-        m_LoadoutItems.Add(ESlot.Slot_2, null);
-        m_LoadoutItems.Add(ESlot.Slot_3, null);
-        m_LoadoutItems.Add(ESlot.Slot_4, null);
-        m_LoadoutItems.Add(ESlot.Helmet, null);
-        m_LoadoutItems.Add(ESlot.Chest, null);
-        m_LoadoutItems.Add(ESlot.Shoulders, null);
+        m_LoadoutItems.Add(EStuffSlot.MainWeapon, null);
+        m_LoadoutItems.Add(EStuffSlot.SecondaryWeapon, null);
+        m_LoadoutItems.Add(EStuffSlot.Slot_1, null);
+        m_LoadoutItems.Add(EStuffSlot.Slot_2, null);
+        m_LoadoutItems.Add(EStuffSlot.Slot_3, null);
+        m_LoadoutItems.Add(EStuffSlot.Slot_4, null);
+        m_LoadoutItems.Add(EStuffSlot.Helmet, null);
+        m_LoadoutItems.Add(EStuffSlot.Chest, null);
+        m_LoadoutItems.Add(EStuffSlot.Shoulders, null);
         //
-        m_EslotToSocket.Add(ESlot.MainWeapon, m_PlayerRightHandSocket);
-        m_EslotToSocket.Add(ESlot.SecondaryWeapon, m_PlayerLeftHandSocket);
-        m_EslotToSocket.Add(ESlot.Slot_1, m_PlayerPocket);
-        m_EslotToSocket.Add(ESlot.Slot_2, m_PlayerPocket);
-        m_EslotToSocket.Add(ESlot.Slot_3, m_PlayerPocket);
-        m_EslotToSocket.Add(ESlot.Slot_4, m_PlayerPocket);
-        m_EslotToSocket.Add(ESlot.Helmet, m_HelmetSocket);
-        m_EslotToSocket.Add(ESlot.Chest, m_ChestSocket);
-        m_EslotToSocket.Add(ESlot.Shoulders, m_ChestSocket);
+        m_EslotToSocket.Add(EStuffSlot.MainWeapon, m_PlayerRightHandSocket);
+        m_EslotToSocket.Add(EStuffSlot.SecondaryWeapon, m_PlayerLeftHandSocket);
+        m_EslotToSocket.Add(EStuffSlot.Slot_1, m_PlayerPocket);
+        m_EslotToSocket.Add(EStuffSlot.Slot_2, m_PlayerPocket);
+        m_EslotToSocket.Add(EStuffSlot.Slot_3, m_PlayerPocket);
+        m_EslotToSocket.Add(EStuffSlot.Slot_4, m_PlayerPocket);
+        m_EslotToSocket.Add(EStuffSlot.Helmet, m_HelmetSocket);
+        m_EslotToSocket.Add(EStuffSlot.Chest, m_ChestSocket);
+        m_EslotToSocket.Add(EStuffSlot.Shoulders, m_ChestSocket);
 
 
     }
@@ -149,7 +137,7 @@ public class PlayerLoadout : MonoBehaviour
 
             BasicWeapon weapon = (BasicWeapon)item;
 
-            EquipWeapon(weapon, out ESlot hand);
+            EquipWeapon(weapon, out EStuffSlot hand);
             Debug.Log("weapon equipped, hand is : " + hand); 
 
             m_EquippedItems[hand].m_Rigidbody.isKinematic = true;
@@ -170,7 +158,7 @@ public class PlayerLoadout : MonoBehaviour
         {
             Debug.Log("equip armor of type armor "); 
             Armor armor = (Armor)item;
-            EquipArmor(armor,out ESlot slot, out Transform socket);
+            EquipArmor(armor,out EStuffSlot slot, out Transform socket);
             if(armor is Shoulders_Armor)
             {
                 Shoulders_Armor shoulders = (Shoulders_Armor)armor;
@@ -194,7 +182,7 @@ public class PlayerLoadout : MonoBehaviour
         else if (item is InventoryItem)
         {
             Debug.Log("equip armor of type invetory item ");
-            EquipInventoryItem((InventoryItem)item, out ESlot slot);
+            EquipInventoryItem((InventoryItem)item, out EStuffSlot slot);
 
             m_EquippedItems[slot].m_Rigidbody.isKinematic = true;
             m_EquippedItems[slot].m_Collider.enabled = false;
@@ -212,51 +200,51 @@ public class PlayerLoadout : MonoBehaviour
     public void DropItemInHand(float throwForce = 0f)
     {
         Debug.Log("drop item in hand"); 
-        DropItemOnSlot(ESlot.MainWeapon, throwForce);
+        DropItemOnSlot(EStuffSlot.MainWeapon, throwForce);
 
-        if (m_EquippedItems[ESlot.MainWeapon] != null)
+        if (m_EquippedItems[EStuffSlot.MainWeapon] != null)
         {
-            DropItemOnSlot(ESlot.MainWeapon, throwForce);
+            DropItemOnSlot(EStuffSlot.MainWeapon, throwForce);
             return; 
         }
-        if (m_EquippedItems[ESlot.SecondaryWeapon] != null)
+        if (m_EquippedItems[EStuffSlot.SecondaryWeapon] != null)
         {
-            DropItemOnSlot(ESlot.SecondaryWeapon, throwForce);
+            DropItemOnSlot(EStuffSlot.SecondaryWeapon, throwForce);
         }
 
     }
 
     public void DropWeapons(float throwForce = 5f)
     {
-        if(m_EquippedItems[ESlot.MainWeapon] != null)
+        if(m_EquippedItems[EStuffSlot.MainWeapon] != null)
         {
-            DropWeapon(m_EquippedItems[ESlot.MainWeapon], throwForce);
-            ClearOnSlot(ESlot.MainWeapon);
+            DropWeapon(m_EquippedItems[EStuffSlot.MainWeapon], throwForce);
+            ClearOnSlot(EStuffSlot.MainWeapon);
         }
-        if (m_EquippedItems[ESlot.SecondaryWeapon] != null)
+        if (m_EquippedItems[EStuffSlot.SecondaryWeapon] != null)
         {
-            DropWeapon(m_EquippedItems[ESlot.SecondaryWeapon], throwForce);
-            ClearOnSlot(ESlot.SecondaryWeapon);
+            DropWeapon(m_EquippedItems[EStuffSlot.SecondaryWeapon], throwForce);
+            ClearOnSlot(EStuffSlot.SecondaryWeapon);
         }
     }
     void DropItemOnSlot(int slot, float throwForce = 5f)
     {
-        if (m_EquippedItems[(ESlot)slot] == null) return;
+        if (m_EquippedItems[(EStuffSlot)slot] == null) return;
 
 
-        if (m_EquippedItems[(ESlot)slot] is BasicWeapon)
+        if (m_EquippedItems[(EStuffSlot)slot] is BasicWeapon)
         {
-            DropWeapon(m_EquippedItems[(ESlot)slot], throwForce);
+            DropWeapon(m_EquippedItems[(EStuffSlot)slot], throwForce);
         }
         else
         {
-            DropItem(m_EquippedItems[(ESlot)slot]);
+            DropItem(m_EquippedItems[(EStuffSlot)slot]);
         }
-        ClearOnSlot((ESlot)slot);
+        ClearOnSlot((EStuffSlot)slot);
 
     }
 
-    void DropItemOnSlot(ESlot slot, float throwForce = 5f)
+    void DropItemOnSlot(EStuffSlot slot, float throwForce = 5f)
     {
         Debug.Log("drop item on slot");
         if (m_EquippedItems[slot] == null) return;
@@ -303,18 +291,18 @@ public class PlayerLoadout : MonoBehaviour
 
         if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
-            m_LoadoutItems[ESlot.MainWeapon] = weapon;
-            m_LoadoutItems[ESlot.SecondaryWeapon] = null;
+            m_LoadoutItems[EStuffSlot.MainWeapon] = weapon;
+            m_LoadoutItems[EStuffSlot.SecondaryWeapon] = null;
 
         }
         else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
         {
-            m_LoadoutItems[ESlot.MainWeapon] = weapon;
+            m_LoadoutItems[EStuffSlot.MainWeapon] = weapon;
         }
         else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
         {
-            if (m_LoadoutItems[ESlot.MainWeapon] != null && ((SO_Weapon)m_LoadoutItems[ESlot.MainWeapon]).WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_LoadoutItems[ESlot.MainWeapon] = null;
-            m_LoadoutItems[ESlot.SecondaryWeapon] = weapon; 
+            if (m_LoadoutItems[EStuffSlot.MainWeapon] != null && ((SO_Weapon)m_LoadoutItems[EStuffSlot.MainWeapon]).WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_LoadoutItems[EStuffSlot.MainWeapon] = null;
+            m_LoadoutItems[EStuffSlot.SecondaryWeapon] = weapon; 
         }
 
     }
@@ -324,14 +312,14 @@ public class PlayerLoadout : MonoBehaviour
         
         switch (armor.ArmorPlace)
         {
-            case SO_Armor.EArmorPlace.Helmet:
-                m_LoadoutItems[ESlot.Helmet] = armor;
+            case EArmorPlace.Helmet:
+                m_LoadoutItems[EStuffSlot.Helmet] = armor;
                 break;
-            case SO_Armor.EArmorPlace.Chest:
-                m_LoadoutItems[ESlot.Chest] = armor;
+            case EArmorPlace.Chest:
+                m_LoadoutItems[EStuffSlot.Chest] = armor;
                 break;
-            case SO_Armor.EArmorPlace.Shoulders:
-                m_LoadoutItems[ESlot.Shoulders] = armor;
+            case EArmorPlace.Shoulders:
+                m_LoadoutItems[EStuffSlot.Shoulders] = armor;
                 break;
             default:
                 break;
@@ -343,7 +331,7 @@ public class PlayerLoadout : MonoBehaviour
         //find place and put in slot
         Debug.Log("equip inventory item in loadout");
 
-        if(TryFindEmptyLoadoutSlot(out ESlot slot))
+        if(TryFindEmptyLoadoutSlot(out EStuffSlot slot))
         {
             m_LoadoutItems[slot] = item;
 
@@ -367,26 +355,26 @@ public class PlayerLoadout : MonoBehaviour
     {
         Debug.Log("replace inventory slot");
 
-        m_LoadoutItems[(ESlot)slot] = m_StandByItem;
+        m_LoadoutItems[(EStuffSlot)slot] = m_StandByItem;
       
 
         CloseItemSelection();
     }
 
-    void EquipWeapon(BasicWeapon weapon, out ESlot hand)
+    void EquipWeapon(BasicWeapon weapon, out EStuffSlot hand)
     {
-        hand = ESlot.MainWeapon;
+        hand = EStuffSlot.MainWeapon;
 
         
         
         if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
         {
-            if (m_EquippedItems[ESlot.MainWeapon] != null || m_EquippedItems[ESlot.SecondaryWeapon] != null)
+            if (m_EquippedItems[EStuffSlot.MainWeapon] != null || m_EquippedItems[EStuffSlot.SecondaryWeapon] != null)
             {
                 DropWeapons();
             }
-            m_EquippedItems[ESlot.MainWeapon]= weapon;
-            m_EquippedItems[ESlot.SecondaryWeapon]= null;
+            m_EquippedItems[EStuffSlot.MainWeapon]= weapon;
+            m_EquippedItems[EStuffSlot.SecondaryWeapon]= null;
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(true);
 
         }
@@ -395,27 +383,27 @@ public class PlayerLoadout : MonoBehaviour
         {
             Debug.Log("equipping left handed weapon");
 
-            if ((m_EquippedItems[ESlot.MainWeapon] != null) &&
-                m_EquippedItems[ESlot.MainWeapon].GetComponent<BasicWeapon>().WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
+            if ((m_EquippedItems[EStuffSlot.MainWeapon] != null) &&
+                m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
             {
                 DropWeapons();
 
             }
             else
             {
-                DropItemOnSlot(ESlot.SecondaryWeapon);
+                DropItemOnSlot(EStuffSlot.SecondaryWeapon);
             }
 
 
-            m_EquippedItems[ESlot.SecondaryWeapon] = weapon;
-            hand = ESlot.SecondaryWeapon;
+            m_EquippedItems[EStuffSlot.SecondaryWeapon] = weapon;
+            hand = EStuffSlot.SecondaryWeapon;
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
             
         }
         else if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
         {
-            DropItemOnSlot(ESlot.MainWeapon);
-            m_EquippedItems[ESlot.MainWeapon] = weapon;
+            DropItemOnSlot(EStuffSlot.MainWeapon);
+            m_EquippedItems[EStuffSlot.MainWeapon] = weapon;
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
         }
 
@@ -424,43 +412,43 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
-    void EquipArmor(Armor armor, out ESlot slot, out Transform socket)
+    void EquipArmor(Armor armor, out EStuffSlot slot, out Transform socket)
     {
-        slot = ESlot.Helmet; 
+        slot = EStuffSlot.Helmet; 
         socket = null;
 
        
        if (armor is Head_Armor)
         {
-            slot = ESlot.Helmet;
+            slot = EStuffSlot.Helmet;
             if (m_EquippedItems[slot] != null) DropItemOnSlot(slot);
-            m_EquippedItems[ESlot.Helmet] = armor;
+            m_EquippedItems[EStuffSlot.Helmet] = armor;
             socket = m_HelmetSocket;
         }
         else if (armor is Chest_Armor)
         {
-            slot = ESlot.Chest;
+            slot = EStuffSlot.Chest;
             if (m_EquippedItems[slot] != null) DropItemOnSlot(slot);
-            m_EquippedItems[ESlot.Chest] = armor;
+            m_EquippedItems[EStuffSlot.Chest] = armor;
             socket = m_ChestSocket;
         }
         else if( armor is Shoulders_Armor)
         {
             Debug.Log("equipping shoulders"); 
-            slot= ESlot.Shoulders;
+            slot= EStuffSlot.Shoulders;
             if (m_EquippedItems[slot] != null)
             {
                 m_EquippedItems[slot].GetComponent<Shoulders_Armor>().ShowVisuals(true);
                 DropItemOnSlot(slot);
 
             }
-            m_EquippedItems[ESlot.Shoulders] = armor;
+            m_EquippedItems[EStuffSlot.Shoulders] = armor;
             socket = m_LeftShoulderSocket;
         }
 
     }
 
-    void EquipInventoryItem(InventoryItem item, out ESlot slot)
+    void EquipInventoryItem(InventoryItem item, out EStuffSlot slot)
     {
         if (TryFindEmptyEquippedSlot(out slot))
         {
@@ -471,10 +459,10 @@ public class PlayerLoadout : MonoBehaviour
     }
     public Grabbable GetGrabbableInHand()
     {
-        return m_EquippedItems[ESlot.MainWeapon];    
+        return m_EquippedItems[EStuffSlot.MainWeapon];    
     }
 
-    void ClearOnSlot(ESlot slot)
+    void ClearOnSlot(EStuffSlot slot)
     {
         LocalUI.Instance.ClearSlot(slot);
 
@@ -493,7 +481,7 @@ public class PlayerLoadout : MonoBehaviour
     
     }
 
-    public void SlotActionPerformed(ESlot slot)
+    public void SlotActionPerformed(EStuffSlot slot)
     {
         
 
@@ -519,29 +507,29 @@ public class PlayerLoadout : MonoBehaviour
         
     }
 
-    bool TryFindEmptyLoadoutSlot(out ESlot slot)
+    bool TryFindEmptyLoadoutSlot(out EStuffSlot slot)
     {
         
         
-        if (m_LoadoutItems[ESlot.Slot_1] == null) {slot = ESlot.Slot_1; return true; }
-        if (m_LoadoutItems[ESlot.Slot_2] == null) { slot = ESlot.Slot_2; return true; }
-        if (m_LoadoutItems[ESlot.Slot_3] == null) { slot = ESlot.Slot_3; return true; }
-        if (m_LoadoutItems[ESlot.Slot_4] == null) { slot = ESlot.Slot_4; return true; }
+        if (m_LoadoutItems[EStuffSlot.Slot_1] == null) {slot = EStuffSlot.Slot_1; return true; }
+        if (m_LoadoutItems[EStuffSlot.Slot_2] == null) { slot = EStuffSlot.Slot_2; return true; }
+        if (m_LoadoutItems[EStuffSlot.Slot_3] == null) { slot = EStuffSlot.Slot_3; return true; }
+        if (m_LoadoutItems[EStuffSlot.Slot_4] == null) { slot = EStuffSlot.Slot_4; return true; }
 
         slot = 0; 
         return false; 
     }
 
-    bool TryFindEmptyEquippedSlot(out ESlot slot)
+    bool TryFindEmptyEquippedSlot(out EStuffSlot slot)
     {
 
 
-        if (m_EquippedItems[ESlot.Slot_1] == null) { slot = ESlot.Slot_1; return true; }
-        if (m_EquippedItems[ESlot.Slot_2] == null) { slot = ESlot.Slot_2; return true; }
-        if (m_EquippedItems[ESlot.Slot_3] == null) { slot = ESlot.Slot_3; return true; }
-        if (m_EquippedItems[ESlot.Slot_4] == null) { slot = ESlot.Slot_4; return true; }
+        if (m_EquippedItems[EStuffSlot.Slot_1] == null) { slot = EStuffSlot.Slot_1; return true; }
+        if (m_EquippedItems[EStuffSlot.Slot_2] == null) { slot = EStuffSlot.Slot_2; return true; }
+        if (m_EquippedItems[EStuffSlot.Slot_3] == null) { slot = EStuffSlot.Slot_3; return true; }
+        if (m_EquippedItems[EStuffSlot.Slot_4] == null) { slot = EStuffSlot.Slot_4; return true; }
 
-        slot = ESlot.Slot_1;
+        slot = EStuffSlot.Slot_1;
         return false;
     }
 
@@ -585,11 +573,11 @@ public class PlayerLoadout : MonoBehaviour
     void ShowEquippedUI()
     {
         Debug.Log("show Equipped ui");
-        Dictionary<ESlot, SO_Item> items = new Dictionary<ESlot, SO_Item>();
+        Dictionary<EStuffSlot, SO_Item> items = new Dictionary<EStuffSlot, SO_Item>();
 
         for (int i = 0; i < m_EquippedItems.Count; i++)
         {
-            items.Add((ESlot)i, m_EquippedItems[(ESlot)i] == null ? null :  m_EquippedItems[(ESlot)i].SO_Item);
+            items.Add((EStuffSlot)i, m_EquippedItems[(EStuffSlot)i] == null ? null :  m_EquippedItems[(EStuffSlot)i].SO_Item);
         }
 
         LocalUI.Instance.RefreshInventoryUI(items, m_InventoryType);
@@ -605,7 +593,7 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
-    void EquipLoadoutSlot(ESlot slot)
+    void EquipLoadoutSlot(EStuffSlot slot)
     {
         Transform socket = m_PlayerPocket;
 
@@ -629,7 +617,7 @@ public class PlayerLoadout : MonoBehaviour
 
         for (int i = 0; i < m_LoadoutItems.Count; i++)
         {
-            EquipLoadoutSlot((ESlot)i);
+            EquipLoadoutSlot((EStuffSlot)i);
         }
 
 
@@ -662,7 +650,7 @@ public class PlayerLoadout : MonoBehaviour
 
         for (int i = 0; i < m_EquippedItems.Count; i++)
         {
-            UnloadCheckEquippedItemOnSlot((ESlot)i); 
+            UnloadCheckEquippedItemOnSlot((EStuffSlot)i); 
         }
 
 
@@ -676,7 +664,7 @@ public class PlayerLoadout : MonoBehaviour
         m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
 
     }
-    void UnloadCheckEquippedItemOnSlot(ESlot slot)
+    void UnloadCheckEquippedItemOnSlot(EStuffSlot slot)
     {
 
         List<GameObject> toBin = new List<GameObject>();
@@ -721,7 +709,7 @@ public class PlayerLoadout : MonoBehaviour
 
         for (int i = 0; i < m_LoadoutItems.Count; i++)
         {
-            m_LoadoutItems[(ESlot)i] = null; 
+            m_LoadoutItems[(EStuffSlot)i] = null; 
         }
 
 
@@ -754,20 +742,20 @@ public class PlayerLoadout : MonoBehaviour
     public int DamageReduction(int damage)
     {
         float armor = 0; 
-        if (m_EquippedItems[ESlot.Chest] != null)
+        if (m_EquippedItems[EStuffSlot.Chest] != null)
         {
-            armor += ((Armor)m_EquippedItems[ESlot.Chest]).ArmorParameters.Armor;
+            armor += ((Armor)m_EquippedItems[EStuffSlot.Chest]).ArmorParameters.Armor;
 
         }
-        if (m_EquippedItems[ESlot.Helmet] != null)
+        if (m_EquippedItems[EStuffSlot.Helmet] != null)
         {
 
-            armor += ((Armor)m_EquippedItems[ESlot.Helmet]).ArmorParameters.Armor;
+            armor += ((Armor)m_EquippedItems[EStuffSlot.Helmet]).ArmorParameters.Armor;
         }
-        if (m_EquippedItems[ESlot.Shoulders] != null)
+        if (m_EquippedItems[EStuffSlot.Shoulders] != null)
         {
 
-            armor += ((Armor)m_EquippedItems[ESlot.Shoulders]).ArmorParameters.Armor;
+            armor += ((Armor)m_EquippedItems[EStuffSlot.Shoulders]).ArmorParameters.Armor;
         }
 
         float damageReduction = 100 / (100 + armor);

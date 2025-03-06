@@ -236,7 +236,7 @@ public class ItemEditor : EditorWindow
         Armor armorScript = null; 
         switch (sO_Armor.ArmorPlace)
         {
-            case SO_Armor.EArmorPlace.Helmet:
+            case EArmorPlace.Helmet:
 
                 armorScript = armorItem.AddComponent<Head_Armor>();
                 GameObject helmetMesh = new GameObject("Helmet_Mesh");
@@ -247,7 +247,7 @@ public class ItemEditor : EditorWindow
 
 
                 break;
-            case SO_Armor.EArmorPlace.Chest:
+            case EArmorPlace.Chest:
                 armorScript = armorItem.AddComponent<Chest_Armor>();
                 GameObject chestMesh = new GameObject("Chest_Mesh");
                 chestMesh.transform.parent = armorItem.transform;
@@ -255,7 +255,7 @@ public class ItemEditor : EditorWindow
                 chestMesh.AddComponent<MeshRenderer>().material = baseMaterial;
 
                 break;
-            case SO_Armor.EArmorPlace.Shoulders:
+            case EArmorPlace.Shoulders:
                 armorScript = armorItem.AddComponent<Shoulders_Armor>();
                 //add other shoulders
                 
@@ -314,7 +314,7 @@ public class ItemEditor : EditorWindow
 
         armorScript.m_IsHeld = false;
         armorScript.IsNPCHeld = false;
-        armorScript.ArmorParameters = new Armor.FArmorParameters(sO_Armor.MagicArmor, sO_Armor.Armor, sO_Armor.Cost, sO_Armor.ArmorType, sO_Armor.ArmorPlace);
+        armorScript.ArmorParameters = new FArmorParameters(sO_Armor.MagicArmor, sO_Armor.Armor, sO_Armor.Cost, sO_Armor.ArmorType, sO_Armor.ArmorPlace);
 
 
         Rigidbody rb =  armorItem.AddComponent<Rigidbody>();
@@ -359,7 +359,7 @@ public class ItemEditor : EditorWindow
         storeArmorMesh.AddComponent<MeshFilter>().mesh = itemMesh;
         storeArmorMesh.AddComponent<MeshRenderer>().material = baseMaterial;
 
-        if(sO_Armor.ArmorPlace == SO_Armor.EArmorPlace.Shoulders)
+        if(sO_Armor.ArmorPlace == EArmorPlace.Shoulders)
         {
             GameObject storeRightShoulder = new GameObject("RightShoulder_Mesh");
             storeRightShoulder.transform.parent = storeItem.transform;

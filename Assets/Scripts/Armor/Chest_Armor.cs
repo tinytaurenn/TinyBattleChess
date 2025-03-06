@@ -11,7 +11,7 @@ public class Chest_Armor : Armor
             base.ArmorParameters.Armor,
             base.ArmorParameters.Cost,
             base.ArmorParameters.ArmorType,
-            SO_Armor.EArmorPlace.Chest);
+            EArmorPlace.Chest);
         }
         set => base.ArmorParameters = value;
     }

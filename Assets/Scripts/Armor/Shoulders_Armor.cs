@@ -25,7 +25,7 @@ public class Shoulders_Armor : Armor
             base.ArmorParameters.Armor,
             base.ArmorParameters.Cost,
             base.ArmorParameters.ArmorType,
-            SO_Armor.EArmorPlace.Shoulders);
+            EArmorPlace.Shoulders);
         }
         set => base.ArmorParameters = value;
     }

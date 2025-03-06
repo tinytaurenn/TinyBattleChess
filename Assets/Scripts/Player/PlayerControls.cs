@@ -184,13 +184,13 @@ namespace PlayerControls
             m_PlayerUse.DropPerformed(); 
         }
 
-        void SlotAction1(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_1);
+        void SlotAction1(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(EStuffSlot.Slot_1);
 
-        void SlotAction2(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_2);
+        void SlotAction2(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(EStuffSlot.Slot_2);
 
-        void SlotAction3(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_3);
+        void SlotAction3(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(EStuffSlot.Slot_3);
 
-        void SlotAction4(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(PlayerLoadout.ESlot.Slot_4);
+        void SlotAction4(InputAction.CallbackContext context) => m_PlayerLoadout.SlotActionPerformed(EStuffSlot.Slot_4);
 
        
         void ChoiceSelect1(InputAction.CallbackContext context) => LocalUI.Instance.SelectItem(0);

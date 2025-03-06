@@ -1,5 +1,4 @@
 using UnityEngine;
-using static SO_Scroll;
 
 public class Scroll : InventoryItem
 {
