@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using Coherence;
-using Coherence.Toolkit;
-using NUnit.Framework.Internal.Filters;
+
 
 
 namespace PlayerControls
@@ -41,7 +38,7 @@ namespace PlayerControls
         {
             base.MovementUpdate();
 
-
+            if (IsLocked) return; 
             float mouseDeltaX = MouseDelta.x;
 
             Quaternion newRotation = Quaternion.Euler(0, mouseDeltaX, 0); 
@@ -54,6 +51,12 @@ namespace PlayerControls
         {
             base.StopMovement();
             MouseDelta = Vector2.zero;
+        }
+
+        public override void SitOnTarget(Transform target)
+        {
+            base.SitOnTarget(target);
+
         }
 
 

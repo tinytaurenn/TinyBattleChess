@@ -11,7 +11,7 @@ public abstract class CharacterMovement : MonoBehaviour
     public Vector3 MoveInput { get; set; }
     public bool IsSprinting { get; set; }
 
-    public bool IsSeated { get; set; }
+    public bool IsLocked { get;private set; }
 
     [Header("Horizontal parameters")]
     [SerializeField] float m_MovementSpeed = 7f;
@@ -111,6 +111,14 @@ public abstract class CharacterMovement : MonoBehaviour
         VerticalMovement(rigidBodyVelocity);
 
         float magnitude = MoveInput.magnitude;
+
+        if(IsLocked && magnitude > 0.2f && m_Animator.GetBool("Seated"))
+        {
+            m_Animator.SetBool("Seated", false);
+            LockMovement(false);
+            
+
+        }
 
         float acceleration = 0f;
         if (magnitude > m_PreviousMagnitude)
@@ -330,6 +338,22 @@ public abstract class CharacterMovement : MonoBehaviour
 
 
 
+    }
+
+    public virtual void LockMovement(bool locked)
+    {
+
+        m_rigidBody.constraints = locked ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.FreezeRotation;
+        IsLocked = locked;
+
+    }
+    public virtual void SitOnTarget(Transform target)
+    {
+        StopMovement();
+        LockMovement(true);
+        transform.position = target.position;
+        transform.rotation = target.rotation;
+        m_Animator.SetBool("Seated", true);    
     }
 
     public void Stun()

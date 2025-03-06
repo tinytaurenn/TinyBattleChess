@@ -6,9 +6,12 @@ public class Seat : Usable
 {
 
     [Sync] public bool IsOccupied;
+    public Transform m_SeatPosition;
+    BoxCollider m_Collider; 
     protected override void Awake()
     {
         base.Awake(); 
+        m_Collider = GetComponent<BoxCollider>();
     }
     public override void TryUse()
     {
@@ -26,6 +29,13 @@ public class Seat : Usable
     {
         base.DoUse();
         Debug.Log("Sitting on seat");
+        m_Collider.enabled = false;
         IsOccupied = true;
+    }
+
+    public void ReleaseSeat()
+    {
+        IsOccupied = false;
+        m_Collider.enabled = true;
     }
 }

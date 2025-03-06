@@ -35,6 +35,7 @@ component _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062 [id "160"]
   ShieldParry Bool [bits "1"]
   TwoHanded Bool [bits "1"]
   WeaponSpeed Float [compression "None"]
+  Seated Bool [bits "1"]
 
 component _276f4c8c1f54c8d41afce07cc23e23c3_4012604043449858976 [id "161"]
   m_ItemInUse Bool [bits "1"]

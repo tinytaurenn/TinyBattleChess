@@ -36,7 +36,7 @@ public class TinyPlayer : Entity, IDamageable
     CoherenceSync m_Sync;
 
     public CoherenceSync Sync => m_Sync;
-    PlayerMovement m_PlayerMovement;
+    public PlayerMovement m_PlayerMovement;
     PlayerGhostMovement m_GhostMovement;
     Collider m_Collider; 
     internal PlayerControls.PlayerControls m_PlayerControls;
