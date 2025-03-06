@@ -4,8 +4,6 @@ public class Scroll : InventoryItem
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    [SerializeField] EScrollElem m_ScrollElems;
-    public EScrollElem ScrollElems { get { return m_ScrollElems; } set { m_ScrollElems = value; } }
 
     [SerializeField] int m_ScrollCharges = 1; 
     public int ScrollCharges { get { return m_ScrollCharges; } set { m_ScrollCharges = value; } }

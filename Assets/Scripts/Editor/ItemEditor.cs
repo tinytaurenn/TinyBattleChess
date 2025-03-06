@@ -466,7 +466,7 @@ public class ItemEditor : EditorWindow
         meshFilter.mesh = itemMesh;
         Renderer renderer = scrollMesh.AddComponent<MeshRenderer>();
         renderer.material = baseMaterial;
-        scrollScript.ScrollElems = soScroll.ScrollElem; 
+        //scrollScript.ScrollElems = soScroll.ScrollElem; 
         scrollScript.ScrollCharges = soScroll.Charges;
         scrollScript.SO_Item = SO_Item;
         scrollScript.m_IsHeld = false;

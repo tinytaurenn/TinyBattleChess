@@ -5,9 +5,6 @@ using UnityEngine;
 public class SO_Scroll : SO_Item
 {
     
-
-    public EScrollElem ScrollElem;
-
     public int Charges = 1;
 
 

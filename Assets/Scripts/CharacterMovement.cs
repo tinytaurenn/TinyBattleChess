@@ -11,6 +11,8 @@ public abstract class CharacterMovement : MonoBehaviour
     public Vector3 MoveInput { get; set; }
     public bool IsSprinting { get; set; }
 
+    public bool IsSeated { get; set; }
+
     [Header("Horizontal parameters")]
     [SerializeField] float m_MovementSpeed = 7f;
     [SerializeField] float m_SprintMultiplier = 1.5f;

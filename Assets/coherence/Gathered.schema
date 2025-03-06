@@ -64,47 +64,50 @@ component _28fbed09d7fea464681134cd159332ad_5939546729887440551 [id "167"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _2c19a04c42faa6b4398e588b58d31f5f_17001797403845922607 [id "168"]
+component _2a01b08a88ea4644fa4dc8321c8278e5_7178968045311378612 [id "168"]
+  IsOccupied Bool [bits "1"]
+
+component _2c19a04c42faa6b4398e588b58d31f5f_17001797403845922607 [id "169"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _2c19a04c42faa6b4398e588b58d31f5f_3384389735842056370 [id "169"]
+component _2c19a04c42faa6b4398e588b58d31f5f_3384389735842056370 [id "170"]
   isKinematic Bool [bits "1"]
 
-component _2c19a04c42faa6b4398e588b58d31f5f_6415732900446197949 [id "170"]
+component _2c19a04c42faa6b4398e588b58d31f5f_6415732900446197949 [id "171"]
   enabled Bool [bits "1"]
 
-component _2c19a04c42faa6b4398e588b58d31f5f_97645489704987816 [id "171"]
+component _2c19a04c42faa6b4398e588b58d31f5f_97645489704987816 [id "172"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499 [id "172"]
+component _3941f9337bf07904f8ebd80981d7e64f_1338625383742743499 [id "173"]
   text String [bits "6"]
   enabled Bool [bits "1"]
 
-component _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 [id "173"]
+component _3941f9337bf07904f8ebd80981d7e64f_3742310084580637886 [id "174"]
   m_TurnNumber Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   m_IntPlayState Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   m_IntGameState Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   m_IntGameMode Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   m_RespawnTime Float [compression "None"]
 
-component _406b1ac2c4f206b48b7f7599db0bf7a9_14447331401665559380 [id "174"]
+component _406b1ac2c4f206b48b7f7599db0bf7a9_14447331401665559380 [id "175"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _52c50e470fcf1e3419d4bf3ed75d999e_17161935702122925116 [id "175"]
+component _52c50e470fcf1e3419d4bf3ed75d999e_17161935702122925116 [id "176"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _52c50e470fcf1e3419d4bf3ed75d999e_17500377362836339264 [id "176"]
+component _52c50e470fcf1e3419d4bf3ed75d999e_17500377362836339264 [id "177"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _52c50e470fcf1e3419d4bf3ed75d999e_2421689411287955229 [id "177"]
+component _52c50e470fcf1e3419d4bf3ed75d999e_2421689411287955229 [id "178"]
   enabled Bool [bits "1"]
 
-component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "178"]
+component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "179"]
   MoveSpeed Float [compression "None"]
   Grounded Bool [bits "1"]
   CarryingBig Bool [bits "1"]
@@ -115,10 +118,10 @@ component _5358ed04715b0f148a60e93c83f08be0_1947441686218104907 [id "178"]
   Stunned Bool [bits "1"]
   ShieldParry Bool [bits "1"]
 
-component _5358ed04715b0f148a60e93c83f08be0_2130127191657380802 [id "179"]
+component _5358ed04715b0f148a60e93c83f08be0_2130127191657380802 [id "180"]
   m_BodyTextureIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _5358ed04715b0f148a60e93c83f08be0_2358625368182078286 [id "180"]
+component _5358ed04715b0f148a60e93c83f08be0_2358625368182078286 [id "181"]
   m_IntPlayerState Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   BattleIndex Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   PlayerHealth Int [bits "32", range-min "-2147483648", range-max "2147483647"]
@@ -126,75 +129,75 @@ component _5358ed04715b0f148a60e93c83f08be0_2358625368182078286 [id "180"]
   GameID Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   IsHost Bool [bits "1"]
 
-component _5358ed04715b0f148a60e93c83f08be0_58566053745997887 [id "181"]
+component _5358ed04715b0f148a60e93c83f08be0_58566053745997887 [id "182"]
   m_ItemInUse Bool [bits "1"]
 
-component _5a5613fa52e71cc4c98ddf4ac4443d04_1405256464759894401 [id "182"]
+component _5a5613fa52e71cc4c98ddf4ac4443d04_1405256464759894401 [id "183"]
   isKinematic Bool [bits "1"]
 
-component _5a5613fa52e71cc4c98ddf4ac4443d04_224556989670360360 [id "183"]
+component _5a5613fa52e71cc4c98ddf4ac4443d04_224556989670360360 [id "184"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _5a5613fa52e71cc4c98ddf4ac4443d04_488955913947146235 [id "184"]
+component _5a5613fa52e71cc4c98ddf4ac4443d04_488955913947146235 [id "185"]
   enabled Bool [bits "1"]
 
-component _5a5613fa52e71cc4c98ddf4ac4443d04_5704872802784921376 [id "185"]
+component _5a5613fa52e71cc4c98ddf4ac4443d04_5704872802784921376 [id "186"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_4509086355188942050 [id "186"]
+component _5bdd7302d83b75e4ea45b36178bc0730_4509086355188942050 [id "187"]
   rotation Quaternion [bits "32", sim-frames "true"]
   position Vector3 [sim-frames "true", compression "None"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_5732756931578646146 [id "187"]
+component _5bdd7302d83b75e4ea45b36178bc0730_5732756931578646146 [id "188"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_6882032591032927303 [id "188"]
+component _5bdd7302d83b75e4ea45b36178bc0730_6882032591032927303 [id "189"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_7583829343254099563 [id "189"]
+component _5bdd7302d83b75e4ea45b36178bc0730_7583829343254099563 [id "190"]
   rotation Quaternion [bits "32", sim-frames "true"]
   position Vector3 [sim-frames "true", compression "None"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_8012800132177806423 [id "190"]
+component _5bdd7302d83b75e4ea45b36178bc0730_8012800132177806423 [id "191"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761 [id "191"]
+component _5bdd7302d83b75e4ea45b36178bc0730_8161195957959173761 [id "192"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983 [id "192"]
+component _5bdd7302d83b75e4ea45b36178bc0730_851302204959615983 [id "193"]
   position Vector3 [sim-frames "true", compression "None"]
   rotation Quaternion [bits "32", sim-frames "true"]
 
-component _5ca4159d3bce41449a6ca5773f57e7ef_1046041548547050077 [id "193"]
+component _5ca4159d3bce41449a6ca5773f57e7ef_1046041548547050077 [id "194"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _5ca4159d3bce41449a6ca5773f57e7ef_1124373291744692987 [id "194"]
+component _5ca4159d3bce41449a6ca5773f57e7ef_1124373291744692987 [id "195"]
   enabled Bool [bits "1"]
 
-component _5ca4159d3bce41449a6ca5773f57e7ef_4174491460896577714 [id "195"]
+component _5ca4159d3bce41449a6ca5773f57e7ef_4174491460896577714 [id "196"]
   enabled Bool [bits "1"]
 
-component _5ca4159d3bce41449a6ca5773f57e7ef_6247734567211433748 [id "196"]
+component _5ca4159d3bce41449a6ca5773f57e7ef_6247734567211433748 [id "197"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _5ca4159d3bce41449a6ca5773f57e7ef_7232497783675306652 [id "197"]
+component _5ca4159d3bce41449a6ca5773f57e7ef_7232497783675306652 [id "198"]
   enabled Bool [bits "1"]
 
-component _5ca4159d3bce41449a6ca5773f57e7ef_8848058704849903042 [id "198"]
+component _5ca4159d3bce41449a6ca5773f57e7ef_8848058704849903042 [id "199"]
   isKinematic Bool [bits "1"]
 
-component _61db515efe9556c45853cdc384e6813b_250450228331426890 [id "199"]
+component _61db515efe9556c45853cdc384e6813b_250450228331426890 [id "200"]
   isKinematic Bool [bits "1"]
 
-component _61db515efe9556c45853cdc384e6813b_26648702269276731 [id "200"]
+component _61db515efe9556c45853cdc384e6813b_26648702269276731 [id "201"]
   ShieldParry Bool [bits "1"]
   Parry Bool [bits "1"]
   Attacking Bool [bits "1"]
@@ -205,10 +208,10 @@ component _61db515efe9556c45853cdc384e6813b_26648702269276731 [id "200"]
   Dead Bool [bits "1"]
   TwoHanded Bool [bits "1"]
 
-component _61db515efe9556c45853cdc384e6813b_6236027375457903363 [id "201"]
+component _61db515efe9556c45853cdc384e6813b_6236027375457903363 [id "202"]
   ids Bytes [bits "4072"]
 
-component _61db515efe9556c45853cdc384e6813b_6363404363339079209 [id "202"]
+component _61db515efe9556c45853cdc384e6813b_6363404363339079209 [id "203"]
   GameID Int [bits "8", range-min "-99", range-max "99"]
   CanAttack Bool [bits "1"]
   Health Int [bits "32", range-min "-2147483648", range-max "2147483647"]
@@ -216,112 +219,112 @@ component _61db515efe9556c45853cdc384e6813b_6363404363339079209 [id "202"]
   IntMovementType Int [bits "8", range-min "-99", range-max "99"]
   IntNPCBehavior Int [bits "8", range-min "-99", range-max "99"]
 
-component _61db515efe9556c45853cdc384e6813b_7802325523913527825 [id "203"]
+component _61db515efe9556c45853cdc384e6813b_7802325523913527825 [id "204"]
   enabled Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_1934004787042426134 [id "204"]
+component _775a962259beb2f48b64b79887dce771_1934004787042426134 [id "205"]
   enabled Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_2126962496601302669 [id "205"]
+component _775a962259beb2f48b64b79887dce771_2126962496601302669 [id "206"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_277023309556421205 [id "206"]
+component _775a962259beb2f48b64b79887dce771_277023309556421205 [id "207"]
   isKinematic Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_4486487952480385274 [id "207"]
+component _775a962259beb2f48b64b79887dce771_4486487952480385274 [id "208"]
   enabled Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_9024384128650397308 [id "208"]
+component _775a962259beb2f48b64b79887dce771_9024384128650397308 [id "209"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _7a48fb6866149a6488e2e1096523ccff_3206994536959658864 [id "209"]
+component _7a48fb6866149a6488e2e1096523ccff_3206994536959658864 [id "210"]
   enabled Bool [bits "1"]
 
-component _7a48fb6866149a6488e2e1096523ccff_5153324027185580596 [id "210"]
+component _7a48fb6866149a6488e2e1096523ccff_5153324027185580596 [id "211"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _7a48fb6866149a6488e2e1096523ccff_5843287501086471510 [id "211"]
+component _7a48fb6866149a6488e2e1096523ccff_5843287501086471510 [id "212"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _7a48fb6866149a6488e2e1096523ccff_7591037996061170254 [id "212"]
+component _7a48fb6866149a6488e2e1096523ccff_7591037996061170254 [id "213"]
   isKinematic Bool [bits "1"]
 
-component _843a4365828b49f4bb28b996f46ef351_5533348190771354695 [id "213"]
+component _843a4365828b49f4bb28b996f46ef351_5533348190771354695 [id "214"]
   playAutomatically Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058 [id "214"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058 [id "215"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204 [id "215"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204 [id "216"]
   enabled Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_7748839666212120403 [id "216"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_7748839666212120403 [id "217"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307 [id "217"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307 [id "218"]
   isKinematic Bool [bits "1"]
 
-component _9e558580774fe6f47a64686c5829e786_4118834038646693485 [id "218"]
+component _9e558580774fe6f47a64686c5829e786_4118834038646693485 [id "219"]
   enabled Bool [bits "1"]
 
-component _c1430919458aebb499cffdc9a9527493_6712201074196649712 [id "219"]
+component _c1430919458aebb499cffdc9a9527493_6712201074196649712 [id "220"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _c473af9c10567024caf206bf6752a656_2607659342849482176 [id "220"]
+component _c473af9c10567024caf206bf6752a656_2607659342849482176 [id "221"]
   GameID Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _c473af9c10567024caf206bf6752a656_5919305605642209624 [id "221"]
+component _c473af9c10567024caf206bf6752a656_5919305605642209624 [id "222"]
   DummyParry Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830 [id "222"]
+component _d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830 [id "223"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _d74ec397b646aca44b0b3a0dd609d93f_1851380562913046313 [id "223"]
+component _d74ec397b646aca44b0b3a0dd609d93f_1851380562913046313 [id "224"]
   isKinematic Bool [bits "1"]
 
-component _d74ec397b646aca44b0b3a0dd609d93f_3290036067546008819 [id "224"]
+component _d74ec397b646aca44b0b3a0dd609d93f_3290036067546008819 [id "225"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _d74ec397b646aca44b0b3a0dd609d93f_8822264005869638783 [id "225"]
+component _d74ec397b646aca44b0b3a0dd609d93f_8822264005869638783 [id "226"]
   enabled Bool [bits "1"]
 
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386 [id "226"]
+component _e4aae1ad1cbda6a4d803eda3efb9d15a_1180113770390813386 [id "227"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539 [id "227"]
+component _e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539 [id "228"]
   isKinematic Bool [bits "1"]
 
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513 [id "228"]
+component _e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513 [id "229"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811 [id "229"]
+component _e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811 [id "230"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_2234337059430967768 [id "230"]
+component _ebe3c005c8a4429419dab111d22f160c_2234337059430967768 [id "231"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_2668675485594391575 [id "231"]
+component _ebe3c005c8a4429419dab111d22f160c_2668675485594391575 [id "232"]
   isKinematic Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_4025658085450113105 [id "232"]
+component _ebe3c005c8a4429419dab111d22f160c_4025658085450113105 [id "233"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 [id "233"]
+component _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 [id "234"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_8923926967690582782 [id "234"]
+component _ebe3c005c8a4429419dab111d22f160c_8923926967690582782 [id "235"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
