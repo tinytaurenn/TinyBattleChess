@@ -23939,6 +23939,7 @@ MonoBehaviour:
     Damage: 10
     Speed: 1.5
     Cost: 20
+    DamageType: 1
     WeaponType: 256
     WeaponSize: 2
     PositionOffset: {x: 0, y: 0, z: 0.011}

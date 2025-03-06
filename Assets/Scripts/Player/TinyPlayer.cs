@@ -427,7 +427,7 @@ public class TinyPlayer : Entity, IDamageable
     }
 
     #region Hits
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EDamageType damageType, Vector3 attackerPos)
     {
 
         if (m_PlayerState != EPlayerState.Player)
@@ -469,13 +469,13 @@ public class TinyPlayer : Entity, IDamageable
         }
         else
         {
-            TakeWeaponDamageSync(damage, sync); 
+            TakeWeaponDamageSync(damage,damageType, sync); 
 
 
         }
     }
 
-    public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
     {
 
         Debug.Log("sync Player took " + damage + " weapon damage!");
@@ -484,12 +484,12 @@ public class TinyPlayer : Entity, IDamageable
         Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
         Damagersync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncHitCommand), Coherence.MessageTarget.AuthorityOnly); //sound 
         
-        TakeDamageSync(damage, Damagersync);
+        TakeDamageSync(damage, damageType, Damagersync);
 
 
     }
 
-    public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
+    public override void TakeDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
     {
 
 
@@ -500,6 +500,7 @@ public class TinyPlayer : Entity, IDamageable
         //armors calculations
         //
         damage =  m_PlayerLoadout.DamageReduction(damage);
+        Debug.Log("damage type is " + damageType.ToString()); 
 
         Debug.Log("sync Player took " + damage + " reduced damage!");
 

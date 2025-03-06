@@ -153,7 +153,7 @@ public class ItemEditor : EditorWindow
         weaponScript.IsNPCHeld = false;
 
         SO_Weapon soWeapon = SO_Item as SO_Weapon;
-        BasicWeapon.FWeaponParameters weaponParameters = new BasicWeapon.FWeaponParameters(soWeapon.Damage,soWeapon.Speed,soWeapon.Cost,soWeapon.WeaponType,soWeapon.WeaponSize);
+        FWeaponParameters weaponParameters = new FWeaponParameters(soWeapon.Damage,soWeapon.Speed,soWeapon.Cost,soWeapon.DamageType,soWeapon.WeaponType,soWeapon.WeaponSize);
 
         weaponScript.m_ParryAudios = soWeapon.ParrySounds;
         weaponScript.HitSounds = soWeapon.HitSounds;

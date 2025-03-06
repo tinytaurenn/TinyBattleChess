@@ -20,14 +20,14 @@ public abstract class Entity : MonoBehaviour
 
     public abstract void Stun(); 
 
-    public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos);
+    public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, EDamageType damageType,Vector3 attackerPos);
 
-    public abstract void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync);
+    public abstract void TakeWeaponDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync);
 
 
     public abstract void ParrySync(int damage, CoherenceSync DamagerSync);
 
-    public abstract void TakeDamageSync(int damage, CoherenceSync Damagersync);
+    public abstract void TakeDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync);
 
     public abstract void SyncBlocked();
 

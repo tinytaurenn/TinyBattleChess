@@ -289,19 +289,19 @@ public class PlayerLoadout : MonoBehaviour
     void EquipWeaponLoadout(SO_Weapon weapon)
     {
 
-        if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
+        if(weapon.WeaponSize == EWeaponSize.Two_Handed)
         {
             m_LoadoutItems[EStuffSlot.MainWeapon] = weapon;
             m_LoadoutItems[EStuffSlot.SecondaryWeapon] = null;
 
         }
-        else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
+        else if (weapon.WeaponSize == EWeaponSize.Right_Handed)
         {
             m_LoadoutItems[EStuffSlot.MainWeapon] = weapon;
         }
-        else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
+        else if (weapon.WeaponSize == EWeaponSize.Left_Handed)
         {
-            if (m_LoadoutItems[EStuffSlot.MainWeapon] != null && ((SO_Weapon)m_LoadoutItems[EStuffSlot.MainWeapon]).WeaponSize == SO_Weapon.EWeaponSize.Two_Handed) m_LoadoutItems[EStuffSlot.MainWeapon] = null;
+            if (m_LoadoutItems[EStuffSlot.MainWeapon] != null && ((SO_Weapon)m_LoadoutItems[EStuffSlot.MainWeapon]).WeaponSize == EWeaponSize.Two_Handed) m_LoadoutItems[EStuffSlot.MainWeapon] = null;
             m_LoadoutItems[EStuffSlot.SecondaryWeapon] = weapon; 
         }
 
@@ -367,7 +367,7 @@ public class PlayerLoadout : MonoBehaviour
 
         
         
-        if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
+        if (weapon.WeaponSize == EWeaponSize.Two_Handed)
         {
             if (m_EquippedItems[EStuffSlot.MainWeapon] != null || m_EquippedItems[EStuffSlot.SecondaryWeapon] != null)
             {
@@ -379,12 +379,12 @@ public class PlayerLoadout : MonoBehaviour
 
         }
 
-        else if (weapon.WeaponSize == SO_Weapon.EWeaponSize.Left_Handed)
+        else if (weapon.WeaponSize == EWeaponSize.Left_Handed)
         {
             Debug.Log("equipping left handed weapon");
 
             if ((m_EquippedItems[EStuffSlot.MainWeapon] != null) &&
-                m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().WeaponSize == SO_Weapon.EWeaponSize.Two_Handed)
+                m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().WeaponSize == EWeaponSize.Two_Handed)
             {
                 DropWeapons();
 
@@ -400,7 +400,7 @@ public class PlayerLoadout : MonoBehaviour
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
             
         }
-        else if(weapon.WeaponSize == SO_Weapon.EWeaponSize.Right_Handed)
+        else if(weapon.WeaponSize == EWeaponSize.Right_Handed)
         {
             DropItemOnSlot(EStuffSlot.MainWeapon);
             m_EquippedItems[EStuffSlot.MainWeapon] = weapon;

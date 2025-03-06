@@ -3,51 +3,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using static SO_Weapon;
 
 public class BasicWeapon : Grabbable, IWeapon
 {
-    [Serializable]
-    public struct FWeaponParameters
-    {
-        public int Damage;
-        public float Speed;
-        public int Cost;
-        public EWeaponType WeaponType;
-        public EWeaponSize WeaponSize;
-        public Vector3 PositionOffset;
-        public Vector3 RotationOffset;
-
-
-     public FWeaponParameters(int damage, float speed, int cost, EWeaponType weaponType, EWeaponSize weaponSize, Vector3 positionOffset, Vector3 rotationOffset)
-        {
-            Damage = damage;
-            Speed = speed;
-            Cost = cost;
-            WeaponType = weaponType;
-            WeaponSize = weaponSize;
-            PositionOffset = positionOffset;
-            RotationOffset = rotationOffset;
-        }
-        public FWeaponParameters(int damage, float speed, int cost, EWeaponType weaponType, EWeaponSize weaponSize)
-        {
-            Damage = damage;
-            Speed = speed;
-            Cost = cost;
-            WeaponType = weaponType;
-            WeaponSize = weaponSize;
-            PositionOffset = Vector3.zero;
-            RotationOffset = Vector3.zero;
-
-
-        }
-
-    }
-
-    
 
     [SerializeField]
-    FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EWeaponType.Sword, EWeaponSize.Right_Handed);
+    FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EDamageType.Physical,EWeaponType.Sword, EWeaponSize.Right_Handed);
 
     public FWeaponParameters WeaponParameters {
         get
@@ -73,6 +34,8 @@ public class BasicWeapon : Grabbable, IWeapon
 
     internal EWeaponType WeaponType => m_WeaponParameters.WeaponType;
     internal EWeaponSize WeaponSize => m_WeaponParameters.WeaponSize;
+
+    internal EDamageType DamageType => m_WeaponParameters.DamageType;
     internal int WeaponDamage => m_WeaponParameters.Damage; 
     internal float WeaponSpeed => m_WeaponParameters.Speed;
     internal int WeaponCost => m_WeaponParameters.Cost;
@@ -203,7 +166,7 @@ public class BasicWeapon : Grabbable, IWeapon
                 CoherenceSync holderSync = m_HolderTransform.GetComponent<CoherenceSync>();
               
                 Debug.Log("sending commannd to target");
-                sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, weaponDir, holderSync, m_WeaponParameters.Damage, m_HolderTransform.transform.position);
+                sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, weaponDir, holderSync, m_WeaponParameters.Damage,(int)m_WeaponParameters.DamageType, m_HolderTransform.transform.position);
             }
         }
 

@@ -358,13 +358,13 @@ public class HumanoidNPC : TinyNPC
 
     
 
-    public override void TakeDamageSync(int damage, CoherenceSync Damagersync)
+    public override void TakeDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
     {
-        base.TakeDamageSync(damage, Damagersync);
+        base.TakeDamageSync(damage,damageType, Damagersync);
 
     }
 
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EDamageType damageType, Vector3 attackerPos)
     {
         //base.TakeMeleeSync(DirectionNESO, sync, damage, attackerPos);
         bool rightParry = false; 
@@ -409,7 +409,7 @@ public class HumanoidNPC : TinyNPC
         }
         else
         {
-            TakeWeaponDamageSync(damage, sync);
+            TakeWeaponDamageSync(damage,damageType, sync);
         }
     }
 
@@ -424,7 +424,7 @@ public class HumanoidNPC : TinyNPC
         m_Sync.SendCommand<HumanoidFX>(nameof(HumanoidFX.PlayParryFX), Coherence.MessageTarget.Other, soundVariationIndex);
     }
 
-    public override void TakeWeaponDamageSync(int damage, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
     {
         Debug.Log("sync humanoid took " + damage + " weapon damage!");
 
@@ -432,7 +432,7 @@ public class HumanoidNPC : TinyNPC
         m_Sync.SendCommand<HumanoidFX>(nameof(HumanoidFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
         Damagersync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncHitCommand), Coherence.MessageTarget.AuthorityOnly); //
 
-        TakeDamageSync(damage, Damagersync);
+        TakeDamageSync(damage,damageType, Damagersync);
 
     }
 

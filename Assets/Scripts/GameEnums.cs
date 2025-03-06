@@ -24,6 +24,18 @@ public enum EStuffSlot
     count = 9
 }
 #endregion
+#region Other Enums and Struct
+[Flags]
+public enum EDamageType
+{
+    Physical = 1,
+    Magical = 2,
+    Fire = 4,
+    Poison = 8,
+    Bleed = 16,
+    Psy = 32,
+}
+#endregion
 #region Item Enums and Struct
 [Flags]
 public enum EItemType
@@ -32,7 +44,6 @@ public enum EItemType
     Armor = 2,  // passive without consomption // gris bleu 
     Potion = 4, // passive with consomption //vert pomme
     Scroll = 8, // ability with consomption // orange colruyt 
-    Rune = 16 // Ability without consomption // bleu electrique
 }
 
 public enum EItemRarity
@@ -42,6 +53,65 @@ public enum EItemRarity
     Rare = 2, //blue
     Epic = 3, // purple
     Legendary = 4 // orange
+}
+public enum EWeaponType
+{
+    Sword = 1,
+    Axe = 2,
+    Mace = 4,
+    Spear = 8,
+    Bow = 16,
+    Crossbow = 32,
+    LongBow = 64,
+    Staff = 128,
+    Shield = 256,
+    Dagger = 512
+}
+public enum EWeaponSize
+{
+    Right_Handed,
+    Left_Handed,
+    Two_Handed,
+
+}
+[Serializable]
+public struct FWeaponParameters
+{
+    public int Damage;
+    public float Speed;
+    public int Cost;
+    public EDamageType DamageType;
+    public EWeaponType WeaponType;
+    public EWeaponSize WeaponSize;
+    public Vector3 PositionOffset;
+    public Vector3 RotationOffset;
+
+
+    public FWeaponParameters(int damage, float speed, int cost,EDamageType damageType, EWeaponType weaponType, EWeaponSize weaponSize, Vector3 positionOffset, Vector3 rotationOffset)
+    {
+        Damage = damage;
+        Speed = speed;
+        Cost = cost;
+        DamageType = damageType;
+        WeaponType = weaponType;
+        WeaponSize = weaponSize;
+        PositionOffset = positionOffset;
+        RotationOffset = rotationOffset;
+    }
+    public FWeaponParameters(int damage, float speed, int cost, EDamageType damageType,EWeaponType weaponType, EWeaponSize weaponSize)
+    {
+        Damage = damage;
+        Speed = speed;
+        Cost = cost;
+        DamageType = damageType;
+        WeaponType = weaponType;
+        WeaponSize = weaponSize;
+        PositionOffset = Vector3.zero;
+        RotationOffset = Vector3.zero;
+
+
+    }
+
 }
 public enum EPotionEffect
 {

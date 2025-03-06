@@ -24,12 +24,14 @@ MonoBehaviour:
     m_InitialScene: {fileID: 0}
   m_EditorInstances:
   - Name: Player 2
-    <CorrespondingNodeId>k__BackingField: 
-    m_Nodes: []
+    <CorrespondingNodeId>k__BackingField: Player 2|1_run
+    m_Nodes:
+    - Player 2|1_run
+    - Player 2|1_deploy
     m_PlayerTag: 
     m_InitialScene: {fileID: 0}
     m_AdvancedConfiguration:
-      StreamLogsToMainEditor: 0
+      StreamLogsToMainEditor: 1
       LogsColor: {r: 0.24964277, g: 0.8301887, b: 0.019579919, a: 1}
   m_LocalInstances: []
   m_RemoteInstances: []

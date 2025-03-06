@@ -165,7 +165,7 @@ public class PlayerWeapons : MonoBehaviour
             m_InParry = true;
 
             if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] != null 
-                && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>().WeaponType == SO_Weapon.EWeaponType.Shield)
+                && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>().WeaponType == EWeaponType.Shield)
             {
                 Debug.Log("got some shield baby");
                 ShieldParry(); 
