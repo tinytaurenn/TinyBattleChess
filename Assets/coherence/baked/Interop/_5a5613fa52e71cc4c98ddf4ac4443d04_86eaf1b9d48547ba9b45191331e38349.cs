@@ -16,29 +16,29 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _5a5613fa52e71cc4c98ddf4ac4443d04_a60de80df8df43bf8ffe6020575921c8 : IEntityCommand
+    public struct _5a5613fa52e71cc4c98ddf4ac4443d04_86eaf1b9d48547ba9b45191331e38349 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Byte enable;
+            public System.Int32 index;
         }
 
-        public static unsafe _5a5613fa52e71cc4c98ddf4ac4443d04_a60de80df8df43bf8ffe6020575921c8 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5a5613fa52e71cc4c98ddf4ac4443d04_86eaf1b9d48547ba9b45191331e38349 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 1) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 1) " +
+            if (dataSize != 4) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
                     "for command with ID 66");
             }
 
-            var orig = new _5a5613fa52e71cc4c98ddf4ac4443d04_a60de80df8df43bf8ffe6020575921c8();
+            var orig = new _5a5613fa52e71cc4c98ddf4ac4443d04_86eaf1b9d48547ba9b45191331e38349();
             var comp = (Interop*)data;
-            orig.enable = comp->enable != 0;
+            orig.index = comp->index;
             return orig;
         }
 
-        public System.Boolean enable;
+        public System.Int32 index;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
@@ -82,9 +82,9 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _5a5613fa52e71cc4c98ddf4ac4443d04_a60de80df8df43bf8ffe6020575921c8(
+        public _5a5613fa52e71cc4c98ddf4ac4443d04_86eaf1b9d48547ba9b45191331e38349(
         Entity entity,
-        System.Boolean enable
+        System.Int32 index
 )
         {
             Entity = entity;
@@ -92,23 +92,23 @@ namespace Coherence.Generated
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.enable = enable; 
+            this.index = index; 
         }
         
-        public static void Serialize(_5a5613fa52e71cc4c98ddf4ac4443d04_a60de80df8df43bf8ffe6020575921c8 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_5a5613fa52e71cc4c98ddf4ac4443d04_86eaf1b9d48547ba9b45191331e38349 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteBool(commandData.enable);
+            bitStream.WriteIntegerRange(commandData.index, 32, -2147483648);
         }
         
-        public static _5a5613fa52e71cc4c98ddf4ac4443d04_a60de80df8df43bf8ffe6020575921c8 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _5a5613fa52e71cc4c98ddf4ac4443d04_86eaf1b9d48547ba9b45191331e38349 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var dataenable = bitStream.ReadBool();
+            var dataindex = bitStream.ReadIntegerRange(32, -2147483648);
     
-            return new _5a5613fa52e71cc4c98ddf4ac4443d04_a60de80df8df43bf8ffe6020575921c8()
+            return new _5a5613fa52e71cc4c98ddf4ac4443d04_86eaf1b9d48547ba9b45191331e38349()
             {
                 Entity = entity,
                 Routing = target,
-                enable = dataenable
+                index = dataindex
             };   
         }
     }

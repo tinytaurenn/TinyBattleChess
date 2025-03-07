@@ -61,13 +61,7 @@ public abstract class TinyNPC : Entity, IDamageable
 
     [Space(10)]
     [Header("Stats")]
-    [SerializeField] int m_Health = 100;
-    [Sync]
-    public int Health
-    {
-        get { return m_Health; }
-        set { m_Health = value; }
-    }
+
 
     [Space(10)]
     [Header("Summoned")]
@@ -578,11 +572,11 @@ public abstract class TinyNPC : Entity, IDamageable
 
         HitStun();
 
-        Health -= damage;
+        EntityHealth -= damage;
 
-        if (Health <= 0)
+        if (EntityHealth <= 0)
         {
-            Health = 0;
+            EntityHealth = 0;
             Debug.Log("must die now");
 
             EntityDeath();

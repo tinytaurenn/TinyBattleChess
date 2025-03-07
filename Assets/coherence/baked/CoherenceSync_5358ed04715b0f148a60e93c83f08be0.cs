@@ -806,58 +806,6 @@ namespace Coherence.Generated
     }
     
     [UnityEngine.Scripting.Preserve]
-    public class Binding_5358ed04715b0f148a60e93c83f08be0_80727e7c0a4848e8968c3c48eb63f906 : IntBinding
-    {   
-        private global::TinyPlayer CastedUnityComponent;
-
-        protected override void OnBindingCloned()
-        {
-    	    CastedUnityComponent = (global::TinyPlayer)UnityComponent;
-        }
-
-        public override global::System.Type CoherenceComponentType => typeof(_5358ed04715b0f148a60e93c83f08be0_2358625368182078286);
-        public override string CoherenceComponentName => "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286";
-        public override uint FieldMask => 0b00000000000000000000000000000100;
-
-        public override System.Int32 Value
-        {
-            get { return (System.Int32)(CastedUnityComponent.PlayerHealth); }
-            set { CastedUnityComponent.PlayerHealth = (System.Int32)(value); }
-        }
-
-        protected override (System.Int32 value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
-        {
-            var value = ((_5358ed04715b0f148a60e93c83f08be0_2358625368182078286)coherenceComponent).PlayerHealth;
-
-            var simFrame = ((_5358ed04715b0f148a60e93c83f08be0_2358625368182078286)coherenceComponent).PlayerHealthSimulationFrame;
-            
-            return (value, simFrame);
-        }
-
-        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
-        {
-            var update = (_5358ed04715b0f148a60e93c83f08be0_2358625368182078286)coherenceComponent;
-            if (Interpolator.IsInterpolationNone)
-            {
-                update.PlayerHealth = Value;
-            }
-            else
-            {
-                update.PlayerHealth = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
-            }
-
-            update.PlayerHealthSimulationFrame = simFrame;
-            
-            return update;
-        }
-
-        public override ICoherenceComponentData CreateComponentData()
-        {
-            return new _5358ed04715b0f148a60e93c83f08be0_2358625368182078286();
-        }    
-    }
-    
-    [UnityEngine.Scripting.Preserve]
     public class Binding_5358ed04715b0f148a60e93c83f08be0_007cb715a2a2487fb60747f3cf980e29 : IntBinding
     {   
         private global::TinyPlayer CastedUnityComponent;
@@ -869,7 +817,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_5358ed04715b0f148a60e93c83f08be0_2358625368182078286);
         public override string CoherenceComponentName => "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286";
-        public override uint FieldMask => 0b00000000000000000000000000001000;
+        public override uint FieldMask => 0b00000000000000000000000000000100;
 
         public override System.Int32 Value
         {
@@ -921,7 +869,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_5358ed04715b0f148a60e93c83f08be0_2358625368182078286);
         public override string CoherenceComponentName => "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286";
-        public override uint FieldMask => 0b00000000000000000000000000010000;
+        public override uint FieldMask => 0b00000000000000000000000000001000;
 
         public override System.Int32 Value
         {
@@ -973,7 +921,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_5358ed04715b0f148a60e93c83f08be0_2358625368182078286);
         public override string CoherenceComponentName => "_5358ed04715b0f148a60e93c83f08be0_2358625368182078286";
-        public override uint FieldMask => 0b00000000000000000000000000100000;
+        public override uint FieldMask => 0b00000000000000000000000000010000;
 
         public override System.Boolean Value
         {
@@ -1111,7 +1059,6 @@ namespace Coherence.Generated
             ["2dc7519395064fc2b87f5129f87c7d85"] = new Binding_5358ed04715b0f148a60e93c83f08be0_2dc7519395064fc2b87f5129f87c7d85(),
             ["9da134aad4d542c68a2321d94e8b8ff4"] = new Binding_5358ed04715b0f148a60e93c83f08be0_9da134aad4d542c68a2321d94e8b8ff4(),
             ["0901dfe2364f41f9acd490dee80466db"] = new Binding_5358ed04715b0f148a60e93c83f08be0_0901dfe2364f41f9acd490dee80466db(),
-            ["80727e7c0a4848e8968c3c48eb63f906"] = new Binding_5358ed04715b0f148a60e93c83f08be0_80727e7c0a4848e8968c3c48eb63f906(),
             ["007cb715a2a2487fb60747f3cf980e29"] = new Binding_5358ed04715b0f148a60e93c83f08be0_007cb715a2a2487fb60747f3cf980e29(),
             ["a0649a3be8ad4674a90816a836f9828f"] = new Binding_5358ed04715b0f148a60e93c83f08be0_a0649a3be8ad4674a90816a836f9828f(),
             ["e14ef4d7cfb04c0ca37c9435840783a0"] = new Binding_5358ed04715b0f148a60e93c83f08be0_e14ef4d7cfb04c0ca37c9435840783a0(),

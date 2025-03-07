@@ -85,7 +85,9 @@ public class Potion : InventoryItem
         UseAmount--; 
         m_IsUsed = false; 
         
-        Projectile itemProjectile =  Instantiate(ItemProjectile, transform.position, transform.rotation).GetComponent<Projectile>();
+        PotionProjectile itemProjectile =  Instantiate(ItemProjectile, transform.position, transform.rotation).GetComponent<PotionProjectile>();
+        itemProjectile.PotionEffects = PotionEffects;
+        
         itemProjectile.Launch(pos);
 
         OnUsedItem();

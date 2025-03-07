@@ -30,12 +30,10 @@ namespace Coherence.Generated
             [FieldOffset(4)]
             public System.Byte CanAttack;
             [FieldOffset(5)]
-            public System.Int32 Health;
-            [FieldOffset(9)]
             public System.Byte IsStunned;
-            [FieldOffset(10)]
+            [FieldOffset(6)]
             public System.Int32 IntMovementType;
-            [FieldOffset(14)]
+            [FieldOffset(10)]
             public System.Int32 IntNPCBehavior;
         }
 
@@ -45,8 +43,6 @@ namespace Coherence.Generated
             GameIDSimulationFrame = frame;
             FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.CanAttackMask;
             CanAttackSimulationFrame = frame;
-            FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.HealthMask;
-            HealthSimulationFrame = frame;
             FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.IsStunnedMask;
             IsStunnedSimulationFrame = frame;
             FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.IntMovementTypeMask;
@@ -57,8 +53,8 @@ namespace Coherence.Generated
 
         public static unsafe _61db515efe9556c45853cdc384e6813b_6363404363339079209 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 18) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 18) " +
+            if (dataSize != 14) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 14) " +
                     "for component with ID 203");
             }
 
@@ -73,7 +69,6 @@ namespace Coherence.Generated
 
             orig.GameID = comp->GameID;
             orig.CanAttack = comp->CanAttack != 0;
-            orig.Health = comp->Health;
             orig.IsStunned = comp->IsStunned != 0;
             orig.IntMovementType = comp->IntMovementType;
             orig.IntNPCBehavior = comp->IntNPCBehavior;
@@ -88,16 +83,13 @@ namespace Coherence.Generated
         public static uint CanAttackMask => 0b00000000000000000000000000000010;
         public AbsoluteSimulationFrame CanAttackSimulationFrame;
         public System.Boolean CanAttack;
-        public static uint HealthMask => 0b00000000000000000000000000000100;
-        public AbsoluteSimulationFrame HealthSimulationFrame;
-        public System.Int32 Health;
-        public static uint IsStunnedMask => 0b00000000000000000000000000001000;
+        public static uint IsStunnedMask => 0b00000000000000000000000000000100;
         public AbsoluteSimulationFrame IsStunnedSimulationFrame;
         public System.Boolean IsStunned;
-        public static uint IntMovementTypeMask => 0b00000000000000000000000000010000;
+        public static uint IntMovementTypeMask => 0b00000000000000000000000000001000;
         public AbsoluteSimulationFrame IntMovementTypeSimulationFrame;
         public System.Int32 IntMovementType;
-        public static uint IntNPCBehaviorMask => 0b00000000000000000000000000100000;
+        public static uint IntNPCBehaviorMask => 0b00000000000000000000000000010000;
         public AbsoluteSimulationFrame IntNPCBehaviorSimulationFrame;
         public System.Int32 IntNPCBehavior;
 
@@ -106,7 +98,7 @@ namespace Coherence.Generated
         public uint GetComponentType() => 203;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000000000111111;
+        public uint InitialFieldsMask() => 0b00000000000000000000000000011111;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -115,7 +107,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 6;
+        public int GetFieldCount() => 5;
 
 
         
@@ -145,8 +137,6 @@ namespace Coherence.Generated
 
         private static readonly System.Int32 _GameID_Min = -99;
         private static readonly System.Int32 _GameID_Max = 99;
-        private static readonly System.Int32 _Health_Min = -2147483648;
-        private static readonly System.Int32 _Health_Max = 2147483647;
         private static readonly System.Int32 _IntMovementType_Min = -99;
         private static readonly System.Int32 _IntMovementType_Max = 99;
         private static readonly System.Int32 _IntNPCBehavior_Min = -99;
@@ -179,13 +169,6 @@ namespace Coherence.Generated
             {
                 this.CanAttackSimulationFrame = other.CanAttackSimulationFrame;
                 this.CanAttack = other.CanAttack;
-            }
-
-            otherMask >>= 1;
-            if ((otherMask & 0x01) != 0)
-            {
-                this.HealthSimulationFrame = other.HealthSimulationFrame;
-                this.Health = other.Health;
             }
 
             otherMask >>= 1;
@@ -224,7 +207,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 6);
+                bitStream.WriteMaskBits(data.StoppedMask, 5);
             }
 
             var mask = data.FieldsMask;
@@ -253,21 +236,6 @@ namespace Coherence.Generated
 
 
                 bitStream.WriteBool(fieldValue);
-            }
-
-            mask >>= 1;
-            if (bitStream.WriteMask((mask & 0x01) != 0))
-            {
-
-                Coherence.Utils.Bounds.Check(data.Health, _Health_Min, _Health_Max, "_61db515efe9556c45853cdc384e6813b_6363404363339079209.Health", logger);
-
-                data.Health = Coherence.Utils.Bounds.Clamp(data.Health, _Health_Min, _Health_Max);
-
-                var fieldValue = data.Health;
-
-
-
-                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
             }
 
             mask >>= 1;
@@ -322,7 +290,7 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(6);
+                stoppedMask = bitStream.ReadMaskBits(5);
             }
 
             var val = new _61db515efe9556c45853cdc384e6813b_6363404363339079209();
@@ -337,12 +305,6 @@ namespace Coherence.Generated
 
                 val.CanAttack = bitStream.ReadBool();
                 val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.CanAttackMask;
-            }
-            if (bitStream.ReadMask())
-            {
-
-                val.Health = bitStream.ReadIntegerRange(32, -2147483648);
-                val.FieldsMask |= _61db515efe9556c45853cdc384e6813b_6363404363339079209.HealthMask;
             }
             if (bitStream.ReadMask())
             {
@@ -374,12 +336,11 @@ namespace Coherence.Generated
             return $"_61db515efe9556c45853cdc384e6813b_6363404363339079209(" +
                 $" GameID: { this.GameID }" +
                 $" CanAttack: { this.CanAttack }" +
-                $" Health: { this.Health }" +
                 $" IsStunned: { this.IsStunned }" +
                 $" IntMovementType: { this.IntMovementType }" +
                 $" IntNPCBehavior: { this.IntNPCBehavior }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(6, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(6, '0') })";
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(5, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(5, '0') })";
         }
     }
 

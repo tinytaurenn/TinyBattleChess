@@ -129,41 +129,41 @@ public class BasicWeapon : Grabbable, IWeapon
         {
             return; 
         }
-
-        if (HitList.Contains(other)) return; 
-
-        HitList.Add(other);
-        
-       
+        if (m_HolderTransform == null)
+        {
+            return;
+        }
         if (m_DamageCollider.enabled == false || !m_DamageCollider.isTrigger || other.CompareTag("DamageCollider"))
         {
 
-           
-            return; 
-        }
 
-        if(m_HolderTransform == null)
-        {
-            return; 
+            return;
         }
-
-        if(!other.TryGetComponent<IDamageable>(out IDamageable damageable) && other.CompareTag("Untagged"))
+        if (!other.TryGetComponent<IDamageable>(out IDamageable damageable) && other.CompareTag("Untagged") && HitList.Count <= 0 )
         {
             if (m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons weapons))
             {
                 ActivateDamage(false);
-                weapons.SyncBlocked(); 
+                weapons.SyncBlocked();
             }
         }
+
+        if (m_HolderTransform == other.transform)
+        {
+            Debug.Log("same holder");
+            return;
+        }
+
+        if (HitList.Contains(other)) return; 
+
+         HitList.Add(other);
+        
+
        
 
         if (other.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
         {
-            if (m_HolderTransform == other.transform)
-            {
-                Debug.Log("same holder");
-                return;
-            }
+            
             Debug.Log("found coSync");
 
             if (other.TryGetComponent<EntityCommands>(out EntityCommands entCommands))

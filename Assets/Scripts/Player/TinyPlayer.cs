@@ -54,7 +54,7 @@ public class TinyPlayer : Entity, IDamageable
     [Space(10)]
     [Header("Player Stats")]
     [Sync] [SerializeField] int m_Global_Health = 100;
-    [Sync] [SerializeField] int m_Player_Health = 100;
+
 
     [Space(10)]
     [Header("DeathMatch Options ")]
@@ -70,11 +70,11 @@ public class TinyPlayer : Entity, IDamageable
             m_Global_Health = value;
         }
     }
-    public int PlayerHealth {
-        get { return m_Player_Health;  }
+    public override int EntityHealth { 
+        get { return m_EntityHealth;  }
         set { 
-            OnChangePlayerHealth(m_Player_Health, value);
-            m_Player_Health = value; 
+            OnChangePlayerHealth(m_EntityHealth, value);
+            m_EntityHealth = value; 
         }
     }
 
@@ -273,7 +273,7 @@ public class TinyPlayer : Entity, IDamageable
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
                 m_PlayerGhost.SetActive(false);
                 SeeGhosts(false);
-                PlayerHealth = 100;
+                EntityHealth = 100;
                 break;
             case EPlayerState.Spectator:
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
@@ -306,7 +306,7 @@ public class TinyPlayer : Entity, IDamageable
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Player);
                 m_PlayerGhost.SetActive(false);
                 SeeGhosts(false);
-                PlayerHealth = 100;
+                EntityHealth = 100;
                 break;
             case EPlayerState.Spectator:
                 m_PlayerControls.SwitchState(PlayerControls.PlayerControls.EControlState.Ghost);
@@ -529,11 +529,11 @@ public class TinyPlayer : Entity, IDamageable
 
         Debug.Log("simulator not found, game is not hosted");
 
-        PlayerHealth -= damage;
+        EntityHealth -= damage;
 
-        if (PlayerHealth <= 0)
+        if (EntityHealth <= 0)
         {
-            PlayerHealth = 0;
+            EntityHealth = 0;
             Debug.Log("must die now");
 
             EntityDeath();
@@ -680,7 +680,7 @@ public class TinyPlayer : Entity, IDamageable
     public void ResetPlayerStats()
     {
         GlobalHealth = 100;
-        PlayerHealth = 100;
+        EntityHealth = 100;
         PlayerGold = 10;
     }
 
@@ -700,7 +700,7 @@ public class TinyPlayer : Entity, IDamageable
 
     void RefreshPlayerUI()
     {
-        LocalUI.Instance.UpdatePlayerHealthSlider(PlayerHealth);
+        LocalUI.Instance.UpdatePlayerHealthSlider(EntityHealth);
         LocalUI.Instance.UpdateGlobalHealthSlider(GlobalHealth);
         LocalUI.Instance.UpdateGoldAmount(PlayerGold);
     }
@@ -825,7 +825,7 @@ public class TinyPlayer : Entity, IDamageable
                 break;
             case 2: //fighting
                 Debug.Log("exit Fighting ");
-                PlayerHealth = 100;
+                EntityHealth = 100;
                 
 
                 break;
@@ -944,9 +944,9 @@ public class TinyPlayer : Entity, IDamageable
     }
     public override void PotionHealing(float value)
     {
-        base.PotionHealing(value);
+        //base.PotionHealing(value);
 
-        PlayerHealth += (int)value;
+        EntityHealth += (int)value;
     }
 
     public override void PotionRegeneration(float value, float duration)

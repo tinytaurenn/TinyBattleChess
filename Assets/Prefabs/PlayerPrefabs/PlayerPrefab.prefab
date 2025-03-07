@@ -547,7 +547,6 @@ MonoBehaviour:
   - rid: 5785725142605234802
   - rid: 5785725212284158604
   - rid: 5785725212284158651
-  - rid: 5785725411464839968
   - rid: 5785725411464839970
   - rid: 5785725413698568821
   - rid: 5785725432779505828
@@ -1572,51 +1571,6 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 5785725411464839968
-      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 5785725411464839969
-        routing: 0
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: 80727e7c0a4848e8968c3c48eb63f906
-        archetypeData:
-          type: 1
-          minRange: -2147483648
-          maxRange: 2147483647
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 1
-            bits: 32
-            precision: 0
-            floatCompression: 0
-        unityComponent: {fileID: 2358625368182078286}
-        coherenceSync: {fileID: 712017614822695059}
-        interpolationSettings: {fileID: 0}
-    - rid: 5785725411464839969
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: PlayerHealth
-        monoAssemblyType: System.Int32, mscorlib
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 16
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
     - rid: 5785725411464839970
       type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -2327,15 +2281,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameID: -1
+  m_EntityHealth: 100
   m_PlayerState: 0
   m_IntPlayerState: 0
   m_IsHost: 0
+  m_PlayerMovement: {fileID: 0}
   m_PlayerWeapons: {fileID: 0}
   m_PlayerLoadout: {fileID: 0}
+  m_Animator: {fileID: 0}
   m_PlayerModel: {fileID: 3942809304985668726}
   m_PlayerAnimEvents: {fileID: 4490843030010982481}
   m_Global_Health: 40
-  m_Player_Health: 100
   m_RespawnTimer: 0
   m_IsBeaten: 0
   m_IsStunned: 0
@@ -2357,7 +2313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Usable: {fileID: 0}
-  m_Grabbable: {fileID: 0}
+  m_LastGrabbable: {fileID: 0}
+  m_LastSeat: {fileID: 0}
   m_UseDistance: 2
   m_ItemInUse: 0
   m_UseCooldown: 0.3
@@ -2435,7 +2392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574ff9dda29ecb649b69c9f936398933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 1947441686218104907}
   m_TwoHanded: 0
   m_LookDirection: {x: 0, y: 0}
   m_WeaponDirection: 0
@@ -2482,6 +2438,7 @@ MonoBehaviour:
   m_EquippedItems:
     m_keys: 
     m_values: []
+  m_ThrowingItem: {fileID: 0}
   m_PlayerLeftHandSocket: {fileID: 3293726256454769268}
   m_PlayerRightHandSocket: {fileID: 1010069479959953380}
   m_PlayerPocket: {fileID: 3957925043188666935}

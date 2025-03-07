@@ -11,9 +11,15 @@ public abstract class Entity : MonoBehaviour
         set { m_GameID = value; }
     }
 
-    public void ChangeGameID(int gameID)
+    [Sync][SerializeField]protected int m_EntityHealth = 100;
+
+    public virtual int EntityHealth
     {
-        GameID = gameID; 
+        get { return m_EntityHealth; }
+        set
+        {
+            m_EntityHealth = value;
+        }
     }
 
     public abstract void EntityDeath();
@@ -44,6 +50,7 @@ public abstract class Entity : MonoBehaviour
     public virtual void PotionHealing(float value)
     {
         Debug.Log("Healing from potion");
+        m_EntityHealth += (int)value;
     }
 
     public virtual void PotionRegeneration(float value, float duration)

@@ -16271,7 +16271,6 @@ MonoBehaviour:
   - rid: 5785725142605234802
   - rid: 5785725212284158604
   - rid: 5785725212284158651
-  - rid: 5785725411464839968
   - rid: 5785725411464839970
   - rid: 5785725413698568821
   - rid: 5785725432779505828
@@ -16291,6 +16290,7 @@ MonoBehaviour:
   - rid: 3165744810028171535
   - rid: 3165744815142862898
   - rid: 3165744834769846944
+  - rid: 3165744843400937550
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -16591,6 +16591,50 @@ MonoBehaviour:
         oldName: 
         oldParameterAssemblyTypes: []
         parameterHash: 1191575797
+    - rid: 3165744843400937550
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165744843400937551
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: cf5f3eab32024f7a97b4a1210e0a506c
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 4912870117678723158}
+        coherenceSync: {fileID: 1055140489967927550}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165744843400937551
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: PotionEffect
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        - System.Single, mscorlib
+        - System.Single, mscorlib
+        ownerType:
+          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
     - rid: 4705201922048000115
       type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -17755,51 +17799,6 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 5785725411464839968
-      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 5785725411464839969
-        routing: 0
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: 80727e7c0a4848e8968c3c48eb63f906
-        archetypeData:
-          type: 1
-          minRange: -2147483648
-          maxRange: 2147483647
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 1
-            bits: 32
-            precision: 0
-            floatCompression: 0
-        unityComponent: {fileID: 6203568768842159777}
-        coherenceSync: {fileID: 1055140489967927550}
-        interpolationSettings: {fileID: 0}
-    - rid: 5785725411464839969
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: PlayerHealth
-        monoAssemblyType: System.Int32, mscorlib
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 16
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
     - rid: 5785725411464839970
       type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -18510,6 +18509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameID: 0
+  m_EntityHealth: 50
   m_PlayerState: 0
   m_IntPlayerState: 0
   m_IsHost: 0
@@ -18520,7 +18520,6 @@ MonoBehaviour:
   m_PlayerModel: {fileID: 8700259401479634791}
   m_PlayerAnimEvents: {fileID: 8102871620425803765}
   m_Global_Health: 40
-  m_Player_Health: 60
   m_RespawnTimer: 0
   m_IsBeaten: 0
   m_IsStunned: 0
@@ -18667,6 +18666,7 @@ MonoBehaviour:
   m_EquippedItems:
     m_keys: 
     m_values: []
+  m_ThrowingItem: {fileID: 0}
   m_PlayerLeftHandSocket: {fileID: 5680511396531309575}
   m_PlayerRightHandSocket: {fileID: 3740615611480234714}
   m_PlayerPocket: {fileID: 4479372680512130010}

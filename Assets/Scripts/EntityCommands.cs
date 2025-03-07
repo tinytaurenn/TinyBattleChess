@@ -41,7 +41,8 @@ public class EntityCommands : MonoBehaviour
     {
         if (TryGetComponent<Entity>(out Entity ent))
         {
-            ent.ChangeGameID(gameID);
+            //ent.ChangeGameID(gameID);
+            ent.GameID = gameID;
         }
     }
     [Command]
@@ -64,6 +65,15 @@ public class EntityCommands : MonoBehaviour
         {
 
             ent.OnReceiveAttackState(isAttacking,(EWeaponDirection)intAttackDir);
+        }
+    }
+    [Command]
+    public  void PotionEffect(int effect, float value, float duration)
+    {
+        if (TryGetComponent<Entity>(out Entity ent))
+        {
+
+            ent.PotionEffect((EPotionEffect)effect, value, duration);
         }
     }
 }

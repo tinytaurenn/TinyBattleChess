@@ -16,35 +16,43 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _5a5613fa52e71cc4c98ddf4ac4443d04_3264fe4a82264f98b06c13e7ba0aa8b8 : IEntityCommand
+    public struct _61db515efe9556c45853cdc384e6813b_80f59a3491b44f7c8f03f3b5d1574017 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Int32 index;
+            public System.Int32 effect;
+            [FieldOffset(4)]
+            public System.Single value;
+            [FieldOffset(8)]
+            public System.Single duration;
         }
 
-        public static unsafe _5a5613fa52e71cc4c98ddf4ac4443d04_3264fe4a82264f98b06c13e7ba0aa8b8 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _61db515efe9556c45853cdc384e6813b_80f59a3491b44f7c8f03f3b5d1574017 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 4) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 4) " +
-                    "for command with ID 65");
+            if (dataSize != 12) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 12) " +
+                    "for command with ID 76");
             }
 
-            var orig = new _5a5613fa52e71cc4c98ddf4ac4443d04_3264fe4a82264f98b06c13e7ba0aa8b8();
+            var orig = new _61db515efe9556c45853cdc384e6813b_80f59a3491b44f7c8f03f3b5d1574017();
             var comp = (Interop*)data;
-            orig.index = comp->index;
+            orig.effect = comp->effect;
+            orig.value = comp->value;
+            orig.duration = comp->duration;
             return orig;
         }
 
-        public System.Int32 index;
+        public System.Int32 effect;
+        public System.Single value;
+        public System.Single duration;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 65;
+        public uint GetComponentType() => 76;
         
         public IEntityMessage Clone()
         {
@@ -82,9 +90,11 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _5a5613fa52e71cc4c98ddf4ac4443d04_3264fe4a82264f98b06c13e7ba0aa8b8(
+        public _61db515efe9556c45853cdc384e6813b_80f59a3491b44f7c8f03f3b5d1574017(
         Entity entity,
-        System.Int32 index
+        System.Int32 effect,
+        System.Single value,
+        System.Single duration
 )
         {
             Entity = entity;
@@ -92,23 +102,31 @@ namespace Coherence.Generated
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.index = index; 
+            this.effect = effect; 
+            this.value = value; 
+            this.duration = duration; 
         }
         
-        public static void Serialize(_5a5613fa52e71cc4c98ddf4ac4443d04_3264fe4a82264f98b06c13e7ba0aa8b8 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_61db515efe9556c45853cdc384e6813b_80f59a3491b44f7c8f03f3b5d1574017 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteIntegerRange(commandData.index, 32, -2147483648);
+            bitStream.WriteIntegerRange(commandData.effect, 32, -2147483648);
+            bitStream.WriteFloat(commandData.value, FloatMeta.NoCompression());
+            bitStream.WriteFloat(commandData.duration, FloatMeta.NoCompression());
         }
         
-        public static _5a5613fa52e71cc4c98ddf4ac4443d04_3264fe4a82264f98b06c13e7ba0aa8b8 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _61db515efe9556c45853cdc384e6813b_80f59a3491b44f7c8f03f3b5d1574017 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var dataindex = bitStream.ReadIntegerRange(32, -2147483648);
+            var dataeffect = bitStream.ReadIntegerRange(32, -2147483648);
+            var datavalue = bitStream.ReadFloat(FloatMeta.NoCompression());
+            var dataduration = bitStream.ReadFloat(FloatMeta.NoCompression());
     
-            return new _5a5613fa52e71cc4c98ddf4ac4443d04_3264fe4a82264f98b06c13e7ba0aa8b8()
+            return new _61db515efe9556c45853cdc384e6813b_80f59a3491b44f7c8f03f3b5d1574017()
             {
                 Entity = entity,
                 Routing = target,
-                index = dataindex
+                effect = dataeffect,
+                value = datavalue,
+                duration = dataduration
             };   
         }
     }
