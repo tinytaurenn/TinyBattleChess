@@ -7,7 +7,6 @@ namespace PlayerControls
     public class PlayerUse : MonoBehaviour
     {
 
-        PlayerWeapons m_PlayerWeapons; 
         TinyPlayer m_TinyPlayer;
 
         [SerializeField] public Usable m_Usable;
@@ -23,7 +22,6 @@ namespace PlayerControls
 
         private void Awake()
         {
-            m_PlayerWeapons = GetComponent<PlayerWeapons>();
             m_TinyPlayer = GetComponent<TinyPlayer>();
 
         }
@@ -51,6 +49,8 @@ namespace PlayerControls
 
         internal void UsePerformed()
         {
+            if(m_TinyPlayer.m_PlayerWeapons.Throwing) return;
+
             if(m_LastUseTime + m_UseCooldown > Time.time)
             {
                 Debug.Log("use in cooldown  ");
@@ -107,7 +107,7 @@ namespace PlayerControls
             //if (!m_ItemInUse) return; 
             //m_ItemInUse = false;
 
-            m_PlayerWeapons.Drop();
+            m_TinyPlayer.m_PlayerWeapons.Drop();
         }
 
         private void OnGrabValidate(bool validated)

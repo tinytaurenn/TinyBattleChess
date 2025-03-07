@@ -6,13 +6,9 @@ using UnityEngine;
 
 public class Potion : InventoryItem
 {
-    [SerializeField] bool m_Throwable = false;
-
-    public bool Throwable { get { return m_Throwable; } set { m_Throwable = value; } }
+    
     [SerializeField] List<FPotionEffect> m_PotionEffect;
     public List<FPotionEffect> PotionEffects { get { return m_PotionEffect; } set { m_PotionEffect = value; }  }
-    [SerializeField] int m_PotionCharges = 1;
-    public int PotionCharges { get { return m_PotionCharges; } set { m_PotionCharges = value; } }
 
     [SerializeField] bool m_IsUsed = false; 
     protected override void Awake()
@@ -35,18 +31,19 @@ public class Potion : InventoryItem
         base.UseInventoryItem();
 
         if (m_IsUsed) return false; 
-        if(PotionCharges <= 0 ) return false;
+        if(UseAmount <= 0 ) return false;
 
         m_IsUsed = true;
-        PotionCharges--; 
+        
 
         Debug.Log("using potion");
         if (Throwable)
         {
-            //throw potion
+            //aiming potion effect
         }
         else
         {
+            UseAmount--;
             StartCoroutine(DrinkPotionRoutine(0.5f));
         }
         
@@ -71,11 +68,33 @@ public class Potion : InventoryItem
         {
             ConnectionsHandler.Instance.LocalTinyPlayer.PotionEffect(effect.Effect, effect.Value, effect.EffectDuration);
         }
+
+        m_IsUsed = false;
+        OnUsedItem();
     }
-    
+
+    public override void ThrowItem(Vector3 pos)
+    {
+        if(ItemProjectile == null)
+        {
+            Debug.Log("No Throwable GO");
+            return; 
+        }
+
+
+        UseAmount--; 
+        m_IsUsed = false; 
+        
+        Projectile itemProjectile =  Instantiate(ItemProjectile, transform.position, transform.rotation).GetComponent<Projectile>();
+        itemProjectile.Launch(pos);
+
+        OnUsedItem();
+        Debug.Log("Throwing potion");
+    }
+
 
     #region Potions Effects
 
-    
+
     #endregion
 }

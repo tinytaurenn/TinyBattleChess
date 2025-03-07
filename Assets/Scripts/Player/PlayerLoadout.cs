@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 [Serializable]
@@ -44,6 +45,8 @@ public class PlayerLoadout : MonoBehaviour
     [SerializeField]
     public ESlotToGrabbableDictionary m_EquippedItems = new ESlotToGrabbableDictionary();
 
+    [SerializeField] InventoryItem m_ThrowingItem = null; 
+
     
 
 
@@ -62,6 +65,7 @@ public class PlayerLoadout : MonoBehaviour
 
     
     EslotToSocket m_EslotToSocket = new EslotToSocket();
+
 
     private void Awake()
     {
@@ -264,6 +268,14 @@ public class PlayerLoadout : MonoBehaviour
         ClearOnSlot(slot);
     }
 
+    IEnumerator DestroyItemOnSlotRoutine(EStuffSlot slot)
+    {
+        if (m_EquippedItems[slot] == null) yield break;
+
+        Destroy(m_EquippedItems[slot].gameObject);
+        ClearOnSlot(slot);
+    }
+
     void DropWeapon(Grabbable item, float throwForce = 5f)
     {
         Debug.Log("dropping item"); 
@@ -454,6 +466,7 @@ public class PlayerLoadout : MonoBehaviour
         if (TryFindEmptyEquippedSlot(out slot))
         {
             m_EquippedItems[slot] = item;
+            item.AssignedSlot = slot;
 
         }
 
@@ -497,14 +510,7 @@ public class PlayerLoadout : MonoBehaviour
         Debug.Log("use item in slot");
         if(m_EquippedItems[slot].TryGetComponent<InventoryItem>(out InventoryItem invItem))
         {
-            if (invItem.UseInventoryItem())
-            {
-                m_EquippedItems[slot].transform.SetParent(m_PlayerLeftHandSocket, false);
-                m_EquippedItems[slot].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState(); 
-                m_TinyPlayer.m_Animator.SetTrigger("DrinkPotion");
-                m_TinyPlayer.Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), Coherence.MessageTarget.Other,"DrinkPotion");
-            }
+            UseInventoryItem(slot, invItem);
         }
         else
         {
@@ -514,6 +520,64 @@ public class PlayerLoadout : MonoBehaviour
 
         
     }
+
+    void UseInventoryItem( EStuffSlot slot,InventoryItem item)
+    {
+        if (item.UseInventoryItem())
+        {
+            item.gameObject.transform.SetParent(m_PlayerLeftHandSocket, false);
+            item.gameObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
+
+            if (item.Throwable)
+            {
+                m_TinyPlayer.m_Animator.SetBool("Aiming", true);
+                m_TinyPlayer.m_PlayerWeapons.Throwing = true; 
+                m_ThrowingItem = item;  
+            }
+            else
+            {
+                item.OnItemUsed += OnItemUsed;
+                m_TinyPlayer.m_Animator.SetTrigger("DrinkPotion");
+                m_TinyPlayer.Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), Coherence.MessageTarget.Other, "DrinkPotion");
+            }
+            
+            
+        }
+
+    }
+
+    public void UseThrowingItem()
+    {
+        if (m_ThrowingItem == null)
+        {
+            Debug.Log("no throwing item");
+            if(m_TinyPlayer.m_PlayerWeapons.Throwing || m_TinyPlayer.m_Animator.GetBool("Aiming"))
+            {
+                m_TinyPlayer.m_Animator.SetBool("Aiming", false);
+                m_TinyPlayer.m_PlayerWeapons.Throwing = false;
+            }
+            return;
+        }
+        m_ThrowingItem.OnItemUsed += OnItemUsed;
+        Vector3 target = (new Vector3(transform.position.x, m_PlayerLeftHandSocket.position.y, transform.position.z) + transform.forward * 10);
+        target = target + Vector3.up * 3f; 
+        Vector3 dir = (target - m_PlayerLeftHandSocket.position).normalized;
+        m_ThrowingItem.ThrowItem( dir );
+        m_TinyPlayer.m_Animator.SetBool("Aiming", false);
+        m_TinyPlayer.m_PlayerWeapons.Throwing = false;
+
+        
+
+    }
+    void OnItemUsed(int useAmount,EStuffSlot slot)
+    {
+        if (useAmount <= 0)
+        {
+            StartCoroutine(DestroyItemOnSlotRoutine(slot));
+        }
+    }
+
 
     bool TryFindEmptyLoadoutSlot(out EStuffSlot slot)
     {
@@ -613,6 +677,10 @@ public class PlayerLoadout : MonoBehaviour
             {
                 EquipShoulders(shoulders);
 
+            }
+            if(m_EquippedItems[slot].TryGetComponent<InventoryItem>(out InventoryItem invItem))
+            {
+                invItem.AssignedSlot = slot;    
             }
         }
             
@@ -790,6 +858,13 @@ public class PlayerLoadout : MonoBehaviour
 
 
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Vector3 dir = ((new Vector3(transform.position.x, m_PlayerLeftHandSocket.position.y, transform.position.z) + transform.forward * 10) - m_PlayerLeftHandSocket.position).normalized;
+        Gizmos.DrawWireSphere(m_PlayerLeftHandSocket.position + dir * 10 , 6f);
     }
 
 }

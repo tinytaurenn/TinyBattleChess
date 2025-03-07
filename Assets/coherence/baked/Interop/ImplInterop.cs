@@ -2060,8 +2060,9 @@ namespace Coherence.Generated
                     val.TwoHanded = orig.TwoHanded ? (System.Byte)1 : (System.Byte)0;
                     val.WeaponSpeed = orig.WeaponSpeed;
                     val.Seated = orig.Seated ? (System.Byte)1 : (System.Byte)0;
+                    val.Aiming = orig.Aiming ? (System.Byte)1 : (System.Byte)0;
 
-                    updater.UpdateComponent(entity, componentType, val, 21, component.FieldsMask, component.StoppedMask, frames);
+                    updater.UpdateComponent(entity, componentType, val, 22, component.FieldsMask, component.StoppedMask, frames);
 
                     return;
                 }

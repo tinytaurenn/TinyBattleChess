@@ -49,6 +49,8 @@ namespace Coherence.Generated
             public System.Single WeaponSpeed;
             [FieldOffset(20)]
             public System.Byte Seated;
+            [FieldOffset(21)]
+            public System.Byte Aiming;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
@@ -77,12 +79,14 @@ namespace Coherence.Generated
             WeaponSpeedSimulationFrame = frame;
             FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.SeatedMask;
             SeatedSimulationFrame = frame;
+            FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.AimingMask;
+            AimingSimulationFrame = frame;
         }
 
         public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 21) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 21) " +
+            if (dataSize != 22) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 22) " +
                     "for component with ID 160");
             }
 
@@ -107,6 +111,7 @@ namespace Coherence.Generated
             orig.TwoHanded = comp->TwoHanded != 0;
             orig.WeaponSpeed = comp->WeaponSpeed;
             orig.Seated = comp->Seated != 0;
+            orig.Aiming = comp->Aiming != 0;
 
             return orig;
         }
@@ -148,13 +153,16 @@ namespace Coherence.Generated
         public static uint SeatedMask => 0b00000000000000000000100000000000;
         public AbsoluteSimulationFrame SeatedSimulationFrame;
         public System.Boolean Seated;
+        public static uint AimingMask => 0b00000000000000000001000000000000;
+        public AbsoluteSimulationFrame AimingSimulationFrame;
+        public System.Boolean Aiming;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
         public uint GetComponentType() => 160;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000111111111111;
+        public uint InitialFieldsMask() => 0b00000000000000000001111111111111;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -163,7 +171,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 12;
+        public int GetFieldCount() => 13;
 
 
         
@@ -294,6 +302,13 @@ namespace Coherence.Generated
             }
 
             otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.AimingSimulationFrame = other.AimingSimulationFrame;
+                this.Aiming = other.Aiming;
+            }
+
+            otherMask >>= 1;
             StoppedMask |= other.StoppedMask;
 
             return this;
@@ -308,7 +323,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 12);
+                bitStream.WriteMaskBits(data.StoppedMask, 13);
             }
 
             var mask = data.FieldsMask;
@@ -460,6 +475,18 @@ namespace Coherence.Generated
             }
 
             mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+
+                var fieldValue = data.Aiming;
+
+
+
+                bitStream.WriteBool(fieldValue);
+            }
+
+            mask >>= 1;
 
             return mask;
         }
@@ -469,7 +496,7 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(12);
+                stoppedMask = bitStream.ReadMaskBits(13);
             }
 
             var val = new _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062();
@@ -545,6 +572,12 @@ namespace Coherence.Generated
                 val.Seated = bitStream.ReadBool();
                 val.FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.SeatedMask;
             }
+            if (bitStream.ReadMask())
+            {
+
+                val.Aiming = bitStream.ReadBool();
+                val.FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.AimingMask;
+            }
 
             val.StoppedMask = stoppedMask;
 
@@ -567,8 +600,9 @@ namespace Coherence.Generated
                 $" TwoHanded: { this.TwoHanded }" +
                 $" WeaponSpeed: { this.WeaponSpeed }" +
                 $" Seated: { this.Seated }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(12, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(12, '0') })";
+                $" Aiming: { this.Aiming }" +
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(13, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(13, '0') })";
         }
     }
 

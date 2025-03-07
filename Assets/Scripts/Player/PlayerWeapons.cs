@@ -46,6 +46,9 @@ public class PlayerWeapons : MonoBehaviour
 
     public bool InShieldParry => (m_Parrying && m_InParry && m_InShieldParry); 
 
+    public bool Throwing { get; set; }
+
+
 
 
     private void Awake()
@@ -73,8 +76,17 @@ public class PlayerWeapons : MonoBehaviour
             SetWeaponsNeutralState(); 
         }
 
+        if (Throwing)
+        {
+            if (m_Attacking)
+            {
+                m_PlayerLoadout.UseThrowingItem(); 
+            }
+            return; 
+        }
 
-        
+
+
         if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null
             && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] == null )
         {

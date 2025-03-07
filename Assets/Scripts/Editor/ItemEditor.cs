@@ -399,7 +399,7 @@ public class ItemEditor : EditorWindow
         Potion potionScript = potionItem.AddComponent<Potion>();
         potionScript.Throwable = soPotion.Throwable;
         potionScript.PotionEffects = soPotion.Effects; 
-        potionScript.PotionCharges = soPotion.Charges;
+        potionScript.UseAmount = soPotion.Charges;
         potionScript.SO_Item = SO_Item;
         potionScript.m_IsHeld = false;
         potionScript.IsNPCHeld = false;
@@ -469,7 +469,7 @@ public class ItemEditor : EditorWindow
         Renderer renderer = scrollMesh.AddComponent<MeshRenderer>();
         renderer.material = baseMaterial;
         //scrollScript.ScrollElems = soScroll.ScrollElem; 
-        scrollScript.ScrollCharges = soScroll.Charges;
+        scrollScript.UseAmount = soScroll.Charges;
         scrollScript.SO_Item = SO_Item;
         scrollScript.m_IsHeld = false;
         scrollScript.IsNPCHeld = false;

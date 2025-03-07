@@ -2681,6 +2681,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Healing_Potion
       objectReference: {fileID: 0}
+    - target: {fileID: 2234337059430967768, guid: ebe3c005c8a4429419dab111d22f160c, type: 3}
+      propertyPath: m_Throwable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4310026220741314896, guid: ebe3c005c8a4429419dab111d22f160c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -69.302444
@@ -14046,7 +14050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8042205553957919561, guid: 276f4c8c1f54c8d41afce07cc23e23c3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.2543716
+      value: -9.33
       objectReference: {fileID: 0}
     - target: {fileID: 8042205553957919561, guid: 276f4c8c1f54c8d41afce07cc23e23c3, type: 3}
       propertyPath: m_LocalRotation.w

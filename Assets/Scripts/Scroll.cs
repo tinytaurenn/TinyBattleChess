@@ -6,7 +6,6 @@ public class Scroll : InventoryItem
 
 
     [SerializeField] int m_ScrollCharges = 1; 
-    public int ScrollCharges { get { return m_ScrollCharges; } set { m_ScrollCharges = value; } }
 
     protected override void Awake()
     {

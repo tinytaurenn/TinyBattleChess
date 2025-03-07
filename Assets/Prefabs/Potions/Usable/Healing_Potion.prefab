@@ -109,8 +109,10 @@ MonoBehaviour:
   m_IsNPCHeld: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
-  m_Renderer: {fileID: 4025658085450113105}
+  m_ItemProjectile: {fileID: 160820845485252449, guid: 5d6316af86183e242bf98f8a058fd8db, type: 3}
   m_Throwable: 0
+  m_Renderer: {fileID: 4025658085450113105}
+  m_UseAmount: 3
   m_PotionEffect:
   - Effect: 0
     Value: 10
@@ -118,7 +120,7 @@ MonoBehaviour:
   - Effect: 1
     Value: 3
     EffectDuration: 3
-  m_PotionCharges: 1
+  m_IsUsed: 0
 --- !u!114 &4703103669562260923
 MonoBehaviour:
   m_ObjectHideFlags: 0
