@@ -13,7 +13,7 @@ public class PlayerWeapons : MonoBehaviour
 
     TinyPlayer m_TinyPlayer;
     PlayerLoadout m_PlayerLoadout;
-    [SerializeField] Animator m_Animator; 
+    Animator m_Animator; 
     internal CoherenceSync m_Sync;
 
     [Header("Weapon Infos")]
@@ -51,6 +51,7 @@ public class PlayerWeapons : MonoBehaviour
     private void Awake()
     {
         m_TinyPlayer = GetComponent<TinyPlayer>();
+        m_Animator = m_TinyPlayer.m_Animator;
         m_PlayerLoadout = GetComponent<PlayerLoadout>();
         m_Sync = GetComponent<CoherenceSync>();
         

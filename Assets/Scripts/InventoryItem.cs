@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public abstract class  InventoryItem : Grabbable
@@ -21,9 +22,11 @@ public abstract class  InventoryItem : Grabbable
     }
 
 
-    public virtual void UseInventoryItem()
+    public virtual bool UseInventoryItem()
     {
-        Debug.Log("using iventory item"); 
+        Debug.Log("using iventory item");
+        return false; 
+
 
     }
 

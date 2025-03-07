@@ -25,11 +25,13 @@ public class Scroll : InventoryItem
         base.Update(); 
     }
 
-    public override void UseInventoryItem()
+    public override bool UseInventoryItem()
     {
         base.UseInventoryItem();
 
         Debug.Log("using Scroll");
+
+        return false; 
     }
 
     public override void SetupItem()

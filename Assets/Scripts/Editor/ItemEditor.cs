@@ -232,6 +232,7 @@ public class ItemEditor : EditorWindow
         armorItem.layer = LayerMask.NameToLayer("Usable");
 
         SO_Armor sO_Armor = SO_Item as SO_Armor;
+        
 
         Armor armorScript = null; 
         switch (sO_Armor.ArmorPlace)
@@ -315,7 +316,7 @@ public class ItemEditor : EditorWindow
         armorScript.m_IsHeld = false;
         armorScript.IsNPCHeld = false;
         armorScript.ArmorParameters = new FArmorParameters(sO_Armor.MagicArmor, sO_Armor.Armor, sO_Armor.Cost, sO_Armor.ArmorType, sO_Armor.ArmorPlace);
-
+        armorScript.ArmorEffects = sO_Armor.ArmorEffects;
 
         Rigidbody rb =  armorItem.AddComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -396,6 +397,7 @@ public class ItemEditor : EditorWindow
         Renderer renderer = potionMesh.AddComponent<MeshRenderer>();
         renderer.material = baseMaterial;
         Potion potionScript = potionItem.AddComponent<Potion>();
+        potionScript.Throwable = soPotion.Throwable;
         potionScript.PotionEffects = soPotion.Effects; 
         potionScript.PotionCharges = soPotion.Charges;
         potionScript.SO_Item = SO_Item;

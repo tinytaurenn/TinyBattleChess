@@ -142,6 +142,19 @@ public class BasicWeapon : Grabbable, IWeapon
             return; 
         }
 
+        if(m_HolderTransform == null)
+        {
+            return; 
+        }
+
+        if(!other.TryGetComponent<IDamageable>(out IDamageable damageable) && other.CompareTag("Untagged"))
+        {
+            if (m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons weapons))
+            {
+                ActivateDamage(false);
+                weapons.SyncBlocked(); 
+            }
+        }
        
 
         if (other.TryGetComponent<CoherenceSync>(out CoherenceSync sync))

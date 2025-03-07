@@ -103,13 +103,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1559968c8e89544458e10bb431514e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UseRequested: 0
   m_SO_Item: {fileID: 11400000, guid: f2b326d63eba625488204424ef4fc954, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
-  m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
   m_Renderer: {fileID: 4025658085450113105}
+  m_Throwable: 0
+  m_PotionEffect:
+  - Effect: 0
+    Value: 10
+    EffectDuration: 0
+  - Effect: 1
+    Value: 3
+    EffectDuration: 3
+  m_PotionCharges: 1
 --- !u!114 &4703103669562260923
 MonoBehaviour:
   m_ObjectHideFlags: 0

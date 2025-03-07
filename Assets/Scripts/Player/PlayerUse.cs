@@ -67,12 +67,12 @@ namespace PlayerControls
 
             if(m_Usable.TryGetComponent<Grabbable>(out Grabbable grabbable))
             {
-                m_LastGrabbable = grabbable;
                 if (grabbable.m_IsHeld)
                 {
                     Debug.Log("item is held");
                     return;
                 }
+                m_LastGrabbable = grabbable;
 
                 m_LastGrabbable.OnUseValidate += OnGrabValidate;
 
@@ -81,12 +81,14 @@ namespace PlayerControls
             }
             if(m_Usable.TryGetComponent<Seat>(out Seat seat))
             {
-                m_LastSeat = seat; 
                 if(seat.IsOccupied)
                 {
                     Debug.Log("Seat is occupied");
                     return;
                 }
+
+                if(m_LastSeat != null)m_LastSeat.ReleaseSeat();
+                m_LastSeat = seat; 
                 m_LastSeat.OnUseValidate += OnSeatValidate; 
             }
 

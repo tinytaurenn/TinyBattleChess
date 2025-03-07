@@ -36,4 +36,18 @@ public abstract class Entity : MonoBehaviour
     public abstract bool GetAttackState(out EWeaponDirection attackDir);
 
     public abstract void OnReceiveAttackState(bool isAttacking,EWeaponDirection attackDir);
+
+    public virtual void PotionEffect(EPotionEffect effect, float value, float duration)
+    {
+
+    }
+    public virtual void PotionHealing(float value)
+    {
+        Debug.Log("Healing from potion");
+    }
+
+    public virtual void PotionRegeneration(float value, float duration)
+    {
+        
+    }
 }

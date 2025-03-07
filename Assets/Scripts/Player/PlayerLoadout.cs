@@ -1,3 +1,4 @@
+using Coherence.Toolkit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -496,7 +497,14 @@ public class PlayerLoadout : MonoBehaviour
         Debug.Log("use item in slot");
         if(m_EquippedItems[slot].TryGetComponent<InventoryItem>(out InventoryItem invItem))
         {
-            invItem.UseInventoryItem();
+            if (invItem.UseInventoryItem())
+            {
+                m_EquippedItems[slot].transform.SetParent(m_PlayerLeftHandSocket, false);
+                m_EquippedItems[slot].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState(); 
+                m_TinyPlayer.m_Animator.SetTrigger("DrinkPotion");
+                m_TinyPlayer.Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), Coherence.MessageTarget.Other,"DrinkPotion");
+            }
         }
         else
         {
@@ -739,23 +747,26 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
-    public int DamageReduction(int damage)
+    public int DamageReduction(int damage,CoherenceSync damagerSync)
     {
         float armor = 0; 
         if (m_EquippedItems[EStuffSlot.Chest] != null)
         {
             armor += ((Armor)m_EquippedItems[EStuffSlot.Chest]).ArmorParameters.Armor;
+            CheckArmorEffect((Armor)m_EquippedItems[EStuffSlot.Chest], damage, damagerSync);
 
         }
         if (m_EquippedItems[EStuffSlot.Helmet] != null)
         {
 
             armor += ((Armor)m_EquippedItems[EStuffSlot.Helmet]).ArmorParameters.Armor;
+            CheckArmorEffect((Armor)m_EquippedItems[EStuffSlot.Helmet], damage, damagerSync);
         }
         if (m_EquippedItems[EStuffSlot.Shoulders] != null)
         {
 
             armor += ((Armor)m_EquippedItems[EStuffSlot.Shoulders]).ArmorParameters.Armor;
+            CheckArmorEffect((Armor)m_EquippedItems[EStuffSlot.Shoulders], damage, damagerSync);
         }
 
         float damageReduction = 100 / (100 + armor);
@@ -766,9 +777,19 @@ public class PlayerLoadout : MonoBehaviour
 
         return damage; 
     }
-    
+
+    void CheckArmorEffect(Armor armor, int damage, CoherenceSync damagerSync)
+    {
+        if (armor.ArmorEffects.Count > 0)
+        {
+            foreach (SO_ArmorEffect effect in armor.ArmorEffects)
+            {
+                effect.OnTakeDamage(damagerSync, damage, armor.ArmorParameters);
+            }
+        }
 
 
 
+    }
 
 }

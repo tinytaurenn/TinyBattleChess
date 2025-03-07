@@ -20,4 +20,7 @@ MonoBehaviour:
   Cost: 10
   EItemRarity: 0
   ArmorType: 3
-  ArmorPLace: 1
+  ArmorPlace: 0
+  MagicArmor: 0
+  Armor: 0
+  ArmorEffects: []

@@ -1,5 +1,5 @@
-using Coherence.Toolkit;
-using System;
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Armor : Grabbable
@@ -21,6 +21,8 @@ public abstract class Armor : Grabbable
             m_ArmorParameters = value;
         }
     }
+
+    public List<SO_ArmorEffect> ArmorEffects; 
 
     protected override void Start()
     {

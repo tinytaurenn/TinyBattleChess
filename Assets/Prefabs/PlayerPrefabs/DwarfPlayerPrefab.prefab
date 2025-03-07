@@ -18469,10 +18469,11 @@ MonoBehaviour:
   m_PlayerMovement: {fileID: 0}
   m_PlayerWeapons: {fileID: 0}
   m_PlayerLoadout: {fileID: 0}
+  m_Animator: {fileID: 3857080701089809062}
   m_PlayerModel: {fileID: 8700259401479634791}
   m_PlayerAnimEvents: {fileID: 8102871620425803765}
   m_Global_Health: 40
-  m_Player_Health: 100
+  m_Player_Health: 60
   m_RespawnTimer: 0
   m_IsBeaten: 0
   m_IsStunned: 0
@@ -18494,7 +18495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Usable: {fileID: 0}
-  m_LastUsed: {fileID: 0}
+  m_LastGrabbable: {fileID: 0}
+  m_LastSeat: {fileID: 0}
   m_UseDistance: 2
   m_ItemInUse: 0
   m_UseCooldown: 0.3
@@ -18572,7 +18574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574ff9dda29ecb649b69c9f936398933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 3857080701089809062}
   m_TwoHanded: 0
   m_LookDirection: {x: 0, y: 0}
   m_WeaponDirection: 0

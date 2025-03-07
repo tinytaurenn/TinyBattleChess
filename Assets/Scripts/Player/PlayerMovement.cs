@@ -15,6 +15,7 @@ namespace PlayerControls
         protected override void Awake()
         {
             base.Awake();
+            
             m_CameraManager = CameraManager.Instance;
 
         }

@@ -34,6 +34,7 @@ public class TinyPlayer : Entity, IDamageable
     }
 
     CoherenceSync m_Sync;
+    
 
     public CoherenceSync Sync => m_Sync;
     public PlayerMovement m_PlayerMovement;
@@ -45,6 +46,7 @@ public class TinyPlayer : Entity, IDamageable
     Ragdoll m_RagDoll;
     PlayerFX m_PlayerFX; 
     public PlayerLoadout m_PlayerLoadout;
+    public Animator m_Animator; 
 
     [SerializeField] GameObject m_PlayerModel;
     [SerializeField] PlayerAnimEvents m_PlayerAnimEvents;
@@ -499,7 +501,7 @@ public class TinyPlayer : Entity, IDamageable
         //
         //armors calculations
         //
-        damage =  m_PlayerLoadout.DamageReduction(damage);
+        damage =  m_PlayerLoadout.DamageReduction(damage, Damagersync);
         Debug.Log("damage type is " + damageType.ToString()); 
 
         Debug.Log("sync Player took " + damage + " reduced damage!");
@@ -880,5 +882,133 @@ public class TinyPlayer : Entity, IDamageable
                 break;
         }
     }
+    #endregion
+
+    #region Effects
+
+    public override void PotionEffect(EPotionEffect effect, float value, float duration)
+    {
+        switch (effect)
+        {
+            case EPotionEffect.Healing:
+                PotionHealing(value);
+                break;
+            case EPotionEffect.Regeneration:
+                PotionRegeneration(value, duration);
+                break;
+            case EPotionEffect.Strength:
+                Strength(value, duration);
+                break;
+            case EPotionEffect.Speed:
+                Speed(value, duration);
+                break;
+            case EPotionEffect.AttackSpeed:
+                AttackSpeed(value, duration);
+                break;
+            case EPotionEffect.JumpHeight:
+                JumpHeight(value, duration);
+                break;
+            case EPotionEffect.Fly:
+                Fly(value, duration);
+                break;
+            case EPotionEffect.Parry:
+                Parry(value, duration);
+                break;
+            case EPotionEffect.Invisibility:
+                Invisibility(value, duration);
+                break;
+            case EPotionEffect.Damage:
+                Damage(value);
+                break;
+            case EPotionEffect.Poison:
+                Poison(value, duration);
+                break;
+            case EPotionEffect.Fire:
+                Fire(value, duration);
+                break;
+            case EPotionEffect.Slow:
+                Slow(value, duration);
+                break;
+            case EPotionEffect.Blind:
+                Blind(value, duration);
+                break;
+            case EPotionEffect.Grounded:
+                Grounded(value, duration);
+                break;
+            case EPotionEffect.weakness:
+                Weakness(value, duration);
+                break;
+            default:
+                break;
+        }
+    }
+    public override void PotionHealing(float value)
+    {
+        base.PotionHealing(value);
+
+        PlayerHealth += (int)value;
+    }
+
+    public override void PotionRegeneration(float value, float duration)
+    {
+        Debug.Log("Regeneration");
+    }
+    public void Invisibility(float value, float duration)
+    {
+        Debug.Log("Invisibility");
+    }
+    public void Strength(float value, float duration)
+    {
+        Debug.Log("Strength");
+    }
+    public void Speed(float value, float duration)
+    {
+        Debug.Log("Speed");
+    }
+    public void AttackSpeed(float value, float duration)
+    {
+        Debug.Log("AttackSpeed");
+    }
+    public void JumpHeight(float value, float duration)
+    {
+        Debug.Log("JumpHeight");
+    }
+    public void Fly(float value, float duration)
+    {
+        Debug.Log("Fly");
+    }
+    public void Parry(float value, float duration)
+    {
+        Debug.Log("Parry");
+    }
+    public void Damage(float value)
+    {
+        Debug.Log("Damage");
+    }
+    public void Poison(float value, float duration)
+    {
+        Debug.Log("Poison");
+    }
+    public void Fire(float value, float duration)
+    {
+        Debug.Log("Fire");
+    }
+    public void Slow(float value, float duration)
+    {
+        Debug.Log("Slow");
+    }
+    public void Blind(float value, float duration)
+    {
+        Debug.Log("Blind");
+    }
+    public void Grounded(float value, float duration)
+    {
+        Debug.Log("Grounded");
+    }
+    public void Weakness(float value, float duration)
+    {
+        Debug.Log("Weakness");
+    }
+
     #endregion
 }
