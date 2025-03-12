@@ -1,4 +1,5 @@
 using Coherence.Toolkit;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
@@ -43,16 +44,10 @@ public abstract class Entity : MonoBehaviour
 
     public abstract void OnReceiveAttackState(bool isAttacking,EWeaponDirection attackDir);
 
-    public virtual void ApplyPotionEffect(SO_Potion potion)
+
+    public virtual void ApplyEffects(List<FGameEffect> effects)
     {
-        foreach (FGameEffect effect in potion.Effects)
-        {
-            ApplyEffect(effect);
-        }
-    }
-    public virtual void ApplyGameEffectContainer(SO_GameEffect_Container container)
-    {
-        foreach (FGameEffect effect in container.Effects)
+        foreach (FGameEffect effect in effects)
         {
             ApplyEffect(effect);
         }
