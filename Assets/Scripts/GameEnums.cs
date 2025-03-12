@@ -133,20 +133,20 @@ public enum EPotionEffect
 
 }
 [Serializable]
-public struct FPotionEffect
+public struct FGameEffect
 {
     public EPotionEffect Effect;
     public float Value;
     public float EffectDuration;
 
-    public FPotionEffect(EPotionEffect effect, float value, float effectDuration)
+    public FGameEffect(EPotionEffect effect, float value, float effectDuration)
     {
         Effect = effect;
         Value = value;
         EffectDuration = effectDuration;
     }
 
-    public FPotionEffect(EPotionEffect effect, float value)
+    public FGameEffect(EPotionEffect effect, float value)
     {
         Effect = effect;
         Value = value;

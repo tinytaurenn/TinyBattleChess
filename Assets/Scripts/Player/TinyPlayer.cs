@@ -892,136 +892,88 @@ public class TinyPlayer : Entity, IDamageable
     #endregion
 
     #region Effects
-
-    public override void PotionEffect(SO_Potion potion)
+    public override void HealingEffect(float value)
     {
-        Debug.Log("potion effect : " + potion.ItemName);
-        foreach (FPotionEffect effect in potion.Effects)
-        {
-            Debug.Log("effect in use : " + effect.Effect.ToString()); 
-            switch (effect.Effect)
-            {
-                case EPotionEffect.Healing:
-                    PotionHealing(effect.Value);
-                    break;
-                case EPotionEffect.Regeneration:
-                    PotionRegeneration(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Strength:
-                    Strength(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Speed:
-                    Speed(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.AttackSpeed:
-                    AttackSpeed(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.JumpHeight:
-                    JumpHeight(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Fly:
-                    Fly(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Parry:
-                    Parry(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Invisibility:
-                    Invisibility(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Damage:
-                    Damage(effect.Value);
-                    break;
-                case EPotionEffect.Poison:
-                    Poison(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Fire:
-                    Fire(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Slow:
-                    Slow(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Blind:
-                    Blind(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.Grounded:
-                    Grounded(effect.Value, effect.EffectDuration);
-                    break;
-                case EPotionEffect.weakness:
-                    Weakness(effect.Value, effect.EffectDuration);
-                    break;
-                default:
-                    break;
-            }
-        }
-        
-    }
-    public override void PotionHealing(float value)
-    {
-        //base.PotionHealing(value);
 
         EntityHealth += (int)value;
     }
 
-    public override void PotionRegeneration(float value, float duration)
+    public override void RegenerationEffect(float value, float duration)
     {
         Debug.Log("Regeneration");
     }
-    public void Invisibility(float value, float duration)
+
+    public override void StrengthEffect(float value, float duration)
     {
-        Debug.Log("Invisibility");
+        base.StrengthEffect(value, duration);
     }
-    public void Strength(float value, float duration)
+
+    public override void SpeedEffect(float value, float duration)
     {
-        Debug.Log("Strength");
+        base.SpeedEffect(value, duration);
     }
-    public void Speed(float value, float duration)
+
+    public override void AttackSpeedEffect(float value, float duration)
     {
-        Debug.Log("Speed");
+        base.AttackSpeedEffect(value, duration);
     }
-    public void AttackSpeed(float value, float duration)
+
+    public override void JumpHeightEffect(float value, float duration)
     {
-        Debug.Log("AttackSpeed");
+        base.JumpHeightEffect(value, duration);
     }
-    public void JumpHeight(float value, float duration)
+
+    public override void FlyEffect(float value, float duration)
     {
-        Debug.Log("JumpHeight");
+        base.FlyEffect(value, duration);
     }
-    public void Fly(float value, float duration)
+
+    public override void ParryEffect(float value, float duration)
     {
-        Debug.Log("Fly");
+        base.ParryEffect(value, duration);
     }
-    public void Parry(float value, float duration)
+
+    public override void InvisibilityEffect(float value, float duration)
     {
-        Debug.Log("Parry");
+        base.InvisibilityEffect(value, duration);
     }
-    public void Damage(float value)
+
+    public override void DamageEffect(float value)
     {
-        Debug.Log("Damage");
+        m_EntityHealth -= (int)value;
     }
-    public void Poison(float value, float duration)
+
+    public override void PoisonEffect(float value, float duration)
     {
-        Debug.Log("Poison");
+        base.PoisonEffect(value, duration);
     }
-    public void Fire(float value, float duration)
+
+    public override void FireEffect(float value, float duration)
     {
-        Debug.Log("Fire");
+        base.FireEffect(value, duration);
     }
-    public void Slow(float value, float duration)
+
+    public override void SlowEffect(float value, float duration)
     {
-        Debug.Log("Slow");
+        base.SlowEffect(value, duration);
     }
-    public void Blind(float value, float duration)
+
+    public override void BlindEffect(float value, float duration)
     {
-        Debug.Log("Blind");
+        base.BlindEffect(value, duration);
     }
-    public void Grounded(float value, float duration)
+
+    public override void Grounded(float value, float duration)
     {
-        Debug.Log("Grounded");
+        base.Grounded(value, duration);
     }
-    public void Weakness(float value, float duration)
+
+    public override void Weakness(float value, float duration)
     {
-        Debug.Log("Weakness");
+        base.Weakness(value, duration);
     }
+
+
 
     #endregion
 }

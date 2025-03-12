@@ -64,7 +64,7 @@ public class Potion : InventoryItem
 
         yield return new WaitForSeconds(time);
 
-        ConnectionsHandler.Instance.LocalTinyPlayer.PotionEffect((SO_Potion)SO_Item);
+        ConnectionsHandler.Instance.LocalTinyPlayer.ApplyPotionEffect((SO_Potion)SO_Item);
 
         m_IsUsed = false;
         OnUsedItem();

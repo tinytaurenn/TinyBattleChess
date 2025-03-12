@@ -80,7 +80,7 @@ public class EntityCommands : MonoBehaviour
 
             }
 
-            ent.PotionEffect(potion);
+            ent.ApplyPotionEffect(potion);
         }
     }
 }

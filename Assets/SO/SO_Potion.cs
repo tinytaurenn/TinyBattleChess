@@ -7,7 +7,7 @@ public class SO_Potion : SO_Item
 {
     public bool Throwable = false;
   
-    public List<FPotionEffect> Effects;
+    public List<FGameEffect> Effects;
 
     public int Charges = 1;
     
