@@ -49,4 +49,14 @@ public class PotionProjectile : Projectile
     {
         base.OnTriggerEnter(other);
     }
+
+    public override void InstantiateExplosion()
+    {
+        Debug.Log("potion projectile explosion");
+    }
+
+    public override void StopParticles()
+    {
+        Debug.Log("potion projectile stop particles");
+    }
 }

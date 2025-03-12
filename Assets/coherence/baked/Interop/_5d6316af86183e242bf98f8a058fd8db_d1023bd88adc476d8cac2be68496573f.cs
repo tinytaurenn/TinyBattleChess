@@ -16,35 +16,31 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 : IEntityCommand
+    public struct _5d6316af86183e242bf98f8a058fd8db_d1023bd88adc476d8cac2be68496573f : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
-            [FieldOffset(0)]
-            public ByteArray potionID;
         }
 
-        public static unsafe _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _5d6316af86183e242bf98f8a058fd8db_d1023bd88adc476d8cac2be68496573f FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 16) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
-                    "for command with ID 99");
+            if (dataSize != 0) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 0) " +
+                    "for command with ID 70");
             }
 
-            var orig = new _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6();
+            var orig = new _5d6316af86183e242bf98f8a058fd8db_d1023bd88adc476d8cac2be68496573f();
             var comp = (Interop*)data;
-            orig.potionID = comp->potionID.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->potionID.Data, (int)comp->potionID.Length) : null;
             return orig;
         }
 
-        public System.String potionID;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 99;
+        public uint GetComponentType() => 70;
         
         public IEntityMessage Clone()
         {
@@ -82,33 +78,18 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6(
-        Entity entity,
-        System.String potionID
-)
+        
+        public static void Serialize(_5d6316af86183e242bf98f8a058fd8db_d1023bd88adc476d8cac2be68496573f commandData, IOutProtocolBitStream bitStream)
         {
-            Entity = entity;
-            ChannelID = Coherence.ChannelID.Default;
-            Routing = MessageTarget.All;
-            Sender = 0;
-            
-            this.potionID = potionID; 
         }
         
-        public static void Serialize(_c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 commandData, IOutProtocolBitStream bitStream)
+        public static _5d6316af86183e242bf98f8a058fd8db_d1023bd88adc476d8cac2be68496573f Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            bitStream.WriteShortString(commandData.potionID);
-        }
-        
-        public static _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
-        {
-            var datapotionID = bitStream.ReadShortString();
     
-            return new _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6()
+            return new _5d6316af86183e242bf98f8a058fd8db_d1023bd88adc476d8cac2be68496573f()
             {
                 Entity = entity,
                 Routing = target,
-                potionID = datapotionID
             };   
         }
     }

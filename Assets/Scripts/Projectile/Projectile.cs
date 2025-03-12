@@ -14,7 +14,10 @@ public abstract class Projectile : MonoBehaviour
     [SerializeField] protected float m_ExplosionRadius = 3f;
 
     [SerializeField] protected GameObject m_ExplosionGameobject;
-    [SerializeField] protected bool m_Exploded = false; 
+    [SerializeField] protected bool m_Exploded = false;
+
+    protected float m_Timer = 0f;
+    protected float m_ActivationTime = 0.05f;
     protected virtual void Awake()
     {
         m_Sync = GetComponent<CoherenceSync>();
@@ -22,6 +25,12 @@ public abstract class Projectile : MonoBehaviour
         m_Collider = GetComponent<Collider>();
 
         
+    }
+
+    private void Update()
+    {
+        if (m_Timer > m_ActivationTime) return;
+        m_Timer += Time.deltaTime;
     }
 
     public virtual void Launch(Vector3 direction)
@@ -35,5 +44,10 @@ public abstract class Projectile : MonoBehaviour
         if(m_Exploded) return;
         OnHit(other); 
     }
+
+    [Command]
+    public abstract void InstantiateExplosion();
+    [Command]
+    public abstract void StopParticles();
 
 }

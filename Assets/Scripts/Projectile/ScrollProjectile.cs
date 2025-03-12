@@ -4,27 +4,41 @@ using UnityEngine;
 
 public class ScrollProjectile : Projectile
 {
-    float m_Timer = 0f;
-    float m_ActivationTime = 0.05f;
+
     [SerializeField] float m_ExplosionDelay = 0.1f;
 
     [SerializeField] ParticleSystem[] m_ParticleSystems;
     [SerializeField] GameObject m_SpawnSoundPrefab; 
-    private void Update()
-    {
-        if (m_Timer > m_ActivationTime) return;
-        m_Timer += Time.deltaTime;    
-    }
-    private void Start()
-    {
 
-    }
     protected override void OnHit(Collider other)
     {
         if(m_Timer < m_ActivationTime) return;
         Debug.Log("scroll projectile hit something!");
         m_Exploded = true;
         StartCoroutine(ExplosionRoutine(m_ExplosionDelay));
+
+        m_Collider.enabled = false;
+        Collider[] HitList = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_ExplosionMask);
+        if (HitList.Length > 0)
+        {
+
+            foreach (Collider item in HitList)
+            {
+                if (item.TryGetComponent<EntityCommands>(out EntityCommands entityCommands))
+                {
+                    //see entity commands and potions effects etc
+                    Debug.Log("scroll projectile hit entity");
+                    if (item.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
+                    {
+                        //Damage and stuff
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("potion projectile hit nothing");
+        }
     }
 
     IEnumerator ExplosionRoutine(float delay)
@@ -39,14 +53,13 @@ public class ScrollProjectile : Projectile
         Destroy(gameObject, 2f);
     }
 
-    [Command]
-    public void InstantiateExplosion()
+    
+    public override void InstantiateExplosion()
     {
         Debug.Log("instantiating explosion"); 
         Instantiate(m_ExplosionGameobject, transform.position, transform.rotation);
     }
-    [Command]
-    public void StopParticles()
+    public override void StopParticles()
     {
         foreach (var item in m_ParticleSystems)
         {

@@ -32,10 +32,6 @@ public class Chest : Usable
     }
 
 
-    void Update()
-    {
-        
-    }
 
     private void FixedUpdate()
     {
