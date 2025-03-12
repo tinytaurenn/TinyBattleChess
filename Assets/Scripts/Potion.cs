@@ -29,7 +29,6 @@ public class Potion : InventoryItem
 
     public override bool UseInventoryItem()
     {
-        base.UseInventoryItem();
 
         if (m_IsUsed) return false; 
         if(UseAmount <= 0 ) return false;

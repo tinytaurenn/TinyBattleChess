@@ -48,6 +48,8 @@ public class PlayerWeapons : MonoBehaviour
 
     public bool Throwing { get; set; }
 
+    public bool UsingMagic { get; set; }
+
 
 
 
@@ -74,6 +76,11 @@ public class PlayerWeapons : MonoBehaviour
         if(m_TinyPlayer.m_IsStunned || m_Animator.GetBool("Stunned"))
         {
             SetWeaponsNeutralState(); 
+        }
+
+        if (UsingMagic)
+        {
+            return; 
         }
 
         if (Throwing)

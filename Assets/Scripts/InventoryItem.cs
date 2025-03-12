@@ -36,13 +36,8 @@ public abstract class  InventoryItem : Grabbable
     }
 
 
-    public virtual bool UseInventoryItem()
-    {
-        Debug.Log("using iventory item");
-        return false; 
-
-
-    }
+    public abstract bool UseInventoryItem();
+ 
 
     public virtual void ThrowItem(Vector3 pos)
     {

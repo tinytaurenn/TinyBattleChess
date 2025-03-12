@@ -286,58 +286,6 @@ namespace Coherence.Generated
     }
     
     [UnityEngine.Scripting.Preserve]
-    public class Binding_276f4c8c1f54c8d41afce07cc23e23c3_f43fa8897d654f8889da0d0d40f68806 : BoolAnimatorParameterBinding
-    {   
-        private global::UnityEngine.Animator CastedUnityComponent;
-
-        protected override void OnBindingCloned()
-        {
-    	    CastedUnityComponent = (global::UnityEngine.Animator)UnityComponent;
-        }
-
-        public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
-        public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000000000000100;
-
-        public override System.Boolean Value
-        {
-            get { return (System.Boolean)(CastedUnityComponent.GetBool(CastedDescriptor.ParameterHash)); }
-            set { CastedUnityComponent.SetBool(CastedDescriptor.ParameterHash, value); }
-        }
-
-        protected override (System.Boolean value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
-        {
-            var value = ((_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062)coherenceComponent).CarryingBig;
-
-            var simFrame = ((_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062)coherenceComponent).CarryingBigSimulationFrame;
-            
-            return (value, simFrame);
-        }
-
-        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
-        {
-            var update = (_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062)coherenceComponent;
-            if (Interpolator.IsInterpolationNone)
-            {
-                update.CarryingBig = Value;
-            }
-            else
-            {
-                update.CarryingBig = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
-            }
-
-            update.CarryingBigSimulationFrame = simFrame;
-            
-            return update;
-        }
-
-        public override ICoherenceComponentData CreateComponentData()
-        {
-            return new _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062();
-        }    
-    }
-    
-    [UnityEngine.Scripting.Preserve]
     public class Binding_276f4c8c1f54c8d41afce07cc23e23c3_bd69af8816a54e838a43a60c98980ee4 : BoolAnimatorParameterBinding
     {   
         private global::UnityEngine.Animator CastedUnityComponent;
@@ -349,7 +297,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000000000001000;
+        public override uint FieldMask => 0b00000000000000000000000000000100;
 
         public override System.Boolean Value
         {
@@ -401,7 +349,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000000000010000;
+        public override uint FieldMask => 0b00000000000000000000000000001000;
 
         public override System.Boolean Value
         {
@@ -453,7 +401,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000000000100000;
+        public override uint FieldMask => 0b00000000000000000000000000010000;
 
         public override System.Boolean Value
         {
@@ -505,7 +453,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000000001000000;
+        public override uint FieldMask => 0b00000000000000000000000000100000;
 
         public override System.Int32 Value
         {
@@ -557,7 +505,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000000010000000;
+        public override uint FieldMask => 0b00000000000000000000000001000000;
 
         public override System.Boolean Value
         {
@@ -609,7 +557,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000000100000000;
+        public override uint FieldMask => 0b00000000000000000000000010000000;
 
         public override System.Boolean Value
         {
@@ -661,7 +609,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000001000000000;
+        public override uint FieldMask => 0b00000000000000000000000100000000;
 
         public override System.Boolean Value
         {
@@ -713,7 +661,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000010000000000;
+        public override uint FieldMask => 0b00000000000000000000001000000000;
 
         public override System.Single Value
         {
@@ -765,7 +713,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000000100000000000;
+        public override uint FieldMask => 0b00000000000000000000010000000000;
 
         public override System.Boolean Value
         {
@@ -817,7 +765,7 @@ namespace Coherence.Generated
 
         public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
         public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
-        public override uint FieldMask => 0b00000000000000000001000000000000;
+        public override uint FieldMask => 0b00000000000000000000100000000000;
 
         public override System.Boolean Value
         {
@@ -847,6 +795,58 @@ namespace Coherence.Generated
             }
 
             update.AimingSimulationFrame = simFrame;
+            
+            return update;
+        }
+
+        public override ICoherenceComponentData CreateComponentData()
+        {
+            return new _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062();
+        }    
+    }
+    
+    [UnityEngine.Scripting.Preserve]
+    public class Binding_276f4c8c1f54c8d41afce07cc23e23c3_2a94eff707114d71aba267a159b3a4cc : BoolAnimatorParameterBinding
+    {   
+        private global::UnityEngine.Animator CastedUnityComponent;
+
+        protected override void OnBindingCloned()
+        {
+    	    CastedUnityComponent = (global::UnityEngine.Animator)UnityComponent;
+        }
+
+        public override global::System.Type CoherenceComponentType => typeof(_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062);
+        public override string CoherenceComponentName => "_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062";
+        public override uint FieldMask => 0b00000000000000000001000000000000;
+
+        public override System.Boolean Value
+        {
+            get { return (System.Boolean)(CastedUnityComponent.GetBool(CastedDescriptor.ParameterHash)); }
+            set { CastedUnityComponent.SetBool(CastedDescriptor.ParameterHash, value); }
+        }
+
+        protected override (System.Boolean value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
+        {
+            var value = ((_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062)coherenceComponent).UsingMagic;
+
+            var simFrame = ((_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062)coherenceComponent).UsingMagicSimulationFrame;
+            
+            return (value, simFrame);
+        }
+
+        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
+        {
+            var update = (_276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062)coherenceComponent;
+            if (Interpolator.IsInterpolationNone)
+            {
+                update.UsingMagic = Value;
+            }
+            else
+            {
+                update.UsingMagic = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
+            }
+
+            update.UsingMagicSimulationFrame = simFrame;
             
             return update;
         }
@@ -1264,7 +1264,6 @@ namespace Coherence.Generated
             ["71b84834f7fe420ea2e2d3b8e086f4af"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_71b84834f7fe420ea2e2d3b8e086f4af(),
             ["18342032c4ed47c6a47f4a004e8bac35"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_18342032c4ed47c6a47f4a004e8bac35(),
             ["fd2f769f062442ca99319772777717d8"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_fd2f769f062442ca99319772777717d8(),
-            ["f43fa8897d654f8889da0d0d40f68806"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_f43fa8897d654f8889da0d0d40f68806(),
             ["bd69af8816a54e838a43a60c98980ee4"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_bd69af8816a54e838a43a60c98980ee4(),
             ["2b84bacefa6340c982eb295a30912033"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_2b84bacefa6340c982eb295a30912033(),
             ["5ac8e93990a34150a3ff27c940e4ece2"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_5ac8e93990a34150a3ff27c940e4ece2(),
@@ -1275,6 +1274,7 @@ namespace Coherence.Generated
             ["214c0d12cd604935a8026507d933572d"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_214c0d12cd604935a8026507d933572d(),
             ["a2c19df935374afbbeb6f2ab7845d136"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_a2c19df935374afbbeb6f2ab7845d136(),
             ["70a4c5047e154466ba0a1a29bcd144b7"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_70a4c5047e154466ba0a1a29bcd144b7(),
+            ["2a94eff707114d71aba267a159b3a4cc"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_2a94eff707114d71aba267a159b3a4cc(),
             ["2dc7519395064fc2b87f5129f87c7d85"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_2dc7519395064fc2b87f5129f87c7d85(),
             ["9da134aad4d542c68a2321d94e8b8ff4"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_9da134aad4d542c68a2321d94e8b8ff4(),
             ["0901dfe2364f41f9acd490dee80466db"] = new Binding_276f4c8c1f54c8d41afce07cc23e23c3_0901dfe2364f41f9acd490dee80466db(),

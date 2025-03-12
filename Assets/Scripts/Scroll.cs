@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Scroll : InventoryItem
@@ -23,15 +24,33 @@ public class Scroll : InventoryItem
 
     public override bool UseInventoryItem()
     {
-        base.UseInventoryItem();
 
         Debug.Log("using Scroll");
 
-        return false; 
+        if (UseAmount <= 0) return false;
+
+        UseAmount--;
+
+        SO_Scroll sO_Scroll = SO_Item as SO_Scroll;
+
+        foreach (SO_ScrollEffect effect in sO_Scroll.ScrollEffects)
+        {
+            effect.OnActivate(transform);
+        }
+        StartCoroutine(UsingMagicRoutine());
+
+        return true; 
+
     }
 
     public override void SetupItem()
     {
         base.SetupItem();
+    }
+
+    IEnumerator UsingMagicRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+        OnUsedItem(); 
     }
 }

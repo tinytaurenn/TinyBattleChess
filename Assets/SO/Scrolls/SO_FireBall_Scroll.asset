@@ -21,3 +21,5 @@ MonoBehaviour:
   Cost: 3
   EItemRarity: 0
   Charges: 3
+  ScrollEffects:
+  - {fileID: 11400000, guid: 5fb81da09877d3a4785e990d9c25f7ed, type: 2}

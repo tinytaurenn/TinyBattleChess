@@ -523,24 +523,54 @@ public class PlayerLoadout : MonoBehaviour
 
     void UseInventoryItem( EStuffSlot slot,InventoryItem item)
     {
+        if (m_TinyPlayer.m_PlayerWeapons.UsingMagic)
+        {
+            Debug.Log("cannot use item while casting magic ");
+            return; 
+        }
+        if (m_TinyPlayer.m_PlayerWeapons.Throwing)
+        {
+            Debug.Log("cannot use item while throwing ");
+            return; 
+        }
+        if (m_TinyPlayer.m_PlayerWeapons.InAttackRelease)
+        {
+            Debug.Log("cannot use item while releasing an attack ");
+            return; 
+        }
         if (item.UseInventoryItem())
         {
-            item.gameObject.transform.SetParent(m_PlayerLeftHandSocket, false);
-            item.gameObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
+            if (item.TryGetComponent<Potion>(out Potion potionItem))
+            {
+                potionItem.gameObject.transform.SetParent(m_PlayerLeftHandSocket, false);
+                potionItem.gameObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                
 
-            if (item.Throwable)
-            {
-                m_TinyPlayer.m_Animator.SetBool("Aiming", true);
-                m_TinyPlayer.m_PlayerWeapons.Throwing = true; 
-                m_ThrowingItem = item;  
+                if (potionItem.Throwable)
+                {
+                    m_TinyPlayer.m_Animator.SetBool("Aiming", true);
+                    m_TinyPlayer.m_PlayerWeapons.Throwing = true;
+                    m_ThrowingItem = potionItem;
+                }
+                else
+                {
+                    potionItem.OnItemUsed += OnItemUsed;
+                    m_TinyPlayer.m_Animator.SetTrigger("DrinkPotion");
+                    m_TinyPlayer.Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), Coherence.MessageTarget.Other, "DrinkPotion");
+                }
+
             }
-            else
+            if (item.TryGetComponent<Scroll>(out Scroll scrollItem)) 
             {
-                item.OnItemUsed += OnItemUsed;
-                m_TinyPlayer.m_Animator.SetTrigger("DrinkPotion");
-                m_TinyPlayer.Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), Coherence.MessageTarget.Other, "DrinkPotion");
+                scrollItem.gameObject.transform.SetParent(m_PlayerLeftHandSocket, false);
+                scrollItem.gameObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+                m_TinyPlayer.m_PlayerWeapons.UsingMagic = true;
+                m_TinyPlayer.m_Animator.SetBool("UsingMagic", true);
+                item.OnItemUsed += OnMagicUsed;
             }
+            
             
             
         }
@@ -572,6 +602,16 @@ public class PlayerLoadout : MonoBehaviour
     }
     void OnItemUsed(int useAmount,EStuffSlot slot)
     {
+        if (useAmount <= 0)
+        {
+            StartCoroutine(DestroyItemOnSlotRoutine(slot));
+        }
+    }
+    void OnMagicUsed(int useAmount, EStuffSlot slot)
+    {
+        m_TinyPlayer.m_PlayerWeapons.UsingMagic = false;
+        m_TinyPlayer.m_Animator.SetBool("UsingMagic", false);
+
         if (useAmount <= 0)
         {
             StartCoroutine(DestroyItemOnSlotRoutine(slot));

@@ -16247,7 +16247,6 @@ MonoBehaviour:
   - rid: 5431316396223759099
   - rid: 5431316413982703683
   - rid: 5431316413982703685
-  - rid: 5431316413982703689
   - rid: 5431316413982703691
   - rid: 5431316413982703748
   - rid: 5431316413982704619
@@ -16291,6 +16290,7 @@ MonoBehaviour:
   - rid: 3165744815142862898
   - rid: 3165744834769846944
   - rid: 3165744944299638874
+  - rid: 3165744944299639057
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -16633,6 +16633,52 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
+    - rid: 3165744944299639057
+      type: {class: BoolAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165744944299639058
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 2a94eff707114d71aba267a159b3a4cc
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 3857080701089809062}
+        coherenceSync: {fileID: 1055140489967927550}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165744944299639058
+      type: {class: AnimatorDescriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: UsingMagic
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 64
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.BoolAnimatorParameterBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+        parameterHash: 2057328791
     - rid: 4705201922048000115
       type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -17259,52 +17305,6 @@ MonoBehaviour:
         oldName: 
         oldParameterAssemblyTypes: []
         parameterHash: 862969536
-    - rid: 5431316413982703689
-      type: {class: BoolAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 5431316413982703690
-        routing: 0
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: f43fa8897d654f8889da0d0d40f68806
-        archetypeData:
-          type: 3
-          minRange: 0
-          maxRange: 0
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 3
-            bits: 1
-            precision: 0
-            floatCompression: 0
-        unityComponent: {fileID: 3857080701089809062}
-        coherenceSync: {fileID: 1055140489967927550}
-        interpolationSettings: {fileID: 0}
-    - rid: 5431316413982703690
-      type: {class: AnimatorDescriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: CarryingBig
-        monoAssemblyType: System.Boolean, mscorlib
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 64
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: UnityEngine.Animator, UnityEngine.AnimationModule,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.BoolAnimatorParameterBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-        parameterHash: -400069451
     - rid: 5431316413982703691
       type: {class: BoolAnimatorParameterBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:

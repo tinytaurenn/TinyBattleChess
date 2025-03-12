@@ -2050,7 +2050,6 @@ namespace Coherence.Generated
 
                     val.MoveSpeed = orig.MoveSpeed;
                     val.Grounded = orig.Grounded ? (System.Byte)1 : (System.Byte)0;
-                    val.CarryingBig = orig.CarryingBig ? (System.Byte)1 : (System.Byte)0;
                     val.CarryingSmall = orig.CarryingSmall ? (System.Byte)1 : (System.Byte)0;
                     val.Parry = orig.Parry ? (System.Byte)1 : (System.Byte)0;
                     val.Attacking = orig.Attacking ? (System.Byte)1 : (System.Byte)0;
@@ -2061,6 +2060,7 @@ namespace Coherence.Generated
                     val.WeaponSpeed = orig.WeaponSpeed;
                     val.Seated = orig.Seated ? (System.Byte)1 : (System.Byte)0;
                     val.Aiming = orig.Aiming ? (System.Byte)1 : (System.Byte)0;
+                    val.UsingMagic = orig.UsingMagic ? (System.Byte)1 : (System.Byte)0;
 
                     updater.UpdateComponent(entity, componentType, val, 22, component.FieldsMask, component.StoppedMask, frames);
 
