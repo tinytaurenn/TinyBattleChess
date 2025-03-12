@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647b40984c4686c4b8e96ecb23603bd3, type: 3}
   m_Name: SO_Round_GreatSword
   m_EditorClassIdentifier: 
+  ItemID: Round_GreatSword
   ItemIcon: {fileID: 21300000, guid: eaa9df8574b806e4f9f8cd5cbcca1bd2, type: 3}
   ItemName: Round GreatSword
   ItemDescription: 
@@ -21,6 +22,8 @@ MonoBehaviour:
   EItemRarity: 0
   WeaponType: 1
   WeaponSize: 2
+  DamageType: 0
   Damage: 20
   Speed: 0.8
   HitSounds: []
+  ParrySounds: []

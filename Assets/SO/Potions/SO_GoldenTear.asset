@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aa78c4614e5af4ba84d2b3b27340f7, type: 3}
   m_Name: SO_GoldenTear
   m_EditorClassIdentifier: 
+  ItemID: Golden_Tear
   ItemIcon: {fileID: 21300000, guid: be5155e937b29024baf057633563f6b6, type: 3}
   ItemName: Golden Tear
+  ItemDescription: 
   Usable_GameObject: {fileID: 7459850184392171940, guid: 775a962259beb2f48b64b79887dce771, type: 3}
   Chest_GameObject: {fileID: 1831602882458946787, guid: bfa369c962c08b7408b6779484adb828, type: 3}
   Cost: 10
   EItemRarity: 0
+  Throwable: 0
   Effects:
   - Effect: 1
     Value: 10

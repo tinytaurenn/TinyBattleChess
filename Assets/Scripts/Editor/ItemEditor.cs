@@ -398,7 +398,7 @@ public class ItemEditor : EditorWindow
         renderer.material = baseMaterial;
         Potion potionScript = potionItem.AddComponent<Potion>();
         potionScript.Throwable = soPotion.Throwable;
-        potionScript.PotionEffects = soPotion.Effects; 
+        potionScript.SO_Item = soPotion; 
         potionScript.UseAmount = soPotion.Charges;
         potionScript.SO_Item = SO_Item;
         potionScript.m_IsHeld = false;

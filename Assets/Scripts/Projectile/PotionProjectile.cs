@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class PotionProjectile : Projectile
 {
-    [SerializeField] List<FPotionEffect> m_Effects; 
-    public List<FPotionEffect> PotionEffects { get { return m_Effects; } set { m_Effects = value; } }
+
+    public SO_Potion SO_Potion;
     protected override void OnHit(Collider other)
     {
         Debug.Log("potion projectile hit something");
-        if(PotionEffects.Count<=0)
+        if(SO_Potion.Effects.Count<=0)
         {
             Debug.Log("no potion effects");
             return;
@@ -42,11 +42,8 @@ public class PotionProjectile : Projectile
     }
 
     void ApplyEffectsOnEntity(CoherenceSync entSync)
-    { 
-        foreach (FPotionEffect effect in PotionEffects)
-        {
-            entSync.SendCommand<EntityCommands>(nameof(EntityCommands.PotionEffect),Coherence.MessageTarget.AuthorityOnly, (int)effect.Effect,effect.Value,effect.EffectDuration);
-        }
+    {
+        entSync.SendCommand<EntityCommands>(nameof(EntityCommands.PotionEffect), Coherence.MessageTarget.AuthorityOnly, SO_Potion.ItemID);
     }
     protected override void OnTriggerEnter(Collider other)
     {

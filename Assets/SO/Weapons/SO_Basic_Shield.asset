@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647b40984c4686c4b8e96ecb23603bd3, type: 3}
   m_Name: SO_Basic_Shield
   m_EditorClassIdentifier: 
+  ItemID: Basic_Shield
   ItemIcon: {fileID: 21300000, guid: 59eaa3b53e379e443a2843d9f268f720, type: 3}
   ItemName: Basic Shield
   ItemDescription: A Simple Shield
@@ -21,6 +22,8 @@ MonoBehaviour:
   EItemRarity: 0
   WeaponType: 256
   WeaponSize: 1
+  DamageType: 0
   Damage: 0
   Speed: 1.5
   HitSounds: []
+  ParrySounds: []

@@ -590,7 +590,6 @@ MonoBehaviour:
   - rid: 4705202089004892757
   - rid: 4705202089650029102
   - rid: 4705202091125375228
-  - rid: 4705202100785119328
   - rid: 4705202100785119329
   - rid: 4705202100785119435
   - rid: 4705202100785119436
@@ -605,7 +604,7 @@ MonoBehaviour:
   - rid: 4705202217604088410
   - rid: 4705202217604088412
   - rid: 3165744810028171537
-  - rid: 3165744843400937559
+  - rid: 3165744944299638876
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -678,16 +677,16 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 3165744843400937559
+    - rid: 3165744944299638876
       type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         descriptor:
-          rid: 3165744843400937560
+          rid: 3165744944299638877
         routing: 1
         syncMode: 0
         isPredicted: 0
         predictionMode: 0
-        guid: 80f59a3491b44f7c8f03f3b5d1574017
+        guid: 31439addb4ed486d9021a373a3403429
         archetypeData:
           type: 0
           minRange: 0
@@ -698,7 +697,7 @@ MonoBehaviour:
         unityComponent: {fileID: 5392367273706050435}
         coherenceSync: {fileID: 2353739285565979599}
         interpolationSettings: {fileID: 0}
-    - rid: 3165744843400937560
+    - rid: 3165744944299638877
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         name: PotionEffect
@@ -708,9 +707,7 @@ MonoBehaviour:
         valueSyncCallbackName: 
         memberType: 8
         parameterAssemblyTypes:
-        - System.Int32, mscorlib
-        - System.Single, mscorlib
-        - System.Single, mscorlib
+        - System.String, mscorlib
         ownerType:
           assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
@@ -1530,30 +1527,6 @@ MonoBehaviour:
         oldName: 
         oldParameterAssemblyTypes: []
         parameterHash: 862969536
-    - rid: 4705202100785119328
-      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 4705202100785119330
-        routing: 0
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: 2054b1a4b2ec49d78589146bd66945c8
-        archetypeData:
-          type: 1
-          minRange: -2147483648
-          maxRange: 2147483647
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 1
-            bits: 32
-            precision: 0
-            floatCompression: 0
-        unityComponent: {fileID: 6363404363339079209}
-        coherenceSync: {fileID: 2353739285565979599}
-        interpolationSettings: {fileID: 0}
     - rid: 4705202100785119329
       type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -1578,27 +1551,6 @@ MonoBehaviour:
         unityComponent: {fileID: 6363404363339079209}
         coherenceSync: {fileID: 2353739285565979599}
         interpolationSettings: {fileID: 0}
-    - rid: 4705202100785119330
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: Health
-        monoAssemblyType: System.Int32, mscorlib
-        required: 1
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 16
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: HumanoidNPC, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
     - rid: 4705202100785119331
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:

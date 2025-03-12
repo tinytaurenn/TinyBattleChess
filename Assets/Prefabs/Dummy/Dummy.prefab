@@ -219,7 +219,7 @@ MonoBehaviour:
   - rid: 4705202171634253910
   - rid: 4705202179726377532
   - rid: 3165744810028171533
-  - rid: 3165744843400937554
+  - rid: 3165744944299638872
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -291,16 +291,16 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 3165744843400937554
+    - rid: 3165744944299638872
       type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         descriptor:
-          rid: 3165744843400937555
+          rid: 3165744944299638873
         routing: 1
         syncMode: 0
         isPredicted: 0
         predictionMode: 0
-        guid: c647673196eb4091b71bde8a2a06a108
+        guid: d095cf9896da4ca8ade65fbca75eefd6
         archetypeData:
           type: 0
           minRange: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
         unityComponent: {fileID: 5896157377502905635}
         coherenceSync: {fileID: 6164657841644225223}
         interpolationSettings: {fileID: 0}
-    - rid: 3165744843400937555
+    - rid: 3165744944299638873
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         name: PotionEffect
@@ -321,9 +321,7 @@ MonoBehaviour:
         valueSyncCallbackName: 
         memberType: 8
         parameterAssemblyTypes:
-        - System.Int32, mscorlib
-        - System.Single, mscorlib
-        - System.Single, mscorlib
+        - System.String, mscorlib
         ownerType:
           assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6d75f5c26da504dbd031bd810a1df6, type: 3}
   m_Name: SO_FireBall_Scroll
   m_EditorClassIdentifier: 
+  ItemID: FireBall_Scroll
   ItemIcon: {fileID: 21300000, guid: bad174c93ff698a4ab2301eb19bb4271, type: 3}
   ItemName: FireBall Scroll
   ItemDescription: 
@@ -19,5 +20,4 @@ MonoBehaviour:
   Chest_GameObject: {fileID: 7003793399489357865, guid: 879d0036af2d7444d8fa6561e1d64dfc, type: 3}
   Cost: 3
   EItemRarity: 0
-  ScrollElem: 4
   Charges: 3

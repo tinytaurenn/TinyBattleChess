@@ -5,6 +5,7 @@ using PlayerControls;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
 
 
 public class TinyPlayer : Entity, IDamageable
@@ -886,61 +887,67 @@ public class TinyPlayer : Entity, IDamageable
 
     #region Effects
 
-    public override void PotionEffect(EPotionEffect effect, float value, float duration)
+    public override void PotionEffect(SO_Potion potion)
     {
-        switch (effect)
+        Debug.Log("potion effect : " + potion.ItemName);
+        foreach (FPotionEffect effect in potion.Effects)
         {
-            case EPotionEffect.Healing:
-                PotionHealing(value);
-                break;
-            case EPotionEffect.Regeneration:
-                PotionRegeneration(value, duration);
-                break;
-            case EPotionEffect.Strength:
-                Strength(value, duration);
-                break;
-            case EPotionEffect.Speed:
-                Speed(value, duration);
-                break;
-            case EPotionEffect.AttackSpeed:
-                AttackSpeed(value, duration);
-                break;
-            case EPotionEffect.JumpHeight:
-                JumpHeight(value, duration);
-                break;
-            case EPotionEffect.Fly:
-                Fly(value, duration);
-                break;
-            case EPotionEffect.Parry:
-                Parry(value, duration);
-                break;
-            case EPotionEffect.Invisibility:
-                Invisibility(value, duration);
-                break;
-            case EPotionEffect.Damage:
-                Damage(value);
-                break;
-            case EPotionEffect.Poison:
-                Poison(value, duration);
-                break;
-            case EPotionEffect.Fire:
-                Fire(value, duration);
-                break;
-            case EPotionEffect.Slow:
-                Slow(value, duration);
-                break;
-            case EPotionEffect.Blind:
-                Blind(value, duration);
-                break;
-            case EPotionEffect.Grounded:
-                Grounded(value, duration);
-                break;
-            case EPotionEffect.weakness:
-                Weakness(value, duration);
-                break;
-            default:
-                break;
+            Debug.Log("effect in use : " + effect.Effect.ToString()); 
+            switch (effect.Effect)
+            {
+                case EPotionEffect.Healing:
+                    PotionHealing(effect.Value);
+                    break;
+                case EPotionEffect.Regeneration:
+                    PotionRegeneration(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Strength:
+                    Strength(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Speed:
+                    Speed(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.AttackSpeed:
+                    AttackSpeed(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.JumpHeight:
+                    JumpHeight(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Fly:
+                    Fly(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Parry:
+                    Parry(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Invisibility:
+                    Invisibility(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Damage:
+                    Damage(effect.Value);
+                    break;
+                case EPotionEffect.Poison:
+                    Poison(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Fire:
+                    Fire(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Slow:
+                    Slow(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Blind:
+                    Blind(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.Grounded:
+                    Grounded(effect.Value, effect.EffectDuration);
+                    break;
+                case EPotionEffect.weakness:
+                    Weakness(effect.Value, effect.EffectDuration);
+                    break;
+                default:
+                    break;
+            }
         }
+        
     }
     public override void PotionHealing(float value)
     {

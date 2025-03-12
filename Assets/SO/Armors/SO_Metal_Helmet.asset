@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13773dd9196d2794b9a437b1a627ff70, type: 3}
   m_Name: SO_Metal_Helmet
   m_EditorClassIdentifier: 
+  ItemID: Metal_Helmet
   ItemIcon: {fileID: 21300000, guid: bad174c93ff698a4ab2301eb19bb4271, type: 3}
   ItemName: Metal Helmet
   ItemDescription: 'a metal helmet '
@@ -20,4 +21,7 @@ MonoBehaviour:
   Cost: 7
   EItemRarity: 0
   ArmorType: 3
-  ArmorPLace: 0
+  ArmorPlace: 0
+  MagicArmor: 0
+  Armor: 0
+  ArmorEffects: []

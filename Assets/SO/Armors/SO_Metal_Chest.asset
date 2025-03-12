@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13773dd9196d2794b9a437b1a627ff70, type: 3}
   m_Name: SO_Metal_Chest
   m_EditorClassIdentifier: 
+  ItemID: Metal_Chest
   ItemIcon: {fileID: 21300000, guid: 6f97845087b178a47839abac13528b3f, type: 3}
   ItemName: Metal Chest
   ItemDescription: a metal chest

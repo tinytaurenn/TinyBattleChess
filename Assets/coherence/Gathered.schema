@@ -368,60 +368,58 @@ command _276f4c8c1f54c8d41afce07cc23e23c3_1acf624c9c73468c81732449828bf8ff [id "
 command _276f4c8c1f54c8d41afce07cc23e23c3_215915084e114f92bc20eb4f102e7562 [id "14", routing "All"]
   damage Int 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_3c2c4486077949c288a3205124259b7f [id "15", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea [id "15", routing "All"]
+  potionID String 
+
+command _276f4c8c1f54c8d41afce07cc23e23c3_3c2c4486077949c288a3205124259b7f [id "16", routing "All"]
   index Int 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_4b7f2cbb359f468a88ffaf812d9604d8 [id "16", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_4b7f2cbb359f468a88ffaf812d9604d8 [id "17", routing "All"]
   AskerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_51e5d47c0a1a4e4fbf5d393c5e6da419 [id "17", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_51e5d47c0a1a4e4fbf5d393c5e6da419 [id "18", routing "All"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_530c1dd565f54f568914150057129695 [id "18", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_530c1dd565f54f568914150057129695 [id "19", routing "All"]
   damage Int 
   DamagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_566c25ac672e46d4be0b93e0e647c315 [id "19", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_566c25ac672e46d4be0b93e0e647c315 [id "20", routing "All"]
   sceneIndex Int 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8 [id "20", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_5a11ef1c74b146c68052e6c75baab7d8 [id "21", routing "All"]
   intPlayerState Int 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_5bad42507fe140d4b87c78206fab3ecc [id "21", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_5bad42507fe140d4b87c78206fab3ecc [id "22", routing "All"]
   choiceIndex Int 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_6177304efeff4057b50af5f588454420 [id "22", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_6177304efeff4057b50af5f588454420 [id "23", routing "All"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_664a868baa984f94a574b333cc4ad4ea [id "23", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_664a868baa984f94a574b333cc4ad4ea [id "24", routing "All"]
   DirectionNESO Int 
   sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
   damage Int 
   damageType Int 
   attackerPos Vector3 [compression "None"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_7556cd7d7e774997864e997434cec5d1 [id "24", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_7556cd7d7e774997864e997434cec5d1 [id "25", routing "All"]
   name String 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_7815420e2f7042c4ab2a7a4134b2c5d0 [id "25", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_7815420e2f7042c4ab2a7a4134b2c5d0 [id "26", routing "All"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_7df3250732b84749b4b733d375fb051a [id "26", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_7df3250732b84749b4b733d375fb051a [id "27", routing "All"]
   oldState Int 
   NewState Int 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_9dc51c46e0894a71bf5b5615f15c9a9e [id "27", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_9dc51c46e0894a71bf5b5615f15c9a9e [id "28", routing "All"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_ae56a69edb1a46fe8f3778c65b97b751 [id "28", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_ae56a69edb1a46fe8f3778c65b97b751 [id "29", routing "All"]
   gameID Int 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_b91e90f68b324f9c87739017de04f395 [id "29", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_b91e90f68b324f9c87739017de04f395 [id "30", routing "All"]
   isAttacking Bool 
   intAttackDir Int 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_ca4b907df43c44708307a1b7f77fbc3e [id "30", routing "All"]
-
-command _276f4c8c1f54c8d41afce07cc23e23c3_cf5f3eab32024f7a97b4a1210e0a506c [id "31", routing "All"]
-  effect Int 
-  value Float [compression "None"]
-  duration Float [compression "None"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_ca4b907df43c44708307a1b7f77fbc3e [id "31", routing "All"]
 
 command _276f4c8c1f54c8d41afce07cc23e23c3_dc362dd6cca24e2995ad9011ec93c5e3 [id "32", routing "All"]
   worldPos Vector3 [compression "None"]
@@ -537,26 +535,24 @@ command _61db515efe9556c45853cdc384e6813b_23c790be1e954b58a8158dc4d10866d5 [id "
 
 command _61db515efe9556c45853cdc384e6813b_27692900c74d47cd9b939374f75dd9b0 [id "71", routing "All"]
 
-command _61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28 [id "72", routing "All"]
+command _61db515efe9556c45853cdc384e6813b_31439addb4ed486d9021a373a3403429 [id "72", routing "All"]
+  potionID String 
+
+command _61db515efe9556c45853cdc384e6813b_3efc6bfc6e8d4206a689cc3e3bbe7c28 [id "73", routing "All"]
   AskerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _61db515efe9556c45853cdc384e6813b_54c6ab62e08a42faaf348095f78abb69 [id "73", routing "All"]
+command _61db515efe9556c45853cdc384e6813b_54c6ab62e08a42faaf348095f78abb69 [id "74", routing "All"]
   id Int 
 
-command _61db515efe9556c45853cdc384e6813b_59e034c4b9784967ba52fc25c9c44fa2 [id "74", routing "All"]
+command _61db515efe9556c45853cdc384e6813b_59e034c4b9784967ba52fc25c9c44fa2 [id "75", routing "All"]
   choiceIndex Int 
 
-command _61db515efe9556c45853cdc384e6813b_787e0e02f0c843f4afd66b34fd37c1cc [id "75", routing "All"]
+command _61db515efe9556c45853cdc384e6813b_787e0e02f0c843f4afd66b34fd37c1cc [id "76", routing "All"]
   DirectionNESO Int 
   sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
   damage Int 
   damageType Int 
   attackerPos Vector3 [compression "None"]
-
-command _61db515efe9556c45853cdc384e6813b_80f59a3491b44f7c8f03f3b5d1574017 [id "76", routing "All"]
-  effect Int 
-  value Float [compression "None"]
-  duration Float [compression "None"]
 
 command _61db515efe9556c45853cdc384e6813b_8a1700f288ef45e6aac8a2ca83715943 [id "77", routing "All"]
   name String 
@@ -617,10 +613,8 @@ command _c473af9c10567024caf206bf6752a656_c4a533ff3d744ab696cbcdc9422daf04 [id "
   damageType Int 
   attackerPos Vector3 [compression "None"]
 
-command _c473af9c10567024caf206bf6752a656_c647673196eb4091b71bde8a2a06a108 [id "95", routing "All"]
-  effect Int 
-  value Float [compression "None"]
-  duration Float [compression "None"]
+command _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 [id "95", routing "All"]
+  potionID String 
 
 command _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604 [id "96", routing "All"]
 

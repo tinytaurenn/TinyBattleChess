@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SO_Item : ScriptableObject
 {
+    public string ItemID = "Basic_Sword";
     public Sprite ItemIcon; 
    
     public string ItemName = "Basic Sword";

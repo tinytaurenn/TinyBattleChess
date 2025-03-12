@@ -68,12 +68,19 @@ public class EntityCommands : MonoBehaviour
         }
     }
     [Command]
-    public  void PotionEffect(int effect, float value, float duration)
+    public  void PotionEffect(string potionID)
     {
         if (TryGetComponent<Entity>(out Entity ent))
         {
+            SO_Potion potion  = ItemRetriever.Instance.GetItem(potionID) as SO_Potion;
+            if (potion == null)
+            {
+                Debug.Log("no such item in retriever");
+                return;
 
-            ent.PotionEffect((EPotionEffect)effect, value, duration);
+            }
+
+            ent.PotionEffect(potion);
         }
     }
 }

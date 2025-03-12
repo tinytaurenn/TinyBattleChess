@@ -16,43 +16,35 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _276f4c8c1f54c8d41afce07cc23e23c3_cf5f3eab32024f7a97b4a1210e0a506c : IEntityCommand
+    public struct _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Int32 effect;
-            [FieldOffset(4)]
-            public System.Single value;
-            [FieldOffset(8)]
-            public System.Single duration;
+            public ByteArray potionID;
         }
 
-        public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_cf5f3eab32024f7a97b4a1210e0a506c FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 12) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 12) " +
-                    "for command with ID 31");
+            if (dataSize != 16) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
+                    "for command with ID 15");
             }
 
-            var orig = new _276f4c8c1f54c8d41afce07cc23e23c3_cf5f3eab32024f7a97b4a1210e0a506c();
+            var orig = new _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea();
             var comp = (Interop*)data;
-            orig.effect = comp->effect;
-            orig.value = comp->value;
-            orig.duration = comp->duration;
+            orig.potionID = comp->potionID.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->potionID.Data, (int)comp->potionID.Length) : null;
             return orig;
         }
 
-        public System.Int32 effect;
-        public System.Single value;
-        public System.Single duration;
+        public System.String potionID;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 31;
+        public uint GetComponentType() => 15;
         
         public IEntityMessage Clone()
         {
@@ -90,11 +82,9 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _276f4c8c1f54c8d41afce07cc23e23c3_cf5f3eab32024f7a97b4a1210e0a506c(
+        public _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea(
         Entity entity,
-        System.Int32 effect,
-        System.Single value,
-        System.Single duration
+        System.String potionID
 )
         {
             Entity = entity;
@@ -102,31 +92,23 @@ namespace Coherence.Generated
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.effect = effect; 
-            this.value = value; 
-            this.duration = duration; 
+            this.potionID = potionID; 
         }
         
-        public static void Serialize(_276f4c8c1f54c8d41afce07cc23e23c3_cf5f3eab32024f7a97b4a1210e0a506c commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteIntegerRange(commandData.effect, 32, -2147483648);
-            bitStream.WriteFloat(commandData.value, FloatMeta.NoCompression());
-            bitStream.WriteFloat(commandData.duration, FloatMeta.NoCompression());
+            bitStream.WriteShortString(commandData.potionID);
         }
         
-        public static _276f4c8c1f54c8d41afce07cc23e23c3_cf5f3eab32024f7a97b4a1210e0a506c Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var dataeffect = bitStream.ReadIntegerRange(32, -2147483648);
-            var datavalue = bitStream.ReadFloat(FloatMeta.NoCompression());
-            var dataduration = bitStream.ReadFloat(FloatMeta.NoCompression());
+            var datapotionID = bitStream.ReadShortString();
     
-            return new _276f4c8c1f54c8d41afce07cc23e23c3_cf5f3eab32024f7a97b4a1210e0a506c()
+            return new _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea()
             {
                 Entity = entity,
                 Routing = target,
-                effect = dataeffect,
-                value = datavalue,
-                duration = dataduration
+                potionID = datapotionID
             };   
         }
     }

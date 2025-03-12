@@ -7,8 +7,9 @@ using UnityEngine;
 public class Potion : InventoryItem
 {
     
-    [SerializeField] List<FPotionEffect> m_PotionEffect;
-    public List<FPotionEffect> PotionEffects { get { return m_PotionEffect; } set { m_PotionEffect = value; }  }
+    //[SerializeField] List<FPotionEffect> m_PotionEffect;
+    //public List<FPotionEffect> PotionEffects { get { return m_PotionEffect; } set { m_PotionEffect = value; }  }
+
 
     [SerializeField] bool m_IsUsed = false; 
     protected override void Awake()
@@ -64,10 +65,7 @@ public class Potion : InventoryItem
 
         yield return new WaitForSeconds(time);
 
-        foreach (FPotionEffect effect in PotionEffects)
-        {
-            ConnectionsHandler.Instance.LocalTinyPlayer.PotionEffect(effect.Effect, effect.Value, effect.EffectDuration);
-        }
+        ConnectionsHandler.Instance.LocalTinyPlayer.PotionEffect((SO_Potion)SO_Item);
 
         m_IsUsed = false;
         OnUsedItem();
@@ -86,7 +84,8 @@ public class Potion : InventoryItem
         m_IsUsed = false; 
         
         PotionProjectile itemProjectile =  Instantiate(ItemProjectile, transform.position, transform.rotation).GetComponent<PotionProjectile>();
-        itemProjectile.PotionEffects = PotionEffects;
+        //itemProjectile.PotionEffects = PotionEffects;
+        itemProjectile.SO_Potion = (SO_Potion)SO_Item;
         
         itemProjectile.Launch(pos);
 

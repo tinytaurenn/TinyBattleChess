@@ -913,7 +913,7 @@ MonoBehaviour:
     Speed: 1.5
     Cost: 20
     DamageType: 1
-    WeaponType: 0
+    WeaponType: 1
     WeaponSize: 0
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}

@@ -43,7 +43,7 @@ public abstract class Entity : MonoBehaviour
 
     public abstract void OnReceiveAttackState(bool isAttacking,EWeaponDirection attackDir);
 
-    public virtual void PotionEffect(EPotionEffect effect, float value, float duration)
+    public virtual void PotionEffect(SO_Potion potion)
     {
 
     }
