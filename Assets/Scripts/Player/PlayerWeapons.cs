@@ -80,6 +80,7 @@ public class PlayerWeapons : MonoBehaviour
 
         if (UsingMagic)
         {
+
             return; 
         }
 
@@ -87,8 +88,10 @@ public class PlayerWeapons : MonoBehaviour
         {
             if (m_Attacking)
             {
-                m_PlayerLoadout.UseThrowingItem(); 
+                m_PlayerLoadout.UseThrowingItem();
+                StartCoroutine(LockAttackRoutine(m_BaseAttackCoolDown)) ; 
             }
+
             return; 
         }
 
@@ -254,7 +257,7 @@ public class PlayerWeapons : MonoBehaviour
         }
         if (m_Attacking)
         {
-            if(m_InAttack)
+            if(m_InAttack )
             {
                 return; 
             }

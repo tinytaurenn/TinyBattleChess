@@ -155,10 +155,15 @@ public class TinyPlayer : Entity, IDamageable
         if(m_PlayerState != EPlayerState.Player) return false;
         if(m_IsStunned) return false;
         if(m_PlayerWeapons.InAttackRelease) return false;
+        if (m_PlayerWeapons.UsingMagic) return false;
+        if (m_PlayerWeapons.Throwing) return false;
+
+        if (m_PlayerWeapons.InAttackRelease) return false;
 
 
 
-        if(inAttackReady == false && m_PlayerWeapons.InAttackReady) return false;
+
+        if (inAttackReady == false && m_PlayerWeapons.InAttackReady) return false;
         if(inParry == false && m_PlayerWeapons.InParry) return false;
 
         return true; 

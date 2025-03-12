@@ -523,21 +523,7 @@ public class PlayerLoadout : MonoBehaviour
 
     void UseInventoryItem( EStuffSlot slot,InventoryItem item)
     {
-        if (m_TinyPlayer.m_PlayerWeapons.UsingMagic)
-        {
-            Debug.Log("cannot use item while casting magic ");
-            return; 
-        }
-        if (m_TinyPlayer.m_PlayerWeapons.Throwing)
-        {
-            Debug.Log("cannot use item while throwing ");
-            return; 
-        }
-        if (m_TinyPlayer.m_PlayerWeapons.InAttackRelease)
-        {
-            Debug.Log("cannot use item while releasing an attack ");
-            return; 
-        }
+        
         if (item.UseInventoryItem())
         {
             m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
@@ -602,6 +588,8 @@ public class PlayerLoadout : MonoBehaviour
     }
     void OnItemUsed(int useAmount,EStuffSlot slot)
     {
+        Debug.Log("on item used"); 
+
         if (useAmount <= 0)
         {
             StartCoroutine(DestroyItemOnSlotRoutine(slot));
@@ -609,8 +597,10 @@ public class PlayerLoadout : MonoBehaviour
     }
     void OnMagicUsed(int useAmount, EStuffSlot slot)
     {
+        Debug.Log("on item used magic");
         m_TinyPlayer.m_PlayerWeapons.UsingMagic = false;
         m_TinyPlayer.m_Animator.SetBool("UsingMagic", false);
+
 
         if (useAmount <= 0)
         {
