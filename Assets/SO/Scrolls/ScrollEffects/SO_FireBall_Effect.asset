@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b9f06dc5213e0443ae4028722ed8827, type: 3}
   m_Name: SO_FireBall_Effect
   m_EditorClassIdentifier: 
+  m_FireBallProjectile: {fileID: 2851400057444695648, guid: adc80acf40eb54146985921d3401c267, type: 3}

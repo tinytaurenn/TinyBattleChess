@@ -57,6 +57,7 @@ public class PlayerLoadout : MonoBehaviour
     [SerializeField] internal Transform m_PlayerRightHandSocket;
     [SerializeField] internal Transform m_PlayerPocket;
     [SerializeField] internal Transform m_DropSocket;
+    [SerializeField] internal Transform m_SpellSocket;
     [Header("Player Armor sockets")]
     [SerializeField] internal Transform m_HelmetSocket;
     [SerializeField] internal Transform m_ChestSocket;
@@ -524,7 +525,7 @@ public class PlayerLoadout : MonoBehaviour
     void UseInventoryItem( EStuffSlot slot,InventoryItem item)
     {
         
-        if (item.UseInventoryItem())
+        if (item.UseInventoryItem(m_SpellSocket))
         {
             m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
             if (item.TryGetComponent<Potion>(out Potion potionItem))

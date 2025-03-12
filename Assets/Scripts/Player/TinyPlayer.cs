@@ -151,10 +151,11 @@ public class TinyPlayer : Entity, IDamageable
 
     public bool CanPlayerUseInventoryItem(bool inAttackReady = false, bool inParry = false)
     {
-
+        if(m_Animator.GetBool("Seated")) return false;
         if(m_PlayerState != EPlayerState.Player) return false;
         if(m_IsStunned) return false;
         if(m_PlayerWeapons.InAttackRelease) return false;
+        
         if (m_PlayerWeapons.UsingMagic) return false;
         if (m_PlayerWeapons.Throwing) return false;
 

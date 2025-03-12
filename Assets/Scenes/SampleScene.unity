@@ -8943,6 +8943,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 939f27c57ef13654eafcf37ff873a454, type: 3}
+--- !u!1001 &727138614
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1006269644436722, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_Name
+      value: FireballRed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638806428922356, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638806428922356, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -70.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866859738511908, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198807149916876708, guid: 8241db815e240fa408297a3015a6db53, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8241db815e240fa408297a3015a6db53, type: 3}
 --- !u!1 &728098333
 GameObject:
   m_ObjectHideFlags: 0
@@ -11136,6 +11205,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1284808371586626500, guid: 52c50e470fcf1e3419d4bf3ed75d999e, type: 3}
+      propertyPath: m_UseAmount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7003793399489357865, guid: 52c50e470fcf1e3419d4bf3ed75d999e, type: 3}
       propertyPath: m_Name
       value: FireBall_Scroll
@@ -25992,3 +26065,4 @@ SceneRoots:
   - {fileID: 1211902141}
   - {fileID: 200034551}
   - {fileID: 966425503}
+  - {fileID: 727138614}
