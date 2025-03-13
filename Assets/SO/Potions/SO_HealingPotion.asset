@@ -20,6 +20,7 @@ MonoBehaviour:
   Chest_GameObject: {fileID: 6325755221735990077, guid: 646308dcaa881a34da3012b7eff95179, type: 3}
   Cost: 3
   EItemRarity: 0
+  UseTime: 0.5
   Throwable: 0
   ThrowForce: 10
   ExplosionRadius: 3

@@ -172,7 +172,7 @@ namespace PlayerControls
 
                     if(usable.TryGetComponent<Grabbable>(out Grabbable grabbable))
                     {
-                        LocalUI.Instance.ShowUsable("Grab " + grabbable.SO_Item.ItemName);
+                        LocalUI.Instance.ShowUsable("Grab " + grabbable.So_Item.ItemName);
                     }
                     else
                     {

@@ -148,7 +148,7 @@ public class ItemEditor : EditorWindow
         boxCollider.isTrigger = true;
 
 
-        weaponScript.SO_Item = SO_Item;
+        weaponScript.So_Item = SO_Item;
         weaponScript.m_IsHeld = false;
         weaponScript.IsNPCHeld = false;
 
@@ -311,7 +311,7 @@ public class ItemEditor : EditorWindow
             default:
                 break;
         }
-        armorScript.SO_Item = SO_Item;
+        armorScript.So_Item = SO_Item;
 
         armorScript.m_IsHeld = false;
         armorScript.IsNPCHeld = false;
@@ -398,9 +398,9 @@ public class ItemEditor : EditorWindow
         renderer.material = baseMaterial;
         Potion potionScript = potionItem.AddComponent<Potion>();
         potionScript.Throwable = soPotion.Throwable;
-        potionScript.SO_Item = soPotion; 
+        potionScript.So_Item = soPotion; 
         potionScript.UseAmount = soPotion.Charges;
-        potionScript.SO_Item = SO_Item;
+        potionScript.So_Item = SO_Item;
         potionScript.m_IsHeld = false;
         potionScript.IsNPCHeld = false;
         //potionScript.renderer = renderer;
@@ -470,7 +470,7 @@ public class ItemEditor : EditorWindow
         renderer.material = baseMaterial;
         //scrollScript.ScrollElems = soScroll.ScrollElem; 
         scrollScript.UseAmount = soScroll.Charges;
-        scrollScript.SO_Item = SO_Item;
+        scrollScript.So_Item = SO_Item;
         scrollScript.m_IsHeld = false;
         scrollScript.IsNPCHeld = false;
         //potionScript.renderer = renderer;

@@ -50,6 +50,7 @@ public class PlayerWeapons : MonoBehaviour
 
     public bool UsingMagic { get; set; }
 
+    public bool UsingItem { get; set; }
 
 
 
@@ -92,6 +93,10 @@ public class PlayerWeapons : MonoBehaviour
                 StartCoroutine(LockAttackRoutine(m_BaseAttackCoolDown)) ; 
             }
 
+            return; 
+        }
+        if (UsingItem)
+        {
             return; 
         }
 
@@ -292,6 +297,7 @@ public class PlayerWeapons : MonoBehaviour
 
     public void LockAttackRelease(bool isLocked)=> m_InAttackRelease = isLocked;
 
+    public void LockAttack(bool isLocked) => m_CanAttack = !isLocked;
     public void LockAttack()
     {
         //Debug.Log("locking attack");

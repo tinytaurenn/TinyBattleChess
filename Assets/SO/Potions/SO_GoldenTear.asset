@@ -20,15 +20,12 @@ MonoBehaviour:
   Chest_GameObject: {fileID: 1831602882458946787, guid: bfa369c962c08b7408b6779484adb828, type: 3}
   Cost: 10
   EItemRarity: 0
+  UseTime: 0.7
   Throwable: 0
-  Effects:
-  - Effect: 1
-    Value: 10
-    EffectDuration: 3
-  - Effect: 2
-    Value: 10
-    EffectDuration: 10
-  - Effect: 0
-    Value: 25
-    EffectDuration: 0
+  ThrowForce: 10
+  ExplosionRadius: 3
+  ThrowableGameObject: {fileID: 0}
+  ExplosionEffect: {fileID: 0}
+  DrinkEffect: {fileID: 0}
+  GameEffectContainer: {fileID: 0}
   Charges: 1

@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SO_Potion", menuName = "Scriptable Objects/Items/Potions/SO_Potions")]
 public class SO_Potion : SO_Item
 {
+    public float UseTime = 0.7f; 
+
     public bool Throwable = false;
     public float ThrowForce = 10f;
     public float ExplosionRadius = 3f;

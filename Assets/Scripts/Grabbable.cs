@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class Grabbable : Usable
 {
-    public SO_Item SO_Item
+    public SO_Item So_Item
     {
         get { return m_SO_Item;}
         set { m_SO_Item = value; }

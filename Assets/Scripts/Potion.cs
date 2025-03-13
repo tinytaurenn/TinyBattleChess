@@ -40,6 +40,7 @@ public class Potion : InventoryItem
         if (Throwable)
         {
             //aiming potion effect
+            m_Renderer.enabled = true;
         }
         else
         {
@@ -53,6 +54,11 @@ public class Potion : InventoryItem
 
 
     }
+    IEnumerator UseTimeRoutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        OnUsedItem(); 
+    }
 
     public override void SetupItem()
     {
@@ -61,22 +67,24 @@ public class Potion : InventoryItem
 
     IEnumerator  DrinkPotionRoutine(float time)
     {
+        SO_Potion sO_Potion = So_Item as SO_Potion;
 
+        m_Renderer.enabled = true;
         yield return new WaitForSeconds(time);
 
-        SO_Potion sO_Potion = SO_Item as SO_Potion;
 
         GameObject drinkEffect = Instantiate(sO_Potion.DrinkEffect, transform.root.position, sO_Potion.DrinkEffect.transform.rotation,transform.root);
 
         ConnectionsHandler.Instance.LocalTinyPlayer.ApplyEffects(sO_Potion.GameEffectContainer.Effects);
 
         m_IsUsed = false;
-        OnUsedItem();
+        m_Renderer.enabled = false;
+        StartCoroutine(UseTimeRoutine(sO_Potion.UseTime));
     }
 
     public override void ThrowItem(Vector3 pos)
     {
-        SO_Potion sO_Potion = SO_Item as SO_Potion;
+        SO_Potion sO_Potion = So_Item as SO_Potion;
         if(sO_Potion == null || sO_Potion.ThrowableGameObject == null)
         {
             Debug.Log("No Throwable GO");
@@ -91,10 +99,10 @@ public class Potion : InventoryItem
         //itemProjectile.PotionEffects = PotionEffects;
         itemProjectile.m_ThrowForce = sO_Potion.ThrowForce;
         itemProjectile.m_ExplosionRadius = sO_Potion.ExplosionRadius;
-        itemProjectile.SetupPotionProjectile((SO_Potion)SO_Item, m_MeshFilter.mesh,m_Renderer.material); 
+        itemProjectile.SetupPotionProjectile((SO_Potion)So_Item, m_MeshFilter.mesh,m_Renderer.material); 
         itemProjectile.Launch(pos);
-
-        OnUsedItem();
+        m_Renderer.enabled = false;
+        StartCoroutine(UseTimeRoutine(sO_Potion.UseTime/2));
         Debug.Log("Throwing potion");
     }
 
@@ -109,7 +117,7 @@ public class Potion : InventoryItem
         if(Throwable)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, ((SO_Potion) SO_Item).ExplosionRadius);
+            Gizmos.DrawWireSphere(transform.position, ((SO_Potion) So_Item).ExplosionRadius);
         }
     }
 }

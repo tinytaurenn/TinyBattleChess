@@ -30,7 +30,7 @@ public class ScrollProjectile : Projectile
 
 
         InstantiateExplosion(transform.position);
-        m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.InstantiateExplosion), Coherence.MessageTarget.Other);
+        m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.InstantiateExplosion), Coherence.MessageTarget.Other, transform.position);
 
         StopParticles();
         m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.StopParticles), Coherence.MessageTarget.Other);

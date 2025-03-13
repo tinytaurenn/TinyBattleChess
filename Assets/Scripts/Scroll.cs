@@ -31,7 +31,7 @@ public class Scroll : InventoryItem
 
         UseAmount--;
 
-        SO_Scroll sO_Scroll = SO_Item as SO_Scroll;
+        SO_Scroll sO_Scroll = So_Item as SO_Scroll;
 
         foreach (SO_ScrollEffect effect in sO_Scroll.ScrollEffects)
         {
@@ -50,7 +50,8 @@ public class Scroll : InventoryItem
 
     IEnumerator UsingMagicRoutine()
     {
-        yield return new WaitForSeconds(1f);
+        
+        yield return new WaitForSeconds(((SO_Scroll)So_Item).UseTime);
         OnUsedItem(); 
     }
 }

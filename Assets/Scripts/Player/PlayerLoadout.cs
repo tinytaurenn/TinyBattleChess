@@ -154,7 +154,7 @@ public class PlayerLoadout : MonoBehaviour
             //m_SelectedSlot = ESlot.MainWeapon;
             //SelectSlot(ESlot.MainWeapon);
 
-            LocalUI.Instance.ChangeSlotIcon(hand, m_EquippedItems[hand].SO_Item.ItemIcon);
+            LocalUI.Instance.ChangeSlotIcon(hand, m_EquippedItems[hand].So_Item.ItemIcon);
 
 
 
@@ -182,25 +182,32 @@ public class PlayerLoadout : MonoBehaviour
 
 
 
-            LocalUI.Instance.ChangeSlotIcon(slot, m_EquippedItems[slot].SO_Item.ItemIcon);
+            LocalUI.Instance.ChangeSlotIcon(slot, m_EquippedItems[slot].So_Item.ItemIcon);
 
         }
         else if (item is InventoryItem)
         {
-            Debug.Log("equip armor of type invetory item ");
-            EquipInventoryItem((InventoryItem)item, out EStuffSlot slot);
+            Debug.Log("equip inventory item ");
+            if(EquipInventoryItem((InventoryItem)item, out EStuffSlot slot))
+            {
+                m_EquippedItems[slot].m_Rigidbody.isKinematic = true;
+                m_EquippedItems[slot].m_Collider.enabled = false;
+                m_EquippedItems[slot].transform.SetParent(m_PlayerPocket, false);
+                m_EquippedItems[slot].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-            m_EquippedItems[slot].m_Rigidbody.isKinematic = true;
-            m_EquippedItems[slot].m_Collider.enabled = false;
-            m_EquippedItems[slot].transform.SetParent(m_PlayerPocket, false);
-            m_EquippedItems[slot].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                LocalUI.Instance.ChangeSlotIcon(slot, m_EquippedItems[slot].So_Item.ItemIcon);
 
-            LocalUI.Instance.ChangeSlotIcon(slot, m_EquippedItems[slot].SO_Item.ItemIcon);
+                m_TinyPlayer.m_Animator.SetTrigger("PickItem");
+                m_TinyPlayer.Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), Coherence.MessageTarget.Other, "PickItem");
+            }
+            else
+            {
+                Debug.Log("no empty slot for inventory item");
+                item.m_IsHeld = false;
+            }
+
 
         }
-
-
-
     }
 
     public void DropItemInHand(float throwForce = 0f)
@@ -462,14 +469,16 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
-    void EquipInventoryItem(InventoryItem item, out EStuffSlot slot)
+    bool EquipInventoryItem(InventoryItem item, out EStuffSlot slot)
     {
         if (TryFindEmptyEquippedSlot(out slot))
         {
             m_EquippedItems[slot] = item;
             item.AssignedSlot = slot;
-
+            item.SetupItem();
+            return true;
         }
+        return false; 
 
     }
     public Grabbable GetGrabbableInHand()
@@ -527,6 +536,7 @@ public class PlayerLoadout : MonoBehaviour
         
         if (item.UseInventoryItem(m_SpellSocket))
         {
+            m_TinyPlayer.m_PlayerWeapons.UsingItem = true;
             m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
             if (item.TryGetComponent<Potion>(out Potion potionItem))
             {
@@ -545,6 +555,7 @@ public class PlayerLoadout : MonoBehaviour
                     potionItem.OnItemUsed += OnItemUsed;
                     m_TinyPlayer.m_Animator.SetTrigger("DrinkPotion");
                     m_TinyPlayer.Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), Coherence.MessageTarget.Other, "DrinkPotion");
+                    
                 }
 
             }
@@ -590,7 +601,8 @@ public class PlayerLoadout : MonoBehaviour
     void OnItemUsed(int useAmount,EStuffSlot slot)
     {
         Debug.Log("on item used"); 
-
+        
+        m_TinyPlayer.m_PlayerWeapons.UsingItem = false;
         if (useAmount <= 0)
         {
             StartCoroutine(DestroyItemOnSlotRoutine(slot));
@@ -599,6 +611,7 @@ public class PlayerLoadout : MonoBehaviour
     void OnMagicUsed(int useAmount, EStuffSlot slot)
     {
         Debug.Log("on item used magic");
+        m_TinyPlayer.m_PlayerWeapons.UsingItem = false;
         m_TinyPlayer.m_PlayerWeapons.UsingMagic = false;
         m_TinyPlayer.m_Animator.SetBool("UsingMagic", false);
 
@@ -680,7 +693,7 @@ public class PlayerLoadout : MonoBehaviour
 
         for (int i = 0; i < m_EquippedItems.Count; i++)
         {
-            items.Add((EStuffSlot)i, m_EquippedItems[(EStuffSlot)i] == null ? null :  m_EquippedItems[(EStuffSlot)i].SO_Item);
+            items.Add((EStuffSlot)i, m_EquippedItems[(EStuffSlot)i] == null ? null :  m_EquippedItems[(EStuffSlot)i].So_Item);
         }
 
         LocalUI.Instance.RefreshInventoryUI(items, m_InventoryType);
