@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SelectedItems: {fileID: 11400000, guid: cdf0a9c9faefa3840928ebcbc2f0606f, type: 2}
+  m_SelectedGameEffects: {fileID: 11400000, guid: 02ff669f02be8484ebbf1c8f09a9292b, type: 2}
+  m_NumItems: 0
+  m_NumEffects: 0

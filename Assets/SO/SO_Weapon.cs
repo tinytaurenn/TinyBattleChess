@@ -13,7 +13,7 @@ public class SO_Weapon : SO_Item
     public EWeaponType WeaponType;
     public EWeaponSize WeaponSize;
 
-    public EDamageType DamageType;
+    public EEffectType DamageType;
 
 
     public int Damage = 10; 

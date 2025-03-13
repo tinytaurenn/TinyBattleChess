@@ -8,7 +8,7 @@ public class BasicWeapon : Grabbable, IWeapon
 {
 
     [SerializeField]
-    FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EDamageType.Physical,EWeaponType.Sword, EWeaponSize.Right_Handed);
+    FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EEffectType.Physical,EWeaponType.Sword, EWeaponSize.Right_Handed);
 
     public FWeaponParameters WeaponParameters {
         get
@@ -35,7 +35,7 @@ public class BasicWeapon : Grabbable, IWeapon
     internal EWeaponType WeaponType => m_WeaponParameters.WeaponType;
     internal EWeaponSize WeaponSize => m_WeaponParameters.WeaponSize;
 
-    internal EDamageType DamageType => m_WeaponParameters.DamageType;
+    internal EEffectType DamageType => m_WeaponParameters.DamageType;
     internal int WeaponDamage => m_WeaponParameters.Damage; 
     internal float WeaponSpeed => m_WeaponParameters.Speed;
     internal int WeaponCost => m_WeaponParameters.Cost;

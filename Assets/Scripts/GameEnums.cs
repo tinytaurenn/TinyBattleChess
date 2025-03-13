@@ -25,7 +25,7 @@ public enum EStuffSlot
 }
 #endregion
 #region Other Enums and Struct
-public enum EDamageType
+public enum EEffectType
 {
     Physical = 1,
     Magical = 2,
@@ -79,14 +79,14 @@ public struct FWeaponParameters
     public int Damage;
     public float Speed;
     public int Cost;
-    public EDamageType DamageType;
+    public EEffectType DamageType;
     public EWeaponType WeaponType;
     public EWeaponSize WeaponSize;
     public Vector3 PositionOffset;
     public Vector3 RotationOffset;
 
 
-    public FWeaponParameters(int damage, float speed, int cost,EDamageType damageType, EWeaponType weaponType, EWeaponSize weaponSize, Vector3 positionOffset, Vector3 rotationOffset)
+    public FWeaponParameters(int damage, float speed, int cost,EEffectType damageType, EWeaponType weaponType, EWeaponSize weaponSize, Vector3 positionOffset, Vector3 rotationOffset)
     {
         Damage = damage;
         Speed = speed;
@@ -97,7 +97,7 @@ public struct FWeaponParameters
         PositionOffset = positionOffset;
         RotationOffset = rotationOffset;
     }
-    public FWeaponParameters(int damage, float speed, int cost, EDamageType damageType,EWeaponType weaponType, EWeaponSize weaponSize)
+    public FWeaponParameters(int damage, float speed, int cost, EEffectType damageType,EWeaponType weaponType, EWeaponSize weaponSize)
     {
         Damage = damage;
         Speed = speed;
@@ -112,7 +112,7 @@ public struct FWeaponParameters
     }
 
 }
-public enum EPotionEffect
+public enum EGameEffect
 {
     Healing,
     Regeneration,
@@ -135,22 +135,39 @@ public enum EPotionEffect
 [Serializable]
 public struct FGameEffect
 {
-    public EPotionEffect Effect;
+    public EGameEffect Effect;
     public float Value;
     public float EffectDuration;
+    public EEffectType EffectType; 
 
-    public FGameEffect(EPotionEffect effect, float value, float effectDuration)
+    public FGameEffect(EGameEffect effect, float value, float effectDuration)
     {
         Effect = effect;
         Value = value;
         EffectDuration = effectDuration;
+        EffectType = EEffectType.Physical;
     }
 
-    public FGameEffect(EPotionEffect effect, float value)
+    public FGameEffect(EGameEffect effect, float value)
     {
         Effect = effect;
         Value = value;
         EffectDuration = 0;
+        EffectType = EEffectType.Physical;
+    }
+    public FGameEffect(EGameEffect effect, float value, float effectDuration, EEffectType damageType)
+    {
+        Effect = effect;
+        Value = value;
+        EffectDuration = effectDuration;
+        EffectType = damageType;
+    }
+    public FGameEffect(EGameEffect effect, float value, EEffectType damageType)
+    {
+        Effect = effect;
+        Value = value;
+        EffectDuration = 0;
+        EffectType = damageType;
     }
 }
 

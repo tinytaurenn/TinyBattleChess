@@ -219,7 +219,8 @@ MonoBehaviour:
   - rid: 4705202171634253910
   - rid: 4705202179726377532
   - rid: 3165744810028171533
-  - rid: 3165744944299638872
+  - rid: 3165744968391721843
+  - rid: 3165744971055104305
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -291,16 +292,16 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 3165744944299638872
+    - rid: 3165744968391721843
       type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         descriptor:
-          rid: 3165744944299638873
+          rid: 3165744968391721844
         routing: 1
         syncMode: 0
         isPredicted: 0
         predictionMode: 0
-        guid: d095cf9896da4ca8ade65fbca75eefd6
+        guid: 000e9cbf10f248a899ca62dbcea4927d
         archetypeData:
           type: 0
           minRange: 0
@@ -311,10 +312,10 @@ MonoBehaviour:
         unityComponent: {fileID: 5896157377502905635}
         coherenceSync: {fileID: 6164657841644225223}
         interpolationSettings: {fileID: 0}
-    - rid: 3165744944299638873
+    - rid: 3165744968391721844
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
-        name: PotionEffect
+        name: GameEffect
         monoAssemblyType: 
         required: 1
         enforcesLODingWhenFieldsOverriden: 0
@@ -331,6 +332,51 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3165744971055104305
+      type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165744971055104306
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 851a7f4dace04eb9b549c0aff1a7f6b8
+        archetypeData:
+          type: 1
+          minRange: -2147483648
+          maxRange: 2147483647
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 1
+            bits: 32
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 2607659342849482176}
+        coherenceSync: {fileID: 6164657841644225223}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165744971055104306
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: EntityHealth
+        monoAssemblyType: System.Int32, mscorlib
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: Dummy, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+            PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
     - rid: 4705201930606215539

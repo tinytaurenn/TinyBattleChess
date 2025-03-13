@@ -12,8 +12,8 @@ public abstract class Entity : MonoBehaviour
         set { m_GameID = value; }
     }
 
-    [Sync][SerializeField]protected int m_EntityHealth = 100;
-
+    [SerializeField]protected int m_EntityHealth = 100;
+    [Sync]
     public virtual int EntityHealth
     {
         get { return m_EntityHealth; }
@@ -27,14 +27,14 @@ public abstract class Entity : MonoBehaviour
 
     public abstract void Stun(); 
 
-    public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, EDamageType damageType,Vector3 attackerPos);
+    public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, EEffectType damageType,Vector3 attackerPos);
 
-    public abstract void TakeWeaponDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync);
+    public abstract void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync);
 
 
     public abstract void ParrySync(int damage, CoherenceSync DamagerSync);
 
-    public abstract void TakeDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync);
+    public abstract void TakeDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync);
 
     public abstract void SyncBlocked();
 
@@ -54,55 +54,56 @@ public abstract class Entity : MonoBehaviour
     }
     public virtual void ApplyEffect(FGameEffect effect)
     {
+        Debug.Log("Applying effect " + effect.Effect.ToString());
         switch (effect.Effect)
         {
-            case EPotionEffect.Healing:
+            case EGameEffect.Healing:
                 HealingEffect(effect.Value);
                 break;
-            case EPotionEffect.Regeneration:
+            case EGameEffect.Regeneration:
                 RegenerationEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Strength:
+            case EGameEffect.Strength:
                 StrengthEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Speed:
+            case EGameEffect.Speed:
                 SpeedEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.AttackSpeed:
+            case EGameEffect.AttackSpeed:
                 AttackSpeedEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.JumpHeight:
+            case EGameEffect.JumpHeight:
                 JumpHeightEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Fly:
+            case EGameEffect.Fly:
                 FlyEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Parry:
+            case EGameEffect.Parry:
                 ParryEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Invisibility:
+            case EGameEffect.Invisibility:
                 InvisibilityEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Damage:
-                DamageEffect(effect.Value);
+            case EGameEffect.Damage:
+                DamageEffect(effect.Value,effect.EffectType);
                 break;
-            case EPotionEffect.Poison:
+            case EGameEffect.Poison:
                 PoisonEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Fire:
+            case EGameEffect.Fire:
                 FireEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Slow:
+            case EGameEffect.Slow:
                 SlowEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Blind:
+            case EGameEffect.Blind:
                 BlindEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.Grounded:
-                Grounded(effect.Value, effect.EffectDuration);
+            case EGameEffect.Grounded:
+                GroundedEffect(effect.Value, effect.EffectDuration);
                 break;
-            case EPotionEffect.weakness:
-                Weakness(effect.Value, effect.EffectDuration);
+            case EGameEffect.weakness:
+                WeaknessEffect(effect.Value, effect.EffectDuration);
                 break;
             default:
                 break;
@@ -155,8 +156,9 @@ public abstract class Entity : MonoBehaviour
         
     }
 
-    public virtual void DamageEffect(float value)
+    public virtual void DamageEffect(float value, EEffectType damageType)
     {
+        Debug.Log("Damage from effect");
         m_EntityHealth -= (int)value;
     }
 
@@ -180,12 +182,12 @@ public abstract class Entity : MonoBehaviour
         
     }
 
-    public virtual void Grounded(float value, float duration)
+    public virtual void GroundedEffect(float value, float duration)
     {
         
     }
 
-    public virtual void Weakness(float value, float duration)
+    public virtual void WeaknessEffect(float value, float duration)
     {
         
     }

@@ -16,35 +16,35 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 : IEntityCommand
+    public struct _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public ByteArray potionID;
+            public System.Byte enable;
         }
 
-        public static unsafe _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 16) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
-                    "for command with ID 99");
+            if (dataSize != 1) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 1) " +
+                    "for command with ID 105");
             }
 
-            var orig = new _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6();
+            var orig = new _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3();
             var comp = (Interop*)data;
-            orig.potionID = comp->potionID.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->potionID.Data, (int)comp->potionID.Length) : null;
+            orig.enable = comp->enable != 0;
             return orig;
         }
 
-        public System.String potionID;
+        public System.Boolean enable;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 99;
+        public uint GetComponentType() => 105;
         
         public IEntityMessage Clone()
         {
@@ -82,9 +82,9 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6(
+        public _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3(
         Entity entity,
-        System.String potionID
+        System.Boolean enable
 )
         {
             Entity = entity;
@@ -92,23 +92,23 @@ namespace Coherence.Generated
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.potionID = potionID; 
+            this.enable = enable; 
         }
         
-        public static void Serialize(_c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteShortString(commandData.potionID);
+            bitStream.WriteBool(commandData.enable);
         }
         
-        public static _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var datapotionID = bitStream.ReadShortString();
+            var dataenable = bitStream.ReadBool();
     
-            return new _c473af9c10567024caf206bf6752a656_d095cf9896da4ca8ade65fbca75eefd6()
+            return new _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3()
             {
                 Entity = entity,
                 Routing = target,
-                potionID = datapotionID
+                enable = dataenable
             };   
         }
     }

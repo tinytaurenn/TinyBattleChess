@@ -16,7 +16,7 @@ public class EntityCommands : MonoBehaviour
     {
         if(TryGetComponent<Entity>(out Entity ent))
         {
-            ent.TakeMeleeSync(DirectionNESO, sync, damage,(EDamageType)damageType, attackerPos);
+            ent.TakeMeleeSync(DirectionNESO, sync, damage,(EEffectType)damageType, attackerPos);
         }
     }
     [Command]
@@ -68,19 +68,20 @@ public class EntityCommands : MonoBehaviour
         }
     }
     [Command]
-    public  void PotionEffect(string potionID)
+    public  void GameEffect(string GameEffectID)
     {
+        Debug.Log("game effect id : " + GameEffectID); 
         if (TryGetComponent<Entity>(out Entity ent))
         {
-            SO_Potion potion  = ItemRetriever.Instance.GetItem(potionID) as SO_Potion;
-            if (potion == null)
+            SO_GameEffect_Container container  = ItemRetriever.Instance.GetEffect(GameEffectID);
+            if (container == null)
             {
                 Debug.Log("no such item in retriever");
                 return;
 
             }
 
-            ent.ApplyEffects(potion.Effects);
+            ent.ApplyEffects(container.Effects);
         }
     }
 }

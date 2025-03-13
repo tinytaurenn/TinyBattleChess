@@ -63,7 +63,7 @@ public class TinyPlayer : Entity, IDamageable
     [SerializeField] float m_RespawnTimer = 0f; 
     float m_RespawnTime = 10f;
 
-
+   
     public int GlobalHealth { 
         get { return m_Global_Health;  }
         set {
@@ -436,7 +436,7 @@ public class TinyPlayer : Entity, IDamageable
     }
 
     #region Hits
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EDamageType damageType, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, Vector3 attackerPos)
     {
 
         if (m_PlayerState != EPlayerState.Player)
@@ -484,7 +484,7 @@ public class TinyPlayer : Entity, IDamageable
         }
     }
 
-    public override void TakeWeaponDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
     {
 
         Debug.Log("sync Player took " + damage + " weapon damage!");
@@ -498,7 +498,7 @@ public class TinyPlayer : Entity, IDamageable
 
     }
 
-    public override void TakeDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
+    public override void TakeDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
     {
 
 
@@ -938,9 +938,10 @@ public class TinyPlayer : Entity, IDamageable
         base.InvisibilityEffect(value, duration);
     }
 
-    public override void DamageEffect(float value)
+    public override void DamageEffect(float value,EEffectType damageType)
     {
-        m_EntityHealth -= (int)value;
+        Debug.Log("player Damage from effect");
+        TakeDamageSync((int)value, damageType, m_Sync);
     }
 
     public override void PoisonEffect(float value, float duration)
@@ -963,14 +964,14 @@ public class TinyPlayer : Entity, IDamageable
         base.BlindEffect(value, duration);
     }
 
-    public override void Grounded(float value, float duration)
+    public override void GroundedEffect(float value, float duration)
     {
-        base.Grounded(value, duration);
+        base.GroundedEffect(value, duration);
     }
 
-    public override void Weakness(float value, float duration)
+    public override void WeaknessEffect(float value, float duration)
     {
-        base.Weakness(value, duration);
+        base.WeaknessEffect(value, duration);
     }
 
 

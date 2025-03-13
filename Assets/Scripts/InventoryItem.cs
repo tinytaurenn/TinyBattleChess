@@ -1,11 +1,9 @@
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public abstract class  InventoryItem : Grabbable
 {
-    [SerializeField] GameObject m_ItemProjectile; 
-    public GameObject ItemProjectile { get { return m_ItemProjectile; } set { m_ItemProjectile = value; } }
+
 
     [SerializeField] bool m_Throwable = false;
 
@@ -13,6 +11,7 @@ public abstract class  InventoryItem : Grabbable
 
     public bool Throwed { get; set; } = false;
     [SerializeField] protected Renderer m_Renderer;
+    [SerializeField] protected MeshFilter m_MeshFilter;
 
     [SerializeField] int m_UseAmount = 3;
 

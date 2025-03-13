@@ -16,35 +16,35 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea : IEntityCommand
+    public struct _61db515efe9556c45853cdc384e6813b_9251f6a575d44b4695be32d384f15967 : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public ByteArray potionID;
+            public ByteArray GameEffectID;
         }
 
-        public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _61db515efe9556c45853cdc384e6813b_9251f6a575d44b4695be32d384f15967 FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
             if (dataSize != 16) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
-                    "for command with ID 15");
+                    "for command with ID 79");
             }
 
-            var orig = new _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea();
+            var orig = new _61db515efe9556c45853cdc384e6813b_9251f6a575d44b4695be32d384f15967();
             var comp = (Interop*)data;
-            orig.potionID = comp->potionID.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->potionID.Data, (int)comp->potionID.Length) : null;
+            orig.GameEffectID = comp->GameEffectID.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->GameEffectID.Data, (int)comp->GameEffectID.Length) : null;
             return orig;
         }
 
-        public System.String potionID;
+        public System.String GameEffectID;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 15;
+        public uint GetComponentType() => 79;
         
         public IEntityMessage Clone()
         {
@@ -82,9 +82,9 @@ namespace Coherence.Generated
         public void NullEntityRefs(Entity entity) {
         }
         
-        public _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea(
+        public _61db515efe9556c45853cdc384e6813b_9251f6a575d44b4695be32d384f15967(
         Entity entity,
-        System.String potionID
+        System.String GameEffectID
 )
         {
             Entity = entity;
@@ -92,23 +92,23 @@ namespace Coherence.Generated
             Routing = MessageTarget.All;
             Sender = 0;
             
-            this.potionID = potionID; 
+            this.GameEffectID = GameEffectID; 
         }
         
-        public static void Serialize(_276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_61db515efe9556c45853cdc384e6813b_9251f6a575d44b4695be32d384f15967 commandData, IOutProtocolBitStream bitStream)
         {
-            bitStream.WriteShortString(commandData.potionID);
+            bitStream.WriteShortString(commandData.GameEffectID);
         }
         
-        public static _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _61db515efe9556c45853cdc384e6813b_9251f6a575d44b4695be32d384f15967 Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
-            var datapotionID = bitStream.ReadShortString();
+            var dataGameEffectID = bitStream.ReadShortString();
     
-            return new _276f4c8c1f54c8d41afce07cc23e23c3_378d8fd787fa4241aac5755d7a45b3ea()
+            return new _61db515efe9556c45853cdc384e6813b_9251f6a575d44b4695be32d384f15967()
             {
                 Entity = entity,
                 Routing = target,
-                potionID = datapotionID
+                GameEffectID = dataGameEffectID
             };   
         }
     }

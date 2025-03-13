@@ -2443,6 +2443,7 @@ MonoBehaviour:
   m_PlayerRightHandSocket: {fileID: 1010069479959953380}
   m_PlayerPocket: {fileID: 3957925043188666935}
   m_DropSocket: {fileID: 0}
+  m_SpellSocket: {fileID: 0}
   m_HelmetSocket: {fileID: 3255192868456237435}
   m_ChestSocket: {fileID: 8589277213285363892}
   m_LeftShoulderSocket: {fileID: 6605496891355095073}

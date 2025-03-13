@@ -485,19 +485,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f2ad8603d80a3249bc16e8c4054cb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Renderer: {fileID: 0}
+  m_MeshFilter: {fileID: 0}
   m_ExplosionMask:
     serializedVersion: 2
     m_Bits: 192
   m_ThrowForce: 10
   m_ExplosionRadius: 3
-  m_ExplosionGameobject: {fileID: 1879798220002124, guid: 8c988011ae9fc604a8a3761a0ac3d8a8, type: 3}
   m_Exploded: 0
   m_ExplosionDelay: 0.15
   m_ParticleSystems:
   - {fileID: 5142263290298398241}
   - {fileID: 7872145796646397112}
   - {fileID: 8978166065824729088}
-  m_SpawnSoundPrefab: {fileID: 0}
+  m_ExplosionGameobject: {fileID: 1879798220002124, guid: 8c988011ae9fc604a8a3761a0ac3d8a8, type: 3}
+  SO_ScrollEffect: {fileID: 11400000, guid: 5fb81da09877d3a4785e990d9c25f7ed, type: 2}
 --- !u!1 &4573184255788862342
 GameObject:
   m_ObjectHideFlags: 0

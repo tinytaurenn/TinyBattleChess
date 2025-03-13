@@ -23,7 +23,13 @@ public class SO_Items_Editor : Editor
                 string path = AssetDatabase.GUIDToAssetPath(guid);
                 SO_Item item = AssetDatabase.LoadAssetAtPath<SO_Item>(path);
                 soItems.Items.Add(item);
+
+
             }
+
+            EditorUtility.SetDirty(soItems);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
 
 
         }

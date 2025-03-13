@@ -64,7 +64,7 @@ public class Potion : InventoryItem
 
         yield return new WaitForSeconds(time);
 
-        ConnectionsHandler.Instance.LocalTinyPlayer.ApplyEffects(((SO_Potion)SO_Item).Effects);
+        ConnectionsHandler.Instance.LocalTinyPlayer.ApplyEffects(((SO_Potion)SO_Item).GameEffectContainer.Effects);
 
         m_IsUsed = false;
         OnUsedItem();
@@ -72,7 +72,8 @@ public class Potion : InventoryItem
 
     public override void ThrowItem(Vector3 pos)
     {
-        if(ItemProjectile == null)
+        SO_Potion sO_Potion = SO_Item as SO_Potion;
+        if(sO_Potion == null || sO_Potion.ThrowableGameObject == null)
         {
             Debug.Log("No Throwable GO");
             return; 
@@ -82,10 +83,10 @@ public class Potion : InventoryItem
         UseAmount--; 
         m_IsUsed = false; 
         
-        PotionProjectile itemProjectile =  Instantiate(ItemProjectile, transform.position, transform.rotation).GetComponent<PotionProjectile>();
+        PotionProjectile itemProjectile =  Instantiate(sO_Potion.ThrowableGameObject, transform.position, transform.rotation).GetComponent<PotionProjectile>();
         //itemProjectile.PotionEffects = PotionEffects;
-        itemProjectile.SO_Potion = (SO_Potion)SO_Item;
-        
+
+        itemProjectile.SetupPotionProjectile((SO_Potion)SO_Item, m_MeshFilter.mesh,m_Renderer.material); 
         itemProjectile.Launch(pos);
 
         OnUsedItem();

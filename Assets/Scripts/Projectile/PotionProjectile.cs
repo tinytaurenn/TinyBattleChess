@@ -6,11 +6,12 @@ using UnityEngine;
 public class PotionProjectile : Projectile
 {
 
-    public SO_Potion SO_Potion;
+    public SO_Potion SO_Potion; 
     protected override void OnHit(Collider other)
     {
         Debug.Log("potion projectile hit something");
-        if(SO_Potion.Effects.Count<=0)
+      
+        if(SO_Potion == null || SO_Potion.GameEffectContainer ==null || SO_Potion.GameEffectContainer.Effects.Count<=0 )
         {
             Debug.Log("no potion effects");
             return;
@@ -43,11 +44,21 @@ public class PotionProjectile : Projectile
 
     void ApplyEffectsOnEntity(CoherenceSync entSync)
     {
-        entSync.SendCommand<EntityCommands>(nameof(EntityCommands.PotionEffect), Coherence.MessageTarget.AuthorityOnly, SO_Potion.ItemID);
+        entSync.SendCommand<EntityCommands>(nameof(EntityCommands.GameEffect), Coherence.MessageTarget.AuthorityOnly,SO_Potion.GameEffectContainer.GameEffectID);
     }
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
+    }
+
+    public void SetupPotionProjectile(SO_Potion so_potion,Mesh potionMesh, Material mat)
+    {
+        //base.SetupProjectile();
+
+        SO_Potion = so_potion;
+        m_MeshFilter.mesh = potionMesh;
+        m_Renderer.material = mat;
+
     }
 
     public override void InstantiateExplosion()

@@ -35,6 +35,8 @@ namespace Coherence.Generated
             public System.Int32 GameID;
             [FieldOffset(16)]
             public System.Byte IsHost;
+            [FieldOffset(17)]
+            public System.Int32 EntityHealth;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
@@ -49,12 +51,14 @@ namespace Coherence.Generated
             GameIDSimulationFrame = frame;
             FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777.IsHostMask;
             IsHostSimulationFrame = frame;
+            FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777.EntityHealthMask;
+            EntityHealthSimulationFrame = frame;
         }
 
         public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
-            if (dataSize != 17) {
-                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 17) " +
+            if (dataSize != 21) {
+                throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 21) " +
                     "for component with ID 162");
             }
 
@@ -72,6 +76,7 @@ namespace Coherence.Generated
             orig.GlobalHealth = comp->GlobalHealth;
             orig.GameID = comp->GameID;
             orig.IsHost = comp->IsHost != 0;
+            orig.EntityHealth = comp->EntityHealth;
 
             return orig;
         }
@@ -92,13 +97,16 @@ namespace Coherence.Generated
         public static uint IsHostMask => 0b00000000000000000000000000010000;
         public AbsoluteSimulationFrame IsHostSimulationFrame;
         public System.Boolean IsHost;
+        public static uint EntityHealthMask => 0b00000000000000000000000000100000;
+        public AbsoluteSimulationFrame EntityHealthSimulationFrame;
+        public System.Int32 EntityHealth;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
         public uint GetComponentType() => 162;
         public int PriorityLevel() => 100;
         public const int order = 0;
-        public uint InitialFieldsMask() => 0b00000000000000000000000000011111;
+        public uint InitialFieldsMask() => 0b00000000000000000000000000111111;
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
@@ -107,7 +115,7 @@ namespace Coherence.Generated
             return null;
         }
 
-        public int GetFieldCount() => 5;
+        public int GetFieldCount() => 6;
 
 
         
@@ -143,6 +151,8 @@ namespace Coherence.Generated
         private static readonly System.Int32 _GlobalHealth_Max = 2147483647;
         private static readonly System.Int32 _GameID_Min = -2147483648;
         private static readonly System.Int32 _GameID_Max = 2147483647;
+        private static readonly System.Int32 _EntityHealth_Min = -2147483648;
+        private static readonly System.Int32 _EntityHealth_Max = 2147483647;
 
         public AbsoluteSimulationFrame? GetMinSimulationFrame()
         {
@@ -195,6 +205,13 @@ namespace Coherence.Generated
             }
 
             otherMask >>= 1;
+            if ((otherMask & 0x01) != 0)
+            {
+                this.EntityHealthSimulationFrame = other.EntityHealthSimulationFrame;
+                this.EntityHealth = other.EntityHealth;
+            }
+
+            otherMask >>= 1;
             StoppedMask |= other.StoppedMask;
 
             return this;
@@ -209,7 +226,7 @@ namespace Coherence.Generated
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
-                bitStream.WriteMaskBits(data.StoppedMask, 5);
+                bitStream.WriteMaskBits(data.StoppedMask, 6);
             }
 
             var mask = data.FieldsMask;
@@ -286,6 +303,21 @@ namespace Coherence.Generated
             }
 
             mask >>= 1;
+            if (bitStream.WriteMask((mask & 0x01) != 0))
+            {
+
+                Coherence.Utils.Bounds.Check(data.EntityHealth, _EntityHealth_Min, _EntityHealth_Max, "_276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777.EntityHealth", logger);
+
+                data.EntityHealth = Coherence.Utils.Bounds.Clamp(data.EntityHealth, _EntityHealth_Min, _EntityHealth_Max);
+
+                var fieldValue = data.EntityHealth;
+
+
+
+                bitStream.WriteIntegerRange(fieldValue, 32, -2147483648);
+            }
+
+            mask >>= 1;
 
             return mask;
         }
@@ -295,7 +327,7 @@ namespace Coherence.Generated
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
             {
-                stoppedMask = bitStream.ReadMaskBits(5);
+                stoppedMask = bitStream.ReadMaskBits(6);
             }
 
             var val = new _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777();
@@ -329,6 +361,12 @@ namespace Coherence.Generated
                 val.IsHost = bitStream.ReadBool();
                 val.FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777.IsHostMask;
             }
+            if (bitStream.ReadMask())
+            {
+
+                val.EntityHealth = bitStream.ReadIntegerRange(32, -2147483648);
+                val.FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_6203568768842159777.EntityHealthMask;
+            }
 
             val.StoppedMask = stoppedMask;
 
@@ -344,8 +382,9 @@ namespace Coherence.Generated
                 $" GlobalHealth: { this.GlobalHealth }" +
                 $" GameID: { this.GameID }" +
                 $" IsHost: { this.IsHost }" +
-                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(5, '0') }, " +
-                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(5, '0') })";
+                $" EntityHealth: { this.EntityHealth }" +
+                $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(6, '0') }, " +
+                $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(6, '0') })";
         }
     }
 

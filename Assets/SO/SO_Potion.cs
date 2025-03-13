@@ -6,8 +6,14 @@ using UnityEngine;
 public class SO_Potion : SO_Item
 {
     public bool Throwable = false;
-  
-    public List<FGameEffect> Effects;
+
+    public GameObject ThrowableGameObject; 
+    public GameObject ExplosionEffect;
+    public GameObject DrinkEffect;
+
+    //public List<FGameEffect> Effects;
+
+    public SO_GameEffect_Container GameEffectContainer;
 
     public int Charges = 1;
     

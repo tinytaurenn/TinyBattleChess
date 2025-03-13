@@ -32,11 +32,6 @@ public class SO_Items : ScriptableObject
     [Range(1f, 100f)]
     public float LegendaryChance = 15f;
 
-    public SO_Item FindItemByName(string name)
-    {
-        return Items.Find(item => item.ItemName == name);
-        
-    }
 
     
 

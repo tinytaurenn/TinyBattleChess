@@ -6,14 +6,16 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public abstract class Projectile : MonoBehaviour
 {
+
     protected CoherenceSync m_Sync;
     Rigidbody m_RigidBody; 
     protected Collider  m_Collider;
+    public Renderer m_Renderer; 
+    public MeshFilter m_MeshFilter; 
     [SerializeField]protected LayerMask m_ExplosionMask; 
     [SerializeField] protected float m_ThrowForce = 10f;
     [SerializeField] protected float m_ExplosionRadius = 3f;
 
-    [SerializeField] protected GameObject m_ExplosionGameobject;
     [SerializeField] protected bool m_Exploded = false;
 
     protected float m_Timer = 0f;
@@ -32,6 +34,7 @@ public abstract class Projectile : MonoBehaviour
         if (m_Timer > m_ActivationTime) return;
         m_Timer += Time.deltaTime;
     }
+
 
     public virtual void Launch(Vector3 direction)
     {

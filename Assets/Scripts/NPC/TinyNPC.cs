@@ -551,12 +551,12 @@ public abstract class TinyNPC : Entity, IDamageable
 
     
 
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EDamageType damageType, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, Vector3 attackerPos)
     {
         Debug.Log("not implemented TakeMeleeSync");
     }
 
-    public override void TakeWeaponDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
     {
         Debug.Log("not implemented TakeWeaponDamageSync");
     }
@@ -566,7 +566,7 @@ public abstract class TinyNPC : Entity, IDamageable
         Debug.Log("not implemented ParrySync");
     }
 
-    public override void TakeDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
+    public override void TakeDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
     {
         Debug.Log("simulator not found, game is not hosted");
 

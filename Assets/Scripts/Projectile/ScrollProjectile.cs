@@ -8,7 +8,10 @@ public class ScrollProjectile : Projectile
     [SerializeField] float m_ExplosionDelay = 0.1f;
 
     [SerializeField] ParticleSystem[] m_ParticleSystems;
-    [SerializeField] GameObject m_SpawnSoundPrefab; 
+    [SerializeField] GameObject m_ExplosionGameobject;
+
+
+    public SO_GameEffect_Container SO_GameEffectContainer; 
 
     protected override void OnHit(Collider other)
     {
@@ -18,6 +21,21 @@ public class ScrollProjectile : Projectile
         StartCoroutine(ExplosionRoutine(m_ExplosionDelay));
 
         m_Collider.enabled = false;
+       
+    }
+
+    IEnumerator ExplosionRoutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+
+        InstantiateExplosion();
+        m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.InstantiateExplosion), Coherence.MessageTarget.Other);
+
+        StopParticles();
+        m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.StopParticles), Coherence.MessageTarget.Other);
+
+
         Collider[] HitList = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_ExplosionMask);
         if (HitList.Length > 0)
         {
@@ -30,7 +48,9 @@ public class ScrollProjectile : Projectile
                     Debug.Log("scroll projectile hit entity");
                     if (item.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
                     {
-                        //Damage and stuff
+
+                        sync.SendCommand<EntityCommands>(nameof(EntityCommands.GameEffect), Coherence.MessageTarget.AuthorityOnly, SO_GameEffectContainer.GameEffectID);
+
                     }
                 }
             }
@@ -39,16 +59,6 @@ public class ScrollProjectile : Projectile
         {
             Debug.Log("potion projectile hit nothing");
         }
-    }
-
-    IEnumerator ExplosionRoutine(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        InstantiateExplosion();
-        m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.InstantiateExplosion), Coherence.MessageTarget.Other);
-
-        StopParticles();
-        m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.StopParticles), Coherence.MessageTarget.Other);
 
         Destroy(gameObject, 2f);
     }

@@ -54,7 +54,7 @@ public class Dummy : Entity, IDamageable
     
 
   
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync,int damage,EDamageType damageType, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync,int damage,EEffectType damageType, Vector3 attackerPos)
     {
 
         EWeaponDirection direction = (EWeaponDirection)DirectionNESO; 
@@ -102,7 +102,7 @@ public class Dummy : Entity, IDamageable
         Debug.Log("dummy died");    
     }
 
-    public override void TakeWeaponDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
     {
         Debug.Log("sync Dummy took " + damage + " damage!");
 
@@ -118,7 +118,7 @@ public class Dummy : Entity, IDamageable
         m_Sync.SendCommand<DummyFX>(nameof(DummyFX.PlayParryFX), Coherence.MessageTarget.All, soundVariationIndex); 
     }
 
-    public override void TakeDamageSync(int damage,EDamageType damageType, CoherenceSync Damagersync)
+    public override void TakeDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
     {
         throw new NotImplementedException();
     }
