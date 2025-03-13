@@ -6,6 +6,8 @@ using UnityEngine;
 public class SO_Potion : SO_Item
 {
     public bool Throwable = false;
+    public float ThrowForce = 10f;
+    public float ExplosionRadius = 3f;
 
     public GameObject ThrowableGameObject; 
     public GameObject ExplosionEffect;

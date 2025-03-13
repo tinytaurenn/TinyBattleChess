@@ -17,6 +17,8 @@ public class PotionProjectile : Projectile
             return;
         }
         m_Collider.enabled = false;
+        InstantiateExplosion(transform.position + Vector3.up/2 ); 
+        
         Collider[] HitList = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_ExplosionMask);
         if(HitList.Length > 0)
         {
@@ -61,9 +63,11 @@ public class PotionProjectile : Projectile
 
     }
 
-    public override void InstantiateExplosion()
+    public override void InstantiateExplosion(Vector3 pos)
     {
         Debug.Log("potion projectile explosion");
+        GameObject potionExplosionVFX = Instantiate(SO_Potion.ExplosionEffect, pos, SO_Potion.ExplosionEffect.transform.rotation);
+
     }
 
     public override void StopParticles()

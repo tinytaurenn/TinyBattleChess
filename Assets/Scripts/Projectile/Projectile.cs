@@ -13,8 +13,8 @@ public abstract class Projectile : MonoBehaviour
     public Renderer m_Renderer; 
     public MeshFilter m_MeshFilter; 
     [SerializeField]protected LayerMask m_ExplosionMask; 
-    [SerializeField] protected float m_ThrowForce = 10f;
-    [SerializeField] protected float m_ExplosionRadius = 3f;
+    [SerializeField] public float m_ThrowForce = 10f;
+    [SerializeField] public float m_ExplosionRadius = 3f;
 
     [SerializeField] protected bool m_Exploded = false;
 
@@ -49,7 +49,7 @@ public abstract class Projectile : MonoBehaviour
     }
 
     [Command]
-    public abstract void InstantiateExplosion();
+    public abstract void InstantiateExplosion(Vector3 pos);
     [Command]
     public abstract void StopParticles();
 

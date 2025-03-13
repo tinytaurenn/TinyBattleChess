@@ -21,8 +21,10 @@ MonoBehaviour:
   Cost: 3
   EItemRarity: 0
   Throwable: 0
+  ThrowForce: 10
+  ExplosionRadius: 3
   ThrowableGameObject: {fileID: 0}
   ExplosionEffect: {fileID: 0}
-  DrinkEffect: {fileID: 0}
+  DrinkEffect: {fileID: 1041383898900682, guid: ad6ce0aab165ac443ad44d7cfdea4331, type: 3}
   GameEffectContainer: {fileID: 11400000, guid: 4c5458845126bad4ab0e755e106c3de6, type: 2}
   Charges: 3

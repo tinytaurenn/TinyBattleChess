@@ -546,7 +546,8 @@ command _5ca4159d3bce41449a6ca5773f57e7ef_82a6c4de14884f93853a6b65801a1488 [id "
 
 command _5d6316af86183e242bf98f8a058fd8db_4949dab0c9cd4b03807bf7ceb384616b [id "69", routing "All"]
 
-command _5d6316af86183e242bf98f8a058fd8db_d1023bd88adc476d8cac2be68496573f [id "70", routing "All"]
+command _5d6316af86183e242bf98f8a058fd8db_933039bfe4f14e489686412a9c5aba4f [id "70", routing "All"]
+  pos Vector3 [compression "None"]
 
 command _61db515efe9556c45853cdc384e6813b_1b1a00c45fed46f28f78ccefb78b31f7 [id "71", routing "All"]
   gameID Int 
@@ -605,9 +606,10 @@ command _8741b68fc3e4c6648bf6807cc4d527cf_6e090ac196bd44dcb18ac4aa0fdb632e [id "
 command _8741b68fc3e4c6648bf6807cc4d527cf_fcb2c75b5a76451d99f05715e8f375e2 [id "88", routing "All"]
   index Int 
 
-command _adc80acf40eb54146985921d3401c267_493d908d444a41d5b78ec1b8db12eed4 [id "89", routing "All"]
+command _adc80acf40eb54146985921d3401c267_23aa9f05a71049ab933bfeb0bc99487a [id "89", routing "All"]
+  pos Vector3 [compression "None"]
 
-command _adc80acf40eb54146985921d3401c267_cba734ac65d34d6fbbca6b15723ff251 [id "90", routing "All"]
+command _adc80acf40eb54146985921d3401c267_493d908d444a41d5b78ec1b8db12eed4 [id "90", routing "All"]
 
 command _c473af9c10567024caf206bf6752a656_000e9cbf10f248a899ca62dbcea4927d [id "91", routing "All"]
   GameEffectID String 

@@ -29,7 +29,7 @@ public class ScrollProjectile : Projectile
         yield return new WaitForSeconds(delay);
 
 
-        InstantiateExplosion();
+        InstantiateExplosion(transform.position);
         m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.InstantiateExplosion), Coherence.MessageTarget.Other);
 
         StopParticles();
@@ -64,10 +64,10 @@ public class ScrollProjectile : Projectile
     }
 
     
-    public override void InstantiateExplosion()
+    public override void InstantiateExplosion(Vector3 pos)
     {
         Debug.Log("instantiating explosion"); 
-        Instantiate(m_ExplosionGameobject, transform.position, transform.rotation);
+        Instantiate(m_ExplosionGameobject, pos, transform.rotation);
     }
     public override void StopParticles()
     {
