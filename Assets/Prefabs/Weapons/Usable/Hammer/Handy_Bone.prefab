@@ -843,29 +843,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099e92d446b79914b83f9775ed11600b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UseRequested: 0
   m_SO_Item: {fileID: 11400000, guid: 8e5e1e94d30c8514d96fd1548f8ce79b, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
-  m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
   m_WeaponParameters:
     Damage: 10
     Speed: 1.5
     Cost: 20
+    DamageType: 1
     WeaponType: 4
     WeaponSize: 0
     PositionOffset: {x: 0, y: 0, z: -0.066}
     RotationOffset: {x: 0, y: 0, z: 0}
   HitSounds:
-  - {fileID: 8300000, guid: 2b901ac228ea622448cc3198f2358fc0, type: 3}
-  - {fileID: 8300000, guid: f81c7afdd6b84634a8db483151a6141c, type: 3}
-  - {fileID: 8300000, guid: 746f6a1adc41b4f4fb6b481d2298d1d6, type: 3}
-  - {fileID: 8300000, guid: 38d39d27c253d4249b981d48cafdde07, type: 3}
+  - {fileID: 8300000, guid: cf8848b1903f743758f00707ba6e3f91, type: 3}
+  - {fileID: 8300000, guid: 552ed08497e20435bbd13bf7faf9dfb4, type: 3}
+  - {fileID: 8300000, guid: 3bdd693bc4c124438be58ffaeb47f207, type: 3}
+  - {fileID: 8300000, guid: b8cdb1774f01e4cb68b85efce56af4c4, type: 3}
   m_ParryAudios:
-  - {fileID: 8300000, guid: ba65c498c0992aa43a25b4ca11346d60, type: 3}
-  - {fileID: 8300000, guid: e6ab87aba29962643b4905ccc6642ab9, type: 3}
-  - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}
+  - {fileID: 8300000, guid: dbae549132b56450188fafff613c9a04, type: 3}
+  - {fileID: 8300000, guid: 3ce971ae322ea4f6fa14f0e9148ad21f, type: 3}
+  - {fileID: 8300000, guid: 8f50efcf2833e4db59076499d627236d, type: 3}
   m_DamageCollider: {fileID: 491638516267357695}
   m_HitPos: {fileID: 5191238781452264249}
 --- !u!114 &6694452824727652513

@@ -92,7 +92,7 @@ public class Dummy : Entity, IDamageable
         }
 
     }
-    public override void Stun()
+    public override void StunEffect(float duration)
     {
         Debug.Log("cannot be stunned");
     }

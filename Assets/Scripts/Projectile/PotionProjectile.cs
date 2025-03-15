@@ -17,7 +17,7 @@ public class PotionProjectile : Projectile
             return;
         }
         m_Collider.enabled = false;
-        InstantiateExplosion(transform.position + Vector3.up/2 ); 
+        InstantiateExplosion(transform.position + Vector3.up/4 ); 
         
         Collider[] HitList = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_ExplosionMask);
         if(HitList.Length > 0)
@@ -46,7 +46,7 @@ public class PotionProjectile : Projectile
 
     void ApplyEffectsOnEntity(CoherenceSync entSync)
     {
-        entSync.SendCommand<EntityCommands>(nameof(EntityCommands.GameEffect), Coherence.MessageTarget.AuthorityOnly,SO_Potion.GameEffectContainer.GameEffectID);
+        entSync.SendCommand<EntityCommands>(nameof(EntityCommands.GameEffect), Coherence.MessageTarget.AuthorityOnly,SO_Potion.GameEffectContainer.GameEffectID,m_Sync);
     }
     protected override void OnTriggerEnter(Collider other)
     {

@@ -280,13 +280,7 @@ public class HumanoidNPC : TinyNPC
         StartCoroutine(AttackDelayRoutine(m_AttackCooldown));
     }
 
-    public override void Stun()
-    {
-        base.Stun(); 
-        if (m_MainWeapon != null) m_MainWeapon.ActivateDamage(false);
-        if (m_SecondaryWeapon != null) m_SecondaryWeapon.ActivateDamage(false);
-
-    }
+    
 
 
     public override void EntityDeath()
@@ -418,10 +412,15 @@ public class HumanoidNPC : TinyNPC
         Debug.Log("sync humanoid NPC  parried ");
         Debug.Log(DamagerSync.transform.name + " parried!");
         DamagerSync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncBlockedCommand), Coherence.MessageTarget.AuthorityOnly);
+        if(m_MainWeapon != null)
+        {
+            int soundCount = m_MainWeapon.m_ParryAudios.Count;
+            int soundVariationIndex = UnityEngine.Random.Range(0, soundCount);
 
-        int soundVariationIndex = UnityEngine.Random.Range(0, 3);
-        m_HumanoidFX.PlayParryFX(soundVariationIndex);
-        m_Sync.SendCommand<HumanoidFX>(nameof(HumanoidFX.PlayParryFX), Coherence.MessageTarget.Other, soundVariationIndex);
+            m_HumanoidFX.PlayParryFX(soundVariationIndex);
+            m_Sync.SendCommand<HumanoidFX>(nameof(HumanoidFX.PlayParryFX), Coherence.MessageTarget.Other, soundVariationIndex);
+        }
+        
     }
 
     public override void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
@@ -481,6 +480,15 @@ public class HumanoidNPC : TinyNPC
             if (m_AttackState == EAttackState.Parrying) SwitchAttackState(EAttackState.None);
         }
        
+
+    }
+
+
+    public override void StunEffect(float duration)
+    {
+        base.StunEffect(duration);
+        if (m_MainWeapon != null) m_MainWeapon.ActivateDamage(false);
+        if (m_SecondaryWeapon != null) m_SecondaryWeapon.ActivateDamage(false);
 
     }
 

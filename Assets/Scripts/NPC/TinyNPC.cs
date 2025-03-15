@@ -504,29 +504,25 @@ public abstract class TinyNPC : Entity, IDamageable
 
     void HitStun()
     {
-        StartCoroutine(TimedStun(0.6f));
+        //StartCoroutine(TimedStun(0.6f));
+        StunEffect(0.6f);
     }
 
-    public override void Stun()
+    public override void StunEffect(float duration)
     {
+        StartCoroutine(NPCStunRoutine(duration));
+        
 
+    }
+
+
+    IEnumerator NPCStunRoutine(float time)
+    {
         IsStunned = true;
         m_Movement.Stun();
-
-    }
-
-    void UnStun()
-    {
+        yield return new WaitForSeconds(time);
         IsStunned = false;
         m_Movement.UnStun();
-
-    }
-
-    IEnumerator TimedStun(float time)
-    {
-        Stun();
-        yield return new WaitForSeconds(time);
-        UnStun();
     }
 
 

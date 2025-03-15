@@ -68,7 +68,7 @@ public class EntityCommands : MonoBehaviour
         }
     }
     [Command]
-    public  void GameEffect(string GameEffectID)
+    public  void GameEffect(string GameEffectID, CoherenceSync damagerSync)
     {
         Debug.Log("game effect id : " + GameEffectID); 
         if (TryGetComponent<Entity>(out Entity ent))
@@ -81,7 +81,15 @@ public class EntityCommands : MonoBehaviour
 
             }
 
-            ent.ApplyEffects(container.Effects);
+            ent.ApplyEffects(container.Effects, damagerSync);
+        }
+    }
+    [Command]
+    public void OneGameEffect(int IntEGameEffect,float value, float duration, int IntEEffectType, CoherenceSync damagerSync)
+    {
+        if (TryGetComponent<Entity>(out Entity ent))
+        {
+            ent.ApplyEffect(new FGameEffect((EGameEffect)IntEGameEffect, value, duration, (EEffectType)IntEEffectType), damagerSync);
         }
     }
 }

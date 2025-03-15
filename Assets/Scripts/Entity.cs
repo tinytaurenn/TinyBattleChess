@@ -25,7 +25,7 @@ public abstract class Entity : MonoBehaviour
 
     public abstract void EntityDeath();
 
-    public abstract void Stun(); 
+    
 
     public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, EEffectType damageType,Vector3 attackerPos);
 
@@ -45,14 +45,14 @@ public abstract class Entity : MonoBehaviour
     public abstract void OnReceiveAttackState(bool isAttacking,EWeaponDirection attackDir);
 
 
-    public virtual void ApplyEffects(List<FGameEffect> effects)
+    public virtual void ApplyEffects(List<FGameEffect> effects, CoherenceSync damagerSync)
     {
         foreach (FGameEffect effect in effects)
         {
-            ApplyEffect(effect);
+            ApplyEffect(effect,damagerSync);
         }
     }
-    public virtual void ApplyEffect(FGameEffect effect)
+    public virtual void ApplyEffect(FGameEffect effect,CoherenceSync damagerSync)
     {
         Debug.Log("Applying effect " + effect.Effect.ToString());
         switch (effect.Effect)
@@ -85,13 +85,16 @@ public abstract class Entity : MonoBehaviour
                 InvisibilityEffect(effect.Value, effect.EffectDuration);
                 break;
             case EGameEffect.Damage:
-                DamageEffect(effect.Value,effect.EffectType);
+                DamageEffect(effect.Value,effect.EffectType,damagerSync);
                 break;
             case EGameEffect.Poison:
                 PoisonEffect(effect.Value, effect.EffectDuration);
                 break;
             case EGameEffect.Fire:
                 FireEffect(effect.Value, effect.EffectDuration);
+                break;
+            case EGameEffect.Stun:
+                StunEffect(effect.EffectDuration);
                 break;
             case EGameEffect.Slow:
                 SlowEffect(effect.Value, effect.EffectDuration);
@@ -156,10 +159,12 @@ public abstract class Entity : MonoBehaviour
         
     }
 
-    public virtual void DamageEffect(float value, EEffectType damageType)
+    public virtual void DamageEffect(float value, EEffectType damageType, CoherenceSync damagerSync)
     {
         Debug.Log("Damage from effect");
-        m_EntityHealth -= (int)value;
+        //m_EntityHealth -= (int)value;
+
+        TakeDamageSync((int)value, damageType, damagerSync);
     }
 
     public virtual void PoisonEffect(float value, float duration)
@@ -170,6 +175,11 @@ public abstract class Entity : MonoBehaviour
     public virtual void FireEffect(float value, float duration)
     {
         
+    }
+
+    public virtual void StunEffect(float duration)
+    {
+
     }
 
     public virtual void SlowEffect(float value, float duration)

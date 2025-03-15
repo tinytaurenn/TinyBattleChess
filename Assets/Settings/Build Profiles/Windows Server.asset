@@ -39,7 +39,7 @@ MonoBehaviour:
     - line: '|   targetDevice: 2'
     - line: '|   useOnDemandResources: 0'
     - line: '|   accelerometerFrequency: 60'
-    - line: '|   companyName: DefaultCompany'
+    - line: '|   companyName: TinyTauren'
     - line: '|   productName: TinyBattleChess'
     - line: '|   defaultCursor: {fileID: 2800000, guid: d3f55e1ec9111c443b4ec58dddc2d41b,
         type: 3}'

@@ -126,6 +126,7 @@ public enum EGameEffect
     Damage,
     Poison,
     Fire,
+    Stun,
     Slow,
     Blind,
     Grounded,

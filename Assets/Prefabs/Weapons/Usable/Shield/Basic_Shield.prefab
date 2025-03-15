@@ -270,25 +270,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099e92d446b79914b83f9775ed11600b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UseRequested: 0
   m_SO_Item: {fileID: 11400000, guid: d5b3598698790874bb2a0b67468977c5, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
-  m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
   m_WeaponParameters:
     Damage: 10
     Speed: 1.5
     Cost: 20
+    DamageType: 1
     WeaponType: 256
     WeaponSize: 1
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
   HitSounds: []
   m_ParryAudios:
-  - {fileID: 8300000, guid: 7c56236de72ba03458d8d6f940f491eb, type: 3}
-  - {fileID: 8300000, guid: 7c56236de72ba03458d8d6f940f491eb, type: 3}
-  - {fileID: 8300000, guid: 7c56236de72ba03458d8d6f940f491eb, type: 3}
+  - {fileID: 8300000, guid: 9f740459a5983e940aa36028bb8d0ca2, type: 3}
+  - {fileID: 8300000, guid: 6a3e45b8d5613d14d9a46133e67d1bb7, type: 3}
+  - {fileID: 8300000, guid: f9a5fe35af5ad6c4b9375f80a27d9a71, type: 3}
+  - {fileID: 8300000, guid: 9f68dd9f023d6704cb60d9d2ae8aeedd, type: 3}
   m_DamageCollider: {fileID: 176563875519719840}
   m_HitPos: {fileID: 6087489037048558016}
 --- !u!82 &1453443674401267765

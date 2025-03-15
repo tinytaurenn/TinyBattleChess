@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class HumanoidFX : EntityFX
 {
@@ -12,6 +13,18 @@ public class HumanoidFX : EntityFX
 
     public override void PlayParryFX(int choiceIndex)
     {
-
+        if (TryGetComponent<HumanoidNPC>(out HumanoidNPC npc))
+        {
+            if(npc.GetMainWeapon() != null )
+            {
+                AudioResource sound = npc.GetMainWeapon().m_ParryAudios[choiceIndex];
+                m_AudioSource.resource = sound;
+                m_AudioSource.Play();
+            }
+        }
+        else
+        {
+            Debug.LogError("HumanoidNPC component not found on HumanoidFX");
+        }
     }
 }

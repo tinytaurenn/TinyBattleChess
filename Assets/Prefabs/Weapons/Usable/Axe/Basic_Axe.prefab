@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.06906986, y: 0.41070998, z: 0.22211793}
-  m_Center: {x: -0.0010061264, y: 0.38039297, z: -0.16734476}
+  m_Size: {x: 0.06906986, y: 0.45244488, z: 0.27996275}
+  m_Center: {x: -0.0010061264, y: 0.49283963, z: -0.19626717}
 --- !u!1 &953146969487538299
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,8 +112,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 124841667135481283}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -927,29 +927,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099e92d446b79914b83f9775ed11600b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UseRequested: 0
   m_SO_Item: {fileID: 11400000, guid: 11a1200a62d5f3a44a4c2f55814895b8, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
-  m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
   m_WeaponParameters:
     Damage: 10
     Speed: 1.5
     Cost: 20
+    DamageType: 1
     WeaponType: 2
     WeaponSize: 0
     PositionOffset: {x: 0, y: 0.04, z: -0.054}
     RotationOffset: {x: 0, y: 0, z: 0}
   HitSounds:
-  - {fileID: 8300000, guid: 2b901ac228ea622448cc3198f2358fc0, type: 3}
-  - {fileID: 8300000, guid: f81c7afdd6b84634a8db483151a6141c, type: 3}
-  - {fileID: 8300000, guid: 746f6a1adc41b4f4fb6b481d2298d1d6, type: 3}
-  - {fileID: 8300000, guid: 38d39d27c253d4249b981d48cafdde07, type: 3}
+  - {fileID: 8300000, guid: e01cd36fd531940b5bf4668241a66b3d, type: 3}
+  - {fileID: 8300000, guid: aa8658f1a1cdd4ae4ba2f5f888701d0e, type: 3}
+  - {fileID: 8300000, guid: 1ac30ee11a5314a638997f6fb715f74d, type: 3}
+  - {fileID: 8300000, guid: 47808e7c3bd794088b8bfec3a6ae11b5, type: 3}
   m_ParryAudios:
-  - {fileID: 8300000, guid: ba65c498c0992aa43a25b4ca11346d60, type: 3}
-  - {fileID: 8300000, guid: e6ab87aba29962643b4905ccc6642ab9, type: 3}
-  - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}
+  - {fileID: 8300000, guid: 6259986a328994f5eac0609a26587aad, type: 3}
+  - {fileID: 8300000, guid: afc3df82122d94b26a7dd5665094f7b1, type: 3}
+  - {fileID: 8300000, guid: e0a601017367946608f7e138e6ec4b7c, type: 3}
   m_DamageCollider: {fileID: 3215902980394475644}
   m_HitPos: {fileID: 4826256592450637167}
 --- !u!114 &2454459261411590058

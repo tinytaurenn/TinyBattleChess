@@ -572,11 +572,12 @@ public class TinyPlayer : Entity, IDamageable
         Debug.Log(DamagerSync.transform.name + " parried!");
         DamagerSync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncBlockedCommand), Coherence.MessageTarget.AuthorityOnly);
 
-        int soundVariationIndex = UnityEngine.Random.Range(0, 3);
+        
        
         BasicWeapon basicWeapon = m_PlayerWeapons.InShieldParry ? (BasicWeapon)m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] : (BasicWeapon)m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon]; 
         if(basicWeapon != null)
         {
+            int soundVariationIndex = UnityEngine.Random.Range(0, basicWeapon.m_ParryAudios.Count);
             basicWeapon.PlayParryFX(soundVariationIndex);
             if(basicWeapon.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
             {
@@ -597,25 +598,15 @@ public class TinyPlayer : Entity, IDamageable
 
     public void HitStun()
     {
-        TimedStun(0.6f); 
+        StunEffect(0.6f); 
         
 
     }
 
-    public override void Stun()
-    {
-        m_IsStunned = true; 
-        m_PlayerMovement.Stun();
-        if (m_PlayerWeapons.GetMainWeapon() != null) m_PlayerWeapons.GetMainWeapon().ActivateDamage(false);
-        if (m_PlayerWeapons.GetSecondaryWeapon() != null) m_PlayerWeapons.GetSecondaryWeapon().ActivateDamage(false);
 
-    }
 
-    public void TimedStun(float time)
-    {
-        Stun();
-        m_StunTimer = time;
-    } 
+    
+
 
     void StunUpdate()
     {
@@ -938,10 +929,10 @@ public class TinyPlayer : Entity, IDamageable
         base.InvisibilityEffect(value, duration);
     }
 
-    public override void DamageEffect(float value,EEffectType damageType)
+    public override void DamageEffect(float value,EEffectType damageType, CoherenceSync damagerSync)
     {
         Debug.Log("player Damage from effect");
-        TakeDamageSync((int)value, damageType, m_Sync);
+        base.DamageEffect(value, damageType, damagerSync);
     }
 
     public override void PoisonEffect(float value, float duration)
@@ -952,6 +943,14 @@ public class TinyPlayer : Entity, IDamageable
     public override void FireEffect(float value, float duration)
     {
         base.FireEffect(value, duration);
+    }
+    public override void StunEffect(float duration)
+    {
+        m_IsStunned = true;
+        m_PlayerMovement.Stun();
+        if (m_PlayerWeapons.GetMainWeapon() != null) m_PlayerWeapons.GetMainWeapon().ActivateDamage(false);
+        if (m_PlayerWeapons.GetSecondaryWeapon() != null) m_PlayerWeapons.GetSecondaryWeapon().ActivateDamage(false);
+        m_StunTimer = duration;
     }
 
     public override void SlowEffect(float value, float duration)

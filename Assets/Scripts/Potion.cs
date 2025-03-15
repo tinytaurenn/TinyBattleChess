@@ -75,7 +75,7 @@ public class Potion : InventoryItem
 
         GameObject drinkEffect = Instantiate(sO_Potion.DrinkEffect, transform.root.position, sO_Potion.DrinkEffect.transform.rotation,transform.root);
 
-        ConnectionsHandler.Instance.LocalTinyPlayer.ApplyEffects(sO_Potion.GameEffectContainer.Effects);
+        ConnectionsHandler.Instance.LocalTinyPlayer.ApplyEffects(sO_Potion.GameEffectContainer.Effects,m_Sync);
 
         m_IsUsed = false;
         m_Renderer.enabled = false;

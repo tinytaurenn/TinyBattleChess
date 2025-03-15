@@ -16,35 +16,39 @@ namespace Coherence.Generated
     using System.Runtime.InteropServices;
     using UnityEngine;
 
-    public struct _276f4c8c1f54c8d41afce07cc23e23c3_b655c1849e1047cca83a66eb660b4a7b : IEntityCommand
+    public struct _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b : IEntityCommand
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
             public ByteArray GameEffectID;
+            [FieldOffset(16)]
+            public Entity damagerSync;
         }
 
-        public static unsafe _276f4c8c1f54c8d41afce07cc23e23c3_b655c1849e1047cca83a66eb660b4a7b FromInterop(System.IntPtr data, System.Int32 dataSize) 
+        public static unsafe _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b FromInterop(System.IntPtr data, System.Int32 dataSize) 
         {
-            if (dataSize != 16) {
-                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 16) " +
-                    "for command with ID 29");
+            if (dataSize != 20) {
+                throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 20) " +
+                    "for command with ID 98");
             }
 
-            var orig = new _276f4c8c1f54c8d41afce07cc23e23c3_b655c1849e1047cca83a66eb660b4a7b();
+            var orig = new _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b();
             var comp = (Interop*)data;
             orig.GameEffectID = comp->GameEffectID.Data != null ? System.Text.Encoding.UTF8.GetString((byte*)comp->GameEffectID.Data, (int)comp->GameEffectID.Length) : null;
+            orig.damagerSync = comp->damagerSync;
             return orig;
         }
 
         public System.String GameEffectID;
+        public Entity damagerSync;
         
         public Entity Entity { get; set; }
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 29;
+        public uint GetComponentType() => 98;
         
         public IEntityMessage Clone()
         {
@@ -61,6 +65,13 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = absoluteEntity;
+            err = mapper.MapToAbsoluteEntity(damagerSync, false, out absoluteEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.damagerSync = absoluteEntity;
+            
             return IEntityMapper.Error.None;
         }
         
@@ -72,19 +83,32 @@ namespace Coherence.Generated
                 return err;
             }
             Entity = relativeEntity;
+            err = mapper.MapToRelativeEntity(damagerSync, false, out relativeEntity);
+            if (err != IEntityMapper.Error.None)
+            {
+                return err;
+            }
+            this.damagerSync = relativeEntity;
+            
             return IEntityMapper.Error.None;
         }
 
         public HashSet<Entity> GetEntityRefs() {
-            return default;
+            return new HashSet<Entity> {
+                this.damagerSync,
+            };
         }
 
         public void NullEntityRefs(Entity entity) {
+            if (this.damagerSync == entity) {
+                this.damagerSync = Entity.InvalidRelative;
+            }
         }
         
-        public _276f4c8c1f54c8d41afce07cc23e23c3_b655c1849e1047cca83a66eb660b4a7b(
+        public _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b(
         Entity entity,
-        System.String GameEffectID
+        System.String GameEffectID,
+        Entity damagerSync
 )
         {
             Entity = entity;
@@ -93,22 +117,26 @@ namespace Coherence.Generated
             Sender = 0;
             
             this.GameEffectID = GameEffectID; 
+            this.damagerSync = damagerSync; 
         }
         
-        public static void Serialize(_276f4c8c1f54c8d41afce07cc23e23c3_b655c1849e1047cca83a66eb660b4a7b commandData, IOutProtocolBitStream bitStream)
+        public static void Serialize(_c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b commandData, IOutProtocolBitStream bitStream)
         {
             bitStream.WriteShortString(commandData.GameEffectID);
+            bitStream.WriteEntity(commandData.damagerSync);
         }
         
-        public static _276f4c8c1f54c8d41afce07cc23e23c3_b655c1849e1047cca83a66eb660b4a7b Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
+        public static _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b Deserialize(IInProtocolBitStream bitStream, Entity entity, MessageTarget target)
         {
             var dataGameEffectID = bitStream.ReadShortString();
+            var datadamagerSync = bitStream.ReadEntity();
     
-            return new _276f4c8c1f54c8d41afce07cc23e23c3_b655c1849e1047cca83a66eb660b4a7b()
+            return new _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b()
             {
                 Entity = entity,
                 Routing = target,
-                GameEffectID = dataGameEffectID
+                GameEffectID = dataGameEffectID,
+                damagerSync = datadamagerSync
             };   
         }
     }

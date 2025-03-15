@@ -219,8 +219,9 @@ MonoBehaviour:
   - rid: 4705202171634253910
   - rid: 4705202179726377532
   - rid: 3165744810028171533
-  - rid: 3165744968391721843
   - rid: 3165744971055104305
+  - rid: 3165745020758655152
+  - rid: 3165745020758655153
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -292,48 +293,6 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 3165744968391721843
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 3165744968391721844
-        routing: 1
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: 000e9cbf10f248a899ca62dbcea4927d
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-        unityComponent: {fileID: 5896157377502905635}
-        coherenceSync: {fileID: 6164657841644225223}
-        interpolationSettings: {fileID: 0}
-    - rid: 3165744968391721844
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: GameEffect
-        monoAssemblyType: 
-        required: 1
-        enforcesLODingWhenFieldsOverriden: 0
-        valueSyncCallbackName: 
-        memberType: 8
-        parameterAssemblyTypes:
-        - System.String, mscorlib
-        ownerType:
-          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
     - rid: 3165744971055104305
       type: {class: IntBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -377,6 +336,95 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.IntBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3165745020758655152
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165745020758655154
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 9858a470c99a41e787949af3ada11b0b
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 5896157377502905635}
+        coherenceSync: {fileID: 6164657841644225223}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165745020758655153
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165745020758655155
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: d5996e5b7de34723bbedae175544f702
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 5896157377502905635}
+        coherenceSync: {fileID: 6164657841644225223}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165745020758655154
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: GameEffect
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.String, mscorlib
+        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
+        ownerType:
+          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3165745020758655155
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: OneGameEffect
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        - System.Single, mscorlib
+        - System.Single, mscorlib
+        - System.Int32, mscorlib
+        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
+        ownerType:
+          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
     - rid: 4705201930606215539

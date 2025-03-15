@@ -107,6 +107,7 @@ public class LocalUI : MonoBehaviour
 
 
         m_UsableText.enabled = false;
+        Cursor.lockState = CursorLockMode.Confined;
 
     }
 

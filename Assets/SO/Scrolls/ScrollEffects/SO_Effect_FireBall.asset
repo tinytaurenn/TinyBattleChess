@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b9f06dc5213e0443ae4028722ed8827, type: 3}
-  m_Name: SO_FireBall_Effect
+  m_Script: {fileID: 11500000, guid: c8b50ecc8ca3c6a499313c39b6044ff3, type: 3}
+  m_Name: SO_Effect_FireBall
   m_EditorClassIdentifier: 
   SO_GameEffect_Container: {fileID: 11400000, guid: adcee9cfedff04c49a90157c292448a7, type: 2}
-  m_FireBallProjectile: {fileID: 2851400057444695648, guid: adc80acf40eb54146985921d3401c267, type: 3}
+  m_Projectile: {fileID: 2851400057444695648, guid: adc80acf40eb54146985921d3401c267, type: 3}

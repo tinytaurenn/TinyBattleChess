@@ -49,7 +49,7 @@ public class ScrollProjectile : Projectile
                     if (item.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
                     {
 
-                        sync.SendCommand<EntityCommands>(nameof(EntityCommands.GameEffect), Coherence.MessageTarget.AuthorityOnly, SO_GameEffectContainer.GameEffectID);
+                        sync.SendCommand<EntityCommands>(nameof(EntityCommands.GameEffect), Coherence.MessageTarget.AuthorityOnly, SO_GameEffectContainer.GameEffectID,m_Sync);
 
                     }
                 }
