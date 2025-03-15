@@ -40,8 +40,11 @@ namespace MagicPigGames
 
         private static void OpenSupportFilesNotice()
         {
+
+            return;  // Disable the popup window for now
             Debug.LogError("Opening Support Files Notice window.");
-            var window = CreateInstance<SupportFilesChecker>();
+            var window = CreateInstance<SupportFilesCheckerAudio>();
+            
             window.titleContent = new GUIContent("Support Files Notice");
             window.ShowUtility();
         }
