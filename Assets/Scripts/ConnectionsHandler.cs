@@ -186,6 +186,8 @@ public class ConnectionsHandler : MonoBehaviour
         PlayerSpawn();
         yield return new WaitUntil(() => LocalTinyPlayer != null);
 
+        if (MainSimulator == null) yield break; 
+
         if (operation.Result != SceneManager.GetActiveScene().buildIndex)
         {
             StartCoroutine(LoadSceneRoutine(operation.Result));

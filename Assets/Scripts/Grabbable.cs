@@ -86,7 +86,7 @@ public abstract class Grabbable : Usable
     protected override void OnStateAuthority()
     {
         Debug.Log("grabbable OnStateAuthority");
-        if (IsNPCHeld) return; 
+        if (IsNPCHeld || m_IsHeld) return; 
 
         if(m_UseRequested)
         {

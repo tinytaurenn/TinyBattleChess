@@ -72,11 +72,16 @@ public class Potion : InventoryItem
         m_Renderer.enabled = true;
         yield return new WaitForSeconds(time);
 
+        if(sO_Potion.DrinkEffect != null)
+        {
 
-        GameObject drinkEffect = Instantiate(sO_Potion.DrinkEffect, transform.root.position, sO_Potion.DrinkEffect.transform.rotation,transform.root);
-
-        ConnectionsHandler.Instance.LocalTinyPlayer.ApplyEffects(sO_Potion.GameEffectContainer.Effects,m_Sync);
-
+            GameObject drinkEffect = Instantiate(sO_Potion.DrinkEffect, transform.root.position, sO_Potion.DrinkEffect.transform.rotation, transform.root);
+        }
+        if(sO_Potion.GameEffectContainer != null)
+        {
+            ConnectionsHandler.Instance.LocalTinyPlayer.ApplyEffects(sO_Potion.GameEffectContainer.Effects, m_Sync);
+        }
+        
         m_IsUsed = false;
         m_Renderer.enabled = false;
         StartCoroutine(UseTimeRoutine(sO_Potion.UseTime));

@@ -2,6 +2,7 @@ using Coherence.Toolkit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -133,9 +134,20 @@ public class PlayerLoadout : MonoBehaviour
 
     }
 
+    public void CreateAndEquipgrabbable(SO_Item item)
+    {
+        Grabbable grabbable = Instantiate(item.Usable_GameObject, m_PlayerPocket).GetComponent<Grabbable>();
+        if (grabbable == null) return;
+        grabbable.m_IsHeld = true;
+        EquipGrabbableItem(grabbable);
+        SwitchStuffUI(EInventoryType.Equipped);
+
+
+    }
+
     public void EquipGrabbableItem(Grabbable item)
     {
-
+        Debug.Log("equip grabbable item");
 
         if (item is BasicWeapon)
         {
@@ -710,12 +722,14 @@ public class PlayerLoadout : MonoBehaviour
 
     void EquipLoadoutSlot(EStuffSlot slot)
     {
+        UnloadCheckEquippedItemOnSlot(slot);
         Transform socket = m_PlayerPocket;
 
         socket = m_EslotToSocket[slot];
         if (m_LoadoutItems[slot] != null)
         {
             m_EquippedItems[slot] = Instantiate(m_LoadoutItems[slot].Usable_GameObject, socket).GetComponent<Grabbable>();
+            m_EquippedItems[slot].m_IsHeld = true;
             if (m_EquippedItems[slot].TryGetComponent<Shoulders_Armor>(out Shoulders_Armor shoulders))
             {
                 EquipShoulders(shoulders);
@@ -746,7 +760,7 @@ public class PlayerLoadout : MonoBehaviour
 
     void EquipShoulders(Shoulders_Armor shoulders)
     {
-        shoulders.InstantiatedLeftShoulder =  Instantiate(shoulders.m_LeftShoulder, m_LeftShoulderSocket);
+        shoulders.InstantiatedLeftShoulder =  Instantiate(shoulders.m_LeftShoulder, m_LeftShoulderSocket);  
         shoulders.InstantiatedLeftShoulder.transform.localPosition = Vector3.zero;
         shoulders.InstantiatedLeftShoulder.transform.localRotation = Quaternion.identity;
         shoulders.InstantiatedRightShoulder =  Instantiate(shoulders.m_RightShoulder, m_RightShoulderSocket);
