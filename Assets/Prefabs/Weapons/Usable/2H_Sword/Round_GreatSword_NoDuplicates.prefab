@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Round_GreatSword_NoDuplicates
       objectReference: {fileID: 0}
+    - target: {fileID: 5939546729887440551, guid: 28fbed09d7fea464681134cd159332ad, type: 3}
+      propertyPath: m_WeaponParameters.Speed
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6286584065924085034, guid: 28fbed09d7fea464681134cd159332ad, type: 3}
       propertyPath: coherenceUUID
       value: GreatSword_1

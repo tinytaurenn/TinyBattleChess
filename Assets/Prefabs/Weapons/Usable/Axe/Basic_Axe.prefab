@@ -935,7 +935,7 @@ MonoBehaviour:
   m_Collider: {fileID: 0}
   m_WeaponParameters:
     Damage: 10
-    Speed: 1.5
+    Speed: 1
     Cost: 20
     DamageType: 1
     WeaponType: 2

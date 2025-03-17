@@ -155,8 +155,6 @@ public class ConnectionsHandler : MonoBehaviour
     {
         if (Coherence.SimulatorUtility.IsSimulator) return;
 
-        
-
         Destroy(LocalTinyPlayer.gameObject);     
         m_TinyPlayer = null;
 

@@ -86,11 +86,22 @@ public abstract class Grabbable : Usable
     protected override void OnStateAuthority()
     {
         Debug.Log("grabbable OnStateAuthority");
-        if (IsNPCHeld || m_IsHeld) return; 
+        if (IsNPCHeld) return;
+
+        if (m_IsHeld)
+        {
+            if (transform.root != transform)
+            {
+                if (transform.root.GetComponentInChildren<CoherenceSync>(true) != null)
+                {
+                    return;
+                }
+            }
+        }
 
         if(m_UseRequested)
         {
-            m_UseRequested = false;
+            m_UseRequested = false; 
             DoUse();
         }
         else
