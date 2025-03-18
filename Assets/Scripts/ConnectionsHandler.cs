@@ -25,7 +25,7 @@ public class ConnectionsHandler : MonoBehaviour
     [SerializeField] MainSimulator m_MainSimulator; 
 
 
-    public MainSimulator MainSimulator
+    public MainSimulator Main_Simulator
     {
         
         get
@@ -93,8 +93,10 @@ public class ConnectionsHandler : MonoBehaviour
     {
         //m_SimulatorSync = FindFirstObjectByType<MainSimulator>().GetComponent<CoherenceSync>();
         //int sceneInt = await m_CoherenceBridge.CloudService.GameServices.CloudStorage.LoadObjectAsync(m_MainSimulator.SceneToLoad);
-        
+
         m_CoherenceBridge.onLiveQuerySynced.RemoveListener(OnLiveQuerySynced);
+
+        
     }
 
     private void OnEnable()
@@ -137,11 +139,12 @@ public class ConnectionsHandler : MonoBehaviour
             m_SyncUpdateTimer = 0f;
         }
 
-        if (MainSimulator == null)
+        if (Main_Simulator == null)
         {
             if (Utils.GetSimulator(out MainSimulator simulator))
             {
-                MainSimulator = simulator;
+                Main_Simulator = simulator;
+
             }
             else
             {
@@ -169,7 +172,6 @@ public class ConnectionsHandler : MonoBehaviour
 
         if(Coherence.SimulatorUtility.IsSimulator) return;
 
-
         StartCoroutine(SpawnSync(m_CloudStorage.LoadObjectAsync<int>(SceneToLoad)));
 
         
@@ -184,12 +186,14 @@ public class ConnectionsHandler : MonoBehaviour
         PlayerSpawn();
         yield return new WaitUntil(() => LocalTinyPlayer != null);
 
-        if (MainSimulator == null) yield break; 
+        //if (Main_Simulator == null) yield break; 
 
         if (operation.Result != SceneManager.GetActiveScene().buildIndex)
         {
             StartCoroutine(LoadSceneRoutine(operation.Result));
         }
+
+       
 
 
 
@@ -200,9 +204,6 @@ public class ConnectionsHandler : MonoBehaviour
         m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex);
         m_CoherenceBridge.InstantiationScene = scene;
         //LocalUI.Instance.m_LobbyHUD = FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude); 
-
-
-
     }
 
     public void LoadArena()
@@ -211,15 +212,18 @@ public class ConnectionsHandler : MonoBehaviour
     }
     public void LoadLobby()
     {
+        Debug.Log("connections handler: loading lobby");
         StartCoroutine(LoadSceneRoutine(0));
     }
     private IEnumerator LoadSceneRoutine(int sceneIndex)
     {
 
+        Debug.Log("ConnectionHandler: Loading Scene " + sceneIndex.ToString());
 
+        CoherenceSync[] bringAlong = LocalTinyPlayer == null ? new CoherenceSync[0] : new CoherenceSync[] { LocalTinyPlayer.Sync };
 
-        CoherenceSync[] bringAlong = new CoherenceSync[] { LocalTinyPlayer.Sync };
         yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
+        if(LocalTinyPlayer == null ||SimulatorUtility.IsSimulator) yield break;
 
         yield return new WaitUntil(() => SceneManager.GetActiveScene().buildIndex == sceneIndex);
         switch (SCENE_MANAGER.Instance.ScenePlayState)

@@ -19,7 +19,7 @@ public class PotionProjectile : Projectile
         m_Collider.enabled = false;
         InstantiateExplosion(transform.position + Vector3.up/4 ); 
         
-        Collider[] HitList = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_ExplosionMask);
+        Collider[] HitList = Physics.OverlapSphere(transform.position, SO_Potion.ExplosionRadius,SO_Potion.HitMask);
         if(HitList.Length > 0)
         {
             

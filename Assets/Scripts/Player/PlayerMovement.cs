@@ -11,6 +11,13 @@ namespace PlayerControls
         [SerializeField] CameraManager m_CameraManager;
 
         public Vector2 MouseDelta { get; set; }
+        [Space(10)]
+        [Header("player movement speeds ")]
+        [SerializeField] float m_BackWardspeedModifier = 0.5f;
+        [SerializeField] float m_StrafeSpeedModifier = 0.75f;
+
+        public float BackWardspeedModifier => m_BackWardspeedModifier; 
+        public float StrafeSpeedModifier => m_StrafeSpeedModifier;
 
         protected override void Awake()
         {

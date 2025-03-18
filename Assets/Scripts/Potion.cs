@@ -102,10 +102,8 @@ public class Potion : InventoryItem
         
         PotionProjectile itemProjectile =  Instantiate(sO_Potion.ThrowableGameObject, transform.position, transform.rotation).GetComponent<PotionProjectile>();
         //itemProjectile.PotionEffects = PotionEffects;
-        itemProjectile.m_ThrowForce = sO_Potion.ThrowForce;
-        itemProjectile.m_ExplosionRadius = sO_Potion.ExplosionRadius;
         itemProjectile.SetupPotionProjectile((SO_Potion)So_Item, m_MeshFilter.mesh,m_Renderer.material); 
-        itemProjectile.Launch(pos);
+        itemProjectile.Launch(pos,sO_Potion.ThrowForce);
         m_Renderer.enabled = false;
         StartCoroutine(UseTimeRoutine(sO_Potion.UseTime/2));
         Debug.Log("Throwing potion");

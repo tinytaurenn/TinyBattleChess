@@ -190,6 +190,7 @@ public class TinyPlayer : Entity, IDamageable
     [Command]
     public void LoadToLobby()
     {
+        Debug.Log("load to lobby command");
         ResetPlayerStats();
         SwitchPlayerState(0); 
         ConnectionsHandler.Instance.LoadLobby();

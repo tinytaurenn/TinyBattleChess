@@ -22,7 +22,10 @@ public class MainSimulator : MonoBehaviour
     [SerializeField] GameObject m_DummyGameObject;
 
     CoherenceBridge m_CoherenceBridge;
-    CoherenceSync m_Sync; 
+    CoherenceSync m_Sync;
+
+    [SerializeField] float m_SyncUpdateTimer = 0f;
+    [SerializeField] float m_SyncUpdateTime = 0.5f;
 
     public CoherenceSync Sync => m_Sync;
 
@@ -138,6 +141,7 @@ public class MainSimulator : MonoBehaviour
     {
         m_CoherenceBridge.SceneManager.SetClientScene(scene.buildIndex); 
         m_CoherenceBridge.InstantiationScene = scene;
+        
 
         
     }
@@ -188,14 +192,14 @@ public class MainSimulator : MonoBehaviour
     {
         //RefreshPlayerList();
 
-        StartCoroutine(UpdateHost());
+        //StartCoroutine(UpdateHost());
     }
 
     private void OnCreated(CoherenceClientConnection connection)
     {
         Debug.Log(" a player is connected");
 
-        StartCoroutine(UpdateHost());
+        //StartCoroutine(UpdateHost());
 
     }
 
@@ -214,6 +218,7 @@ public class MainSimulator : MonoBehaviour
 
     public void ResetGame()
     {
+        CheckPlayerList(); 
         m_TurnNumber = 1;
         SwitchGameState(EGameState.Lobby);
 
@@ -261,18 +266,61 @@ public class MainSimulator : MonoBehaviour
         if (!Coherence.SimulatorUtility.IsSimulator) return;
 
         UpdateGameState();
+        SyncingNetworkElements(); 
 
         //Debug.Log("simulator in scene :" + SceneManager.GetActiveScene().name);
 
         
+    }
+    void SyncingNetworkElements()
+    {
+        m_SyncUpdateTimer += Time.deltaTime;
+        if (m_SyncUpdateTimer < m_SyncUpdateTime)
+        {
+            return;
+        }
+        else
+        {
+            m_SyncUpdateTimer = 0f;
+        }
+
+
+        CheckPlayerList(); 
+
+    }
+
+    void CheckPlayerList()
+    {
+        CleanPlayerList();
+        int clientCount = m_CoherenceBridge.ClientConnections.GetAllClients().Count();
+        
+
+        if (clientCount > m_PlayerSyncs.Count)
+        {
+            Debug.Log("client count : " + clientCount);
+            Debug.Log("not right client connection count, refreshing ");
+            RefreshPlayerList();
+        }
+        else
+        {
+            //Debug.Log("good connection count  ");
+        }
+
     }
 
     IEnumerator UpdateHost()
     {
         yield return new WaitForSeconds(1);
         Debug.Log("updating  host ");
-        RefreshPlayerList();
-        if(m_PlayerSyncs.Count == 0)
+        //RefreshPlayerList();
+        Debug.Log("player count : " + m_PlayerSyncs.Count);
+        foreach (var player in m_PlayerSyncs)
+        {
+            if(player.gameObject == null )  continue;
+            Debug.Log(player.name);
+
+        }
+        if (m_PlayerSyncs.Count == 0)
         {
             Debug.Log("No players player list for update");
             yield break;  
@@ -280,6 +328,7 @@ public class MainSimulator : MonoBehaviour
 
         foreach (var player in m_PlayerSyncs)
         {
+            if (player == null) continue; 
             if (player.GetComponent<TinyPlayer>().IsHost)
             {
                 Debug.Log("a player is already a host ");
@@ -288,20 +337,36 @@ public class MainSimulator : MonoBehaviour
 
         }
         Debug.Log("sending host become command ");
-
+        
         m_PlayerSyncs[0].SendOrderedCommand<TinyPlayer>(nameof(TinyPlayer.BecomeHost), Coherence.MessageTarget.AuthorityOnly, true);
+    }
+    internal void AddPlayerSync(CoherenceSync playerSync)
+    {
+        Debug.Log("adding player to list");
+
+        CleanPlayerList(); 
+        if(m_PlayerSyncs.Contains(playerSync))
+        {
+            Debug.Log("player already in list");
+            return; 
+        }
+
+        m_PlayerSyncs.Add(playerSync);
+
+        
     }
 
 
     public void RefreshPlayerList()
     {
         Debug.Log("Refreshing player list");
-        m_PlayerSyncs.Clear();
+        //m_PlayerSyncs.Clear();
         foreach (var player in FindObjectsByType<TinyPlayer>(FindObjectsSortMode.None))
         {
-            m_PlayerSyncs.Add(player.GetComponent<CoherenceSync>());
-
-
+            if(player.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
+            {
+                AddPlayerSync(sync);
+            }
         }
 
         foreach (var player in m_PlayerSyncs)
@@ -313,6 +378,25 @@ public class MainSimulator : MonoBehaviour
         {
             m_PlayerSyncs[i].SendCommand<EntityCommands>(nameof(EntityCommands.ChangeGameIDCommand), Coherence.MessageTarget.AuthorityOnly, i);
         }
+
+        StartCoroutine(UpdateHost());
+    }
+
+    void CleanPlayerList()
+    {
+        if(m_PlayerSyncs.Count == 0)
+        {
+            //Debug.Log("cleaned player list, count is : " + m_PlayerSyncs.Count);
+            return; 
+        }
+        for (int i = 0; i < m_PlayerSyncs.Count; i++)
+        {
+            if (m_PlayerSyncs[i]== null || m_PlayerSyncs[i].gameObject == null)
+            {
+                m_PlayerSyncs.RemoveAt(i);
+            }
+        }
+        //Debug.Log("cleaned player list, count is : " + m_PlayerSyncs.Count);
     }
 
     public List<CoherenceSync> GetAllPlayersSyncByState(TinyPlayer.EPlayerState playerState)
@@ -381,6 +465,8 @@ public class MainSimulator : MonoBehaviour
 
     void TeleportAllPlayersToLobby()
     {
+
+        Debug.Log("Sending players to Lobby : player count is " + m_PlayerSyncs.Count);
         for (int i = 0; i < m_PlayerSyncs.Count; i++)
         {
             switch (m_GameMode)
@@ -391,11 +477,14 @@ public class MainSimulator : MonoBehaviour
                     m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.ResetPlayerStats), Coherence.MessageTarget.AuthorityOnly);
                     break;
                 case EGameMode.DeathMatch:
-                    //CoherenceSync playerSync = .GetComponent<CoherenceSync>();
-
+                    if(m_PlayerSyncs[i] == null || m_PlayerSyncs[i].gameObject == null)
+                    {
+                        Debug.Log("player sync is null in teleportall players to lobby");
+                        continue; 
+                    }
+                    Debug.Log("Sending player to lobby deathmatch : " + m_PlayerSyncs[i].gameObject.name );
                     m_PlayerSyncs[i].SendCommand<TinyPlayer>(nameof(TinyPlayer.LoadToLobby), Coherence.MessageTarget.AuthorityOnly);
-                    //m_PlayerSyncs[i].SendOrderedCommand<TinyPlayer>(nameof(TinyPlayer.ResetPlayerStats), Coherence.MessageTarget.AuthorityOnly);
-                    //m_PlayerSyncs[i].SendOrderedCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, SCENE_MANAGER.Instance.LobbyPos.position);
+                    
                     break;
                 default:
                     break;
@@ -471,7 +560,8 @@ public class MainSimulator : MonoBehaviour
 
     public void StartGame()
     {
-        if(m_PlayState != EPlayState.Lobby)
+        CheckPlayerList();
+        if (m_PlayState != EPlayState.Lobby)
         {
             Debug.Log("Game already started");
             return;
@@ -575,7 +665,7 @@ public class MainSimulator : MonoBehaviour
 
                 break;
             case EGameState.InGame:
-                RefreshPlayerList();
+                //RefreshPlayerList();
 
 
                 SwitchPlayState(EPlayState.Fighting);
@@ -643,7 +733,7 @@ public class MainSimulator : MonoBehaviour
         switch (m_PlayState)
         {
             case EPlayState.Lobby:
-                RefreshPlayerList();
+                //RefreshPlayerList();
                 
                 TeleportAllPlayersToLobby();
 
@@ -851,6 +941,8 @@ public class MainSimulator : MonoBehaviour
         Debug.Log("sync saving to " + SceneManager.GetActiveScene().buildIndex);    
         yield return operation;
     }
+
+    
 
     #endregion
 

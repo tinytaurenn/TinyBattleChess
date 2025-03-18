@@ -18684,8 +18684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 3857080701089809062}
-  m_MovementSpeed: 7
-  m_SprintMultiplier: 1.5
+  m_MovementSpeed: 6
+  m_SprintMultiplier: 1
   m_RotationSpeed: 12
   m_Acceleration: 10
   m_Deceleration: 15
@@ -18722,7 +18722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PreviousMoveInput: {x: 0, y: 0, z: 0}
-  m_Speed: 10
+  m_Speed: 8
   m_VerticalSpeed: 5
   m_SmoothingValue: 0.5
   m_RotationSpeed: 12

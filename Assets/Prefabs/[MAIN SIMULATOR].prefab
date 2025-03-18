@@ -723,6 +723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerGameObject: {fileID: 0}
   m_DummyGameObject: {fileID: 5699538527182793423, guid: c473af9c10567024caf206bf6752a656, type: 3}
+  m_SyncUpdateTimer: 0
+  m_SyncUpdateTime: 0.5
   m_PlayerSyncs: []
   m_RoundTime: {fileID: 1338625383742743499}
   m_ShopRoundTime: 20

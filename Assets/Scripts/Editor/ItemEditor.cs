@@ -88,6 +88,7 @@ public class ItemEditor : EditorWindow
 
         GameObject weaponGameObject = new GameObject(itemName);
         weaponGameObject.layer = LayerMask.NameToLayer("Usable");
+        weaponGameObject.tag = "Weapon";
         
         
         //parent.AddComponent(typeof(BasicWeapon));
@@ -389,6 +390,7 @@ public class ItemEditor : EditorWindow
 
         GameObject potionItem = new GameObject(itemName);
         potionItem.layer = LayerMask.NameToLayer("Usable");
+        potionItem.tag = "Item";
         //
         GameObject potionMesh = new GameObject("Potion_Mesh");
         potionMesh.transform.parent = potionItem.transform;
@@ -459,6 +461,7 @@ public class ItemEditor : EditorWindow
 
         GameObject ScrollItem = new GameObject(itemName);
         ScrollItem.layer = LayerMask.NameToLayer("Usable");
+        ScrollItem.tag = "Item";
         Scroll scrollScript = ScrollItem.AddComponent<Scroll>();
         //
         GameObject scrollMesh = new GameObject("Scroll_Mesh");

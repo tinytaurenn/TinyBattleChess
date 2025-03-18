@@ -150,6 +150,7 @@ public abstract class CharacterMovement : MonoBehaviour
         m_PushBackVelocity *= .8f;
 
         m_CurrentSpeed = IsSprinting ? m_MovementSpeed * m_SprintMultiplier : m_MovementSpeed;
+       
 
         m_HorizontalVelocity = (vectorDelta) * m_CurrentSpeed;
 

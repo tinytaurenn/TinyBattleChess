@@ -76,7 +76,7 @@ public static class Utils
     public static bool GetSimulatorLocal(out MainSimulator simulator)
     {
 
-        simulator = ConnectionsHandler.Instance.MainSimulator; 
+        simulator = ConnectionsHandler.Instance.Main_Simulator; 
 
         if (simulator == null)
         {

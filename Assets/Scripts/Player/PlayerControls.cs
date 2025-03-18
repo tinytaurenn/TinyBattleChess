@@ -137,7 +137,11 @@ namespace PlayerControls
             switch (m_ControlState)
             {
                 case EControlState.Player:
-                    m_PlayerMovement.MoveInput = right * m_MoveValue.x + forward * m_MoveValue.y;
+                    if(m_MoveValue.y < 0)
+                    {
+                        m_MoveValue.y *= m_PlayerMovement.BackWardspeedModifier;
+                    }
+                    m_PlayerMovement.MoveInput = right *( m_MoveValue.x  * m_PlayerMovement.StrafeSpeedModifier) + forward * m_MoveValue.y;
                     
                     break;
                 case EControlState.Ghost:

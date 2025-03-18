@@ -22423,32 +22423,12 @@ PrefabInstance:
       value: '[MAIN SIMULATOR]'
       objectReference: {fileID: 0}
     - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
-      propertyPath: m_GameMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
-      propertyPath: m_LobbyPos
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
-      propertyPath: m_ShopSpawnPositions
-      value: 
-      objectReference: {fileID: 1973274855}
-    - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
-      propertyPath: m_BattleSpawnPositions
-      value: 
-      objectReference: {fileID: 1786021163}
-    - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
       propertyPath: m_DummiesSpawnPositions
       value: 
       objectReference: {fileID: 1533538825}
-    - target: {fileID: 3742310084580637886, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
-      propertyPath: m_BigArenaBattleSpawnPositions
-      value: 
-      objectReference: {fileID: 33022706}
     - target: {fileID: 5605270632006895831, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
       propertyPath: scenePrefabInstanceUUID
-      value: -331048
+      value: 1545102
       objectReference: {fileID: 0}
     - target: {fileID: 7886858918336485256, guid: 3941f9337bf07904f8ebd80981d7e64f, type: 3}
       propertyPath: m_LocalPosition.x

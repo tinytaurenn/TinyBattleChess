@@ -10,6 +10,7 @@ public class SO_Potion : SO_Item
     public bool Throwable = false;
     public float ThrowForce = 10f;
     public float ExplosionRadius = 3f;
+    public LayerMask HitMask;
 
     public GameObject ThrowableGameObject; 
     public GameObject ExplosionEffect;
@@ -20,7 +21,4 @@ public class SO_Potion : SO_Item
     public SO_GameEffect_Container GameEffectContainer;
 
     public int Charges = 1;
-    
-
-
 }

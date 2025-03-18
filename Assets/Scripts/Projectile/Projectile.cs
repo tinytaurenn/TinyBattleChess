@@ -13,8 +13,6 @@ public abstract class Projectile : MonoBehaviour
     public Renderer m_Renderer; 
     public MeshFilter m_MeshFilter; 
     [SerializeField]protected LayerMask m_ExplosionMask; 
-    [SerializeField] public float m_ThrowForce = 10f;
-    [SerializeField] public float m_ExplosionRadius = 3f;
 
     [SerializeField] protected bool m_Exploded = false;
 
@@ -36,14 +34,19 @@ public abstract class Projectile : MonoBehaviour
     }
 
 
-    public virtual void Launch(Vector3 direction)
+    public virtual void Launch(Vector3 direction, float throwforce)
     {
-        m_RigidBody.AddForce(direction * m_ThrowForce, ForceMode.Impulse);
+        m_RigidBody.AddForce(direction * throwforce, ForceMode.Impulse);
     }
     protected abstract void OnHit(Collider other);
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Item"))
+        {
+            return; 
+        }
+
         if(m_Exploded) return;
         OnHit(other); 
     }

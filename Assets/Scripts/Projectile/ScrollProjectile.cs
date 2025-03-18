@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScrollProjectile : Projectile
 {
+    public SO_ScrollEffectProjectile so_ScrollEffectProjectile;
 
     [SerializeField] float m_ExplosionDelay = 0.1f;
 
@@ -36,7 +37,7 @@ public class ScrollProjectile : Projectile
         m_Sync.SendCommand<ScrollProjectile>(nameof(ScrollProjectile.StopParticles), Coherence.MessageTarget.Other);
 
 
-        Collider[] HitList = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_ExplosionMask);
+        Collider[] HitList = Physics.OverlapSphere(transform.position, so_ScrollEffectProjectile.m_ExplosionRadius, so_ScrollEffectProjectile.HitMask);
         if (HitList.Length > 0)
         {
 
