@@ -253,14 +253,17 @@ public class PlayerWeapons : MonoBehaviour
             case EWeaponState.AttackRelease:
 
                 m_Animator.SetBool("Attacking", false);
+                GetMainWeapon().ReleaseAttackEffect();
                 break;
             case EWeaponState.Parry:
                 GetWeaponDirection();
                 SetAnimatorWeaponDirection();
+                GetMainWeapon().RaiseBlockEffect();
 
                 m_Animator.SetBool("Parry", true);
                 break;
             case EWeaponState.ShieldParry:
+                GetMainWeapon().RaiseBlockEffect();
                 m_Animator.SetBool("ShieldParry", true);
                 m_Animator.SetBool("Parry", true);
                 break;

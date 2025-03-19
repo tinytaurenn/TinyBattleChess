@@ -293,7 +293,7 @@ MonoBehaviour:
   m_InParry: 0
   m_IsStunned: 0
   m_AttackState: 0
-  m_MainWeapon: {fileID: 6356792583010282281}
+  m_MainWeapon: {fileID: 6463498474955722409}
   m_SecondaryWeapon: {fileID: 0}
   m_WeaponDirection: 1
   m_AttackerDirection: 3
@@ -511,8 +511,6 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 3590389392199260471}
       lodStepsActive: 1
-    - component: {fileID: 6356792583010282281}
-      lodStepsActive: 1
     - component: {fileID: 1585024031336365888}
       lodStepsActive: 1
     - component: {fileID: 2498996679317788037}
@@ -544,6 +542,8 @@ MonoBehaviour:
     - component: {fileID: 8947863224031047832}
       lodStepsActive: 1
     - component: {fileID: 2006071092889869840}
+      lodStepsActive: 1
+    - component: {fileID: 6463498474955722409}
       lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
@@ -13524,6 +13524,14 @@ PrefabInstance:
       propertyPath: m_IsNPCHeld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4165007266322537102, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_IsHeld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165007266322537102, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+      propertyPath: m_IsNPCHeld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13570,15 +13578,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3695927073167064064, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
   m_PrefabInstance: {fileID: 6953524377771086887}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6356792583010282281 stripped
+--- !u!114 &6463498474955722409 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4055558226076958478, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4165007266322537102, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
   m_PrefabInstance: {fileID: 6953524377771086887}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 099e92d446b79914b83f9775ed11600b, type: 3}
+  m_Script: {fileID: 11500000, guid: c42906be41e34f64bb7fd532d19726cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!23 &6837441656151455394 stripped
