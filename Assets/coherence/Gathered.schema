@@ -37,7 +37,7 @@ component _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062 [id "160"]
   Seated Bool [bits "1"]
   Aiming Bool [bits "1"]
   UsingMagic Bool [bits "1"]
-  LookValue Float [compression "None"]
+  LookValue Float [sim-frames "true", compression "None"]
 
 component _276f4c8c1f54c8d41afce07cc23e23c3_4012604043449858976 [id "161"]
   m_ItemInUse Bool [bits "1"]

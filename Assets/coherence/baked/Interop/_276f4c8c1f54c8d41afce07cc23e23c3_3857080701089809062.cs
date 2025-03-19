@@ -94,8 +94,8 @@ namespace Coherence.Generated
                     "for component with ID 160");
             }
 
-            if (simFramesCount != 0) {
-                throw new Exception($"Given simFrames size is not equal to the expected length. ({simFramesCount} != 0) " +
+            if (simFramesCount != 1) {
+                throw new Exception($"Given simFrames size is not equal to the expected length. ({simFramesCount} != 1) " +
                     "for component with ID 160");
             }
 
@@ -117,6 +117,7 @@ namespace Coherence.Generated
             orig.Aiming = comp->Aiming != 0;
             orig.UsingMagic = comp->UsingMagic != 0;
             orig.LookValue = comp->LookValue;
+            orig.LookValueSimulationFrame = simFrames[0].Into();
 
             return orig;
         }
@@ -174,9 +175,17 @@ namespace Coherence.Generated
         public bool HasFields() => true;
         public bool HasRefFields() => false;
 
+        private long[] simulationFrames;
 
         public long[] GetSimulationFrames() {
-            return null;
+            if (simulationFrames == null)
+            {
+                simulationFrames = new long[1];
+            }
+
+            simulationFrames[0] = LookValueSimulationFrame;
+
+            return simulationFrames;
         }
 
         public int GetFieldCount() => 14;
@@ -214,6 +223,10 @@ namespace Coherence.Generated
         {
             AbsoluteSimulationFrame? min = null;
 
+            if ((FieldsMask & _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.LookValueMask) != 0 && (min == null || this.LookValueSimulationFrame < min))
+            {
+                min = this.LookValueSimulationFrame;
+            }
 
             return min;
         }
@@ -504,6 +517,16 @@ namespace Coherence.Generated
             mask >>= 1;
             if (bitStream.WriteMask((mask & 0x01) != 0))
             {
+                if (isRefSimFrameValid) {
+                    var simFrameDelta = data.LookValueSimulationFrame - referenceSimulationFrame;
+                    if (simFrameDelta > byte.MaxValue) {
+                        simFrameDelta = byte.MaxValue;
+                    }
+
+                    SerializeTools.WriteFieldSimFrameDelta(bitStream, (byte)simFrameDelta);
+                } else {
+                    SerializeTools.WriteFieldSimFrameDelta(bitStream, 0);
+                }
 
 
                 var fieldValue = data.LookValue;
@@ -607,6 +630,7 @@ namespace Coherence.Generated
             }
             if (bitStream.ReadMask())
             {
+                val.LookValueSimulationFrame = referenceSimulationFrame + DeserializerTools.ReadFieldSimFrameDelta(bitStream);
 
                 val.LookValue = bitStream.ReadFloat(FloatMeta.NoCompression());
                 val.FieldsMask |= _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062.LookValueMask;
@@ -635,6 +659,7 @@ namespace Coherence.Generated
                 $" Aiming: { this.Aiming }" +
                 $" UsingMagic: { this.UsingMagic }" +
                 $" LookValue: { this.LookValue }" +
+                $", LookValueSimFrame: { this.LookValueSimulationFrame }" +
                 $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(14, '0') }, " +
                 $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(14, '0') })";
         }

@@ -16864,7 +16864,7 @@ MonoBehaviour:
             floatCompression: 0
         unityComponent: {fileID: 3857080701089809062}
         coherenceSync: {fileID: 1055140489967927550}
-        interpolationSettings: {fileID: 0}
+        interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
     - rid: 3165745111641096705
       type: {class: AnimatorDescriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
@@ -18831,7 +18831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574ff9dda29ecb649b69c9f936398933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ThrowDirectionTransform: {fileID: 1559453625222453089}
   m_TwoHanded: 0
   m_LookDirection: {x: 0, y: 0}
   m_WeaponDirection: 0
