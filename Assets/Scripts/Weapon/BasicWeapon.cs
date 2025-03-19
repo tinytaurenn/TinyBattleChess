@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class BasicWeapon : Grabbable, IWeapon
+public abstract class BasicWeapon : Grabbable, IWeapon
 {
 
     [SerializeField]
-    protected FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EEffectType.Physical,EWeaponType.Sword, EWeaponSize.Right_Handed);
+    protected FWeaponParameters m_WeaponParameters;
 
     public FWeaponParameters WeaponParameters {
         get
@@ -30,7 +30,7 @@ public class BasicWeapon : Grabbable, IWeapon
     [SerializeField]protected  Collider m_DamageCollider;
     [SerializeField] public Transform m_HitPos; 
    
-    List<Collider> HitList = new List<Collider>();
+   
 
     protected override void Awake()
     {
@@ -62,16 +62,7 @@ public class BasicWeapon : Grabbable, IWeapon
         
     }
 
-    public void ActivateDamage(bool activate)
-    {
-        Debug.Log("activating damage collider");
-        m_DamageCollider.enabled = activate;
-        if(activate)
-        {
-            HitList.Clear();
-        }
-        
-    }
+    
 
     public void PlayHitSound()
     {
@@ -105,71 +96,15 @@ public class BasicWeapon : Grabbable, IWeapon
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if(m_Sync == null || !m_Sync.HasStateAuthority)
-        {
-            return; 
-        }
-        if (m_HolderTransform == null)
-        {
-            return;
-        }
-        if (m_DamageCollider.enabled == false || !m_DamageCollider.isTrigger || other.CompareTag("DamageCollider"))
-        {
-
-
-            return;
-        }
-        if (!other.TryGetComponent<IDamageable>(out IDamageable damageable) && other.CompareTag("Untagged") && HitList.Count <= 0 )
-        {
-            if (m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons weapons))
-            {
-                ActivateDamage(false);
-                weapons.SyncBlocked();
-            }
-        }
-
-        if (m_HolderTransform == other.transform)
-        {
-            Debug.Log("same holder");
-            return;
-        }
-
-        if (HitList.Contains(other)) return; 
-
-         HitList.Add(other);
-        
-
-       
-
-        if (other.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
-        {
-            
-            Debug.Log("found coSync");
-
-            if (other.TryGetComponent<EntityCommands>(out EntityCommands entCommands))
-            {
-                int weaponDir = 0; 
-                if (m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons weapons))
-                {
-                    weaponDir = (int)weapons.m_WeaponDirection; 
-                }else if (m_HolderTransform.TryGetComponent<HumanoidNPC>(out HumanoidNPC npc))
-                {
-                    weaponDir = (int)npc.m_WeaponDirection; 
-                }
-                CoherenceSync holderSync = m_HolderTransform.GetComponent<CoherenceSync>();
-              
-                Debug.Log("sending commannd to target");
-                sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, weaponDir, holderSync, m_WeaponParameters.Damage,(int)m_WeaponParameters.DamageType, m_HolderTransform.transform.position);
-            }
-        }
-
-       
-        
-
-        
 
 
     }
+
+    protected abstract void ApplyDamage(CoherenceSync damageTargetSync);
+    protected abstract void BlockAttackEffect(CoherenceSync damagerSync);
+    protected abstract void RaiseAttackEffect();
+    protected abstract void RaiseBlockEffect(); 
+    protected abstract void ReleaseAttackEffect(); 
 
 
 }

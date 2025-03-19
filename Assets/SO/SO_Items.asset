@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d5b3598698790874bb2a0b67468977c5, type: 2}
   - {fileID: 11400000, guid: 9f17c0a6f186ae843b8cc3c62ec5a116, type: 2}
   - {fileID: 11400000, guid: 8e5e1e94d30c8514d96fd1548f8ce79b, type: 2}
-  - {fileID: 11400000, guid: 94f72544af1e1ad458aefaf25374682e, type: 2}
+  - {fileID: 11400000, guid: a721f3b42aa777a4dad5a3b2b9784d7e, type: 2}
   UnCommonChance: 75
   RareChance: 55
   EpicChance: 35

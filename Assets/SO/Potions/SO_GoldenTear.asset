@@ -24,6 +24,9 @@ MonoBehaviour:
   Throwable: 0
   ThrowForce: 10
   ExplosionRadius: 3
+  HitMask:
+    serializedVersion: 2
+    m_Bits: 64
   ThrowableGameObject: {fileID: 0}
   ExplosionEffect: {fileID: 0}
   DrinkEffect: {fileID: 0}

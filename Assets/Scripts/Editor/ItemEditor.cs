@@ -78,7 +78,11 @@ public class ItemEditor : EditorWindow
 
 
     }
-
+    void SetMeleeWeaponParameters(MeleeWeapon meleeWeapon,SO_MeleeWeapon so_MeleeWeapon)
+    {
+        meleeWeapon.m_ParryAudios = so_MeleeWeapon.ParrySounds;
+        meleeWeapon.HitSounds = so_MeleeWeapon.HitSounds;
+    }
     void CreateWeapon()
     {
         Debug.Log("Creating item");
@@ -93,19 +97,23 @@ public class ItemEditor : EditorWindow
 
         BasicWeapon weaponScript = null;    
 
-        switch (soWeapon.WeaponType)
+        switch (soWeapon.WeaponParameters.WeaponType)
         {
             case EWeaponType.Sword:
                 weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
                 break;
             case EWeaponType.Axe:
                 weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
                 break;
             case EWeaponType.Mace:
                 weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
                 break;
             case EWeaponType.Spear:
                 weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
                 break;
             case EWeaponType.Bow:
                 break;
@@ -123,7 +131,8 @@ public class ItemEditor : EditorWindow
                 break;
             case EWeaponType.Dagger:
                 weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
-                
+                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
+
                 break;
             default:
                 break;
@@ -133,10 +142,21 @@ public class ItemEditor : EditorWindow
         Debug.Log($"Added '{typeof(BasicWeapon)}' script to {itemName}");
 
 
+        weaponScript.So_Item = SO_Item;
+        weaponScript.m_IsHeld = false;
+        weaponScript.IsNPCHeld = false;
+
+
+        FWeaponParameters weaponParameters = soWeapon.WeaponParameters;
+
+        
 
 
 
         
+
+
+
 
         // Add Collider
         BoxCollider boxColl =  weaponGameObject.AddComponent<BoxCollider>();
@@ -186,20 +206,8 @@ public class ItemEditor : EditorWindow
         boxCollider.isTrigger = true;
 
 
-        weaponScript.So_Item = SO_Item;
-        weaponScript.m_IsHeld = false;
-        weaponScript.IsNPCHeld = false;
 
-        
-        FWeaponParameters weaponParameters = new FWeaponParameters(soWeapon.Damage,soWeapon.Speed,soWeapon.Cost,soWeapon.DamageType,soWeapon.WeaponType,soWeapon.WeaponSize);
-
-        weaponScript.m_ParryAudios = soWeapon.ParrySounds;
-        weaponScript.HitSounds = soWeapon.HitSounds;
-
-
-
-        weaponScript.SetupWeapon(boxCollider, weaponParameters); 
-
+        weaponScript.SetupWeapon(boxCollider, weaponParameters);
 
 
 

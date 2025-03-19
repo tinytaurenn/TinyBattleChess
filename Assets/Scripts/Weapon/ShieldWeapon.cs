@@ -1,3 +1,4 @@
+using Coherence.Toolkit;
 using UnityEngine;
 
 public class ShieldWeapon : BasicWeapon,IWeapon
@@ -33,5 +34,30 @@ public class ShieldWeapon : BasicWeapon,IWeapon
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
+    }
+
+    protected override void ApplyDamage(CoherenceSync damageTargetSync)
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    protected override void BlockAttackEffect(CoherenceSync damagerSync)
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    protected override void RaiseAttackEffect()
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    protected override void RaiseBlockEffect()
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    protected override void ReleaseAttackEffect()
+    {
+        //throw new System.NotImplementedException();
     }
 }

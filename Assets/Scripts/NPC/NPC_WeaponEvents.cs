@@ -19,8 +19,12 @@ public class NPC_WeaponEvents : MonoBehaviour
             Debug.Log("No weapon to activate"); 
             return;
         }
+        if(m_NPC.GetMainWeapon().TryGetComponent<MeleeWeapon>(out MeleeWeapon meleeWeapon))
+        {
+           meleeWeapon.ActivateDamage(true);
+        }
 
-        m_NPC.GetMainWeapon().ActivateDamage(true);
+        
     }
     public void DeactivateWeaponDamage()
     {
@@ -31,6 +35,9 @@ public class NPC_WeaponEvents : MonoBehaviour
             return;
         }
 
-        m_NPC.GetMainWeapon().ActivateDamage(false);
+        if(m_NPC.GetMainWeapon().TryGetComponent<MeleeWeapon>(out MeleeWeapon meleeWeapon))
+        {
+            meleeWeapon.ActivateDamage(false);
+        }
     }
 }

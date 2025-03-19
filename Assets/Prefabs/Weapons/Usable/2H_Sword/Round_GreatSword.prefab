@@ -953,15 +953,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
-  m_SO_Item: {fileID: 11400000, guid: 94f72544af1e1ad458aefaf25374682e, type: 2}
+  m_SO_Item: {fileID: 11400000, guid: a721f3b42aa777a4dad5a3b2b9784d7e, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
   m_WeaponParameters:
-    Damage: 15
-    Speed: 0.4
-    Cost: 20
     DamageType: 1
     WeaponType: 1
     WeaponSize: 2
@@ -978,6 +975,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}
   m_DamageCollider: {fileID: 3898260651627791061, guid: 5a5613fa52e71cc4c98ddf4ac4443d04, type: 3}
   m_HitPos: {fileID: 0}
+  m_MeleeWeaponParameters:
+    Damage: 18
+    Speed: 0.5
 --- !u!1 &5543367505718797180
 GameObject:
   m_ObjectHideFlags: 0

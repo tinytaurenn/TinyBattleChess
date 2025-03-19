@@ -949,8 +949,23 @@ public class TinyPlayer : Entity, IDamageable
     {
         m_IsStunned = true;
         m_PlayerMovement.Stun();
-        if (m_PlayerWeapons.GetMainWeapon() != null) m_PlayerWeapons.GetMainWeapon().ActivateDamage(false);
-        if (m_PlayerWeapons.GetSecondaryWeapon() != null) m_PlayerWeapons.GetSecondaryWeapon().ActivateDamage(false);
+
+        if (m_PlayerWeapons.GetMainWeapon() != null)
+        {
+            if (m_PlayerWeapons.GetMainWeapon().GetType() == typeof(MeleeWeapon))
+            {
+
+                ((MeleeWeapon)m_PlayerWeapons.GetMainWeapon()).ActivateDamage(false);
+            }
+        }
+        if (m_PlayerWeapons.GetSecondaryWeapon() != null)
+        {
+            if (m_PlayerWeapons.GetSecondaryWeapon().GetType() == typeof(MeleeWeapon))
+            {
+
+                ((MeleeWeapon)m_PlayerWeapons.GetSecondaryWeapon()).ActivateDamage(false);
+            }
+        }
         m_StunTimer = duration;
     }
 

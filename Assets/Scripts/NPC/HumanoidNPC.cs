@@ -487,8 +487,23 @@ public class HumanoidNPC : TinyNPC
     public override void StunEffect(float duration)
     {
         base.StunEffect(duration);
-        if (m_MainWeapon != null) m_MainWeapon.ActivateDamage(false);
-        if (m_SecondaryWeapon != null) m_SecondaryWeapon.ActivateDamage(false);
+        if (m_MainWeapon != null)
+        {
+            if (m_MainWeapon.GetType() == typeof(MeleeWeapon))
+            {
+
+                ((MeleeWeapon)m_MainWeapon).ActivateDamage(false);
+            }
+        }
+        if (m_SecondaryWeapon != null)
+        {
+            if (m_SecondaryWeapon.GetType() == typeof(MeleeWeapon))
+            {
+
+                ((MeleeWeapon)m_SecondaryWeapon).ActivateDamage(false);
+            }
+        }
+
 
     }
 

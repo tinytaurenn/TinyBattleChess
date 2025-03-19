@@ -20,6 +20,7 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] internal bool m_TwoHanded = false;
     [SerializeField] internal Vector2 m_LookDirection = Vector2.zero;
     [SerializeField] internal EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
+    [SerializeField] internal EWeaponType m_MainWeaponType = EWeaponType.Sword;
     [SerializeField] internal bool m_Parrying = false;
     [SerializeField] bool m_InParry = false; 
     [SerializeField] internal bool m_Attacking = false;
@@ -195,7 +196,7 @@ public class PlayerWeapons : MonoBehaviour
             if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] != null 
                 && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>().WeaponParameters.WeaponType == EWeaponType.Shield)
             {
-                Debug.Log("got some shield baby");
+                Debug.Log("got some shield");
                 ShieldParry(); 
                 return; 
             }
@@ -378,7 +379,13 @@ public class PlayerWeapons : MonoBehaviour
 
     public void SetWeaponParameters(BasicWeapon weapon)
     {
-        m_Animator.SetFloat("WeaponSpeed", weapon.WeaponParameters.Speed);
+        if (weapon.GetType() == typeof(MeleeWeapon))
+        {
+            float speed = ((MeleeWeapon)weapon).MeleeWeaponParameters.Speed; 
+            m_Animator.SetFloat("WeaponSpeed", speed);
+        }
+        m_MainWeaponType = weapon.WeaponParameters.WeaponType;  
+        
     }
 
     public void Drop(float throwForce = 5f)

@@ -76,9 +76,6 @@ public enum EWeaponSize
 [Serializable]
 public struct FWeaponParameters
 {
-    public int Damage;
-    public float Speed;
-    public int Cost;
     public EEffectType DamageType;
     public EWeaponType WeaponType;
     public EWeaponSize WeaponSize;
@@ -86,22 +83,18 @@ public struct FWeaponParameters
     public Vector3 RotationOffset;
 
 
-    public FWeaponParameters(int damage, float speed, int cost,EEffectType damageType, EWeaponType weaponType, EWeaponSize weaponSize, Vector3 positionOffset, Vector3 rotationOffset)
+    public FWeaponParameters(EEffectType damageType, EWeaponType weaponType, EWeaponSize weaponSize, Vector3 positionOffset, Vector3 rotationOffset)
     {
-        Damage = damage;
-        Speed = speed;
-        Cost = cost;
+
         DamageType = damageType;
         WeaponType = weaponType;
         WeaponSize = weaponSize;
         PositionOffset = positionOffset;
         RotationOffset = rotationOffset;
     }
-    public FWeaponParameters(int damage, float speed, int cost, EEffectType damageType,EWeaponType weaponType, EWeaponSize weaponSize)
+    public FWeaponParameters( EEffectType damageType,EWeaponType weaponType, EWeaponSize weaponSize)
     {
-        Damage = damage;
-        Speed = speed;
-        Cost = cost;
+
         DamageType = damageType;
         WeaponType = weaponType;
         WeaponSize = weaponSize;
@@ -111,6 +104,20 @@ public struct FWeaponParameters
 
     }
 
+
+
+}
+[Serializable]
+public struct FMeleeWeaponParameters
+{
+    public int Damage;
+    public float Speed; 
+
+    public FMeleeWeaponParameters(int damage, float speed)
+    {
+        Damage = damage;
+        Speed = speed;
+    }
 }
 public enum EGameEffect
 {

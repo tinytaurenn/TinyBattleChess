@@ -321,19 +321,19 @@ public class PlayerLoadout : MonoBehaviour
     void EquipWeaponLoadout(SO_Weapon weapon)
     {
 
-        if(weapon.WeaponSize == EWeaponSize.Two_Handed)
+        if(weapon.WeaponParameters.WeaponSize == EWeaponSize.Two_Handed)
         {
             m_LoadoutItems[EStuffSlot.MainWeapon] = weapon;
             m_LoadoutItems[EStuffSlot.SecondaryWeapon] = null;
 
         }
-        else if (weapon.WeaponSize == EWeaponSize.Right_Handed)
+        else if (weapon.WeaponParameters.WeaponSize == EWeaponSize.Right_Handed)
         {
             m_LoadoutItems[EStuffSlot.MainWeapon] = weapon;
         }
-        else if (weapon.WeaponSize == EWeaponSize.Left_Handed)
+        else if (weapon.WeaponParameters.WeaponSize == EWeaponSize.Left_Handed)
         {
-            if (m_LoadoutItems[EStuffSlot.MainWeapon] != null && ((SO_Weapon)m_LoadoutItems[EStuffSlot.MainWeapon]).WeaponSize == EWeaponSize.Two_Handed) m_LoadoutItems[EStuffSlot.MainWeapon] = null;
+            if (m_LoadoutItems[EStuffSlot.MainWeapon] != null && ((SO_Weapon)m_LoadoutItems[EStuffSlot.MainWeapon]).WeaponParameters.WeaponSize == EWeaponSize.Two_Handed) m_LoadoutItems[EStuffSlot.MainWeapon] = null;
             m_LoadoutItems[EStuffSlot.SecondaryWeapon] = weapon; 
         }
 
@@ -438,8 +438,11 @@ public class PlayerLoadout : MonoBehaviour
             m_EquippedItems[EStuffSlot.MainWeapon] = weapon;
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
         }
-
-        m_TinyPlayer.m_PlayerWeapons.SetWeaponParameters(weapon);
+        if(weapon.WeaponParameters.WeaponSize != EWeaponSize.Left_Handed)
+        {
+            m_TinyPlayer.m_PlayerWeapons.SetWeaponParameters(weapon);
+        }
+        
 
 
     }
