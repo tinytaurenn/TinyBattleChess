@@ -22,7 +22,7 @@ public class Scroll : InventoryItem
         base.Update(); 
     }
 
-    public override bool UseInventoryItem(Transform parentTransform)
+    public override bool UseInventoryItem(Transform parentTransform, Vector3 dir)
     {
 
         Debug.Log("using Scroll");
@@ -35,7 +35,7 @@ public class Scroll : InventoryItem
 
         foreach (SO_ScrollEffect effect in sO_Scroll.ScrollEffects)
         {
-            effect.OnActivate(parentTransform);
+            effect.OnActivate(parentTransform,dir);
         }
         StartCoroutine(UsingMagicRoutine());
 

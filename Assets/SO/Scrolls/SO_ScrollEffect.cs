@@ -9,5 +9,5 @@ public abstract class SO_ScrollEffect : ScriptableObject
 
     public SO_GameEffect_Container SO_GameEffect_Container;
     public LayerMask HitMask; 
-    public abstract void OnActivate(Transform parent);
+    public abstract void OnActivate(Transform parent,Vector3 dir);
 }

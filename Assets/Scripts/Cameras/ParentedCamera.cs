@@ -8,7 +8,7 @@ public class ParentedCamera : MonoBehaviour
     [Space(10)]
     [Header("Cam params")]
     //free cam params
-    public Transform m_PlayerTransform;
+    public PlayerMovement m_PlayerMovement;
     [SerializeField] Vector3 m_TargetOffset;
 
     [SerializeField] float m_RotationSpeed = 10f;
@@ -16,6 +16,8 @@ public class ParentedCamera : MonoBehaviour
     [SerializeField] float m_CameraUpOffset = 3f;
     [SerializeField] float m_FallingDownOffSet = 3f;
     [SerializeField] float m_LastGroundedYPos = 0f;
+
+    
 
 
 
@@ -55,19 +57,19 @@ public class ParentedCamera : MonoBehaviour
     void Update()
     {
 
-        if (m_PlayerTransform == null) return;
+        if (m_PlayerMovement == null) return;
 
-        if (transform.parent != m_PlayerTransform)
+        if (transform.parent != m_PlayerMovement)
         {
 
-            transform.SetParent(m_PlayerTransform);
+            transform.SetParent(m_PlayerMovement.transform);
         }
 
     }
 
     private void FixedUpdate()
     {
-        if (m_PlayerTransform == null) return;
+        if (m_PlayerMovement == null) return;
         //SimpleFollowCamera(); 
         ThirdPersoMouseControlCamera();
 
@@ -88,9 +90,9 @@ public class ParentedCamera : MonoBehaviour
     void LerpCameraDistance()
     {
 
-        Vector3 targetPostion = m_PlayerTransform.position;
+        Vector3 targetPostion = m_PlayerMovement.transform.position;
         Vector3 cameraPos = transform.position;
-        Vector3 direction = m_PlayerTransform.forward;
+        Vector3 direction = m_PlayerMovement.transform.forward;
 
         // Normalize the direction vector
         direction.Normalize();
@@ -98,24 +100,26 @@ public class ParentedCamera : MonoBehaviour
         Vector3 newPosition = targetPostion - direction * m_CameraDistance;
         newPosition = newPosition + (Vector3.up * m_CameraUpOffset);
 
+        //newPosition += Vector3.down *( ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerMovement.LookValue*3); 
+
 
         transform.position = newPosition;
     }
 
     void LookAtPlayer()
     {
-        Vector3 targetPostion = m_PlayerTransform.position;
+        Vector3 targetPostion = m_PlayerMovement.transform.position;
 
         Vector3 targetLookAtPosition;
-        PlayerMovement playerMove = m_PlayerTransform.GetComponent<PlayerMovement>();
-        Vector3 newPlayerPos = new Vector3(m_PlayerTransform.position.x, transform.position.y, m_PlayerTransform.position.z);
+        PlayerMovement playerMove = m_PlayerMovement.GetComponent<PlayerMovement>();
+        Vector3 newPlayerPos = new Vector3(m_PlayerMovement.transform.position.x, transform.position.y, m_PlayerMovement.transform.position.z);
         Vector3 customForward = (newPlayerPos - transform.position).normalized;
         Vector3 customRight = Vector3.Cross(Vector3.up, customForward).normalized;
 
         Vector3 localTargetOffset = customForward * m_TargetOffset.z + customRight * m_TargetOffset.x + Vector3.up * m_TargetOffset.y;
-        m_LastGroundedYPos = m_PlayerTransform.position.y;
+        m_LastGroundedYPos = m_PlayerMovement.transform.position.y;
 
-        targetLookAtPosition = m_PlayerTransform.position + localTargetOffset;
+        targetLookAtPosition = m_PlayerMovement.transform.position + localTargetOffset + (Vector3.up * m_PlayerMovement.LookValue);
 
         Quaternion targetRotation = Quaternion.LookRotation(targetLookAtPosition - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, m_RotationSpeed * Time.fixedDeltaTime); 

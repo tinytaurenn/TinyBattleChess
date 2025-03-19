@@ -27,7 +27,7 @@ public class Potion : InventoryItem
         base.Update();
     }
 
-    public override bool UseInventoryItem(Transform parentTransform)
+    public override bool UseInventoryItem(Transform parentTransform, Vector3 dir)
     {
 
         if (m_IsUsed) return false; 

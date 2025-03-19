@@ -7,7 +7,7 @@ public class SO_ScrollEffectProjectile : SO_ScrollEffect
     public float m_ThrowForce = 10f; 
 
     [SerializeField] GameObject m_Projectile;
-    public override void OnActivate(Transform parent)
+    public override void OnActivate(Transform parent, Vector3 dir)
     {
         Debug.Log("launching projectile ");
         GameObject proj = Instantiate(m_Projectile, parent.position, parent.rotation);
@@ -15,7 +15,7 @@ public class SO_ScrollEffectProjectile : SO_ScrollEffect
         {
             projectile.so_ScrollEffectProjectile = this;
             projectile.SO_GameEffectContainer = SO_GameEffect_Container;
-            projectile.Launch(parent.forward, m_ThrowForce);
+            projectile.Launch(dir, m_ThrowForce);
         }
         else
         {

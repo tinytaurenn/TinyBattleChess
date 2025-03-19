@@ -35,7 +35,7 @@ public abstract class  InventoryItem : Grabbable
     }
 
 
-    public abstract bool UseInventoryItem(Transform parentTransform);
+    public abstract bool UseInventoryItem(Transform parentTransform,Vector3 dir);
  
 
     public virtual void ThrowItem(Vector3 pos)

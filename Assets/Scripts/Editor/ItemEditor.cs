@@ -103,7 +103,9 @@ public class ItemEditor : EditorWindow
                 break; 
             case EWeaponType.Melee:
                 weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
-                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
+                SO_MeleeWeapon meleeWeapon = soWeapon as SO_MeleeWeapon;
+                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, meleeWeapon);
+                ((MeleeWeapon)weaponScript).MeleeWeaponEffects = meleeWeapon.MeleeWeaponEffects;    
                 break;
             case EWeaponType.Ranged:
 

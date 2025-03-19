@@ -269,7 +269,7 @@ public class ConnectionsHandler : MonoBehaviour
         
         MyPlayer.name = "[local] PLAYER";
         m_TinyPlayer = MyPlayer.GetComponent<TinyPlayer>();
-        ParentedCamera.Instance.m_PlayerTransform = MyPlayer.transform; 
+        ParentedCamera.Instance.m_PlayerMovement = m_TinyPlayer.m_PlayerMovement; 
     }
 
     void SyncAll()

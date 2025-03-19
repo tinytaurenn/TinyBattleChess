@@ -16,6 +16,8 @@ public class PlayerWeapons : MonoBehaviour
     Animator m_Animator; 
     internal CoherenceSync m_Sync;
 
+
+
     [Header("Weapon Infos")]
     [SerializeField] internal bool m_TwoHanded = false;
     [SerializeField] internal Vector2 m_LookDirection = Vector2.zero;
@@ -232,7 +234,7 @@ public class PlayerWeapons : MonoBehaviour
                 SetAnimatorWeaponDirection();
 
                 m_Animator.SetBool("Attacking", true);
-                GetMainWeapon().RaiseAttackEffect();
+                //GetMainWeapon().RaiseAttackEffect();
 
                 switch (m_MainWeaponType)
                 {
@@ -253,17 +255,17 @@ public class PlayerWeapons : MonoBehaviour
             case EWeaponState.AttackRelease:
 
                 m_Animator.SetBool("Attacking", false);
-                GetMainWeapon().ReleaseAttackEffect();
+                //GetMainWeapon().ReleaseAttackEffect();
                 break;
             case EWeaponState.Parry:
                 GetWeaponDirection();
                 SetAnimatorWeaponDirection();
-                GetMainWeapon().RaiseBlockEffect();
+                //GetMainWeapon().RaiseBlockEffect();
 
                 m_Animator.SetBool("Parry", true);
                 break;
             case EWeaponState.ShieldParry:
-                GetMainWeapon().RaiseBlockEffect();
+                //GetMainWeapon().RaiseBlockEffect();
                 m_Animator.SetBool("ShieldParry", true);
                 m_Animator.SetBool("Parry", true);
                 break;

@@ -1,5 +1,4 @@
 using Coherence.Toolkit;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SO_Armor", menuName = "Scriptable Objects/Items/SO_Armor/ArmorEffect/ThornEffect")]

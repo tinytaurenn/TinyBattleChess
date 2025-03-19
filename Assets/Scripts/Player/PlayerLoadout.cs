@@ -53,6 +53,7 @@ public class PlayerLoadout : MonoBehaviour
 
     [Space(10)]
     [Header("Player sockets")]
+    [SerializeField] Transform m_ThrowDirectionSocket;
     [SerializeField] internal Transform m_PlayerLeftHandSocket;
     [SerializeField] internal Transform m_PlayerRightHandSocket;
     [SerializeField] internal Transform m_PlayerPocket;
@@ -548,7 +549,7 @@ public class PlayerLoadout : MonoBehaviour
     void UseInventoryItem( EStuffSlot slot,InventoryItem item)
     {
         
-        if (item.UseInventoryItem(m_SpellSocket))
+        if (item.UseInventoryItem(m_SpellSocket,ParentedCamera.Instance.transform.forward))
         {
             m_TinyPlayer.m_PlayerWeapons.UsingItem = true;
             m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
@@ -602,7 +603,7 @@ public class PlayerLoadout : MonoBehaviour
             return;
         }
         m_ThrowingItem.OnItemUsed += OnItemUsed;
-        Vector3 target = (new Vector3(transform.position.x, m_PlayerLeftHandSocket.position.y, transform.position.z) + transform.forward * 10);
+        Vector3 target = (new Vector3(transform.position.x, m_PlayerLeftHandSocket.position.y, transform.position.z) + m_ThrowDirectionSocket.forward * 10);
         target = target + Vector3.up * 3f; 
         Vector3 dir = (target - m_PlayerLeftHandSocket.position).normalized;
         m_ThrowingItem.ThrowItem( dir );

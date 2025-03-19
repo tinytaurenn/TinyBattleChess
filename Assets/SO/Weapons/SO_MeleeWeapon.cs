@@ -5,7 +5,10 @@ using UnityEngine.Audio;
 [CreateAssetMenu(fileName = "SO_Weapon", menuName = "Scriptable Objects/Items/Weapons/SO_Weapon/MeleeWeapon")]
 public class SO_MeleeWeapon : SO_Weapon
 {
-    public FMeleeWeaponParameters MeleeWeaponParameters; 
+
+    public FMeleeWeaponParameters MeleeWeaponParameters;
+
+    public List<SO_MeleeWeaponEffect> MeleeWeaponEffects;
 
     public List<AudioResource> HitSounds;
     public List<AudioResource> ParrySounds;

@@ -37,6 +37,7 @@ component _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062 [id "160"]
   Seated Bool [bits "1"]
   Aiming Bool [bits "1"]
   UsingMagic Bool [bits "1"]
+  LookValue Float [compression "None"]
 
 component _276f4c8c1f54c8d41afce07cc23e23c3_4012604043449858976 [id "161"]
   m_ItemInUse Bool [bits "1"]
@@ -330,34 +331,20 @@ component _dd4f693a5d019d14ca62105d6772297f_7799190213565977493 [id "235"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_2089610155797286539 [id "236"]
-  isKinematic Bool [bits "1"]
-
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_6694452824727652513 [id "237"]
-  path String [bits "6"]
-  pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
-
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_7139226417995560373 [id "238"]
+component _ebe3c005c8a4429419dab111d22f160c_2234337059430967768 [id "236"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _e4aae1ad1cbda6a4d803eda3efb9d15a_8718119486635709811 [id "239"]
-  enabled Bool [bits "1"]
-
-component _ebe3c005c8a4429419dab111d22f160c_2234337059430967768 [id "240"]
-  m_IsHeld Bool [bits "1"]
-  IsNPCHeld Bool [bits "1"]
-
-component _ebe3c005c8a4429419dab111d22f160c_2668675485594391575 [id "241"]
+component _ebe3c005c8a4429419dab111d22f160c_2668675485594391575 [id "237"]
   isKinematic Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_4025658085450113105 [id "242"]
+component _ebe3c005c8a4429419dab111d22f160c_4025658085450113105 [id "238"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 [id "243"]
+component _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 [id "239"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_8923926967690582782 [id "244"]
+component _ebe3c005c8a4429419dab111d22f160c_8923926967690582782 [id "240"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
@@ -684,15 +671,6 @@ command _d9c58831288052b4bb0dfa57ee24e75e_a1306575801b4bc8bbc106c5c843cc59 [id "
 command _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3 [id "108", routing "All"]
   enable Bool 
 
-command _e4aae1ad1cbda6a4d803eda3efb9d15a_26ddc39be4a14bf0b426c78c5d00e5fd [id "109", routing "All"]
-  enable Bool 
-
-command _e4aae1ad1cbda6a4d803eda3efb9d15a_2cc265e038494bab871147594bb5c709 [id "110", routing "All"]
-  choiceIndex Int 
-
-command _e4aae1ad1cbda6a4d803eda3efb9d15a_994d673b6a8a430a8be9f66b23920dcb [id "111", routing "All"]
-  index Int 
-
-command _ebe3c005c8a4429419dab111d22f160c_5815926e10d74fb4996289fd5de6beb0 [id "112", routing "All"]
+command _ebe3c005c8a4429419dab111d22f160c_5815926e10d74fb4996289fd5de6beb0 [id "109", routing "All"]
   enable Bool 
 

@@ -19,6 +19,11 @@ namespace PlayerControls
         public float BackWardspeedModifier => m_BackWardspeedModifier; 
         public float StrafeSpeedModifier => m_StrafeSpeedModifier;
 
+        [SerializeField] float m_LookRange = 1f;
+        [SerializeField] float m_LookValue = 0f;
+        public float LookValue => m_LookValue;
+        [SerializeField] float m_VerticalLookSensivity = 0.5f;
+
         protected override void Awake()
         {
             base.Awake();
@@ -52,6 +57,12 @@ namespace PlayerControls
             Quaternion newRotation = Quaternion.Euler(0, mouseDeltaX, 0); 
             transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation *  newRotation, Time.fixedDeltaTime * m_RotationSpeed);
 
+            float mouseDeltaY = MouseDelta.y;
+
+            m_LookValue += mouseDeltaY * Time.fixedDeltaTime * m_VerticalLookSensivity; 
+            m_LookValue = Mathf.Clamp(m_LookValue, -m_LookRange, m_LookRange);
+
+            m_Animator.SetFloat("LookValue", (m_LookValue + 1) / 2);
         }
 
 
