@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Collider: {fileID: 0}
   m_WeaponParameters:
     DamageType: 1
-    WeaponType: 2
+    WeaponType: 1
     WeaponSize: 0
     PositionOffset: {x: 0, y: 0.04, z: -0.054}
     RotationOffset: {x: 0, y: 0, z: 0}
@@ -1061,6 +1061,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e0a601017367946608f7e138e6ec4b7c, type: 3}
   m_DamageCollider: {fileID: 3215902980394475644}
   m_HitPos: {fileID: 0}
+  MeleeWeaponEffects: []
   m_MeleeWeaponParameters:
     Damage: 10
     Speed: 1

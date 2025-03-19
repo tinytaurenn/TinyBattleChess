@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Collider: {fileID: 0}
   m_WeaponParameters:
     DamageType: 1
-    WeaponType: 256
+    WeaponType: 4
     WeaponSize: 1
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
