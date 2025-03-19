@@ -8,7 +8,7 @@ public class BasicWeapon : Grabbable, IWeapon
 {
 
     [SerializeField]
-    FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EEffectType.Physical,EWeaponType.Sword, EWeaponSize.Right_Handed);
+    protected FWeaponParameters m_WeaponParameters = new FWeaponParameters(10, 1.5f, 10, EEffectType.Physical,EWeaponType.Sword, EWeaponSize.Right_Handed);
 
     public FWeaponParameters WeaponParameters {
         get
@@ -27,23 +27,10 @@ public class BasicWeapon : Grabbable, IWeapon
 
     internal Transform m_HolderTransform = null; 
 
-    [SerializeField] Collider m_DamageCollider;
+    [SerializeField]protected  Collider m_DamageCollider;
     [SerializeField] public Transform m_HitPos; 
    
     List<Collider> HitList = new List<Collider>();
-
-    internal EWeaponType WeaponType => m_WeaponParameters.WeaponType;
-    internal EWeaponSize WeaponSize => m_WeaponParameters.WeaponSize;
-
-    internal EEffectType DamageType => m_WeaponParameters.DamageType;
-    internal int WeaponDamage => m_WeaponParameters.Damage; 
-    internal float WeaponSpeed => m_WeaponParameters.Speed;
-    internal int WeaponCost => m_WeaponParameters.Cost;
-    internal Vector3 WeaponPositionOffset => m_WeaponParameters.PositionOffset;
-    internal Vector3 WeaponRotationOffset => m_WeaponParameters.RotationOffset;
-
-
-
 
     protected override void Awake()
     {
@@ -61,18 +48,11 @@ public class BasicWeapon : Grabbable, IWeapon
         base.Update(); 
     }
 
-    public void SetupWeapon(Collider damageCollider, FWeaponParameters weaponParameters)
+    public virtual void SetupWeapon(Collider damageCollider, FWeaponParameters weaponParameters)
     {
         m_DamageCollider = damageCollider;
         m_WeaponParameters = weaponParameters;
     }
-
-
-    private void OnDrawGizmos()
-    {
-        
-    }
-
 
 
     public override void Release()
@@ -123,7 +103,7 @@ public class BasicWeapon : Grabbable, IWeapon
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if(m_Sync == null || !m_Sync.HasStateAuthority)
         {

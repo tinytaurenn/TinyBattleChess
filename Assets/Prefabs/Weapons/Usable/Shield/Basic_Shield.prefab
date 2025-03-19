@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 5999053578138882321}
   - component: {fileID: 6415732900446197949}
   - component: {fileID: 3384389735842056370}
-  - component: {fileID: 97645489704987816}
+  - component: {fileID: -7330976042963509688}
   - component: {fileID: 1453443674401267765}
   - component: {fileID: 2599363250466214494}
   - component: {fileID: -1444946669863629009}
@@ -258,7 +258,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &97645489704987816
+--- !u!114 &-7330976042963509688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5939298459688205857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 099e92d446b79914b83f9775ed11600b, type: 3}
+  m_Script: {fileID: 11500000, guid: 290a09cb353aaf9489c737ce6b0f72c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
@@ -292,7 +292,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f9a5fe35af5ad6c4b9375f80a27d9a71, type: 3}
   - {fileID: 8300000, guid: 9f68dd9f023d6704cb60d9d2ae8aeedd, type: 3}
   m_DamageCollider: {fileID: 176563875519719840}
-  m_HitPos: {fileID: 6087489037048558016}
+  m_HitPos: {fileID: 0}
 --- !u!82 &1453443674401267765
 AudioSource:
   m_ObjectHideFlags: 0
@@ -441,8 +441,6 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 5885151061618887952, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
       lodStepsActive: 1
-    - component: {fileID: 4055558226076958478, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
-      lodStepsActive: 1
     - component: {fileID: 8466982124699937639, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
       lodStepsActive: 1
     - component: {fileID: 3695927073167064064, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
@@ -459,8 +457,6 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 3384389735842056370}
       lodStepsActive: 1
-    - component: {fileID: 97645489704987816}
-      lodStepsActive: 1
     - component: {fileID: 1453443674401267765}
       lodStepsActive: 1
     - component: {fileID: 2976329320814486156}
@@ -476,6 +472,8 @@ MonoBehaviour:
     - component: {fileID: 6087489037048558016}
       lodStepsActive: 1
     - component: {fileID: -1444946669863629009}
+      lodStepsActive: 1
+    - component: {fileID: -7330976042963509688}
       lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 4
@@ -505,17 +503,17 @@ MonoBehaviour:
   preserveChildren: 1
   bindings:
   - rid: 5785724889091801094
-  - rid: 5785724889091801095
   - rid: 5785724889091801187
   - rid: 5785724889091801189
   - rid: 5785724889091801191
   - rid: 5785724889091801193
-  - rid: 5785724889091801195
   - rid: 5785724889091801197
   - rid: 5785724889091801198
-  - rid: 4705202078184636626
-  - rid: 4705202265946587449
-  - rid: 4705202283288462236
+  - rid: 3165745105171906722
+  - rid: 3165745105171906723
+  - rid: 3165745105171906724
+  - rid: 3165745105171906725
+  - rid: 3165745105171906726
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -538,16 +536,16 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 4705202078184636626
+    - rid: 3165745105171906722
       type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
         descriptor:
-          rid: 4705202078184636627
+          rid: 3165745105171906727
         routing: 0
         syncMode: 0
         isPredicted: 0
         predictionMode: 0
-        guid: 807d19fc8c7244528dafb6fc1d4f27f6
+        guid: 8e1f963aa62d4bb3a52b0bfb3c3c14a9
         archetypeData:
           type: 3
           minRange: 0
@@ -559,10 +557,115 @@ MonoBehaviour:
             bits: 1
             precision: 0
             floatCompression: 0
-        unityComponent: {fileID: 97645489704987816}
+        unityComponent: {fileID: -7330976042963509688}
         coherenceSync: {fileID: 2599363250466214494}
         interpolationSettings: {fileID: 0}
-    - rid: 4705202078184636627
+    - rid: 3165745105171906723
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165745105171906728
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 0f58eed1f55a47a38dc0354dd3ca9589
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: -7330976042963509688}
+        coherenceSync: {fileID: 2599363250466214494}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165745105171906724
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165745105171906729
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: cd4f976528974ea08a88cc166afba53c
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: -7330976042963509688}
+        coherenceSync: {fileID: 2599363250466214494}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165745105171906725
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165745105171906730
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 98e4d64c0cd14791a30552087866e8eb
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: -7330976042963509688}
+        coherenceSync: {fileID: 2599363250466214494}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165745105171906726
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3165745105171906731
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 687f0df4b5af4859b2ce0f55b7ed8785
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: -7330976042963509688}
+        coherenceSync: {fileID: 2599363250466214494}
+        interpolationSettings: {fileID: 0}
+    - rid: 3165745105171906727
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: m_IsHeld
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 4
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: ShieldWeapon, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3165745105171906728
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         name: IsNPCHeld
@@ -573,8 +676,8 @@ MonoBehaviour:
         memberType: 16
         parameterAssemblyTypes: []
         ownerType:
-          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
+          assemblyQualifiedName: ShieldWeapon, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
         defaultSyncMode: 0
         CustomData:
           rid: -2
@@ -583,40 +686,20 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 4705202265946587449
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 4705202265946587450
-        routing: 1
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: 32be48b0c7d3495f9a9e4c762e63b625
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-        unityComponent: {fileID: 97645489704987816}
-        coherenceSync: {fileID: 2599363250466214494}
-        interpolationSettings: {fileID: 0}
-    - rid: 4705202265946587450
+    - rid: 3165745105171906729
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
-        name: EnableComponent
+        name: SyncHitSound
         monoAssemblyType: 
         required: 1
         enforcesLODingWhenFieldsOverriden: 0
         valueSyncCallbackName: 
         memberType: 8
         parameterAssemblyTypes:
-        - System.Boolean, mscorlib
+        - System.Int32, mscorlib
         ownerType:
-          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
+          assemblyQualifiedName: ShieldWeapon, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
         defaultSyncMode: 0
         CustomData:
           rid: -2
@@ -625,27 +708,7 @@ MonoBehaviour:
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 4705202283288462236
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 4705202283288462237
-        routing: 1
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: 31201987de254569a6593a202020c19f
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-        unityComponent: {fileID: 97645489704987816}
-        coherenceSync: {fileID: 2599363250466214494}
-        interpolationSettings: {fileID: 0}
-    - rid: 4705202283288462237
+    - rid: 3165745105171906730
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
         name: PlayParryFX
@@ -657,8 +720,30 @@ MonoBehaviour:
         parameterAssemblyTypes:
         - System.Int32, mscorlib
         ownerType:
-          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
+          assemblyQualifiedName: ShieldWeapon, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3165745105171906731
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: EnableComponent
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Boolean, mscorlib
+        ownerType:
+          assemblyQualifiedName: ShieldWeapon, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
         defaultSyncMode: 0
         CustomData:
           rid: -2
@@ -691,30 +776,6 @@ MonoBehaviour:
         unityComponent: {fileID: 5999053578138882321}
         coherenceSync: {fileID: 2599363250466214494}
         interpolationSettings: {fileID: 11400000, guid: ae4419d1d9a8643709bf5f6b90c584a5, type: 2}
-    - rid: 5785724889091801095
-      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 5785724889091801097
-        routing: 0
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: 1a298b2ac7f5429b9aab945dc110f4d2
-        archetypeData:
-          type: 3
-          minRange: 0
-          maxRange: 0
-          sampleRate: 20
-          floatCompression: 0
-          fields:
-          - type: 3
-            bits: 1
-            precision: 0
-            floatCompression: 0
-        unityComponent: {fileID: 97645489704987816}
-        coherenceSync: {fileID: 2599363250466214494}
-        interpolationSettings: {fileID: 0}
     - rid: 5785724889091801096
       type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
       data:
@@ -733,27 +794,6 @@ MonoBehaviour:
           rid: -2
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.TransformBindings.PositionBinding,
-            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 5785724889091801097
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: m_IsHeld
-        monoAssemblyType: System.Boolean, mscorlib
-        required: 1
-        enforcesLODingWhenFieldsOverriden: 1
-        valueSyncCallbackName: 
-        memberType: 4
-        parameterAssemblyTypes: []
-        ownerType:
-          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
@@ -935,48 +975,6 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 5785724889091801195
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 5785724889091801196
-        routing: 1
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: f456fe8329af41d4a6104467e1faebec
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-        unityComponent: {fileID: 97645489704987816}
-        coherenceSync: {fileID: 2599363250466214494}
-        interpolationSettings: {fileID: 0}
-    - rid: 5785724889091801196
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: SyncHitSound
-        monoAssemblyType: 
-        required: 0
-        enforcesLODingWhenFieldsOverriden: 0
-        valueSyncCallbackName: 
-        memberType: 8
-        parameterAssemblyTypes:
-        - System.Int32, mscorlib
-        ownerType:
-          assemblyQualifiedName: BasicWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
     - rid: 5785724889091801197

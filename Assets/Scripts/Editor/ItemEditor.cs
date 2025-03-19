@@ -89,10 +89,47 @@ public class ItemEditor : EditorWindow
         GameObject weaponGameObject = new GameObject(itemName);
         weaponGameObject.layer = LayerMask.NameToLayer("Usable");
         weaponGameObject.tag = "Weapon";
+        SO_Weapon soWeapon = SO_Item as SO_Weapon;
+
+        BasicWeapon weaponScript = null;    
+
+        switch (soWeapon.WeaponType)
+        {
+            case EWeaponType.Sword:
+                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                break;
+            case EWeaponType.Axe:
+                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                break;
+            case EWeaponType.Mace:
+                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                break;
+            case EWeaponType.Spear:
+                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                break;
+            case EWeaponType.Bow:
+                break;
+            case EWeaponType.Crossbow:
+                break;
+            case EWeaponType.LongBow:
+                break;
+            case EWeaponType.Staff:
+                weaponScript = weaponGameObject.AddComponent<StaffWeapon>();
+
+                break;
+            case EWeaponType.Shield:
+                weaponScript = weaponGameObject.AddComponent<ShieldWeapon>();
+
+                break;
+            case EWeaponType.Dagger:
+                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
+                
+                break;
+            default:
+                break;
+        }
+
         
-        
-        //parent.AddComponent(typeof(BasicWeapon));
-        BasicWeapon weaponScript =  weaponGameObject.AddComponent<BasicWeapon>();
         Debug.Log($"Added '{typeof(BasicWeapon)}' script to {itemName}");
 
 
@@ -153,7 +190,7 @@ public class ItemEditor : EditorWindow
         weaponScript.m_IsHeld = false;
         weaponScript.IsNPCHeld = false;
 
-        SO_Weapon soWeapon = SO_Item as SO_Weapon;
+        
         FWeaponParameters weaponParameters = new FWeaponParameters(soWeapon.Damage,soWeapon.Speed,soWeapon.Cost,soWeapon.DamageType,soWeapon.WeaponType,soWeapon.WeaponSize);
 
         weaponScript.m_ParryAudios = soWeapon.ParrySounds;

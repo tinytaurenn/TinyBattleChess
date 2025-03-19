@@ -193,7 +193,7 @@ public class PlayerWeapons : MonoBehaviour
             m_InParry = true;
 
             if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] != null 
-                && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>().WeaponType == EWeaponType.Shield)
+                && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>().WeaponParameters.WeaponType == EWeaponType.Shield)
             {
                 Debug.Log("got some shield baby");
                 ShieldParry(); 
@@ -378,7 +378,7 @@ public class PlayerWeapons : MonoBehaviour
 
     public void SetWeaponParameters(BasicWeapon weapon)
     {
-        m_Animator.SetFloat("WeaponSpeed", weapon.WeaponSpeed);
+        m_Animator.SetFloat("WeaponSpeed", weapon.WeaponParameters.Speed);
     }
 
     public void Drop(float throwForce = 5f)

@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(BasicWeapon))]
+[CustomEditor(typeof(BasicWeapon),true)]
 public class WeaponEditor : Editor
 {
     SerializedProperty So_ItemProperty;

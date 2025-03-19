@@ -26,7 +26,7 @@ namespace PlayerControls
         PlayerUse m_PlayerUse;
         Vector2 m_MoveValue;
         Transform m_CameraTransform;
-        CameraManager m_CameraManager; 
+        ParentedCamera m_ParentedCamera; 
         PlayerLoadout m_PlayerLoadout;
 
         private void OnEnable()
@@ -125,8 +125,8 @@ namespace PlayerControls
         {
             if (m_CameraTransform == null)
             {
-                m_CameraManager = CameraManager.Instance; 
-                m_CameraTransform = m_CameraManager.transform;
+                m_ParentedCamera = ParentedCamera.Instance; 
+                m_CameraTransform = m_ParentedCamera.transform;
             }
             m_MoveValue = moveInput;
             Vector3 forward = new Vector3(m_CameraTransform.forward.x, 0, m_CameraTransform.forward.z).normalized;

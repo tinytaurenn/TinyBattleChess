@@ -182,110 +182,6 @@ namespace Coherence.Generated
     }
     
     [UnityEngine.Scripting.Preserve]
-    public class Binding_28fbed09d7fea464681134cd159332ad_13a57f40537b46e3ac73d20a7cf7b78c : BoolBinding
-    {   
-        private global::BasicWeapon CastedUnityComponent;
-
-        protected override void OnBindingCloned()
-        {
-    	    CastedUnityComponent = (global::BasicWeapon)UnityComponent;
-        }
-
-        public override global::System.Type CoherenceComponentType => typeof(_28fbed09d7fea464681134cd159332ad_5939546729887440551);
-        public override string CoherenceComponentName => "_28fbed09d7fea464681134cd159332ad_5939546729887440551";
-        public override uint FieldMask => 0b00000000000000000000000000000001;
-
-        public override System.Boolean Value
-        {
-            get { return (System.Boolean)(CastedUnityComponent.m_IsHeld); }
-            set { CastedUnityComponent.m_IsHeld = (System.Boolean)(value); }
-        }
-
-        protected override (System.Boolean value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
-        {
-            var value = ((_28fbed09d7fea464681134cd159332ad_5939546729887440551)coherenceComponent).m_IsHeld;
-
-            var simFrame = ((_28fbed09d7fea464681134cd159332ad_5939546729887440551)coherenceComponent).m_IsHeldSimulationFrame;
-            
-            return (value, simFrame);
-        }
-
-        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
-        {
-            var update = (_28fbed09d7fea464681134cd159332ad_5939546729887440551)coherenceComponent;
-            if (Interpolator.IsInterpolationNone)
-            {
-                update.m_IsHeld = Value;
-            }
-            else
-            {
-                update.m_IsHeld = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
-            }
-
-            update.m_IsHeldSimulationFrame = simFrame;
-            
-            return update;
-        }
-
-        public override ICoherenceComponentData CreateComponentData()
-        {
-            return new _28fbed09d7fea464681134cd159332ad_5939546729887440551();
-        }    
-    }
-    
-    [UnityEngine.Scripting.Preserve]
-    public class Binding_28fbed09d7fea464681134cd159332ad_7148cafb66094bdabdd17c8f0ea9cf21 : BoolBinding
-    {   
-        private global::BasicWeapon CastedUnityComponent;
-
-        protected override void OnBindingCloned()
-        {
-    	    CastedUnityComponent = (global::BasicWeapon)UnityComponent;
-        }
-
-        public override global::System.Type CoherenceComponentType => typeof(_28fbed09d7fea464681134cd159332ad_5939546729887440551);
-        public override string CoherenceComponentName => "_28fbed09d7fea464681134cd159332ad_5939546729887440551";
-        public override uint FieldMask => 0b00000000000000000000000000000010;
-
-        public override System.Boolean Value
-        {
-            get { return (System.Boolean)(CastedUnityComponent.IsNPCHeld); }
-            set { CastedUnityComponent.IsNPCHeld = (System.Boolean)(value); }
-        }
-
-        protected override (System.Boolean value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
-        {
-            var value = ((_28fbed09d7fea464681134cd159332ad_5939546729887440551)coherenceComponent).IsNPCHeld;
-
-            var simFrame = ((_28fbed09d7fea464681134cd159332ad_5939546729887440551)coherenceComponent).IsNPCHeldSimulationFrame;
-            
-            return (value, simFrame);
-        }
-
-        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
-        {
-            var update = (_28fbed09d7fea464681134cd159332ad_5939546729887440551)coherenceComponent;
-            if (Interpolator.IsInterpolationNone)
-            {
-                update.IsNPCHeld = Value;
-            }
-            else
-            {
-                update.IsNPCHeld = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
-            }
-
-            update.IsNPCHeldSimulationFrame = simFrame;
-            
-            return update;
-        }
-
-        public override ICoherenceComponentData CreateComponentData()
-        {
-            return new _28fbed09d7fea464681134cd159332ad_5939546729887440551();
-        }    
-    }
-    
-    [UnityEngine.Scripting.Preserve]
     public class Binding_28fbed09d7fea464681134cd159332ad_c0c8579c969640d991b0f90e6df02026 : StringBinding
     {   
         private global::Coherence.Toolkit.CoherenceNode CastedUnityComponent;
@@ -492,6 +388,110 @@ namespace Coherence.Generated
             return new _28fbed09d7fea464681134cd159332ad_1985906079244697212();
         }    
     }
+    
+    [UnityEngine.Scripting.Preserve]
+    public class Binding_28fbed09d7fea464681134cd159332ad_fc2d362490f947fb890c61f4f995ec08 : BoolBinding
+    {   
+        private global::MeleeWeapon CastedUnityComponent;
+
+        protected override void OnBindingCloned()
+        {
+    	    CastedUnityComponent = (global::MeleeWeapon)UnityComponent;
+        }
+
+        public override global::System.Type CoherenceComponentType => typeof(_28fbed09d7fea464681134cd159332ad_10605204515277231747);
+        public override string CoherenceComponentName => "_28fbed09d7fea464681134cd159332ad_10605204515277231747";
+        public override uint FieldMask => 0b00000000000000000000000000000001;
+
+        public override System.Boolean Value
+        {
+            get { return (System.Boolean)(CastedUnityComponent.m_IsHeld); }
+            set { CastedUnityComponent.m_IsHeld = (System.Boolean)(value); }
+        }
+
+        protected override (System.Boolean value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
+        {
+            var value = ((_28fbed09d7fea464681134cd159332ad_10605204515277231747)coherenceComponent).m_IsHeld;
+
+            var simFrame = ((_28fbed09d7fea464681134cd159332ad_10605204515277231747)coherenceComponent).m_IsHeldSimulationFrame;
+            
+            return (value, simFrame);
+        }
+
+        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
+        {
+            var update = (_28fbed09d7fea464681134cd159332ad_10605204515277231747)coherenceComponent;
+            if (Interpolator.IsInterpolationNone)
+            {
+                update.m_IsHeld = Value;
+            }
+            else
+            {
+                update.m_IsHeld = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
+            }
+
+            update.m_IsHeldSimulationFrame = simFrame;
+            
+            return update;
+        }
+
+        public override ICoherenceComponentData CreateComponentData()
+        {
+            return new _28fbed09d7fea464681134cd159332ad_10605204515277231747();
+        }    
+    }
+    
+    [UnityEngine.Scripting.Preserve]
+    public class Binding_28fbed09d7fea464681134cd159332ad_c0a12d121de14e4e8290f33a3192e182 : BoolBinding
+    {   
+        private global::MeleeWeapon CastedUnityComponent;
+
+        protected override void OnBindingCloned()
+        {
+    	    CastedUnityComponent = (global::MeleeWeapon)UnityComponent;
+        }
+
+        public override global::System.Type CoherenceComponentType => typeof(_28fbed09d7fea464681134cd159332ad_10605204515277231747);
+        public override string CoherenceComponentName => "_28fbed09d7fea464681134cd159332ad_10605204515277231747";
+        public override uint FieldMask => 0b00000000000000000000000000000010;
+
+        public override System.Boolean Value
+        {
+            get { return (System.Boolean)(CastedUnityComponent.IsNPCHeld); }
+            set { CastedUnityComponent.IsNPCHeld = (System.Boolean)(value); }
+        }
+
+        protected override (System.Boolean value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
+        {
+            var value = ((_28fbed09d7fea464681134cd159332ad_10605204515277231747)coherenceComponent).IsNPCHeld;
+
+            var simFrame = ((_28fbed09d7fea464681134cd159332ad_10605204515277231747)coherenceComponent).IsNPCHeldSimulationFrame;
+            
+            return (value, simFrame);
+        }
+
+        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
+        {
+            var update = (_28fbed09d7fea464681134cd159332ad_10605204515277231747)coherenceComponent;
+            if (Interpolator.IsInterpolationNone)
+            {
+                update.IsNPCHeld = Value;
+            }
+            else
+            {
+                update.IsNPCHeld = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
+            }
+
+            update.IsNPCHeldSimulationFrame = simFrame;
+            
+            return update;
+        }
+
+        public override ICoherenceComponentData CreateComponentData()
+        {
+            return new _28fbed09d7fea464681134cd159332ad_10605204515277231747();
+        }    
+    }
 
     [UnityEngine.Scripting.Preserve]
     public class CoherenceSync_28fbed09d7fea464681134cd159332ad : CoherenceSyncBaked
@@ -499,9 +499,9 @@ namespace Coherence.Generated
         private Entity entityId;
         private Logger logger = Coherence.Log.Log.GetLogger<CoherenceSync_28fbed09d7fea464681134cd159332ad>();
         
-        private global::Grabbable _28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8_CommandTarget;
-        private global::BasicWeapon _28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49_CommandTarget;
-        private global::BasicWeapon _28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8_CommandTarget;
+        private global::BasicWeapon _28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1_CommandTarget;
+        private global::BasicWeapon _28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13_CommandTarget;
+        private global::Grabbable _28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1_CommandTarget;
         
         
         private IClient client;
@@ -512,21 +512,21 @@ namespace Coherence.Generated
             ["0e075063fb18424282823e79e81dd576"] = new Binding_28fbed09d7fea464681134cd159332ad_0e075063fb18424282823e79e81dd576(),
             ["58c2a149a2914fb8a73bfb1ef0160c5e"] = new Binding_28fbed09d7fea464681134cd159332ad_58c2a149a2914fb8a73bfb1ef0160c5e(),
             ["77d4e83346c24cc5b4469ee50e1f7aff"] = new Binding_28fbed09d7fea464681134cd159332ad_77d4e83346c24cc5b4469ee50e1f7aff(),
-            ["13a57f40537b46e3ac73d20a7cf7b78c"] = new Binding_28fbed09d7fea464681134cd159332ad_13a57f40537b46e3ac73d20a7cf7b78c(),
-            ["7148cafb66094bdabdd17c8f0ea9cf21"] = new Binding_28fbed09d7fea464681134cd159332ad_7148cafb66094bdabdd17c8f0ea9cf21(),
             ["c0c8579c969640d991b0f90e6df02026"] = new Binding_28fbed09d7fea464681134cd159332ad_c0c8579c969640d991b0f90e6df02026(),
             ["d8d34e5ca56e47ec8b7976a942b9256d"] = new Binding_28fbed09d7fea464681134cd159332ad_d8d34e5ca56e47ec8b7976a942b9256d(),
             ["76cca3f4f88744268881834be5238550"] = new Binding_28fbed09d7fea464681134cd159332ad_76cca3f4f88744268881834be5238550(),
             ["556dd49c13a7499493ad88b9cd522da6"] = new Binding_28fbed09d7fea464681134cd159332ad_556dd49c13a7499493ad88b9cd522da6(),
+            ["fc2d362490f947fb890c61f4f995ec08"] = new Binding_28fbed09d7fea464681134cd159332ad_fc2d362490f947fb890c61f4f995ec08(),
+            ["c0a12d121de14e4e8290f33a3192e182"] = new Binding_28fbed09d7fea464681134cd159332ad_c0a12d121de14e4e8290f33a3192e182(),
         };
         
         private Dictionary<string, Action<CommandBinding, CommandsHandler>> bakedCommandBindings = new Dictionary<string, Action<CommandBinding, CommandsHandler>>();
         
         public CoherenceSync_28fbed09d7fea464681134cd159332ad()
         {
-            bakedCommandBindings.Add("a60de80df8df43bf8ffe6020575921c8", BakeCommandBinding__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8);
-            bakedCommandBindings.Add("2346f80354de4a65986fb1d80f3afd49", BakeCommandBinding__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49);
-            bakedCommandBindings.Add("3264fe4a82264f98b06c13e7ba0aa8b8", BakeCommandBinding__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8);
+            bakedCommandBindings.Add("e03d06e78c53453bbda79474fc01aca1", BakeCommandBinding__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1);
+            bakedCommandBindings.Add("dfb618dd8c58424c8cec7115f6ab3e13", BakeCommandBinding__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13);
+            bakedCommandBindings.Add("6e69be271d504db1a9580f5f95194fb1", BakeCommandBinding__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1);
         }
         
         public override Binding BakeValueBinding(Binding valueBinding)
@@ -548,48 +548,48 @@ namespace Coherence.Generated
             }
         }
     
-        private void BakeCommandBinding__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8(CommandBinding commandBinding, CommandsHandler commandsHandler)
+        private void BakeCommandBinding__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1(CommandBinding commandBinding, CommandsHandler commandsHandler)
         {
-            _28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8_CommandTarget = (global::Grabbable)commandBinding.UnityComponent;
-            commandsHandler.AddBakedCommand("Grabbable.EnableComponent", "(System.Boolean)", SendCommand__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8, ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8, MessageTarget.All, _28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8_CommandTarget, false);
+            _28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1_CommandTarget = (global::BasicWeapon)commandBinding.UnityComponent;
+            commandsHandler.AddBakedCommand("BasicWeapon.SyncHitSound", "(System.Int32)", SendCommand__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1, ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1, MessageTarget.All, _28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1_CommandTarget, false);
         }
         
-        private void SendCommand__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8(MessageTarget target, ChannelID channelID, object[] args)
+        private void SendCommand__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1(MessageTarget target, ChannelID channelID, object[] args)
         {
-            var command = new _28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8();
+            var command = new _28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1();
             
             int i = 0;
-            command.enable = (System.Boolean)args[i++];
+            command.index = (System.Int32)args[i++];
         
             client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8(MessageTarget target, ChannelID _, object[] args)
+        private void ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1(MessageTarget target, ChannelID _, object[] args)
         {
-            var command = new _28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8();
+            var command = new _28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1();
             
             int i = 0;
-            command.enable = (System.Boolean)args[i++];
+            command.index = (System.Int32)args[i++];
             
-            ReceiveCommand__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8(command);
+            ReceiveCommand__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1(command);
         }
 
-        private void ReceiveCommand__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8(_28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8 command)
+        private void ReceiveCommand__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1(_28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1 command)
         {
-            var target = _28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8_CommandTarget;
+            var target = _28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1_CommandTarget;
             
-            target.EnableComponent((System.Boolean)(command.enable));
+            target.SyncHitSound((System.Int32)(command.index));
         }
     
-        private void BakeCommandBinding__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49(CommandBinding commandBinding, CommandsHandler commandsHandler)
+        private void BakeCommandBinding__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13(CommandBinding commandBinding, CommandsHandler commandsHandler)
         {
-            _28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49_CommandTarget = (global::BasicWeapon)commandBinding.UnityComponent;
-            commandsHandler.AddBakedCommand("BasicWeapon.PlayParryFX", "(System.Int32)", SendCommand__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49, ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49, MessageTarget.All, _28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49_CommandTarget, false);
+            _28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13_CommandTarget = (global::BasicWeapon)commandBinding.UnityComponent;
+            commandsHandler.AddBakedCommand("BasicWeapon.PlayParryFX", "(System.Int32)", SendCommand__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13, ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13, MessageTarget.All, _28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13_CommandTarget, false);
         }
         
-        private void SendCommand__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49(MessageTarget target, ChannelID channelID, object[] args)
+        private void SendCommand__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13(MessageTarget target, ChannelID channelID, object[] args)
         {
-            var command = new _28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49();
+            var command = new _28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13();
             
             int i = 0;
             command.choiceIndex = (System.Int32)args[i++];
@@ -597,68 +597,68 @@ namespace Coherence.Generated
             client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49(MessageTarget target, ChannelID _, object[] args)
+        private void ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13(MessageTarget target, ChannelID _, object[] args)
         {
-            var command = new _28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49();
+            var command = new _28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13();
             
             int i = 0;
             command.choiceIndex = (System.Int32)args[i++];
             
-            ReceiveCommand__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49(command);
+            ReceiveCommand__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13(command);
         }
 
-        private void ReceiveCommand__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49(_28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49 command)
+        private void ReceiveCommand__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13(_28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13 command)
         {
-            var target = _28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49_CommandTarget;
+            var target = _28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13_CommandTarget;
             
             target.PlayParryFX((System.Int32)(command.choiceIndex));
         }
     
-        private void BakeCommandBinding__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8(CommandBinding commandBinding, CommandsHandler commandsHandler)
+        private void BakeCommandBinding__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1(CommandBinding commandBinding, CommandsHandler commandsHandler)
         {
-            _28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8_CommandTarget = (global::BasicWeapon)commandBinding.UnityComponent;
-            commandsHandler.AddBakedCommand("BasicWeapon.SyncHitSound", "(System.Int32)", SendCommand__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8, ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8, MessageTarget.All, _28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8_CommandTarget, false);
+            _28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1_CommandTarget = (global::Grabbable)commandBinding.UnityComponent;
+            commandsHandler.AddBakedCommand("Grabbable.EnableComponent", "(System.Boolean)", SendCommand__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1, ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1, MessageTarget.All, _28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1_CommandTarget, false);
         }
         
-        private void SendCommand__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8(MessageTarget target, ChannelID channelID, object[] args)
+        private void SendCommand__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1(MessageTarget target, ChannelID channelID, object[] args)
         {
-            var command = new _28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8();
+            var command = new _28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1();
             
             int i = 0;
-            command.index = (System.Int32)args[i++];
+            command.enable = (System.Boolean)args[i++];
         
             client.SendCommand(command, target, entityId, channelID);
         }
         
-        private void ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8(MessageTarget target, ChannelID _, object[] args)
+        private void ReceiveLocalCommand__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1(MessageTarget target, ChannelID _, object[] args)
         {
-            var command = new _28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8();
+            var command = new _28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1();
             
             int i = 0;
-            command.index = (System.Int32)args[i++];
+            command.enable = (System.Boolean)args[i++];
             
-            ReceiveCommand__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8(command);
+            ReceiveCommand__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1(command);
         }
 
-        private void ReceiveCommand__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8(_28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8 command)
+        private void ReceiveCommand__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1(_28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1 command)
         {
-            var target = _28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8_CommandTarget;
+            var target = _28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1_CommandTarget;
             
-            target.SyncHitSound((System.Int32)(command.index));
+            target.EnableComponent((System.Boolean)(command.enable));
         }
         
         public override void ReceiveCommand(IEntityCommand command)
         {
             switch (command)
             {
-                case _28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8 castedCommand:
-                    ReceiveCommand__28fbed09d7fea464681134cd159332ad_a60de80df8df43bf8ffe6020575921c8(castedCommand);
+                case _28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1 castedCommand:
+                    ReceiveCommand__28fbed09d7fea464681134cd159332ad_e03d06e78c53453bbda79474fc01aca1(castedCommand);
                     break;
-                case _28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49 castedCommand:
-                    ReceiveCommand__28fbed09d7fea464681134cd159332ad_2346f80354de4a65986fb1d80f3afd49(castedCommand);
+                case _28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13 castedCommand:
+                    ReceiveCommand__28fbed09d7fea464681134cd159332ad_dfb618dd8c58424c8cec7115f6ab3e13(castedCommand);
                     break;
-                case _28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8 castedCommand:
-                    ReceiveCommand__28fbed09d7fea464681134cd159332ad_3264fe4a82264f98b06c13e7ba0aa8b8(castedCommand);
+                case _28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1 castedCommand:
+                    ReceiveCommand__28fbed09d7fea464681134cd159332ad_6e69be271d504db1a9580f5f95194fb1(castedCommand);
                     break;
                 default:
                     logger.Warning(Coherence.Log.Warning.ToolkitBakedSyncReceiveCommandUnhandled,

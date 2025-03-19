@@ -399,7 +399,7 @@ public class PlayerLoadout : MonoBehaviour
 
         
         
-        if (weapon.WeaponSize == EWeaponSize.Two_Handed)
+        if (weapon.WeaponParameters.WeaponSize == EWeaponSize.Two_Handed)
         {
             if (m_EquippedItems[EStuffSlot.MainWeapon] != null || m_EquippedItems[EStuffSlot.SecondaryWeapon] != null)
             {
@@ -411,12 +411,12 @@ public class PlayerLoadout : MonoBehaviour
 
         }
 
-        else if (weapon.WeaponSize == EWeaponSize.Left_Handed)
+        else if (weapon.WeaponParameters.WeaponSize == EWeaponSize.Left_Handed)
         {
             Debug.Log("equipping left handed weapon");
 
             if ((m_EquippedItems[EStuffSlot.MainWeapon] != null) &&
-                m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().WeaponSize == EWeaponSize.Two_Handed)
+                m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().WeaponParameters.WeaponSize == EWeaponSize.Two_Handed)
             {
                 DropWeapons();
 
@@ -432,7 +432,7 @@ public class PlayerLoadout : MonoBehaviour
             m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
             
         }
-        else if(weapon.WeaponSize == EWeaponSize.Right_Handed)
+        else if(weapon.WeaponParameters.WeaponSize == EWeaponSize.Right_Handed)
         {
             DropItemOnSlot(EStuffSlot.MainWeapon);
             m_EquippedItems[EStuffSlot.MainWeapon] = weapon;

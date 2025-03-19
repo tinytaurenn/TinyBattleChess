@@ -18709,6 +18709,8 @@ MonoBehaviour:
   m_SlipCheckDistance: 0.3
   m_SlipRayDistance: 0
   m_CameraManager: {fileID: 0}
+  m_BackWardspeedModifier: 0.5
+  m_StrafeSpeedModifier: 0.75
 --- !u!114 &3932360274920977244
 MonoBehaviour:
   m_ObjectHideFlags: 0
