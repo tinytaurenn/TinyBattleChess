@@ -21,11 +21,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a6217cdf4219f8746a39cea667638a0e, type: 2}
   - {fileID: 11400000, guid: 62b292f352e9df449a87f2a9d3203ddc, type: 2}
   - {fileID: 11400000, guid: 680a9d6be82f03840acb02d44f9b5d17, type: 2}
-  - {fileID: 11400000, guid: 11a1200a62d5f3a44a4c2f55814895b8, type: 2}
-  - {fileID: 11400000, guid: 48e913a3d149efd408971fc7199af37c, type: 2}
-  - {fileID: 11400000, guid: d5b3598698790874bb2a0b67468977c5, type: 2}
-  - {fileID: 11400000, guid: 9f17c0a6f186ae843b8cc3c62ec5a116, type: 2}
-  - {fileID: 11400000, guid: 8e5e1e94d30c8514d96fd1548f8ce79b, type: 2}
+  - {fileID: 11400000, guid: 1d0235fef7ba0d04c90c4bd2c9177aec, type: 2}
+  - {fileID: 11400000, guid: 6892d6283699d57468d4cf8475ed3508, type: 2}
+  - {fileID: 11400000, guid: b891e705cde27a6409a59fc0d082ef69, type: 2}
   - {fileID: 11400000, guid: a721f3b42aa777a4dad5a3b2b9784d7e, type: 2}
   UnCommonChance: 75
   RareChance: 55

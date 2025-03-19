@@ -1014,15 +1014,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
-  m_SO_Item: {fileID: 11400000, guid: 9f17c0a6f186ae843b8cc3c62ec5a116, type: 2}
+  m_SO_Item: {fileID: 11400000, guid: b891e705cde27a6409a59fc0d082ef69, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
   m_WeaponParameters:
-    Damage: 10
-    Speed: 1.5
-    Cost: 20
     DamageType: 1
     WeaponType: 1
     WeaponSize: 0
@@ -1039,6 +1036,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}
   m_DamageCollider: {fileID: 2763414840703086933, guid: d9c58831288052b4bb0dfa57ee24e75e, type: 3}
   m_HitPos: {fileID: 0}
+  m_MeleeWeaponParameters:
+    Damage: 10
+    Speed: 1
 --- !u!4 &3375366271663266282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ddb9f74de6cd15c4f8c1e636ef756690, type: 3}

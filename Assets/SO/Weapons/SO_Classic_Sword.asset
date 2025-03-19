@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519174a314d90c44b803c48cc31643ff, type: 3}
+  m_Name: SO_Classic_Sword
+  m_EditorClassIdentifier: 
+  ItemID: Classic_Sword
+  ItemIcon: {fileID: 21300000, guid: c38ab21992561c8439f89ff594e2d448, type: 3}
+  ItemName: Classic Sword
+  ItemDescription: 
+  Usable_GameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
+  Chest_GameObject: {fileID: 8634794106180705974, guid: 14e32523fb184c2428679a08f3536c25, type: 3}
+  Cost: 10
+  EItemRarity: 0
+  WeaponParameters:
+    DamageType: 1
+    WeaponType: 1
+    WeaponSize: 0
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: 0, y: 0, z: 0}
+  MeleeWeaponParameters:
+    Damage: 10
+    Speed: 1
+  HitSounds:
+  - {fileID: 8300000, guid: 2b901ac228ea622448cc3198f2358fc0, type: 3}
+  - {fileID: 8300000, guid: f81c7afdd6b84634a8db483151a6141c, type: 3}
+  - {fileID: 8300000, guid: 746f6a1adc41b4f4fb6b481d2298d1d6, type: 3}
+  - {fileID: 8300000, guid: 38d39d27c253d4249b981d48cafdde07, type: 3}
+  ParrySounds:
+  - {fileID: 8300000, guid: ba65c498c0992aa43a25b4ca11346d60, type: 3}
+  - {fileID: 8300000, guid: e6ab87aba29962643b4905ccc6642ab9, type: 3}
+  - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}

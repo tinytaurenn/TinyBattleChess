@@ -271,15 +271,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
-  m_SO_Item: {fileID: 11400000, guid: d5b3598698790874bb2a0b67468977c5, type: 2}
+  m_SO_Item: {fileID: 11400000, guid: 6892d6283699d57468d4cf8475ed3508, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
   m_WeaponParameters:
-    Damage: 10
-    Speed: 1.5
-    Cost: 20
     DamageType: 1
     WeaponType: 256
     WeaponSize: 1

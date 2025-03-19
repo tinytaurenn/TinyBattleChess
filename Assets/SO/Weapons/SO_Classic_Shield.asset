@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36be0f25493b60244865c74ef1caa847, type: 3}
+  m_Name: SO_Classic_Shield
+  m_EditorClassIdentifier: 
+  ItemID: Classic_Shield
+  ItemIcon: {fileID: 21300000, guid: 59eaa3b53e379e443a2843d9f268f720, type: 3}
+  ItemName: Classic Shield
+  ItemDescription: 
+  Usable_GameObject: {fileID: 5939298459688205857, guid: 2c19a04c42faa6b4398e588b58d31f5f, type: 3}
+  Chest_GameObject: {fileID: 148541982870755977, guid: d6262c38f8e30894b896ca3c890b3074, type: 3}
+  Cost: 10
+  EItemRarity: 0
+  WeaponParameters:
+    DamageType: 1
+    WeaponType: 256
+    WeaponSize: 1
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: 0, y: 0, z: 0}
+  ParrySounds:
+  - {fileID: 8300000, guid: 9f740459a5983e940aa36028bb8d0ca2, type: 3}
+  - {fileID: 8300000, guid: 6a3e45b8d5613d14d9a46133e67d1bb7, type: 3}
+  - {fileID: 8300000, guid: f9a5fe35af5ad6c4b9375f80a27d9a71, type: 3}
+  - {fileID: 8300000, guid: 9f68dd9f023d6704cb60d9d2ae8aeedd, type: 3}

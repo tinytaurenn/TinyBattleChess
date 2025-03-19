@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519174a314d90c44b803c48cc31643ff, type: 3}
+  m_Name: SO_Classic_Axe
+  m_EditorClassIdentifier: 
+  ItemID: Classic_Axe
+  ItemIcon: {fileID: 21300000, guid: deb651a80ba8bc744b874b76db2692c6, type: 3}
+  ItemName: Classic Axe
+  ItemDescription: 
+  Usable_GameObject: {fileID: 6767735381354182695, guid: 8741b68fc3e4c6648bf6807cc4d527cf, type: 3}
+  Chest_GameObject: {fileID: 2951268537558081629, guid: 61f9884e757c49c4485ef3cbead29bc0, type: 3}
+  Cost: 10
+  EItemRarity: 0
+  WeaponParameters:
+    DamageType: 1
+    WeaponType: 2
+    WeaponSize: 0
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: 0, y: 0, z: 0}
+  MeleeWeaponParameters:
+    Damage: 12
+    Speed: 0.9
+  HitSounds:
+  - {fileID: 8300000, guid: e01cd36fd531940b5bf4668241a66b3d, type: 3}
+  - {fileID: 8300000, guid: aa8658f1a1cdd4ae4ba2f5f888701d0e, type: 3}
+  - {fileID: 8300000, guid: 1ac30ee11a5314a638997f6fb715f74d, type: 3}
+  - {fileID: 8300000, guid: 47808e7c3bd794088b8bfec3a6ae11b5, type: 3}
+  ParrySounds:
+  - {fileID: 8300000, guid: 6259986a328994f5eac0609a26587aad, type: 3}
+  - {fileID: 8300000, guid: afc3df82122d94b26a7dd5665094f7b1, type: 3}
+  - {fileID: 8300000, guid: e0a601017367946608f7e138e6ec4b7c, type: 3}
