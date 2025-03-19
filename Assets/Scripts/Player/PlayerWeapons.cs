@@ -22,12 +22,12 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] internal EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
     [SerializeField] internal EWeaponType m_MainWeaponType = EWeaponType.Hands;
     [SerializeField] internal bool m_Parrying = false;
-    [SerializeField] bool m_InParry = false; 
     [SerializeField] internal bool m_Attacking = false;
-    [SerializeField] bool m_InAttack = false;
-    [SerializeField] bool m_InAttackRelease = false;
-    [SerializeField] bool m_InShieldParry = false;
     [SerializeField] bool m_CanAttack = true;
+
+    [SerializeField] bool m_LockedAttackRelease = false;
+
+    Coroutine m_AttackReleaseLockRoutine; 
 
 
     [Header("Weapon Parameters")]
@@ -41,11 +41,9 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float m_ParryAngle = 20f;
 
 
-    public bool InAttackReady => (m_InAttack && m_Attacking && !m_InAttackRelease); 
-    public bool InAttackRelease => (m_InAttackRelease); 
-    public bool InParry => (m_Parrying && m_InParry);
+    public bool InParry => (m_WeaponState == EWeaponState.Parry);
 
-    public bool InShieldParry => (m_Parrying && m_InParry && m_InShieldParry); 
+    public bool InShieldParry => (m_WeaponState == EWeaponState.ShieldParry); 
 
     public bool Throwing { get; set; }
 
@@ -53,6 +51,16 @@ public class PlayerWeapons : MonoBehaviour
 
     public bool UsingItem { get; set; }
 
+
+    public enum EWeaponState
+    {
+        None,
+        AttackReady,
+        AttackRelease,
+        Parry,
+        ShieldParry,
+    }
+    public EWeaponState m_WeaponState = EWeaponState.None;
 
 
     private void Awake()
@@ -101,14 +109,8 @@ public class PlayerWeapons : MonoBehaviour
             return; 
         }
 
+        StateUpdate(); 
 
-
-        if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null
-            && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] == null )
-        {
-            return; //to change 
-        }
-        WeaponsUpdate(); 
         
     }
 
@@ -157,169 +159,170 @@ public class PlayerWeapons : MonoBehaviour
 
     }
 
-    void WeaponsUpdate()
+
+
+    void StateUpdate()
     {
         if (m_TinyPlayer.m_IsStunned)
         {
             return;
         }
 
-        ParryUpdate();
-        AttackUpdate();
-    }
-
-    void ParryUpdate()
-    {
-        
-        if (m_InAttackRelease)
+        switch (m_WeaponState)
         {
-            return;
+            case EWeaponState.None:
+
+                if (m_Parrying)
+                {
+
+                    SwitchWeaponState(DoPossesShield() ?EWeaponState.ShieldParry : EWeaponState.Parry);
+
+                    return; 
+                }
+                if(m_Attacking)
+                {
+                    if (!m_CanAttack) return;
+
+                    if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null) return;
+                    SwitchWeaponState(EWeaponState.AttackReady);
+                    return; 
+                }
+
+                break;
+            case EWeaponState.AttackReady:
+                if (!m_Attacking)
+                {
+                    SwitchWeaponState(EWeaponState.AttackRelease); 
+                }
+                break;
+            case EWeaponState.AttackRelease:
+
+                if (m_Parrying)
+                {
+                    if (m_LockedAttackRelease) return;
+                    SwitchWeaponState(DoPossesShield() ? EWeaponState.ShieldParry : EWeaponState.Parry);
+                }
+                break;
+            case EWeaponState.Parry:
+                if (!m_Parrying)
+                {
+                    SwitchWeaponState(EWeaponState.None);
+                }
+                break;
+            case EWeaponState.ShieldParry:
+                if (!m_Parrying)
+                {
+                    SwitchWeaponState(EWeaponState.None);
+                }
+                break;
+            default:
+                break;
         }
-
-
-        if (m_Parrying)
+    }
+    void OnEnterWeaponState()
+    {
+        switch (m_WeaponState)
         {
+            case EWeaponState.None:
+                break;
+            case EWeaponState.AttackReady:
+                
 
-            if (m_InAttack)
-            {
-                m_InAttack = false;
+                GetWeaponDirection();
+                SetAnimatorWeaponDirection();
+
+                m_Animator.SetBool("Attacking", true);
+                GetMainWeapon().RaiseAttackEffect();
+
+                switch (m_MainWeaponType)
+                {
+                    case EWeaponType.Hands:
+                        break;
+                    case EWeaponType.Melee:
+                        break;
+                    case EWeaponType.Staff:
+                        break;
+                    case EWeaponType.Ranged:
+                        break;
+                    case EWeaponType.Shield:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case EWeaponState.AttackRelease:
+
                 m_Animator.SetBool("Attacking", false);
-            }
-
-            if (m_InParry)
-            {
-                return;
-            }
-
-            m_InParry = true;
-
-            if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] != null 
-                && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>().WeaponParameters.WeaponType == EWeaponType.Shield)
-            {
-                Debug.Log("got some shield");
-                ShieldParry(); 
-                return; 
-            }
-
-            GetWeaponDirection(); 
-
-            Parry();
-        }
-        else
-        {
-            ReleaseParry();
-        }
-
-    }
-    internal void ShieldParry()
-    {
-        m_InShieldParry = true;
-        m_Parrying = true;
-        m_InAttack = false;
-        m_Animator.SetBool("ShieldParry", true);
-        m_Animator.SetBool("Parry", true);
-    }
-
-    internal void Parry()
-    {
-        //Debug.Log("Parry");
-        //Debug.Log("Parry on " + m_WeaponDirection);
-
-        m_Parrying = true;
-        m_InAttack = false;
-
-        SetAnimatorWeaponDirection(); 
-
-        m_Animator.SetBool("Parry", true); 
-
-    }
-
-    void ReleaseParry()
-    {
-        m_Animator.SetBool("ShieldParry", false);
-        m_Animator.SetBool("Parry", false);
-        m_InParry = false;
-        m_InShieldParry = false; 
-
-    }
-
-    void AttackUpdate()
-    {
-        if (!m_CanAttack)
-        {
-            return;
-        }
-        if (m_Parrying)
-        {
-               return;
-        }
-        if (m_InAttackRelease)
-        {
-            return; 
-        }
-        if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null)
-        {
-            return; 
-        }
-        if (m_Attacking)
-        {
-            if(m_InAttack )
-            {
-                return; 
-            }
-
-            m_InAttack = true;
-            GetWeaponDirection(); 
-            Attack();
-        }
-        else
-        {
-            ReleaseAttack();
-        }
-    }
-
-    internal void Attack()
-    {
-        //Debug.Log("Attack");
-        //Debug.Log("Attack on " + m_WeaponDirection);
-
-        m_Attacking = true;
-
-        SetAnimatorWeaponDirection();
-
-        m_Animator.SetBool("Attacking", true);
-        GetMainWeapon().RaiseAttackEffect();
-
-        switch (m_MainWeaponType)
-        {
-            case EWeaponType.Hands:
                 break;
-            case EWeaponType.Melee:
+            case EWeaponState.Parry:
+                GetWeaponDirection();
+                SetAnimatorWeaponDirection();
+
+                m_Animator.SetBool("Parry", true);
                 break;
-            case EWeaponType.Staff:
-                break;
-            case EWeaponType.Ranged:
-                break;
-            case EWeaponType.Shield:
+            case EWeaponState.ShieldParry:
+                m_Animator.SetBool("ShieldParry", true);
+                m_Animator.SetBool("Parry", true);
                 break;
             default:
                 break;
         }
     }
 
-    void ReleaseAttack()
+    void OnExitWeaponState()
     {
-        m_Animator.SetBool("Attacking", false);
-        
+        switch (m_WeaponState)
+        {
+            case EWeaponState.None:
+                
+                break;
+            case EWeaponState.AttackReady:
+                break;
+            case EWeaponState.AttackRelease:
+                if(m_AttackReleaseLockRoutine != null) StopCoroutine(m_AttackReleaseLockRoutine);
+
+                m_LockedAttackRelease = false; 
+                break;
+            case EWeaponState.Parry:
+                m_Animator.SetBool("Parry", false);
+                break;
+            case EWeaponState.ShieldParry:
+                m_Animator.SetBool("ShieldParry", false);
+                m_Animator.SetBool("Parry", false);
+                break;
+            default:
+                break;
+        }
     }
 
-    public void LockAttackRelease(bool isLocked)=> m_InAttackRelease = isLocked;
+    public void SwitchWeaponState(EWeaponState state)
+    {
+        if (state == m_WeaponState)
+        {
+            return;
+        }
+
+        //Debug.Log("Switching weapon state from " + m_WeaponState + " to " + state); 
+
+        OnExitWeaponState();
+        m_WeaponState = state;
+        OnEnterWeaponState();
+    }
+
+    bool DoPossesShield()
+    {
+        return m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] != null
+               && m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>().WeaponParameters.WeaponType == EWeaponType.Shield; 
+    }
+        
+
+    public void LockAttackRelease(bool isLocked)=> m_LockedAttackRelease = isLocked;
 
     public void LockAttack(bool isLocked) => m_CanAttack = !isLocked;
     public void LockAttack()
     {
         //Debug.Log("locking attack");
-        m_InAttackRelease = true;
+        m_LockedAttackRelease = true;
         if(m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] !=null) m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().m_HolderTransform = transform;
         if(m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] != null) m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>().m_HolderTransform = transform;
 
@@ -330,17 +333,22 @@ public class PlayerWeapons : MonoBehaviour
         // 0.3 normal => length = 2.4 ___________ time = 0.3 * 2.4 = 0.72 so 1.68 is the right time
         // 1 - normalizedTime * animLenght = time remaining 
 
-        StartCoroutine(LockAttackRoutine((1 - normalizedTime) * animLenght));
+        m_AttackReleaseLockRoutine =  StartCoroutine(LockAttackRoutine((1 - normalizedTime) * animLenght));
     }
 
     IEnumerator LockAttackRoutine(float time)
     {
+        //Debug.Log("lock attack routine "); 
         float timeToWait = time + m_BaseReleaseDelay;
         yield return new WaitForSeconds(timeToWait);
         //Debug.Log("Unlocking attack");
-        m_InAttackRelease = false;
-        m_InAttack = false;
+        m_LockedAttackRelease = false;
+        if(m_WeaponState == EWeaponState.AttackRelease)
+        {
+            SwitchWeaponState(m_Parrying ? DoPossesShield() ? EWeaponState.ShieldParry : EWeaponState.Parry : m_Attacking ? EWeaponState.AttackReady : EWeaponState.None);
+        }
     }
+        //
     IEnumerator AttackCoolDownRoutine(float time)
     {
         m_CanAttack = false;
@@ -354,8 +362,8 @@ public class PlayerWeapons : MonoBehaviour
     {
         Debug.Log("i get sync blocked ");
         m_Animator.SetTrigger("Blocked");
-        m_InAttack = false; 
-        m_InAttackRelease = false;
+        //m_InAttack = false; 
+        m_LockedAttackRelease = false;
         m_Attacking = false;
         m_Sync.SendCommand<Animator>(nameof(Animator.SetTrigger), MessageTarget.Other, "Blocked");
         StartCoroutine(AttackCoolDownRoutine(m_BlockedAttackCooldown));
@@ -436,19 +444,11 @@ public class PlayerWeapons : MonoBehaviour
 
     public void SetWeaponsNeutralState()
     {
-        if (m_InParry || m_Parrying)
-        {
-            m_Animator.SetBool("Parry", false);
-            m_InParry = false;
-            m_Parrying = false;
-        }
-        if (m_InAttack || m_Attacking || m_InAttackRelease)
-        {
-            m_InAttack = false;
-            m_InAttackRelease = false;
-            m_Attacking = false;
-            m_Animator.SetBool("Attacking", false);
-        }
+        m_Attacking = false;
+        m_Parrying = false;
+        m_CanAttack = true;
+
+        SwitchWeaponState(EWeaponState.None);
     }
    
 

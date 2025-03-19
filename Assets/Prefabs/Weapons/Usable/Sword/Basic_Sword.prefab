@@ -1034,7 +1034,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ba65c498c0992aa43a25b4ca11346d60, type: 3}
   - {fileID: 8300000, guid: e6ab87aba29962643b4905ccc6642ab9, type: 3}
   - {fileID: 8300000, guid: 63745a5755d3547468b4b1bfb811f167, type: 3}
-  m_DamageCollider: {fileID: 2763414840703086933, guid: d9c58831288052b4bb0dfa57ee24e75e, type: 3}
+  m_DamageCollider: {fileID: 2763414840703086933}
   m_HitPos: {fileID: 0}
   m_MeleeWeaponParameters:
     Damage: 10
