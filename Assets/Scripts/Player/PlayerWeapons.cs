@@ -20,7 +20,7 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] internal bool m_TwoHanded = false;
     [SerializeField] internal Vector2 m_LookDirection = Vector2.zero;
     [SerializeField] internal EWeaponDirection m_WeaponDirection = EWeaponDirection.Right;
-    [SerializeField] internal EWeaponType m_MainWeaponType = EWeaponType.Sword;
+    [SerializeField] internal EWeaponType m_MainWeaponType = EWeaponType.Hands;
     [SerializeField] internal bool m_Parrying = false;
     [SerializeField] bool m_InParry = false; 
     [SerializeField] internal bool m_Attacking = false;
@@ -288,6 +288,23 @@ public class PlayerWeapons : MonoBehaviour
         SetAnimatorWeaponDirection();
 
         m_Animator.SetBool("Attacking", true);
+        GetMainWeapon().RaiseAttackEffect();
+
+        switch (m_MainWeaponType)
+        {
+            case EWeaponType.Hands:
+                break;
+            case EWeaponType.Melee:
+                break;
+            case EWeaponType.Staff:
+                break;
+            case EWeaponType.Ranged:
+                break;
+            case EWeaponType.Shield:
+                break;
+            default:
+                break;
+        }
     }
 
     void ReleaseAttack()

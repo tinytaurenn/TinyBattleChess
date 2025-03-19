@@ -36,27 +36,27 @@ public class ShieldWeapon : BasicWeapon,IWeapon
         base.OnTriggerEnter(other);
     }
 
-    protected override void ApplyDamage(CoherenceSync damageTargetSync)
+    public override void ApplyDamage(CoherenceSync damageTargetSync)
     {
         //throw new System.NotImplementedException();
     }
 
-    protected override void BlockAttackEffect(CoherenceSync damagerSync)
+    public override void BlockAttackEffect(CoherenceSync damagerSync)
     {
         //throw new System.NotImplementedException();
     }
 
-    protected override void RaiseAttackEffect()
+    public override void RaiseAttackEffect()
     {
         //throw new System.NotImplementedException();
     }
 
-    protected override void RaiseBlockEffect()
+    public override void RaiseBlockEffect()
     {
         //throw new System.NotImplementedException();
     }
 
-    protected override void ReleaseAttackEffect()
+    public override void ReleaseAttackEffect()
     {
         //throw new System.NotImplementedException();
     }

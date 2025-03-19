@@ -100,11 +100,11 @@ public abstract class BasicWeapon : Grabbable, IWeapon
 
     }
 
-    protected abstract void ApplyDamage(CoherenceSync damageTargetSync);
-    protected abstract void BlockAttackEffect(CoherenceSync damagerSync);
-    protected abstract void RaiseAttackEffect();
-    protected abstract void RaiseBlockEffect(); 
-    protected abstract void ReleaseAttackEffect(); 
+    public abstract void ApplyDamage(CoherenceSync damageTargetSync);
+    public abstract void BlockAttackEffect(CoherenceSync damagerSync);
+    public abstract void RaiseAttackEffect();
+    public abstract void RaiseBlockEffect();
+    public abstract void ReleaseAttackEffect(); 
 
 
 }

@@ -110,7 +110,7 @@ public class MeleeWeapon : BasicWeapon,IWeapon
         }
     }
 
-    protected override void ApplyDamage(CoherenceSync damageTargetSync)
+    public override void ApplyDamage(CoherenceSync damageTargetSync)
     {
         int weaponDir = 0;
         if (m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons weapons))
@@ -125,22 +125,22 @@ public class MeleeWeapon : BasicWeapon,IWeapon
         damageTargetSync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, weaponDir, holderSync, m_MeleeWeaponParameters.Damage, (int)m_WeaponParameters.DamageType, m_HolderTransform.transform.position);
     }
 
-    protected override void BlockAttackEffect(CoherenceSync damagerSync)
+    public override void BlockAttackEffect(CoherenceSync damagerSync)
     {
         //throw new System.NotImplementedException();
     }
 
-    protected override void RaiseAttackEffect()
+    public override void RaiseAttackEffect()
     {
         //throw new System.NotImplementedException();
     }
 
-    protected override void RaiseBlockEffect()
+    public override void RaiseBlockEffect()
     {
         //throw new System.NotImplementedException();
     }
 
-    protected override void ReleaseAttackEffect()
+    public override void ReleaseAttackEffect()
     {
         //throw new System.NotImplementedException();
     }

@@ -99,39 +99,23 @@ public class ItemEditor : EditorWindow
 
         switch (soWeapon.WeaponParameters.WeaponType)
         {
-            case EWeaponType.Sword:
+            case EWeaponType.Hands:
+                break; 
+            case EWeaponType.Melee:
                 weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
                 SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
                 break;
-            case EWeaponType.Axe:
-                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
-                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
-                break;
-            case EWeaponType.Mace:
-                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
-                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
-                break;
-            case EWeaponType.Spear:
-                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
-                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
-                break;
-            case EWeaponType.Bow:
-                break;
-            case EWeaponType.Crossbow:
-                break;
-            case EWeaponType.LongBow:
-                break;
+            case EWeaponType.Ranged:
+
+
+                break; 
+
             case EWeaponType.Staff:
                 weaponScript = weaponGameObject.AddComponent<StaffWeapon>();
 
                 break;
             case EWeaponType.Shield:
                 weaponScript = weaponGameObject.AddComponent<ShieldWeapon>();
-
-                break;
-            case EWeaponType.Dagger:
-                weaponScript = weaponGameObject.AddComponent<MeleeWeapon>();
-                SetMeleeWeaponParameters(weaponScript as MeleeWeapon, soWeapon as SO_MeleeWeapon);
 
                 break;
             default:
