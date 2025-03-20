@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 
@@ -78,7 +79,11 @@ namespace PlayerControls
 
         }
 
-
-
+        internal void Emote()
+        {
+            
+            m_Animator.SetTrigger("Emote"); 
+            m_sync.SendCommand<Animator>(nameof(m_Animator.SetTrigger), Coherence.MessageTarget.Other, "Emote");
+        }
     } 
 }

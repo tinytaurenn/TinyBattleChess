@@ -76,7 +76,7 @@ public class PlayerWeapons : MonoBehaviour
     }
     void Start()
     {
-
+        UpdateMainWeaponType(); 
         AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(1);
         AnimatorStateInfo nextStateInfo = m_Animator.GetNextAnimatorStateInfo(1);
     }
@@ -128,6 +128,12 @@ public class PlayerWeapons : MonoBehaviour
 
     void SetAnimatorWeaponDirection()
     {
+        if(GetSecondaryWeapon() != null &&  m_MainWeaponType == EWeaponType.Hands )
+        {
+            m_Animator.SetInteger("WeaponDirectionNESO", 0);
+            return; 
+        }
+ 
         switch (m_WeaponDirection)
         {
             case EWeaponDirection.Right:
@@ -185,7 +191,7 @@ public class PlayerWeapons : MonoBehaviour
                 {
                     if (!m_CanAttack) return;
 
-                    if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null) return;
+                    //if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null) return;
                     SwitchWeaponState(EWeaponState.AttackReady);
                     return; 
                 }
@@ -232,6 +238,7 @@ public class PlayerWeapons : MonoBehaviour
 
                 GetWeaponDirection();
                 SetAnimatorWeaponDirection();
+                
 
                 m_Animator.SetBool("Attacking", true);
                 //GetMainWeapon().RaiseAttackEffect();
@@ -401,12 +408,6 @@ public class PlayerWeapons : MonoBehaviour
 
     }
 
-    public void SetTwoHanded(bool twohanded)
-    {
-        m_TwoHanded = twohanded;
-        m_Animator.SetBool("TwoHanded", m_TwoHanded);
-    }
-
     public void SetWeaponParameters(BasicWeapon weapon)
     {
         if (weapon.GetType() == typeof(MeleeWeapon))
@@ -414,14 +415,30 @@ public class PlayerWeapons : MonoBehaviour
             float speed = ((MeleeWeapon)weapon).MeleeWeaponParameters.Speed; 
             m_Animator.SetFloat("WeaponSpeed", speed);
         }
-        m_MainWeaponType = weapon.WeaponParameters.WeaponType;  
+        UpdateMainWeaponType();
         
+    }
+    public void UpdateMainWeaponType()
+    {
+        if(GetMainWeapon() == null)
+        {
+            m_MainWeaponType = EWeaponType.Hands;
+            m_Animator.SetBool("TwoHanded", false);
+        }
+        else
+        {
+            m_Animator.SetBool("TwoHanded", GetMainWeapon().WeaponParameters.WeaponSize == EWeaponSize.Two_Handed);
+            m_MainWeaponType = GetMainWeapon().WeaponParameters.WeaponType;
+            
+        }
+        m_Animator.SetBool("BareHanded", m_MainWeaponType == EWeaponType.Hands);
     }
 
     public void Drop(float throwForce = 5f)
     {
         Debug.Log("dropping"); 
         m_PlayerLoadout.DropWeapons(throwForce);
+        UpdateMainWeaponType();
 
 
     }

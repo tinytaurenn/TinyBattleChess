@@ -38,6 +38,7 @@ component _276f4c8c1f54c8d41afce07cc23e23c3_3857080701089809062 [id "160"]
   Aiming Bool [bits "1"]
   UsingMagic Bool [bits "1"]
   LookValue Float [sim-frames "true", compression "None"]
+  BareHanded Bool [bits "1"]
 
 component _276f4c8c1f54c8d41afce07cc23e23c3_4012604043449858976 [id "161"]
   m_ItemInUse Bool [bits "1"]

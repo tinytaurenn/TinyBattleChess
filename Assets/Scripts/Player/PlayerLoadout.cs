@@ -251,6 +251,7 @@ public class PlayerLoadout : MonoBehaviour
             DropWeapon(m_EquippedItems[EStuffSlot.SecondaryWeapon], throwForce);
             ClearOnSlot(EStuffSlot.SecondaryWeapon);
         }
+        m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
     }
     void DropItemOnSlot(int slot, float throwForce = 5f)
     {
@@ -408,7 +409,6 @@ public class PlayerLoadout : MonoBehaviour
             }
             m_EquippedItems[EStuffSlot.MainWeapon]= weapon;
             m_EquippedItems[EStuffSlot.SecondaryWeapon]= null;
-            m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(true);
 
         }
 
@@ -430,22 +430,20 @@ public class PlayerLoadout : MonoBehaviour
 
             m_EquippedItems[EStuffSlot.SecondaryWeapon] = weapon;
             hand = EStuffSlot.SecondaryWeapon;
-            m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
             
         }
         else if(weapon.WeaponParameters.WeaponSize == EWeaponSize.Right_Handed)
         {
             DropItemOnSlot(EStuffSlot.MainWeapon);
             m_EquippedItems[EStuffSlot.MainWeapon] = weapon;
-            m_TinyPlayer.m_PlayerWeapons.SetTwoHanded(false);
         }
         if(weapon.WeaponParameters.WeaponSize != EWeaponSize.Left_Handed)
         {
             m_TinyPlayer.m_PlayerWeapons.SetWeaponParameters(weapon);
         }
-        
 
 
+        m_TinyPlayer.m_PlayerWeapons.UpdateMainWeaponType(); 
     }
 
     void EquipArmor(Armor armor, out EStuffSlot slot, out Transform socket)

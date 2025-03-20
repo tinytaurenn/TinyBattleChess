@@ -2062,8 +2062,9 @@ namespace Coherence.Generated
                     val.Aiming = orig.Aiming ? (System.Byte)1 : (System.Byte)0;
                     val.UsingMagic = orig.UsingMagic ? (System.Byte)1 : (System.Byte)0;
                     val.LookValue = orig.LookValue;
+                    val.BareHanded = orig.BareHanded ? (System.Byte)1 : (System.Byte)0;
 
-                    updater.UpdateComponent(entity, componentType, val, 26, component.FieldsMask, component.StoppedMask, frames);
+                    updater.UpdateComponent(entity, componentType, val, 27, component.FieldsMask, component.StoppedMask, frames);
 
                     return;
                 }
