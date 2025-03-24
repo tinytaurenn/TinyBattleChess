@@ -8,6 +8,9 @@ public class PlayerAnimEvents : MonoBehaviour
     [SerializeField] ParticleSystem m_JumpParticles;
     [SerializeField] ParticleSystem m_LandParticles;
 
+    [SerializeField] ParticleSystem m_RightPunchParticles; 
+    [SerializeField] ParticleSystem m_LeftPunchParticles;
+
    
 
 
@@ -36,6 +39,8 @@ public class PlayerAnimEvents : MonoBehaviour
         m_JumpParticles.Play();
         StopRunParticles();
     }
+    public void PlayRightPunch() => m_RightPunchParticles.Play();
+    public void PlayLeftPunch() => m_LeftPunchParticles.Play();
 
   
 }

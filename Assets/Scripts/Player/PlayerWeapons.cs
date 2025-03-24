@@ -2,6 +2,7 @@ using Coherence;
 using Coherence.Toolkit;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -37,6 +38,9 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] float m_BaseReleaseDelay = 0.15f;
     [SerializeField] float m_BaseAttackCoolDown = 0.2f;
     [SerializeField] float m_BlockedAttackCooldown = 0.5f;
+
+    [SerializeField] int m_BareHanded_Damage = 5; 
+    [SerializeField] float m_BareHanded_Range= 2f; 
 
     [Space(10)]
     [Header("Parry Parameters")]
@@ -385,6 +389,7 @@ public class PlayerWeapons : MonoBehaviour
     public void SyncHit()
     {
         Debug.Log("i get sync Hit ");
+        if (GetMainWeapon() == null) return; 
 
         m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().PlayHitSound();
     }
@@ -471,6 +476,38 @@ public class PlayerWeapons : MonoBehaviour
         m_CanAttack = true;
 
         SwitchWeaponState(EWeaponState.None);
+    }
+   
+    public void DoBareHandedDamage(bool isLeft)
+    {
+        if(m_Sync.HasStateAuthority == false)
+        {
+            return;
+        }
+        Vector3 pos = isLeft ? m_PlayerLoadout.m_PlayerLeftHandSocket.position : m_PlayerLoadout.m_PlayerRightHandSocket.position;
+
+        foreach (Collider collider in Physics.OverlapSphere(pos, m_BareHanded_Range))
+        {
+            if(collider.TryGetComponent<Entity>(out Entity ent))
+            {
+                if(collider.transform == transform)
+                {
+                    Debug.Log("cant punch itself i'm sorry ");
+                    continue;
+                }
+
+                Debug.Log("fist punch found entity");
+                if(collider.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
+                {
+                    if(transform.IsInAngle(m_ParryAngle, collider.transform.position))
+                    {
+                        sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, (int)m_WeaponDirection, m_Sync, m_BareHanded_Damage, (int)EEffectType.Physical, transform.position);
+                    }
+                }
+                  
+            }
+        }
+
     }
    
 
