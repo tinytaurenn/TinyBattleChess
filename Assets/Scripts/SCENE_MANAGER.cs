@@ -6,7 +6,7 @@ public class SCENE_MANAGER : MonoBehaviour
     //put on every scene 
     public static SCENE_MANAGER Instance { get; private set;  }
 
-    
+    [SerializeField] Light m_MainLight; 
 
     [SerializeField] Transform m_ShopSpawnPositions;
     [SerializeField] Transform m_BattleSpawnPositions;
@@ -19,7 +19,7 @@ public class SCENE_MANAGER : MonoBehaviour
 
     [Space(10)]
     [Header("Arenas GameObjects")]
-    [SerializeField] public GameObject m_LibrairyArena;
+    [SerializeField] GameObject m_LibrairyArena;
 
     //[SerializeField] MainSimulator.EPlayState m_ScenePlayState = MainSimulator.EPlayState.Fighting; 
 
@@ -74,6 +74,27 @@ public class SCENE_MANAGER : MonoBehaviour
     private void FixedUpdate()
     {
         
+    }
+
+    public void UpdateScene(MainSimulator.EPlayState ePlayState)
+    {
+        switch (ePlayState)
+        {
+            case MainSimulator.EPlayState.Lobby:
+                m_LibrairyArena.SetActive(false);
+                break;
+            case MainSimulator.EPlayState.Shop:
+                break;
+            case MainSimulator.EPlayState.Fighting:
+                m_LibrairyArena.SetActive(true);
+                m_MainLight.enabled = false;
+                break;
+            case MainSimulator.EPlayState.End:
+                m_LibrairyArena.SetActive(false);
+                break;
+            default:
+                break;
+        }
     }
 
 

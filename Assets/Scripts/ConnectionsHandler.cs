@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class ConnectionsHandler : MonoBehaviour
 {
-
+    [SerializeField] bool IS_LOCAL_TESTING = false; 
 
 
     [SerializeField] CoherenceBridge m_CoherenceBridge ; 
@@ -168,6 +168,12 @@ public class ConnectionsHandler : MonoBehaviour
 
         if(Coherence.SimulatorUtility.IsSimulator) return;
 
+        if(IS_LOCAL_TESTING)
+        {
+            LocalTestingPlayerSpawn();
+            return; 
+        }
+
         StartCoroutine(SpawnSync());
         //PlayerSpawn();
 
@@ -181,12 +187,6 @@ public class ConnectionsHandler : MonoBehaviour
     {
         yield return new WaitUntil(() => Main_Simulator != null);
         PlayerSpawn();
-
-
-
-       
-
-
 
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -211,7 +211,6 @@ public class ConnectionsHandler : MonoBehaviour
                  MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.ShopSpawnPos.GetChild(0).position, Quaternion.identity);
                 break;
             case MainSimulator.EPlayState.Fighting:
-                 SCENE_MANAGER.Instance.m_LibrairyArena.SetActive(true);
                  MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(0).position, Quaternion.identity);
                 break;
             case MainSimulator.EPlayState.End:
@@ -223,7 +222,18 @@ public class ConnectionsHandler : MonoBehaviour
         
         MyPlayer.name = "[local] PLAYER";
         m_TinyPlayer = MyPlayer.GetComponent<TinyPlayer>();
-        ParentedCamera.Instance.m_PlayerMovement = m_TinyPlayer.m_PlayerMovement; 
+        ParentedCamera.Instance.m_PlayerMovement = m_TinyPlayer.m_PlayerMovement;
+
+        SCENE_MANAGER.Instance.UpdateScene((MainSimulator.EPlayState)Main_Simulator.m_IntPlayState);
+    }
+
+    void LocalTestingPlayerSpawn()
+    {
+        GameObject MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.LobbyPos.position, Quaternion.identity);
+
+        MyPlayer.name = "[local] PLAYER";
+        m_TinyPlayer = MyPlayer.GetComponent<TinyPlayer>();
+        ParentedCamera.Instance.m_PlayerMovement = m_TinyPlayer.m_PlayerMovement;
     }
 
     void SyncAll()

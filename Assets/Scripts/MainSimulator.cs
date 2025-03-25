@@ -365,7 +365,7 @@ public class MainSimulator : MonoBehaviour
         //m_PlayerSyncs.Clear();
         foreach (var player in FindObjectsByType<TinyPlayer>(FindObjectsSortMode.None))
         {
-            if(player.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
+            if(player.TryGetComponent<CoherenceSync>(out CoherenceSync sync)) 
             {
                 AddPlayerSync(sync);
             }

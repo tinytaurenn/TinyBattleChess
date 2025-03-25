@@ -185,7 +185,7 @@ public class TinyPlayer : Entity, IDamageable
     public void LoadToArena()
     {
         Debug.Log("loading arena command");
-        SCENE_MANAGER.Instance.m_LibrairyArena.SetActive(true);
+        SCENE_MANAGER.Instance.UpdateScene(MainSimulator.EPlayState.Fighting);
         TeleportPlayer(SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(0).position);
     }
     [Command]
@@ -194,8 +194,8 @@ public class TinyPlayer : Entity, IDamageable
         Debug.Log("load to lobby command");
         ResetPlayerStats();
         SwitchPlayerState(0);
+        SCENE_MANAGER.Instance.UpdateScene(MainSimulator.EPlayState.Lobby);
         TeleportPlayer(SCENE_MANAGER.Instance.LobbyPos.position);
-        SCENE_MANAGER.Instance.m_LibrairyArena.SetActive(false);
     }
 
 

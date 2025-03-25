@@ -18842,6 +18842,9 @@ MonoBehaviour:
   m_Damping: 0.01
   m_SlipCheckDistance: 0.3
   m_SlipRayDistance: 0
+  m_StepCheckHeight: 0.1
+  m_StepMoveHeight: 0.7
+  m_StepSpeed: 4
   m_CameraManager: {fileID: 0}
   m_BackWardspeedModifier: 0.5
   m_StrafeSpeedModifier: 0.75
@@ -18895,7 +18898,7 @@ MonoBehaviour:
   m_BaseReleaseDelay: 0.15
   m_BaseAttackCoolDown: 0.2
   m_BlockedAttackCooldown: 0.5
-  m_BareHanded_Damage: 5
+  m_BareHanded_Damage: 4
   m_BareHanded_Range: 1
   m_ParryAngle: 90
   m_WeaponState: 0

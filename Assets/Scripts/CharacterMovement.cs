@@ -61,6 +61,14 @@ public abstract class CharacterMovement : MonoBehaviour
     [SerializeField] float m_SlipCheckDistance = 0.3f;
     [SerializeField] float m_SlipRayDistance = 0f;
 
+    [Header("Step")]
+    Vector3 m_StepRay = Vector3.zero;
+    [SerializeField] bool m_IsStepping = false; 
+    [SerializeField] float m_StepCheckHeight = 0.1f; 
+    [SerializeField] float m_StepMoveHeight = 0.65f; 
+    [SerializeField] float m_StepSpeed = 5f; 
+
+
 
 
     private void OnEnable()
@@ -150,9 +158,29 @@ public abstract class CharacterMovement : MonoBehaviour
         m_PushBackVelocity *= .8f;
 
         m_CurrentSpeed = IsSprinting ? m_MovementSpeed * m_SprintMultiplier : m_MovementSpeed;
-       
 
         m_HorizontalVelocity = (vectorDelta) * m_CurrentSpeed;
+
+        //STEPS
+
+        Vector3 stepPos = transform.position + Vector3.up * m_StepMoveHeight + MoveInput * 1;
+        Vector3 stepCheck = transform.position + Vector3.up * 0.1f + MoveInput * 1;
+        m_StepRay = (stepPos - transform.position).normalized;
+        Vector3 checkRay = (stepCheck - transform.position).normalized;
+        m_IsStepping = false;
+
+        if(Physics.Raycast(transform.position, checkRay, 1, m_WalkableLayer))
+        {
+            if(!Physics.Raycast(transform.position, m_StepRay, 1, m_WalkableLayer) && magnitude > 0.2f)
+            {
+                m_IsStepping = true;
+                m_HorizontalVelocity += m_StepRay * m_StepSpeed;
+            }
+        }
+
+
+        //
+        
 
         //next frame
         m_PreviousMoveInput = vectorDelta;
@@ -389,6 +417,7 @@ public abstract class CharacterMovement : MonoBehaviour
         //Debug.Log("magnitude : " + m_HorizontalVelocity.magnitude + " current speed : " + m_CurrentSpeed);
 
         float animSpeed = m_HorizontalVelocity.magnitude / m_CurrentSpeed;
+        if(m_IsStepping) animSpeed = (((m_HorizontalVelocity - m_StepRay * m_StepSpeed).magnitude) / m_CurrentSpeed);
         if (IsSprinting) animSpeed *= m_SprintMultiplier;
 
         if(animSpeed < 0.01f)
@@ -407,6 +436,8 @@ public abstract class CharacterMovement : MonoBehaviour
     void AvoidBorderStuck()
     {
         if (m_Isgrounded) return;
+        if (m_JumpTimer > 0f) return;
+
         if (SlipCheck(out Vector3 direction))
         {
             Bump(direction, 20f);
@@ -415,10 +446,10 @@ public abstract class CharacterMovement : MonoBehaviour
     }
 
 
-
     bool SlipCheck(out Vector3 direction)
     {
         direction = Vector3.up;
+        
 
         Vector3 raySpawnPos = transform.position + Vector3.down * m_SlipRayDistance;
 
@@ -542,5 +573,18 @@ public abstract class CharacterMovement : MonoBehaviour
         Gizmos.DrawRay(raySpawnPos + right, Vector3.down);
         Gizmos.color = (Physics.Raycast(leftDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
         Gizmos.DrawRay(raySpawnPos + left, Vector3.down);
+
+        Gizmos.color = Color.blue;
+        Vector3 stepPos = transform.position + Vector3.up * m_StepMoveHeight + MoveInput * 1 ;
+        Vector3 stepCheck = transform.position + Vector3.up * 0.1f + MoveInput * 1 ;
+        Vector3 stepRay = (stepPos - transform.position).normalized;
+        Vector3 checkRay = (stepCheck - transform.position).normalized;
+        Gizmos.color = (Physics.Raycast(transform.position,stepRay,1, m_WalkableLayer)) ? Color.red : Color.blue;
+        Gizmos.DrawRay(transform.position, stepRay);
+        Gizmos.color = (Physics.Raycast(transform.position, checkRay, 1, m_WalkableLayer)) ? Color.red : Color.blue;
+        Gizmos.DrawRay(transform.position, checkRay);
+
+        Gizmos.color = Color.cyan; 
+        Gizmos.DrawRay(transform.position, MoveInput);
     }
 }
