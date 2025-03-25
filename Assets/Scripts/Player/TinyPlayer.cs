@@ -184,38 +184,18 @@ public class TinyPlayer : Entity, IDamageable
     [Command]
     public void LoadToArena()
     {
-        ConnectionsHandler.Instance.LoadArena(); 
+        Debug.Log("loading arena command");
+        SCENE_MANAGER.Instance.m_LibrairyArena.SetActive(true);
+        TeleportPlayer(SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(0).position);
     }
     [Command]
     public void LoadToLobby()
     {
         Debug.Log("load to lobby command");
         ResetPlayerStats();
-        SwitchPlayerState(0); 
-        ConnectionsHandler.Instance.LoadLobby();
-    }
-    [Command]
-    public void SyncSimulatorScene(int sceneIndex)
-    {
-        Debug.Log("sync simulator in tinyplayer ");
-        if (SceneManager.GetActiveScene().buildIndex == sceneIndex)
-        {
-            Debug.Log("same scene then the simulator"); 
-
-        }
-
-        switch (sceneIndex)
-        {
-            case 0:
-                LoadToLobby();
-                break;
-            case 1:
-                LoadToArena();
-                break; 
-
-            default:
-                break;
-        }
+        SwitchPlayerState(0);
+        TeleportPlayer(SCENE_MANAGER.Instance.LobbyPos.position);
+        SCENE_MANAGER.Instance.m_LibrairyArena.SetActive(false);
     }
 
 

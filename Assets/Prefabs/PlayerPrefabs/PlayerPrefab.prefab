@@ -553,7 +553,6 @@ MonoBehaviour:
   - rid: 4705201942386966842
   - rid: 4705202326099460758
   - rid: 4705202326358458851
-  - rid: 3165744742287278777
   - rid: 3165744749918290580
   - rid: 3165744749918290581
   onNetworkedInstantiation:
@@ -587,48 +586,6 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 3165744742287278777
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 3165744742287278778
-        routing: 1
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: fa271219f5be48518545ccc900fdc6c8
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-        unityComponent: {fileID: 2358625368182078286}
-        coherenceSync: {fileID: 712017614822695059}
-        interpolationSettings: {fileID: 0}
-    - rid: 3165744742287278778
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: SyncSimulatorScene
-        monoAssemblyType: 
-        required: 1
-        enforcesLODingWhenFieldsOverriden: 0
-        valueSyncCallbackName: 
-        memberType: 8
-        parameterAssemblyTypes:
-        - System.Int32, mscorlib
-        ownerType:
-          assemblyQualifiedName: TinyPlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
     - rid: 3165744749918290580
       type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:
@@ -2356,6 +2313,11 @@ MonoBehaviour:
   m_SlipCheckDistance: 0.3
   m_SlipRayDistance: 0
   m_CameraManager: {fileID: 0}
+  m_BackWardspeedModifier: 0.5
+  m_StrafeSpeedModifier: 0.75
+  m_LookRange: 1
+  m_LookValue: 0
+  m_VerticalLookSensivity: 0.5
 --- !u!114 &8830135264561283332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2395,17 +2357,18 @@ MonoBehaviour:
   m_TwoHanded: 0
   m_LookDirection: {x: 0, y: 0}
   m_WeaponDirection: 0
+  m_MainWeaponType: 0
   m_Parrying: 0
-  m_InParry: 0
   m_Attacking: 0
-  m_InAttack: 0
-  m_InAttackRelease: 0
-  m_InShieldParry: 0
   m_CanAttack: 1
+  m_LockedAttackRelease: 0
   m_BaseReleaseDelay: 0.15
   m_BaseAttackCoolDown: 0.2
   m_BlockedAttackCooldown: 0.5
+  m_BareHanded_Damage: 5
+  m_BareHanded_Range: 2
   m_ParryAngle: 90
+  m_WeaponState: 0
 --- !u!114 &7936197508017733057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2439,6 +2402,7 @@ MonoBehaviour:
     m_keys: 
     m_values: []
   m_ThrowingItem: {fileID: 0}
+  m_ThrowDirectionSocket: {fileID: 0}
   m_PlayerLeftHandSocket: {fileID: 3293726256454769268}
   m_PlayerRightHandSocket: {fileID: 1010069479959953380}
   m_PlayerPocket: {fileID: 3957925043188666935}
@@ -3772,6 +3736,8 @@ MonoBehaviour:
   m_RunParticles: {fileID: 6926447243780501006}
   m_JumpParticles: {fileID: 8178293551315265230}
   m_LandParticles: {fileID: 208065056418517492}
+  m_RightPunchParticles: {fileID: 0}
+  m_LeftPunchParticles: {fileID: 0}
 --- !u!114 &2130127191657380802
 MonoBehaviour:
   m_ObjectHideFlags: 0

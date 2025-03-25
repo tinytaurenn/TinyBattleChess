@@ -8,7 +8,7 @@ public class GameStarter : Usable
 
         Debug.Log("Loading another scene ");
 
-        ConnectionsHandler.Instance.LoadArena(); 
+        //ConnectionsHandler.Instance.LoadArena(); 
         
      }
 

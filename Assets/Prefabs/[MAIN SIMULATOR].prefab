@@ -731,6 +731,7 @@ MonoBehaviour:
   m_DummiesSpawnPositions: {fileID: 0}
   SwordGameObject: {fileID: 2710152199524221776, guid: 0f16d1bc84b720e41945040d44446e92, type: 3}
   m_RespawnTime: 5
+  m_LibrairyArena: {fileID: 0}
   m_GameMode: 1
   m_IntGameMode: 0
   m_PlayState: 0

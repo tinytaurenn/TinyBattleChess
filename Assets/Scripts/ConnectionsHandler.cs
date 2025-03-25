@@ -48,11 +48,6 @@ public class ConnectionsHandler : MonoBehaviour
     [SerializeField] float m_SyncUpdateTimer = 0f; 
     [SerializeField] float m_SyncUpdateTime = 1f;
 
-    [Header("Data Storage")]
-
-    public CloudStorage m_CloudStorage => m_CoherenceBridge.CloudService.GameServices.CloudStorage;
-    public StorageObjectId SceneToLoad = (0, 0); //value , objectID
-
 
 
     private void Awake()
@@ -162,6 +157,7 @@ public class ConnectionsHandler : MonoBehaviour
         m_TinyPlayer = null;
 
         SceneManager.LoadScene(0);
+
     }
 
     private void OnConnected(CoherenceBridge bridge)
@@ -172,26 +168,21 @@ public class ConnectionsHandler : MonoBehaviour
 
         if(Coherence.SimulatorUtility.IsSimulator) return;
 
-        StartCoroutine(SpawnSync(m_CloudStorage.LoadObjectAsync<int>(SceneToLoad)));
+        StartCoroutine(SpawnSync());
+        //PlayerSpawn();
 
-        
+
         //SyncAll(); 
-       
+
     }
 
-    IEnumerator SpawnSync(StorageOperation<int> operation)
+
+    IEnumerator SpawnSync()
     {
-        yield return operation;
-        Debug.Log("operation result : " + operation.Result.ToString());
+        yield return new WaitUntil(() => Main_Simulator != null);
         PlayerSpawn();
-        yield return new WaitUntil(() => LocalTinyPlayer != null);
 
-        //if (Main_Simulator == null) yield break; 
 
-        if (operation.Result != SceneManager.GetActiveScene().buildIndex)
-        {
-            StartCoroutine(LoadSceneRoutine(operation.Result));
-        }
 
        
 
@@ -206,49 +197,11 @@ public class ConnectionsHandler : MonoBehaviour
         //LocalUI.Instance.m_LobbyHUD = FindFirstObjectByType<LobbyHUD>(FindObjectsInactive.Exclude); 
     }
 
-    public void LoadArena()
-    {
-        StartCoroutine(LoadSceneRoutine(1));
-    }
-    public void LoadLobby()
-    {
-        Debug.Log("connections handler: loading lobby");
-        StartCoroutine(LoadSceneRoutine(0));
-    }
-    private IEnumerator LoadSceneRoutine(int sceneIndex)
-    {
-
-        Debug.Log("ConnectionHandler: Loading Scene " + sceneIndex.ToString());
-
-        CoherenceSync[] bringAlong = LocalTinyPlayer == null ? new CoherenceSync[0] : new CoherenceSync[] { LocalTinyPlayer.Sync };
-
-        yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
-        if(LocalTinyPlayer == null ||SimulatorUtility.IsSimulator) yield break;
-
-        yield return new WaitUntil(() => SceneManager.GetActiveScene().buildIndex == sceneIndex);
-        switch (SCENE_MANAGER.Instance.ScenePlayState)
-        {
-            case MainSimulator.EPlayState.Lobby:
-                LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.LobbyPos.position);
-                break;
-            case MainSimulator.EPlayState.Shop:
-                LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.ShopSpawnPos.GetChild(0).position);
-                break;
-            case MainSimulator.EPlayState.Fighting:
-                LocalTinyPlayer.TeleportPlayer(SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(0).position);
-                break;
-            case MainSimulator.EPlayState.End:
-                break;
-            default:
-                break;
-        }
-
-    }
-
     void PlayerSpawn()
     {
         GameObject MyPlayer = null;
-        switch (SCENE_MANAGER.Instance.ScenePlayState)
+        if (Main_Simulator == null) return;
+        switch ((MainSimulator.EPlayState) Main_Simulator.m_IntPlayState)
         {
 
             case MainSimulator.EPlayState.Lobby:
@@ -258,6 +211,7 @@ public class ConnectionsHandler : MonoBehaviour
                  MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.ShopSpawnPos.GetChild(0).position, Quaternion.identity);
                 break;
             case MainSimulator.EPlayState.Fighting:
+                 SCENE_MANAGER.Instance.m_LibrairyArena.SetActive(true);
                  MyPlayer = Instantiate(m_PlayerPrefab, SCENE_MANAGER.Instance.BigArenaBattleSpawnPos.GetChild(0).position, Quaternion.identity);
                 break;
             case MainSimulator.EPlayState.End:

@@ -48,4 +48,4 @@ MonoBehaviour:
   m_BattleSpawnPositions: {fileID: 0}
   m_BigArenaBattleSpawnPositions: {fileID: 0}
   m_LobbyPos: {fileID: 0}
-  m_ScenePlayState: 2
+  m_LibrairyArena: {fileID: 0}

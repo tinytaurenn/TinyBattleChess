@@ -17,9 +17,13 @@ public class SCENE_MANAGER : MonoBehaviour
     public Transform BigArenaBattleSpawnPos => m_BigArenaBattleSpawnPositions;
     public Transform LobbyPos => m_LobbyPos;
 
-    [SerializeField] MainSimulator.EPlayState m_ScenePlayState = MainSimulator.EPlayState.Fighting; 
+    [Space(10)]
+    [Header("Arenas GameObjects")]
+    [SerializeField] public GameObject m_LibrairyArena;
 
-    public MainSimulator.EPlayState ScenePlayState => m_ScenePlayState;
+    //[SerializeField] MainSimulator.EPlayState m_ScenePlayState = MainSimulator.EPlayState.Fighting; 
+
+    //public MainSimulator.EPlayState ScenePlayState => m_ScenePlayState;
 
     private void Awake()
     {

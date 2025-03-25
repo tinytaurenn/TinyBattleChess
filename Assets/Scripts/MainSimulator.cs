@@ -57,6 +57,9 @@ public class MainSimulator : MonoBehaviour
     [Header("DeathMatch Options ")]
     [Sync]
     public float m_RespawnTime = 5f;
+    [Sync] int m_IntArenaChoice = 0; 
+
+    
 
     
 
@@ -102,7 +105,7 @@ public class MainSimulator : MonoBehaviour
     public void PlayStateValueSync(int oldValue, int newValue)
     {
         Debug.Log("new value is " + (EPlayState)newValue);
-        ConnectionsHandler.Instance.ChangePlayState(oldValue, newValue); 
+        ConnectionsHandler.Instance.ChangePlayState(oldValue, newValue);  
     }
     //run on every synced players
     public void GameStateValueSync(int oldValue, int newValue)
@@ -184,13 +187,12 @@ public class MainSimulator : MonoBehaviour
 
     private void OnConnected(CoherenceBridge arg0)
     {
-        if (!SimulatorUtility.IsSimulator) return; 
-        StartCoroutine(SyncVariablesToCloud());
+        //if (!SimulatorUtility.IsSimulator) return; 
     }
 
     private void OnDestroyed(CoherenceClientConnection connection)
     {
-        //RefreshPlayerList();
+        RefreshPlayerList();
 
         //StartCoroutine(UpdateHost());
     }
@@ -733,11 +735,9 @@ public class MainSimulator : MonoBehaviour
         switch (m_PlayState)
         {
             case EPlayState.Lobby:
-                //RefreshPlayerList();
                 
                 TeleportAllPlayersToLobby();
 
-                StartCoroutine(LoadSceneRoutine(0));
                 break;
             case EPlayState.Shop:
                 TeleportAllPlayersToShop();
@@ -749,8 +749,6 @@ public class MainSimulator : MonoBehaviour
             case EPlayState.Fighting:
                 TeleportPlayersToBattle();
                 
-                
-                StartCoroutine(LoadSceneRoutine(1)); 
 
                 break;
             case EPlayState.End:
@@ -919,32 +917,7 @@ public class MainSimulator : MonoBehaviour
 
     #endregion
 
-    private IEnumerator LoadSceneRoutine(int sceneIndex)
-    {
-        Debug.Log("saving scene index  : " + sceneIndex);
-        StorageOperation operation = ConnectionsHandler.Instance.m_CloudStorage.SaveObjectAsync<int>(ConnectionsHandler.Instance.SceneToLoad, sceneIndex);
-        yield return operation;
-        
 
-        
-
-        Debug.Log("loadscene in simulator"); 
-        CoherenceSync[] bringAlong = new CoherenceSync[] { Sync };
-        yield return CoherenceSceneManager.LoadScene(m_CoherenceBridge, sceneIndex, bringAlong);
-
-    }
-
-
-    IEnumerator SyncVariablesToCloud()
-    {
-        StorageOperation operation = ConnectionsHandler.Instance.m_CloudStorage.SaveObjectAsync<int>(ConnectionsHandler.Instance.SceneToLoad, SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("sync saving to " + SceneManager.GetActiveScene().buildIndex);    
-        yield return operation;
-    }
-
-    
-
-    #endregion
 
     //#endif
 
@@ -954,4 +927,4 @@ public class MainSimulator : MonoBehaviour
 }
 
 
-
+#endregion

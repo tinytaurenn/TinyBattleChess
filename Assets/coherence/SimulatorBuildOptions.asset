@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenesToBuild:
   - {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-  - {fileID: 102900000, guid: 2ff1ee00fe83c55469b34488a30f3274, type: 3}
   headlessMode: 1
   scriptingImplementation: 0
   developmentBuild: 0
