@@ -20,6 +20,8 @@ public abstract class BasicWeapon : Grabbable, IWeapon
         } 
     }
 
+    public List<SO_WeaponEffect> WeaponEffects;
+
     AudioSource m_AudioSource; 
     public List<AudioResource> HitSounds;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeWeapon : BasicWeapon,IWeapon
 {
-    public List<SO_MeleeWeaponEffect> MeleeWeaponEffects;
+
 
     List<Collider> HitList = new List<Collider>();
     [SerializeField]

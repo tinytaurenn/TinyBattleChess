@@ -8,7 +8,7 @@ public class SO_MeleeWeapon : SO_Weapon
 
     public FMeleeWeaponParameters MeleeWeaponParameters;
 
-    public List<SO_MeleeWeaponEffect> MeleeWeaponEffects;
+    
 
     public List<AudioResource> HitSounds;
     public List<AudioResource> ParrySounds;

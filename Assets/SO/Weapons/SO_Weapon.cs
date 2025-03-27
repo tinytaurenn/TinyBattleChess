@@ -10,5 +10,7 @@ public class SO_Weapon : SO_Item
 
     public FWeaponParameters WeaponParameters;
 
+    public List<SO_WeaponEffect> WeaponEffects;
+
 
 }
