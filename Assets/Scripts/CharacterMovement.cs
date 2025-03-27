@@ -64,8 +64,10 @@ public abstract class CharacterMovement : MonoBehaviour
     [Header("Step")]
     Vector3 m_StepRay = Vector3.zero;
     [SerializeField] bool m_IsStepping = false; 
-    [SerializeField] float m_StepCheckHeight = 0.1f; 
+    [SerializeField] float m_StepHeight = 0.1f; 
+    [SerializeField] float m_StepHeightSmooth = 0.1f; 
     [SerializeField] float m_StepMoveHeight = 0.65f; 
+    [SerializeField] float m_StepDistance = 1f; 
     [SerializeField] float m_StepSpeed = 5f; 
     [SerializeField] float m_StepAngle = 45f; 
 
@@ -169,9 +171,12 @@ public abstract class CharacterMovement : MonoBehaviour
         m_StepRay = (stepPos - transform.position).normalized;
         Vector3 checkRay = (stepCheck - transform.position).normalized;
 
-        if(m_IsStepping = StepCheck(out m_StepRay))
+        if(m_IsStepping = StepCheck(out m_StepRay, out float stepHeight))
         {
-            
+            if(stepHeight <= m_StepHeight)
+            {
+                m_rigidBody.position += Vector3.up * m_StepHeightSmooth; 
+            }
             m_HorizontalVelocity += m_StepRay * m_StepSpeed;
         }
         //
@@ -515,63 +520,70 @@ public abstract class CharacterMovement : MonoBehaviour
         return false;
     }
 
-    bool StepCheck(out Vector3 ray)
+    bool StepCheck(out Vector3 ray, out float stepHeight)
     {
-        Vector3 stepCheck = transform.position + Vector3.up * 0.1f + MoveInput * 1;
+        Vector3 stepCheck = transform.position + Vector3.up * 0.1f + MoveInput;
         Vector3 checkRay = (stepCheck - transform.position).normalized;
-        ray = checkRay; 
+        ray = checkRay;
+        stepHeight = 0f;
 
-        if (!Physics.Raycast(transform.position, checkRay, 1, m_WalkableLayer))
+        if (!Physics.Raycast(transform.position, checkRay, m_StepDistance, m_WalkableLayer))
         {
+            
             return false; 
         }
 
 
-        for (float i = 0.1f; i <= m_StepMoveHeight; i += 0.1f)
+        for (float i = 0.05f; i <= m_StepMoveHeight; i += 0.05f)
         {
             stepCheck = transform.position + Vector3.up * i + MoveInput;
             checkRay = (stepCheck - transform.position).normalized;
+            
 
-            if (!Physics.Raycast(transform.position, checkRay, 1, m_WalkableLayer) && MoveInput.magnitude > 0.2f)
+            if (!Physics.Raycast(transform.position, checkRay, m_StepDistance, m_WalkableLayer) && MoveInput.magnitude > 0.2f)
             {
+                stepHeight = i;
                 ray = checkRay;
                 return true;
             }
             
         }
-        for (float i = 0.1f; i <= m_StepMoveHeight; i += 0.1f)
+        for (float i = 0.05f; i <= m_StepMoveHeight; i += 0.05f)
         {
             stepCheck = transform.position + Vector3.up * i + MoveInput;
 
             checkRay = (stepCheck - transform.position).normalized;
             Vector3 rightCheckRay = Quaternion.Euler(0f, m_StepAngle, 0f) * checkRay;
 
-            if (!Physics.Raycast(transform.position, rightCheckRay, 1, m_WalkableLayer) && MoveInput.magnitude > 0.2f)
+            if (!Physics.Raycast(transform.position, rightCheckRay, m_StepDistance, m_WalkableLayer) && MoveInput.magnitude > 0.2f)
             {
+                stepHeight = i;
                 ray = rightCheckRay;
                 return true;
             }
 
         }
-        for (float i = 0.1f; i <= m_StepMoveHeight; i += 0.1f)
+        for (float i = 0.05f; i <= m_StepMoveHeight; i += 0.05f)
         {
             stepCheck = transform.position + Vector3.up * i + MoveInput;
 
             checkRay = (stepCheck - transform.position).normalized;
             Vector3 leftCheckRay = Quaternion.Euler(0f, -m_StepAngle, 0f) * checkRay;
 
-            if (!Physics.Raycast(transform.position, leftCheckRay, 1, m_WalkableLayer) && MoveInput.magnitude > 0.2f)
+            if (!Physics.Raycast(transform.position, leftCheckRay,m_StepDistance, m_WalkableLayer) && MoveInput.magnitude > 0.2f)
             {
+                stepHeight = i;
                 ray = leftCheckRay;
                 return true;
             }
 
         }
-
-
+        
+        
         return false; 
 
     }
+
 
     private void OnDrawGizmos()
     {
@@ -629,11 +641,12 @@ public abstract class CharacterMovement : MonoBehaviour
 
         Gizmos.color = Color.blue;
       
-        if(StepCheck(out Vector3 ray))
+        if(StepCheck(out Vector3 ray,out float stepHeight))
         {
-            
+            Debug.Log("step height is : " + stepHeight);
             Gizmos.DrawRay(transform.position, ray);
         }
+    
 
         Gizmos.color = Color.cyan; 
         Gizmos.DrawRay(transform.position, MoveInput);
