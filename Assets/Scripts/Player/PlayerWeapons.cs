@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Coherence.Core.NativeTransport;
 
 
 
@@ -429,6 +430,7 @@ public class PlayerWeapons : MonoBehaviour
         {
             m_MainWeaponType = EWeaponType.Hands;
             m_Animator.SetBool("TwoHanded", false);
+            m_Animator.SetFloat("WeaponSpeed", 1f);
         }
         else
         {
@@ -508,6 +510,20 @@ public class PlayerWeapons : MonoBehaviour
             }
         }
 
+    }
+
+    public void ReleaseAttackWeaponEffect()
+    {
+        if (m_Sync.HasStateAuthority == false)
+        {
+            return;
+        }
+        if (GetMainWeapon() == null)
+        {
+            return;
+        }
+
+        GetMainWeapon().ReleaseAttackEffect();
     }
    
 

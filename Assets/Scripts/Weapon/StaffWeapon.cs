@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StaffWeapon : BasicWeapon,IWeapon
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] Transform m_StaffSpellPos; 
     protected override void Awake()
     {
         base.Awake();
@@ -58,6 +58,9 @@ public class StaffWeapon : BasicWeapon,IWeapon
 
     public override void ReleaseAttackEffect()
     {
-        //throw new System.NotImplementedException();
+        foreach (var weaponEffect in WeaponEffects)
+        {
+            weaponEffect.OnAttackReleaseEndEffect(m_StaffSpellPos,ParentedCamera.Instance.transform.forward);
+        }
     }
 }

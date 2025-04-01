@@ -50,4 +50,6 @@ public class WeaponEvents : MonoBehaviour
     public void LeftPunchDamage() => m_PlayerWeapons.DoBareHandedDamage(true);
     public void RightPunchDamage() => m_PlayerWeapons.DoBareHandedDamage(false);
 
+    public void ReleaseAttackWeaponEffect() => m_PlayerWeapons.ReleaseAttackWeaponEffect();
+
 }

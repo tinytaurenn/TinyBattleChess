@@ -233,127 +233,141 @@ component _61db515efe9556c45853cdc384e6813b_6363404363339079209 [id "205"]
 component _61db515efe9556c45853cdc384e6813b_7802325523913527825 [id "206"]
   enabled Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_1934004787042426134 [id "207"]
-  enabled Bool [bits "1"]
-
-component _775a962259beb2f48b64b79887dce771_2126962496601302669 [id "208"]
-  m_IsHeld Bool [bits "1"]
-  IsNPCHeld Bool [bits "1"]
-
-component _775a962259beb2f48b64b79887dce771_277023309556421205 [id "209"]
+component _7122db18edd732d4592b6c39264e5f68_2027138376734802474 [id "207"]
   isKinematic Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_4486487952480385274 [id "210"]
+component _7122db18edd732d4592b6c39264e5f68_3234654726428329326 [id "208"]
   enabled Bool [bits "1"]
 
-component _775a962259beb2f48b64b79887dce771_9024384128650397308 [id "211"]
+component _7122db18edd732d4592b6c39264e5f68_3500225134770966109 [id "209"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _7a48fb6866149a6488e2e1096523ccff_3206994536959658864 [id "212"]
-  enabled Bool [bits "1"]
-
-component _7a48fb6866149a6488e2e1096523ccff_5153324027185580596 [id "213"]
-  path String [bits "6"]
-  pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
-
-component _7a48fb6866149a6488e2e1096523ccff_5843287501086471510 [id "214"]
+component _7122db18edd732d4592b6c39264e5f68_7561805750451923864 [id "210"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _7a48fb6866149a6488e2e1096523ccff_7591037996061170254 [id "215"]
+component _775a962259beb2f48b64b79887dce771_1934004787042426134 [id "211"]
+  enabled Bool [bits "1"]
+
+component _775a962259beb2f48b64b79887dce771_2126962496601302669 [id "212"]
+  m_IsHeld Bool [bits "1"]
+  IsNPCHeld Bool [bits "1"]
+
+component _775a962259beb2f48b64b79887dce771_277023309556421205 [id "213"]
   isKinematic Bool [bits "1"]
 
-component _843a4365828b49f4bb28b996f46ef351_5533348190771354695 [id "216"]
+component _775a962259beb2f48b64b79887dce771_4486487952480385274 [id "214"]
+  enabled Bool [bits "1"]
+
+component _775a962259beb2f48b64b79887dce771_9024384128650397308 [id "215"]
+  path String [bits "6"]
+  pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+component _7a48fb6866149a6488e2e1096523ccff_3206994536959658864 [id "216"]
+  enabled Bool [bits "1"]
+
+component _7a48fb6866149a6488e2e1096523ccff_5153324027185580596 [id "217"]
+  path String [bits "6"]
+  pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
+
+component _7a48fb6866149a6488e2e1096523ccff_5843287501086471510 [id "218"]
+  m_IsHeld Bool [bits "1"]
+  IsNPCHeld Bool [bits "1"]
+
+component _7a48fb6866149a6488e2e1096523ccff_7591037996061170254 [id "219"]
+  isKinematic Bool [bits "1"]
+
+component _843a4365828b49f4bb28b996f46ef351_5533348190771354695 [id "220"]
   playAutomatically Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058 [id "217"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_2454459261411590058 [id "221"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_5773051727637623670 [id "218"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_5773051727637623670 [id "222"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204 [id "219"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_7508816294706387204 [id "223"]
   enabled Bool [bits "1"]
 
-component _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307 [id "220"]
+component _8741b68fc3e4c6648bf6807cc4d527cf_8942486250847572307 [id "224"]
   isKinematic Bool [bits "1"]
 
-component _9e558580774fe6f47a64686c5829e786_4118834038646693485 [id "221"]
+component _9e558580774fe6f47a64686c5829e786_4118834038646693485 [id "225"]
   enabled Bool [bits "1"]
 
-component _a7887ff00fe21ef419b186154dbaddc1_7178968045311378612 [id "222"]
+component _a7887ff00fe21ef419b186154dbaddc1_7178968045311378612 [id "226"]
   IsOccupied Bool [bits "1"]
 
-component _c1430919458aebb499cffdc9a9527493_6712201074196649712 [id "223"]
+component _c1430919458aebb499cffdc9a9527493_6712201074196649712 [id "227"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _c473af9c10567024caf206bf6752a656_2607659342849482176 [id "224"]
+component _c473af9c10567024caf206bf6752a656_2607659342849482176 [id "228"]
   GameID Int [bits "32", range-min "-2147483648", range-max "2147483647"]
   EntityHealth Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _c473af9c10567024caf206bf6752a656_5919305605642209624 [id "225"]
+component _c473af9c10567024caf206bf6752a656_5919305605642209624 [id "229"]
   DummyParry Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830 [id "226"]
+component _d74ec397b646aca44b0b3a0dd609d93f_11207334821781059830 [id "230"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _d74ec397b646aca44b0b3a0dd609d93f_1851380562913046313 [id "227"]
+component _d74ec397b646aca44b0b3a0dd609d93f_1851380562913046313 [id "231"]
   isKinematic Bool [bits "1"]
 
-component _d74ec397b646aca44b0b3a0dd609d93f_3290036067546008819 [id "228"]
+component _d74ec397b646aca44b0b3a0dd609d93f_3290036067546008819 [id "232"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _d74ec397b646aca44b0b3a0dd609d93f_8822264005869638783 [id "229"]
+component _d74ec397b646aca44b0b3a0dd609d93f_8822264005869638783 [id "233"]
   enabled Bool [bits "1"]
 
-component _d9c58831288052b4bb0dfa57ee24e75e_1733633089735608209 [id "230"]
+component _d9c58831288052b4bb0dfa57ee24e75e_1733633089735608209 [id "234"]
   enabled Bool [bits "1"]
 
-component _d9c58831288052b4bb0dfa57ee24e75e_3550776195455457171 [id "231"]
+component _d9c58831288052b4bb0dfa57ee24e75e_3550776195455457171 [id "235"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _d9c58831288052b4bb0dfa57ee24e75e_5885151061618887952 [id "232"]
+component _d9c58831288052b4bb0dfa57ee24e75e_5885151061618887952 [id "236"]
   isKinematic Bool [bits "1"]
 
-component _d9c58831288052b4bb0dfa57ee24e75e_8466982124699937639 [id "233"]
+component _d9c58831288052b4bb0dfa57ee24e75e_8466982124699937639 [id "237"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _dd4f693a5d019d14ca62105d6772297f_3131434906551989761 [id "234"]
+component _dd4f693a5d019d14ca62105d6772297f_3131434906551989761 [id "238"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _dd4f693a5d019d14ca62105d6772297f_3875429767672145600 [id "235"]
+component _dd4f693a5d019d14ca62105d6772297f_3875429767672145600 [id "239"]
   enabled Bool [bits "1"]
 
-component _dd4f693a5d019d14ca62105d6772297f_6758959841096172205 [id "236"]
+component _dd4f693a5d019d14ca62105d6772297f_6758959841096172205 [id "240"]
   isKinematic Bool [bits "1"]
 
-component _dd4f693a5d019d14ca62105d6772297f_7799190213565977493 [id "237"]
+component _dd4f693a5d019d14ca62105d6772297f_7799190213565977493 [id "241"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
-component _ebe3c005c8a4429419dab111d22f160c_2234337059430967768 [id "238"]
+component _ebe3c005c8a4429419dab111d22f160c_2234337059430967768 [id "242"]
   m_IsHeld Bool [bits "1"]
   IsNPCHeld Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_2668675485594391575 [id "239"]
+component _ebe3c005c8a4429419dab111d22f160c_2668675485594391575 [id "243"]
   isKinematic Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_4025658085450113105 [id "240"]
+component _ebe3c005c8a4429419dab111d22f160c_4025658085450113105 [id "244"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 [id "241"]
+component _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 [id "245"]
   enabled Bool [bits "1"]
 
-component _ebe3c005c8a4429419dab111d22f160c_8923926967690582782 [id "242"]
+component _ebe3c005c8a4429419dab111d22f160c_8923926967690582782 [id "246"]
   path String [bits "6"]
   pathDirtyCounter Int [bits "32", range-min "-2147483648", range-max "2147483647"]
 
@@ -606,83 +620,97 @@ command _61db515efe9556c45853cdc384e6813b_ecef042b3ce54183b7ac369b83ac6c16 [id "
   isAttacking Bool 
   intAttackDir Int 
 
-command _775a962259beb2f48b64b79887dce771_097952f827fc4b1a8e080190d4ebe197 [id "87", routing "All"]
+command _7122db18edd732d4592b6c39264e5f68_336e59817aca4bf49e64cf24a50a2380 [id "87", routing "All"]
   enable Bool 
 
-command _7a48fb6866149a6488e2e1096523ccff_4986cfec4cc84eb1bfabd72178c7e14c [id "88", routing "All"]
-  enable Bool 
-
-command _8741b68fc3e4c6648bf6807cc4d527cf_22e8f96fdebb4642925f47775f32a35e [id "89", routing "All"]
-  enable Bool 
-
-command _8741b68fc3e4c6648bf6807cc4d527cf_3a7c6e027a1e4be5a39199fc038d3551 [id "90", routing "All"]
+command _7122db18edd732d4592b6c39264e5f68_3e6b92fa9c114195a1cdbf9aad0a76aa [id "88", routing "All"]
   index Int 
 
-command _8741b68fc3e4c6648bf6807cc4d527cf_a70fd7d5a76f4ce9a98104c45112b6fd [id "91", routing "All"]
+command _7122db18edd732d4592b6c39264e5f68_55d6cb905d114afb82f9faa9df58e9a8 [id "89", routing "All"]
   choiceIndex Int 
 
-command _adc80acf40eb54146985921d3401c267_23aa9f05a71049ab933bfeb0bc99487a [id "92", routing "All"]
+command _775a962259beb2f48b64b79887dce771_097952f827fc4b1a8e080190d4ebe197 [id "90", routing "All"]
+  enable Bool 
+
+command _7a48fb6866149a6488e2e1096523ccff_4986cfec4cc84eb1bfabd72178c7e14c [id "91", routing "All"]
+  enable Bool 
+
+command _8741b68fc3e4c6648bf6807cc4d527cf_22e8f96fdebb4642925f47775f32a35e [id "92", routing "All"]
+  enable Bool 
+
+command _8741b68fc3e4c6648bf6807cc4d527cf_3a7c6e027a1e4be5a39199fc038d3551 [id "93", routing "All"]
+  index Int 
+
+command _8741b68fc3e4c6648bf6807cc4d527cf_a70fd7d5a76f4ce9a98104c45112b6fd [id "94", routing "All"]
+  choiceIndex Int 
+
+command _9832416dd5c49f0448b4d7262a2a0351_68dcc1795c0b4341bac22801d8c00236 [id "95", routing "All"]
   pos Vector3 [compression "None"]
 
-command _adc80acf40eb54146985921d3401c267_493d908d444a41d5b78ec1b8db12eed4 [id "93", routing "All"]
+command _9832416dd5c49f0448b4d7262a2a0351_e14b0e1d8a1d45d6bffe89afd9d2f766 [id "96", routing "All"]
 
-command _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6 [id "94", routing "All"]
+command _adc80acf40eb54146985921d3401c267_23aa9f05a71049ab933bfeb0bc99487a [id "97", routing "All"]
+  pos Vector3 [compression "None"]
+
+command _adc80acf40eb54146985921d3401c267_493d908d444a41d5b78ec1b8db12eed4 [id "98", routing "All"]
+
+command _c473af9c10567024caf206bf6752a656_1c65cbe28daf476c87b1ab1f32198cf6 [id "99", routing "All"]
   damage Int 
   DamagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _c473af9c10567024caf206bf6752a656_1dd3fd6dfca04fb084372d425002546e [id "95", routing "All"]
+command _c473af9c10567024caf206bf6752a656_1dd3fd6dfca04fb084372d425002546e [id "100", routing "All"]
   AskerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1 [id "96", routing "All"]
+command _c473af9c10567024caf206bf6752a656_22b55500f2764c84a79f0e5d5fa461d1 [id "101", routing "All"]
   choiceIndex Int 
 
-command _c473af9c10567024caf206bf6752a656_2fb261a60ed84904a74e0403127ebf64 [id "97", routing "All"]
+command _c473af9c10567024caf206bf6752a656_2fb261a60ed84904a74e0403127ebf64 [id "102", routing "All"]
   isAttacking Bool 
   intAttackDir Int 
 
-command _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e [id "98", routing "All"]
+command _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e [id "103", routing "All"]
   choiceIndex Int 
 
-command _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b [id "99", routing "All"]
+command _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b [id "104", routing "All"]
   GameEffectID String 
   damagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _c473af9c10567024caf206bf6752a656_9e50066eb3494c89bd8ded9856aa1343 [id "100", routing "All"]
+command _c473af9c10567024caf206bf6752a656_9e50066eb3494c89bd8ded9856aa1343 [id "105", routing "All"]
   gameID Int 
 
-command _c473af9c10567024caf206bf6752a656_a855d5b47de54941aeeffab26462662a [id "101", routing "All"]
+command _c473af9c10567024caf206bf6752a656_a855d5b47de54941aeeffab26462662a [id "106", routing "All"]
 
-command _c473af9c10567024caf206bf6752a656_c4a533ff3d744ab696cbcdc9422daf04 [id "102", routing "All"]
+command _c473af9c10567024caf206bf6752a656_c4a533ff3d744ab696cbcdc9422daf04 [id "107", routing "All"]
   DirectionNESO Int 
   sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
   damage Int 
   damageType Int 
   attackerPos Vector3 [compression "None"]
 
-command _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604 [id "103", routing "All"]
+command _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604 [id "108", routing "All"]
 
-command _c473af9c10567024caf206bf6752a656_d5996e5b7de34723bbedae175544f702 [id "104", routing "All"]
+command _c473af9c10567024caf206bf6752a656_d5996e5b7de34723bbedae175544f702 [id "109", routing "All"]
   IntEGameEffect Int 
   value Float [compression "None"]
   duration Float [compression "None"]
   IntEEffectType Int 
   damagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _d74ec397b646aca44b0b3a0dd609d93f_faa87cb786d94aa68de901af5d322609 [id "105", routing "All"]
+command _d74ec397b646aca44b0b3a0dd609d93f_faa87cb786d94aa68de901af5d322609 [id "110", routing "All"]
   enable Bool 
 
-command _d9c58831288052b4bb0dfa57ee24e75e_5d3fe2f759164b92b78d46d456d76fa2 [id "106", routing "All"]
+command _d9c58831288052b4bb0dfa57ee24e75e_5d3fe2f759164b92b78d46d456d76fa2 [id "111", routing "All"]
   enable Bool 
 
-command _d9c58831288052b4bb0dfa57ee24e75e_9431c2f1f3164c67bf0e69b78938a328 [id "107", routing "All"]
+command _d9c58831288052b4bb0dfa57ee24e75e_9431c2f1f3164c67bf0e69b78938a328 [id "112", routing "All"]
   index Int 
 
-command _d9c58831288052b4bb0dfa57ee24e75e_a1306575801b4bc8bbc106c5c843cc59 [id "108", routing "All"]
+command _d9c58831288052b4bb0dfa57ee24e75e_a1306575801b4bc8bbc106c5c843cc59 [id "113", routing "All"]
   choiceIndex Int 
 
-command _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3 [id "109", routing "All"]
+command _dd4f693a5d019d14ca62105d6772297f_4891857d5b23463282a1e0edb27559e3 [id "114", routing "All"]
   enable Bool 
 
-command _ebe3c005c8a4429419dab111d22f160c_5815926e10d74fb4996289fd5de6beb0 [id "110", routing "All"]
+command _ebe3c005c8a4429419dab111d22f160c_5815926e10d74fb4996289fd5de6beb0 [id "115", routing "All"]
   enable Bool 
 
