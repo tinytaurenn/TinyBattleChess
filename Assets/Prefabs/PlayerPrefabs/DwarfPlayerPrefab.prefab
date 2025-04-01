@@ -18847,7 +18847,7 @@ MonoBehaviour:
   m_StepHeightSmooth: 0.1
   m_StepMoveHeight: 0.7
   m_StepDistance: 1
-  m_StepSpeed: 3
+  m_StepSpeed: 1
   m_StepAngle: 45
   m_CameraManager: {fileID: 0}
   m_BackWardspeedModifier: 0.5

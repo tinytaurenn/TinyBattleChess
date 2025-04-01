@@ -162,7 +162,7 @@ public class PlayerLoadout : MonoBehaviour
             m_EquippedItems[hand].m_Collider.enabled = false;
             m_EquippedItems[hand].transform.SetParent(m_EslotToSocket[hand], false);
 
-            m_EquippedItems[hand].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            m_EquippedItems[hand].transform.SetLocalPositionAndRotation(weapon.WeaponParameters.PositionOffset, Quaternion.Euler(weapon.WeaponParameters.RotationOffset));
             //m_SelectedSlot = ESlot.MainWeapon;
             //SelectSlot(ESlot.MainWeapon);
 
@@ -442,6 +442,7 @@ public class PlayerLoadout : MonoBehaviour
             m_TinyPlayer.m_PlayerWeapons.SetWeaponParameters(weapon);
         }
 
+        
 
         m_TinyPlayer.m_PlayerWeapons.UpdateMainWeaponType(); 
     }

@@ -132,6 +132,7 @@ public enum EGameEffect
     Slow,
     Blind,
     Grounded,
+    Bump,
     weakness,
 
 }

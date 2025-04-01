@@ -25,6 +25,10 @@ public class WeaponEditor : Editor
             {
                 SetupWeaponPrefabs();
             }
+            if(GUILayout.Button("Update Weapon from SO_Item"))
+            {
+                
+            }
         }
         serializedObject.ApplyModifiedProperties();
 

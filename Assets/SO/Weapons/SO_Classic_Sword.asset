@@ -26,6 +26,7 @@ MonoBehaviour:
     WeaponSize: 0
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
+  WeaponEffects: []
   MeleeWeaponParameters:
     Damage: 10
     Speed: 1

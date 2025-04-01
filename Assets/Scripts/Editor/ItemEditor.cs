@@ -45,28 +45,28 @@ public class ItemEditor : EditorWindow
             return; 
         }
 
-        if (SO_Item.GetType() == typeof(SO_Weapon))
+        if (SO_Item is SO_Weapon)
         {
             if (GUILayout.Button("Create Weapon"))
             {
                 CreateWeapon();
             }
         }
-        else if (SO_Item.GetType() == typeof(SO_Armor))
+        else if (SO_Item is SO_Armor)
         {
             if (GUILayout.Button("Create Armor"))
             {
                 CreateArmor();
             }
         }
-        else if (SO_Item.GetType() == typeof(SO_Potion))
+        else if (SO_Item is SO_Potion)
         {
             if (GUILayout.Button("Create Potion"))
             {
                 CreatePotion();
             }
         }
-        else if (SO_Item.GetType() == typeof(SO_Scroll))
+        else if (SO_Item is SO_Scroll)
         {
             if (GUILayout.Button("Create Scroll"))
             {
@@ -82,6 +82,7 @@ public class ItemEditor : EditorWindow
     {
         meleeWeapon.m_ParryAudios = so_MeleeWeapon.ParrySounds;
         meleeWeapon.HitSounds = so_MeleeWeapon.HitSounds;
+        meleeWeapon.MeleeWeaponParameters = so_MeleeWeapon.MeleeWeaponParameters;
     }
     void CreateWeapon()
     {
@@ -125,7 +126,6 @@ public class ItemEditor : EditorWindow
         }
 
         
-        Debug.Log($"Added '{typeof(BasicWeapon)}' script to {itemName}");
 
 
         weaponScript.So_Item = SO_Item;

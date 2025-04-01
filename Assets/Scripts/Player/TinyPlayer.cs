@@ -962,6 +962,10 @@ public class TinyPlayer : Entity, IDamageable
     {
         base.GroundedEffect(value, duration);
     }
+    public override void BumpEffect(float value)
+    {
+        base.BumpEffect(value);
+    }
 
     public override void WeaknessEffect(float value, float duration)
     {

@@ -14,6 +14,4 @@ public abstract class SO_WeaponEffect : ScriptableObject
     public abstract void OnGrabWeaponEffect();
 
 
-   
-
 }

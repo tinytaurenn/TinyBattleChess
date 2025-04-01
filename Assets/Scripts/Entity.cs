@@ -105,6 +105,9 @@ public abstract class Entity : MonoBehaviour
             case EGameEffect.Grounded:
                 GroundedEffect(effect.Value, effect.EffectDuration);
                 break;
+            case EGameEffect.Bump:
+                BumpEffect(effect.Value);
+                break;
             case EGameEffect.weakness:
                 WeaknessEffect(effect.Value, effect.EffectDuration);
                 break;
@@ -193,6 +196,10 @@ public abstract class Entity : MonoBehaviour
     }
 
     public virtual void GroundedEffect(float value, float duration)
+    {
+        
+    }
+    public virtual void BumpEffect(float value)
     {
         
     }
