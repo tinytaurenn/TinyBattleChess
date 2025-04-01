@@ -5300,7 +5300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7644627420475203035, guid: 7857ccb49ecb3864787412f46a05c3b2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00017637861
+      value: 0.00014147708
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17047,8 +17047,8 @@ Transform:
   m_GameObject: {fileID: 1571992583}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.9896393, y: 8.416975, z: 2}
-  m_LocalScale: {x: 48, y: 1, z: 36}
+  m_LocalPosition: {x: 5.9896393, y: 8.04, z: 2}
+  m_LocalScale: {x: 48, y: 5, z: 36}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 343723143}
@@ -22411,6 +22411,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162091125312082513, guid: 133967c90bc592e4395855540ba70e6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123215671177119135, guid: 133967c90bc592e4395855540ba70e6d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2943
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123215671177119135, guid: 133967c90bc592e4395855540ba70e6d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2785544945700499673, guid: 133967c90bc592e4395855540ba70e6d, type: 3}
       propertyPath: m_Name
       value: Librairy_Arena

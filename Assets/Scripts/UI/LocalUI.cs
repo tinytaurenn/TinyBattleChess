@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -107,9 +108,14 @@ public class LocalUI : MonoBehaviour
 
 
         m_UsableText.enabled = false;
+
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 120; 
         Cursor.lockState = CursorLockMode.Confined;
+   
 
     }
+
 
     public void TogglePause()
     {
