@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GameEffects
   m_EditorClassIdentifier: 
   GameEffectContainers:
+  - {fileID: 11400000, guid: 3af1a0e2dd2793a4b9068f8ac95b6612, type: 2}
   - {fileID: 11400000, guid: adcee9cfedff04c49a90157c292448a7, type: 2}
   - {fileID: 11400000, guid: 4c5458845126bad4ab0e755e106c3de6, type: 2}

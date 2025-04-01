@@ -491,9 +491,8 @@ MonoBehaviour:
   m_ExplosionMask:
     serializedVersion: 2
     m_Bits: 64
-  m_ThrowForce: 10
-  m_ExplosionRadius: 3
   m_Exploded: 0
+  so_ScrollEffectProjectile: {fileID: 0}
   m_ExplosionDelay: 0.15
   m_ParticleSystems:
   - {fileID: 5142263290298398241}
