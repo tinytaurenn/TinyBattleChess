@@ -453,7 +453,7 @@ public class PlayerWeapons : MonoBehaviour
 
     public BasicWeapon GetMainWeapon()
     {
-        if(m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null)
+        if(m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null) 
         {
             Debug.Log("no main weapon ");
             return null;
@@ -478,6 +478,7 @@ public class PlayerWeapons : MonoBehaviour
         m_CanAttack = true;
 
         SwitchWeaponState(EWeaponState.None);
+        UpdateMainWeaponType(); 
     }
    
     public void DoBareHandedDamage(bool isLeft)

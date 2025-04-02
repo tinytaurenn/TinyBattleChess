@@ -15,7 +15,7 @@ MonoBehaviour:
   schemaID: 875071c161ed470e50f67bb6fe8222df2c36d274
   versionInfo: {fileID: 11400000, guid: 2191b6f902c97477baa32a7919010503, type: 2}
   runtimeKey: 6f5575d9dbbe42ffa0f2ac869c306c22
-  simulatorSlug: v1_Simulator
+  simulatorSlug: v1.1_Simulator
   localHost: 127.0.0.1
   localWorldUDPPort: 32001
   localWorldWebPort: 32002
