@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2960961335507131114}
   - component: {fileID: 7854539075709034750}
   - component: {fileID: 122943308462781143}
+  - component: {fileID: 7620892091656764245}
   m_Layer: 0
   m_Name: 'ServerSideCrate,swaping scene ! '
   m_TagString: Untagged
@@ -137,6 +138,8 @@ MonoBehaviour:
       lodStepsActive: 1
     - component: {fileID: 122943308462781143}
       lodStepsActive: 1
+    - component: {fileID: 7620892091656764245}
+      lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 1
   RigidbodyUpdateMode: 0
@@ -165,6 +168,7 @@ MonoBehaviour:
   preserveChildren: 0
   bindings:
   - rid: 4705202329861489465
+  - rid: 3561254520283201618
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -187,6 +191,47 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 3561254520283201618
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3561254520283201619
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: aea003c8fa5e4f92b5953fee45ccd9e8
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 122943308462781143}
+        coherenceSync: {fileID: 7854539075709034750}
+        interpolationSettings: {fileID: 0}
+    - rid: 3561254520283201619
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: MultiAction
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: ServerSidedBlock, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
     - rid: 4705202329861489465
       type: {class: PositionBinding, ns: Coherence.Toolkit.Bindings.TransformBindings, asm: Coherence.Toolkit}
       data:
@@ -244,5 +289,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4726b43b455f7846b1bae0844d8310a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  time: 5
+  m_UseRequested: 0
+--- !u!65 &7620892091656764245
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3341707114007389490}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.009254, y: 1.0180192, z: 1.021225}
+  m_Center: {x: -0.00000023841858, y: 0.5090096, z: 0}
