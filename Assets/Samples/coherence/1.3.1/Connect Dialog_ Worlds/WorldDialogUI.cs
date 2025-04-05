@@ -9,6 +9,8 @@ using Coherence.Cloud;
 using Coherence.Connection;
 using Coherence.Toolkit;
 using Coherence.UI;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -169,6 +171,7 @@ namespace Coherence.Samples.WorldDialog
         public void Disconnect()
         {
             bridge.Disconnect();
+            ShowDiconnectDialog(false);
         }
         #endregion
 
@@ -236,9 +239,13 @@ namespace Coherence.Samples.WorldDialog
         {
             HideLoadingState();
             connectDialog.SetActive(!bridge.IsConnected);
-            disconnectDialog.SetActive(bridge.IsConnected);
+            //disconnectDialog.SetActive(bridge.IsConnected); // ici 
         }
 
+        public void ShowDiconnectDialog(bool show)
+        {
+            disconnectDialog.SetActive(show);
+        }
         private void HideLoadingState()
         {
             loadingSpinner.SetActive(false);

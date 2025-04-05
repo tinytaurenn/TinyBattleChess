@@ -82,6 +82,7 @@ public class LobbyHUD : MonoBehaviour
     public void ShowPause(bool show)
     {
         LocalUI.Instance.m_LobbyHUD.UpdateLobbyHud();
+        Debug.Log("show pause root canvas : " + show);
         m_RootCanvas.enabled = show;
         m_RootCanvas.gameObject.SetActive(show); 
     }
@@ -90,7 +91,7 @@ public class LobbyHUD : MonoBehaviour
 
     public void UpdateLobbyHud()
     {
-        if (ConnectionsHandler.Instance.LocalTinyPlayer.IsHost)
+        if (ConnectionsHandler.Instance.LocalTinyPlayer!= null &&  ConnectionsHandler.Instance.LocalTinyPlayer.IsHost)
         {
             Debug.Log("auth, set to start game");
             ShowLobbyHUD();

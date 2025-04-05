@@ -1,3 +1,4 @@
+using Coherence.Samples.WorldDialog;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ public class ESlotToSlotUIDictionary : SerializableDictionary<EStuffSlot, SlotUI
 public class LocalUI : MonoBehaviour
 {
     public static LocalUI Instance { get; private set; }
+
+    [SerializeField] WorldDialogUI m_WorldDialogUI;
 
     [Space(10)]
     [Header(" Pause ")]
@@ -124,6 +127,7 @@ public class LocalUI : MonoBehaviour
         m_LobbyHUD.ShowPause(m_InPauseMenu);  
 
         Cursor.visible = m_InPauseMenu;
+        m_WorldDialogUI.ShowDiconnectDialog(m_InPauseMenu);
     }
     
     public void SelectSlot(EStuffSlot slot)
@@ -290,9 +294,18 @@ public class LocalUI : MonoBehaviour
         m_PlayerHealth_ValueText.text = value.ToString();
 
     }
-    
 
-    
+    #region Connect Dialog
 
-    
+    public void Disconnect()
+    {
+        m_WorldDialogUI.Disconnect();
+        TogglePause();
+
+    }
+
+    #endregion
+
+
+
 }
