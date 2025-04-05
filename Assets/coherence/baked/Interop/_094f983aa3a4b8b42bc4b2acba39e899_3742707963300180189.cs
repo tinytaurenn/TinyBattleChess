@@ -20,50 +20,50 @@ namespace Coherence.Generated
     using UnityEngine;
     using Coherence.Toolkit;
 
-    public struct _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 : ICoherenceComponentData
+    public struct _094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189 : ICoherenceComponentData
     {
         [StructLayout(LayoutKind.Explicit)]
         public struct Interop
         {
             [FieldOffset(0)]
-            public System.Byte enabled;
+            public System.Byte isKinematic;
         }
 
         public void ResetFrame(AbsoluteSimulationFrame frame)
         {
-            FieldsMask |= _ebe3c005c8a4429419dab111d22f160c_5798973653603864835.enabledMask;
-            enabledSimulationFrame = frame;
+            FieldsMask |= _094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189.isKinematicMask;
+            isKinematicSimulationFrame = frame;
         }
 
-        public static unsafe _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
+        public static unsafe _094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189 FromInterop(IntPtr data, Int32 dataSize, InteropAbsoluteSimulationFrame* simFrames, Int32 simFramesCount)
         {
             if (dataSize != 1) {
                 throw new Exception($"Given data size is not equal to the struct size. ({dataSize} != 1) " +
-                    "for component with ID 247");
+                    "for component with ID 153");
             }
 
             if (simFramesCount != 0) {
                 throw new Exception($"Given simFrames size is not equal to the expected length. ({simFramesCount} != 0) " +
-                    "for component with ID 247");
+                    "for component with ID 153");
             }
 
-            var orig = new _ebe3c005c8a4429419dab111d22f160c_5798973653603864835();
+            var orig = new _094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189();
 
             var comp = (Interop*)data;
 
-            orig.enabled = comp->enabled != 0;
+            orig.isKinematic = comp->isKinematic != 0;
 
             return orig;
         }
 
 
-        public static uint enabledMask => 0b00000000000000000000000000000001;
-        public AbsoluteSimulationFrame enabledSimulationFrame;
-        public System.Boolean enabled;
+        public static uint isKinematicMask => 0b00000000000000000000000000000001;
+        public AbsoluteSimulationFrame isKinematicSimulationFrame;
+        public System.Boolean isKinematic;
 
         public uint FieldsMask { get; set; }
         public uint StoppedMask { get; set; }
-        public uint GetComponentType() => 247;
+        public uint GetComponentType() => 153;
         public int PriorityLevel() => 100;
         public const int order = 0;
         public uint InitialFieldsMask() => 0b00000000000000000000000000000001;
@@ -114,7 +114,7 @@ namespace Coherence.Generated
 
         public ICoherenceComponentData MergeWith(ICoherenceComponentData data)
         {
-            var other = (_ebe3c005c8a4429419dab111d22f160c_5798973653603864835)data;
+            var other = (_094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189)data;
             var otherMask = other.FieldsMask;
 
             FieldsMask |= otherMask;
@@ -122,8 +122,8 @@ namespace Coherence.Generated
 
             if ((otherMask & 0x01) != 0)
             {
-                this.enabledSimulationFrame = other.enabledSimulationFrame;
-                this.enabled = other.enabled;
+                this.isKinematicSimulationFrame = other.isKinematicSimulationFrame;
+                this.isKinematic = other.isKinematic;
             }
 
             otherMask >>= 1;
@@ -137,7 +137,7 @@ namespace Coherence.Generated
             throw new System.NotSupportedException($"{nameof(DiffWith)} is not supported in Unity");
         }
 
-        public static uint Serialize(_ebe3c005c8a4429419dab111d22f160c_5798973653603864835 data, bool isRefSimFrameValid, AbsoluteSimulationFrame referenceSimulationFrame, IOutProtocolBitStream bitStream, Logger logger)
+        public static uint Serialize(_094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189 data, bool isRefSimFrameValid, AbsoluteSimulationFrame referenceSimulationFrame, IOutProtocolBitStream bitStream, Logger logger)
         {
             if (bitStream.WriteMask(data.StoppedMask != 0))
             {
@@ -150,7 +150,7 @@ namespace Coherence.Generated
             {
 
 
-                var fieldValue = data.enabled;
+                var fieldValue = data.isKinematic;
 
 
 
@@ -162,7 +162,7 @@ namespace Coherence.Generated
             return mask;
         }
 
-        public static _ebe3c005c8a4429419dab111d22f160c_5798973653603864835 Deserialize(AbsoluteSimulationFrame referenceSimulationFrame, InProtocolBitStream bitStream)
+        public static _094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189 Deserialize(AbsoluteSimulationFrame referenceSimulationFrame, InProtocolBitStream bitStream)
         {
             var stoppedMask = (uint)0;
             if (bitStream.ReadMask())
@@ -170,12 +170,12 @@ namespace Coherence.Generated
                 stoppedMask = bitStream.ReadMaskBits(1);
             }
 
-            var val = new _ebe3c005c8a4429419dab111d22f160c_5798973653603864835();
+            var val = new _094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189();
             if (bitStream.ReadMask())
             {
 
-                val.enabled = bitStream.ReadBool();
-                val.FieldsMask |= _ebe3c005c8a4429419dab111d22f160c_5798973653603864835.enabledMask;
+                val.isKinematic = bitStream.ReadBool();
+                val.FieldsMask |= _094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189.isKinematicMask;
             }
 
             val.StoppedMask = stoppedMask;
@@ -186,8 +186,8 @@ namespace Coherence.Generated
 
         public override string ToString()
         {
-            return $"_ebe3c005c8a4429419dab111d22f160c_5798973653603864835(" +
-                $" enabled: { this.enabled }" +
+            return $"_094f983aa3a4b8b42bc4b2acba39e899_3742707963300180189(" +
+                $" isKinematic: { this.isKinematic }" +
                 $" Mask: { System.Convert.ToString(FieldsMask, 2).PadLeft(1, '0') }, " +
                 $"Stopped: { System.Convert.ToString(StoppedMask, 2).PadLeft(1, '0') })";
         }
