@@ -524,6 +524,8 @@ public abstract class CharacterMovement : MonoBehaviour
     {
         Vector3 stepCheck = transform.position + Vector3.up * 0.1f + MoveInput;
         Vector3 checkRay = (stepCheck - transform.position).normalized;
+        Vector3 wallCheck = transform.position + Vector3.up * m_StepHeight + MoveInput;
+        Vector3 wallRay = (wallCheck - transform.position).normalized;
         ray = checkRay;
         stepHeight = 0f;
 
@@ -531,6 +533,11 @@ public abstract class CharacterMovement : MonoBehaviour
         {
             
             return false; 
+        }
+        if (Physics.Raycast(transform.position, wallRay, m_StepDistance, m_WalkableLayer))
+        {
+            //Debug.Log("wall rayed"); 
+            return false;
         }
 
 
@@ -597,56 +604,63 @@ public abstract class CharacterMovement : MonoBehaviour
 
     void BorderDetectionGizmos()
     {
-        Vector3 raySpawnPos = transform.position + Vector3.down * m_SlipRayDistance;
+        //Vector3 raySpawnPos = transform.position + Vector3.down * m_SlipRayDistance;
 
-        Vector3 forward = transform.forward * m_SlipCheckDistance;
-        Vector3 back = -transform.forward * m_SlipCheckDistance;
-        Vector3 right = transform.right * m_SlipCheckDistance;
-        Vector3 left = -transform.right * m_SlipCheckDistance;
+        //Vector3 forward = transform.forward * m_SlipCheckDistance;
+        //Vector3 back = -transform.forward * m_SlipCheckDistance;
+        //Vector3 right = transform.right * m_SlipCheckDistance;
+        //Vector3 left = -transform.right * m_SlipCheckDistance;
 
-        Ray frontRay = new Ray(raySpawnPos, forward);
-        Ray backRay = new Ray(raySpawnPos, back);
-        Ray rightRay = new Ray(raySpawnPos, right);
-        Ray leftRay = new Ray(raySpawnPos, left);
+        //Ray frontRay = new Ray(raySpawnPos, forward);
+        //Ray backRay = new Ray(raySpawnPos, back);
+        //Ray rightRay = new Ray(raySpawnPos, right);
+        //Ray leftRay = new Ray(raySpawnPos, left);
 
-        Ray frontDownRay = new Ray(raySpawnPos + forward, Vector3.down);
-        Ray backDownRay = new Ray(raySpawnPos + back, Vector3.down);
-        Ray rightDownRay = new Ray(raySpawnPos + right, Vector3.down);
-        Ray leftDownRay = new Ray(raySpawnPos + left, Vector3.down);
-
-
+        //Ray frontDownRay = new Ray(raySpawnPos + forward, Vector3.down);
+        //Ray backDownRay = new Ray(raySpawnPos + back, Vector3.down);
+        //Ray rightDownRay = new Ray(raySpawnPos + right, Vector3.down);
+        //Ray leftDownRay = new Ray(raySpawnPos + left, Vector3.down);
 
 
-        Gizmos.color = Color.yellow;
 
-        Gizmos.color = (Physics.Raycast(frontRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
-        Gizmos.DrawRay(raySpawnPos, forward);
-        Gizmos.color = (Physics.Raycast(backRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
-        Gizmos.DrawRay(raySpawnPos, back);
-        Gizmos.color = (Physics.Raycast(rightRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
-        Gizmos.DrawRay(raySpawnPos, right);
-        Gizmos.color = (Physics.Raycast(leftRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
-        Gizmos.DrawRay(raySpawnPos, left);
 
-        //downs 
+        //Gizmos.color = Color.yellow;
 
-        Gizmos.color = (Physics.Raycast(frontDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
-        Gizmos.DrawRay(raySpawnPos + forward, Vector3.down);
-        Gizmos.color = (Physics.Raycast(backDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
-        Gizmos.DrawRay(raySpawnPos + back, Vector3.down);
-        Gizmos.color = (Physics.Raycast(rightDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
-        Gizmos.DrawRay(raySpawnPos + right, Vector3.down);
-        Gizmos.color = (Physics.Raycast(leftDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
-        Gizmos.DrawRay(raySpawnPos + left, Vector3.down);
+        //Gizmos.color = (Physics.Raycast(frontRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+        //Gizmos.DrawRay(raySpawnPos, forward);
+        //Gizmos.color = (Physics.Raycast(backRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+        //Gizmos.DrawRay(raySpawnPos, back);
+        //Gizmos.color = (Physics.Raycast(rightRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+        //Gizmos.DrawRay(raySpawnPos, right);
+        //Gizmos.color = (Physics.Raycast(leftRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+        //Gizmos.DrawRay(raySpawnPos, left);
 
-        Gizmos.color = Color.blue;
-      
-        if(StepCheck(out Vector3 ray,out float stepHeight))
-        {
-            Debug.Log("step height is : " + stepHeight);
-            Gizmos.DrawRay(transform.position, ray);
-        }
-    
+        ////downs 
+
+        //Gizmos.color = (Physics.Raycast(frontDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+        //Gizmos.DrawRay(raySpawnPos + forward, Vector3.down);
+        //Gizmos.color = (Physics.Raycast(backDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+        //Gizmos.DrawRay(raySpawnPos + back, Vector3.down);
+        //Gizmos.color = (Physics.Raycast(rightDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+        //Gizmos.DrawRay(raySpawnPos + right, Vector3.down);
+        //Gizmos.color = (Physics.Raycast(leftDownRay, m_SlipCheckDistance, m_WalkableLayer)) ? Color.green : Color.yellow;
+        //Gizmos.DrawRay(raySpawnPos + left, Vector3.down);
+
+        //Gizmos.color = Color.blue;
+
+        //
+
+        //if(StepCheck(out Vector3 ray,out float stepHeight))
+        //{
+        //    Debug.Log("step height is : " + stepHeight);
+        //    Gizmos.DrawRay(transform.position, ray);
+        //}
+       
+
+        
+
+        Gizmos.color = Color.magenta;
+
 
         Gizmos.color = Color.cyan; 
         Gizmos.DrawRay(transform.position, MoveInput);
