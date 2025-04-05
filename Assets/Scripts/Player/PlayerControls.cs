@@ -12,6 +12,7 @@ namespace PlayerControls
             Player,
             Ghost,
             Selecting,
+            Pause
 
         }
         [SerializeField] internal EControlState m_ControlState = EControlState.Player;
@@ -212,6 +213,7 @@ namespace PlayerControls
         private void TogglePause(InputAction.CallbackContext context)
         {
             LocalUI.Instance.TogglePause();
+            SwitchState(LocalUI.Instance.m_InPauseMenu ? EControlState.Pause : EControlState.Player);
         }
 
 
@@ -286,6 +288,9 @@ namespace PlayerControls
                     break;
                 case EControlState.Selecting:
                     break;
+                case EControlState.Pause:
+                    break;
+
                 default:
                     break;
             }
@@ -321,6 +326,11 @@ namespace PlayerControls
                     m_PlayerMovement.StopMovement();
                     Cursor.visible = true;
                     break;
+                case EControlState.Pause:
+                    m_InputActions.UI.Enable();
+                    m_InputActions.Player.Pause.Enable();
+                    m_PlayerMovement.StopMovement();
+                    break; 
                 default:
                     break;
             }
@@ -339,6 +349,10 @@ namespace PlayerControls
                 case EControlState.Selecting:
                     m_InputActions.PowerSelect.Disable();
                     break;
+                case EControlState.Pause:
+                    m_InputActions.Player.Pause.Disable();
+                    m_InputActions.UI.Disable();
+                    break; 
                 default:
                     break;
             }

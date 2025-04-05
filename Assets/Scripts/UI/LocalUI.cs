@@ -19,7 +19,7 @@ public class LocalUI : MonoBehaviour
     [Header(" Pause ")]
     public LobbyHUD m_LobbyHUD;
 
-    [SerializeField] bool m_InPauseMenu = false;
+    [SerializeField] internal bool m_InPauseMenu = false;
 
     [Space(10)]
     [Header("Player Stats ")]
@@ -127,6 +127,8 @@ public class LocalUI : MonoBehaviour
         m_LobbyHUD.ShowPause(m_InPauseMenu);  
 
         Cursor.visible = m_InPauseMenu;
+        Cursor.lockState = CursorLockMode.Confined;
+       
         m_WorldDialogUI.ShowDiconnectDialog(m_InPauseMenu);
     }
     
@@ -301,6 +303,7 @@ public class LocalUI : MonoBehaviour
     {
         m_WorldDialogUI.Disconnect();
         TogglePause();
+        Cursor.visible = true;
 
     }
 
