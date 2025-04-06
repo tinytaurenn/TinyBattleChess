@@ -47,7 +47,8 @@ public class TinyPlayer : Entity, IDamageable
     Ragdoll m_RagDoll;
     PlayerFX m_PlayerFX; 
     public PlayerLoadout m_PlayerLoadout;
-    public Animator m_Animator; 
+    public Animator m_Animator;
+    public AudioSource m_AudioSource; 
 
     [SerializeField] GameObject m_PlayerModel;
     [SerializeField] PlayerAnimEvents m_PlayerAnimEvents;
@@ -125,6 +126,7 @@ public class TinyPlayer : Entity, IDamageable
         m_RagDoll = GetComponent<Ragdoll>();
         m_PlayerFX = GetComponent<PlayerFX>();
         m_PlayerLoadout = GetComponent<PlayerLoadout>();
+        m_AudioSource = GetComponent<AudioSource>();
 
 
 
@@ -469,8 +471,6 @@ public class TinyPlayer : Entity, IDamageable
 
         Debug.Log("sync Player took " + damage + " weapon damage!");
 
-        m_PlayerFX.PlayHurtFX(0);
-        Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
         Damagersync.SendCommand<EntityCommands>(nameof(EntityCommands.SyncHitCommand), Coherence.MessageTarget.AuthorityOnly); //sound 
         
         TakeDamageSync(damage, damageType, Damagersync);
@@ -532,6 +532,34 @@ public class TinyPlayer : Entity, IDamageable
         }
 
 
+    }
+
+    public override void PlayDamageSound(EWeaponType weaponType)
+    {
+        switch (weaponType)
+        {
+            case EWeaponType.Hands:
+
+                if (m_PlayerWeapons.m_FistHitSounds.Length <= 0) return; 
+                int clipIndex = UnityEngine.Random.Range(0, m_PlayerWeapons.m_FistHitSounds.Length);
+                m_AudioSource.clip = m_PlayerWeapons.m_FistHitSounds[clipIndex];
+                m_AudioSource.Play(); 
+                break;
+            case EWeaponType.Melee:
+
+                if (m_PlayerWeapons.GetMainWeapon() == null) return;
+
+                m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().PlayHitSound();
+                break;
+            case EWeaponType.Staff:
+                break;
+            case EWeaponType.Ranged:
+                break;
+            case EWeaponType.Shield:
+                break;
+            default:
+                break;
+        }
     }
 
     public void TakeGlobalDamage(int damage)

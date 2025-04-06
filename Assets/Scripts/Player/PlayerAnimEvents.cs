@@ -11,6 +11,15 @@ public class PlayerAnimEvents : MonoBehaviour
     [SerializeField] ParticleSystem m_RightPunchParticles; 
     [SerializeField] ParticleSystem m_LeftPunchParticles;
 
+    [SerializeField]
+    AudioClip[] m_FootStepClips;
+
+    [SerializeField]
+    AudioClip[] m_jumpClips;
+
+    [SerializeField] AudioSource m_StepAudioSource; 
+    [SerializeField] AudioSource m_ActionAudioSource; 
+
    
 
 
@@ -42,5 +51,19 @@ public class PlayerAnimEvents : MonoBehaviour
     public void PlayRightPunch() => m_RightPunchParticles.Play();
     public void PlayLeftPunch() => m_LeftPunchParticles.Play();
 
-  
+    public void PlayFootStep()
+    {
+        m_StepAudioSource.pitch = 1; 
+        m_StepAudioSource.clip = m_FootStepClips[Random.Range(0, m_FootStepClips.Length)];
+        m_StepAudioSource.Play(); 
+        
+    }
+    public void PlayJumpSound()
+    {
+        m_StepAudioSource.pitch = Random.Range(0.8f, 1.2f); // Randomize the pitch for a more natural sound
+        m_StepAudioSource.clip = m_jumpClips[Random.Range(0, m_jumpClips.Length)];
+        m_StepAudioSource.Play();
+
+    }
+
 }

@@ -507,4 +507,8 @@ public class HumanoidNPC : TinyNPC
 
     }
 
+    public override void PlayDamageSound(EWeaponType weaponType)
+    {
+        throw new System.NotImplementedException();
+    }
 }

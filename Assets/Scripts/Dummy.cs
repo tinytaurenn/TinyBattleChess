@@ -143,4 +143,9 @@ public class Dummy : Entity, IDamageable
     {
         throw new System.NotImplementedException();
     }
+
+    public override void PlayDamageSound(EWeaponType weaponType)
+    {
+        throw new NotImplementedException();
+    }
 }

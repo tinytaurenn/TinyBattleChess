@@ -47,6 +47,8 @@ public class PlayerWeapons : MonoBehaviour
     [Header("Parry Parameters")]
     [SerializeField] float m_ParryAngle = 20f;
 
+    [SerializeField] public AudioClip[] m_FistHitSounds; 
+
 
     public bool InParry => (m_WeaponState == EWeaponState.Parry);
 
@@ -390,9 +392,14 @@ public class PlayerWeapons : MonoBehaviour
     public void SyncHit()
     {
         Debug.Log("i get sync Hit ");
-        if (GetMainWeapon() == null) return; 
 
-        m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>().PlayHitSound();
+
+
+        //sounds
+
+        m_Sync.SendCommand<EntityCommands>(nameof(EntityCommands.PlayDamageSoundCommand), MessageTarget.Other, (int)m_MainWeaponType);
+        m_TinyPlayer.PlayDamageSound(m_MainWeaponType);
+
     }
 
     public bool IsInParryAngle(Vector3 enemyPosition)
@@ -401,6 +408,8 @@ public class PlayerWeapons : MonoBehaviour
         return transform.IsInAngle(m_ParryAngle, enemyPosition);
 
     }
+
+
 
 
 

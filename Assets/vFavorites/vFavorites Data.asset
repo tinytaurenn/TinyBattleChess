@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066cf82f8f80d408c856e48fc8f1127b, type: 3}
+  m_Name: vFavorites Data
+  m_EditorClassIdentifier: 
+  pages:
+  - items:
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-276f4c8c1f54c8d41afce07cc23e23c3-5672937524744202216-0
+      _typeString: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 5672937524744202216, guid: 276f4c8c1f54c8d41afce07cc23e23c3, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1063795838
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-44c6c21560691fc45a054ad7bbaa75f8-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 44c6c21560691fc45a054ad7bbaa75f8, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1048297850
+    name: Mains
+    _id: 1061191114
+  - items: []
+    name: Page 2
+    _id: 1063751770
+  - items: []
+    name: Page 3
+    _id: 1055869922
+  - items: []
+    name: Page 4
+    _id: 1048246274
+  - items: []
+    name: Page 5
+    _id: 1062466368
+  - items: []
+    name: Page 6
+    _id: 0
+  rowScale: 1

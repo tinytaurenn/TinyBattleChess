@@ -22,6 +22,7 @@ public abstract class Entity : MonoBehaviour
             m_EntityHealth = value;
         }
     }
+    public abstract void PlayDamageSound(EWeaponType weaponType);
 
     public abstract void EntityDeath();
 

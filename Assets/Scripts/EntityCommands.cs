@@ -9,6 +9,14 @@ public class EntityCommands : MonoBehaviour
     {
         m_Sync = GetComponent<CoherenceSync>();
     }
+    [Command]
+    public  void PlayDamageSoundCommand(int intWeaponType)
+    {
+        if (TryGetComponent<Entity>(out Entity ent))
+        {
+            ent.PlayDamageSound((EWeaponType)intWeaponType);
+        }
+    }
 
     // Update is called once per frame
     [Command]
