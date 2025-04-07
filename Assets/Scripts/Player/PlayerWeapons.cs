@@ -489,6 +489,7 @@ public class PlayerWeapons : MonoBehaviour
         SwitchWeaponState(EWeaponState.None);
         UpdateMainWeaponType(); 
     }
+
    
     public void DoBareHandedDamage(bool isLeft)
     {

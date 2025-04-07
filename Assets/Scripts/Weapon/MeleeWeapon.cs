@@ -45,12 +45,21 @@ public class MeleeWeapon : BasicWeapon,IWeapon
 
     public void ActivateDamage(bool activate)
     {
-        Debug.Log("activating damage collider");
-        m_DamageCollider.enabled = activate;
-        if (activate)
+        if(m_HolderTransform!=null &&  m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons playerWeapons))
         {
-            HitList.Clear();
+            if(playerWeapons.m_WeaponState != PlayerWeapons.EWeaponState.AttackRelease) activate = false;   
+            Debug.Log("activating damage collider");
+            m_DamageCollider.enabled = activate;
+            if (activate)
+            {
+                HitList.Clear();
+            }
         }
+        else
+        {
+            if (m_DamageCollider.enabled) m_DamageCollider.enabled = false; 
+        }
+        
 
     }
 
