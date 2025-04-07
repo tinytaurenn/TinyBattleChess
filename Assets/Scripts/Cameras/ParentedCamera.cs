@@ -138,17 +138,22 @@ public class ParentedCamera : MonoBehaviour
         targetPos = new Vector3(targetPos.x, camPosition.y, targetPos.z);
         float distance = Vector3.Distance(camPosition, targetPos);
         Vector3 rayDirection = (camPosition - targetPos).normalized;
-        if (Physics.SphereCast(targetPos, m_WallCheckOffset, rayDirection, out RaycastHit hit, distance, m_CheckMask))
+        if (Physics.SphereCast(targetPos, m_WallCheckOffset, rayDirection, out RaycastHit Spherehit, distance, m_CheckMask))
         {
-            newPosition = hit.point + hit.normal * m_WallCheckOffset;
+            newPosition = Spherehit.point + Spherehit.normal * m_WallCheckOffset;
 
             newPosition.y = transform.position.y;
+            return true;
+        }
+        if (Physics.Raycast(targetPos, rayDirection, out RaycastHit Rayhit, distance, m_CheckMask))
+        {
+            newPosition = new Vector3(Rayhit.point.x, transform.position.y, Rayhit.point.z);
+
             return true;
         }
         newPosition = transform.position;
         return false;
     }
-
 
 
 
@@ -170,7 +175,7 @@ public class ParentedCamera : MonoBehaviour
         Gizmos.DrawWireSphere(newPos, m_WallCheckOffset);
 
 
-        
+      
     }
 
     #endregion
