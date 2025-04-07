@@ -1,4 +1,5 @@
 using PlayerControls;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ParentedCamera : MonoBehaviour
@@ -16,6 +17,8 @@ public class ParentedCamera : MonoBehaviour
     [SerializeField] float m_CameraUpOffset = 3f;
     [SerializeField] float m_FallingDownOffSet = 3f;
     [SerializeField] float m_LastGroundedYPos = 0f;
+    [SerializeField] LayerMask m_CheckMask;
+    [SerializeField] float m_WallCheckOffset = 0f; 
 
     
 
@@ -102,6 +105,11 @@ public class ParentedCamera : MonoBehaviour
 
         //newPosition += Vector3.down *( ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerMovement.LookValue*3); 
 
+        if(IsWallCheck(newPosition, m_PlayerMovement.transform.position, out Vector3 newPos))
+        {
+            transform.position = newPos;
+            return;
+        }
 
         transform.position = newPosition;
     }
@@ -125,10 +133,44 @@ public class ParentedCamera : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, m_RotationSpeed * Time.fixedDeltaTime); 
     }
 
+    bool IsWallCheck(Vector3 camPosition, Vector3 targetPos, out Vector3 newPosition)
+    {
+        targetPos = new Vector3(targetPos.x, camPosition.y, targetPos.z);
+        float distance = Vector3.Distance(camPosition, targetPos);
+        Vector3 rayDirection = (camPosition - targetPos).normalized;
+        if (Physics.SphereCast(targetPos, m_WallCheckOffset, rayDirection, out RaycastHit hit, distance, m_CheckMask))
+        {
+            newPosition = hit.point + hit.normal * m_WallCheckOffset;
+
+            newPosition.y = transform.position.y;
+            return true;
+        }
+        newPosition = transform.position;
+        return false;
+    }
+
+
+
+
 
     private void OnDrawGizmos()
     {
+        if (m_PlayerMovement == null) return; 
+        
+        Vector3 newPos; 
 
+        if(IsWallCheck(transform.position, m_PlayerMovement.transform.position, out newPos))
+        {
+            Gizmos.color = Color.red;
+        }
+        else
+        {
+            Gizmos.color = Color.green;
+        }
+        Gizmos.DrawWireSphere(newPos, m_WallCheckOffset);
+
+
+        
     }
 
     #endregion
