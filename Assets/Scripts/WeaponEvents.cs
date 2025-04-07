@@ -25,7 +25,7 @@ public class WeaponEvents : MonoBehaviour
 
         if (m_PlayerWeapons.GetMainWeapon().TryGetComponent<MeleeWeapon>(out MeleeWeapon meleeWeapon))
         {
-            meleeWeapon.ActivateDamage(true);
+            meleeWeapon.ActivateDamage(true, m_PlayerWeapons);
         }
     }
     public void DeactivateWeaponDamage()
@@ -43,7 +43,7 @@ public class WeaponEvents : MonoBehaviour
 
         if (m_PlayerWeapons.GetMainWeapon().TryGetComponent<MeleeWeapon>(out MeleeWeapon meleeWeapon))
         {
-            meleeWeapon.ActivateDamage(false);
+            meleeWeapon.ActivateDamage(false,m_PlayerWeapons);
         }
     }
 

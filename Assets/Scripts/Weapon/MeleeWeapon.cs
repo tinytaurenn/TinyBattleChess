@@ -43,9 +43,9 @@ public class MeleeWeapon : BasicWeapon,IWeapon
         m_WeaponParameters = weaponParameters;
     }
 
-    public void ActivateDamage(bool activate)
+    public void ActivateDamage(bool activate,PlayerWeapons playerWeapons)
     {
-        if(m_HolderTransform!=null &&  m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons playerWeapons))
+        if(m_HolderTransform!=null)
         {
             if(playerWeapons.m_WeaponState != PlayerWeapons.EWeaponState.AttackRelease) activate = false;   
             Debug.Log("activating damage collider");
@@ -61,6 +61,16 @@ public class MeleeWeapon : BasicWeapon,IWeapon
         }
         
 
+    }
+
+    public void ActivateDamage(bool activate)
+    {
+        Debug.Log("activating damage collider");
+        m_DamageCollider.enabled = activate;
+        if (activate)
+        {
+            HitList.Clear();
+        }
     }
 
     public override void Release()
