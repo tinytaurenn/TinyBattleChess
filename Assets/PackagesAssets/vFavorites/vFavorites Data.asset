@@ -24,14 +24,23 @@ MonoBehaviour:
       isAsset: 1
       _id: 1063795838
     - globalId:
-        globalObjectIdString: GlobalObjectId_V1-1-44c6c21560691fc45a054ad7bbaa75f8-102900000-0
+        globalObjectIdString: GlobalObjectId_V1-1-88658d54c82aaf142bfc3570c268ff4b-102900000-0
       _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      _obj: {fileID: 102900000, guid: 44c6c21560691fc45a054ad7bbaa75f8, type: 3}
+      _obj: {fileID: 102900000, guid: 88658d54c82aaf142bfc3570c268ff4b, type: 3}
       isSceneGameObject: 0
       isFolder: 1
       isAsset: 0
-      _id: 1048297850
+      _id: 1054412746
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-661041204cf715d4dadde2c7eb26a727-102900000-0
+      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: 661041204cf715d4dadde2c7eb26a727, type: 3}
+      isSceneGameObject: 0
+      isFolder: 1
+      isAsset: 0
+      _id: 1064121706
     name: Mains
     _id: 1061191114
   - items: []
