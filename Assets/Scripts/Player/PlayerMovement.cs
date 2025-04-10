@@ -12,6 +12,7 @@ namespace PlayerControls
         [SerializeField] CameraManager m_CameraManager;
 
         public Vector2 MouseDelta { get; set; }
+        public float m_MouseSensivity = 1f; // mouse sensitivity
         [Space(10)]
         [Header("player movement speeds ")]
         [SerializeField] float m_BackWardspeedModifier = 0.5f;
@@ -53,12 +54,12 @@ namespace PlayerControls
             base.MovementUpdate();
 
             if (IsLocked) return; 
-            float mouseDeltaX = MouseDelta.x;
+            float mouseDeltaX = MouseDelta.x * m_MouseSensivity;
 
             Quaternion newRotation = Quaternion.Euler(0, mouseDeltaX, 0); 
             transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation *  newRotation, Time.fixedDeltaTime * m_RotationSpeed);
 
-            float mouseDeltaY = MouseDelta.y;
+            float mouseDeltaY = MouseDelta.y * m_MouseSensivity;
 
             m_LookValue += mouseDeltaY * Time.fixedDeltaTime * m_VerticalLookSensivity; 
             m_LookValue = Mathf.Clamp(m_LookValue, -m_LookRange, m_LookRange);

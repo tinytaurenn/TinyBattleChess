@@ -119,6 +119,7 @@ public class LocalUI : MonoBehaviour
         }
         m_PauseMenu.m_LobbyButton.onClick.AddListener(m_PauseMenu.OnLobbyButton);
         m_PauseMenu.m_SettingsButton.onClick.AddListener(m_PauseMenu.OnSettingsButton);
+        m_PauseMenu.m_SensivitySlider.onValueChanged.AddListener(m_PauseMenu.OnSensivitySliderChange);
 
         
 

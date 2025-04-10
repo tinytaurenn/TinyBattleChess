@@ -1,5 +1,6 @@
 using Coherence.Samples.WorldDialog;
 using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,9 @@ public class PauseMenu
 
     public Button m_LobbyButton;
     public Button m_SettingsButton;
-    public Button[] m_ReturnButton; 
+    public Button[] m_ReturnButton;
+    public Slider m_SensivitySlider;
+    public TextMeshProUGUI m_SliderText; 
 
     
     public void TogglePause()
@@ -79,4 +82,12 @@ public class PauseMenu
         Cursor.lockState = CursorLockMode.Confined;
     }
 
+    internal void OnSensivitySliderChange(float value)
+    {
+        if(ConnectionsHandler.Instance.LocalTinyPlayer != null)
+        {
+            ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerMovement.m_MouseSensivity = value;
+            m_SliderText.text = "Sensivity : " + value.ToString("F2");
+        }
+    }
 }
