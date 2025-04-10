@@ -13,13 +13,10 @@ public class LocalUI : MonoBehaviour
 {
     public static LocalUI Instance { get; private set; }
 
-    [SerializeField] WorldDialogUI m_WorldDialogUI;
-
     [Space(10)]
     [Header(" Pause ")]
-    public LobbyHUD m_LobbyHUD;
+    public PauseMenu m_PauseMenu;
 
-    [SerializeField] internal bool m_InPauseMenu = false;
 
     [Space(10)]
     [Header("Player Stats ")]
@@ -115,21 +112,26 @@ public class LocalUI : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 120; 
         Cursor.lockState = CursorLockMode.Confined;
-   
+
+        foreach (Button item in m_PauseMenu.m_ReturnButton)
+        {
+            item.onClick.AddListener(m_PauseMenu.OnReturnButton); 
+        }
+        m_PauseMenu.m_LobbyButton.onClick.AddListener(m_PauseMenu.OnLobbyButton);
+        m_PauseMenu.m_SettingsButton.onClick.AddListener(m_PauseMenu.OnSettingsButton);
+
+        
+
 
     }
+    
+
+
 
 
     public void TogglePause()
     {
-        m_InPauseMenu = !m_InPauseMenu;
-
-        m_LobbyHUD.ShowPause(m_InPauseMenu);  
-
-        Cursor.visible = m_InPauseMenu;
-        Cursor.lockState = CursorLockMode.Confined;
-       
-        m_WorldDialogUI.ShowDiconnectDialog(m_InPauseMenu);
+        m_PauseMenu.TogglePause(); 
     }
     
     public void SelectSlot(EStuffSlot slot)
@@ -301,9 +303,7 @@ public class LocalUI : MonoBehaviour
 
     public void Disconnect()
     {
-        m_WorldDialogUI.Disconnect();
-        TogglePause();
-        Cursor.visible = true;
+        m_PauseMenu.Disconnect();
 
     }
 

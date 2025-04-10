@@ -213,7 +213,7 @@ namespace PlayerControls
         private void TogglePause(InputAction.CallbackContext context)
         {
             LocalUI.Instance.TogglePause();
-            SwitchState(LocalUI.Instance.m_InPauseMenu ? EControlState.Pause : EControlState.Player);
+            SwitchState(LocalUI.Instance.m_PauseMenu.m_InPauseMenu ? EControlState.Pause : EControlState.Player);
         }
 
 

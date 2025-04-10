@@ -81,10 +81,8 @@ public class LobbyHUD : MonoBehaviour
 
     public void ShowPause(bool show)
     {
-        LocalUI.Instance.m_LobbyHUD.UpdateLobbyHud();
+        UpdateLobbyHud();
         Debug.Log("show pause root canvas : " + show);
-        m_RootCanvas.enabled = show;
-        m_RootCanvas.gameObject.SetActive(show); 
     }
     
 
