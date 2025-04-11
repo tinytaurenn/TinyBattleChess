@@ -358,7 +358,7 @@ public class HumanoidNPC : TinyNPC
 
     }
 
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, EWeaponType weaponType, Vector3 attackerPos)
     {
         //base.TakeMeleeSync(DirectionNESO, sync, damage, attackerPos);
         bool rightParry = false; 
@@ -403,7 +403,7 @@ public class HumanoidNPC : TinyNPC
         }
         else
         {
-            TakeWeaponDamageSync(damage,damageType, sync);
+            TakeWeaponDamageSync(damage,damageType, weaponType, sync);
         }
     }
 
@@ -423,7 +423,7 @@ public class HumanoidNPC : TinyNPC
         
     }
 
-    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, EWeaponType weaponType, CoherenceSync Damagersync)
     {
         Debug.Log("sync humanoid took " + damage + " weapon damage!");
 

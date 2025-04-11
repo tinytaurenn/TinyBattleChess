@@ -547,12 +547,12 @@ public abstract class TinyNPC : Entity, IDamageable
 
     
 
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, EWeaponType weaponType, Vector3 attackerPos)
     {
         Debug.Log("not implemented TakeMeleeSync");
     }
 
-    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, EWeaponType weaponType, CoherenceSync Damagersync)
     {
         Debug.Log("not implemented TakeWeaponDamageSync");
     }

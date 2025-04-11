@@ -512,9 +512,9 @@ public class PlayerWeapons : MonoBehaviour
                 Debug.Log("fist punch found entity");
                 if(collider.TryGetComponent<CoherenceSync>(out CoherenceSync sync))
                 {
-                    if(transform.IsInAngle(m_ParryAngle, collider.transform.position))
+                    if(transform.IsInAngle(m_ParryAngle, collider.transform.position)) 
                     {
-                        sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, (int)m_WeaponDirection, m_Sync, m_BareHanded_Damage, (int)EEffectType.Physical, transform.position);
+                        sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, (int)m_WeaponDirection, m_Sync, m_BareHanded_Damage, (int)EEffectType.Physical,(int)EWeaponType.Hands, transform.position);
                     }
                 }
                   

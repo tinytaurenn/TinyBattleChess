@@ -430,24 +430,25 @@ command _276f4c8c1f54c8d41afce07cc23e23c3_5bad42507fe140d4b87c78206fab3ecc [id "
 
 command _276f4c8c1f54c8d41afce07cc23e23c3_6177304efeff4057b50af5f588454420 [id "24", routing "All"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_664a868baa984f94a574b333cc4ad4ea [id "25", routing "All"]
-  DirectionNESO Int 
-  sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
-  damage Int 
-  damageType Int 
-  attackerPos Vector3 [compression "None"]
-
-command _276f4c8c1f54c8d41afce07cc23e23c3_73f48050aaba462988e4b31a77e08339 [id "26", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_73f48050aaba462988e4b31a77e08339 [id "25", routing "All"]
   IntEGameEffect Int 
   value Float [compression "None"]
   duration Float [compression "None"]
   IntEEffectType Int 
   damagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_7556cd7d7e774997864e997434cec5d1 [id "27", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_7556cd7d7e774997864e997434cec5d1 [id "26", routing "All"]
   name String 
 
-command _276f4c8c1f54c8d41afce07cc23e23c3_7815420e2f7042c4ab2a7a4134b2c5d0 [id "28", routing "All"]
+command _276f4c8c1f54c8d41afce07cc23e23c3_7815420e2f7042c4ab2a7a4134b2c5d0 [id "27", routing "All"]
+
+command _276f4c8c1f54c8d41afce07cc23e23c3_7cae50771b1e44aa8d598a545507b3a9 [id "28", routing "All"]
+  DirectionNESO Int 
+  sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
+  damage Int 
+  damageType Int 
+  weaponType Int 
+  attackerPos Vector3 [compression "None"]
 
 command _276f4c8c1f54c8d41afce07cc23e23c3_7df3250732b84749b4b733d375fb051a [id "29", routing "All"]
   oldState Int 
@@ -606,11 +607,12 @@ command _61db515efe9556c45853cdc384e6813b_59e034c4b9784967ba52fc25c9c44fa2 [id "
 command _61db515efe9556c45853cdc384e6813b_63cdcab986294601a6660a68d4dd0c87 [id "81", routing "All"]
   intWeaponType Int 
 
-command _61db515efe9556c45853cdc384e6813b_787e0e02f0c843f4afd66b34fd37c1cc [id "82", routing "All"]
+command _61db515efe9556c45853cdc384e6813b_7ccebcc74a0c492bb2ec643c86e9c9c8 [id "82", routing "All"]
   DirectionNESO Int 
   sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
   damage Int 
   damageType Int 
+  weaponType Int 
   attackerPos Vector3 [compression "None"]
 
 command _61db515efe9556c45853cdc384e6813b_8a1700f288ef45e6aac8a2ca83715943 [id "83", routing "All"]
@@ -685,24 +687,25 @@ command _c473af9c10567024caf206bf6752a656_2fb261a60ed84904a74e0403127ebf64 [id "
 command _c473af9c10567024caf206bf6752a656_31234557a30c47cda70d1bc9658bee3e [id "106", routing "All"]
   choiceIndex Int 
 
-command _c473af9c10567024caf206bf6752a656_7bd4794ab71c4ab5841c570d28e0e4b8 [id "107", routing "All"]
-  intWeaponType Int 
-
-command _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b [id "108", routing "All"]
-  GameEffectID String 
-  damagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
-
-command _c473af9c10567024caf206bf6752a656_9e50066eb3494c89bd8ded9856aa1343 [id "109", routing "All"]
-  gameID Int 
-
-command _c473af9c10567024caf206bf6752a656_a855d5b47de54941aeeffab26462662a [id "110", routing "All"]
-
-command _c473af9c10567024caf206bf6752a656_c4a533ff3d744ab696cbcdc9422daf04 [id "111", routing "All"]
+command _c473af9c10567024caf206bf6752a656_3b67882946ca4505ac8a520269baeb9f [id "107", routing "All"]
   DirectionNESO Int 
   sync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
   damage Int 
   damageType Int 
+  weaponType Int 
   attackerPos Vector3 [compression "None"]
+
+command _c473af9c10567024caf206bf6752a656_7bd4794ab71c4ab5841c570d28e0e4b8 [id "108", routing "All"]
+  intWeaponType Int 
+
+command _c473af9c10567024caf206bf6752a656_9858a470c99a41e787949af3ada11b0b [id "109", routing "All"]
+  GameEffectID String 
+  damagerSync Entity [client-type "Coherence.Toolkit.CoherenceSync"]
+
+command _c473af9c10567024caf206bf6752a656_9e50066eb3494c89bd8ded9856aa1343 [id "110", routing "All"]
+  gameID Int 
+
+command _c473af9c10567024caf206bf6752a656_a855d5b47de54941aeeffab26462662a [id "111", routing "All"]
 
 command _c473af9c10567024caf206bf6752a656_d40016ebf2154d3185de631b21824604 [id "112", routing "All"]
 

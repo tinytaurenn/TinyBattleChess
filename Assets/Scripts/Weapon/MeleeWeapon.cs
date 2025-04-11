@@ -143,7 +143,7 @@ public class MeleeWeapon : BasicWeapon,IWeapon
             weaponDir = (int)npc.m_WeaponDirection;
         }
         CoherenceSync holderSync = m_HolderTransform.GetComponent<CoherenceSync>();
-        damageTargetSync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, weaponDir, holderSync, m_MeleeWeaponParameters.Damage, (int)m_WeaponParameters.DamageType, m_HolderTransform.transform.position);
+        damageTargetSync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeMeleeCommand), Coherence.MessageTarget.AuthorityOnly, weaponDir, holderSync, m_MeleeWeaponParameters.Damage, (int)m_WeaponParameters.DamageType,(int)m_WeaponParameters.WeaponType, m_HolderTransform.transform.position);
     }
 
     public override void BlockAttackEffect(CoherenceSync damagerSync)

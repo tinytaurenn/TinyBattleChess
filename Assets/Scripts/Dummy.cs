@@ -54,7 +54,7 @@ public class Dummy : Entity, IDamageable
     
 
   
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync,int damage,EEffectType damageType, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync,int damage,EEffectType damageType, EWeaponType weaponType, Vector3 attackerPos)
     {
 
         EWeaponDirection direction = (EWeaponDirection)DirectionNESO; 
@@ -86,7 +86,7 @@ public class Dummy : Entity, IDamageable
         }
         else
         {
-            TakeWeaponDamageSync(damage,damageType,sync); 
+            TakeWeaponDamageSync(damage,damageType,weaponType,sync); 
             
 
         }
@@ -102,7 +102,7 @@ public class Dummy : Entity, IDamageable
         Debug.Log("dummy died");    
     }
 
-    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, EWeaponType weaponType, CoherenceSync Damagersync)
     {
         Debug.Log("sync Dummy took " + damage + " damage!");
 

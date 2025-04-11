@@ -156,7 +156,7 @@ public abstract class Grabbable : Usable
     public virtual void Release()
     {
         m_IsHeld = false;
-        m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other, true);
+        m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other, true); 
         transform.localScale = m_ItemScale;
     }
 }

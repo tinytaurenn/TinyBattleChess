@@ -20,11 +20,11 @@ public class EntityCommands : MonoBehaviour
 
     // Update is called once per frame
     [Command]
-    public void TakeMeleeCommand(int DirectionNESO, CoherenceSync sync, int damage,int damageType, Vector3 attackerPos)//cant use interfaces or abtract class direct commands
+    public void TakeMeleeCommand(int DirectionNESO, CoherenceSync sync, int damage,int damageType,int weaponType, Vector3 attackerPos)//cant use interfaces or abtract class direct commands
     {
         if(TryGetComponent<Entity>(out Entity ent))
         {
-            ent.TakeMeleeSync(DirectionNESO, sync, damage,(EEffectType)damageType, attackerPos);
+            ent.TakeMeleeSync(DirectionNESO, sync, damage,(EEffectType)damageType,(EWeaponType)weaponType, attackerPos);
         }
     }
     [Command]

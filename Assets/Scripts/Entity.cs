@@ -28,9 +28,9 @@ public abstract class Entity : MonoBehaviour
 
     
 
-    public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, EEffectType damageType,Vector3 attackerPos);
+    public abstract void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage, EEffectType damageType, EWeaponType weaponType, Vector3 attackerPos);
 
-    public abstract void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync);
+    public abstract void TakeWeaponDamageSync(int damage,EEffectType damageType, EWeaponType weaponType, CoherenceSync Damagersync);
 
 
     public abstract void ParrySync(int damage, CoherenceSync DamagerSync);

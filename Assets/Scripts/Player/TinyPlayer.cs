@@ -418,7 +418,7 @@ public class TinyPlayer : Entity, IDamageable
     }
 
     #region Hits
-    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, Vector3 attackerPos)
+    public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, EWeaponType weaponType, Vector3 attackerPos)
     {
 
         if (m_PlayerState != EPlayerState.Player)
@@ -431,6 +431,7 @@ public class TinyPlayer : Entity, IDamageable
         EWeaponDirection weaponDirection = m_PlayerWeapons.m_WeaponDirection;
         Debug.Log(" player take melee sync");
         Debug.Log(" strike " + direction.ToString() + " direction!");
+        Debug.Log(" mainweapontype is " + m_PlayerWeapons.m_MainWeaponType.ToString() + " and attacker weapon type is : " + weaponType.ToString());
 
         bool parry = false;
 
@@ -452,6 +453,18 @@ public class TinyPlayer : Entity, IDamageable
         }
 
         if (m_PlayerWeapons.InShieldParry) parry = true; 
+        if(m_PlayerWeapons.m_MainWeaponType == EWeaponType.Hands && weaponType != EWeaponType.Hands)
+        {
+            TakeWeaponDamageSync(damage, damageType, weaponType, sync);
+            return; 
+        }
+
+        if (m_PlayerWeapons.m_MainWeaponType ==  weaponType && m_PlayerWeapons.InParry && m_PlayerWeapons.IsInParryAngle(attackerPos))
+        {
+            ParrySync(damage, sync);
+            return;
+
+        }
 
         if (m_PlayerWeapons.InParry && parry && m_PlayerWeapons.IsInParryAngle(attackerPos))
         {
@@ -460,13 +473,13 @@ public class TinyPlayer : Entity, IDamageable
         }
         else
         {
-            TakeWeaponDamageSync(damage,damageType, sync); 
+            TakeWeaponDamageSync(damage,damageType,weaponType, sync); 
 
 
         }
     }
 
-    public override void TakeWeaponDamageSync(int damage,EEffectType damageType, CoherenceSync Damagersync)
+    public override void TakeWeaponDamageSync(int damage,EEffectType damageType,EWeaponType weaponType,  CoherenceSync Damagersync)
     {
 
         Debug.Log("sync Player took " + damage + " weapon damage!");
