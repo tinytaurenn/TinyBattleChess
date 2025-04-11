@@ -797,6 +797,7 @@ public class PlayerLoadout : MonoBehaviour
 
         Transform[] sockets = {m_ChestSocket, m_HelmetSocket, m_LeftShoulderSocket, m_RightShoulderSocket, m_PlayerLeftHandSocket, m_PlayerRightHandSocket, m_PlayerPocket }; 
         CheckAndDestroyInSockets(sockets);
+        if(m_TinyPlayer.m_PlayerWeapons.Throwing) UseThrowingItem();
 
         m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
 
@@ -831,9 +832,9 @@ public class PlayerLoadout : MonoBehaviour
         {
             if (socket.childCount > 0)
             {
-                foreach (object item in socket)
+                foreach (Transform item in socket)
                 {
-                    if ((GameObject)item != null) Destroy((GameObject)item);
+                    if (item.gameObject != null) Destroy(item.gameObject); 
 
                 }
             }

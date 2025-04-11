@@ -198,6 +198,7 @@ public class TinyPlayer : Entity, IDamageable
         SwitchPlayerState(0);
         SCENE_MANAGER.Instance.UpdateScene(MainSimulator.EPlayState.Lobby);
         TeleportPlayer(SCENE_MANAGER.Instance.LobbyPos.position);
+        m_PlayerLoadout.UnloadEquippedStuff();
     }
 
 
@@ -452,27 +453,34 @@ public class TinyPlayer : Entity, IDamageable
                 break;
         }
 
-        if (m_PlayerWeapons.InShieldParry) parry = true; 
-        if(m_PlayerWeapons.m_MainWeaponType == EWeaponType.Hands && weaponType != EWeaponType.Hands)
+        if (m_PlayerWeapons.InShieldParry) parry = true;
+        Debug.Log("shield parry: " + m_PlayerWeapons.InShieldParry); 
+        Debug.Log(" parry: " + parry); 
+        Debug.Log(" attacker angle: " + m_PlayerWeapons.IsInParryAngle(attackerPos)); 
+        if(m_PlayerWeapons.m_MainWeaponType == EWeaponType.Hands && weaponType != EWeaponType.Hands && !m_PlayerWeapons.InShieldParry)
         {
+            Debug.Log("taking damage from weapon with empty hands");
             TakeWeaponDamageSync(damage, damageType, weaponType, sync);
             return; 
         }
 
-        if (m_PlayerWeapons.m_MainWeaponType ==  weaponType && m_PlayerWeapons.InParry && m_PlayerWeapons.IsInParryAngle(attackerPos))
+        if (m_PlayerWeapons.m_MainWeaponType == EWeaponType.Hands && weaponType ==  EWeaponType.Hands && m_PlayerWeapons.InParry && m_PlayerWeapons.IsInParryAngle(attackerPos))
         {
+            Debug.Log("parry damage from hands with empty hands");
             ParrySync(damage, sync);
             return;
 
         }
 
-        if (m_PlayerWeapons.InParry && parry && m_PlayerWeapons.IsInParryAngle(attackerPos))
+        if (parry && m_PlayerWeapons.IsInParryAngle(attackerPos))
         {
+            Debug.Log("parry damage from weapon with weapon");
             ParrySync(damage, sync);
 
         }
         else
         {
+            Debug.Log("take damage from weapon with weapon");
             TakeWeaponDamageSync(damage,damageType,weaponType, sync); 
 
 
