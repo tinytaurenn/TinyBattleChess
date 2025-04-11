@@ -20,6 +20,7 @@ namespace PlayerControls
         float m_LastUseTime = 0;
         [SerializeField] float m_UseCooldown = 0.3f;
 
+
         private void Awake()
         {
             m_TinyPlayer = GetComponent<TinyPlayer>();
@@ -168,15 +169,22 @@ namespace PlayerControls
 
                 if (nearest.gameObject.TryGetComponent<Usable>(out Usable usable))
                 {
+                    if (m_Usable != null)
+                    {
+                        m_Usable.EnableOutline(false);
+                    }
                     m_Usable = usable;
+                    usable.EnableOutline(true);
+
+                    
 
                     if(usable.TryGetComponent<Grabbable>(out Grabbable grabbable))
                     {
-                        LocalUI.Instance.ShowUsable("Grab " + grabbable.So_Item.ItemName);
+                        LocalUI.Instance.ShowUsable("Grab (E) ");
                     }
                     else
                     {
-                        LocalUI.Instance.ShowUsable("Use " + usable.name);
+                        LocalUI.Instance.ShowUsable("Use (E) ");
                     }
 
                     
@@ -186,7 +194,12 @@ namespace PlayerControls
                 
             }
             LocalUI.Instance.HideUsable();
-            m_Usable = null;
+            if(m_Usable != null)
+            {
+                m_Usable.EnableOutline(false);
+                m_Usable = null;
+            }
+            
             //m_UsableObject = null;
         }
 

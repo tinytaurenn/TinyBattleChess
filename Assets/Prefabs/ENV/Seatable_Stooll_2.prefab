@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
+  m_OutLineSetting: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
   IsOccupied: 0
   m_SeatPosition: {fileID: 5227121116230847921}
 --- !u!114 &8514513596420739708

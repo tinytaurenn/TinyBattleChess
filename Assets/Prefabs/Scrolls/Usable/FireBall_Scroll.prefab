@@ -50,14 +50,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
+  m_OutLineSetting: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
   m_SO_Item: {fileID: 11400000, guid: 62b292f352e9df449a87f2a9d3203ddc, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
-  m_ItemProjectile: {fileID: 0}
   m_Throwable: 0
   m_Renderer: {fileID: 2421689411287955229}
+  m_MeshFilter: {fileID: 0}
   m_UseAmount: 3
 --- !u!114 &4769482583226829741
 MonoBehaviour:

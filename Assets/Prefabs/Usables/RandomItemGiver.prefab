@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
+  m_OutLineSetting: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
   m_Items: {fileID: 11400000, guid: cdf0a9c9faefa3840928ebcbc2f0606f, type: 2}
 --- !u!65 &3030712172522923050
 BoxCollider:

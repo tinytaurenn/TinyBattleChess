@@ -18896,6 +18896,7 @@ MonoBehaviour:
   m_StepSpeed: 1
   m_StepAngle: 45
   m_CameraManager: {fileID: 0}
+  m_MouseSensivity: 1
   m_BackWardspeedModifier: 0.5
   m_StrafeSpeedModifier: 0.75
   m_LookRange: 0.7
@@ -29589,7 +29590,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a94c2714f0fec4d179deb923e2c3ea21, type: 3}
   - {fileID: 8300000, guid: 7e445fda81ed44983af6a5ed0b0b6b86, type: 3}
   m_jumpClips:
-  - {fileID: 8300000, guid: 47ba8a67cc724974daf1db13fff61cac, type: 3}
+  - {fileID: 8300000, guid: 0cae58939621e3749a4bb6f84eb1e40b, type: 3}
   m_StepAudioSource: {fileID: 7107588510349799754}
   m_ActionAudioSource: {fileID: 5039808236654946002}
 --- !u!114 &6470269326165104134
@@ -29634,8 +29635,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 47ba8a67cc724974daf1db13fff61cac, type: 3}
-  m_Resource: {fileID: 8300000, guid: 47ba8a67cc724974daf1db13fff61cac, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0cae58939621e3749a4bb6f84eb1e40b, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0cae58939621e3749a4bb6f84eb1e40b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1

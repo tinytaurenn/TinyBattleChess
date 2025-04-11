@@ -310,10 +310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5cc30aad01e12040a19e352276ccb53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UseRequested: 0
+  m_OutLineSetting: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
   m_SO_Item: {fileID: 11400000, guid: 1259dc8de33b550449b5e2ec28721055, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
-  m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
   m_ArmorParameters:
@@ -322,6 +323,7 @@ MonoBehaviour:
     Cost: 10
     ArmorType: 1
     ArmorPlace: 1
+  ArmorEffects: []
   m_LeftShoulder: {fileID: 2600376100106101127, guid: 406b1ac2c4f206b48b7f7599db0bf7a9, type: 3}
   m_RightShoulder: {fileID: 4199366146844185901, guid: c1430919458aebb499cffdc9a9527493, type: 3}
   m_InstantiatedLeftShoulder: {fileID: 0}

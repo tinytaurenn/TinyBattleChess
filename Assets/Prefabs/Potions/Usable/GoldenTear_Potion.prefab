@@ -103,13 +103,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1559968c8e89544458e10bb431514e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UseRequested: 0
+  m_OutLineSetting: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
   m_SO_Item: {fileID: 11400000, guid: a57631cdd22b4c54292c83e2c2ee866f, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
-  m_GrabRequested: 0
   m_Rigidbody: {fileID: 0}
   m_Collider: {fileID: 0}
+  m_Throwable: 0
   m_Renderer: {fileID: 4486487952480385274}
+  m_MeshFilter: {fileID: 0}
+  m_UseAmount: 3
+  m_IsUsed: 0
 --- !u!114 &1238600261391889745
 MonoBehaviour:
   m_ObjectHideFlags: 0

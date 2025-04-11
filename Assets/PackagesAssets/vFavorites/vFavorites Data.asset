@@ -52,8 +52,27 @@ MonoBehaviour:
       _id: 1064121706
     name: Mains
     _id: 1061191114
-  - items: []
-    name: Page 2
+  - items:
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-3-6dcb44d2e1fae90468c0ff233a148392-11400000-0
+      _typeString: OutlineSetting, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      _obj: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1049019881
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-3-4b83569d67af61e458304325a23e5dfd-11400000-0
+      _typeString: UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset,
+        Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      _obj: {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1060962559
+    name: Settings
     _id: 1063751770
   - items: []
     name: Page 3

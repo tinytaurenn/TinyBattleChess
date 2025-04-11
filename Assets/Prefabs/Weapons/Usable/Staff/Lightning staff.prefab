@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
+  m_OutLineSetting: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
   m_SO_Item: {fileID: 11400000, guid: db631ee79560af24ab768f30edc926b1, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0

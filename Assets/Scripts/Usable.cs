@@ -11,12 +11,30 @@ public abstract class Usable : MonoBehaviour
     [SerializeField] protected bool m_UseRequested = false;
 
     public event Action<bool> OnUseValidate;
+
+
+    [Space(10)]
+    [Header("Use Outline properties")]
+    Outline m_UsableOutline;
+    public OutlineSetting m_OutLineSetting; 
+
     protected virtual void Awake()
     {
         if(TryGetComponent<CoherenceSync>(out CoherenceSync sync))
         {
             m_Sync = sync;
         }
+        if(m_OutLineSetting == null)
+        {
+            Debug.LogError("no outline setting in this prefab");
+            return; 
+        }
+        m_UsableOutline = gameObject.AddComponent<Outline>();
+        m_UsableOutline.OutlineMode = m_OutLineSetting.OutlineMode ;
+        m_UsableOutline.OutlineColor = m_OutLineSetting.OutlineColor;
+        m_UsableOutline.OutlineWidth = m_OutLineSetting.OutlineWidth;
+        m_UsableOutline.enabled = false;
+  
         
     }
     protected virtual void Start()
@@ -27,6 +45,11 @@ public abstract class Usable : MonoBehaviour
     protected virtual void Update()
     {
         
+    }
+    public void EnableOutline(bool enable)
+    {
+        if (m_UsableOutline == null) return; 
+        m_UsableOutline.enabled = enable;
     }
 
     protected virtual void OnEnable()

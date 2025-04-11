@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
+  m_OutLineSetting: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
   m_SO_Item: {fileID: 11400000, guid: 1d0235fef7ba0d04c90c4bd2c9177aec, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
@@ -1050,6 +1051,7 @@ MonoBehaviour:
     WeaponSize: 0
     PositionOffset: {x: 0, y: 0.04, z: -0.054}
     RotationOffset: {x: 0, y: 0, z: 0}
+  WeaponEffects: []
   HitSounds:
   - {fileID: 8300000, guid: e01cd36fd531940b5bf4668241a66b3d, type: 3}
   - {fileID: 8300000, guid: aa8658f1a1cdd4ae4ba2f5f888701d0e, type: 3}
@@ -1061,7 +1063,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e0a601017367946608f7e138e6ec4b7c, type: 3}
   m_DamageCollider: {fileID: 3215902980394475644}
   m_HitPos: {fileID: 0}
-  MeleeWeaponEffects: []
   m_MeleeWeaponParameters:
     Damage: 10
     Speed: 1

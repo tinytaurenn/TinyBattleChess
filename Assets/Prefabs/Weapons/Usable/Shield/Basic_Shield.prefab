@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UseRequested: 0
+  m_OutLineSetting: {fileID: 11400000, guid: 6dcb44d2e1fae90468c0ff233a148392, type: 2}
   m_SO_Item: {fileID: 11400000, guid: 6892d6283699d57468d4cf8475ed3508, type: 2}
   m_IsHeld: 0
   m_IsNPCHeld: 0
@@ -282,6 +283,7 @@ MonoBehaviour:
     WeaponSize: 1
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
+  WeaponEffects: []
   HitSounds: []
   m_ParryAudios:
   - {fileID: 8300000, guid: 9f740459a5983e940aa36028bb8d0ca2, type: 3}
