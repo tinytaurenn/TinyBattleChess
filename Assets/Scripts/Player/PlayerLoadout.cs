@@ -137,7 +137,7 @@ public class PlayerLoadout : MonoBehaviour
 
     public void CreateAndEquipgrabbable(SO_Item item)
     {
-        Grabbable grabbable = Instantiate(item.Usable_GameObject, m_PlayerPocket).GetComponent<Grabbable>();
+        Grabbable grabbable = Instantiate(item.Usable_GameObject, m_PlayerPocket.position, item.Usable_GameObject.transform.rotation).GetComponent<Grabbable>();
         if (grabbable == null) return;
         grabbable.m_IsHeld = true;
         EquipGrabbableItem(grabbable);
@@ -215,7 +215,8 @@ public class PlayerLoadout : MonoBehaviour
             else
             {
                 Debug.Log("no empty slot for inventory item");
-                item.m_IsHeld = false;
+                
+                item.Release(); 
             }
 
 

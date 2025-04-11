@@ -26,7 +26,7 @@ public abstract class Usable : MonoBehaviour
         }
         if(m_OutLineSetting == null)
         {
-            Debug.LogError("no outline setting in this prefab");
+            Debug.LogWarning("no outline setting in this prefab");
             return; 
         }
         m_UsableOutline = gameObject.AddComponent<Outline>();
