@@ -24318,6 +24318,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 616428441235785405, guid: 3464b983f78743e46bfc57baf49553c5, type: 3}
+      propertyPath: m_PlayerMovement
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5593795926651895564, guid: 3464b983f78743e46bfc57baf49553c5, type: 3}
       propertyPath: m_Name
       value: '[LOCAL]ParentedCameraManager'

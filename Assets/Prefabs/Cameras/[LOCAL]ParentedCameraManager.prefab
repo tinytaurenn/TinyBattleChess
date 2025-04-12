@@ -151,12 +151,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerMovement: {fileID: 0}
-  m_TargetOffset: {x: 0, y: 3, z: 0}
+  m_TargetOffset: {x: 0, y: 2.28, z: 0}
   m_RotationSpeed: 10
-  m_CameraDistance: 4
-  m_CameraUpOffset: 3.55
+  m_CameraDistance: 3
+  m_CameraUpOffset: 3
   m_FallingDownOffSet: 3
-  m_LastGroundedYPos: 5.1286592
+  m_LastGroundedYPos: 0
   m_CheckMask:
     serializedVersion: 2
     m_Bits: 1
