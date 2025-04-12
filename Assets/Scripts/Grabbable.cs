@@ -144,6 +144,11 @@ public abstract class Grabbable : Usable
         this.enabled = enable;
 
     }
+    [Command]
+    public void DestroyGrabbable()
+    {
+       Destroy(gameObject);
+    }
 
     public void Grab()
     {

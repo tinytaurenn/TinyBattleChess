@@ -161,6 +161,13 @@ namespace PlayerControls
             return nearest;
          }
 
+        public void CleanUsableOutline()
+        {
+            if (m_Usable != null)
+            {
+                m_Usable.EnableOutline(false);
+            }
+        }
         void FindUsable()
         {
             if (UsableDetection(out Collider nearest))

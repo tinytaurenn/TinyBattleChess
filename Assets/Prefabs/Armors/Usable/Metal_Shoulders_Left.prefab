@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2092520826550528055}
   - component: {fileID: -7599357777685105048}
   - component: {fileID: -3999412672043992236}
+  - component: {fileID: 8633744133020028493}
   m_Layer: 0
   m_Name: Metal_Shoulders_Left
   m_TagString: Untagged
@@ -136,6 +137,8 @@ MonoBehaviour:
     - component: {fileID: 2092520826550528055}
       lodStepsActive: 1
     - component: {fileID: -3999412672043992236}
+      lodStepsActive: 1
+    - component: {fileID: 8633744133020028493}
       lodStepsActive: 1
     GeneratesArchetypeDefinition: 0
   interpolationLocation: 1
@@ -430,3 +433,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: 
   pathDirtyCounter: 0
+--- !u!114 &8633744133020028493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2600376100106101127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4171eed5180e2247a24fb12d7b6da10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

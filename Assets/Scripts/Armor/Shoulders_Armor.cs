@@ -49,6 +49,8 @@ public class Shoulders_Armor : Armor
     }
     public override void Release()
     {
+        Destroy(m_InstantiatedLeftShoulder);
+        Destroy(m_InstantiatedRightShoulder);
         base.Release();
         m_LeftShoulderVisual.enabled = true;
         m_RightShoulderVisual.enabled = true;

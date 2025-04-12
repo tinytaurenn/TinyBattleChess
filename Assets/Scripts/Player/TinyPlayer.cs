@@ -797,6 +797,7 @@ public class TinyPlayer : Entity, IDamageable
     {
         if (!m_Sync.HasStateAuthority) return; 
         Debug.Log("player death");
+        m_PlayerUse.CleanUsableOutline(); 
         m_PlayerLoadout.DropEverything(); 
 
         

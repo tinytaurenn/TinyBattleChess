@@ -309,6 +309,8 @@ public class PlayerLoadout : MonoBehaviour
 
     void DropItem(Grabbable item, Vector3 direction, float throwForce = 5f)
     {
+
+
         Debug.Log("dropping item in direction");
         item.transform.SetParent(null, true);
         item.transform.position = m_DropSocket.position + direction;
@@ -511,6 +513,8 @@ public class PlayerLoadout : MonoBehaviour
 
     public void DropEverything()
     {
+  
+
         for (int i = 0; i < m_EquippedItems.Count; i++)
         {
             Vector3 randomPos = m_DropSocket.position + UnityEngine.Random.insideUnitSphere; 
@@ -519,7 +523,7 @@ public class PlayerLoadout : MonoBehaviour
             DropItemOnSlot((EStuffSlot)i, dir); 
         }
 
-        UnloadEquippedStuff(); 
+       UnloadEquippedStuff();
 
         //DropWeapons(3); 
     
@@ -849,7 +853,7 @@ public class PlayerLoadout : MonoBehaviour
             {
                 foreach (Transform item in socket)
                 {
-                    if (item.gameObject != null) Destroy(item.gameObject); 
+                    if (item.gameObject != null) Destroy(item.gameObject);
 
                 }
             }
