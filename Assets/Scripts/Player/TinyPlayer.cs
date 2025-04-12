@@ -21,7 +21,7 @@ public class TinyPlayer : Entity, IDamageable
     [SerializeField] internal EPlayerState m_PlayerState = EPlayerState.Player;
     [OnValueSynced(nameof(SyncOnChangePlayerState))] public int m_IntPlayerState = 0;
 
-    MainSimulator.EGameMode m_Gamemode = MainSimulator.EGameMode.AutoChess;
+    [SerializeField] MainSimulator.EGameMode m_Gamemode = MainSimulator.EGameMode.AutoChess;
 
     [SerializeField] bool m_IsHost = false;
     [Sync]
@@ -421,6 +421,13 @@ public class TinyPlayer : Entity, IDamageable
     #region Hits
     public override void TakeMeleeSync(int DirectionNESO, CoherenceSync sync, int damage,EEffectType damageType, EWeaponType weaponType, Vector3 attackerPos)
     {
+        float distanceComparaison = Vector3.Distance(sync.transform.position, attackerPos);
+        Debug.Log("distance comparaison :  " + distanceComparaison);
+        if (distanceComparaison > 1f)
+        {
+            
+            return; 
+        }
 
         if (m_PlayerState != EPlayerState.Player)
         {
@@ -808,6 +815,10 @@ public class TinyPlayer : Entity, IDamageable
         }
 
 
+    }
+    private void OnDestroy()
+    {
+        m_PlayerWeapons.Drop();
     }
 
     public override bool GetAttackState(out EWeaponDirection attackDir)

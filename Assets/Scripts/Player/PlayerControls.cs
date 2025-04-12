@@ -56,6 +56,7 @@ namespace PlayerControls
             m_InputActions.PowerSelect.Exit.performed +=  ExitSelectionPanel;
 
             m_InputActions.Player.Pause.performed += TogglePause;
+            m_InputActions.Ghost.Pause.performed += TogglePause;
 
             m_InputActions.Player.Emote.performed += Emote;
 
@@ -88,8 +89,10 @@ namespace PlayerControls
             m_InputActions.PowerSelect.Exit.performed -= ExitSelectionPanel;
 
             m_InputActions.Player.Pause.performed -= TogglePause;
+            m_InputActions.Ghost.Pause.performed -= TogglePause;
 
             m_InputActions.Player.Emote.performed -= Emote;
+            m_InputActions.UI.Disable();
 
 
 
@@ -213,7 +216,7 @@ namespace PlayerControls
         private void TogglePause(InputAction.CallbackContext context)
         {
             LocalUI.Instance.TogglePause();
-            SwitchState(LocalUI.Instance.m_PauseMenu.m_InPauseMenu ? EControlState.Pause : EControlState.Player);
+            SwitchState(LocalUI.Instance.m_PauseMenu.m_InPauseMenu ? EControlState.Pause : m_TinyPlayer.m_PlayerState == TinyPlayer.EPlayerState.Player ? EControlState.Player : EControlState.Ghost);
         }
 
 

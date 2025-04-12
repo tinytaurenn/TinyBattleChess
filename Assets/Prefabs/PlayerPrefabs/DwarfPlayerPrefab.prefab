@@ -18817,6 +18817,7 @@ MonoBehaviour:
   m_EntityHealth: 50
   m_PlayerState: 0
   m_IntPlayerState: 0
+  m_Gamemode: 1
   m_IsHost: 0
   m_PlayerMovement: {fileID: 0}
   m_PlayerWeapons: {fileID: 0}
