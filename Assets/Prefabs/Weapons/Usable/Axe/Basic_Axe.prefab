@@ -314,7 +314,6 @@ MonoBehaviour:
   - rid: 3165745105171906648
   - rid: 3165745105171906649
   - rid: 3165745105171906650
-  - rid: 3561254673681481869
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -542,47 +541,6 @@ MonoBehaviour:
         memberType: 8
         parameterAssemblyTypes:
         - System.Boolean, mscorlib
-        ownerType:
-          assemblyQualifiedName: MeleeWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-        defaultSyncMode: 0
-        CustomData:
-          rid: -2
-        bindingType:
-          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        oldName: 
-        oldParameterAssemblyTypes: []
-    - rid: 3561254673681481869
-      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        descriptor:
-          rid: 3561254673681481870
-        routing: 1
-        syncMode: 0
-        isPredicted: 0
-        predictionMode: 0
-        guid: 7b254882f9484b18bbfc292bb42bcbf3
-        archetypeData:
-          type: 0
-          minRange: 0
-          maxRange: 0
-          sampleRate: 0
-          floatCompression: 0
-          fields: []
-        unityComponent: {fileID: 5773051727637623670}
-        coherenceSync: {fileID: 3483161853296858321}
-        interpolationSettings: {fileID: 0}
-    - rid: 3561254673681481870
-      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
-      data:
-        name: DestroyGrabbable
-        monoAssemblyType: 
-        required: 1
-        enforcesLODingWhenFieldsOverriden: 0
-        valueSyncCallbackName: 
-        memberType: 8
-        parameterAssemblyTypes: []
         ownerType:
           assemblyQualifiedName: MeleeWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
             PublicKeyToken=null

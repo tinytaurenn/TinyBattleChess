@@ -63,12 +63,14 @@ public class PauseMenu
         m_MenuButtons.SetActive(false);
         m_LobbyButtons.SetActive(true);
         m_SettingsButtons.SetActive(false);
+        m_SensivitySlider.enabled = false;
     }
     public void OnSettingsButton()
     {
         m_MenuButtons.SetActive(false);
         m_LobbyButtons.SetActive(false);
         m_SettingsButtons.SetActive(true);
+        m_SensivitySlider.enabled = true;
     }
 
     void ReturnToMenu()
@@ -76,6 +78,7 @@ public class PauseMenu
         m_MenuButtons.SetActive(true);
         m_LobbyButtons.SetActive(false);
         m_SettingsButtons.SetActive(false);
+        m_SensivitySlider.enabled = false;
 
 
         Cursor.visible = true;

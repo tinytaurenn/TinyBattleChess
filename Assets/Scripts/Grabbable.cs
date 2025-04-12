@@ -144,11 +144,6 @@ public abstract class Grabbable : Usable
         this.enabled = enable;
 
     }
-    [Command]
-    public void DestroyGrabbable()
-    {
-       Destroy(gameObject);
-    }
 
     public void Grab()
     {
@@ -162,6 +157,6 @@ public abstract class Grabbable : Usable
         m_Rigidbody.isKinematic = false;
         m_IsHeld = false;
         //m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other, true); 
-        transform.localScale = m_ItemScale;
+        transform.localScale = m_ItemScale; 
     }
 }

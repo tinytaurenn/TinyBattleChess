@@ -502,7 +502,6 @@ namespace Coherence.Generated
         private global::BasicWeapon _8741b68fc3e4c6648bf6807cc4d527cf_3a7c6e027a1e4be5a39199fc038d3551_CommandTarget;
         private global::BasicWeapon _8741b68fc3e4c6648bf6807cc4d527cf_a70fd7d5a76f4ce9a98104c45112b6fd_CommandTarget;
         private global::Grabbable _8741b68fc3e4c6648bf6807cc4d527cf_22e8f96fdebb4642925f47775f32a35e_CommandTarget;
-        private global::Grabbable _8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3_CommandTarget;
         
         
         private IClient client;
@@ -528,7 +527,6 @@ namespace Coherence.Generated
             bakedCommandBindings.Add("3a7c6e027a1e4be5a39199fc038d3551", BakeCommandBinding__8741b68fc3e4c6648bf6807cc4d527cf_3a7c6e027a1e4be5a39199fc038d3551);
             bakedCommandBindings.Add("a70fd7d5a76f4ce9a98104c45112b6fd", BakeCommandBinding__8741b68fc3e4c6648bf6807cc4d527cf_a70fd7d5a76f4ce9a98104c45112b6fd);
             bakedCommandBindings.Add("22e8f96fdebb4642925f47775f32a35e", BakeCommandBinding__8741b68fc3e4c6648bf6807cc4d527cf_22e8f96fdebb4642925f47775f32a35e);
-            bakedCommandBindings.Add("7b254882f9484b18bbfc292bb42bcbf3", BakeCommandBinding__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3);
         }
         
         public override Binding BakeValueBinding(Binding valueBinding)
@@ -648,35 +646,6 @@ namespace Coherence.Generated
             
             target.EnableComponent((System.Boolean)(command.enable));
         }
-    
-        private void BakeCommandBinding__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3(CommandBinding commandBinding, CommandsHandler commandsHandler)
-        {
-            _8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3_CommandTarget = (global::Grabbable)commandBinding.UnityComponent;
-            commandsHandler.AddBakedCommand("Grabbable.DestroyGrabbable", "()", SendCommand__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3, ReceiveLocalCommand__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3, MessageTarget.All, _8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3_CommandTarget, false);
-        }
-        
-        private void SendCommand__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3(MessageTarget target, ChannelID channelID, object[] args)
-        {
-            var command = new _8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3();
-            
-        
-            client.SendCommand(command, target, entityId, channelID);
-        }
-        
-        private void ReceiveLocalCommand__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3(MessageTarget target, ChannelID _, object[] args)
-        {
-            var command = new _8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3();
-            
-            
-            ReceiveCommand__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3(command);
-        }
-
-        private void ReceiveCommand__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3(_8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3 command)
-        {
-            var target = _8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3_CommandTarget;
-            
-            target.DestroyGrabbable();
-        }
         
         public override void ReceiveCommand(IEntityCommand command)
         {
@@ -690,9 +659,6 @@ namespace Coherence.Generated
                     break;
                 case _8741b68fc3e4c6648bf6807cc4d527cf_22e8f96fdebb4642925f47775f32a35e castedCommand:
                     ReceiveCommand__8741b68fc3e4c6648bf6807cc4d527cf_22e8f96fdebb4642925f47775f32a35e(castedCommand);
-                    break;
-                case _8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3 castedCommand:
-                    ReceiveCommand__8741b68fc3e4c6648bf6807cc4d527cf_7b254882f9484b18bbfc292bb42bcbf3(castedCommand);
                     break;
                 default:
                     logger.Warning(Coherence.Log.Warning.ToolkitBakedSyncReceiveCommandUnhandled,
