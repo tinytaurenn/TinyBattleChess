@@ -137,8 +137,8 @@ MonoBehaviour:
   approveAuthorityTransferRequests: 1
   simulationType: 0
   authorityTransferType: 1
-  orphanedBehavior: 0
-  lifetimeType: 0
+  orphanedBehavior: 1
+  lifetimeType: 1
   uniquenessType: 0
   replacementStrategy: 0
   unsyncedNetworkEntityPriority: 0
@@ -167,8 +167,7 @@ MonoBehaviour:
   assetVersion: 
   usingReflection: 0
   coherenceTag: 
-  componentActions:
-  - rid: 5785725103130804810
+  componentActions: []
   floatingOriginMode: 0
   floatingOriginParentedMode: 1
   references:
@@ -443,10 +442,6 @@ MonoBehaviour:
             Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
-    - rid: 5785725103130804810
-      type: {class: DisableBehaviourComponentAction, ns: Coherence.Toolkit.ComponentActions, asm: Coherence.Toolkit}
-      data:
-        component: {fileID: -1284808371586626500}
     - rid: 5785725103661908125
       type: {class: StringBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
       data:

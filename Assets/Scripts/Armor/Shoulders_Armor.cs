@@ -47,4 +47,10 @@ public class Shoulders_Armor : Armor
         m_RightShoulderVisual.enabled = show;
 
     }
+    public override void Release()
+    {
+        base.Release();
+        m_LeftShoulderVisual.enabled = true;
+        m_RightShoulderVisual.enabled = true;
+    }
 }

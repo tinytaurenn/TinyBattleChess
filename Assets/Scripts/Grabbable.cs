@@ -46,7 +46,7 @@ public abstract class Grabbable : Usable
     {
         //Debug.Log("Grabbable disconnected");
         if(m_Sync.CoherenceBridge != null) m_Sync.CoherenceBridge.onDisconnected.RemoveListener(OnDisconnected);
-        if(this.gameObject != null) Destroy(gameObject);
+        //if(this.gameObject != null) Destroy(gameObject);
 
     }
 
@@ -106,9 +106,7 @@ public abstract class Grabbable : Usable
         }
         else
         {
-            m_Collider.enabled = true;
-            m_Rigidbody.isKinematic = false;
-            m_IsHeld = false;
+            Release(); 
 
         }
     }
@@ -136,7 +134,7 @@ public abstract class Grabbable : Usable
     {
         m_IsHeld = true;
         base.DoUse();
-        m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other,false);
+        //m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other,false);
 
     }
 
@@ -155,8 +153,10 @@ public abstract class Grabbable : Usable
 
     public virtual void Release()
     {
+        m_Collider.enabled = true;
+        m_Rigidbody.isKinematic = false;
         m_IsHeld = false;
-        m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other, true); 
+        //m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other, true); 
         transform.localScale = m_ItemScale;
     }
 }

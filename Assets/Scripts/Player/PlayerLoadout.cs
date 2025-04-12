@@ -244,12 +244,12 @@ public class PlayerLoadout : MonoBehaviour
     {
         if(m_EquippedItems[EStuffSlot.MainWeapon] != null)
         {
-            DropWeapon(m_EquippedItems[EStuffSlot.MainWeapon], throwForce);
+            DropItem(m_EquippedItems[EStuffSlot.MainWeapon], throwForce);
             ClearOnSlot(EStuffSlot.MainWeapon);
         }
         if (m_EquippedItems[EStuffSlot.SecondaryWeapon] != null)
         {
-            DropWeapon(m_EquippedItems[EStuffSlot.SecondaryWeapon], throwForce);
+            DropItem(m_EquippedItems[EStuffSlot.SecondaryWeapon], throwForce);
             ClearOnSlot(EStuffSlot.SecondaryWeapon);
         }
         m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
@@ -259,14 +259,7 @@ public class PlayerLoadout : MonoBehaviour
         if (m_EquippedItems[(EStuffSlot)slot] == null) return;
 
 
-        if (m_EquippedItems[(EStuffSlot)slot] is BasicWeapon)
-        {
-            DropWeapon(m_EquippedItems[(EStuffSlot)slot], throwForce);
-        }
-        else
-        {
-            DropItem(m_EquippedItems[(EStuffSlot)slot]);
-        }
+        DropItem(m_EquippedItems[(EStuffSlot)slot], throwForce);
         ClearOnSlot((EStuffSlot)slot);
 
     }
@@ -276,16 +269,19 @@ public class PlayerLoadout : MonoBehaviour
         Debug.Log("drop item on slot");
         if (m_EquippedItems[slot] == null) return;
 
-        if (m_EquippedItems[slot] is BasicWeapon)
-        {
-            DropWeapon(m_EquippedItems[slot], throwForce);
-        }
-        else
-        {
-            DropItem(m_EquippedItems[slot]); 
-        }
+
+        DropItem(m_EquippedItems[slot], throwForce);
 
 
+        ClearOnSlot(slot);
+    }
+
+    void DropItemOnSlot(EStuffSlot slot, Vector3 direction,  float throwForce = 5f)
+    {
+        Debug.Log("drop item on slot");
+        if (m_EquippedItems[slot] == null) return;
+
+        DropItem(m_EquippedItems[slot],direction, throwForce);
 
         ClearOnSlot(slot);
     }
@@ -298,28 +294,32 @@ public class PlayerLoadout : MonoBehaviour
         ClearOnSlot(slot);
     }
 
-    void DropWeapon(Grabbable item, float throwForce = 5f)
-    {
-        Debug.Log("dropping item"); 
-        item.transform.SetParent(null, true);
-        item.m_Rigidbody.isKinematic = false;
-        item.m_Rigidbody.AddForce(throwForce * transform.forward, ForceMode.VelocityChange);
-        item.m_Rigidbody.AddTorque(-transform.right * 1f, ForceMode.VelocityChange);
-        item.Release(); 
-        item.m_Collider.enabled = true;
-    }
 
-    void DropItem(Grabbable item)
+    void DropItem(Grabbable item, float throwForce = 5f)
     {
         Debug.Log("dropping item");
         item.transform.SetParent(null, true);
         item.transform.position = m_DropSocket.position;    
         item.m_Rigidbody.isKinematic = false;
-        item.m_Rigidbody.AddForce(transform.forward, ForceMode.VelocityChange);
+        item.m_Rigidbody.AddForce(throwForce * transform.forward, ForceMode.VelocityChange);
         item.m_Rigidbody.AddTorque(-transform.right * 1f, ForceMode.VelocityChange);
         item.Release();
         item.m_Collider.enabled = true;
     }
+
+    void DropItem(Grabbable item, Vector3 direction, float throwForce = 5f)
+    {
+        Debug.Log("dropping item in direction");
+        item.transform.SetParent(null, true);
+        item.transform.position = m_DropSocket.position + direction;
+        item.m_Rigidbody.isKinematic = false;
+        item.m_Rigidbody.AddForce(throwForce * direction, ForceMode.VelocityChange);
+        item.m_Rigidbody.AddTorque(-transform.right * 1f, ForceMode.VelocityChange);
+        item.Release();
+        item.m_Collider.enabled = true;
+    }
+
+
 
     void EquipWeaponLoadout(SO_Weapon weapon)
     {
@@ -511,13 +511,28 @@ public class PlayerLoadout : MonoBehaviour
 
     public void DropEverything()
     {
-        //for (int i = 0; i < (int)ESlot.count; i++)
-        //{
-        //    DropItemOnSlot(i);
-        //}
+        for (int i = 0; i < m_EquippedItems.Count; i++)
+        {
+            Vector3 randomPos = m_DropSocket.position + UnityEngine.Random.insideUnitSphere; 
+            randomPos.y = m_DropSocket.position.y;
+            Vector3 dir = (randomPos - m_DropSocket.position).normalized;
+            DropItemOnSlot((EStuffSlot)i, dir); 
+        }
 
-        DropWeapons(3); 
+        UnloadEquippedStuff(); 
+
+        //DropWeapons(3); 
     
+    }
+
+
+    public bool IsEquippedStuffEmpty()
+    {
+        for (int i = 0; i < m_EquippedItems.Count; i++)
+        {
+            if (m_EquippedItems[(EStuffSlot)i] != null) return false; 
+        }
+        return true; 
     }
 
     public void SlotActionPerformed(EStuffSlot slot)

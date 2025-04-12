@@ -241,6 +241,14 @@ public class LocalUI : MonoBehaviour
 
         ColorInventoryByInventoryType(inventoryType);
     }
+    public void CleanInventoryUI()
+    {
+        foreach (var slot in m_SlotDictionary)
+        {
+            slot.Value.ChangeIcon(null);
+        }
+        ColorInventoryByInventoryType(PlayerLoadout.EInventoryType.Equipped);
+    }
 
     void ColorInventoryByInventoryType(PlayerLoadout.EInventoryType inventoryType)
     {
@@ -304,6 +312,7 @@ public class LocalUI : MonoBehaviour
 
     public void Disconnect()
     {
+        CleanInventoryUI(); 
         m_PauseMenu.Disconnect();
 
     }

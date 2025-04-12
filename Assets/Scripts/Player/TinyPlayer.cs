@@ -459,7 +459,7 @@ public class TinyPlayer : Entity, IDamageable
                 parry = weaponDirection == EWeaponDirection.Down;
                 break;
         }
-
+        parry = m_PlayerWeapons.InParry && parry;
         if (m_PlayerWeapons.InShieldParry) parry = true;
         Debug.Log("shield parry: " + m_PlayerWeapons.InShieldParry); 
         Debug.Log(" parry: " + parry); 
@@ -797,7 +797,7 @@ public class TinyPlayer : Entity, IDamageable
     {
         if (!m_Sync.HasStateAuthority) return; 
         Debug.Log("player death");
-        m_PlayerWeapons.Drop(); 
+        m_PlayerLoadout.DropEverything(); 
 
         
 

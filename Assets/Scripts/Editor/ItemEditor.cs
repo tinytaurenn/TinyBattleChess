@@ -318,13 +318,15 @@ public class ItemEditor : EditorWindow
                 RightShoulder.AddComponent<MeshRenderer>().material = baseMaterial;
                 CoherenceSync leftShoulderSync = LeftShoulder.AddComponent<CoherenceSync>(); 
                 leftShoulderSync.simulationType = CoherenceSync.SimulationType.ClientSide;
-                leftShoulderSync.lifetimeType = CoherenceSync.LifetimeType.SessionBased;
+                leftShoulderSync.lifetimeType = CoherenceSync.LifetimeType.Persistent;
+                leftShoulderSync.orphanedBehavior = CoherenceSync.OrphanedBehavior.AutoAdopt;
                 leftShoulderSync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
                 leftShoulderSync.authorityTransferType = CoherenceSync.AuthorityTransferType.NotTransferable; 
 
                 CoherenceSync rightShoulderSync = RightShoulder.AddComponent<CoherenceSync>();
                 rightShoulderSync.simulationType = CoherenceSync.SimulationType.ClientSide;
-                rightShoulderSync.lifetimeType = CoherenceSync.LifetimeType.SessionBased;
+                rightShoulderSync.lifetimeType = CoherenceSync.LifetimeType.Persistent;
+                rightShoulderSync.orphanedBehavior = CoherenceSync.OrphanedBehavior.AutoAdopt;
                 rightShoulderSync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
                 rightShoulderSync.authorityTransferType = CoherenceSync.AuthorityTransferType.NotTransferable;
                 LeftShoulder.AddComponent<CoherenceNode>(); 
@@ -356,7 +358,8 @@ public class ItemEditor : EditorWindow
         collider.enabled = false;
         CoherenceSync sync = armorItem.AddComponent<CoherenceSync>();
         sync.simulationType = CoherenceSync.SimulationType.ClientSide;
-        sync.lifetimeType = CoherenceSync.LifetimeType.SessionBased;
+        sync.lifetimeType = CoherenceSync.LifetimeType.Persistent;
+        sync.orphanedBehavior = CoherenceSync.OrphanedBehavior.AutoAdopt;
         sync.uniquenessType = CoherenceSync.UniquenessType.AllowDuplicates;
         sync.authorityTransferType = CoherenceSync.AuthorityTransferType.Request;
         sync.approveAuthorityTransferRequests = true;

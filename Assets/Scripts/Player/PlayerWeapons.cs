@@ -125,7 +125,8 @@ public class PlayerWeapons : MonoBehaviour
 
     private void OnDisable()
     {
-        m_PlayerLoadout.DropEverything();
+        //Debug.Log("disabling player weapons");
+        //m_PlayerLoadout.DropEverything();
     }
 
     

@@ -55,6 +55,11 @@ public abstract class  InventoryItem : Grabbable
         m_Renderer.enabled = false; 
     }
 
+    public override void Release()
+    {
+        base.Release();
+        m_Renderer.enabled = true;
+    }
     private void OnDestroy()
     {
         OnItemUsed = null;
