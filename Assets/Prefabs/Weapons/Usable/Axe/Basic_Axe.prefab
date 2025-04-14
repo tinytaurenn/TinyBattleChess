@@ -1108,3 +1108,4 @@ MonoBehaviour:
   m_MeleeWeaponParameters:
     Damage: 10
     Speed: 1
+    CanPierce: 0

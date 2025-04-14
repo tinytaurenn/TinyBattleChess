@@ -518,14 +518,14 @@ public class TinyPlayer : Entity, IDamageable
     {
 
 
-        Debug.Log("sync Player took " + damage + " damage!");
+        //Debug.Log("sync Player took " + damage + " damage!");
         m_PlayerFX.PlayHurtFX(0); 
         Sync.SendCommand<PlayerFX>(nameof(PlayerFX.PlayHurtFX), Coherence.MessageTarget.Other, 0);
         //
         //armors calculations
         //
         damage =  m_PlayerLoadout.DamageReduction(damage, Damagersync);
-        Debug.Log("damage type is " + damageType.ToString()); 
+        //Debug.Log("damage type is " + damageType.ToString()); 
 
         Debug.Log("sync Player took " + damage + " reduced damage!");
 
@@ -563,7 +563,7 @@ public class TinyPlayer : Entity, IDamageable
         }
         else
         {
-            Debug.Log("sending weapon synchit comand ");
+            //Debug.Log("sending weapon synchit comand ");
 
         }
 

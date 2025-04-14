@@ -27,7 +27,7 @@ namespace Coherence.Generated
         {
             if (dataSize != 0) {
                 throw new System.Exception($"Given data size is not equal to the struct size. ({dataSize} != 0) " +
-                    "for command with ID 80");
+                    "for command with ID 81");
             }
 
             var orig = new _5ca4159d3bce41449a6ca5773f57e7ef_cf826d74eb9e40728bd104c0de0bbdd8();
@@ -40,7 +40,7 @@ namespace Coherence.Generated
         public Coherence.ChannelID ChannelID { get; set; }
         public MessageTarget Routing { get; set; }
         public uint Sender { get; set; }
-        public uint GetComponentType() => 80;
+        public uint GetComponentType() => 81;
         
         public IEntityMessage Clone()
         {

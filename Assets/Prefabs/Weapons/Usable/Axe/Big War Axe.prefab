@@ -78,6 +78,7 @@ MonoBehaviour:
   m_MeleeWeaponParameters:
     Damage: 20
     Speed: 0.5
+    CanPierce: 0
 --- !u!65 &8805906310951553677
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -945,7 +946,7 @@ GameObject:
   - component: {fileID: 4864966113866691355}
   - component: {fileID: 746893006340681258}
   - component: {fileID: 3841899391305320574}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6020449064036713585}
   - component: {fileID: 1890797651414208491}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DamageCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

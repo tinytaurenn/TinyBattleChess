@@ -1132,6 +1132,7 @@ namespace Coherence.Generated
         private global::EntityCommands _61db515efe9556c45853cdc384e6813b_45dfbd63d48b44959778e676e42c3505_CommandTarget;
         private global::EntityCommands _61db515efe9556c45853cdc384e6813b_63cdcab986294601a6660a68d4dd0c87_CommandTarget;
         private global::EntityCommands _61db515efe9556c45853cdc384e6813b_7ccebcc74a0c492bb2ec643c86e9c9c8_CommandTarget;
+        private global::EntityCommands _61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e_CommandTarget;
         private global::UnityEngine.Animator _61db515efe9556c45853cdc384e6813b_23c790be1e954b58a8158dc4d10866d5_CommandTarget;
         private global::UnityEngine.Animator _61db515efe9556c45853cdc384e6813b_a918acae1a75477f894684d0abdf3d4e_CommandTarget;
         private global::UnityEngine.Animator _61db515efe9556c45853cdc384e6813b_8a1700f288ef45e6aac8a2ca83715943_CommandTarget;
@@ -1181,6 +1182,7 @@ namespace Coherence.Generated
             bakedCommandBindings.Add("45dfbd63d48b44959778e676e42c3505", BakeCommandBinding__61db515efe9556c45853cdc384e6813b_45dfbd63d48b44959778e676e42c3505);
             bakedCommandBindings.Add("63cdcab986294601a6660a68d4dd0c87", BakeCommandBinding__61db515efe9556c45853cdc384e6813b_63cdcab986294601a6660a68d4dd0c87);
             bakedCommandBindings.Add("7ccebcc74a0c492bb2ec643c86e9c9c8", BakeCommandBinding__61db515efe9556c45853cdc384e6813b_7ccebcc74a0c492bb2ec643c86e9c9c8);
+            bakedCommandBindings.Add("78451a9c8f1a4e2ba5d15492cba13b2e", BakeCommandBinding__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e);
             bakedCommandBindings.Add("23c790be1e954b58a8158dc4d10866d5", BakeCommandBinding__61db515efe9556c45853cdc384e6813b_23c790be1e954b58a8158dc4d10866d5);
             bakedCommandBindings.Add("a918acae1a75477f894684d0abdf3d4e", BakeCommandBinding__61db515efe9556c45853cdc384e6813b_a918acae1a75477f894684d0abdf3d4e);
             bakedCommandBindings.Add("8a1700f288ef45e6aac8a2ca83715943", BakeCommandBinding__61db515efe9556c45853cdc384e6813b_8a1700f288ef45e6aac8a2ca83715943);
@@ -1519,6 +1521,43 @@ namespace Coherence.Generated
             target.TakeMeleeCommand((System.Int32)(command.DirectionNESO),bridge.EntityIdToCoherenceSync(command.sync),(System.Int32)(command.damage),(System.Int32)(command.damageType),(System.Int32)(command.weaponType),(UnityEngine.Vector3)(command.attackerPos));
         }
     
+        private void BakeCommandBinding__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e(CommandBinding commandBinding, CommandsHandler commandsHandler)
+        {
+            _61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e_CommandTarget = (global::EntityCommands)commandBinding.UnityComponent;
+            commandsHandler.AddBakedCommand("EntityCommands.TakeDamageCommand", "(System.Int32System.Int32Coherence.Toolkit.CoherenceSync)", SendCommand__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e, ReceiveLocalCommand__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e, MessageTarget.All, _61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e_CommandTarget, false);
+        }
+        
+        private void SendCommand__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e(MessageTarget target, ChannelID channelID, object[] args)
+        {
+            var command = new _61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e();
+            
+            int i = 0;
+            command.damage = (System.Int32)args[i++];
+            command.damageType = (System.Int32)args[i++];
+            command.Damagersync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
+        
+            client.SendCommand(command, target, entityId, channelID);
+        }
+        
+        private void ReceiveLocalCommand__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e(MessageTarget target, ChannelID _, object[] args)
+        {
+            var command = new _61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e();
+            
+            int i = 0;
+            command.damage = (System.Int32)args[i++];
+            command.damageType = (System.Int32)args[i++];
+            command.Damagersync = (Entity)bridge.UnityObjectToEntityId(args[i++] as Coherence.Toolkit.CoherenceSync);
+            
+            ReceiveCommand__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e(command);
+        }
+
+        private void ReceiveCommand__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e(_61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e command)
+        {
+            var target = _61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e_CommandTarget;
+            
+            target.TakeDamageCommand((System.Int32)(command.damage),(System.Int32)(command.damageType),bridge.EntityIdToCoherenceSync(command.Damagersync));
+        }
+    
         private void BakeCommandBinding__61db515efe9556c45853cdc384e6813b_23c790be1e954b58a8158dc4d10866d5(CommandBinding commandBinding, CommandsHandler commandsHandler)
         {
             _61db515efe9556c45853cdc384e6813b_23c790be1e954b58a8158dc4d10866d5_CommandTarget = (global::UnityEngine.Animator)commandBinding.UnityComponent;
@@ -1747,6 +1786,9 @@ namespace Coherence.Generated
                     break;
                 case _61db515efe9556c45853cdc384e6813b_7ccebcc74a0c492bb2ec643c86e9c9c8 castedCommand:
                     ReceiveCommand__61db515efe9556c45853cdc384e6813b_7ccebcc74a0c492bb2ec643c86e9c9c8(castedCommand);
+                    break;
+                case _61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e castedCommand:
+                    ReceiveCommand__61db515efe9556c45853cdc384e6813b_78451a9c8f1a4e2ba5d15492cba13b2e(castedCommand);
                     break;
                 case _61db515efe9556c45853cdc384e6813b_23c790be1e954b58a8158dc4d10866d5 castedCommand:
                     ReceiveCommand__61db515efe9556c45853cdc384e6813b_23c790be1e954b58a8158dc4d10866d5(castedCommand);

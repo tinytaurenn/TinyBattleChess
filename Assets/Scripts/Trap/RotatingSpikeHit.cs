@@ -32,7 +32,7 @@ public class RotatingSpikeHit : MonoBehaviour
                 if (other.TryGetComponent<TinyPlayer>(out TinyPlayer tinyPlayer))
                 {
                     Debug.Log("sending Spikedamage commannd to player");
-                    sync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TakeDamageSync), Coherence.MessageTarget.AuthorityOnly,12,m_Sync );
+                    sync.SendCommand<EntityCommands>(nameof(EntityCommands.TakeDamageCommand), Coherence.MessageTarget.AuthorityOnly,12,(int)EEffectType.Physical,m_Sync );
                 }
 
 

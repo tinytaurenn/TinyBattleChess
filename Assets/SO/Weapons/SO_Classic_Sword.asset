@@ -30,6 +30,7 @@ MonoBehaviour:
   MeleeWeaponParameters:
     Damage: 10
     Speed: 1
+    CanPierce: 1
   HitSounds:
   - {fileID: 8300000, guid: 2b901ac228ea622448cc3198f2358fc0, type: 3}
   - {fileID: 8300000, guid: f81c7afdd6b84634a8db483151a6141c, type: 3}

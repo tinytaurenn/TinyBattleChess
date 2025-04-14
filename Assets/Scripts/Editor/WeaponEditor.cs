@@ -27,7 +27,7 @@ public class WeaponEditor : Editor
             }
             if(GUILayout.Button("Update Weapon from SO_Item"))
             {
-                
+                //UpdateFromSO
             }
         }
         serializedObject.ApplyModifiedProperties();

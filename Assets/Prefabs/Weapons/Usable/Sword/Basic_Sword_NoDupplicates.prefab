@@ -971,7 +971,7 @@ MonoBehaviour:
   m_HitPos: {fileID: 0}
   m_MeleeWeaponParameters:
     Damage: 10
-    Speed: 1
+    Speed: 0.8
 --- !u!114 &8466982124699937639
 MonoBehaviour:
   m_ObjectHideFlags: 0

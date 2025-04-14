@@ -180,6 +180,58 @@ namespace Coherence.Generated
             return new GenericScale();
         }    
     }
+    
+    [UnityEngine.Scripting.Preserve]
+    public class Binding_5d6316af86183e242bf98f8a058fd8db_1f1aea225434473abd56f88002619d06 : BoolBinding
+    {   
+        private global::UnityEngine.MeshRenderer CastedUnityComponent;
+
+        protected override void OnBindingCloned()
+        {
+    	    CastedUnityComponent = (global::UnityEngine.MeshRenderer)UnityComponent;
+        }
+
+        public override global::System.Type CoherenceComponentType => typeof(_5d6316af86183e242bf98f8a058fd8db_7892528333237979980);
+        public override string CoherenceComponentName => "_5d6316af86183e242bf98f8a058fd8db_7892528333237979980";
+        public override uint FieldMask => 0b00000000000000000000000000000001;
+
+        public override System.Boolean Value
+        {
+            get { return (System.Boolean)(CastedUnityComponent.enabled); }
+            set { CastedUnityComponent.enabled = (System.Boolean)(value); }
+        }
+
+        protected override (System.Boolean value, AbsoluteSimulationFrame simFrame) ReadComponentData(ICoherenceComponentData coherenceComponent, Vector3 floatingOriginDelta)
+        {
+            var value = ((_5d6316af86183e242bf98f8a058fd8db_7892528333237979980)coherenceComponent).enabled;
+
+            var simFrame = ((_5d6316af86183e242bf98f8a058fd8db_7892528333237979980)coherenceComponent).enabledSimulationFrame;
+            
+            return (value, simFrame);
+        }
+
+        public override ICoherenceComponentData WriteComponentData(ICoherenceComponentData coherenceComponent, AbsoluteSimulationFrame simFrame)
+        {
+            var update = (_5d6316af86183e242bf98f8a058fd8db_7892528333237979980)coherenceComponent;
+            if (Interpolator.IsInterpolationNone)
+            {
+                update.enabled = Value;
+            }
+            else
+            {
+                update.enabled = GetInterpolatedAt(simFrame / InterpolationSettings.SimulationFramesPerSecond);
+            }
+
+            update.enabledSimulationFrame = simFrame;
+            
+            return update;
+        }
+
+        public override ICoherenceComponentData CreateComponentData()
+        {
+            return new _5d6316af86183e242bf98f8a058fd8db_7892528333237979980();
+        }    
+    }
 
     [UnityEngine.Scripting.Preserve]
     public class CoherenceSync_5d6316af86183e242bf98f8a058fd8db : CoherenceSyncBaked
@@ -199,6 +251,7 @@ namespace Coherence.Generated
             ["a09016d912e543f9ad3e7ea467d6066f"] = new Binding_5d6316af86183e242bf98f8a058fd8db_a09016d912e543f9ad3e7ea467d6066f(),
             ["54d8dae041c44fb09d85119dc8733e06"] = new Binding_5d6316af86183e242bf98f8a058fd8db_54d8dae041c44fb09d85119dc8733e06(),
             ["ecaf09d4ac3642cab69ddd9105338288"] = new Binding_5d6316af86183e242bf98f8a058fd8db_ecaf09d4ac3642cab69ddd9105338288(),
+            ["1f1aea225434473abd56f88002619d06"] = new Binding_5d6316af86183e242bf98f8a058fd8db_1f1aea225434473abd56f88002619d06(),
         };
         
         private Dictionary<string, Action<CommandBinding, CommandsHandler>> bakedCommandBindings = new Dictionary<string, Action<CommandBinding, CommandsHandler>>();

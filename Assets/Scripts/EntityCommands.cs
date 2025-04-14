@@ -28,6 +28,14 @@ public class EntityCommands : MonoBehaviour
         }
     }
     [Command]
+    public void TakeDamageCommand(int damage, int damageType, CoherenceSync Damagersync)
+    {
+        if (TryGetComponent<Entity>(out Entity ent))
+        {
+            ent.TakeDamageSync(damage,(EEffectType)damageType,Damagersync);
+        }
+    }
+    [Command]
     public void SyncBlockedCommand()
     {
         if (TryGetComponent<Entity>(out Entity ent))

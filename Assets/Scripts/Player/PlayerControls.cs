@@ -218,6 +218,11 @@ namespace PlayerControls
             LocalUI.Instance.TogglePause();
             SwitchState(LocalUI.Instance.m_PauseMenu.m_InPauseMenu ? EControlState.Pause : m_TinyPlayer.m_PlayerState == TinyPlayer.EPlayerState.Player ? EControlState.Player : EControlState.Ghost);
         }
+        public void TogglePause()
+        {
+            LocalUI.Instance.TogglePause();
+            SwitchState(LocalUI.Instance.m_PauseMenu.m_InPauseMenu ? EControlState.Pause : m_TinyPlayer.m_PlayerState == TinyPlayer.EPlayerState.Player ? EControlState.Player : EControlState.Ghost);
+        }
 
 
         void SelectItem(int index)

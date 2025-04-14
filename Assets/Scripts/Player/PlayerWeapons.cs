@@ -1,11 +1,9 @@
 using Coherence;
 using Coherence.Toolkit;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Coherence.Core.NativeTransport;
 
 
 
@@ -147,7 +145,8 @@ public class PlayerWeapons : MonoBehaviour
             m_Animator.SetInteger("WeaponDirectionNESO", 0);
             return; 
         }
- 
+        
+
         switch (m_WeaponDirection)
         {
             case EWeaponDirection.Right:
@@ -176,7 +175,18 @@ public class PlayerWeapons : MonoBehaviour
         else
         {
             m_WeaponDirection = m_LookDirection.y > 0 ? EWeaponDirection.Up : EWeaponDirection.Down;
+            
         }
+
+        if (GetMainWeapon() != null
+            && m_WeaponState == EWeaponState.AttackReady
+            && GetMainWeapon() is MeleeWeapon meleeWeapon
+            && !meleeWeapon.MeleeWeaponParameters.CanPierce
+            && m_WeaponDirection == EWeaponDirection.Down)
+        {
+            m_WeaponDirection = EWeaponDirection.Up;
+        }
+
 
 
     }
@@ -281,6 +291,10 @@ public class PlayerWeapons : MonoBehaviour
         switch (m_WeaponState)
         {
             case EWeaponState.None:
+                m_Attacking = false;
+                m_Parrying = false;
+                m_CanAttack = true;
+                UpdateMainWeaponType();
                 break;
             case EWeaponState.AttackReady:
                 GetWeaponDirection();
@@ -307,9 +321,6 @@ public class PlayerWeapons : MonoBehaviour
                 }
                 break;
             case EWeaponState.AttackRelease:
-
-                m_Animator.SetBool("Attacking", false);
-                //GetMainWeapon().ReleaseAttackEffect();
                 break;
             case EWeaponState.Parry:
                 m_ParryWindowTimer = 0f;
@@ -339,6 +350,8 @@ public class PlayerWeapons : MonoBehaviour
                 
                 break;
             case EWeaponState.AttackReady:
+                m_Animator.SetBool("Attacking", false);
+
                 break;
             case EWeaponState.AttackRelease:
                 if(m_AttackReleaseLockRoutine != null) StopCoroutine(m_AttackReleaseLockRoutine);
@@ -368,7 +381,7 @@ public class PlayerWeapons : MonoBehaviour
             return;
         }
 
-        //Debug.Log("Switching weapon state from " + m_WeaponState + " to " + state); 
+        Debug.Log("Switching weapon state from " + m_WeaponState + " to " + state); 
 
         OnExitWeaponState();
         m_WeaponState = state;
@@ -384,7 +397,12 @@ public class PlayerWeapons : MonoBehaviour
 
     public void LockAttackRelease(bool isLocked)=> m_LockedAttackRelease = isLocked;
 
-    public void LockAttack(bool isLocked) => m_CanAttack = !isLocked;
+    public void LockAttack(bool isLocked)
+    {
+        Debug.Log("lock attacking " + isLocked);
+        m_CanAttack = !isLocked;
+
+    }
     public void LockAttack()
     {
         //Debug.Log("locking attack");
@@ -417,6 +435,7 @@ public class PlayerWeapons : MonoBehaviour
         //
     IEnumerator AttackCoolDownRoutine(float time)
     {
+        Debug.Log("attack cooldown routine ");
         m_CanAttack = false;
         yield return new WaitForSeconds(time);
         m_CanAttack = true;
@@ -482,6 +501,7 @@ public class PlayerWeapons : MonoBehaviour
     }
     public void UpdateMainWeaponType()
     {
+        Debug.Log("updating weapon type"); 
         if(GetMainWeapon() == null)
         {
             m_MainWeaponType = EWeaponType.Hands;
@@ -511,7 +531,7 @@ public class PlayerWeapons : MonoBehaviour
     {
         if(m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon] == null) 
         {
-            Debug.Log("no main weapon ");
+            //Debug.Log("no main weapon ");
             return null;
         }
         return m_PlayerLoadout.m_EquippedItems[EStuffSlot.MainWeapon].GetComponent<BasicWeapon>();
@@ -521,7 +541,7 @@ public class PlayerWeapons : MonoBehaviour
     {
         if (m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon] == null)
         {
-            Debug.Log("no secondary weapon ");
+            //Debug.Log("no secondary weapon ");
             return null;
         }
         return m_PlayerLoadout.m_EquippedItems[EStuffSlot.SecondaryWeapon].GetComponent<BasicWeapon>();
@@ -529,12 +549,12 @@ public class PlayerWeapons : MonoBehaviour
 
     public void SetWeaponsNeutralState()
     {
-        m_Attacking = false;
-        m_Parrying = false;
-        m_CanAttack = true;
+        //Debug.Log("set weapon neutral state"); 
+        
 
         SwitchWeaponState(EWeaponState.None);
-        UpdateMainWeaponType(); 
+  
+        
     }
 
    

@@ -26,9 +26,11 @@ MonoBehaviour:
     WeaponSize: 2
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
+  WeaponEffects: []
   MeleeWeaponParameters:
     Damage: 18
     Speed: 0.6
+    CanPierce: 1
   HitSounds:
   - {fileID: 8300000, guid: 2b901ac228ea622448cc3198f2358fc0, type: 3}
   - {fileID: 8300000, guid: f81c7afdd6b84634a8db483151a6141c, type: 3}

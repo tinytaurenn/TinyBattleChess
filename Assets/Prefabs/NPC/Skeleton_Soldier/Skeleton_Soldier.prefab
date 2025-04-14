@@ -615,6 +615,7 @@ MonoBehaviour:
   - rid: 3165745020758655161
   - rid: 3561254542380892628
   - rid: 3561254653979525334
+  - rid: 3561254723267592387
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -853,6 +854,50 @@ MonoBehaviour:
         - System.Int32, mscorlib
         - System.Int32, mscorlib
         - UnityEngine.Vector3, UnityEngine
+        ownerType:
+          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3561254723267592387
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3561254723267592388
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 78451a9c8f1a4e2ba5d15492cba13b2e
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 5392367273706050435}
+        coherenceSync: {fileID: 2353739285565979599}
+        interpolationSettings: {fileID: 0}
+    - rid: 3561254723267592388
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: TakeDamageCommand
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        - System.Int32, mscorlib
+        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
         ownerType:
           assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null

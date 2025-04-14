@@ -68,6 +68,7 @@ public enum EWeaponSize
     Two_Handed,
 
 }
+
 [Serializable]
 public struct FWeaponParameters
 {
@@ -106,12 +107,14 @@ public struct FWeaponParameters
 public struct FMeleeWeaponParameters
 {
     public int Damage;
-    public float Speed; 
+    public float Speed;
+    public bool CanPierce; 
 
-    public FMeleeWeaponParameters(int damage, float speed)
+    public FMeleeWeaponParameters(int damage, float speed,bool piece)
     {
         Damage = damage;
         Speed = speed;
+        CanPierce = piece;
     }
 }
 public enum EGameEffect

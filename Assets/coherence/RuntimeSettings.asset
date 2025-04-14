@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b91f942a5214496b0e11eaedb54c36, type: 3}
   m_Name: RuntimeSettings
   m_EditorClassIdentifier: 
-  schemaID: 9d26f00d2c6d5af420d971a777a66914e0ee5801
+  schemaID: 44845f3e2b111e420482b730d38e0d3bc521f66c
   versionInfo: {fileID: 11400000, guid: 2191b6f902c97477baa32a7919010503, type: 2}
   runtimeKey: 6f5575d9dbbe42ffa0f2ac869c306c22
-  simulatorSlug: v1.2_Simulator
+  simulatorSlug: v1.2.2_Simulator
   localHost: 127.0.0.1
   localWorldUDPPort: 32001
   localWorldWebPort: 32002

@@ -779,6 +779,7 @@ public class PlayerLoadout : MonoBehaviour
 
         SwitchStuffUI(EInventoryType.Equipped);
         SetupItems();
+        m_TinyPlayer.m_PlayerWeapons.UpdateMainWeaponType();
     }
 
     void EquipShoulders(Shoulders_Armor shoulders)
@@ -819,6 +820,7 @@ public class PlayerLoadout : MonoBehaviour
         if(m_TinyPlayer.m_PlayerWeapons.Throwing) UseThrowingItem();
 
         m_TinyPlayer.m_PlayerWeapons.SetWeaponsNeutralState();
+        m_TinyPlayer.m_PlayerWeapons.UpdateMainWeaponType(); 
 
     }
     void UnloadCheckEquippedItemOnSlot(EStuffSlot slot)

@@ -123,6 +123,7 @@ MonoBehaviour:
   - rid: 5785725103130804799
   - rid: 3165744950138634816
   - rid: 3165744971055104814
+  - rid: 3561254723267592994
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -231,6 +232,51 @@ MonoBehaviour:
         bindingType:
           assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
             Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3561254723267592994
+      type: {class: BoolBinding, ns: Coherence.Toolkit.Bindings.ValueBindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3561254723267592995
+        routing: 0
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 1f1aea225434473abd56f88002619d06
+        archetypeData:
+          type: 3
+          minRange: 0
+          maxRange: 0
+          sampleRate: 20
+          floatCompression: 0
+          fields:
+          - type: 3
+            bits: 1
+            precision: 0
+            floatCompression: 0
+        unityComponent: {fileID: 7892528333237979980}
+        coherenceSync: {fileID: 4703103669562260923}
+        interpolationSettings: {fileID: 0}
+    - rid: 3561254723267592995
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: enabled
+        monoAssemblyType: System.Boolean, mscorlib
+        required: 0
+        enforcesLODingWhenFieldsOverriden: 1
+        valueSyncCallbackName: 
+        memberType: 16
+        parameterAssemblyTypes: []
+        ownerType:
+          assemblyQualifiedName: UnityEngine.MeshRenderer, UnityEngine.CoreModule,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.ValueBindings.BoolBinding,
+            Coherence.Toolkit, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         oldName: 
         oldParameterAssemblyTypes: []
     - rid: 5785725103130804793
@@ -433,8 +479,6 @@ MonoBehaviour:
   m_ExplosionMask:
     serializedVersion: 2
     m_Bits: 1216
-  m_ThrowForce: 10
-  m_ExplosionRadius: 3
   m_Exploded: 0
   SO_Potion: {fileID: 0}
 --- !u!1 &3786133920124323213

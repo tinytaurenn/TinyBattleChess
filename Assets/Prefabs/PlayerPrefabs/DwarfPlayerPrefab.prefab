@@ -16413,6 +16413,7 @@ MonoBehaviour:
   - rid: 3165745128104526310
   - rid: 3561254542380892652
   - rid: 3561254653979525332
+  - rid: 3561254723267592385
   onNetworkedInstantiation:
     m_PersistentCalls:
       m_Calls: []
@@ -16975,6 +16976,50 @@ MonoBehaviour:
         - System.Int32, mscorlib
         - System.Int32, mscorlib
         - UnityEngine.Vector3, UnityEngine
+        ownerType:
+          assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        defaultSyncMode: 0
+        CustomData:
+          rid: -2
+        bindingType:
+          assemblyQualifiedName: Coherence.Toolkit.Bindings.CommandBinding, Coherence.Toolkit,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        oldName: 
+        oldParameterAssemblyTypes: []
+    - rid: 3561254723267592385
+      type: {class: CommandBinding, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        descriptor:
+          rid: 3561254723267592386
+        routing: 1
+        syncMode: 0
+        isPredicted: 0
+        predictionMode: 0
+        guid: 1d3760f157bb43eea9dfd6a328e177f7
+        archetypeData:
+          type: 0
+          minRange: 0
+          maxRange: 0
+          sampleRate: 0
+          floatCompression: 0
+          fields: []
+        unityComponent: {fileID: 4912870117678723158}
+        coherenceSync: {fileID: 1055140489967927550}
+        interpolationSettings: {fileID: 0}
+    - rid: 3561254723267592386
+      type: {class: Descriptor, ns: Coherence.Toolkit.Bindings, asm: Coherence.Toolkit}
+      data:
+        name: TakeDamageCommand
+        monoAssemblyType: 
+        required: 1
+        enforcesLODingWhenFieldsOverriden: 0
+        valueSyncCallbackName: 
+        memberType: 8
+        parameterAssemblyTypes:
+        - System.Int32, mscorlib
+        - System.Int32, mscorlib
+        - Coherence.Toolkit.CoherenceSync, Coherence.Toolkit
         ownerType:
           assemblyQualifiedName: EntityCommands, Assembly-CSharp, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
@@ -18814,7 +18859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameID: 0
-  m_EntityHealth: 50
+  m_EntityHealth: 100
   m_PlayerState: 0
   m_IntPlayerState: 0
   m_Gamemode: 1
@@ -29643,7 +29688,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 0cae58939621e3749a4bb6f84eb1e40b, type: 3}
   m_Resource: {fileID: 8300000, guid: 0cae58939621e3749a4bb6f84eb1e40b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -29651,8 +29696,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 30
+  MinDistance: 0.5
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

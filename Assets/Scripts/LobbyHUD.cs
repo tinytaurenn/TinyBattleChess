@@ -20,7 +20,7 @@ public class LobbyHUD : MonoBehaviour
     [SerializeField] Canvas m_RootCanvas; 
 
     [SerializeField] Button m_ResetGameButton;
-    [SerializeField] Button m_CleanMapButton; 
+    [SerializeField] Button m_CleanMapButton;
 
 
 
@@ -41,6 +41,7 @@ public class LobbyHUD : MonoBehaviour
             Debug.Log("cleaning map");
             simulator.Sync.SendCommand<MainSimulatorCommands>(nameof(MainSimulatorCommands.CleanMap), MessageTarget.AuthorityOnly);
         }
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.TogglePause(); 
     }
 
     private void OnStartButtonClicked()
@@ -57,7 +58,7 @@ public class LobbyHUD : MonoBehaviour
             simulator.Sync.SendCommand<MainSimulatorCommands>(nameof(MainSimulatorCommands.StartGame), MessageTarget.AuthorityOnly);
         }
 
-
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.TogglePause();
         HideLobbyHUD(); 
     }
 
@@ -76,6 +77,7 @@ public class LobbyHUD : MonoBehaviour
 
 
         ShowLobbyHUD();
+        ConnectionsHandler.Instance.LocalTinyPlayer.m_PlayerControls.TogglePause();
 
     }
 
@@ -95,6 +97,9 @@ public class LobbyHUD : MonoBehaviour
     {
         UpdateLobbyHud();
         Debug.Log("show pause root canvas : " + show);
+        m_CleanMapButton.enabled = show;
+        m_ResetGameButton.enabled = show;
+        m_StartButton.enabled = show;
     }
     
 
