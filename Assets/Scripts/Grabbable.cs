@@ -162,7 +162,7 @@ public abstract class Grabbable : Usable, ICleanable
     #region Cleaning 
     public void CleanObject()
     {
-        if(m_IsNPCHeld || m_IsHeld)
+        if(m_IsNPCHeld || m_IsHeld || m_Sync.IsUnique)
         {
             return; 
         }
@@ -181,7 +181,7 @@ public abstract class Grabbable : Usable, ICleanable
     [Command]
     public void DestroyGrabbable()
     {
-        Destroy(gameObject);
+        Destroy(gameObject); 
     }
 
     #endregion
