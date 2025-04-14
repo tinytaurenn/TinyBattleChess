@@ -18962,6 +18962,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3d6413362885443168c6b453d5473cf0, type: 3}
   - {fileID: 8300000, guid: a4e9f0ef0d08540eeb76f07105625b96, type: 3}
   m_WeaponState: 0
+  m_ParryWindowTime: 0.5
+  m_ParryWindowTimer: 0
+  m_SecureParryDirection: 0
 --- !u!114 &7942593430174597996
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1115911356827236680}
   - component: {fileID: 176563875519719840}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DamageColider
   m_TagString: DamageCollider
   m_Icon: {fileID: 0}

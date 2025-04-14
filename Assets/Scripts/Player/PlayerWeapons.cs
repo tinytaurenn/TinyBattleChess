@@ -71,6 +71,11 @@ public class PlayerWeapons : MonoBehaviour
     }
     public EWeaponState m_WeaponState = EWeaponState.None;
 
+    [SerializeField] float m_ParryWindowTime = 0.5f; 
+    [SerializeField] float m_ParryWindowTimer = 0f; 
+    [SerializeField] EWeaponDirection m_SecureParryDirection; 
+
+
 
     private void Awake()
     {
@@ -175,7 +180,19 @@ public class PlayerWeapons : MonoBehaviour
 
     }
 
+    void SecureParryTimeUpdate()
+    {
+        if (m_ParryWindowTimer == 0f) return; 
 
+        if (m_ParryWindowTimer > 0f)
+        {
+            m_ParryWindowTimer -= Time.deltaTime;
+        }
+        else
+        {
+            m_ParryWindowTimer = 0f;
+        }
+    }
 
     void StateUpdate()
     {
@@ -184,9 +201,12 @@ public class PlayerWeapons : MonoBehaviour
             return;
         }
 
+        SecureParryTimeUpdate();
+
         switch (m_WeaponState)
         {
             case EWeaponState.None:
+                
 
                 if (m_Parrying)
                 {
@@ -242,8 +262,6 @@ public class PlayerWeapons : MonoBehaviour
             case EWeaponState.None:
                 break;
             case EWeaponState.AttackReady:
-                
-
                 GetWeaponDirection();
                 SetAnimatorWeaponDirection();
                 
@@ -273,6 +291,8 @@ public class PlayerWeapons : MonoBehaviour
                 //GetMainWeapon().ReleaseAttackEffect();
                 break;
             case EWeaponState.Parry:
+                m_ParryWindowTimer = 0f;
+
                 GetWeaponDirection();
                 SetAnimatorWeaponDirection();
                 //GetMainWeapon().RaiseBlockEffect();
@@ -280,6 +300,7 @@ public class PlayerWeapons : MonoBehaviour
                 m_Animator.SetBool("Parry", true);
                 break;
             case EWeaponState.ShieldParry:
+                m_ParryWindowTimer = 0f;
                 //GetMainWeapon().RaiseBlockEffect();
                 m_Animator.SetBool("ShieldParry", true);
                 m_Animator.SetBool("Parry", true);
@@ -305,10 +326,14 @@ public class PlayerWeapons : MonoBehaviour
                 break;
             case EWeaponState.Parry:
                 m_Animator.SetBool("Parry", false);
+                m_SecureParryDirection = m_WeaponDirection;
+                m_ParryWindowTimer = m_ParryWindowTime;
                 break;
             case EWeaponState.ShieldParry:
                 m_Animator.SetBool("ShieldParry", false);
                 m_Animator.SetBool("Parry", false);
+                m_SecureParryDirection = m_WeaponDirection;
+                m_ParryWindowTimer = m_ParryWindowTime;
                 break;
             default:
                 break;

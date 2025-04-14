@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7907826723198451656}
   - component: {fileID: 1704492299662397219}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DamageCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 3099529840711830800}
   - component: {fileID: 4692734591810539485}
   - component: {fileID: 3770909741167955833}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1036,7 +1036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6361078639557839753}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: SpellPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
