@@ -33,6 +33,12 @@ public class MainSimulatorCommands : MonoBehaviour
         askerSync.SendCommand<TinyPlayer>(nameof(TinyPlayer.TeleportPlayer), Coherence.MessageTarget.AuthorityOnly, pos);
     }
 
+    [Command]
+    public void CleanMap()
+    {
+        m_MainSimulator.CleanAllCleanables(); 
+    }
+
 
 
 

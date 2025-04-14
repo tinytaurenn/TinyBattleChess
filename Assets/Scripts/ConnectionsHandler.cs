@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class ConnectionsHandler : MonoBehaviour
 {
-    [SerializeField] bool IS_LOCAL_TESTING = false; 
+    public bool IS_LOCAL_TESTING = false; 
 
 
     [SerializeField] CoherenceBridge m_CoherenceBridge ; 

@@ -903,8 +903,7 @@ public class MainSimulator : MonoBehaviour
 
         SwitchPlayState(EPlayState.Shop);
     }
-
-    void CleanAllCleanables()
+    public void CleanAllCleanables()
     {
         foreach (ICleanable cleanable in FindObjectsByType(typeof(MonoBehaviour), FindObjectsSortMode.None).OfType<ICleanable>())
         {

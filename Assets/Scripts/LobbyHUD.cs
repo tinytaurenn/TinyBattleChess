@@ -19,7 +19,8 @@ public class LobbyHUD : MonoBehaviour
     [SerializeField] Canvas m_HostCanvas;
     [SerializeField] Canvas m_RootCanvas; 
 
-    [SerializeField] Button m_ResetGameButton; 
+    [SerializeField] Button m_ResetGameButton;
+    [SerializeField] Button m_CleanMapButton; 
 
 
 
@@ -28,8 +29,19 @@ public class LobbyHUD : MonoBehaviour
     {
         m_StartButton.onClick.AddListener(OnStartButtonClicked);
         m_ResetGameButton.onClick.AddListener(OnResetGameButtonClicked);
+        m_CleanMapButton.onClick.AddListener(OnCleanMapButtonClicked);
     }
 
+    private void OnCleanMapButtonClicked()
+    {
+        if (!ConnectionsHandler.Instance.LocalTinyPlayer.IsHost) return;
+
+        if (Utils.GetSimulatorLocal(out MainSimulator simulator))
+        {
+            Debug.Log("cleaning map");
+            simulator.Sync.SendCommand<MainSimulatorCommands>(nameof(MainSimulatorCommands.CleanMap), MessageTarget.AuthorityOnly);
+        }
+    }
 
     private void OnStartButtonClicked()
     {
