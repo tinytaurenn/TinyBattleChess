@@ -18,7 +18,7 @@ public class ParentedCamera : MonoBehaviour
     [SerializeField] float m_FallingDownOffSet = 3f;
     [SerializeField] float m_LastGroundedYPos = 0f;
     [SerializeField] LayerMask m_CheckMask;
-    [SerializeField] float m_WallCheckOffset = 0f; 
+    [SerializeField] float m_WallCheckOffset = 0f;
 
     
 

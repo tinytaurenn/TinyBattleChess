@@ -8,6 +8,7 @@ public class SlotUI : MonoBehaviour
 
     public void ChangeIcon(Sprite Icon)
     {
+
         m_Icon.sprite = Icon;
     }
 

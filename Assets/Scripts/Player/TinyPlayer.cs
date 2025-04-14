@@ -437,9 +437,17 @@ public class TinyPlayer : Entity, IDamageable
 
         EWeaponDirection direction = (EWeaponDirection)DirectionNESO;
         EWeaponDirection weaponDirection = m_PlayerWeapons.m_WeaponDirection;
-        Debug.Log(" player take melee sync");
+        Debug.Log(" player take melee sync"); 
         Debug.Log(" strike " + direction.ToString() + " direction!");
         Debug.Log(" mainweapontype is " + m_PlayerWeapons.m_MainWeaponType.ToString() + " and attacker weapon type is : " + weaponType.ToString());
+        bool isDamagerInAngle = m_PlayerWeapons.IsInParryAngle(attackerPos);
+
+        if (m_PlayerWeapons.InSecureParry(direction) && isDamagerInAngle)
+        {
+            Debug.Log("secure parrying");
+            ParrySync(damage, sync);
+            return; 
+        }
 
         bool parry = false;
 
@@ -463,7 +471,7 @@ public class TinyPlayer : Entity, IDamageable
         if (m_PlayerWeapons.InShieldParry) parry = true;
         Debug.Log("shield parry: " + m_PlayerWeapons.InShieldParry); 
         Debug.Log(" parry: " + parry); 
-        Debug.Log(" attacker angle: " + m_PlayerWeapons.IsInParryAngle(attackerPos)); 
+        Debug.Log(" attacker angle: " + isDamagerInAngle); 
         if(m_PlayerWeapons.m_MainWeaponType == EWeaponType.Hands && weaponType != EWeaponType.Hands && !m_PlayerWeapons.InShieldParry)
         {
             Debug.Log("taking damage from weapon with empty hands");
@@ -471,7 +479,7 @@ public class TinyPlayer : Entity, IDamageable
             return; 
         }
 
-        if (m_PlayerWeapons.m_MainWeaponType == EWeaponType.Hands && weaponType ==  EWeaponType.Hands && m_PlayerWeapons.InParry && m_PlayerWeapons.IsInParryAngle(attackerPos))
+        if (m_PlayerWeapons.m_MainWeaponType == EWeaponType.Hands && weaponType ==  EWeaponType.Hands && m_PlayerWeapons.InParry && isDamagerInAngle)
         {
             Debug.Log("parry damage from hands with empty hands");
             ParrySync(damage, sync);
@@ -479,7 +487,7 @@ public class TinyPlayer : Entity, IDamageable
 
         }
 
-        if (parry && m_PlayerWeapons.IsInParryAngle(attackerPos))
+        if (parry && isDamagerInAngle)
         {
             Debug.Log("parry damage from weapon with weapon");
             ParrySync(damage, sync);

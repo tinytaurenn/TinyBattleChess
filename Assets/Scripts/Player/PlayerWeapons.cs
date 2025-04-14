@@ -1,5 +1,6 @@
 using Coherence;
 using Coherence.Toolkit;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -192,6 +193,26 @@ public class PlayerWeapons : MonoBehaviour
         {
             m_ParryWindowTimer = 0f;
         }
+    }
+    public bool InSecureParry(EWeaponDirection direction)
+    {
+        if (m_ParryWindowTimer <= 0f)
+        {
+            return false;
+        }
+
+        switch (direction)
+        {
+            case EWeaponDirection.Right:
+                return m_SecureParryDirection == EWeaponDirection.Left;
+            case EWeaponDirection.Left:
+                return m_SecureParryDirection == EWeaponDirection.Right;
+            case EWeaponDirection.Up:
+                return m_SecureParryDirection == EWeaponDirection.Up;
+            case EWeaponDirection.Down:
+                return m_SecureParryDirection == EWeaponDirection.Down;
+        }
+        return false; 
     }
 
     void StateUpdate()

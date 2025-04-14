@@ -64,7 +64,12 @@ namespace PlayerControls
             m_LookValue += mouseDeltaY * Time.fixedDeltaTime * m_VerticalLookSensivity; 
             m_LookValue = Mathf.Clamp(m_LookValue, -m_LookRange, m_LookRange);
 
-            m_Animator.SetFloat("LookValue", (m_LookValue + 1) / 2);
+            //transform -0.4, 0.4 range to 0-1 range
+            //m_LookValue = Mathf.InverseLerp(-m_LookRange, m_LookRange, m_LookValue);
+            float newAnimValue = Mathf.InverseLerp(-m_LookRange, m_LookRange, m_LookValue);
+            newAnimValue = Mathf.Clamp(newAnimValue, 0.3f, 0.85f); // clamp to 0-1 range
+
+            m_Animator.SetFloat("LookValue", newAnimValue); 
         }
 
 
