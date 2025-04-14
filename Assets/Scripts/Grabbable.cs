@@ -4,7 +4,7 @@ using Coherence.Toolkit;
 using System;
 using UnityEngine;
 
-public abstract class Grabbable : Usable
+public abstract class Grabbable : Usable, ICleanable
 {
     public SO_Item So_Item
     {
@@ -17,7 +17,7 @@ public abstract class Grabbable : Usable
     [Sync] public bool m_IsHeld;
     [SerializeField] protected bool m_IsNPCHeld = false; 
     [Sync] public bool IsNPCHeld
-    {
+    { 
         get { return m_IsHeld && m_IsNPCHeld; }
         set { m_IsNPCHeld = value; }
     }
@@ -159,4 +159,30 @@ public abstract class Grabbable : Usable
         //m_Sync.SendCommand<Grabbable>(nameof(Grabbable.EnableComponent), Coherence.MessageTarget.Other, true); 
         transform.localScale = m_ItemScale; 
     }
+    #region Cleaning 
+    public void CleanObject()
+    {
+        if(m_IsNPCHeld || m_IsHeld)
+        {
+            return; 
+        }
+
+        if (m_Sync.HasStateAuthority)
+        {
+            DestroyGrabbable(); 
+        }
+        else
+        {
+            m_Sync.SendCommand<Grabbable>(nameof(Grabbable.DestroyGrabbable), Coherence.MessageTarget.AuthorityOnly);
+        }
+    
+
+    }
+    [Command]
+    public void DestroyGrabbable()
+    {
+        Destroy(gameObject);
+    }
+
+    #endregion
 }
