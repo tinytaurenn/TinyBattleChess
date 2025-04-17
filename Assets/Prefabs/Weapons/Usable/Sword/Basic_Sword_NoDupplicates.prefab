@@ -972,6 +972,7 @@ MonoBehaviour:
   m_MeleeWeaponParameters:
     Damage: 10
     Speed: 0.8
+    CanPierce: 1
 --- !u!114 &8466982124699937639
 MonoBehaviour:
   m_ObjectHideFlags: 0

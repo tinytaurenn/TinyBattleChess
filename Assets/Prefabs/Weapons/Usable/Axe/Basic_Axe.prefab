@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.06906986, y: 0.45244488, z: 0.27996275}
-  m_Center: {x: -0.0010061264, y: 0.49283963, z: -0.19626717}
+  m_Size: {x: 0.06906986, y: 0.6537739, z: 0.41093203}
+  m_Center: {x: -0.0010061264, y: 0.5935041, z: -0.26175183}
 --- !u!1 &953146969487538299
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1.61, y: 1.61, z: 1.61}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 124841667135481283}
@@ -928,8 +928,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.07623196, y: 0.77434045, z: 0.13702393}
-  m_Center: {x: 0.0029435158, y: 0.13593373, z: 0.0067024305}
+  m_Size: {x: 0.07623196, y: 1.1980076, z: 0.15724078}
+  m_Center: {x: 0.0029435158, y: 0.21859145, z: -0.0034059845}
 --- !u!54 &8942486250847572307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1107,5 +1107,5 @@ MonoBehaviour:
   m_HitPos: {fileID: 0}
   m_MeleeWeaponParameters:
     Damage: 10
-    Speed: 1
+    Speed: 0.7
     CanPierce: 0

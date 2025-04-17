@@ -1083,6 +1083,7 @@ MonoBehaviour:
   m_MeleeWeaponParameters:
     Damage: 10
     Speed: 0.8
+    CanPierce: 1
 --- !u!4 &3375366271663266282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ddb9f74de6cd15c4f8c1e636ef756690, type: 3}

@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_DamageCollider
       value: 
       objectReference: {fileID: 3898260651627791061}
+    - target: {fileID: -7841539558432319869, guid: 28fbed09d7fea464681134cd159332ad, type: 3}
+      propertyPath: m_MeleeWeaponParameters.Speed
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 86195820082850756, guid: 28fbed09d7fea464681134cd159332ad, type: 3}
       propertyPath: m_Layer
       value: 7

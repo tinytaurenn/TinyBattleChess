@@ -77,7 +77,7 @@ MonoBehaviour:
   m_HitPos: {fileID: 0}
   m_MeleeWeaponParameters:
     Damage: 20
-    Speed: 0.5
+    Speed: 0.4
     CanPierce: 0
 --- !u!65 &8805906310951553677
 BoxCollider:

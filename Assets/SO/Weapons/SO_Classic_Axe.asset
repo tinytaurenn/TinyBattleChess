@@ -29,7 +29,7 @@ MonoBehaviour:
   WeaponEffects: []
   MeleeWeaponParameters:
     Damage: 12
-    Speed: 0.9
+    Speed: 0.7
     CanPierce: 0
   HitSounds:
   - {fileID: 8300000, guid: e01cd36fd531940b5bf4668241a66b3d, type: 3}

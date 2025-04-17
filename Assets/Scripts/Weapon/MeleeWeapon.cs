@@ -97,14 +97,14 @@ public class MeleeWeapon : BasicWeapon,IWeapon
 
             return;
         }
-        if (!other.TryGetComponent<IDamageable>(out IDamageable damageable) && other.CompareTag("Untagged") && HitList.Count <= 0)
-        {
-            if (m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons weapons))
-            {
-                ActivateDamage(false);
-                weapons.SyncBlocked();
-            }
-        }
+        //if (!other.TryGetComponent<IDamageable>(out IDamageable damageable) && other.CompareTag("Untagged") && HitList.Count <= 0)
+        //{
+        //    if (m_HolderTransform.TryGetComponent<PlayerWeapons>(out PlayerWeapons weapons))
+        //    {
+        //        ActivateDamage(false);
+        //        weapons.SyncBlocked();
+        //    }
+        //}
 
         if (m_HolderTransform == other.transform)
         {

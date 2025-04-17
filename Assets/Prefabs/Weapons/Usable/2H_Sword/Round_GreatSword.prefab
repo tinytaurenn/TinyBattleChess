@@ -1021,7 +1021,8 @@ MonoBehaviour:
   m_HitPos: {fileID: 0}
   m_MeleeWeaponParameters:
     Damage: 18
-    Speed: 0.5
+    Speed: 0.4
+    CanPierce: 1
 --- !u!1 &5543367505718797180
 GameObject:
   m_ObjectHideFlags: 0
