@@ -846,6 +846,7 @@ MonoBehaviour:
   m_HostCanvas: {fileID: 8603673798441720784}
   m_RootCanvas: {fileID: 3449775484851209853}
   m_ResetGameButton: {fileID: 5321328647724284610}
+  m_CleanMapButton: {fileID: 0}
 --- !u!1 &5896955822238363041
 GameObject:
   m_ObjectHideFlags: 0
