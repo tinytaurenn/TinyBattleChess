@@ -10,6 +10,7 @@ using Sirenix.OdinInspector.Demos;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Sirenix.OdinInspector.Editor.Examples;
 public class ItemOrganizer : OdinMenuEditorWindow
 {
 
@@ -43,10 +44,16 @@ public class ItemOrganizer : OdinMenuEditorWindow
         // The API also gives you full control over the selection, etc..
         // Make sure to check out the API Documentation for OdinMenuEditorWindow, OdinMenuTree and OdinMenuItem for more information on what you can do!
 
-        visualizer.FindScriptableObjects(); 
+        //visualizer.FindScriptableObjects();
         return tree;
 
         
+    }
+    [OnInspectorInit]
+    void OnOpenWindow()
+    {
+        visualizer.FindScriptableObjects();
+        visualizer.CreateVisualizer(); 
     }
 }
 
@@ -55,10 +62,14 @@ public class ItemOrganizer : OdinMenuEditorWindow
 public class ItemVisualizer
 {
 
+     // Take a look at SomeData.cs to see how serialization works in Editor Windows.
 
     [ReadOnly]
     [ListDrawerSettings()]
-    public List<ScriptableObject> FoundScriptableObjects = new List<ScriptableObject>();
+    public List<SO_Item> FoundScriptableObjects = new List<SO_Item>();
+
+    [TableList(AlwaysExpanded = true, DrawScrollView = false)]
+    public List<WeaponListed> WeaponStats = new List<WeaponListed>();
 
 
     public void FindScriptableObjects()
@@ -73,23 +84,103 @@ public class ItemVisualizer
             if (item != null)
             {
                 FoundScriptableObjects.Add(item);
+                
+                
             }
         }
     }
+
+    public void CreateVisualizer()
+    {
+        foreach (SO_Item item in FoundScriptableObjects)
+        {
+            switch (item)
+            {
+                case SO_Weapon weapon:
+                    WeaponListed weaponListed = new WeaponListed(item.ItemIcon, item.ItemName, item.EItemRarity, EWeaponType.Melee);
+                    WeaponStats.Add(weaponListed);
+                    break;
+                case SO_Armor armor:
+                    break;
+                case SO_Potion potion:
+                    break;
+                case SO_Scroll scroll:
+                    break;
+                default:
+                    break;
+            }
+
+
+            
+        }
+        
+    }
     
 
-    //example
-    private string Test3
+
+}
+
+[Serializable]
+public class ItemsListed
+{
+    [TableColumnWidth(57, Resizable = false)]
+    [PreviewField(Alignment = Sirenix.OdinInspector.ObjectFieldAlignment.Center)]
+    public Sprite Icon;
+
+    //[TextArea]
+    public string ItemName;
+
+    public EItemType ItemType;
+
+    public EItemRarity ItemRarity;
+
+    [ShowIf("ItemType", EItemType.Weapon)]
+    public EWeaponType WeaponType;
+
+
+    public ItemsListed(Sprite icon, string itemName, EItemType itemType, EItemRarity itemRarity, EWeaponType weaponType)
     {
-        get
-        {
-            return EditorPrefs.GetString("OdinDemo.PersistentString",
-                "This value is persistent forever, even cross Unity projects. But it's not saved together " +
-                "with your project. That's where ScriptableObejcts and OdinEditorWindows come in handy.");
-        }
-        set
-        {
-            EditorPrefs.SetString("OdinDemo.PersistentString", value);
-        }
+        Icon = icon;
+        ItemName = itemName;
+        ItemType = itemType;
+        ItemRarity = itemRarity;
+        WeaponType = weaponType;
+    }
+
+    [OnInspectorInit]
+    private void CreateData()
+    {
+
     }
 }
+
+[Serializable]
+public class WeaponListed
+{
+    [TableColumnWidth(57, Resizable = false)]
+    [PreviewField(Alignment = Sirenix.OdinInspector.ObjectFieldAlignment.Center)]
+    public Sprite Icon;
+
+    //[TextArea]
+    public string ItemName;
+
+    public EItemRarity ItemRarity;
+
+    public EWeaponType WeaponType;
+
+
+    public WeaponListed(Sprite icon, string itemName, EItemRarity itemRarity, EWeaponType weaponType)
+    {
+        Icon = icon;
+        ItemName = itemName;
+        ItemRarity = itemRarity;
+        WeaponType = weaponType;
+    }
+
+    [OnInspectorInit]
+    private void CreateData()
+    {
+
+    }
+}
+

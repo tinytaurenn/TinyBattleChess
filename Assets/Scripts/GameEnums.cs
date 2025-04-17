@@ -36,7 +36,6 @@ public enum EEffectType
 }
 #endregion
 #region Item Enums and Struct
-[Flags]
 public enum EItemType
 {
     Weapon = 1, //rouge brun
