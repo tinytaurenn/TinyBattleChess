@@ -319,10 +319,9 @@ MonoBehaviour:
   m_Collider: {fileID: 0}
   m_ArmorParameters:
     MagicArmor: 0
-    Armor: 20
-    Cost: 10
-    ArmorType: 1
-    ArmorPlace: 1
+    Armor: 0
+    ArmorType: 3
+    ArmorPlace: 2
   ArmorEffects: []
   m_LeftShoulder: {fileID: 2600376100106101127, guid: 406b1ac2c4f206b48b7f7599db0bf7a9, type: 3}
   m_RightShoulder: {fileID: 4199366146844185901, guid: c1430919458aebb499cffdc9a9527493, type: 3}

@@ -349,7 +349,7 @@ public class ItemEditor : EditorWindow
 
         armorScript.m_IsHeld = false;
         armorScript.IsNPCHeld = false;
-        armorScript.ArmorParameters = new FArmorParameters(sO_Armor.MagicArmor, sO_Armor.Armor, sO_Armor.Cost, sO_Armor.ArmorType, sO_Armor.ArmorPlace);
+        armorScript.ArmorParameters = new FArmorParameters(sO_Armor.MagicArmor, sO_Armor.Armor, sO_Armor.ArmorType, sO_Armor.ArmorPlace);
         armorScript.ArmorEffects = sO_Armor.ArmorEffects;
 
         Rigidbody rb =  armorItem.AddComponent<Rigidbody>();

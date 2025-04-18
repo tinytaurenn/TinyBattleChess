@@ -9,7 +9,6 @@ public class Chest_Armor : Armor
             return new FArmorParameters(
             base.ArmorParameters.MagicArmor,
             base.ArmorParameters.Armor,
-            base.ArmorParameters.Cost,
             base.ArmorParameters.ArmorType,
             EArmorPlace.Chest);
         }

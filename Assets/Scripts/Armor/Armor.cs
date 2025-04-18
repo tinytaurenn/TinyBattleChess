@@ -8,7 +8,7 @@ public abstract class Armor : Grabbable
     [Space(10)]
     [Header("Armor infos")]
 
-    [SerializeField] FArmorParameters m_ArmorParameters = new FArmorParameters(0,0,10, EArmorType.Leather, EArmorPlace.Chest);  
+    [SerializeField] FArmorParameters m_ArmorParameters = new FArmorParameters(0,0, EArmorType.Leather, EArmorPlace.Chest);  
 
     public virtual FArmorParameters ArmorParameters
     {

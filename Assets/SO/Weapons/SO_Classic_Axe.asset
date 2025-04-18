@@ -22,14 +22,15 @@ MonoBehaviour:
   EItemRarity: 0
   WeaponParameters:
     DamageType: 1
-    WeaponType: 2
+    WeaponType: 1
     WeaponSize: 0
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
-  WeaponEffects: []
+  WeaponEffects:
+  - {fileID: 11400000, guid: 3c76f2955f8a1a8489d2367ed92ebeea, type: 2}
   MeleeWeaponParameters:
-    Damage: 12
-    Speed: 0.7
+    Damage: 13
+    Speed: 0.6
     CanPierce: 0
   HitSounds:
   - {fileID: 8300000, guid: e01cd36fd531940b5bf4668241a66b3d, type: 3}

@@ -197,15 +197,13 @@ public struct FArmorParameters
 {
     public int MagicArmor;
     public int Armor;
-    public int Cost;
     public EArmorType ArmorType;
     public EArmorPlace ArmorPlace;
 
-    public FArmorParameters(int magicArmor, int armor, int cost, EArmorType armorType, EArmorPlace armorPlace)
+    public FArmorParameters(int magicArmor, int armor, EArmorType armorType, EArmorPlace armorPlace)
     {
         MagicArmor = magicArmor;
         Armor = armor;
-        Cost = cost;
         ArmorType = armorType;
         ArmorPlace = armorPlace;
     }

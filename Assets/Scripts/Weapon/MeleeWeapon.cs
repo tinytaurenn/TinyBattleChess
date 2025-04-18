@@ -9,7 +9,7 @@ public class MeleeWeapon : BasicWeapon,IWeapon
     List<Collider> HitList = new List<Collider>();
     [SerializeField]
 
-    protected FMeleeWeaponParameters m_MeleeWeaponParameters = new FMeleeWeaponParameters(10,1,true);
+    public FMeleeWeaponParameters m_MeleeWeaponParameters = new FMeleeWeaponParameters(10,1,true);
 
     public FMeleeWeaponParameters MeleeWeaponParameters
     {

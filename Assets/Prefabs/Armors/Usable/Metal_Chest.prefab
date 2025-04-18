@@ -123,9 +123,8 @@ MonoBehaviour:
   m_Collider: {fileID: 0}
   m_ArmorParameters:
     MagicArmor: 0
-    Armor: 30
-    Cost: 10
-    ArmorType: 1
+    Armor: 10
+    ArmorType: 3
     ArmorPlace: 1
   ArmorEffects: []
 --- !u!114 &893983495769378730
