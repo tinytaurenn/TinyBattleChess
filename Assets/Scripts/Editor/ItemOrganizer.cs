@@ -61,6 +61,13 @@ public class ItemOrganizer : OdinMenuEditorWindow
 
         
     }
+    public static void ItemListedRegistering(SO_Item so_Item, ItemsListed itemListed)
+    {
+        so_Item.ItemName = itemListed.ItemName;
+        so_Item.EItemRarity = itemListed.ItemRarity;
+        so_Item.ItemIcon = itemListed.Icon;
+        so_Item.Usable_GameObject = itemListed.UsableGameObject;
+    }
 
 
 }
@@ -108,6 +115,15 @@ public abstract class ItemsListed
     public string ItemName;
 
     public EItemRarity ItemRarity;
+
+    public ItemsListed(SO_Item so_Item)
+    {
+        SO_Item = so_Item;
+        ItemName = so_Item.ItemName;
+        Icon = so_Item.ItemIcon;
+        ItemRarity = so_Item.EItemRarity;
+        UsableGameObject = so_Item.Usable_GameObject;
+    }
 
     [OnInspectorInit]
     private void CreateData()
@@ -196,6 +212,7 @@ public class WeaponVisualizer
 
             EditorUtility.SetDirty(weapon);
             EditorUtility.SetDirty(weaponGameObject.gameObject);
+            ItemOrganizer.ItemListedRegistering(weapon, item);
 
             weapon.WeaponParameters = new FWeaponParameters(item.EffectType, item.WeaponType, item.WeaponSize);
             weapon.MeleeWeaponParameters = new FMeleeWeaponParameters(item.Damage, item.Speed, item.CanPierce);
@@ -213,6 +230,7 @@ public class WeaponVisualizer
             StaffWeapon staffGameObject = staff.Usable_GameObject.GetComponent<StaffWeapon>();
             EditorUtility.SetDirty(staff);
             EditorUtility.SetDirty(staffGameObject.gameObject);
+            ItemOrganizer.ItemListedRegistering(staff, item);
             staff.WeaponParameters = new FWeaponParameters(item.EffectType, item.WeaponType, item.WeaponSize);
             ApplySoStaffWeaponToPrefab(staff, staffGameObject);
 
@@ -225,6 +243,7 @@ public class WeaponVisualizer
             ShieldWeapon shieldGameObject = shield.Usable_GameObject.GetComponent<ShieldWeapon>();
             EditorUtility.SetDirty(shield);
             EditorUtility.SetDirty(shieldGameObject.gameObject);
+            ItemOrganizer.ItemListedRegistering(shield, item);
             shield.WeaponParameters = new FWeaponParameters(item.EffectType, item.WeaponType, item.WeaponSize);
             ApplyShieldWeaponToPrefab(shield, shieldGameObject);
 
@@ -279,18 +298,15 @@ public class WeaponVisualizer
         }
 
 
-        public WeaponListed(SO_Weapon so_item)
+        public WeaponListed(SO_Weapon so_item) : base(so_item)
         {
-            SO_Item = so_item;
-            UsableGameObject = so_item.Usable_GameObject;
-            Icon = so_item.ItemIcon;
-            ItemName = so_item.ItemName;
-            ItemRarity = so_item.EItemRarity;
+
             WeaponType = so_item.WeaponParameters.WeaponType;
             WeaponSize = so_item.WeaponParameters.WeaponSize;
             EffectType = so_item.WeaponParameters.DamageType;
             WeaponEffects = so_item.WeaponEffects;
         }
+
 
 
     }
@@ -394,6 +410,7 @@ public class ArmorVisualizer
 
             EditorUtility.SetDirty(armor);
             EditorUtility.SetDirty(armorGameObject.gameObject);
+            ItemOrganizer.ItemListedRegistering(armor, item);
             armor.MagicArmor = item.MagicArmorValue;
             armor.Armor = item.ArmorValue;
             armor.ArmorType = item.ArmorType;
@@ -438,14 +455,8 @@ public class ArmorVisualizer
         }
 
 
-        public ArmorListed(SO_Armor so_item)
+        public ArmorListed(SO_Armor so_item) : base(so_item)
         {
-            SO_Item = so_item;
-            UsableGameObject = so_item.Usable_GameObject;
-            ArmorPlace = so_item.ArmorPlace;
-            Icon = so_item.ItemIcon;
-            ItemName = so_item.ItemName;
-            ItemRarity = so_item.EItemRarity;
             ArmorType = so_item.ArmorType;
             ArmorValue = so_item.Armor;
             MagicArmorValue = so_item.MagicArmor;
@@ -507,6 +518,8 @@ public class InventoryItemVisualizer
 
             EditorUtility.SetDirty(potion);
             EditorUtility.SetDirty(potionGameObject.gameObject);
+
+            ItemOrganizer.ItemListedRegistering(potion, item);
             potion.Throwable = item.Throwable;
             potion.ThrowForce = item.ThrowForce;
             potion.UseTime = item.UseTime;
@@ -514,9 +527,11 @@ public class InventoryItemVisualizer
             potion.HitMask = item.HitMask;
             potion.GameEffectContainer = item.GameEffectContainer;
             potion.Charges = item.Charges;
-            potion.ThrowableGameObject = item.ThrowableGameObject;
             potion.ExplosionEffect = item.ExplosionEffect;
             potion.DrinkEffect = item.DrinkEffect;
+            potion.GameEffectContainer = item.GameEffectContainer;
+            potion.ExplosionEffect = item.ExplosionEffect;
+            potion.ThrowableGameObject = item.ThrowableGameObject;
 
             ApplySoPotionToPrefab(potion, potionGameObject);
 
@@ -529,6 +544,9 @@ public class InventoryItemVisualizer
             Scroll scrollGameObject = scroll.Usable_GameObject.GetComponent<Scroll>();
             EditorUtility.SetDirty(scroll);
             EditorUtility.SetDirty(scrollGameObject.gameObject);
+            ItemOrganizer.ItemListedRegistering(scroll, item);
+            scroll.ScrollEffects = item.ScrollEffects;
+
             scroll.UseTime = item.UseTime;
             scroll.Charges = item.Charges;
 
@@ -571,10 +589,8 @@ public class InventoryItemVisualizer
         public GameObject DrinkEffect;
 
 
-        public PotionItemListed( SO_Potion so_Potion)
+        public PotionItemListed( SO_Potion so_Potion) : base(so_Potion)
         {
-            SO_Item = so_Potion;
-            UsableGameObject = so_Potion.Usable_GameObject;
             Throwable = so_Potion.Throwable;
             ThrowForce = so_Potion.ThrowForce;
             UseTime = so_Potion.UseTime;
@@ -585,7 +601,7 @@ public class InventoryItemVisualizer
             ThrowableGameObject = so_Potion.ThrowableGameObject;
             ExplosionEffect = so_Potion.ExplosionEffect;
             DrinkEffect = so_Potion.DrinkEffect;
-
+           
         }
 
 
@@ -611,16 +627,8 @@ public class InventoryItemVisualizer
 
         }
 
-        public ScrollItemListed(SO_Scroll so_item)
+        public ScrollItemListed(SO_Scroll so_item) : base(so_item)
         {
-            SO_Item = so_item;
-            Icon = so_item.ItemIcon;
-            ItemName = so_item.ItemName;
-            ItemRarity = so_item.EItemRarity;
-            UsableGameObject = so_item.Usable_GameObject;
-            Icon = so_item.ItemIcon;
-            ItemName = so_item.ItemName;
-            ItemRarity = so_item.EItemRarity;
             Charges = so_item.Charges;
             UseTime = so_item.UseTime;
             ScrollEffects = so_item.ScrollEffects;

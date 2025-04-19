@@ -20,4 +20,6 @@ MonoBehaviour:
   Chest_GameObject: {fileID: 7003793399489357865, guid: d8775dd911057784e995567a0b25843a, type: 3}
   Cost: 6
   EItemRarity: 2
+  UseTime: 0.7
   Charges: 3
+  ScrollEffects: []

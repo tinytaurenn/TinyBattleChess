@@ -31,4 +31,4 @@ MonoBehaviour:
   ExplosionEffect: {fileID: 0}
   DrinkEffect: {fileID: 0}
   GameEffectContainer: {fileID: 0}
-  Charges: 1
+  Charges: 3
